@@ -228,6 +228,8 @@ var	  bool							PlayerSpeedUp;					// Player speed has been altered by this wea
 // this class should now be made sprint-agnostic where possible
 // broadcasting owner event on weapon change should do it
 var   BCSprintControl				SprintControl;					// A low, poor sort of hack to draw Sprint info on the HUD
+var   byte							SprintQueuedFire[NUM_FIRE_MODES];	// Local player: fire was pressed while the gun was coming back from a sprint, and let go before it was there. It goes off when it is
+var   bool							bNoSprintHold;					// Fire is being stopped by something other than the trigger: the gun coming back from a sprint is not waited for
 //-----------------------------------------------------------------------------
 // Melee
 //-----------------------------------------------------------------------------
@@ -1333,6 +1335,7 @@ simulated event WeaponTick(float DT)
 	if(AIController(Instigator.Controller) == None)
 		TickSighting(DT);
 	TickFireCounter(DT);
+	TickSprintFire();
 
 	// Ensure SprintControl is linked
     if (SprintControl == None)
@@ -1793,8 +1796,8 @@ exec simulated function ScopeView()
 	if (!bUseSights)
 		return;
 
-	// can't use ADS right now
-	if (!CanUseSights())
+	// can't use ADS right now. A sprint alone is not in the way: the sight key ends it, as a shot does
+	if (!SightsEndSprint())
 		return;
 
     switch (ScopeHandling)
@@ -3081,6 +3084,225 @@ simulated final function bool SprintActive()
 }
 
 //===========================================================================
+// SPRINT AND FIRE
+//
+// A sprint turns the gun away, and a gun that is turned away is not fired. Pressing fire ends the sprint, the gun
+// comes back quickly and then shoots. The sight key ends it too, and the sights rise meanwhile (ScopeView).
+//
+// The machine of the player holding the gun decides all of it. It holds the press back until its gun is there, so
+// what the server hears of is a sprint that ended and, a moment later, fire that starts. The server's own part is
+// to see that the two never run together.
+//
+// Both are rules of the game style, bFireEndsSprint and bSightsEndSprint, and off unless a server switches them on:
+// then a gun fires from where a sprint holds it and the sight key waits for the sprint to be over, as they used to.
+//---------------------------------------------------------------------------
+// Sprinting, by the key or by what the sprint control has made of it
+simulated final function bool HolderSprints()
+{
+	return SprintControl != None && (SprintControl.bSprinting || SprintControl.IsSprintActive());
+}
+
+// Whether a fire mode needs the gun pointed where its holder looks: the ones that shoot something.
+// With the rule switched off none does, and a gun fires from where the sprint holds it
+simulated function bool FireEndsSprint(int Mode)
+{
+	if (!class'BallisticReplicationInfo'.default.bFireEndsSprint)
+		return false;
+	if (bAimDisabled || FireMode[Mode] == None || !class'BallisticReplicationInfo'.default.bWeaponJumpOffsetting || !AimComponent.HasSprintOffset())
+		return false;
+	if (BallisticMeleeFire(FireMode[Mode]) != None)
+		return false;
+	return BallisticInstantFire(FireMode[Mode]) != None || BallisticProjectileFire(FireMode[Mode]) != None;
+}
+
+// Whether the key of a fire mode is down or, with bStale, has been since before the sprint under way began
+simulated final function bool FireKeyDown(int Mode, optional bool bStale)
+{
+	local bool bAlt;
+
+	if (Instigator == None || Instigator.Controller == None)
+		return false;
+
+	bAlt = (Mode == 1);
+	if (default.ExchangeFireModes != 0)
+		bAlt = !bAlt;
+
+	if (bStale)
+	{
+		if (SprintControl == None)
+			return false;
+		if (bAlt)
+			return SprintControl.bStaleAltFire;
+		return SprintControl.bStaleFire;
+	}
+
+	if (bAlt)
+		return Instigator.Controller.bAltFire != 0;
+	return Instigator.Controller.bFire != 0;
+}
+
+// The gun is wanted: a sprint ends, and the gun comes back from where the sprint put it within MaxTime
+simulated function EndSprintPose(float MaxTime)
+{
+	if (SprintControl != None)
+		SprintControl.CancelSprint(MaxTime);
+	if (!bAimDisabled)
+		AimComponent.CancelSprintOffset(MaxTime);
+}
+
+// Fire can start. True if a sprint, or the gun not being back from one, keeps it from starting just yet. This is asked
+// again on every tick the trigger stays down, and TickSprintFire sees to a trigger that does not
+simulated function bool SprintHoldsFire(int Mode)
+{
+	if (Instigator == None || PlayerController(Instigator.Controller) == None || !FireEndsSprint(Mode))
+		return false;
+
+	if (!Instigator.IsLocallyControlled())
+	{
+		EndRemoteSprint(Mode);
+		return false;
+	}
+
+	// down since before the sprint began: sprinting was the later wish
+	if (HolderSprints() && FireKeyDown(Mode, true))
+		return true;
+
+	// The sprint ends here. One that is over already may have left the gun on its way back at its own pace
+	if (HolderSprints() || AimComponent.InSprintOffset())
+		EndSprintPose(AimComponent.Params.SprintCancelTime);
+	if (!AimComponent.InSprintOffset())
+		return false;
+
+	SprintQueuedFire[Mode] = 1;
+	return true;
+}
+
+// A mode that fires when it is let go is being let go. That is its shot: it ends a sprint and waits for the gun as any
+// other does. Only the trigger going up is held back, not a weapon being put away or one that stops by itself
+simulated function bool SprintHoldsRelease(int Mode)
+{
+	if (Instigator == None || !Instigator.IsLocallyControlled() || PlayerController(Instigator.Controller) == None)
+		return false;
+	if (bNoSprintHold || ClientState != WS_ReadyToFire || Instigator.PendingWeapon != None || FireKeyDown(Mode) || !FireEndsSprint(Mode))
+		return false;
+
+	if (HolderSprints() || AimComponent.InSprintOffset())
+		EndSprintPose(AimComponent.Params.SprintCancelTime);
+	return AimComponent.InSprintOffset();
+}
+
+// Server: the owner's machine has ended the sprint for a shot or its sights and its gun is coming back within MaxTime.
+// Where this server keeps a copy of the gun's sprint offset, that does the same
+function HurrySprintOffset(float MaxTime)
+{
+	if (!bAimDisabled)
+		AimComponent.CancelSprintOffset(FClamp(MaxTime, 0, AimComponent.Params.SprintCancelTime));
+}
+
+// Server: a remote player's fire mode is about to shoot. That player's machine has held it back until its gun was
+// there and has ended the sprint. This ends a sprint the word of which has not got here first
+function EndRemoteSprint(int Mode)
+{
+	if (Role == ROLE_Authority && Instigator != None && !Instigator.IsLocallyControlled() && PlayerController(Instigator.Controller) != None
+		&& SprintControl != None && SprintControl.bSprintActive && FireEndsSprint(Mode))
+		SprintControl.StopSprint();
+}
+
+// The holder has begun to sprint. With the trigger down that was the later of the two wishes: the gun stops firing
+// and the trigger does nothing until it is pressed again or the sprint is over. A mode that fires when it is let go
+// stays held, and letting it go is what ends the sprint (SprintHoldsRelease)
+simulated function SprintStarted()
+{
+	local int m;
+
+	if (Instigator == None || PlayerController(Instigator.Controller) == None)
+		return;
+
+	for (m = 0; m < NUM_FIRE_MODES; m++)
+	{
+		SprintQueuedFire[m] = 0;
+		if (FireMode[m] == None || !FireMode[m].bIsFiring || FireMode[m].bFireOnRelease || !FireEndsSprint(m))
+			continue;
+		if (Instigator.IsLocallyControlled())
+			ClientStopFire(m);
+		// the owner's machine does that for itself: this is for one that does not
+		else if (Role == ROLE_Authority)
+			StopFire(m);
+	}
+}
+
+// Local player: fire was pressed while the gun was coming back from a sprint and let go again before it was there.
+// The press is not lost, the shot goes when the gun is back. With the trigger down the engine asks by itself
+simulated function TickSprintFire()
+{
+	local int m;
+
+	if (Instigator == None || !Instigator.IsLocallyControlled() || PlayerController(Instigator.Controller) == None)
+		return;
+
+	for (m = 0; m < NUM_FIRE_MODES; m++)
+	{
+		if (SprintQueuedFire[m] == 0 || FireKeyDown(m))
+			continue;
+		if (FireMode[m] == None || FireMode[m].bIsFiring || ClientState != WS_ReadyToFire || HolderSprints())
+		{
+			SprintQueuedFire[m] = 0;
+			continue;
+		}
+		if (AimComponent.InSprintOffset())
+			continue;
+
+		SprintQueuedFire[m] = 0;
+		ClientStartFire(m);
+		// With the trigger up the engine stops it again on this tick, before the shot it would fire on the next.
+		// A mode that fires when it is let go fires then anyway
+		if (FireMode[m].bIsFiring && !FireMode[m].bFireOnRelease && FireMode[m].PreFireTime <= 0)
+			FireMode[m].ModeDoFire();
+	}
+}
+
+simulated event ClientStopFire(int Mode)
+{
+	// The engine comes back with this on every tick the trigger is up
+	if (FireMode[Mode] != None && FireMode[Mode].bFireOnRelease && FireMode[Mode].bIsFiring && SprintHoldsRelease(Mode))
+		return;
+
+	Super.ClientStopFire(Mode);
+}
+
+// Stops all fire on the spot, for getting into a vehicle
+simulated function ImmediateStopFire()
+{
+	bNoSprintHold = true;
+	Super.ImmediateStopFire();
+	bNoSprintHold = false;
+}
+
+// The sight key was pressed. True if the sights can come up, which they can out of a sprint: it ends here, and the
+// gun comes back from where the sprint put it while the sights rise
+simulated function bool SightsEndSprint()
+{
+	local bool bWasSprinting, bCan;
+
+	if (!class'BallisticReplicationInfo'.default.bSightsEndSprint)
+		return CanUseSights();
+	if (!HolderSprints() && (bAimDisabled || !AimComponent.InSprintOffset()))
+		return CanUseSights();
+
+	// would they come up but for the sprint?
+	bWasSprinting = SprintControl != None && SprintControl.bSprinting;
+	if (bWasSprinting)
+		SprintControl.bSprinting = false;
+	bCan = CanUseSights();
+	if (bWasSprinting)
+		SprintControl.bSprinting = true;
+
+	if (bCan)
+		EndSprintPose(FMin(AimComponent.Params.SprintCancelTime, SightingTime));
+	return bCan;
+}
+
+//===========================================================================
 // RELOADING
 //
 // Run on client, send call to server. It will send it back if reload is valid.
@@ -3895,6 +4117,11 @@ simulated function bool StartFire(int Mode)
     if (!ReadyToFire(Mode))
         return false;
 
+	// not out of a sprint, and not before the gun is back from one
+	if (SprintHoldsFire(Mode))
+		return false;
+	SprintQueuedFire[Mode] = 0;
+
     if (Mode == 0)
         alt = 1;
     else
@@ -4340,6 +4567,10 @@ function HolderDied()
 
 simulated event StopFire(int Mode)
 {
+	// a mode that fires when it is let go shoots now
+	if (FireMode[Mode].bFireOnRelease && FireMode[Mode].bIsFiring)
+		EndRemoteSprint(Mode);
+
 	if ( FireMode[Mode].bIsFiring )
 	    FireMode[Mode].bInstantStop = true;
     if (Instigator.IsLocallyControlled() && !FireMode[Mode].bFireOnRelease)

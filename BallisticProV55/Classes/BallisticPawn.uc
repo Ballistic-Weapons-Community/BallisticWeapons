@@ -110,7 +110,7 @@ var() float				TimeBetweenImpacts;	// Minimum time between impact mark spawning
 var   vector			LastImpactNormal;	// Normal of last impact
 var   vector			LastImpactLocation;	// Location of last impact
 var   BCSprintControl   Sprinter;
-var	  float				LastDodgeTime;
+var	  float				DodgeReadyTime;		// MoveTime from which the next dodge is allowed
 var	  float				DodgeInterval;
 // -------------------------------------------------------
 var   vector            BloodFlashV, ShieldFlashV;
@@ -172,25 +172,68 @@ var() bool bAllowCrouchSliding; // Whether crouch sliding is allowed
 var() float SlideFriction;		 // Friction applied during sliding, affects how quickly the player slows down
 var() float SlideCooldownTime;	// Time before the player can slide again after a slide ends
 var() float SlidePower;			 // Initial burst power when starting a slide, affects how fast the player accelerates at the start of the slide
+var() float SlideLandGraceTime;	// After landing with crouch held, time in which crouching starts a slide at SlideEasyStartSpeed
+var() float SlideMomentumTime;	// How long the speed before a sudden drop is remembered as the momentum a slide starts with
+var() float SlideDownhillAngle;	// Floor angle in degrees from which moving downhill lets a slide start at SlideEasyStartSpeed
 var bool bIsSliding;			 // Is the player currently sliding?
-var bool bSlideOnLand;			 // Player held duck while airborne — bypass speed threshold on next StartSlide
-var bool bSlideCorrected;		 // True after adopting a server correction into SlideVelocity during replay
-var bool bBotSlideRequest;		 // TODO: work on this
-var float LastSlideEndTime;		// Time when the last slide ended
-var float LastLandTime;			// Time when the player last landed
-var vector SlideVelocity;		// Velocity during the slide
+var bool bSlideCrouchHeld;		 // Crouch was held during the last move. A slide starts when this goes from false to true
+var bool bBotSlideRequest;		 // An AI controller asked for a slide with StartSlide
+var float SlideCooldownEnd;		// MoveTime from which the player can slide again
+var float SlideLandGraceEnd;	// MoveTime until which crouching starts a slide at SlideEasyStartSpeed
+var vector SlideMomentum;		// Horizontal velocity from before a sudden drop. Landing and releasing sprint both cut speed right before the crouch
+var float SlideMomentumEnd;		// MoveTime until which SlideMomentum is remembered
 var float SlideStartSpeed;		 // Speed required to start sliding
+var float SlideEasyStartSpeed;	 // Speed required to start sliding when landing with crouch held or moving downhill
 var float SlideStopSpeed;		 // Speed below which sliding stops
-var float MaxSlideSpeed;		// Maximum speed during sliding, our groundspeed becomes this in order to move faster
+var float MaxSlideSpeed;		// Maximum speed during sliding
 
-// Slope/Physics Calculations
-var float SlopeAngleRad;		 // Angle of the slope in radians
-var float SlopeAngleDeg;		 // Angle of the slope in degrees
-var vector DownSlopeVect;		 // Direction vector pointing down the slope
-var vector LastFallingVelocity;	 // Velocity of the player when they last fell, used to determine sliding behavior
-var float GravityAlongSlope;	 // Gravity component acting along the slope, used to calculate acceleration during sliding
+// Slide prediction
+struct SlideState				// Slide state that the engine neither rewinds nor corrects
+{
+	var bool	bSliding;
+	var bool	bCrouched;
+	var bool	bCrouchHeld;
+	var float	CooldownEnd;
+	var float	LandGraceEnd;
+	var vector	Momentum;
+	var float	MomentumEnd;
+};
+var SlideState SavedSlide;		// Client: slide state at the start of the latest move
+var bool bSlideMoveStart;		// Client: a move has started and its slide state hasn't been saved yet
+var bool bSlideMovePending;		// Client: the controller was holding back the previous move when this one started
+var bool bSlideRerunCrouched;	// Client: the move being run again was first run crouched, and the pawn has stood up since
+var bool bSlideReplaying;		// Client: saved moves are being replayed after a server correction
+var float ReplayMoveTime;		// Client: MoveTime of the move being replayed
+var SavedMove ReplayMove;		// Client: the saved move being replayed, or the next one that will be
+struct SlideChange				// A change of bIsSliding and the MoveTime of the move it happened in
+{
+	var float	Stamp;
+	var bool	bSliding;
+	var bool	bServer;		// Reported by the server. Otherwise it was predicted here
+};
+var SlideChange SlideLog[8];	// Client: the latest changes, to tell what the slide state was at an earlier move
+
+// Ground speed of past moves
+struct SpeedChange				// A change of GroundSpeed between two of the client's moves
+{
+	var float	Stamp;			// MoveTime of the last move made at OldSpeed
+	var float	OldSpeed;
+	var float	NewSpeed;
+};
+var SpeedChange SpeedLog[8];	// Client: the latest changes, to replay moves at the GroundSpeed they were made with
+var float LastMoveStamp;		// Client: MoveTime of the latest walking move
+var float LastMoveSpeed;		// Client: GroundSpeed it was made with
+var float PresentSpeed;			// Client: GroundSpeed from before a replay
+var float ReplaySpeed;			// Client: GroundSpeed the replay has set
+var bool bReplaySpeedSet;		// Client: GroundSpeed has to go back from ReplaySpeed to PresentSpeed
+
+// Server settings
+var bool bGroundSpeedUnsent;	// Client: GroundSpeed is still what this pawn spawned with, so the server may never have sent it
+var byte SettingsChecksLeft;	// Client: this pawn arrived before the BallisticReplicationInfo carrying the server's settings. Times left to look for it
+var float NextSettingsCheckTime;
 
 // Sliding Animations
+var bool  bSlideAnimating;        // slide animations are playing on this machine
 var bool  bSlideWaitingStart;     // waiting for start anim to finish
 var 	name 		SlideAnims[4]; 
 var 	name 		SlideStartAnims[4]; 
@@ -204,7 +247,7 @@ var() float BotSprintEnemyRange; // Enemy closer than this distance stops auto s
 //var vector LockedSurfaceNormal; // Stores the normal of the locked surface
 
 // --- Crouch/Jump Parameters ---
-var float  CrouchEndTime;
+var float  JumpCrouchEnd;		// MoveTime until which a jump still gets the crouch penalty after standing up
 var() float JumpCrouchPenalty;   // Jump height penality when crouch jumping
 var() float JumpCrouchTime; 	// Time after we end crouch before jump crouch penalty is removed
 
@@ -220,13 +263,41 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 		ClientHits, HitCounter, ClientSetCrouchAbility,
-		bIsSliding, Sprinter;
+		Sprinter, ClientSlideState;
+	// The owning client predicts its own slides. See SyncSlidePrediction
+	reliable if (Role == ROLE_Authority && !bNetOwner)
+		bIsSliding;
 }
 
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 
+	// The server only replicates GroundSpeed when it differs from this class's default over there, which
+	// BindDefaultMovement has set to the animation speed. The default of a client's first pawn is another.
+	bGroundSpeedUnsent = Role < ROLE_Authority && GroundSpeed == default.GroundSpeed;
+
+	ApplyServerSettings();
+
+	// A client can receive this pawn before the BallisticReplicationInfo that carries the server's settings.
+	// Apply them again once it turns up, or the pawn keeps predicting with the wrong ones.
+	if (Role < ROLE_Authority && class'BallisticReplicationInfo'.static.GetInstance(self) == None)
+		SettingsChecksLeft = 20;
+
+	// FIXME: why is this here? this function is the definition of net init
+	if(!pawnNetInit)
+    {
+        pawnNetInit = true;
+
+        if (Controller != None)
+        {
+            BPRI = class'Mut_Ballistic'.static.GetBPRI(Controller.PlayerReplicationInfo);
+        }
+    }
+}
+
+simulated function ApplyServerSettings()
+{
 	if (!class'BallisticReplicationInfo'.default.bBrightPlayers)
 	{
 		bDramaticLighting=False;
@@ -244,17 +315,6 @@ simulated event PostNetBeginPlay()
 		WalkAnims[2]='RunL';
 		WalkAnims[3]='RunR';
 	}
-
-	// FIXME: why is this here? this function is the definition of net init
-	if(!pawnNetInit)
-    {
-        pawnNetInit = true;
-
-        if (Controller != None)
-        {
-            BPRI = class'Mut_Ballistic'.static.GetBPRI(Controller.PlayerReplicationInfo);
-        }
-    }
 }
 
 simulated function vector CalcDrawOffset(inventory Inv)
@@ -583,32 +643,19 @@ event Landed(vector HitNormal)
 
     MultiJumpRemaining = MaxMultiJump;
 
-	LastLandTime = Level.TimeSeconds;
-
 	// ProcessMove skips crouch input during PHYS_Falling, so bWantsToCrouch
 	// is never set while airborne (dodge requires crouch=false to initiate).
-	// Force crouch intent here so the native Crouch() fires next tick.
-	// Also snapshot the landing velocity into LastFallingVelocity so StartSlide
-	// (called from StartCrouch on the next performPhysics tick) can use it
-	// for the speed threshold check before the 0.1s grace window expires.
+	// Force crouch intent here so the native Crouch() fires next tick, and
+	// let that crouch start a slide off the momentum kept from the fall.
 	if (Controller != None && Controller.bDuck > 0 && bCanCrouch)
 	{
 		bWantsToCrouch = true;
-		// LastFallingVelocity already holds the peak horizontal velocity from
-		// ModifyVelocity during the fall — don't clobber it with the dampened
-		// landing-subtick value.
-		bSlideOnLand = true;
+		SlideLandGraceEnd = MoveTime() + SlideLandGraceTime;
 	}
 
 	// temporary hardcode
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
 		PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, 0.5, true, 30);
-
-	/* 
-	if(Bot(Controller)!=None)
-		if(FRand() < 0.65 && (VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed))
-			StartSlide();
-	*/
 
      //PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, 1024 + (Velocity.Z * 0.65));
 }
@@ -948,9 +995,8 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 
 simulated event SetAnimAction(name NewAction)
 {
-    local int i;
-
-    if (!bWaitForAnim)
+	// A slide only holds the movement animations back. See TickSlideAnim
+    if (!bWaitForAnim || bSlideAnimating)
     {
 	    AnimAction = NewAction;
 		if ( AnimAction == 'Weapon_Switch' )
@@ -1056,6 +1102,12 @@ simulated event SetAnimAction(name NewAction)
 		}
 		
 		// End special animations
+		// Taunts would take the slide's place
+		if (bSlideAnimating)
+		{
+			AnimAction = '';
+			return;
+		}
         if ( ((Physics == PHYS_None)|| ((Level.Game != None) && Level.Game.IsInState('MatchOver')))
 				&& (DrivenVehicle == None) )
         {
@@ -1093,29 +1145,6 @@ simulated event SetAnimAction(name NewAction)
                 AnimBlendParams(1, 1.0, 0.0, 0.2, FireRootBone);
                 PlayAnim(NewAction,, 0.1, 1);
                 FireState = FS_Ready;
-            }
-        }
-        for (i = 0; i < 4; ++i)
-        {
-            if (AnimAction == SlideStartAnims[i])
-            {
-                if (PlayAnim(AnimAction, 2.0))
-                	bSlideWaitingStart = true;
-				else bSlideWaitingStart = false;
-                return;
-            }
-            if (AnimAction == SlideAnims[i])
-            {
-                bSlideWaitingStart = false;
-                LoopAnim(AnimAction,, 0.20);
-                return;
-            }
-            if (AnimAction == SlideEndAnims[i])
-            {
-                bSlideWaitingStart = false;
-                if (PlayAnim(AnimAction, 2.0))
-                    bWaitForAnim = true;
-                return;
             }
         }
     }
@@ -1258,7 +1287,7 @@ simulated function AnimEnd(int Channel)
         if (bSlideWaitingStart)
         {
             bSlideWaitingStart = false;
-            if (bIsSliding)
+            if (bSlideAnimating)
                 LoopSlideAnim();
         }
 
@@ -1834,6 +1863,26 @@ simulated event Tick(float DT)
 	//local Vector X,Y,Z;
 
 	super.Tick(DT);
+
+	TickSlideAnim();
+
+	// The sprint control knows the speed the server has set, and only reaches the pawn's owner
+	if (bGroundSpeedUnsent && Sprinter != None && Sprinter.BaseGroundSpeed > 0)
+	{
+		bGroundSpeedUnsent = false;
+		GroundSpeed = Sprinter.SprintGroundSpeed(Sprinter.bSprintActive);
+	}
+
+	if (SettingsChecksLeft > 0 && Level.TimeSeconds >= NextSettingsCheckTime)
+	{
+		NextSettingsCheckTime = Level.TimeSeconds + 0.25;
+		SettingsChecksLeft--;
+		if (class'BallisticReplicationInfo'.static.GetInstance(self) != None)
+		{
+			SettingsChecksLeft = 0;
+			ApplyServerSettings();
+		}
+	}
 
 	//GetAxes(Rotation, X, Y, Z);
 	
@@ -2692,7 +2741,6 @@ event StartCrouch(float HeightAdjust)
 	EyeHeight += HeightAdjust;
 	OldZ -= HeightAdjust;
 	BaseEyeheight = CrouchEyeHeight;
-	StartSlide();
 }
 
 event EndCrouch(float HeightAdjust)
@@ -2700,7 +2748,93 @@ event EndCrouch(float HeightAdjust)
 	EyeHeight -= HeightAdjust;
 	OldZ += HeightAdjust;
 	BaseEyeHeight = Default.BaseEyeHeight;
-	CrouchEndTime = Level.TimeSeconds;
+	JumpCrouchEnd = MoveTime() + JumpCrouchTime;
+}
+
+// The player's controller calls this from ProcessMove at the start of every walking move,
+// before it decides whether to combine the move with the one it was holding back.
+function ShouldCrouch(bool Crouch)
+{
+	local PlayerController PC;
+
+	Super.ShouldCrouch(Crouch);
+
+	PC = PlayerController(Controller);
+	if (Role != ROLE_AutonomousProxy || PC == None)
+		return;
+
+	bSlideMoveStart = true;
+	bSlideMovePending = PC.PendingMove != None;
+
+	// The controller replays moves at whatever GroundSpeed there is now. A replay that goes back
+	// past a sprint change would run the moves from before it at the wrong speed.
+	if (PC.bUpdating)
+	{
+		if (!bReplaySpeedSet)
+		{
+			bReplaySpeedSet = true;
+			PresentSpeed = GroundSpeed;
+		}
+		ReplaySpeed = GroundSpeedAfter(MoveTime());
+		GroundSpeed = ReplaySpeed;
+		return;
+	}
+
+	if (bReplaySpeedSet)
+	{
+		bReplaySpeedSet = false;
+		if (GroundSpeed == ReplaySpeed)
+			GroundSpeed = PresentSpeed;
+	}
+
+	// A late GroundSpeed from the server mustn't get into a move while a sprint change is being predicted
+	if (Sprinter != None && Sprinter.PredictEndTime > 0)
+		Sprinter.ClientUpdateSpeed();
+
+	if (GroundSpeed != LastMoveSpeed && LastMoveSpeed > 0)
+		LogSpeedChange(LastMoveStamp, LastMoveSpeed, GroundSpeed);
+	LastMoveStamp = Level.TimeSeconds;
+	LastMoveSpeed = GroundSpeed;
+}
+
+function LogSpeedChange(float TimeStamp, float OldSpeed, float NewSpeed)
+{
+	local int i, Oldest;
+
+	for (i = 1; i < ArrayCount(SpeedLog); i++)
+		if (SpeedLog[i].Stamp < SpeedLog[Oldest].Stamp)
+			Oldest = i;
+
+	SpeedLog[Oldest].Stamp = TimeStamp;
+	SpeedLog[Oldest].OldSpeed = OldSpeed;
+	SpeedLog[Oldest].NewSpeed = NewSpeed;
+}
+
+// Client: the GroundSpeed of the move that was made after the one with this MoveTime
+function float GroundSpeedAfter(float TimeStamp)
+{
+	local int i, Last, Next;
+
+	Last = -1;
+	Next = -1;
+	for (i = 0; i < ArrayCount(SpeedLog); i++)
+	{
+		if (SpeedLog[i].Stamp <= 0)
+			continue;
+		if (SpeedLog[i].Stamp <= TimeStamp)
+		{
+			if (Last < 0 || SpeedLog[i].Stamp > SpeedLog[Last].Stamp)
+				Last = i;
+		}
+		else if (Next < 0 || SpeedLog[i].Stamp < SpeedLog[Next].Stamp)
+			Next = i;
+	}
+
+	if (Last >= 0)
+		return SpeedLog[Last].NewSpeed;
+	if (Next >= 0)
+		return SpeedLog[Next].OldSpeed;
+	return PresentSpeed;
 }
 
 // This is a fix for some stupid ass bug that emanates from beyond my reach.
@@ -2833,12 +2967,14 @@ function bool Dodge(eDoubleClickDir DoubleClickMove)
 	if (!bCanDodge)
 		return false;
 
-	if (Level.TimeSeconds - LastDodgeTime < DodgeInterval)
+	// A replayed dodge already passed this check when the move was first made
+	if (MoveTime() < DodgeReadyTime && !IsReplayingMoves())
 		return false;
 
     if (super.Dodge(DoubleClickMove))
     {
-		LastDodgeTime = Level.TimeSeconds;
+		if (!IsReplayingMoves())
+			DodgeReadyTime = MoveTime() + DodgeInterval;
 
         if (Role == ROLE_Authority)
             Inventory.OwnerEvent('Dodged');
@@ -2914,7 +3050,7 @@ function bool DoJump( bool bUpdating )
 		if ( (Base != None) && !Base.bWorldGeometry )
 			Velocity += Base.Velocity;
 
-        if( bIsCrouched || bWantsToCrouch || Level.TimeSeconds - CrouchEndTime < JumpCrouchTime )
+        if( bIsCrouched || bWantsToCrouch || MoveTime() < JumpCrouchEnd )
             Velocity.Z -= JumpZ * JumpCrouchPenalty;
 	
 		SetPhysics(PHYS_Falling);
@@ -3473,7 +3609,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 	Canvas.DrawText(T);
 	YPos += YL;
 	Canvas.SetPos(4,YPos);
-	Canvas.DrawText("EyeHeight "$Eyeheight$" BaseEyeHeight "$BaseEyeHeight$" Physics Anim "$bPhysicsAnimUpdate$ " Sliding "$bIsSliding$" SlideVelocity "$Vsize(SlideVelocity)$" SlideStartSpeed "$SlideStartSpeed$" SlideStopSpeed "$SlideStopSpeed$" MaxSlideSpeed "$MaxSlideSpeed);
+	Canvas.DrawText("EyeHeight "$Eyeheight$" BaseEyeHeight "$BaseEyeHeight$" Physics Anim "$bPhysicsAnimUpdate$ " Sliding "$bIsSliding$" SlideCooldownEnd "$SlideCooldownEnd$" SlideStartSpeed "$SlideStartSpeed$" SlideStopSpeed "$SlideStopSpeed$" MaxSlideSpeed "$MaxSlideSpeed);
 	YPos += YL;
 	Canvas.SetPos(4,YPos);
 
@@ -3518,13 +3654,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 	if (Controller == none)
 		return;
 
-	if (Physics == PHYS_Falling)
-	{
-		// Keep the peak horizontal speed seen during this fall so dodge-slide
-		// uses the launch velocity, not the decayed landing-subtick velocity.
-		if (VSize(Velocity * vect(1,1,0)) > VSize(LastFallingVelocity * vect(1,1,0)))
-			LastFallingVelocity = Velocity;
-	}
+	SyncSlidePrediction(DeltaTime, OldVelocity);
 
 	if (Physics == PHYS_Walking)
 	{
@@ -3576,57 +3706,22 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 			}
 		}
 
-		if (bIsSliding)
-		{
-			// Accept server velocity corrections into SlideVelocity.
-			// SlideVelocity isn't replicated, so HandleSliding would overwrite
-			// the corrected Velocity with stale client data during saved-move
-			// replay, causing repeated desync and camera twitching.
-			// OldVelocity == Velocity captured before calcVelocity acceleration,
-			// i.e. the server's SlideVelocity at the correction point.
-			if (Role < ROLE_Authority && PlayerController(Controller) != None)
-			{
-				if (PlayerController(Controller).bUpdating)
-				{
-					if (!bSlideCorrected)
-					{
-						SlideVelocity = OldVelocity;
-						SlideVelocity.Z = 0;
-						bSlideCorrected = true;
-					}
-				}
-				else
-					bSlideCorrected = false;
-			}
-
-			TickSlopeCalculation(DeltaTime);
-			HandleSliding(DeltaTime);
-		}
-		else
-		{
-			// This isn't the best way to do this, but it works for now
-			SlideStartSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*1.1;
-			SlideStopSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*default.CrouchedPct;
-			MaxSlideSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed*2.5;
-			if(Level.TimeSeconds > LastLandTime + 0.1)
-				LastFallingVelocity = vect(0,0,0); 
-			if (bIsCrouched)
-			{
-				// Gradually reduce the ground speed towards the crouch speed
-				if(Physics != PHYS_Falling)
-					CrouchedPct = FClamp(CrouchedPct - DeltaTime * 5.0, default.CrouchedPct, 1.0);
-			}
-			else
-			{
-				CrouchedPct = FClamp(CrouchedPct + (DeltaTime * 100), default.CrouchedPct, 1.0);
-			}
-		}
+		TickSlide(DeltaTime, OldVelocity);
 
 		OldMovementSpeed = VSize(Velocity);
 	}
-	// End slide if crouch released (player), bWantsToCrouch cleared (bot), speed too low, or airborne
-	if (bIsSliding && (((PlayerController(Controller) != None && !bIsCrouched) || (Bot(Controller) != None && !bWantsToCrouch)) || VSize(SlideVelocity) < SlideStopSpeed || VSize(OldVelocity) + 100.f < SlideStopSpeed || Physics != PHYS_Walking))
-		EndSlide();
+	else
+	{
+		// Slides need the ground, and crouch has to be pressed again after leaving it
+		if (bIsSliding)
+			EndSlide();
+		bSlideCrouchHeld = false;
+
+		// Keep the peak horizontal speed seen during this fall so dodge-slide
+		// uses the launch velocity, not the decayed landing-subtick velocity.
+		if (Physics == PHYS_Falling)
+			TrackSlideMomentum(Velocity);
+	}
 
 	if (Bot(Controller) != None)
 		BotAutoManageSprint();
@@ -3658,107 +3753,469 @@ function BotAutoManageSprint()
 	}
 }
 
-simulated function StartSlide()
+//===========================================================================
+// Crouch sliding
+//
+// Pressing crouch on the ground while moving fast enough starts a slide. A
+// sliding pawn ignores its acceleration and coasts on the velocity it has,
+// losing speed to friction and gaining it down slopes, until crouch is let
+// go or it gets too slow.
+//
+// Net behaviour:
+// The owning client predicts its slides. A slide has no velocity of its own,
+// it runs on the pawn's Velocity, which the engine already rewinds and
+// corrects for us. SyncSlidePrediction does the same for the rest of the
+// slide state, and everything timed is timed with MoveTime.
+//===========================================================================
+
+// True while the owning client replays its saved moves after a server correction
+simulated final function bool IsReplayingMoves()
 {
-    local name Anim;
-    local vector X, Y, Z;
-    local float DirDot, EffSlidePower, EffImpulse, EffBackSpeedScale;
-    local bool bLandSlide;
+	return PlayerController(Controller) != None && PlayerController(Controller).bUpdating;
+}
 
-	if (!bAllowCrouchSliding)
+// The time of the move being run, as stamped by the client that made it. The client, its replays
+// of the move and the server all get the same answer, which Level.TimeSeconds can't give them.
+simulated function float MoveTime()
+{
+	local PlayerController PC;
+
+	PC = PlayerController(Controller);
+	if (PC != None)
+	{
+		if (Role == ROLE_Authority)
+		{
+			if (!IsLocallyControlled())
+				return PC.CurrentTimeStamp;
+		}
+		else if (PC.bUpdating)
+		{
+			// Until the replay's first move has run its physics, it is still at the corrected move
+			if (bSlideReplaying)
+				return ReplayMoveTime;
+			return PC.CurrentTimeStamp;
+		}
+	}
+	return Level.TimeSeconds;
+}
+
+// Client: moves the replay's clock on by the part of a move that is being run.
+// Added up, the durations of the moves drift away from their timestamps by rounding. Everything
+// timed was timed with those timestamps, so a move that is done gets its own.
+simulated final function AdvanceReplayTime(float DeltaTime)
+{
+	ReplayMoveTime += DeltaTime;
+
+	while (ReplayMove != None && ReplayMove.TimeStamp < ReplayMoveTime - 0.0005)
+		ReplayMove = ReplayMove.NextMove;
+	if (ReplayMove != None && ReplayMove.TimeStamp < ReplayMoveTime + 0.0005)
+		ReplayMoveTime = ReplayMove.TimeStamp;
+}
+
+simulated final function SaveSlideState()
+{
+	SavedSlide.bSliding = bIsSliding;
+	SavedSlide.bCrouched = bIsCrouched;
+	SavedSlide.bCrouchHeld = bSlideCrouchHeld;
+	SavedSlide.CooldownEnd = SlideCooldownEnd;
+	SavedSlide.LandGraceEnd = SlideLandGraceEnd;
+	SavedSlide.Momentum = SlideMomentum;
+	SavedSlide.MomentumEnd = SlideMomentumEnd;
+}
+
+simulated final function RestoreSlideState()
+{
+	bIsSliding = SavedSlide.bSliding;
+	bSlideCrouchHeld = SavedSlide.bCrouchHeld;
+	SlideCooldownEnd = SavedSlide.CooldownEnd;
+	SlideLandGraceEnd = SavedSlide.LandGraceEnd;
+	SlideMomentum = SavedSlide.Momentum;
+	SlideMomentumEnd = SavedSlide.MomentumEnd;
+}
+
+// Keeps the owning client's slide state in step with its Location and Velocity.
+// The player's controller only knows about those two, and changes them behind the slide's back:
+// - To send fewer moves it holds one back and then runs it again as part of the next,
+//   from the Location and Velocity the held back move started with.
+// - When the server corrects the client, it puts the pawn back where the server had it
+//   and replays the moves made since.
+simulated function SyncSlidePrediction(float DeltaTime, vector OldVelocity)
+{
+	local PlayerController PC;
+
+	if (Role != ROLE_AutonomousProxy)
+		return;
+	PC = PlayerController(Controller);
+	if (PC == None)
 		return;
 
-	if (Controller == None)
+	if (!PC.bUpdating)
+		bSlideReplaying = false;
+	else if (bSlideReplaying)
+		AdvanceReplayTime(DeltaTime);
+	else
+	{
+		bSlideReplaying = true;
+		ReplayMoveTime = PC.CurrentTimeStamp;
+		// The controller has dropped the moves the server has seen, so the list starts with this one
+		ReplayMove = PC.SavedMoves;
+		AdoptSlideStateAt(PC.CurrentTimeStamp, OldVelocity);
+		AdvanceReplayTime(DeltaTime);
+	}
+
+	if (!bSlideMoveStart)
 		return;
+	bSlideMoveStart = false;
 
-    if ( (!bIsSliding
-	&& (Controller.bDuck > 0 || bBotSlideRequest)
-	&& (bSlideOnLand || VSize(LastFallingVelocity) >= SlideStartSpeed || VSize(Velocity) >= SlideStartSpeed || SlopeAngleDeg < 0.0)
-	&& Physics == PHYS_Walking
-	&& (Level.TimeSeconds - LastSlideEndTime > SlideCooldownTime)) /*|| AIController(Controller)!=None*/ )
-    {
-		bLandSlide = bSlideOnLand;
-		bSlideOnLand = false;
-		//log("Starting slide for:"@GetHumanReadableName());
-		if (Role == ROLE_Authority && Sprinter != None)
-		{
-			Sprinter.Stamina = FMax(0, Sprinter.Stamina - Sprinter.JumpDrain);
-			Sprinter.DelayRecharge();
-			Sprinter.StopSprint();
-		}
-		if (bLandSlide)
-		{
-			SlideVelocity = LastFallingVelocity;
-			SlideVelocity.Z = 0;
-		}
-		else
-			SlideVelocity = Velocity + LastFallingVelocity * 0.5; //Blend current velocity with last falling velocity
-
-        // Determine direction vs forward view
-        GetAxes(GetViewRotation(), X, Y, Z);
-        DirDot = Normal(SlideVelocity) dot X;
-
-        // Effective power and max speed
-        EffSlidePower = SlidePower;
-        EffBackSpeedScale = 1.0;
-
-        // If mostly moving backwards relative to facing, weaken it
-        if (DirDot < BackSlideDotThreshold)
-        {
-            EffSlidePower *= BackSlidePowerScale;
-            EffBackSpeedScale = BackMaxSlideSpeedScale;
-        }
-
-        // Apply initial impulse scaled by stamina (same logic, with effective power)
-        if (Sprinter != None)
-            EffImpulse = FMax(EffSlidePower * 0.25, EffSlidePower * (Sprinter.Stamina / Sprinter.MaxStamina));
-        else
-            EffImpulse = EffSlidePower;
-        SlideVelocity += Normal(SlideVelocity) * EffImpulse;
-
-		LastFallingVelocity = vect(0,0,0); 
-        bIsSliding = true;
-
-		Velocity = SlideVelocity;
-
-		// Set GroundSpeed so native calcVelocity clamp allows slide speed on both client and server
-		GroundSpeed = MaxSlideSpeed * EffBackSpeedScale;
-
-        Anim = SlideStartAnims[Get4WayDirection()];
-		if ( PlayAnim(Anim, 2.0) )
-			bWaitForAnim = true;
-		AnimAction = Anim;
+	// The move that was being held back is gone, so it is being run again as part of this one
+	if (bSlideMovePending && PC.PendingMove == None && !PC.bUpdating)
+	{
+		// Pawns stand up at the end of a move, so this one may have stood up since
+		bSlideRerunCrouched = SavedSlide.bCrouched && !bIsCrouched;
+		// It gets to start its slide again, at the same stamina and for the same cost
+		if (bIsSliding && !SavedSlide.bSliding)
+			UndoSlideStart();
+		RestoreSlideState();
 	}
 	else
-		bSlideOnLand = false;
+	{
+		bSlideRerunCrouched = false;
+		SaveSlideState();
+	}
 }
 
-simulated function LoopSlideAnim()
+// Server to owning client: bIsSliding changed while the server ran the client's move with this timestamp
+simulated function ClientSlideState(bool bSliding, float TimeStamp)
 {
-    local name LoopName, CurAnim;
-    local float Frame, Rate;
-
-    if (!bIsSliding)
-        return;
-
-    LoopName = SlideAnims[Get4WayDirection()];
-    if (LoopName == '')
-        return;
-    GetAnimParams(0, CurAnim, Frame, Rate);
-    if (CurAnim != LoopName)
-        SetAnimAction(LoopName);
+	LogSlideChange(bSliding, TimeStamp, true);
 }
 
-simulated function RefreshSlideLoop()
+// Tells the owning client about a slide change, which also remembers the ones it predicts itself
+simulated function NotifySlideChanged()
 {
-    if (bIsSliding && !bSlideWaitingStart)
-        LoopSlideAnim();
+	if (Role == ROLE_AutonomousProxy)
+	{
+		// The slide's stamina cost is paid once, when the start is first predicted
+		if (LogSlideChange(bIsSliding, MoveTime(), false) && bIsSliding && !IsReplayingMoves() && Sprinter != None)
+			Sprinter.PredictJumped();
+	}
+	else if (Role == ROLE_Authority && PlayerController(Controller) != None && !IsLocallyControlled())
+		ClientSlideState(bIsSliding, MoveTime());
+}
+
+// Client: takes back what predicting the latest slide start has done outside of the slide state
+simulated function UndoSlideStart()
+{
+	local int i, Newest;
+
+	Newest = -1;
+	for (i = 0; i < ArrayCount(SlideLog); i++)
+		if (SlideLog[i].Stamp > 0 && !SlideLog[i].bServer && (Newest < 0 || SlideLog[i].Stamp > SlideLog[Newest].Stamp))
+			Newest = i;
+
+	if (Newest < 0 || !SlideLog[Newest].bSliding)
+		return;
+
+	SlideLog[Newest].Stamp = 0;
+	if (Sprinter != None)
+		Sprinter.UnpredictJumped();
+}
+
+// Returns false for a change that was already in the log
+simulated function bool LogSlideChange(bool bSliding, float TimeStamp, bool bServer)
+{
+	local int i, Oldest, Newest;
+	local bool bNew;
+
+	Newest = -1;
+	for (i = 0; i < ArrayCount(SlideLog); i++)
+	{
+		if (SlideLog[i].Stamp < SlideLog[Oldest].Stamp)
+			Oldest = i;
+		if (SlideLog[i].Stamp > 0 && SlideLog[i].bServer == bServer && (Newest < 0 || SlideLog[i].Stamp > SlideLog[Newest].Stamp))
+			Newest = i;
+	}
+
+	// A move that is run again as part of the next one predicts the same change twice
+	bNew = bServer || Newest < 0 || SlideLog[Newest].bSliding != bSliding;
+	if (!bNew)
+		Oldest = Newest;
+
+	SlideLog[Oldest].Stamp = TimeStamp;
+	SlideLog[Oldest].bSliding = bSliding;
+	SlideLog[Oldest].bServer = bServer;
+	return bNew;
+}
+
+// Client: bIsSliding after the move with this timestamp, according to the server or to this client's own prediction
+simulated function bool SlideStateAt(float TimeStamp, bool bServer, out float ChangeStamp)
+{
+	local int i, Last, Next;
+
+	Last = -1;
+	Next = -1;
+	for (i = 0; i < ArrayCount(SlideLog); i++)
+	{
+		if (SlideLog[i].Stamp <= 0 || SlideLog[i].bServer != bServer)
+			continue;
+		if (SlideLog[i].Stamp <= TimeStamp)
+		{
+			if (Last < 0 || SlideLog[i].Stamp > SlideLog[Last].Stamp)
+				Last = i;
+		}
+		else if (Next < 0 || SlideLog[i].Stamp < SlideLog[Next].Stamp)
+			Next = i;
+	}
+
+	if (Last >= 0)
+	{
+		ChangeStamp = SlideLog[Last].Stamp;
+		return SlideLog[Last].bSliding;
+	}
+
+	// Only later changes are known. Before the first of them it was the other way round
+	ChangeStamp = 0;
+	return Next >= 0 && !SlideLog[Next].bSliding;
+}
+
+// Client: start a replay with the slide state of the move the server corrected.
+// ServerVel is the velocity the server ended that move with.
+simulated function AdoptSlideStateAt(float TimeStamp, vector ServerVel)
+{
+	local PlayerController PC;
+	local int i;
+	local float ServerStamp, ClientStamp, LastChange;
+	local bool bServerSliding, bClientSliding, bSlidesLater;
+	local vector PredictedVel;
+
+	bServerSliding = SlideStateAt(TimeStamp, true, ServerStamp);
+	bClientSliding = SlideStateAt(TimeStamp, false, ClientStamp);
+	LastChange = FMax(ServerStamp, ClientStamp);
+	ServerVel.Z = 0;
+
+	// The speed and the landing remembered from moves after this one belong to what the server
+	// has just corrected. The replay runs those moves again and remembers its own.
+	if (SlideMomentumEnd - SlideMomentumTime > TimeStamp + 0.001)
+	{
+		SlideMomentum = ServerVel;
+		SlideMomentumEnd = TimeStamp + SlideMomentumTime;
+	}
+	if (SlideLandGraceEnd - SlideLandGraceTime > TimeStamp + 0.001)
+		SlideLandGraceEnd = 0;
+
+	// The server has the last word. But when the latest change was predicted here, the server's
+	// report of it may still be on its way, and if it was wrong the slide ends itself anyway.
+	if (ServerStamp >= ClientStamp)
+		bIsSliding = bServerSliding;
+	else
+		bIsSliding = bClientSliding || bServerSliding;
+
+	// A predicted slide start without the server's report, and the server ended this move a lot
+	// slower than it was predicted to: it hasn't started that slide. The server starts a slide
+	// late when the move it was predicted in got lost. The replay may start the slide again.
+	PC = PlayerController(Controller);
+	if (bIsSliding && !bServerSliding && PC != None && PC.SavedMoves != None)
+	{
+		// The first move of the replay started with the velocity that was predicted for the corrected move
+		PredictedVel = PC.SavedMoves.StartVelocity;
+		PredictedVel.Z = 0;
+		if (VSize(PredictedVel) - VSize(ServerVel) > SlidePower * 0.125)
+		{
+			bIsSliding = false;
+			bSlidesLater = true;
+			LastChange = ServerStamp;
+			for (i = 0; i < ArrayCount(SlideLog); i++)
+				if (!SlideLog[i].bServer && SlideLog[i].Stamp == ClientStamp)
+					SlideLog[i].Stamp = 0;
+		}
+	}
+
+	SlideCooldownEnd = 0;
+	if (!bIsSliding && LastChange > 0)
+		SlideCooldownEnd = LastChange + SlideCooldownTime;
+
+	// The replay predicts everything after this move again
+	for (i = 0; i < ArrayCount(SlideLog); i++)
+		if (SlideLog[i].Stamp > TimeStamp)
+		{
+			bSlidesLater = bSlidesLater || SlideLog[i].bSliding;
+			if (!SlideLog[i].bServer)
+				SlideLog[i].Stamp = 0;
+		}
+
+	// If a slide starts later on, the replay has to find that crouch press again
+	bSlideCrouchHeld = bIsCrouched && bWantsToCrouch && !bSlidesLater;
+}
+
+// Remembers the speed there was before a sudden drop for a moment
+simulated function TrackSlideMomentum(vector NewVelocity)
+{
+	NewVelocity.Z = 0;
+	if (MoveTime() >= SlideMomentumEnd || VSize(NewVelocity) >= VSize(SlideMomentum) * 0.95)
+	{
+		SlideMomentum = NewVelocity;
+		SlideMomentumEnd = MoveTime() + SlideMomentumTime;
+	}
+}
+
+// Runs once per walking move on the server and the owning client
+simulated function TickSlide(float DeltaTime, vector OldVelocity)
+{
+	local vector SlideVel;
+	local float MoveGroundSpeed;
+	local bool bCrouchHeld, bCrouchPressed;
+
+	SlideStartSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * 1.1;
+	SlideEasyStartSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * 0.8;
+	SlideStopSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * default.CrouchedPct;
+	MaxSlideSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed * 2.5;
+
+	// The engine has already read this move's speed limit from GroundSpeed
+	MoveGroundSpeed = FMax(GroundSpeed, 1.0);
+
+	// OldVelocity is what the last move really ended with. Sliding on that, instead of on a
+	// velocity of its own, makes the slide lose the speed it loses by running into things.
+	SlideVel = OldVelocity;
+	SlideVel.Z = 0;
+
+	// Letting go of crouch ends a slide at once, the pawn only stands up after the move
+	bCrouchHeld = bIsCrouched && bWantsToCrouch;
+	bCrouchPressed = bCrouchHeld && !bSlideCrouchHeld;
+	bSlideCrouchHeld = bCrouchHeld;
+
+	if (bIsSliding)
+	{
+		if (!bCrouchHeld)
+			EndSlide();
+	}
+	else
+	{
+		TrackSlideMomentum(SlideVel);
+		if (bCrouchPressed)
+			BeginSlide(SlideVel);
+
+		// An AI that asked for a slide and didn't get one shouldn't be left crouching
+		if (bBotSlideRequest && bCrouchHeld && !bIsSliding)
+		{
+			bBotSlideRequest = false;
+			bWantsToCrouch = false;
+		}
+	}
+
+	if (bIsSliding)
+	{
+		HandleSliding(DeltaTime, SlideVel);
+		Velocity = SlideVel;
+		if (VSize(SlideVel) < SlideStopSpeed)
+			EndSlide();
+	}
+
+	// The engine limits this move to GroundSpeed * CrouchedPct after this event. GroundSpeed is
+	// replicated to the owning client and arrives late, so the slide only changes CrouchedPct.
+	if (bIsSliding)
+		CrouchedPct = MaxSlideSpeed / MoveGroundSpeed;
+	else if (bIsCrouched || bSlideRerunCrouched)
+	{
+		// Gradually reduce the ground speed towards the crouch speed
+		CrouchedPct = FClamp(VSize(SlideVel) / MoveGroundSpeed - DeltaTime * 5.0, default.CrouchedPct, 1.0);
+
+		// The engine only applies CrouchedPct to a crouched pawn. The server still has this move crouched
+		if (!bIsCrouched && VSize(Velocity) > MoveGroundSpeed * CrouchedPct)
+			Velocity = Normal(Velocity) * MoveGroundSpeed * CrouchedPct;
+	}
+	else
+		CrouchedPct = 1.0;
+}
+
+// AI controllers have no crouch key to press, so they ask for a slide with this
+function StartSlide()
+{
+	if (AIController(Controller) == None || bIsSliding)
+		return;
+
+	bBotSlideRequest = true;
+	bWantsToCrouch = true;
+}
+
+// A floor's normal leans the way the floor drops
+simulated function bool IsMovingDownhill(vector Dir)
+{
+	return Acos(FClamp(Floor.Z, -1.0, 1.0)) * (180.0 / Pi) >= SlideDownhillAngle && (Dir dot Floor) > 0.0;
+}
+
+// Starts a slide if the pawn is moving fast enough. SlideVel comes in as the pawn's
+// horizontal velocity and goes out as the velocity the slide starts with.
+simulated function BeginSlide(out vector SlideVel)
+{
+	local vector X, Y, Z, Dir;
+	local float Speed, EffSlidePower, EffMaxSlideSpeed, StaminaPct;
+
+	if (!bAllowCrouchSliding || MoveTime() < SlideCooldownEnd)
+		return;
+
+	if (Controller.bDuck == 0 && !bBotSlideRequest)
+		return;
+
+	Speed = VSize(SlideVel);
+	if (Speed > 1.0)
+		Dir = SlideVel / Speed;
+	else
+		Dir = Normal(SlideMomentum);
+	Speed = FMax(Speed, VSize(SlideMomentum));
+
+	if (MoveTime() < SlideLandGraceEnd || IsMovingDownhill(Dir))
+	{
+		if (Speed < SlideEasyStartSpeed)
+			return;
+	}
+	else if (Speed < SlideStartSpeed)
+		return;
+
+	// Effective power and max speed
+	EffSlidePower = SlidePower;
+	EffMaxSlideSpeed = MaxSlideSpeed;
+
+	// If mostly moving backwards relative to facing, weaken it
+	GetAxes(GetViewRotation(), X, Y, Z);
+	if ((Dir dot X) < BackSlideDotThreshold)
+	{
+		EffSlidePower *= BackSlidePowerScale;
+		EffMaxSlideSpeed *= BackMaxSlideSpeedScale;
+	}
+
+	// Apply initial impulse scaled by the stamina left after the slide's cost. Client and server each
+	// keep their own stamina and differ by a fraction of a percent, so it counts in steps of 5%
+	// to give the slide the server starts the same speed as the one the client predicted.
+	if (Sprinter != None)
+	{
+		StaminaPct = FMax(0.0, Sprinter.Stamina - Sprinter.JumpDrain) / Sprinter.MaxStamina;
+		StaminaPct = Round(StaminaPct * 20.0) / 20.0;
+		EffSlidePower = FMax(EffSlidePower * 0.25, EffSlidePower * StaminaPct);
+	}
+
+	SlideVel = Dir * FMin(Speed + EffSlidePower, EffMaxSlideSpeed);
+
+	// The landing grace and the momentum are left as they are: a replay that starts
+	// before this move has to be able to start the slide again.
+	bIsSliding = true;
+
+	if (Sprinter != None)
+	{
+		if (Role == ROLE_Authority)
+		{
+			Sprinter.Jumped();
+			Sprinter.ClientJumped();
+			Sprinter.StopSprint();
+		}
+		else
+			Sprinter.PredictStopSprint();
+	}
+
+	NotifySlideChanged();
 }
 
 simulated function EndSlide()
 {
-	local name Anim;
-
     if (!bIsSliding)
         return;
 
@@ -3768,77 +4225,85 @@ simulated function EndSlide()
 		bWantsToCrouch = false;
 	}
 
-    bSlideWaitingStart = false;
-	if(!bIsCrouched) //Play this if not crouched and below certain speed so it looks natural
-	{
-		Anim = SlideEndAnims[Get4WayDirection()];
-		if ( PlayAnim(Anim, 2.0) )
-			bWaitForAnim = true;
-		AnimAction = Anim;
-	}
 	bIsSliding = false;
-	SlideVelocity = vect(0,0,0);
-	LastSlideEndTime = Level.TimeSeconds;
+	SlideCooldownEnd = MoveTime() + SlideCooldownTime;
 
-	// Restore GroundSpeed on all roles so client prediction stays in sync
-	if (Sprinter != None)
-		Sprinter.UpdateSpeed();
-	else
-		GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
-	//if(AIController(Controller) != None)
-	//	Sprinter.StartSprint();
+	NotifySlideChanged();
 }
 
-simulated function TickSlopeCalculation(float DT)
+// Friction and slope gravity for one move of a slide
+simulated function HandleSliding(float DT, out vector SlideVel)
 {
+	local vector DownSlopeVect;
+	local float SlopeAngleRad, SlopeAngleDeg, Gravity, DynamicFriction;
+
+	Gravity = -PhysicsVolume.Gravity.Z;
 	DownSlopeVect = Normal(vect(0,0,-1) - (Floor dot vect(0,0,-1)) * Floor);
-	SlopeAngleRad = Acos(Floor dot vect(0,0,1));
+	SlopeAngleRad = Acos(FClamp(Floor.Z, -1.0, 1.0));
 	SlopeAngleDeg = SlopeAngleRad * (180.0 / Pi);
-	if (Normal(Velocity) dot DownSlopeVect > 0)
-		SlopeAngleDeg = -SlopeAngleDeg; // Negative when going downhill
-}
 
-simulated function HandleSliding(float DT)
-{
-	local float DynamicFriction;
-
-	CrouchedPct = 1.0; //Little hack so it doesn't mess with crouch speed/ground speed, etc...
-	GravityAlongSlope = -PhysicsVolume.Gravity.Z * Sin(SlopeAngleRad);
-	// Friction increases over time
 	DynamicFriction = SlideFriction;
 	// Reduce friction on steep slopes for more sliding
-	if (SlopeAngleDeg < 0) // Downhill
-		DynamicFriction *= FClamp(1.0 - (Abs(SlopeAngleDeg) / 60.0), 0.2, 1.0);
+	if ((SlideVel dot DownSlopeVect) > 0) // Downhill
+		DynamicFriction *= FClamp(1.0 - (SlopeAngleDeg / 60.0), 0.2, 1.0);
 	else  // Uphill
 		DynamicFriction *= FClamp(1.0 + (SlopeAngleDeg / 45.0), 1.0, 2.5);
-	
-	//If we're on stairs, but not on a slope, adjust friction and gravity, hacky but it works!
-	if(SlopeAngleDeg == 0.0 && Floor != Vect(0,0,1) && PlayerController(Controller) != None)
+
+	SlideVel += DownSlopeVect * (Gravity * Sin(SlopeAngleRad) * 1.5 * DT);
+	SlideVel.Z = 0;
+	SlideVel = Normal(SlideVel) * FClamp(VSize(SlideVel) - DynamicFriction * Gravity * Cos(SlopeAngleRad) * DT, 0.0, MaxSlideSpeed);
+}
+
+// Slide animations. Every machine works them out for itself from bIsSliding,
+// so they don't depend on what the pawn's owner predicts or replays.
+simulated function TickSlideAnim()
+{
+	local name Anim;
+
+	if (Level.NetMode == NM_DedicatedServer || bPlayedDeath)
+		return;
+
+	if (bIsSliding)
 	{
-		if (PlayerController(Controller).FindStairRotation(DT) < 0) 
+		if (!bSlideAnimating)
 		{
-			DynamicFriction *= 0.5;
-			GravityAlongSlope *= 1.5; 
+			// Not every mesh is linked to the Ballistic animations
+			Anim = SlideStartAnims[Get4WayDirection()];
+			if (!HasAnim(Anim))
+				return;
+
+			bSlideAnimating = true;
+			bSlideWaitingStart = PlayAnim(Anim, 2.0);
 		}
-		else
-		{
-			DynamicFriction *= 1.5;
-			GravityAlongSlope *= 0.5; 
-		}
+		if (!bSlideWaitingStart)
+			LoopSlideAnim();
+		// Keeps the movement animations from taking over
+		bWaitForAnim = true;
 	}
-	SlideVelocity += DownSlopeVect * GravityAlongSlope * 1.5 * DT;
-	if (VSize(SlideVelocity) > 0.1)
-		SlideVelocity -= Normal(SlideVelocity) * DynamicFriction * -PhysicsVolume.Gravity.Z * Cos(SlopeAngleRad) * DT;
-	else
-		EndSlide();
-	if (VSize(SlideVelocity) > MaxSlideSpeed)
-		SlideVelocity = Normal(SlideVelocity) * MaxSlideSpeed;
+	else if (bSlideAnimating)
+	{
+		bSlideAnimating = false;
+		bSlideWaitingStart = false;
+		bWaitForAnim = false;
 
-	// Set on all roles so client predicts the same movement as server
-	GroundSpeed = MaxSlideSpeed;
-	Velocity = SlideVelocity;
+		//Play this if standing up so it looks natural
+		Anim = SlideEndAnims[Get4WayDirection()];
+		if (!bIsCrouched && Physics == PHYS_Walking && HasAnim(Anim) && PlayAnim(Anim, 2.0))
+			bWaitForAnim = true;
+	}
+}
 
-	RefreshSlideLoop();
+simulated function LoopSlideAnim()
+{
+    local name LoopName, CurAnim;
+    local float Frame, Rate;
+
+    LoopName = SlideAnims[Get4WayDirection()];
+    if (LoopName == '' || !HasAnim(LoopName))
+        return;
+    GetAnimParams(0, CurAnim, Frame, Rate);
+    if (CurAnim != LoopName)
+        LoopAnim(LoopName,, 0.20);
 }
 
 defaultproperties
@@ -3928,6 +4393,9 @@ defaultproperties
 	SlideFriction=1.100000
 	SlideCooldownTime=0.600000
 	SlidePower=350.000000
+	SlideLandGraceTime=0.200000
+	SlideMomentumTime=0.200000
+	SlideDownhillAngle=5.000000
 	BackSlidePowerScale=0.60
 	BackMaxSlideSpeedScale=0.75
 	BackSlideDotThreshold=-0.25
