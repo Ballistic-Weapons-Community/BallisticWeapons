@@ -26,9 +26,8 @@ defaultproperties
 	MuzzleFlashClass=Class'BWBP_JCF_Pro.M7A3FlashEmitter'
 	FlashScaleFactor=0.100000
 	BrassClass=Class'BWBP_JCF_Pro.Brass_M7A3AR'
-	BrassBone="tip"
+	BrassBone="ejector"
 	AimedFireAnim="SightFire"
-	BrassOffset=(X=-105.000000,Y=-10.000000,Z=-1.000000)
 	FireRecoil=60.000000
 	FireChaos=0.10000
 	XInaccuracy=32.000000

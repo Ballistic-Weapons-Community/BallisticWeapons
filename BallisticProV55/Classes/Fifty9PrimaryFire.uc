@@ -27,7 +27,7 @@ function EjectBrass()
 //	Start = C.Origin + C.XAxis * BrassOffset.X + C.YAxis * BrassOffset.Y + C.ZAxis * BrassOffset.Z;
     Weapon.GetViewAxes(X,Y,Z);
 	Start = C.Origin + X * BrassOffset.X + Y * BrassOffset.Y + Z * BrassOffset.Z;
-	BrassActor = Spawn(BrassClass, weapon,, Start, Rotator(C.XAxis));
+	BrassActor = Spawn(BrassClass, weapon,, BW.GetBrassStart(Start), Rotator(C.XAxis));
 	if (BrassActor != None)
 	{
 		BrassActor.bHidden=true;
@@ -43,7 +43,6 @@ defaultproperties
 	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
 	bDryUncock=True
 	BrassClass=Class'BallisticProV55.Brass_Uzi'
-	BrassOffset=(X=-18.000000)
 	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
 	bPawnRapidFireAnim=True
 	AmmoClass=Class'BallisticProV55.Ammo_FiftyNine'

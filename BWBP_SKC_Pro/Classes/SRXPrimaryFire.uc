@@ -223,7 +223,6 @@ defaultproperties
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.SRXFlashEmitter'
 	FlashScaleFactor=0.4000000
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
-	BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
 	AimedFireAnim="SightFire"
 	FireRecoil=192.000000
 	FireChaos=0.300000

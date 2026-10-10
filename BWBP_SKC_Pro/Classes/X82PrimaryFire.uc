@@ -27,8 +27,7 @@ defaultproperties
 	bPenetrate=True
 	MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 	BrassClass=Class'BWBP_SKC_Pro.Brass_BMG'
-	BrassBone="breach"
-	BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
+	BrassBone="ejector"
 	FireRecoil=768.000000
 	FirePushbackForce=255.000000
 	FireChaos=0.700000

@@ -261,7 +261,6 @@ defaultproperties
 	bUseWeaponMag=False
 	FlashScaleFactor=2.000000
 	BrassClass=Class'BallisticProV55.Brass_Shotgun'
-	BrassOffset=(X=-1.000000,Z=-1.000000)
 	AimedFireAnim="FireCombinedSight"
 	FireRecoil=1280.000000
 	FireChaos=0.500000

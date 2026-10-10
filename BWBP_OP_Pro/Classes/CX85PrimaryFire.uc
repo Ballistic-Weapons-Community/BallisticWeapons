@@ -104,8 +104,7 @@ defaultproperties
 	MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 	FlashScaleFactor=0.800000
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
-	BrassBone="tip"
-	BrassOffset=(X=-80.000000,Y=1.000000)
+	BrassBone="ejector"
 	FireRecoil=120.000000
 	FireChaos=0.080000
 	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Fire',Volume=0.900000,Slot=SLOT_Interact,Pitch=1.500000,bNoOverride=False)

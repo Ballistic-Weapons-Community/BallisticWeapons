@@ -87,7 +87,6 @@ defaultproperties
 	FlashScaleFactor=0.500000
 	BrassClass=Class'BWBP_SKC_Pro.Brass_Tranq'
 	FlashBone="tip2"
-	BrassOffset=(X=-80.000000,Y=1.000000)
 	FireRecoil=88.000000
 	XInaccuracy=1.750000
 	YInaccuracy=1.750000

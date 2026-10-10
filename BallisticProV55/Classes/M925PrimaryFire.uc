@@ -44,7 +44,6 @@ defaultproperties
 	bCockAfterEmpty=True
 	MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 	BrassClass=Class'BallisticProV55.Brass_BigMG'
-	BrassOffset=(X=6.000000,Y=10.000000)
 	AimedFireAnim="AimedFire"
 	FireRecoil=450.000000
 	FirePushbackForce=128.000000

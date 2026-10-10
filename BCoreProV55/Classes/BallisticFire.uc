@@ -43,7 +43,7 @@ var() Name						FlashBone;			// Bone to attach muzzle flash to
 var() class<actor>				BrassClass;			// Actor to spawn for ejecting brass
 var() name						BrassBone;			// Bone where brass will be spawned
 var() bool						bBrassOnCock;		// Eject brass when cocked
-var() Vector					BrassOffset;		// Position offset for brass spawning
+var() Vector					BrassOffset;		// Position offset for brass spawning: from BrassBone along the view axes, on the first person gun (see BallisticWeapon.GetBrassStart)
 //-----------------------------------------------------------------------------
 // Cocking/Reloading
 //-----------------------------------------------------------------------------
@@ -358,7 +358,8 @@ function EjectBrass()
 //	Start = C.Origin + C.XAxis * BrassOffset.X + C.YAxis * BrassOffset.Y + C.ZAxis * BrassOffset.Z;
     Weapon.GetViewAxes(X,Y,Z);
 	Start = C.Origin + X * BrassOffset.X + Y * BrassOffset.Y + Z * BrassOffset.Z;
-	Spawn(BrassClass, weapon,, Start, Rotator(C.XAxis));
+	// that is a place on the gun: put the brass where it is seen in the same spot
+	Spawn(BrassClass, weapon,, BW.GetBrassStart(Start), Rotator(C.XAxis));
 }
 
 // Remove effects

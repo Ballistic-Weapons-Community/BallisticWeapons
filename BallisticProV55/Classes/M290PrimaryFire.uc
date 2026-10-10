@@ -94,7 +94,6 @@ defaultproperties
 	BrassClass=Class'BallisticProV55.Brass_Shotgun'
 	BrassBone="EjectorR"
 	bBrassOnCock=True
-	BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
 	FireRecoil=1536.000000
 	FirePushbackForce=1000.000000
 	FireChaos=0.300000

@@ -75,7 +75,6 @@ defaultproperties
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.SK410HeatEmitter'
 	FlashScaleFactor=0.500000
 	BrassClass=Class'BWBP_SKC_Pro.Brass_ShotgunHE'
-	BrassOffset=(X=-1.000000,Z=-1.000000)
 	AimedFireAnim="SightFire"
 	FireRecoil=378.000000
 	FirePushbackForce=0.000000
