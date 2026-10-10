@@ -2080,7 +2080,12 @@ simulated final function SetScopeView(bool bNewValue)
 	if (Role == ROLE_Authority)
 	{
 		if (!Instigator.IsLocallyControlled())
+		{
 			BindScopeViewFactors();
+			// Whether the aim is bound to the view is this player's own doing, and was so on its machine before word
+			// of it got here. A shot that comes in now is not aimed with where the gun pointed before that
+			FireRotHistory.Length = 0;
+		}
 	}
 
 	OnScopeViewChanged();
