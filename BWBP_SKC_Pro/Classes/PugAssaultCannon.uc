@@ -212,7 +212,7 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 
 	// Modified stuff from Engine.Weapon
 
-	if ((ClientState == WS_ReadyToFire || (ClientState == WS_None && Instigator.Weapon == self)) && ReloadState == RS_None)
+	if ((ClientState == WS_ReadyToFire || (ClientState == WS_None && Instigator != None && Instigator.Weapon == self)) && ReloadState == RS_None)
     {
         if ( /*(FireMode[0] == None || !FireMode[0].bIsFiring) && (FireMode[1] == None || !FireMode[1].bIsFiring) && */MeleeState < MS_Held)
 			bPreventReload = false;
