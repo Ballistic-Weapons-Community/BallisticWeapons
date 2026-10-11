@@ -220,7 +220,8 @@ function ServerStartReload (optional byte i)
 	bServerReloading = true;
 
 	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
-		Instigator.SetAnimAction('ReloadGun');
+		if (Instigator.IsA('BallisticPawn'))
+			Instigator.SetAnimAction('ReloadGun');
 
 	CommonStartReload(i);	//Server animation
 	ClientStartReload(i);	//Client animation

@@ -368,7 +368,8 @@ function ServerStartReload (optional byte i)
 	}
 	
 	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
-		Instigator.SetAnimAction('ReloadGun');
+		if (Instigator.IsA('BallisticPawn'))
+			Instigator.SetAnimAction('ReloadGun');
 }
 
 

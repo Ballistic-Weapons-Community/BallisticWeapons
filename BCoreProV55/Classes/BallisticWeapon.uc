@@ -1771,7 +1771,8 @@ simulated function PlayShovelLoop()
 {
 	SafePlayAnim(ReloadAnim, ReloadAnimRate, 0.0, , "RELOAD");
 	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
-		Instigator.SetAnimAction('Shovel');
+		if (Instigator.IsA('BallisticPawn'))
+			Instigator.SetAnimAction('Shovel');
 }
 
 simulated function PlayCocking(optional byte Type)
@@ -3119,7 +3120,8 @@ simulated function CommonCockGun(optional byte Type)
 	{
 		bServerReloading=true;
 		if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).CockingAnim != '')
-			Instigator.SetAnimAction('CockGun');
+			if (Instigator.IsA('BallisticPawn'))
+				Instigator.SetAnimAction('CockGun');
 	}
 	ReloadState = RS_Cocking;
 	PlayCocking(Type);
@@ -3584,7 +3586,8 @@ function ServerStartReload (optional byte i)
 	bServerReloading = true;
 	
 	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
-		Instigator.SetAnimAction('ReloadGun');
+		if (Instigator.IsA('BallisticPawn'))
+			Instigator.SetAnimAction('ReloadGun');
 		
 	CommonStartReload(i);	//Server animation
 	ClientStartReload(i);	//Client animation
@@ -5533,7 +5536,8 @@ simulated function OnWeaponDisplaced()
 	}
 
 	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).StaggerAnim != '')
-        Instigator.SetAnimAction('Stagger');
+        if (Instigator.IsA('BallisticPawn'))
+        	Instigator.SetAnimAction('Stagger');
 }
 
 // Do stuff when player sprints or jumps
