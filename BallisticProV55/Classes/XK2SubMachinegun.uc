@@ -108,6 +108,8 @@ simulated function float ChargeBar()
 function ServerSwitchSilencer(bool bNewValue)
 {
 	bSilenced = bNewValue;
+	if (XK2Attachment(ThirdPersonActor) != None)
+		XK2Attachment(ThirdPersonActor).SetSilenced(bSilenced);
 	SwitchSilencer(bSilenced);
 	bServerReloading=True;
 	ReloadState = RS_GearSwitch;

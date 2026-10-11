@@ -6,16 +6,6 @@
 //=============================================================================
 class A2WAmbientFX extends BallisticEmitter;
 
-simulated event PostBeginPlay()
-{
-	Super.PostBeginPlay();
-	if (WeaponAttachment(Owner) == None)
-	{
-		Emitters[7].Disabled=true;
-		Emitters[8].Disabled=true;
-	}
-}
-
 defaultproperties
 {
 	//Smoke 1

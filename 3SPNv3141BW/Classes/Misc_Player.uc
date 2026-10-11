@@ -551,10 +551,11 @@ function ServerViewNextPlayer()
 // The player wants to switch to weapon group number F.
 exec function SwitchWeapon(byte F)
 {
-	if (bSlotMode && F > 0 && F < 8)
+	// the slots are those of an Outfitting loadout: without one the keys pick weapon groups as usual
+	if (bSlotMode && F > 0 && F < 8 && LastLoadoutClasses[F-1] != None)
 		GetLoadoutWeapon(F-1);
-	else if ( Pawn != None )
-		Pawn.SwitchWeapon(F);
+	else
+		Super.SwitchWeapon(F);
 }
 
 state Spectating
@@ -942,6 +943,12 @@ exec function UseBooster()
         return;
 
     DoCombo(class'ComboDefensive');
+}
+
+// the name the key menu binds (Misc_KeyBind)
+exec function UseInvis()
+{
+    UsePint();
 }
 
 exec function UsePint()

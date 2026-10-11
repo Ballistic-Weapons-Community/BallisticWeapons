@@ -30,6 +30,24 @@ simulated event PostNetReceive()
 	Super.PostNetReceive();
 }
 
+simulated event PostBeginPlay()
+{
+	super.PostBeginPlay();
+	SetBoneScale (5, 0.0, 'Grenade');
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	// A grenade that was loaded earlier is still on the gun
+	if (SRKSubMachinegun(I) != None && SRKSubMachinegun(I).bLoaded)
+	{
+		bGrenadier = true;
+		IAOverride(true);
+	}
+}
+
 function IAOverride(bool bGrenadier)
 {
 	if (bGrenadier)

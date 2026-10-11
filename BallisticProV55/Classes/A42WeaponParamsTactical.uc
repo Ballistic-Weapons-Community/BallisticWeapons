@@ -98,6 +98,34 @@ defaultproperties
         FireEffectParams(0)=InstantEffectParams'TacticalBeamEffectParams'
     End Object
 
+	//Red beam for the Elite layout
+    Begin Object Class=InstantEffectParams Name=TacticalBeamEffectParams_Tri
+    	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitterBal'
+    	TraceRange=(Min=8000.000000,Max=8000.000000)
+        PenetrateForce=150
+        Damage=65.000000
+        HeadMult=2
+        LimbMult=0.75
+        DamageType=Class'BallisticProV55.DTA42SkrithBeam'
+        DamageTypeHead=Class'BallisticProV55.DTA42SkrithBeam'
+        DamageTypeArm=Class'BallisticProV55.DTA42SkrithBeam'
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-SecFire',Volume=0.800000)
+        Recoil=512.000000
+	    Inaccuracy=(X=128,Y=128)
+        MomentumTransfer=80000
+        SplashDamage=False
+        RecommendSplashDamage=False
+        WarnTargetPct=0.5
+        BotRefireRate=0.7
+    End Object
+
+    Begin Object Class=FireParams Name=TacticalBeamFireParams_Tri
+        AmmoPerFire=7
+        FireAnim="SecFire"
+	    FireInterval=0.300000
+        FireEffectParams(0)=InstantEffectParams'TacticalBeamEffectParams_Tri'
+    End Object
+
     //=================================================================
 	// RECOIL
 	//=================================================================
@@ -174,7 +202,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
         FireParams(0)=FireParams'TacticalProjFireParams_Tri'
-        AltFireParams(0)=FireParams'TacticalBeamFireParams'
+        AltFireParams(0)=FireParams'TacticalBeamFireParams_Tri'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
     Layouts(1)=WeaponParams'TacticalParams_Tri'

@@ -8,6 +8,34 @@
 //=============================================================================
 class A2WSecondaryFire extends BallisticHandGrenadeFire;
 
+// The lance is thrown with a hand grenade's wind up and release, but it is no grenade: what that fire class asks a
+// grenade for (pin, clip, fuse and smoke) is left out here. It asked the lance all the same and logged a dozen
+// warnings for every throw
+
+function PlayPreFire()
+{
+	Weapon.PlayAnim(PreFireAnim, PreFireAnimRate, TweenTime);
+}
+
+function FlashMuzzleFlash();
+
+simulated function bool AllowFire()
+{
+	return Super(WeaponFire).AllowFire();
+}
+
+simulated event ModeDoFire()
+{
+	if (!AllowFire())
+		return;
+	Super(BallisticProjectileFire).ModeDoFire();
+}
+
+function float CalculateDetonateDelay(float DetonateDelay)
+{
+	return DetonateDelay;
+}
+
 defaultproperties
 {
      SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)

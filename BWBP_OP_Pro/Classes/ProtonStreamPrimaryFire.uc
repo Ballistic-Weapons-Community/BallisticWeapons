@@ -94,7 +94,9 @@ function DoFireEffect()
 	if (Weapon != None && Weapon.ThirdPersonActor != None)
 	{
 		PSA = ProtonStreamAttachment(Weapon.ThirdPersonActor);
-		if (PSA != None && PSA.StreamEffect == None)
+		// A bot stops firing the moment its enemy dies, which can be right inside the trace above. StopFiring has ended
+		// the stream by then, and one started here would be left running
+		if (bIsFiring && PSA != None && PSA.StreamEffect == None)
 		{
 			PSA.bUseAlt=False;
 			PSA.StartStream();
@@ -132,7 +134,7 @@ state PowerDrain
 		if (LockedTarget == None || !MaintainConnection(vector(Aim)))
 			DoTrace(StartTrace, Aim);
 		
-		if (ProtonStreamAttachment(Weapon.ThirdPersonActor).StreamEffect == None)
+		if (bIsFiring && ProtonStreamAttachment(Weapon.ThirdPersonActor).StreamEffect == None)
 		{
 			ProtonStreamAttachment(Weapon.ThirdPersonActor).bUseAlt=False;	
 			ProtonStreamAttachment(Weapon.ThirdPersonActor).StartStream();

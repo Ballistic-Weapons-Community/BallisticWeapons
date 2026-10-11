@@ -96,6 +96,21 @@ simulated function OnWeaponParamsChanged()
 	{
 		bSlugger=true;
 	}
+
+	// The old model's mesh has its melee attack under other names. The melee fire mode comes from the object pool, so set it either way
+	if (MeleeFireMode != None)
+	{
+		if (HasAnim(MeleeFireClass.default.FireAnim))
+		{
+			MeleeFireMode.PreFireAnim = MeleeFireClass.default.PreFireAnim;
+			MeleeFireMode.FireAnim = MeleeFireClass.default.FireAnim;
+		}
+		else
+		{
+			MeleeFireMode.PreFireAnim = 'PrepMelee';
+			MeleeFireMode.FireAnim = 'Melee';
+		}
+	}
 }
 
 simulated event PostNetBeginPlay()

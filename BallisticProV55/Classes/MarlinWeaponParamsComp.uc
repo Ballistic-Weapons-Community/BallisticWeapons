@@ -31,6 +31,7 @@ defaultproperties
 		FireInterval=0.80000
 		bCockAfterFire=True
 		FireEndAnim=
+		AimedFireAnim="SightFire"
 		FireAnimRate=1.150000	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
@@ -132,6 +133,7 @@ defaultproperties
 		FireInterval=0.80000
 		bCockAfterFire=True
 		FireEndAnim=
+		AimedFireAnim="SightFire"
 		FireAnimRate=1.150000	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams_Supp'
 	End Object

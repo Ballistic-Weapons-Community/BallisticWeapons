@@ -84,9 +84,9 @@ defaultproperties
          AutomaticInitialSpawning=False
          TriggerDisabled=False
          ColorScale(0)=(Color=(B=255,G=255,R=255))
-         ColorScale(1)=(RelativeTime=0.089286,Color=(B=255,G=108,R=256))
+         ColorScale(1)=(RelativeTime=0.089286,Color=(B=255,G=108,R=255))
          ColorScale(2)=(RelativeTime=0.200000,Color=(B=196,G=64,R=196,A=255))
-         ColorScale(3)=(RelativeTime=1.000000,Color=(B=255))
+         ColorScale(3)=(RelativeTime=1.000000,Color=(B=192,R=192))
          FadeOutStartTime=0.066000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
@@ -100,5 +100,8 @@ defaultproperties
          SpawnOnTriggerPPS=500000.000000
      End Object
      Emitters(2)=SpriteEmitter'BallisticProV55.A73FlashEmitterBal.SpriteEmitter9'
+
+     // A mesh emitter draws its mesh with the skins of this actor
+     Skins(0)=Texture'BW_Core_WeaponTex.A73PurpleLayout.A73MuzzleFlash'
 
 }

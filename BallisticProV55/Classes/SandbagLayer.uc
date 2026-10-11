@@ -73,7 +73,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 
     else if ( CheckReflect(HitLocation, HitNormal, 0.6) )
     {
-    	if (class<BallisticDamageType>(DamageType).default.bCanBeBlocked)
+    	if (class<BallisticDamageType>(DamageType) != None && class<BallisticDamageType>(DamageType).default.bCanBeBlocked)
     	{
     		Damage = 0;
     		Momentum *= 2;

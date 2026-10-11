@@ -73,5 +73,7 @@ defaultproperties
      End Object
      Emitters(1)=SpriteEmitter'BallisticProV55.A42FlashEmitterBal.SpriteEmitter10'
 
+     // A mesh emitter draws its mesh with the skins of this actor
+     Skins(0)=Texture'BW_Core_WeaponTex.A42Layouts.A48MuzzleFlash'
      bNoDelete=False
 }

@@ -120,8 +120,8 @@ simulated function MeleeFireEffects()
 		HitLocation = mHitLocation;
 	if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
 		return;
-//	if (ImpactManager != None)
-		class'IM_GunHit'.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+	if (MeleeImpactManager != None)
+		MeleeImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 }
 
 defaultproperties
@@ -129,7 +129,7 @@ defaultproperties
 	WeaponClass=class'GASCPistol'
 	MuzzleFlashClass=Class'BWBP_APC_Pro.GASCFlashEmitter'
 	ImpactManager=Class'BallisticProV55.IM_IncendiaryHMGBullet'
-	MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
+	MeleeImpactManager=Class'BallisticProV55.IM_Knife'
 	FlashScale=0.125000
 	BrassClass=Class'BallisticProV55.Brass_Pistol'
 	InstantMode=MU_Both

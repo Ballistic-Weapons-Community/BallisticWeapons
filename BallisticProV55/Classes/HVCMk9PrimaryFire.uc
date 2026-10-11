@@ -95,7 +95,9 @@ simulated state DirectFire
 		if (Level.NetMode == NM_DedicatedServer)
 			BW.RestoreCollisions();
 		
-		if (HvCMk9Attachment(Weapon.ThirdPersonActor).StreamEffect == None)
+		// A bot stops firing the moment its enemy dies, which can be right inside the trace above. StopFiring has ended
+		// the stream by then, and one started here would be left running: nothing ends it until the bot next fires and stops
+		if (bIsFiring && HvCMk9Attachment(Weapon.ThirdPersonActor).StreamEffect == None)
 			HvCMk9Attachment(Weapon.ThirdPersonActor).StartStream();
 
 		ApplyRecoil();
@@ -219,7 +221,8 @@ simulated state DirectFire
 
 	function PlayFiring()
 	{
-			if (!bSoundActive)
+			// not once the shot itself made a bot stop firing (see DoFireEffect): StopFiring has just silenced it
+			if (!bSoundActive && bIsFiring)
 			{
 				if (FireSoundLoop != None)
 				Instigator.AmbientSound = FireSoundLoop;
@@ -249,7 +252,7 @@ simulated state DirectFire
 
 	function ServerPlayFiring()
 	{
-			if (!bSoundActive)
+			if (!bSoundActive && bIsFiring)
 			{
 				if (FireSoundLoop != None)
 				Instigator.AmbientSound = FireSoundLoop;

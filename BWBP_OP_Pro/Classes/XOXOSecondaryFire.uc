@@ -154,7 +154,9 @@ function DoFireEffect()
 	if (LockedTarget == None || !MaintainConnection(vector(Aim)))
 		DoTrace(StartTrace, Aim);
 	
-	if (XOXOAttachment(Weapon.ThirdPersonActor).StreamEffect == None)
+	// A bot stops firing the moment its enemy dies, which can be right inside the trace above. StopFiring has ended
+	// the stream by then, and one started here would be left running
+	if (bIsFiring && XOXOAttachment(Weapon.ThirdPersonActor).StreamEffect == None)
 		XOXOAttachment(Weapon.ThirdPersonActor).StartStream();
 
 	ApplyRecoil();

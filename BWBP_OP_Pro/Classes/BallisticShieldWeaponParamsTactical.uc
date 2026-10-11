@@ -100,6 +100,7 @@ defaultproperties
 		Weight=10
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.CivShield_FPm'
+		AttachmentMesh=SkeletalMesh'BWBP_OP_Anim.CivShield_TPm'
 		//Stats
         ViewOffset=(Y=75.000000,Z=-125.000000)
 		PlayerSpeedFactor=0.95
@@ -118,6 +119,7 @@ defaultproperties
 		Weight=10
 		//Visual
 		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.JunkShield_FPm'
+		AttachmentMesh=SkeletalMesh'BWBP_OP_Anim.JunkShield_TPm'
 		//Stats
         ViewOffset=(Y=75.000000,Z=-125.000000)
 		PlayerSpeedFactor=0.95

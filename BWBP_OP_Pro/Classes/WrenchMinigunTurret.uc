@@ -1,5 +1,16 @@
 class WrenchMinigunTurret extends ASTurret_Minigun;
 
+var WrenchWarpDevice	Master;					// The wrench that warped this in, it counts its turrets
+var byte				MasterDeployableIndex;
+
+simulated event Destroyed()
+{
+	if (Role == ROLE_Authority && Master != None)
+		Master.LostDeployable(MasterDeployableIndex);
+
+	Super.Destroyed();
+}
+
 function TakeDamage( int Damage, Pawn instigatedBy, Vector hitlocation,
 						Vector momentum, class<DamageType> damageType)
 {

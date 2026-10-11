@@ -272,6 +272,7 @@ simulated function EjectBrass(byte Mode);
 
 defaultproperties
 {
+     WeaponClass=Class'BWBP_APC_Pro.Wrenchgun'
      MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      MeleeImpactManager=Class'BallisticProV55.IM_GunHit'

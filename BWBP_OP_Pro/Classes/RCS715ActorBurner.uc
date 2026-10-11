@@ -70,6 +70,7 @@ simulated event Timer()
 simulated event Tick(float DT)
 {
 	Super.Tick(DT);
+	FadeForVictimView(Victim);
 	if (Victim == None || Victim.bDeleteMe)
 		Destroy();
 	if (level.netMode == NM_DedicatedServer && BurnTime <= 1)

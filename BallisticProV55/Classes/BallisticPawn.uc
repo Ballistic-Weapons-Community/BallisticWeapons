@@ -967,7 +967,7 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 		if (HasAnim(BAtt.IdleRifleAnim))
 			IdleRifleAnim = Batt.IdleRifleAnim;
 		else
-			IdleHeavyAnim = 'Idle_Rifle';
+			IdleRifleAnim = 'Idle_Rifle';
 		
 		FireHeavyBurstAnim = BAtt.SingleFireAnim;
 		FireHeavyRapidAnim = BAtt.RapidFireAnim;
@@ -986,13 +986,19 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 		
 		MeleeAnim = BAtt.MeleeStrikeAnim;
 		
-		IdleRestAnim = BAtt.IdleHeavyAnim;
+		// (a model that has not got the weapon's own stance rests as the stock pawn does: it was told to play the
+		// missing sequence, stood without one and logged a warning each time)
+		if (HasAnim(BAtt.IdleHeavyAnim))
+			IdleRestAnim = BAtt.IdleHeavyAnim;
+		else
+			IdleRestAnim = default.IdleRestAnim;
 	
 		if (BallisticMeleeAttachment(NewAtt) != None)
 		{
 			MeleeAltAnim = BallisticMeleeAttachment(NewAtt).MeleeAltStrikeAnim;
 			IdleWeaponAnim = IdleHeavyAnim;
-			IdleRifleAnim = BallisticMeleeAttachment(NewAtt).MeleeBlockAnim;
+			if (HasAnim(BallisticMeleeAttachment(NewAtt).MeleeBlockAnim))
+				IdleRifleAnim = BallisticMeleeAttachment(NewAtt).MeleeBlockAnim;
 		}
 
 		else 
@@ -1251,11 +1257,14 @@ simulated function StartFiring(bool bHeavy, bool bRapid)
 	else
 		FireAnim = MeleeAltAnim;
 
+	// (the strikes are the mod's own animations as well, and the stock ones have nothing like them)
+	if (HasAnim(FireAnim))
+	{
+		AnimBlendParams(1, 1.0, 0.0, 0.2, FireRootBone);
 
-    AnimBlendParams(1, 1.0, 0.0, 0.2, FireRootBone);
-
-	PlayAnim(FireAnim,, 0.0, 1);
-	FireState = FS_PlayOnce;
+		PlayAnim(FireAnim,, 0.0, 1);
+		FireState = FS_PlayOnce;
+	}
 
     IdleTime = Level.TimeSeconds;
 }
@@ -1434,6 +1443,21 @@ function MessageAttributedHealBlock(Pawn Healer)
 	}
 }
 
+// The blood set is found through the PlayerReplicationInfo's character. A pawn that this machine first met as
+// the driver of a vehicle is set up through the vehicle's and had none of its own then: asked again when the
+// set is needed, and given the standard choice when it has none by now either (a body).
+simulated function bool HasBloodSet()
+{
+	local int Weight;
+
+	if (BloodSet != None)
+		return true;
+	BloodSet = class'BWBloodSetHunter'.static.GetBloodSetFor(self);
+	if (BloodSet == None)
+		BloodSet = class'BWBloodSetHunter'.static.PickBloodSet(self, Weight);
+	return BloodSet != None;
+}
+
 simulated event PhysicsVolumeChange( PhysicsVolume NewVolume )
 {
     Super.PhysicsVolumeChange(NewVolume);
@@ -1442,7 +1466,7 @@ simulated event PhysicsVolumeChange( PhysicsVolume NewVolume )
 	{
 		if (BloodPool != None)	{	BloodPool.StopExpanding ();	BloodPool = None;}
 		bBloodPoolSpawned=false;
-		if (class'BWBloodControl'.default.bUseBloodPools && bBleedingCorpse && WaterBlood == None)
+		if (class'BWBloodControl'.default.bUseBloodPools && bBleedingCorpse && WaterBlood == None && HasBloodSet())
 		{
 			WaterBlood = Spawn(BloodSet.default.WaterBloodClass,self,, Location, Rotation);
 			WaterBlood.SetBase(self);
@@ -1470,7 +1494,7 @@ simulated event KImpact(actor other, vector pos, vector impactVel, vector impact
 			return;
 
 		Speed = VSize(ImpactVel);
-		if (Speed < LowImpactVelocity)
+		if (Speed < LowImpactVelocity || !HasBloodSet())
 			return;
 
 		LastImpactTime = level.TimeSeconds;
@@ -1564,7 +1588,7 @@ simulated function TickGore(float DT)
 		if (LastDragLocation == vect(0,0,0))
 			LastDragLocation = Location;
 		else if (class'BWBloodControl'.default.bUseBloodDrags && !class'GameInfo'.static.UseLowGore() && bBleedingCorpse && (!FastTrace(Location - vect(0,0,30), Location)) &&
-			level.DetailMode > DM_Low && BloodSet.default.DragDecal != None)
+			level.DetailMode > DM_Low && HasBloodSet() && BloodSet.default.DragDecal != None)
 		{
 			R = Rotator(Location - LastDragLocation);
 			R.Pitch = -16384;
@@ -1574,7 +1598,7 @@ simulated function TickGore(float DT)
 		CorpseRestTime = 0;
 	}
 	// Spawn blood pools
-	else if (class'BWBloodControl'.default.bUseBloodPools && bBleedingCorpse && BloodSet.default.BloodPool != None && !PhysicsVolume.bWaterVolume && VSize(Velocity) < MaxPoolVelocity/* && bInitialized*/)
+	else if (class'BWBloodControl'.default.bUseBloodPools && bBleedingCorpse && HasBloodSet() && BloodSet.default.BloodPool != None && !PhysicsVolume.bWaterVolume && VSize(Velocity) < MaxPoolVelocity/* && bInitialized*/)
 	{
 		if (/*BloodPool == None*/ !bBloodPoolSpawned && CorpseRestTime > 0.5)
 		{
@@ -2212,7 +2236,7 @@ simulated function DoHit (name Bone, class<DamageType> DamageType, vector HitRay
 		if (Health <= 0 && !class'GameInfo'.static.NoBlood())
 		{
 			bBleedingCorpse=true;
-			if (PhysicsVolume.bWaterVolume && WaterBlood == None && class'BWBloodControl'.default.bUseBloodPools)
+			if (PhysicsVolume.bWaterVolume && WaterBlood == None && class'BWBloodControl'.default.bUseBloodPools && HasBloodSet())
 			{
 				WaterBlood = Spawn(BloodSet.default.WaterBloodClass,self,, Location, Rotation);
 				WaterBlood.SetBase(self);
@@ -2494,6 +2518,12 @@ simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
     else if (PlayerReplicationInfo.CharacterName ~= "Jakob")
 		rec = class'xUtil'.static.FindPlayerRecord("JakobB");
 	*/
+
+	// A character this machine has no record of becomes the default one, as it does for the stock pawn. The check for
+	// it went out with the block above, and such a player was left the way the pawn is made: none of a character's
+	// skins, sounds or animations, and two warnings in the log for every time he spawned
+	if (rec.Species == None)
+		rec = class'xUtil'.static.FindPlayerRecord(GetDefaultCharacter());
 
 	// If you're using an advantage-conferring skin you're going to be as bright as the bloody Sun
     // this check is fine - it won't break clients and I guarantee they won't even notice it

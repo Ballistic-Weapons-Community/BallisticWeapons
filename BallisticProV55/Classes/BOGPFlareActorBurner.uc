@@ -74,6 +74,7 @@ simulated event Timer()
 simulated event Tick(float DT)
 {
 	Super.Tick(DT);
+	FadeForVictimView(Victim);
 	
 	if (Victim == None || Victim.bDeleteMe)
 		Destroy();

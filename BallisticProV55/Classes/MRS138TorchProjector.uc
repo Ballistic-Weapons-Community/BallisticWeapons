@@ -15,12 +15,25 @@ simulated function PostBeginPlay()
 	Glow = spawn(class'MRS138TorchGlow');
 }
 
+// On a third person gun the light hangs on a bone of the gun, and the gun on a bone of its holder. Bones are only
+// worked out for what is seen: without this the light of somebody out of sight stays where he was last seen
+simulated function SetSkelUpdate(bool bOn)
+{
+	if (WeaponAttachment(Owner) == None)
+		return;
+	Owner.bForceSkelUpdate = bOn || Owner.default.bForceSkelUpdate;
+	if (Owner.Base != None)
+		Owner.Base.bForceSkelUpdate = bOn || Owner.Base.default.bForceSkelUpdate;
+}
+
 //simplified implementation for how this stock BW projector works
 simulated function Tick(float DeltaTime)
 {
 	local vector StartTrace,EndTrace,HitLocation,HitNormal;
 	local actor SurfaceActor;
 	local float BeamLength;
+
+	SetSkelUpdate(true);
 
 	//detach and reattach
 	Super.Tick(DeltaTime);
@@ -54,6 +67,7 @@ simulated function Tick(float DeltaTime)
 
 simulated function Destroyed()
 {
+	SetSkelUpdate(false);
 	if (Glow != None)
 		Glow.Destroy();
 }

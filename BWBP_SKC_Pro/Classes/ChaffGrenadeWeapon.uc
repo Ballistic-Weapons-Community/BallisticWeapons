@@ -108,6 +108,8 @@ simulated function Timer()
 simulated function CheckNoGrenades()
 {
 	local BCGhostWeapon GW;
+	local Weapon Best;
+	local float Rating;
 	if (Ammo[0]!= None && ( Ammo[0].AmmoAmount < 1 || (Ammo[0].AmmoAmount == 1 && (BFireMode[0].ConsumedLoad > 0  || BFireMode[1].ConsumedLoad > 0)) ))
 	{
 		AIRating = -999;
@@ -124,7 +126,19 @@ simulated function CheckNoGrenades()
 			}
 			class'NullGun'.static.GiveToUnarmedBot(Instigator, self);
 		}
-		if (Instigator!=None && Instigator.Controller!=None)
+		// A bot that is asked for its best weapon stops firing first and decides what to do next with nothing in
+		// its hands: it is handed that weapon directly
+		if (Instigator!=None && AIController(Instigator.Controller) != None)
+		{
+			if (Instigator.Inventory != None)
+				Best = Instigator.Inventory.RecommendWeapon(Rating);
+			if (Best != None && Best != self)
+			{
+				Instigator.PendingWeapon = Best;
+				Instigator.ChangedWeapon();
+			}
+		}
+		else if (Instigator!=None && Instigator.Controller!=None)
 			Instigator.Controller.ClientSwitchToBestWeapon();
 		Destroy();
 	}

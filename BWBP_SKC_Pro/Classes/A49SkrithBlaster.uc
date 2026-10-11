@@ -9,7 +9,7 @@
 //=============================================================================
 class A49SkrithBlaster extends BallisticWeapon;
 
-var	bool		bVariableHeatProps; //Gun heat changes accuracy and RoF
+var	bool		bVariableHeatProps; //Gun heat changes accuracy
 var bool		bCharging; 			//lets draw some cool charging effects
 
 var float		HeatLevel;
@@ -48,6 +48,12 @@ simulated function OnWeaponParamsChanged()
 	{
 		bCharging=true;
 	}
+
+	// The light of its fire has the colour of the layout
+	if (LayoutIndex == 1)
+		LightHue = 0;
+	else
+		LightHue = default.LightHue;
 }
 
 simulated function float ChargeBar()

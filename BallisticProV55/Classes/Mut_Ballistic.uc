@@ -914,6 +914,10 @@ static function BallisticPlayerReplicationInfo GetBPRI(PlayerReplicationInfo PRI
 {
 	local LinkedReplicationInfo lPRI;
 	
+	// a controller that is no player (a turret's, a monster's) has none
+	if (PRI == None)
+		return None;
+
 	if(PRI.CustomReplicationInfo==None)
 	{
 		log("No Custom PRI");

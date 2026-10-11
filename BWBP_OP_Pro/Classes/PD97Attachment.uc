@@ -147,17 +147,13 @@ simulated function ShotgunFireEffects(byte Mode)
 			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
 			if (mHitActor == None)
 			{
-				TracerClass = class<BCTraceEmitter>(FireClass.default.TracerClass);
 				DoWaterTrace(Mode, Start, End);
-				SpawnTracer(Mode, End);
-				TracerClass = default.TracerClass;
+				SpawnTracerOfClass(class<BCTraceEmitter>(FireClass.default.TracerClass), Mode, End, FireClass.default.TracerChance);
 			}
 			else
 			{
-				TracerClass = class<BCTraceEmitter>(FireClass.default.TracerClass);
 				DoWaterTrace(Mode, Start, HitLocation);
-				SpawnTracer(Mode, HitLocation);
-				TracerClass = default.TracerClass;
+				SpawnTracerOfClass(class<BCTraceEmitter>(FireClass.default.TracerClass), Mode, HitLocation, FireClass.default.TracerChance);
 			}
 
 			if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None))
@@ -200,7 +196,7 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'PD97Bloodhound'
-     FireClass=Class'BWBP_OP_Pro.PD97PrimaryShotgunFire'
+     FireClass=Class'BWBP_OP_Pro.PD97PrimaryFire'
      MuzzleFlashClass=class'D49FlashEmitter'
      ImpactManager=class'IM_BigBullet'
      AltFlashBone="ejector"

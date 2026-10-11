@@ -57,6 +57,18 @@ simulated event PostBeginPlay()
 	SetBoneScale (0, 0.0, 'Dart');
 	SetBoneScale (1, 0.0, 'FartAssist');
 }
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	// A dart that was loaded earlier is still on the pistol
+	if (PS9mPistol(I) != None && PS9mPistol(I).bLoaded)
+	{
+		bGrenadier = true;
+		IAOverride(true);
+	}
+}
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();

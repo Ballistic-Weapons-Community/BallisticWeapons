@@ -86,6 +86,8 @@ simulated function SwitchScopeType(bool bNewScope)
 	
 	bScopeAnimEnded = False;
 	bScopeOn = bNewScope;
+	if (Role == ROLE_Authority && MDKAttachment(ThirdPersonActor) != None)
+		MDKAttachment(ThirdPersonActor).SetScope(bScopeOn);
 	
 	SetBoneScale(2, 1.0, ScopeBone);
 	
@@ -137,6 +139,9 @@ simulated function WeaponTick(float DT)
 
 function ServerSwitchSilencer(bool bNewValue)
 {
+	if (MDKAttachment(ThirdPersonActor) != None)
+		MDKAttachment(ThirdPersonActor).SetSilenced(bNewValue);
+
 	if (bNewValue == bSilenced)
 		return;
 		
@@ -257,7 +262,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	Super.BringUp(PrevWeapon);
 
 	if (AIController(Instigator.Controller) != None)
+	{
 		bSilenced = (FRand() > 0.5);
+		if (MDKAttachment(ThirdPersonActor) != None)
+			MDKAttachment(ThirdPersonActor).SetSilenced(bSilenced);
+	}
 
 	if (bSilenced)
 		SetBoneScale (0, 1.0, SilencerBone);

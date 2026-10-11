@@ -10,13 +10,52 @@ var   bool					bLaserOn;	//Is laser currently active
 var   bool					bOldLaserOn;//Old bLaserOn
 var   LaserActor			Laser;		//The laser actor
 var   Rotator				LaserRot;
+var   bool					bSilenced;	//Suppressor is on the barrel
+var   bool					bOldSilenced;
 
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bLaserOn;
+		bLaserOn, bSilenced;
 	unreliable if ( Role==ROLE_Authority )
 		LaserRot;
+}
+
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+
+	if (XRS10SubMachinegun(I) != None)
+		SetSilenced(XRS10SubMachinegun(I).bSilenced);
+}
+
+function SetSilenced(bool bIsSilenced)
+{
+	bSilenced = bIsSilenced;
+	UpdateSilencer();
+}
+
+// The suppressor is on the model for as long as it is on the gun, not from one shot to the next
+simulated function UpdateSilencer()
+{
+	bOldSilenced = bSilenced;
+	if (bSilenced)
+		SetBoneScale (0, 1.0, 'Silencer');
+	else
+		SetBoneScale (0, 0.0, 'Silencer');
+}
+
+simulated function PostNetBeginPlay()
+{
+	Super.PostNetBeginPlay();
+	UpdateSilencer();
+}
+
+simulated event PostNetReceive()
+{
+	if (bSilenced != bOldSilenced)
+		UpdateSilencer();
+	Super.PostNetReceive();
 }
 
 simulated function Tick(float DT)
@@ -78,18 +117,6 @@ simulated function Destroyed()
 	Super.Destroyed();
 }
 
-
-simulated event ThirdPersonEffects()
-{
-    if ( Level.NetMode != NM_DedicatedServer && Instigator != None)
-	{
-		if (FiringMode == 1)
-			SetBoneScale (0, 1.0, 'Silencer');
-		else
-			SetBoneScale (0, 0.0, 'Silencer');
-    }
-	super.ThirdPersonEffects();
-}
 
 defaultproperties
 {

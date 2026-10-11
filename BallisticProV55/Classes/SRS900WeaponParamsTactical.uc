@@ -210,7 +210,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=5,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Scope",Slot=6,Scale=0f)
 		//ADS
-		SightOffset=(X=2.000000,Z=2.03)
+		SightOffset=(X=1.500000,Z=2.03)
         SightingTime=0.40
 		SightMoveSpeedFactor=0.45
 		//Function
@@ -240,7 +240,7 @@ defaultproperties
 		//ADS
 		SightingTime=0.35 //faster in irons
 		SightMoveSpeedFactor=0.45
-		SightOffset=(X=3.000000,Z=1.30000)
+		SightOffset=(X=0.250000,Z=1.30000)
 		//Function
 		MagAmmo=20
         InventorySize=6
@@ -258,7 +258,7 @@ defaultproperties
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.SR18_FPm'
 		AttachmentMesh=SkeletalMesh'BW_Core_WeaponAnim.SR18_TPm'
-		SightOffset=(X=1.000000,Z=0.85000)
+		SightOffset=(X=-1.000000,Z=0.85000)
 		//ADS
 		SightingTime=0.3
 		SightMoveSpeedFactor=0.45

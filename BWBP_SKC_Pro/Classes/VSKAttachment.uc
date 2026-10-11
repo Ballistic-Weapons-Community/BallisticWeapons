@@ -24,7 +24,7 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
 			C = Instigator.Weapon.GetBoneCoords('tip');
 	}
 	else
-		C = GetBoneCoords('tip');
+		C = GetBoneCoords(FlashBone);
     return C.Origin;
 }
 
@@ -34,6 +34,7 @@ defaultproperties
 	RelativeRotation=(Pitch=32768)
 	RelativeLocation=(X=5,Z=3)
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+	FlashBone="tip2"
 	ImpactManager=Class'BWBP_SKC_Pro.IM_Tranq'
 	FlashScale=0.300000
 	BrassClass=Class'BWBP_SKC_Pro.Brass_Tranq'

@@ -120,6 +120,24 @@ defaultproperties
      	AmmoPerFire=10
 		FireEffectParams(0)=FireEffectParams'ClassicAltEffectParams'
 	End Object
+	
+	//Red shockwave for the Elite layout
+	Begin Object Class=FireEffectParams Name=ClassicAltEffectParams_Red
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.A49FlashEmitterRed'
+		FlashScaleFactor=1.200000
+     	Recoil=2048.000000
+     	Chaos=0.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-ShockWave',Volume=2.000000)
+     	WarnTargetPct=0.100000
+		PushbackForce=2000.000000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicAltFireParams_Red
+		FireAnim="AltFire"
+		FireInterval=1.7
+     	AmmoPerFire=10
+		FireEffectParams(0)=FireEffectParams'ClassicAltEffectParams_Red'
+	End Object
     
 	//=================================================================
     // RECOIL
@@ -209,7 +227,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_ChargeBomb'
-        AltFireParams(0)=FireParams'ClassicAltFireParams'
+        AltFireParams(0)=FireParams'ClassicAltFireParams_Red'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Pink

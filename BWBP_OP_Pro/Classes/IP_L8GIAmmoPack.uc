@@ -12,39 +12,15 @@ class IP_L8GIAmmoPack extends IP_AmmoPack;
 //var() StaticMesh	LowPolyStaticMesh;	// Mesh for low poly stuff, like when its far away
 //var() float			LowPolyDist;		// How far must player be to use low poly mesh
 
-function float DetourWeight(Pawn Other,float PathWeight)
+// This pack refills everything but itself (see Touch)
+function bool GivesAmmo(class<Ammunition> AC)
 {
-	local Inventory inv;
-	local Weapon W;
-	local float Desire;
-
-	if ( Other.Weapon != None && Other.Weapon.AIRating >= 0.5 )
-		return 0;
-
-	for ( Inv=Other.Inventory; Inv!=None; Inv=Inv.Inventory )
-	{
-		W = Weapon(Inv);
-		if ( W != None )
-			Desire +=  FMax(-0.5, W.DesireAmmo(W.GetAmmoClass(0), true));
-	}
-	return Desire/PathWeight;
+	return AC != None && !ClassIsChildOf(AC, class'Ammo_L8GI');
 }
 
-function float BotDesireability(Pawn Bot)
+function bool RevivesGhost(BCGhostWeapon G)
 {
-	local Inventory inv;
-	local Weapon W;
-	local float Desire;
-
-	for ( Inv=Bot.Inventory; Inv!=None; Inv=Inv.Inventory )
-	{
-		W = Weapon(Inv);
-		if ( W != None )
-			Desire += FMax(-0.5, W.DesireAmmo(W.GetAmmoClass(0), false));
-	}
-	if ( Bot.Controller.bHuntPlayer )
-		return Desire *= 0.25;
-	return Desire * MaxDesireability;
+	return G.MyWeaponClass != None && G.MyWeaponClass != class'L8GIAmmoPack';
 }
 
 auto state Pickup

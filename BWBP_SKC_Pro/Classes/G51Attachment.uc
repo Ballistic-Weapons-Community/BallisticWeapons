@@ -63,6 +63,12 @@ function InitFor(Inventory I)
 		ModeInfos[0].TracerChance = 0;
 		ModeInfos[0].TracerMix = 0;
 	}
+	// A grenade that was loaded earlier is still on the gun
+	if (G51Carbine(I) != None && G51Carbine(I).bLoaded)
+	{
+		bGrenadier = true;
+		IAOverride(true);
+	}
 }
 
 simulated function Tick(float DT)

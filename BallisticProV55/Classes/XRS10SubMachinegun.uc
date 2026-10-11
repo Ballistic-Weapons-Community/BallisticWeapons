@@ -229,6 +229,8 @@ simulated event RenderOverlays( Canvas Canvas )
 function ServerSwitchSilencer(bool bNewValue)
 {
 	bSilenced = bNewValue;
+	if (XRS10Attachment(ThirdPersonActor) != None)
+		XRS10Attachment(ThirdPersonActor).SetSilenced(bSilenced);
 	SwitchSilencer(bSilenced);
 	bServerReloading=True;
 	ReloadState = RS_GearSwitch;
@@ -325,7 +327,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 
 	if (AIController(Instigator.Controller) != None)
+	{
 		bSilenced = (FRand() > 0.5);
+		if (XRS10Attachment(ThirdPersonActor) != None)
+			XRS10Attachment(ThirdPersonActor).SetSilenced(bSilenced);
+	}
 
 	if (bSilenced)
 		SetBoneScale (0, 1.0, SilencerBone);

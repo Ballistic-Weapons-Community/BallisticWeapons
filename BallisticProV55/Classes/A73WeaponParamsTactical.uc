@@ -39,7 +39,7 @@ defaultproperties
 
 	//Rapid fire
     Begin Object Class=ProjectileEffectParams Name=TacticalProjEffectParams_Rapid
-    	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
+    	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterBal'
     	SpawnOffset=(X=30.000000,Y=5.000000,Z=-8.000000)
         Speed=5500.000000
         AccelSpeed=100000.000000

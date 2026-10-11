@@ -29,9 +29,31 @@ replication
 
 simulated Event PostNetBeginPlay()
 {
+	local string Tags;
+
 	super.PostNetBeginPlay();
 	if (BallisticTurret(Instigator) != None)
 		bHidden=true;
+
+	// InitFor takes the parts a layout has from the weapon, which only the server can. A client has the layout to go by
+	if (Role < ROLE_Authority && WeaponClass != None && LayoutIndex < WeaponClass.static.GetParams().default.Layouts.Length)
+	{
+		Tags = WeaponClass.static.GetParams().default.Layouts[LayoutIndex].LayoutTags;
+		if (InStr(Tags, "gauss") == -1)
+			SetBoneScale (1, 0.0, 'Reciever');
+		if (InStr(Tags, "ar") != -1)
+			SetBoneScale (2, 0.0, 'Scope');
+		if (InStr(Tags, "gauss") != -1 || InStr(Tags, "ar") != -1)
+		{
+			SetBoneScale (3, 0.0, 'MagDrum');
+			SetBoneScale (4, 1.0, 'MagSmall');
+		}
+		else
+		{
+			SetBoneScale (3, 1.0, 'MagDrum');
+			SetBoneScale (4, 0.0, 'MagSmall');
+		}
+	}
 }
 
 simulated event PostNetReceive()

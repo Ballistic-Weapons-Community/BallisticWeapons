@@ -40,6 +40,9 @@ simulated event ModeDoFire()
 	if (!CheckShotgun())
 		return;
 	Super.ModeDoFire();
+	// The shell is used up by the fire mode's timer. With no fire interval (Pro, Tactical, Realism) that timer never runs
+	if (ConsumedLoad > 0 && TimerInterval == 0)
+		Timer();
 	leMatRevolver(Weapon).ShotgunFired();
 }
 

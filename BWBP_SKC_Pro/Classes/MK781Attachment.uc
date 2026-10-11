@@ -39,14 +39,18 @@ replication
 simulated event PostNetReceive()
 {
 	if (bSilenced != bOldSilenced)
-	{
-		bOldSilenced = bSilenced;
-		if (bSilenced)
-			SetBoneScale (0, 1.0, 'Muzzle2');
-		else
-			SetBoneScale (0, 0.0, 'Muzzle2');
-	}
+		UpdateSilencer();
 	Super.PostNetReceive();
+}
+
+// In this mesh the suppressor hangs on tip2, the bone at its end, and nothing else does
+simulated function UpdateSilencer()
+{
+	bOldSilenced = bSilenced;
+	if (bSilenced)
+		SetBoneScale (0, 1.0, 'tip2');
+	else
+		SetBoneScale (0, 0.0, 'tip2');
 }
 
 function InitFor(Inventory I)
@@ -59,6 +63,8 @@ function InitFor(Inventory I)
 	{
 		CurrentTracerMode=1;
 	}
+	if (MK781Shotgun(I) != None)
+		SetSilenced(MK781Shotgun(I).bSilenced);
 }
 
 simulated function int GetTraceCount()
@@ -77,16 +83,13 @@ simulated function int GetTraceCount()
 function SetSilenced(bool bIsSilenced)
 {
 	bSilenced = bIsSilenced;
-	if (bSilenced)
-		SetBoneScale (0, 1.0, 'Muzzle2');
-	else
-		SetBoneScale (0, 0.0, 'Muzzle2');
+	UpdateSilencer();
 }
 
 simulated event PostBeginPlay()
 {
 	super.PostBeginPlay();
-	SetBoneScale (0, 0.0, 'Muzzle2');
+	UpdateSilencer();
 }
 
 // Do trace to find impact info and then spawn the effect
@@ -270,15 +273,25 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 simulated function FlashMuzzleFlash(byte Mode)
 {
+	local name Bone;
+
 	if (FlashMode == MU_None || (FlashMode == MU_Secondary && Mode == 0) || (FlashMode == MU_Primary && Mode != 0))
 		return;
 	if (Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return;
 
-	if (Mode != 0 && AltMuzzleFlashClass != None)
+	// With the suppressor on, the muzzle is at its end and every shot has the suppressed flash
+	if (bSilenced)
+		Bone = 'tip2';
+	else
+		Bone = AltFlashBone;
+
+	if ((Mode != 0 || bSilenced) && AltMuzzleFlashClass != None)
 	{
 		if (AltMuzzleFlash == None)
-			class'BUtil'.static.InitMuzzleFlash (AltMuzzleFlash, AltMuzzleFlashClass, DrawScale*0.6, self, AltFlashBone);
+			class'BUtil'.static.InitMuzzleFlash (AltMuzzleFlash, AltMuzzleFlashClass, DrawScale*0.6, self, Bone);
+		else if (AltMuzzleFlash.AttachmentBone != Bone)
+			AttachToBone(AltMuzzleFlash, Bone);
 		AltMuzzleFlash.Trigger(self, Instigator);
 	}
 	else if (Mode == 0 && MuzzleFlashClass != None)

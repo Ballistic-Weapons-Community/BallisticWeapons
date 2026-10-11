@@ -249,6 +249,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams_TacKnife
 		//Layout core
 		LayoutName="9mm Tac Knife"
+		LayoutTags="tacknife"
 		Weight=10
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.MD24Melee_FPm'

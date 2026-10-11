@@ -37,6 +37,12 @@ simulated event ModeDoFire()
 		return;
 	Super.ModeDoFire();
 	SRKSubMachinegun(Weapon).bLoaded = false;
+	// The fire animations call Notify_GrenInvisible and not Notify_GrenLaunch, so the third person model is told here
+	if (Weapon.Role == ROLE_Authority && SRKSmgAttachment(Weapon.ThirdPersonActor) != None)
+	{
+		SRKSmgAttachment(Weapon.ThirdPersonActor).IAOverride(False);
+		SRKSmgAttachment(Weapon.ThirdPersonActor).bGrenadier = false;
+	}
 }
 
 defaultproperties

@@ -15,6 +15,14 @@ simulated function InstantFireEffects(byte Mode)
 	else
 		Super.InstantFireEffects(FiringMode);
 }
+// The secondary fire is a melee attack: the pawn plays its melee strike, as for the melee attacks of other guns
+simulated function PlayPawnFiring(byte Mode)
+{
+	if (Mode != 0)
+		PlayMeleeFiring();
+	else
+		Super.PlayPawnFiring(Mode);
+}
 // Do trace to find impact info and then spawn the effect
 simulated function MeleeFireEffects()
 {
@@ -42,8 +50,8 @@ simulated function MeleeFireEffects()
 		HitLocation = mHitLocation;
 	if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
 		return;
-//	if (ImpactManager != None)
-		class'IM_GunHit'.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+	if (MeleeImpactManager != None)
+		MeleeImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 }
 
 defaultproperties
@@ -51,6 +59,7 @@ defaultproperties
 	WeaponClass=class'MRDRMachinePistol'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.MRDRFlashEmitter'
      ImpactManager=class'IM_Bullet'
+     MeleeImpactManager=class'IM_Knife'
      FlashScale=0.800000
      BrassClass=class'Brass_Pistol'
      TrackAnimMode=MU_Secondary

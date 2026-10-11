@@ -27,6 +27,26 @@ replication
 		ClientGrenadePickedUp;
 }
 
+simulated function OnWeaponParamsChanged()
+{
+	local int i;
+
+	Super.OnWeaponParamsChanged();
+
+	// A layout that fills the mode list with the rifle's fire modes still has its mines go by the mode number:
+	// 1 is detonated by hand, the others by proximity. Show that with each fire mode's name
+	if (WeaponParams.WeaponModes.Length != 0)
+	{
+		for (i = 0; i < WeaponModes.Length; i++)
+		{
+			if (i == 1)
+				WeaponModes[i].ModeName = WeaponModes[i].ModeName $ "," @ default.WeaponModes[1].ModeName;
+			else
+				WeaponModes[i].ModeName = WeaponModes[i].ModeName $ "," @ default.WeaponModes[0].ModeName;
+		}
+	}
+}
+
 // Notifys for greande loading sounds
 simulated function Notify_OAARGrenadeOpen()	{	PlaySound(GrenOpenSound, SLOT_Misc, 0.5, ,64);	}
 simulated function Notify_OAARGrenadeIn()		{	PlaySound(GrenLoadSound, SLOT_Misc, 0.5, ,64);	}

@@ -439,7 +439,7 @@ defaultproperties
 		Index=2
 		CamoName="OD Green"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0,AIndex=-1,PIndex=-1)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LS440Camos.LS440-Green",Index=1,AIndex=1,PIndex=-1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.LS440Camos.LS440-Green",Index=1,AIndex=0,PIndex=-1)
 		Weight=5
 	End Object
 	

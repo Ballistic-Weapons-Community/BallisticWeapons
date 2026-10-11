@@ -234,7 +234,8 @@ function ServerWeaponSpecial(optional byte i)
 		return;
 	if (ReloadState != RS_None)
 		return;
-	if (Clientstate != WS_ReadyToFire)
+	// ClientState is only kept on the player's own machine. A server has None for everyone but its host
+	if (Instigator.IsLocallyControlled() && Clientstate != WS_ReadyToFire)
 		return;
 	if (IsInState('DualAction') || IsInState('PendingDualAction'))
 		return;
@@ -245,12 +246,28 @@ function ServerWeaponSpecial(optional byte i)
 	//Close both together, open 1 at a time
 	if (!bStockLocked && (!IsSlave() || bStockOpen))
 	{
-		if (!bStockOpen && OtherGun != None
-			&& !OtherGun.IsInState('DualAction') && !OtherGun.IsInState('PendingDualAction'))
-			GotoState('PendingStockSwitch');
-		else
-			SwitchStock(!bStockOpen);
+		i = byte(!bStockOpen);
+		CommonWeaponSpecial(i);
+		ClientWeaponSpecial(i);
 	}
+}
+
+// The client that owns the gun switches its stock too. i: 1 open, 0 close
+simulated function ClientWeaponSpecial(optional byte i)
+{
+	if (Level.NetMode == NM_Client)
+		CommonWeaponSpecial(i);
+}
+
+simulated function CommonWeaponSpecial(optional byte i)
+{
+	if ((i == 1) == bStockOpen)
+		return;
+	if (i == 1 && OtherGun != None
+		&& !OtherGun.IsInState('DualAction') && !OtherGun.IsInState('PendingDualAction'))
+		GotoState('PendingStockSwitch');
+	else
+		SwitchStock(i == 1);
 }
 
 simulated state PendingStockSwitch extends PendingDualAction

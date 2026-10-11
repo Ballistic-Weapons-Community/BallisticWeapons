@@ -38,6 +38,7 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True
 		FireEndAnim=
+		AimedFireAnim="SightFire"
 		FireAnimRate=3.000000	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
@@ -84,6 +85,7 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True
 		FireEndAnim=
+		AimedFireAnim="SightFire"
 		FireAnimRate=3.000000	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams_Gauss'
 	End Object

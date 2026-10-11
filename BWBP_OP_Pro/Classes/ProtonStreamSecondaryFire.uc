@@ -273,7 +273,8 @@ function DoFireEffect()
 	if (LockedTarget == None || !MaintainConnection(vector(Aim)))
 		DoTrace(StartTrace, Aim);
 	
-	if (ProtonStreamAttachment(Weapon.ThirdPersonActor).StreamEffect == None)
+	// not once the trace above has made a bot stop firing, see ProtonStreamPrimaryFire
+	if (bIsFiring && ProtonStreamAttachment(Weapon.ThirdPersonActor).StreamEffect == None)
 	{
 		ProtonStreamAttachment(Weapon.ThirdPersonActor).bUseAlt=True;	
 		ProtonStreamAttachment(Weapon.ThirdPersonActor).StartStream();
@@ -307,7 +308,7 @@ state PowerAmp
 		if (LockedTarget == None || !MaintainConnection(vector(Aim)))
 			DoTrace(StartTrace, Aim);
 		
-		if (ProtonStreamAttachment(Weapon.ThirdPersonActor).StreamEffect == None)
+		if (bIsFiring && ProtonStreamAttachment(Weapon.ThirdPersonActor).StreamEffect == None)
 		{
 			ProtonStreamAttachment(Weapon.ThirdPersonActor).bUseAlt=True;	
 			ProtonStreamAttachment(Weapon.ThirdPersonActor).StartStream();
