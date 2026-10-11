@@ -31,14 +31,6 @@ var   Emitter		LaserBlast;
 var() float			LaserAmmo;
 var() float			LaserChargeRate;
 
-// This uhhh... thing is added to allow manual drawing of brass OVER the muzzle flash
-struct UziBrass
-{
-	var() actor Actor;
-	var() float KillTime;
-};
-var   array<UziBrass>	UziBrassList;
-
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -516,28 +508,9 @@ simulated function DrawLaserSight ( Canvas Canvas )
 
 simulated event RenderOverlays( Canvas Canvas )
 {
-	local int i;
-
 	super.RenderOverlays(Canvas);
 
 	DrawLaserSight(Canvas);
-
-	if (UziBrassList.length < 1)
-		return;
-
-    bDrawingFirstPerson = true;
-    for (i=UziBrassList.length-1;i>=0;i--)
-    {
-    	if (UziBrassList[i].Actor == None)
-    		continue;
-	    Canvas.DrawActor(UziBrassList[i].Actor, false, false, Instigator.Controller.FovAngle);
-    	if (UziBrassList[i].KillTime <= level.TimeSeconds)
-    	{
-    		UziBrassList[i].Actor.bHidden=false;
-    		UziBrassList.Remove(i,1);
-    	}
-    }
-    bDrawingFirstPerson = false;
 }
 
 simulated function PlayReload()

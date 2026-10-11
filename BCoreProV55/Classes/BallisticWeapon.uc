@@ -301,6 +301,12 @@ var() array<WeaponModeType> WeaponModes;				//A list of the available weapon fir
 var() travel byte			CurrentWeaponMode;			// The index of the firing mode currently active
 var	bool					bRedirectSwitchToFiremode;  // Compatibility for Ballistic UI - implemented in later weapons
 //-----------------------------------------------------------------------------
+// Brass
+//-----------------------------------------------------------------------------
+var   array<BallisticBrass>	GunBrass;				// First person brass that is in this gun's picture (see SpawnBrass)
+var() float					GunBrassTime;			// For how long at most. 0: brass is the world's from the start
+var   float					GunBrassDrawn;			// When this gun and its brass were last drawn
+//-----------------------------------------------------------------------------
 // Sighting
 //-----------------------------------------------------------------------------
 var   Actor					SightFX;				// SightFX actor
@@ -2515,6 +2521,7 @@ simulated function DrawFPWeapon( Canvas Canvas )
     bDrawingFirstPerson = true;
     Canvas.DrawActor(self, false, false, DisplayFOV);
     bDrawingFirstPerson = false;
+	DrawGunBrass(Canvas);
 	if ( Hand == 0 )
 		PlayerViewOffset.Y = 0;
 
@@ -5587,32 +5594,152 @@ simulated function float GetBrassDepthScale()
 }
 
 // A piece of brass for the first person gun, thrown out at GunLocation on it.
-// The speed it starts with along the line of sight is scaled as its place was (see GetBrassStart). Left as it is, a
-// casing thrown back towards the player would come at the eye sooner the wider the field of view, and grow faster on
-// its way. What it has of its owner's own speed is not touched.
+// Where the world shows that place (GetBrassStart) a casing is in the right spot and as large across as on the gun,
+// but that is all. What it measures along the line of sight the world draws longer than the gun would, by as much as
+// the depth was scaled (1.4 times with a field of view of 95, 2.3 times with 120), so a casing that points at the
+// player grows with the field of view. And when a shot shoves the player back or kicks the view, a thing in the world
+// moves against the gun by more or less than a part of the gun would, again by the field of view.
+// So while this gun is being drawn the casing is made at its place on the gun and is a part of the gun's picture: it
+// flies in the gun's space, this weapon draws it with the gun's field of view (DrawGunBrass), and it is behind or in
+// front of the gun's parts as it should be. It becomes the world's when the place the world's picture has it at meets
+// something (TickGunBrass, BrassToWorld). Else it is made at that place in the world to begin with, and the speed it
+// has along the line of sight is scaled as the place was.
 // Pushback is what the shot has just taken off the player's speed, where it has (BallisticFire.GetBrassPushback).
 // The casing has that from its owner like the rest, and gives it back here: the player loses the push again within a
 // few steps, the casing would keep it, fly back with him and on past the camera
 simulated function Actor SpawnBrass(class<Actor> BrassClass, vector GunLocation, rotator Dir, optional vector Pushback)
 {
-	local Actor Brass;
-	local vector Start, X, Own;
+	local Actor Made;
+	local BallisticBrass Brass;
+	local vector Start, Eye, X, Own, HitLoc, HitNorm;
+	local bool bWithGun;
 
 	Start = GetBrassStart(GunLocation);
-	Brass = Spawn(BrassClass, self,, Start, Dir);
-	if (BallisticBrass(Brass) == None || Instigator == None)
-		return Brass;
-	if (BallisticBrass(Brass).bAddOwnerVelocity)
+	if (Instigator != None)
+	{
+		// no room for it at its place in the world (the player has his nose to a wall): as far along the line from
+		// the eye as there is room, which is the same spot on screen. Not when that is at the eye itself
+		Eye = Instigator.Location + Instigator.EyePosition();
+		if (Trace(HitLoc, HitNorm, Start, Eye, false, GetBrassSize(BrassClass)) == None)
+			// in the gun's picture: the gun is being drawn, and the casing's place on it is not beyond a wall
+			bWithGun = GunBrassTime > 0 && Level.TimeSeconds - GunBrassDrawn < 0.2 && class<BallisticBrass>(BrassClass) != None
+				&& (Start == GunLocation || FastTrace(GunLocation, Start));
+		else if (VSize(HitLoc - Eye) > 8)
+			Start = HitLoc + HitNorm;
+	}
+	if (bWithGun)
+	{
+		Made = Spawn(BrassClass, self,, GunLocation, Dir);
+		bWithGun = Made != None;
+	}
+	if (Made == None)
+		Made = Spawn(BrassClass, self,, Start, Dir);
+	Brass = BallisticBrass(Made);
+	if (Brass == None || Instigator == None)
+		return Made;
+	if (Brass.bAddOwnerVelocity)
 	{
 		Brass.Velocity = Brass.Velocity + Pushback;
 		Own = Instigator.Velocity + Pushback;
 	}
-	if (Start != GunLocation)
+	if (bWithGun)
+	{
+		// each is a draw of its own: no more than these at a time, the oldest goes
+		if (GunBrass.Length >= 16)
+		{
+			if (GunBrass[0] != None && GunBrass[0].bGunView)
+				BrassToWorld(GunBrass[0], GunBrass[0].GunViewPlace);
+			GunBrass.Remove(0, 1);
+		}
+		Brass.StartGunView(GunBrassTime, Start);
+		GunBrass[GunBrass.Length] = Brass;
+	}
+	else if (Start != GunLocation)
 	{
 		X = vector(Instigator.GetViewRotation());
 		Brass.Velocity = Brass.Velocity + X * (((Brass.Velocity - Own) dot X) * (GetBrassDepthScale() - 1));
 	}
-	return Brass;
+	return Made;
+}
+
+// The brass in this gun's picture, drawn as the gun has just been
+simulated function DrawGunBrass(Canvas Canvas)
+{
+	local BallisticBrass Brass;
+	local int i, j;
+
+	GunBrassDrawn = Level.TimeSeconds;
+	for (i = GunBrass.Length - 1; i >= 0; i--)
+	{
+		Brass = GunBrass[i];
+		if (Brass == None || !Brass.bGunView)
+		{
+			GunBrass.Remove(i, 1);
+			continue;
+		}
+		Brass.GunViewSeen = Level.TimeSeconds;
+		Canvas.DrawActor(Brass, false, false, DisplayFOV);
+		for (j = 0; j < Brass.Attached.Length; j++)
+			if (Brass.Attached[j] != None)
+				Canvas.DrawActor(Brass.Attached[j], false, false, DisplayFOV);
+	}
+}
+
+// Every tick for a piece of brass in this gun's picture: is it still a part of it? The world does not stop it there,
+// so this moves the place the world's picture has it at as the engine would move a casing, from where that was to
+// where it is now. When that runs into something the casing is put there, to bounce off it as any brass would. It
+// also goes to the world when something of the world hides that place, when the casing itself is beyond a wall, when
+// its time is up and when the gun has stopped drawing it (put away, third person, a scope raised)
+simulated function TickGunBrass(BallisticBrass Brass)
+{
+	local vector Eye, Place, HitLoc, HitNorm;
+
+	if (Instigator == None)
+	{
+		Brass.EndGunView();
+		return;
+	}
+	Eye = Instigator.Location + Instigator.EyePosition();
+	// left behind (its player has been taken somewhere else): the world's where it is
+	if (VSize(Brass.Location - Eye) > 400)
+	{
+		Brass.EndGunView();
+		return;
+	}
+	Place = GetBrassStart(Brass.Location);
+	if (Trace(HitLoc, HitNorm, Place, Brass.GunViewPlace, false, GetBrassSize(Brass.Class)) != None)
+		BrassToWorld(Brass, HitLoc + HitNorm);
+	else if (Level.TimeSeconds >= Brass.GunViewEnd || Level.TimeSeconds - Brass.GunViewSeen > 0.2
+		|| !FastTrace(Place, Eye) || (Place != Brass.Location && !FastTrace(Brass.Location, Place)))
+		BrassToWorld(Brass, Place);
+	else
+		Brass.GunViewPlace = Place;
+}
+
+// A piece of brass leaves the gun's picture for the world's: to Place, where the world shows it in the spot it was
+// seen in, and with the speed it has along the line of sight scaled as that place is. Place has been looked at: it
+// is moved there before the world stops it again, which would refuse a place close to the floor
+simulated function BrassToWorld(BallisticBrass Brass, vector Place)
+{
+	local vector X;
+
+	if (Instigator != None && Place != Brass.Location && Brass.SetLocation(Place))
+	{
+		X = vector(Instigator.GetViewRotation());
+		Brass.Velocity = Brass.Velocity + X * (((Brass.Velocity - Instigator.Velocity) dot X) * (GetBrassDepthScale() - 1));
+	}
+	Brass.EndGunView();
+}
+
+// The box the engine moves a piece of brass as
+simulated function vector GetBrassSize(class<Actor> BrassClass)
+{
+	local vector Size;
+
+	Size.X = BrassClass.default.CollisionRadius;
+	Size.Y = Size.X;
+	Size.Z = BrassClass.default.CollisionHeight;
+	return Size;
 }
 
 simulated function vector GetEffectStart()
@@ -5963,6 +6090,7 @@ defaultproperties
      BigIconCoords=(Y1=48,X2=511,Y2=212)
      bAllowWeaponInfoOverride=True
      IdleTweenTime=0.200000
+     GunBrassTime=2.000000
      SightFXBone="tip"
      HeaderColor=(B=50,G=50,R=255)
      TextColor=(G=175,R=255)

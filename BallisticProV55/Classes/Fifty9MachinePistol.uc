@@ -24,14 +24,6 @@ var() Sound			LaserOnSound;
 var() Sound			LaserOffSound;
 var   Emitter		LaserDot;
 
-// This uhhh... thing is added to allow manual drawing of brass OVER the muzzle flash
-struct UziBrass
-{
-	var() actor Actor;
-	var() float KillTime;
-};
-var   array<UziBrass>	UziBrassList;
-
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -123,29 +115,10 @@ static function class<Pickup> RecommendAmmoPickup(int Mode)
 
 simulated event RenderOverlays( Canvas Canvas )
 {
-	local int i;
-
 	super.RenderOverlays (Canvas);
 
 	if (!IsInState('Lowered'))
 		DrawLaserSight(Canvas);
-	
-	if (UziBrassList.length < 1)
-		return;
-
-    bDrawingFirstPerson = true;
-    for (i=UziBrassList.length-1;i>=0;i--)
-    {
-    	if (UziBrassList[i].Actor == None)
-    		continue;
-	    Canvas.DrawActor(UziBrassList[i].Actor, false, false, Instigator.Controller.FovAngle);
-    	if (UziBrassList[i].KillTime <= level.TimeSeconds)
-    	{
-    		UziBrassList[i].Actor.bHidden=false;
-    		UziBrassList.Remove(i,1);
-    	}
-    }
-    bDrawingFirstPerson = false;
 }
 
 //======================================================================

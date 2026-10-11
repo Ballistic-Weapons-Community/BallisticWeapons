@@ -6,37 +6,6 @@
 //=============================================================================
 class Fifty9PrimaryFire extends BallisticProInstantFire;
 
-//Spawn shell casing for first person
-function EjectBrass()
-{
-	local vector Start, X, Y, Z;
-	local Coords C;
-	local actor BrassActor;
-
-	if (Level.NetMode == NM_DedicatedServer)
-		return;
-	if (!class'BallisticMod'.default.bEjectBrass || Level.DetailMode < DM_High)
-		return;
-	if (BrassClass == None)
-		return;
-	if (!Instigator.IsFirstPerson() || PlayerController(Instigator.Controller).ViewTarget != Instigator)
-		return;
-	if (AIController(Instigator.Controller) != None)
-		return;
-	C = Weapon.GetBoneCoords(BrassBone);
-//	Start = C.Origin + C.XAxis * BrassOffset.X + C.YAxis * BrassOffset.Y + C.ZAxis * BrassOffset.Z;
-    Weapon.GetViewAxes(X,Y,Z);
-	Start = C.Origin + X * BrassOffset.X + Y * BrassOffset.Y + Z * BrassOffset.Z;
-	BrassActor = BW.SpawnBrass(BrassClass, Start, Rotator(C.XAxis), GetBrassPushback());
-	if (BrassActor != None)
-	{
-		BrassActor.bHidden=true;
-		Fifty9MachinePistol(Weapon).UziBrassList.length = Fifty9MachinePistol(Weapon).UziBrassList.length + 1;
-		Fifty9MachinePistol(Weapon).UziBrassList[Fifty9MachinePistol(Weapon).UziBrassList.length-1].Actor = BrassActor;
-		Fifty9MachinePistol(Weapon).UziBrassList[Fifty9MachinePistol(Weapon).UziBrassList.length-1].KillTime = level.TimeSeconds + 0.15;
-	}
-}
-
 defaultproperties
 {   
 	ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=24.000000,batten=false)
