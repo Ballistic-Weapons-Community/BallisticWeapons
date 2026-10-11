@@ -41,6 +41,8 @@ var     Vector                  TearOffHitNormal;
 var		bool					bApplyParams;			// Apply params to this projectile (allows separation for projectiles such as flak classes)
 var     float					SpawnTime;				// When the server made it. See RelayUnseenImpact
 var     bool					bImpactRelayed;			// The clients have been sent its impact by itself
+var     vector					NetStart;				// Where the server made it. A client that is sent it in that same frame starts its copy there (StartAtNetStart)
+var     float					NetStartLag;			// How many seconds behind the server's this machine's copy is for having started there
 //=============================================================================
 // END STATE VARIABLES
 //=============================================================================
@@ -84,6 +86,7 @@ var() float					    StartDelay;				// Used to delay projectile's entry into the 
 
 
 var() bool					    bTearOnExplode;			// If not NetTemporary, tear this projectile off when it explodes
+var() bool					    bTearOffFromStart;		// Not NetTemporary, but all a client hears of it after the first send is the tear off: its copy may start where the server made it (StartAtNetStart)
 var() float					    NetTrappedDelay;		// How long to remain in nettrapped state before being destroyed
 //-----------------------------------------------------------------------------
 // Damage
@@ -160,6 +163,8 @@ replication
         LayoutIndex, CurrentWeaponMode;
     reliable if (bNetInitial && Role == ROLE_Authority && bNetInitialRotation)
         NetInitialRotation;
+    reliable if (bNetInitial && Role == ROLE_Authority && SpawnTime == Level.TimeSeconds)
+        NetStart;
 	reliable if (bTearOff && Role == ROLE_Authority)
 		TearOffHitNormal;
 }
@@ -192,6 +197,7 @@ simulated function PostBeginPlay()
         return;
 
     SpawnTime = Level.TimeSeconds;
+    NetStart = Location;
 
     // bind replicated parameters for indexing on client
     if (Instigator != None && BallisticWeapon(Instigator.Weapon) != None)
@@ -232,6 +238,7 @@ simulated function PostNetBeginPlay()
 
         InitParams();
         SetInitialSpeed();
+        StartAtNetStart();
     }
 
 	if (StartDelay > 0)
@@ -277,6 +284,59 @@ simulated function PostNetBeginPlay()
 			LightType = LT_None;
 		}
 	}
+}
+
+//===================================================================
+// StartAtNetStart
+//
+// A server moves a new projectile through its first tick before any
+// client is sent it, so a client first saw it one server tick's flight
+// down range: 150 units and more from the eye for an A73 bolt on a
+// server at 60 ticks, 640 at 20, where offline it leaves the muzzle.
+// A client that is sent a projectile in the frame it was made in is
+// told where that was (NetStart) and starts its copy from there.
+//
+// The copy then runs one server tick behind the real one, which is how
+// late the first sight of it always was. Where it hits and what it
+// does there are this machine's own doing, as before.
+//
+// For a projectile the server leaves to the clients once it is sent
+// (bNetTemporary), and for one that says all it hears of afterwards is
+// being torn off when it blows up (bTearOffFromStart): that copy makes
+// up the tick it is behind before it goes off (TornOff). Anything the
+// server goes on correcting or steering has to be where the server's
+// is.
+//===================================================================
+simulated function StartAtNetStart()
+{
+	local PlayerController PC;
+	local vector Start, Dir, HitLoc, HitNorm;
+	local float Dist, Ahead;
+
+	if (NetStart == vect(0,0,0) || StartDelay > 0 || (Physics != PHYS_Projectile && Physics != PHYS_Falling))
+		return;
+	if (!bNetTemporary && (!bTearOffFromStart || !bTearOnExplode || bUpdateSimulatedPosition))
+		return;
+	Dist = VSize(Location - NetStart);
+	// not worth it, or not a tick's flight: something has moved it
+	if (Dist < 16 || Dist > FMax(VSize(Velocity), Speed) * 0.25)
+		return;
+	Dir = (Location - NetStart) / Dist;
+	Start = NetStart;
+	// For the one who fired it, not from behind his eye: he has moved on since the shot
+	PC = Level.GetLocalPlayerController();
+	if (PC != None && Instigator != None && Instigator.Controller == PC)
+	{
+		Ahead = (Start - (Instigator.Location + Instigator.EyePosition())) dot Dir;
+		if (Ahead < 16)
+			Start += Dir * FMin(16 - Ahead, Dist);
+	}
+	// the way from there has to be as open on this machine as it was on the server
+	if (Start == Location || Trace(HitLoc, HitNorm, Location, Start, false) != None)
+		return;
+	Dist = VSize(Location - Start);
+	if (SetLocation(Start))
+		NetStartLag = Dist / FMax(VSize(Velocity), 1.0);
 }
 
 //===================================================================
@@ -425,6 +485,18 @@ simulated function InitEffects ()
 //===================================================================
 simulated event TornOff()
 {
+	local vector End, HitLoc, HitNorm;
+
+	// A copy that started where the server made it is a tick behind the one that has just blown up: it goes the
+	// rest of the way first, as far as there is anything in its way
+	if (NetStartLag > 0 && Velocity != vect(0,0,0))
+	{
+		End = Location + Velocity * NetStartLag;
+		if (Trace(HitLoc, HitNorm, End, Location, false) != None)
+			End = HitLoc + HitNorm;
+		SetLocation(End);
+	}
+	NetStartLag = 0;
 	Explode(Location, TearOffHitNormal);
 }
 
