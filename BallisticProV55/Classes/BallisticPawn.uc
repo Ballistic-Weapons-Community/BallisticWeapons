@@ -2424,6 +2424,12 @@ simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
 		rec = class'xUtil'.static.FindPlayerRecord("JakobB");
 	*/
 
+	// A character this machine has no record of becomes the default one, as it does for the stock pawn. The check for
+	// it went out with the block above, and such a player was left the way the pawn is made: none of a character's
+	// skins, sounds or animations, and two warnings in the log for every time he spawned
+	if (rec.Species == None)
+		rec = class'xUtil'.static.FindPlayerRecord(GetDefaultCharacter());
+
 	// If you're using an advantage-conferring skin you're going to be as bright as the bloody Sun
     // this check is fine - it won't break clients and I guarantee they won't even notice it
 	if (rec.DefaultName == "July")
