@@ -3965,6 +3965,9 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         Super(Inventory).GiveTo(Other);
         bPossiblySwitch = true;
         W = self;
+		// whoever made the weapon said so after PostNetBeginPlay had read it: a remote owner gets it with the weapon,
+		// the player on this machine needs it here
+		bDeferInitialSwitch = bServerDeferInitialSwitch;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
 		{
 			//log("gun received with Layout "$BallisticWeaponPickup(Pickup).LayoutIndex$" and Camo "$BallisticWeaponPickup(Pickup).CamoIndex); 
