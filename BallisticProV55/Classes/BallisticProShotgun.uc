@@ -15,8 +15,12 @@ simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
 	
-	CrosshairSpreadAngle = BallisticProShotgunFire(BFireMode[0]).GetCrosshairInaccAngle();
-	MaxSpreadFactor = BallisticProShotgunFire(BFireMode[0]).MaxSpreadFactor;
+	// (the Wrenchgun is a shotgun whose primary fire throws things)
+	if (BallisticProShotgunFire(BFireMode[0]) != None)
+	{
+		CrosshairSpreadAngle = BallisticProShotgunFire(BFireMode[0]).GetCrosshairInaccAngle();
+		MaxSpreadFactor = BallisticProShotgunFire(BFireMode[0]).MaxSpreadFactor;
+	}
 }	
 
 //Draws simple crosshairs to accurately describe hipfire at any FOV and resolution.
