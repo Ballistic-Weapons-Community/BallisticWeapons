@@ -196,7 +196,7 @@ simulated function Destroyed()
 defaultproperties
 {
 	WeaponClass=class'PD97Bloodhound'
-     FireClass=Class'BWBP_OP_Pro.PD97PrimaryShotgunFire'
+     FireClass=Class'BWBP_OP_Pro.PD97PrimaryFire'
      MuzzleFlashClass=class'D49FlashEmitter'
      ImpactManager=class'IM_BigBullet'
      AltFlashBone="ejector"
