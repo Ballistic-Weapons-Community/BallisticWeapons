@@ -37,7 +37,8 @@ event Timer()
 
         P = xPawn(C.Pawn);
 
-        if (P == None || BallisticPawn(P).LastDamagedTime > (Level.TimeSeconds - RegenDelay))
+        // a game type with a pawn class of its own (Mutant) has no time of the last hit: no delay there
+        if (P == None || (BallisticPawn(P) != None && BallisticPawn(P).LastDamagedTime > (Level.TimeSeconds - RegenDelay)))
             continue;
 
         MaxShield = FMin(ShieldCap, P.ShieldStrengthMax);
