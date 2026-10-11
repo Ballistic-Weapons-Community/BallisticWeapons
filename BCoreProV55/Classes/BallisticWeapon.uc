@@ -299,9 +299,12 @@ var() array<BallisticGunAugment>	GunAugments;				// Actor to spawn if the layout
 // Cached canvas variables for FOV calc (to correct for vert-)
 var private int				CachedCanvasX;
 var private int				CachedCanvasY;
+// The engine's own widescreen correction (UT2004 3374, see BUtil.GetHorizPlusScale) the FOVs were worked out for
+var private float			CachedHorizPlus;
+var private float			NextHorizPlusCheck;
 
 // The default is changed when using vert- correction
-var() int					BaseDisplayFOV;
+var() float					BaseDisplayFOV;
 //-----------------------------------------------------------------------------
 // Sound
 //-----------------------------------------------------------------------------
@@ -621,7 +624,7 @@ simulated function OnMeshChanged()
 simulated function CalcDisplayFOVs(int CanvasSizeX, int CanvasSizeY)
 {
 	local float ResScaleX, ResScaleY;
-	local float AspectRatio;
+	local float AspectRatio, WantedFOV;
 
 	CachedCanvasX = CanvasSizeX;
 	CachedCanvasY = CanvasSizeY;
@@ -632,12 +635,19 @@ simulated function CalcDisplayFOVs(int CanvasSizeX, int CanvasSizeY)
 	AspectRatio = FClamp(ResScaleX/ResScaleY, 1f, 3f);
 
 	// basic FOV is set for 4:3. Adjust FOVs for 16:9 if we have it
-	BaseDisplayFOV = class'BUtil'.static.CalcZoomFOV(default.DisplayFOV, 1/AspectRatio);
+	// (a whole number, as it was while BaseDisplayFOV was an int)
+	WantedFOV = int(class'BUtil'.static.CalcZoomFOV(default.DisplayFOV, 1/AspectRatio));
+
+	// UT2004 3374 with its Horizontal+ option on widens what it is handed once more. Hand it that much less, so
+	// that the gun is drawn with the same angle on every version and with the option on or off
+	if (Instigator != None)
+		CachedHorizPlus = class'BUtil'.static.GetHorizPlusScale(PlayerController(Instigator.Controller));
+	BaseDisplayFOV = class'BUtil'.static.UndoHorizPlus(WantedFOV, ResScaleX/ResScaleY, CachedHorizPlus);
 	DisplayFOV = BaseDisplayFOV;
 
 	// adjust sight display FOV automatically
 	//if (class'BallisticReplicationInfo'.static.IsTactical())
-		SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(BaseDisplayFOV, SightZoomFactor);
+		SightDisplayFOV = class'BUtil'.static.UndoHorizPlus(class'BUtil'.static.CalcZoomFOV(WantedFOV, SightZoomFactor), ResScaleX/ResScaleY, CachedHorizPlus);
 	//else 
 	//	SightDisplayFOV = class'BUtil'.static.CalcZoomFOV(default.SightDisplayFOV, 1/AspectRatio);
 }
@@ -2608,7 +2618,13 @@ simulated function DrawFPWeapon( Canvas Canvas )
 	if ( InstigatorController != None )
 		Hand = Clamp(InstigatorController.Handedness, -1, 1);
 
-	// update display FOVs if changed resolution
+	// update display FOVs if changed resolution, or if the engine's own widescreen correction was switched
+	if (Level.TimeSeconds >= NextHorizPlusCheck)
+	{
+		NextHorizPlusCheck = Level.TimeSeconds + 0.5;
+		if (class'BUtil'.static.GetHorizPlusScale(PlayerController(Instigator.Controller)) != CachedHorizPlus)
+			CachedCanvasX = 0;
+	}
 	if (Canvas.SizeX != CachedCanvasX || Canvas.SizeY != CachedCanvasY)
 		CalcDisplayFOVs(Canvas.SizeX, Canvas.SizeY);
 
