@@ -14,9 +14,17 @@ var() Rotator	DrumRot;
 
 var bool bRemoteGrenadeOut;
 
+// Client: the fire mode predicts bRemoteGrenadeOut click by click, see ClientUpdateGrenadeStatus
+var byte	GrenadeSeq;					// Alt fire clicks acted on: by the server, and by the client in its prediction
+var bool	bGrenadeStatusPending;		// The server's word is waiting
+var bool	bPendingGrenadeOut;
+var byte	PendingGrenadeSeq;
+var float	GrenadePredictTime, GrenadePendingTime;
+
 replication
 {
-	unreliable if (Role == ROLE_Authority)
+	// Reliable: the fire mode decides between firing and detonating based on this, so a lost update desyncs client and server
+	reliable if (Role == ROLE_Authority)
 		ClientUpdateGrenadeStatus;
 }
 
@@ -113,24 +121,73 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 
 function UpdateGrenadeStatus(bool bDetonatable)
 {
-	bRemoteGrenadeOut = bDetonatable;
-	
-	if (bDetonatable)
-		Skins[2]=MatArmed;
-	else
-		Skins[2]=MatDef;
-		
+	SetGrenadeStatus(bDetonatable);
+	GrenadeSeq++;
+
 	if (Role == ROLE_Authority && !Instigator.IsLocallyControlled())
-		ClientUpdateGrenadeStatus(bDetonatable);
+		ClientUpdateGrenadeStatus(bDetonatable, GrenadeSeq);
 }
 
-simulated function ClientUpdateGrenadeStatus(bool bDet)
+simulated function SetGrenadeStatus(bool bDet)
 {
 	bRemoteGrenadeOut = bDet;
 	if (bDet)
 		Skins[2]=MatArmed;
 	else
 		Skins[2]=MatDef;
+}
+
+// Client: the fire mode has fired or detonated without waiting for the server
+simulated function PredictGrenadeStatus(bool bDet)
+{
+	GrenadeSeq++;
+	GrenadePredictTime = Level.TimeSeconds;
+	// on a fast connection the server's answer to this click can be in before the client has acted on the click
+	if (bGrenadeStatusPending && PendingGrenadeSeq == GrenadeSeq)
+	{
+		bGrenadeStatusPending = false;
+		bDet = bPendingGrenadeOut;
+	}
+	SetGrenadeStatus(bDet);
+}
+
+// How long the server's word waits for the client's clicks to catch up with it, or the other way round
+simulated function float GrenadeResyncDelay()
+{
+	if (Instigator != None && Instigator.PlayerReplicationInfo != None)
+		return FMax(0.5, 0.25 + 0.008 * Instigator.PlayerReplicationInfo.Ping);	// Ping is in 4 ms steps: twice the ping
+	return 0.5;
+}
+
+// The server sends the state after every alt fire click it has acted on, with the number of that click.
+// The client has usually clicked again since: applied at once, that state undid the prediction of the later clicks and
+// the next click did the wrong thing (a shot played that the server never fired, or the other way round). So it only
+// counts when it is the state after the client's own last click. Should the two have lost count of each other, it is
+// taken as it is once nothing has happened for a moment.
+simulated function ClientUpdateGrenadeStatus(bool bDet, byte Seq)
+{
+	if (Role == ROLE_Authority || Seq == GrenadeSeq)
+	{
+		bGrenadeStatusPending = false;
+		SetGrenadeStatus(bDet);
+		return;
+	}
+	bGrenadeStatusPending = true;
+	bPendingGrenadeOut = bDet;
+	PendingGrenadeSeq = Seq;
+	GrenadePendingTime = Level.TimeSeconds;
+}
+
+simulated event WeaponTick(float DT)
+{
+	Super.WeaponTick(DT);
+
+	if (bGrenadeStatusPending && Level.TimeSeconds - FMax(GrenadePredictTime, GrenadePendingTime) >= GrenadeResyncDelay())
+	{
+		bGrenadeStatusPending = false;
+		GrenadeSeq = PendingGrenadeSeq;
+		SetGrenadeStatus(bPendingGrenadeOut);
+	}
 }
 
 simulated function bool HasAmmo()

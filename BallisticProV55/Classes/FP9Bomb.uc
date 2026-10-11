@@ -21,6 +21,7 @@ var() class<damageType>	LaserDamageType;// Damagetype to use when detonated by l
 var() class<damageType>	ShotDamageType;	// Damagetype to use when detonated by damage
 var   FP9Trigger		MyUseTrigger;	// The trigger that sends use events
 var   float				ThrowTime;		// How long fire was held for throw range
+var   vector			ThrowDir;		// Direction thrown, saved before the model is turned around after the start delay
 var() bool				bDamaged;		// Has been damaged and is about to blow
 var() int				Health;			// Distance from death
 var   bool				bLaserDetonated;// Someone stepped into the beam. This tells it which damagetype to use
@@ -145,7 +146,10 @@ simulated function InitProjectile ()
 		SetTimer(2.0, false);
 	else if (!bDeployed)
 	{
-		Velocity = Speed * Vector(Rotation);
+		// Rotation has been turned around by now (see Timer), so use the saved throw direction
+		if (ThrowDir == vect(0,0,0))
+			ThrowDir = Vector(Rotation);
+		Velocity = Speed * ThrowDir;
 		super.InitProjectile();
 	}
 }
@@ -160,6 +164,7 @@ simulated event Timer()
 		bHidden=false;
 		if (!bDeployed)
 		{
+			ThrowDir = Vector(Rotation);
 			R = Rotation;
 			R.Yaw += 32768;
 			R.Pitch += 8192;

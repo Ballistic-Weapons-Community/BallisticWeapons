@@ -55,7 +55,7 @@ defaultproperties
      ShakeOffsetMag=(X=-8.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
-     ProjectileClass=Class'BWBP_SKC_Pro.G51Grenade_HE'
+     ProjectileClass=Class'BWBP_APC_Pro.MJ51Grenade_HE'
      BotRefireRate=0.300000
      WarnTargetPct=0.300000
 }

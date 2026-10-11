@@ -370,7 +370,7 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
 		InitialWeaponMode=1
-		WeaponName="AC-12 5.56mm Assault Carbine (3X)"
+		WeaponName="AC-12 5.56mm Assault Carbine (Suppressed)"
 		RecoilParams(0)=RecoilParams'RealisticBurstRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticBurstRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

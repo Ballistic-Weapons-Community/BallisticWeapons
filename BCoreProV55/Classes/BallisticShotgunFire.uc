@@ -87,6 +87,10 @@ function DoFireEffect()
 
 	ApplyHits();
 
+	// Hits can kill the shooter (e.g. explosive shells at point blank), destroying the weapon
+	if (Weapon == None)
+		return;
+
 	// update client's dispersion values before shot
 	if (BallisticShotgunAttachment(Weapon.ThirdPersonActor) != None)
 	{

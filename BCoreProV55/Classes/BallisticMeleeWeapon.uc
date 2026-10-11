@@ -41,6 +41,10 @@ function ServerSetBlocked(bool NewValue)
 	BallisticAttachment(ThirdPersonActor).SetBlocked(NewValue);
 }
 
+// Melee weapons have no magazine and no reload anims. Starting a reload (e.g. X8 after picking up more knives)
+// left ReloadState stuck at RS_PreClipOut, locking the weapon.
+function ServerStartReload (optional byte i);
+
 simulated function float ChargeBar()
 {
 	return MeleeFatigue;

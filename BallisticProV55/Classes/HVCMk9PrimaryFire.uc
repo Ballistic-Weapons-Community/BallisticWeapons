@@ -827,6 +827,7 @@ simulated state BranchingFire
 defaultproperties
 {
      FireSoundLoop=Sound'BW_Core_WeaponSound.LightningGun.LG-FireLoop'
+     Damage=10.000000 // Classic/Realistic branching fire has no InstantEffectParams, so it relies on this
      DamageType=Class'BallisticProV55.DT_HVCLightning'
      DamageTypeHead=Class'BallisticProV55.DT_HVCLightning'
      DamageTypeArm=Class'BallisticProV55.DT_HVCLightning'

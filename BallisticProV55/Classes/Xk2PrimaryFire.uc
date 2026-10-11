@@ -158,7 +158,8 @@ function PlayFiring()
 function DoFireEffect()
 {
 	Super.DoFireEffect();
-	if (Level.NetMode == NM_DedicatedServer)
+	// Only drain while amped, like the client does - AddHeat resets the fire mode once the amp charge hits 0
+	if (Level.NetMode == NM_DedicatedServer && !Instigator.IsLocallyControlled() && bAmped && XK2SubMachinegun(BW) != None)
 		XK2SubMachinegun(BW).AddHeat(AmpDrainPerShot);
 }
 

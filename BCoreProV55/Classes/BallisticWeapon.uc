@@ -539,7 +539,7 @@ simulated function PostBeginPlay()
 
     if (Role == ROLE_Authority)
     {
-        if (ParamsClasses[int(class'BallisticReplicationInfo'.default.GameStyle)] != None)
+        if (int(class'BallisticReplicationInfo'.default.GameStyle) < ParamsClasses.Length && ParamsClasses[int(class'BallisticReplicationInfo'.default.GameStyle)] != None)
             GameStyleIndex = int(class'BallisticReplicationInfo'.default.GameStyle);
     }
 
@@ -1065,9 +1065,17 @@ static final operator(34) XYRange /= (out XYRange A, float B)
 	return A;
 }
 
+// Params for the current game style. Falls back to the first params class when the weapon has none for this style,
+// matching the weapon itself (GameStyleIndex is left at 0 in PostBeginPlay).
 static simulated final function class<BallisticWeaponParams> GetParams()
 {
-	return default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle];
+	local int i;
+
+	i = int(class'BallisticReplicationInfo'.default.GameStyle);
+
+	if (i < default.ParamsClasses.Length && default.ParamsClasses[i] != None)
+		return default.ParamsClasses[i];
+	return default.ParamsClasses[0];
 }
 //===========================================================================
 // BlendFire
@@ -2778,6 +2786,8 @@ simulated function bool WeaponCentered()
 simulated function SetHand(float InHand)
 {
 	super.SetHand(InHand);
+	if (WeaponParams == None)
+		return;
 	if (Hand < 0)
 	{
 		SightOffset.Y = WeaponParams.SightOffset.Y * -1;
@@ -4039,6 +4049,15 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
         GotoState('PendingClientWeaponSet');
         return;
     }
+
+	// Clients only get their params in PostNetBeginPlay, which can run after this call arrives
+	// (e.g. reclaimed sandbags or an undeployed turret weapon whose ammo already exists on the client).
+	// Wait for them, or BringUp/SetHand run without params and the client never gets the right WalkingPct.
+	if (WeaponParams == None && Level.NetMode == NM_Client && ParamsClasses[GameStyleIndex] != None)
+	{
+		GotoState('PendingClientWeaponSet');
+		return;
+	}
 
     for( Mode = 0; Mode < NUM_FIRE_MODES; Mode++ )
     {
@@ -5815,7 +5834,7 @@ static simulated final function int GetPickupMagAmmo()
 
     i = int(class'BallisticReplicationInfo'.default.GameStyle);
 
-    if (default.ParamsClasses[i] == None)
+    if (i >= default.ParamsClasses.Length || default.ParamsClasses[i] == None)
     {
         Log(default.ItemName $ "::GetPickupMagAmmo: No params found for game style " $ class'BallisticReplicationInfo'.default.GameStyle $": Falling back");
         i = 0;
@@ -5830,7 +5849,7 @@ static simulated final function int GetInventorySize()
 
     i = int(class'BallisticReplicationInfo'.default.GameStyle);
 
-    if (default.ParamsClasses[i] == None)
+    if (i >= default.ParamsClasses.Length || default.ParamsClasses[i] == None)
     {
         Log(default.ItemName $ "::GetInventorySize: No params found for game style " $ class'BallisticReplicationInfo'.default.GameStyle $": Falling back");
         i = 0;
@@ -5867,10 +5886,10 @@ static function String GetShortManual(optional int layoutIndex)
 	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Basic Stats"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
 
 	// iterate and calculate damage and basic fire rate
-	if (default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[layoutIndex].FireParams.Length > 0)
-		S $= default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[layoutIndex].FireParams[0].BuildShortManualString();
+	if (static.GetParams().default.Layouts[layoutIndex].FireParams.Length > 0)
+		S $= static.GetParams().default.Layouts[layoutIndex].FireParams[0].BuildShortManualString();
 	// iterate and get basic gun stats
-	S $= default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[layoutIndex].BuildShortManualString();
+	S $= static.GetParams().default.Layouts[layoutIndex].BuildShortManualString();
 
 	S $= "||";
 

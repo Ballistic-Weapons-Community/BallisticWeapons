@@ -29,7 +29,7 @@ replication
 simulated function int GetTraceCount()
 {
 	if (WeaponClass != None)
-		return ShotgunEffectParams(WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceCount;
+		return ShotgunEffectParams(WeaponClass.static.GetParams().default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceCount;
 
 	return 10;
 }
@@ -37,7 +37,7 @@ simulated function int GetTraceCount()
 simulated final function int GetTraceRange()
 {
 	if (WeaponClass != None)
-		return InstantEffectParams(WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceRange.Max;
+		return InstantEffectParams(WeaponClass.static.GetParams().default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceRange.Max;
 
 	return 3000;
 }
@@ -45,7 +45,7 @@ simulated final function int GetTraceRange()
 simulated final function FireEffectParams.FireSpreadMode GetSpreadMode()
 {
 	if (WeaponClass != None)
-		return WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].FireParams[0].FireEffectParams[0].SpreadMode;
+		return WeaponClass.static.GetParams().default.Layouts[0].FireParams[0].FireEffectParams[0].SpreadMode;
 
 	return FSM_Circle;
 }

@@ -11,7 +11,7 @@ function PlayFiring()
 		}
 		super.PlayFiring();
 	}
-	else if (BW != None)
+	else if (BW != None && BW.HasAnim('Deploy'))
 	{
 		BW.SafePlayAnim('Deploy', 1.0, 0.0, ,"FIRE");
 	}
@@ -20,8 +20,14 @@ function PlayFiring()
 function ServerPlayFiring()
 {
 	if (BallisticTurret(Instigator) != None)
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-	else if (BW != None)
+	{
+		// Turret meshes without an undeploy anim (e.g. X83) never get the AnimEnd that undeploys them, so do it here
+		if (!BW.HasAnim('Undeploy'))
+			BW.Notify_Undeploy();
+		else
+			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	}
+	else if (BW != None && BW.HasAnim('Deploy'))
 		BW.SafePlayAnim('Deploy', 1.0, 0.0, ,"FIRE");
 }
 

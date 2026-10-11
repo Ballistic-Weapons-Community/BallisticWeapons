@@ -104,6 +104,13 @@ simulated function PreBeginPlay()
 		if (class'BallisticReplicationInfo'.default.bKillStreaks)
 			Level.Game.AddMutator("BallisticProV55.Mut_Killstreak", false);
 
+		// The pickup removal options in the config menu are applied by this mutator
+		if (class'Mut_Pickups'.default.bRemoveAmmoPacks || class'Mut_Pickups'.default.bRemoveUDamage
+			|| class'Mut_Pickups'.default.bRemoveShieldPack || class'Mut_Pickups'.default.bRemoveSuperShieldPack
+			|| class'Mut_Pickups'.default.bRemoveBandages || class'Mut_Pickups'.default.bRemoveHealthPack
+			|| class'Mut_Pickups'.default.bRemoveSuperHealthPack || class'Mut_Pickups'.default.bRemoveAdrenaline)
+			Level.Game.AddMutator("BallisticProV55.Mut_Pickups", false);
+
 		if (class'BallisticReplicationInfo'.default.HealthKillReward > 0 || class'BallisticReplicationInfo'.default.ShieldKillReward > 0)
 			Level.Game.AddGameModifier(Spawn(class'Rules_KillRewards'));
 

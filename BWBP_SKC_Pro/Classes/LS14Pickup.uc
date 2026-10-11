@@ -46,7 +46,7 @@ defaultproperties
      PickupDrawScale=1.100000
      InventoryType=Class'BWBP_SKC_Pro.LS14Carbine'
      RespawnTime=20.000000
-     PickupMessage="You picked up the LS-14 laser carbine."
+     PickupMessage="You picked up the LS-14 laser rifle."
      PickupSound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Pickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.LaserCarbinePickupHi'
      Physics=PHYS_None

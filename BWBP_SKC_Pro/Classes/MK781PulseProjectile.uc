@@ -14,7 +14,7 @@ var int ImpactDamage;
 
 simulated function InitParams()
 {
-    WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.OverrideProjectileParams(self, 3);
+    WeaponClass.static.GetParams().static.OverrideProjectileParams(self, 3);
 }
 
 simulated function PostBeginPlay()

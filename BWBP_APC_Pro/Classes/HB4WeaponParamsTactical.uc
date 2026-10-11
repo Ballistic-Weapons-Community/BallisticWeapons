@@ -86,6 +86,7 @@ defaultproperties
 		SightOffset=(X=10.000000,Y=-5.515000,Z=10.420000)
 		DisplaceDurationMult=1
 		MagAmmo=3
+		bDualBlocked=True
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

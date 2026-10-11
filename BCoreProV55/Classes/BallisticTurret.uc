@@ -676,6 +676,34 @@ function bool NeedToTurn(vector targ)
 	return !(Normal(targ-(Location+EyePosition())) Dot vector(Rotation+GunRotation) > 0.98);
 }
 
+// Scroll adjusts the scope zoom while sighted, like it does on foot (BallisticWeapon.NextWeapon/PrevWeapon).
+// Vehicle's version moves the chase camera instead, which threw sighted players into a close third person view.
+simulated function NextWeapon()
+{
+	local BallisticWeapon BW;
+
+	BW = BallisticWeapon(Weapon);
+	if (BW != None && BW.bScopeView && BW.ZoomType > ZT_Fixed)
+	{
+		BW.ChangeZoom(-1.0 / BW.ZoomStages);
+		return;
+	}
+	super.NextWeapon();
+}
+
+simulated function PrevWeapon()
+{
+	local BallisticWeapon BW;
+
+	BW = BallisticWeapon(Weapon);
+	if (BW != None && BW.bScopeView && BW.ZoomType > ZT_Fixed)
+	{
+		BW.ChangeZoom(1.0 / BW.ZoomStages);
+		return;
+	}
+	super.PrevWeapon();
+}
+
 function UndeployTurret ()
 {
 	local Weapon W;

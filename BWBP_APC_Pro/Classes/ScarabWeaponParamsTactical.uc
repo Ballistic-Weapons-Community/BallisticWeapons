@@ -80,6 +80,10 @@ defaultproperties
 		PlayerSpeedFactor=1.000000
         MagAmmo=1
         InventorySize=1
+		// Same throw modes as the other Tactical grenades
+		WeaponModes(0)=(ModeName="Fixed Throw",ModeID="WM_None",Value=1.00)
+		WeaponModes(1)=(ModeName="Charged Throw",ModeID="WM_None",Value=0.00)
+		WeaponModes(2)=(bUnavailable=True)
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

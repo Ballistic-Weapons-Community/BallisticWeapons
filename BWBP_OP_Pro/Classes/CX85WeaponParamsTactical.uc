@@ -39,7 +39,6 @@ defaultproperties
 		FireInterval=0.0900000
 		FireAnim="Fire"
 		FireEndAnim=
-		AimedFireAnim="Fire"
 		FireAnimRate=1.200000
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
@@ -66,7 +65,6 @@ defaultproperties
 		FireInterval=0.250000
 		FireAnim="Fire"
 		FireEndAnim=
-		AimedFireAnim="SightFire"
 		FireAnimRate=1.000000	
 		TargetState="SeekerFlechette"
 		FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams_Seeker'

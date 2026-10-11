@@ -71,7 +71,22 @@ defaultproperties
 	// SECONDARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
+	// Beam values match Classic - the alt fire is an instant hit beam and needs InstantEffectParams, or it does no damage
+	Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams
+		TraceRange=(Min=8000.000000,Max=8000.000000)
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=65.0
+		HeadMult=1.6
+		LimbMult=0.4
+		DamageType=Class'BallisticProV55.DTA42SkrithBeam'
+		DamageTypeHead=Class'BallisticProV55.DTA42SkrithBeam'
+		DamageTypeArm=Class'BallisticProV55.DTA42SkrithBeam'
+		PenetrationEnergy=32.000000
+		PenetrateForce=150
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
 		FlashScaleFactor=0.600000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-SecFire',Pitch=1.100000,Volume=0.800000)
@@ -80,13 +95,14 @@ defaultproperties
 		Inaccuracy=(X=128,Y=128)
 		WarnTargetPct=0.300000
 	End Object
-		
+
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
 		FireInterval=0.08000
+		AmmoPerFire=8
 		BurstFireRateFactor=1.00
 		FireAnim="SecFire"
 		FireEndAnim=
-	FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'RealisticSecondaryEffectParams'
 	End Object
 		
 	//=================================================================

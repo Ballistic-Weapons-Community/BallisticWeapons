@@ -246,10 +246,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		if (!Instigator.IsLocallyControlled())
 			ClientScreenStart();
 	}
-	if (bShieldEquipped && XM20ShieldEffect == None && Level.Game != None)
+	// First person shield effect, drawn in RenderOverlays - needed on the owning client, which has no Level.Game online
+	if (bShieldEquipped && XM20ShieldEffect == None && Level.NetMode != NM_DedicatedServer && Instigator != None && Instigator.IsLocallyControlled())
 	{
 		XM20ShieldEffect = Spawn(class'XM20ShieldEffect', instigator);
-		if (Level.Game.bTeamGame && Instigator.GetTeamNum() == 0)
+		if (XM20ShieldEffect != None && Level.GRI != None && Level.GRI.bTeamGame && Instigator.GetTeamNum() == 0)
 		    XM20ShieldEffect.SetRedSkin();
 	}
 
@@ -274,8 +275,9 @@ simulated function bool PutDown()
 			bShieldUp = false;
 			AdjustShieldProperties();
 		}
-		if (ShieldTipFX != None)	
+		if (ShieldTipFX != None)
 			ShieldTipFX.Destroy();
+		return true;
 	}
 	return false;
 }
@@ -389,23 +391,31 @@ simulated function AdjustShieldProperties()
 {
     local ShieldAttachment Attachment;
 
+	// Can be called from PostNetReceive before the Instigator has been replicated
 	if (bShieldUp)
 	{
-		Instigator.AmbientSound = ChargingSound;
-		Instigator.SoundVolume = ShieldSoundVolume;
+		if (Instigator != None)
+		{
+			Instigator.AmbientSound = ChargingSound;
+			Instigator.SoundVolume = ShieldSoundVolume;
+		}
 		if( Attachment != None && Attachment.ShieldEffect3rd != None )
 			Attachment.ShieldEffect3rd.bHidden = false;
 
 		if (ShieldTipFX == None)
 			class'bUtil'.static.InitMuzzleFlash(ShieldTipFX, class'M2020ShieldEffect', DrawScale, self, 'tip');
-        XM20ShieldEffect.Flash(0, ShieldPower);
+		if (XM20ShieldEffect != None)
+			XM20ShieldEffect.Flash(0, ShieldPower);
 	}
 	else
 	{
     	Attachment = ShieldAttachment(ThirdPersonActor);
-		Instigator.AmbientSound = None;
-    	Instigator.SoundVolume = Instigator.Default.SoundVolume;
-    
+		if (Instigator != None)
+		{
+			Instigator.AmbientSound = None;
+			Instigator.SoundVolume = Instigator.Default.SoundVolume;
+		}
+
 		if( Attachment != None && Attachment.ShieldEffect3rd != None )
 		{
 			Attachment.ShieldEffect3rd.bHidden = true;

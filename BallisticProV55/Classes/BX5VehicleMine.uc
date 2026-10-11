@@ -34,22 +34,25 @@ simulated function PostBeginPlay()
 	
 	if (Role == ROLE_Authority)
 	{
-		if (Instigator != None)
+		if (Instigator != None && Instigator.Controller != None)
 			TeamLightColor = Instigator.Controller.GetTeamNum();
 
 		else TeamLightColor = 255;
-		
+
 		if (Level.NetMode != NM_DedicatedServer)
 		{
 			if (TeamLightColor == Level.GetLocalPlayerController().GetTeamNum() || class'BallisticReplicationInfo'.default.bUniversalMineLights)
 			{
 				TeamLight = Spawn(class'BX5TeamLight',self,,Location,Rotation);
-				if (Instigator.Controller == Level.GetLocalPlayerController())
-					TeamLight.SetTeamColor(2);
-				else TeamLight.SetTeamColor(TeamLightColor);
-				TeamLight.SetBase(self);
+				if (TeamLight != None)
+				{
+					if (Instigator != None && Instigator.Controller == Level.GetLocalPlayerController())
+						TeamLight.SetTeamColor(2);
+					else TeamLight.SetTeamColor(TeamLightColor);
+					TeamLight.SetBase(self);
+				}
 			}
-		}	
+		}
 	}
 }
 
@@ -57,19 +60,23 @@ simulated event PostNetReceive()
 {
 	if (bDetonated)
 		Explode(Location, vect(0,0,1));
-		
-	if (TeamLightColor != default.TeamLightColor)
+
+	// PostNetReceive runs on every replicated update, so only spawn the light once
+	if (TeamLightColor != default.TeamLightColor && TeamLight == None)
 	{
 		if (TeamLightColor == Level.GetLocalPlayerController().GetTeamNum() || Level.GetLocalPlayerController().GetTeamNum() == 255 || class'BallisticReplicationInfo'.default.bUniversalMineLights)
 		{
 			TeamLight = Spawn(class'BX5TeamLight',self,,Location,Rotation);
-			if (Instigator.Controller == Level.GetLocalPlayerController())
+			if (TeamLight == None)
+				return;
+			// Instigator may not be relevant on this client
+			if (Instigator != None && Instigator.Controller == Level.GetLocalPlayerController())
 				TeamLight.SetTeamColor(2);
 			else if (Level.GetLocalPlayerController().GetTeamNum() != 255 || class'BallisticReplicationInfo'.default.bUniversalMineLights)
 				TeamLight.SetTeamColor(TeamLightColor);
 			TeamLight.SetBase(self);
 		}
-	}		
+	}
 }
 
 simulated event TornOff()

@@ -179,7 +179,7 @@ simulated function FlameFireEffects()
 	
 	if (AH104Pistol(Instigator.Weapon) != None)
 		AH104Pistol(Instigator.Weapon).Flame = Flame;
-	FlyByEffects(0, mHitLocation);
+	FlyByEffects(1, mHitLocation); // alt fire flame, uses AltFlyBySound
 	
 	if (level.NetMode == NM_Client)
 	{

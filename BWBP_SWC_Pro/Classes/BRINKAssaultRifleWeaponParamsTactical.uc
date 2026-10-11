@@ -36,7 +36,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
 		FireInterval=0.072000
-		BurstFireRateFactor=0.85
+		BurstFireRateFactor=0.1 // Double Barrel mode is a 2 round burst - it needs a low factor to fire both near simultaneously, as in the other styles
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=0.85	

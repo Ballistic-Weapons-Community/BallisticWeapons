@@ -35,6 +35,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
+     WeaponClass=Class'BWBP_SKC_Pro.PugAssaultCannon' // not the LS14's (inherited), so it reads the PUG's projectile params
      ImpactManager=Class'BWBP_SKC_Pro.IM_TearGasProjLarge'
      AccelSpeed=50000.000000
      TrailClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'

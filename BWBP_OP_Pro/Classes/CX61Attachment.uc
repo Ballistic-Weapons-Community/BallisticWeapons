@@ -247,7 +247,7 @@ simulated function FlameFireEffects()
 	
 	if (CX61AssaultRifle(Instigator.Weapon) != None)
 		CX61AssaultRifle(Instigator.Weapon).Flame = Flame;
-	FlyByEffects(0, mHitLocation);
+	FlyByEffects(1, mHitLocation); // alt fire flame, uses AltFlyBySound
 	
 	if (level.NetMode == NM_Client)
 	{
@@ -295,7 +295,7 @@ defaultproperties
     WaterTracerClass=class'TraceEmitter_WaterBullet'
     WaterTracerMode=MU_Both
     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-    FlyByMode=MU_Primary
+    FlyByMode=MU_Both
     ReloadAnim="Reload_AR"
 	ReloadAnimRate=1.250000
 	CockAnimRate=1.100000

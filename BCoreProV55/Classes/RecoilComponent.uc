@@ -107,6 +107,8 @@ if all recoil is bound to the view, the server will simply use the player's look
 and thus will be updated at the same time as the request to shoot is received by the server
 */
 var private float               ViewBindFactor;            	// Amount to bind recoil offsetting to view.
+var private bool                bOverrideADSViewBind;       // Use ADSViewBindOverride instead of Params.ADSViewBindFactor.
+var private float               ADSViewBindOverride;        // Per weapon ADS view bind (e.g. an alternate scope). Params are shared by every weapon, so don't write to them.
 
 // State
 var private float               LastRecoilTime;             // Last time at which recoil was added
@@ -180,6 +182,8 @@ final function Cleanup()
 	Target.YRand = 0;
 
 	ViewBindFactor = 0;
+	bOverrideADSViewBind = false;
+	ADSViewBindOverride = 0;
 
 	LastRecoilTime = 0;
 
@@ -400,14 +404,27 @@ final function float ScaleRecoilAmount(float amount)
 // Display
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+final function SetADSViewBindOverride(bool bOverride, optional float Value)
+{
+	bOverrideADSViewBind = bOverride;
+	ADSViewBindOverride = Value;
+}
+
+final function float GetADSViewBindFactor()
+{
+	if (bOverrideADSViewBind)
+		return ADSViewBindOverride;
+	return Params.ADSViewBindFactor;
+}
+
 final function UpdateADSTransition(float delta)
 {
-    ViewBindFactor = Smerp(delta, Params.ViewBindFactor, Params.ADSViewBindFactor);
+    ViewBindFactor = Smerp(delta, Params.ViewBindFactor, GetADSViewBindFactor());
 }
 
 final function OnADSViewStart()
 {
-    ViewBindFactor = Params.ADSViewBindFactor;
+    ViewBindFactor = GetADSViewBindFactor();
 }
 
 final function OnADSViewEnd()

@@ -90,6 +90,7 @@ defaultproperties
      NetUpdateFrequency=10.000000
      DrawScale3D=(X=4.50000,Y=4.5000,Z=4.50000)
      bShouldBaseAtStartup=True
+     bUseCylinderCollision=True // collide as the cylinder below - projectiles were passing through the barrier mesh
      CollisionRadius=48.000000
      CollisionHeight=128.000000
      bFixedRotationDir=True

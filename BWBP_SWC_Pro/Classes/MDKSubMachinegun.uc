@@ -101,11 +101,14 @@ simulated function SetScopeProperties()
 	{
 		ZoomType = ZT_Fixed;
 		ScopeViewTex = ScopeScopeViewTex;
+		// The scope picture has no gun in it to show recoil the view doesn't take, so the view takes all of it
+		RcComponent.SetADSViewBindOverride(true, 1);
 	}
 	else
 	{
 		ZoomType = ZT_Irons;
 		ScopeViewTex = None;
+		RcComponent.SetADSViewBindOverride(false);
 	}
 }
 

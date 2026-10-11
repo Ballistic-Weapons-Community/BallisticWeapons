@@ -47,7 +47,6 @@ var rotator ScopeSightPivot;
 var vector ScopeSightOffset;
 var rotator IronSightPivot;
 var vector IronSightOffset;
-var() float IronsViewBindFactor;
 
 var Name 			ReloadAltAnim;
 var BUtil.FullSound DrumInSound, DrumHitSound, DrumOutSound;
@@ -75,8 +74,6 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 	bADSTrack=false;
-	if (RcComponent != None && RcComponent.Params != None)
-		IronsViewBindFactor = RcComponent.Params.ADSViewBindFactor;
 	if (InStr(WeaponParams.LayoutTags, "TargetScope") != -1)
 	{
 		bADSTrack=true;
@@ -775,7 +772,8 @@ exec simulated function ScopeView()
 	{
 		if (ZoomType == ZT_Fixed)
 		{
-			RcComponent.Params.ADSViewBindFactor = IronsViewBindFactor;
+			// Back to the params' value for irons (the recoil params are shared, so the scope doesn't write to them)
+			RcComponent.SetADSViewBindOverride(false);
 			SightPivot = IronSightPivot;
 			SightOffset = IronSightOffset;
 			ZoomType = ZT_Irons;
@@ -805,7 +803,7 @@ simulated function ScopeViewTwo()
 		ScopeViewTex = Texture'BWBP_OP_Tex.ProtoLMG.ProtoScope1';
 		if (ZoomType == ZT_Irons)
 		{
-			RcComponent.Params.ADSViewBindFactor = 1;
+			RcComponent.SetADSViewBindOverride(true, 1);
 			SightPivot = ScopeSightPivot;
 			SightOffset = ScopeSightOffset;
 			ZoomType = ZT_Fixed;

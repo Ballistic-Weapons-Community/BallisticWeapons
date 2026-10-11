@@ -73,6 +73,9 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 	local Actor						Other, LastOther;
 	local bool						bHitWall;
 
+	if (Weapon == None)
+		return;
+
 	// Work out the range
 	Dist = TraceRange.Min + FRand() * (TraceRange.Max - TraceRange.Min);
 
@@ -105,6 +108,9 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{
 				OnTraceHit(Other, HitLocation, InitialStart, X, 0, 0, 0);
+
+				if (Weapon == None)
+					return;
 
 				if (Vehicle(Other) != None)
 					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other);
@@ -142,17 +148,23 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 	// Never hit a wall, so just tell the attachment to spawn muzzle flashes and play anims, etc
 	if (!bHitWall)
 		NoHitEffect(X, InitialStart, LastHitLoc);
-		
+
+	if (Weapon == None)
+		return;
+
 	//Radius damage or radius slow
 	if (HMCBeamCannon(Weapon) != None && HMCBeamCannon(Weapon).bGravitron)
 	{
-		HMCBeamCannon(Weapon).TargetedSlowRadius(0.3, 8, 512, HitLocation, Pawn(Other));	
+		HMCBeamCannon(Weapon).TargetedSlowRadius(0.3, 8, 512, HitLocation, Pawn(Other));
 	}
 	else
 	{
-		BallisticWeapon(Weapon).TargetedHurtRadius(90, 200, class'DTHMCBlast', 0, HitLocation, Pawn(Other));	
+		BallisticWeapon(Weapon).TargetedHurtRadius(90, 200, class'DTHMCBlast', 0, HitLocation, Pawn(Other));
 	}
-	BallisticWeapon(Weapon).TargetedHurtRadius(30, 512, class'DTHMCBlast', 0, HitLocation, Pawn(Other));
+
+	// The blast above can kill the shooter at point blank range, destroying the weapon
+	if (BallisticWeapon(Weapon) != None)
+		BallisticWeapon(Weapon).TargetedHurtRadius(30, 512, class'DTHMCBlast', 0, HitLocation, Pawn(Other));
 }
 
 simulated function ModeTick(float DT)

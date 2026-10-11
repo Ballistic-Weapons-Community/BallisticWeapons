@@ -9,6 +9,7 @@ var Controller							OwningController;
 
 var WrenchWarpDevice					Master;
 var	byte 								MasterDeployableIndex;
+var bool								bPlacementRejected;	// Destroyed itself in PostBeginPlay, before a Master could be assigned
 
 replication
 {
@@ -16,6 +17,7 @@ replication
 		bWarpOut, Team;
 }
 
+// Subclasses must check bDeleteMe after calling this, as it can destroy the deployable
 function PostBeginPlay()
 {
 	local WrenchDeployable D;
@@ -24,16 +26,23 @@ function PostBeginPlay()
 	{
 		if (D != Self)
 		{
-			Destroy();
+			RejectPlacement();
 			return;
 		}
 	}
-	
-	OwningController = Instigator.Controller;
 
-	if (Instigator.PlayerReplicationInfo.Team != None)
+	if (Instigator != None)
+		OwningController = Instigator.Controller;
+
+	if (Instigator != None && Instigator.PlayerReplicationInfo != None && Instigator.PlayerReplicationInfo.Team != None)
 		Team = Instigator.PlayerReplicationInfo.Team.TeamIndex;
 	else Team = 255;
+}
+
+function RejectPlacement()
+{
+	bPlacementRejected = true;
+	Destroy();
 }
 
 function Initialize(byte deployable_index)
@@ -138,11 +147,11 @@ state Destroying
 simulated function Destroyed()
 {
 	if (Role == ROLE_Authority)
-	{	
-		if (Master == None)
-			Log("NO MASTER - WrenchDeployable");
-		else
+	{
+		if (Master != None)
 			Master.LostDeployable(MasterDeployableIndex);
+		else if (!bPlacementRejected)
+			Log("NO MASTER - WrenchDeployable");
 	}
 
 	super.Destroyed();

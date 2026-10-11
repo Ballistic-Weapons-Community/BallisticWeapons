@@ -282,9 +282,11 @@ simulated function PostNetBeginPlay()
 //===================================================================
 simulated function InitParams()
 {    
-    if (WeaponClass == None || WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle] == None)
+	// Use the same params the weapon falls back to when it has none for this game style.
+	// Skipping this entirely leaves grenades unarmed, as ApplyParams starts their arming timer.
+    if (WeaponClass == None || WeaponClass.static.GetParams() == None)
         return;
-    WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.SetProjectileParams(self);
+    WeaponClass.static.GetParams().static.SetProjectileParams(self);
 }
 
 //===================================================================

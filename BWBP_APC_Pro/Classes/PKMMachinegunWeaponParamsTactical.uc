@@ -120,6 +120,12 @@ defaultproperties
 		SightOffset=(X=-2.000000,Y=-1.130000,Z=14.100000)
 		SightPivot=(Pitch=-64)
 		WeaponName="PKB-86 7.62mm GP Machinegun"
+		// BurstFireRateFactor=1 leaves no pause between WM_Burst bursts (identical to full auto), so fire one burst per trigger pull
+		WeaponModes(0)=(bUnavailable=True)
+		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)
+		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=3
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

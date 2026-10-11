@@ -233,7 +233,7 @@ defaultproperties
 		WeaponPrice=2000
 		MagAmmo=8
 		ViewOffset=(X=1.000000,Y=5.000000,Z=-1.800000)
-		WeaponName="AH250 .44 Scoped Handgun"
+		WeaponName="AH250 .44 Handgun (Laser)"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

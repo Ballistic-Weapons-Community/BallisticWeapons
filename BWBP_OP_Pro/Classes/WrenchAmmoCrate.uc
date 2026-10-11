@@ -5,7 +5,11 @@ var WrenchDispenserTrigger 		DT;
 function PostBeginPlay()
 {
 	Super.PostBeginPlay();
-	
+
+	// Placement was rejected - an orphaned trigger would be an invisible crate giving out ammo forever
+	if (bDeleteMe)
+		return;
+
 	DT=Spawn(class'WrenchDispenserTrigger', self,,Location + vect(0,0,16));
 }
 

@@ -5,7 +5,11 @@ var WrenchShield 	ShieldActor;
 function PostBeginPlay()
 {
 	Super.PostBeginPlay();
-	
+
+	// Placement was rejected, don't leave a shield behind
+	if (bDeleteMe)
+		return;
+
 	ShieldActor=Spawn(class'WrenchShield', self,,Location + vect(0,0,56));
 }
 
