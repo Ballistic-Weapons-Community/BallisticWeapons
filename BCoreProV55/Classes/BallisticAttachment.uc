@@ -255,6 +255,10 @@ simulated function PostNetBeginPlay()
 
 simulated function ApplyModel()
 {
+	// must read the params class
+	if (WeaponClass == None)
+		return;
+
 	if (LayoutIndex >= WeaponClass.static.GetParams().default.Layouts.Length)
 	{
 		log(Name$"::ApplyModel: Layout index out of range: got "$LayoutIndex$", length "$WeaponClass.static.GetParams().default.Layouts.Length);

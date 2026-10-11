@@ -10,6 +10,7 @@ class A2WAttachment extends BallisticAttachment;
 
 defaultproperties
 {
+     WeaponClass=Class'BWBP_SWC_Pro.A2WSkrithLance'
      MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_A73Knife'
      MeleeImpactManager=Class'BallisticProV55.IM_A73Knife'

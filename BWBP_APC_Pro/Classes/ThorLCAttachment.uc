@@ -208,6 +208,7 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
+     WeaponClass=Class'BWBP_APC_Pro.ThorLightningCannon'
      StreamAmbientSound=Sound'BWBP_OP_Sounds.ProtonPack.Proton-FireLoop'
      StreamAmbientSoundAlt=Sound'BWBP_OP_Sounds.ProtonPack.Proton-FireLoopAlt'
      BoostMuzzleFlashClass=Class'BWBP_APC_Pro.ThorLCFlashEmitterBoost'
