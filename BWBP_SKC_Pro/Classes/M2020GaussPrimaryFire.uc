@@ -144,7 +144,6 @@ defaultproperties
 	FlashScaleFactor=1.200000
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
 	BrassBone="ejector"
-	BrassOffset=(X=-30.000000,Y=1.000000)
 	FireRecoil=320.000000
 	FireChaos=0.600000
 	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-GaussFire',Volume=6.700000)

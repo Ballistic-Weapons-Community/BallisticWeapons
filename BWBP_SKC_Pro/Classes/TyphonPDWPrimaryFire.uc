@@ -198,7 +198,6 @@ defaultproperties
 	WaterRangeAtten=0.500000
 	DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Empty',Volume=1.200000)
 	BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
-	BrassOffset=(X=-30.000000,Y=1.000000)
 	AmmoClass=Class'BWBP_SKC_Pro.Ammo_Laser'
 
 	ShakeRotMag=(X=48.000000)

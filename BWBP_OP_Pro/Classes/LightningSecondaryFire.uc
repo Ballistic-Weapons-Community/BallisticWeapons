@@ -6,7 +6,6 @@ defaultproperties
     FlashScaleFactor=0.600000
     BrassClass=Class'BallisticProV55.Brass_Rifle'
     bBrassOnCock=True
-    BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
     FireRecoil=400.000000
     FirePushbackForce=255.000000
     FireChaos=0.800000

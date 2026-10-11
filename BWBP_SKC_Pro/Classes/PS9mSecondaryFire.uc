@@ -63,7 +63,6 @@ defaultproperties
      SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      FlashBone="tip2"
-     BrassOffset=(X=-20.000000,Y=1.000000)
      BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-DartFire',Volume=1.350000)
      bSplashDamage=True
      bRecommendSplashDamage=True

@@ -96,7 +96,6 @@ defaultproperties
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
 	FlashScaleFactor=0.800000
 	BrassClass=Class'BWBP_SKC_Pro.Brass_Tranq'
-	BrassOffset=(X=-20.000000,Y=1.000000)
 	FireRecoil=64.000000
 	FireChaos=0.050000
 	XInaccuracy=32.000000

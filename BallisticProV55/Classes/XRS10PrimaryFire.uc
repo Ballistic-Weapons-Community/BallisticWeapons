@@ -110,7 +110,6 @@ defaultproperties
 	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
 	bDryUncock=True
 	BrassClass=Class'BallisticProV55.Brass_Pistol'
-	BrassOffset=(X=-26.000000,Z=-5.000000)
 	
 	WaterRangeAtten=0.400000
 	FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.320000,OutVal=1),(InVal=0.500000,OutVal=1.500000),(InVal=1.000000,OutVal=2.250000)))

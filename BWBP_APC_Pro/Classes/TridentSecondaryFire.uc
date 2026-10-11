@@ -318,8 +318,7 @@ defaultproperties
      MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
      FlashScaleFactor=1.000000
      BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
-     BrassBone="EjectorDoor"
-     BrassOffset=(X=-1.000000,Z=-1.000000)
+     BrassBone="ejector"
      AimedFireAnim="SightFire"
      FireRecoil=256.000000
      FirePushbackForce=150.000000

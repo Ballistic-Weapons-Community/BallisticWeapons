@@ -21,37 +21,6 @@ function PlayFiring()
 	CheckClipFinished();
 }
 
-//Spawn shell casing for first person
-function EjectBrass()
-{
-	local vector Start, X, Y, Z;
-	local Coords C;
-	local actor BrassActor;
-
-	if (Level.NetMode == NM_DedicatedServer)
-		return;
-	if (!class'BallisticMod'.default.bEjectBrass || Level.DetailMode < DM_High)
-		return;
-	if (BrassClass == None)
-		return;
-	if (!Instigator.IsFirstPerson() || PlayerController(Instigator.Controller).ViewTarget != Instigator)
-		return;
-	if (AIController(Instigator.Controller) != None)
-		return;
-	C = Weapon.GetBoneCoords(BrassBone);
-//	Start = C.Origin + C.XAxis * BrassOffset.X + C.YAxis * BrassOffset.Y + C.ZAxis * BrassOffset.Z;
-    Weapon.GetViewAxes(X,Y,Z);
-	Start = C.Origin + X * BrassOffset.X + Y * BrassOffset.Y + Z * BrassOffset.Z;
-	BrassActor = Spawn(BrassClass, weapon,, Start, Rotator(C.XAxis));
-	if (BrassActor != None)
-	{
-		BrassActor.bHidden=true;
-		SARAssaultRifle(Weapon).UziBrassList.length = SARAssaultRifle(Weapon).UziBrassList.length + 1;
-		SARAssaultRifle(Weapon).UziBrassList[SARAssaultRifle(Weapon).UziBrassList.length-1].Actor = BrassActor;
-		SARAssaultRifle(Weapon).UziBrassList[SARAssaultRifle(Weapon).UziBrassList.length-1].KillTime = level.TimeSeconds + 0.2;
-	}
-}
-
 defaultproperties
 {
 	TraceRange=(Min=9000.000000,Max=9000.000000)
@@ -66,8 +35,7 @@ defaultproperties
 	MuzzleFlashClass=Class'FlashEmitter_AR'
 	FlashScaleFactor=0.900000
 	BrassClass=Class'BallisticProV55.Brass_SAR'
-	BrassBone="tip"
-	BrassOffset=(X=-105.000000,Y=-10.000000,Z=-1.000000)
+	BrassBone="ejector"
 	AimedFireAnim="AimedFire"
 	FireRecoil=180.000000
 	FireChaos=0.022000

@@ -199,7 +199,6 @@ defaultproperties
 	MuzzleFlashClassAmp1=Class'BWBP_SKC_Pro.SX45CryoFlash'
 	MuzzleFlashClassAmp2=Class'BWBP_SKC_Pro.SX45RadMuzzleFlash'
 	BrassClass=Class'BallisticProV55.Brass_Pistol'
-	BrassOffset=(X=-14.000000,Z=-5.000000)
 	FireRecoil=192.000000
 	FireChaos=0.250000
 	XInaccuracy=96.000000

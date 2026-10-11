@@ -222,7 +222,6 @@ defaultproperties
      bCockAfterEmpty=True
      MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
      BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
-     BrassOffset=(X=-1.000000,Z=-1.000000)
      FireRecoil=1500.000000
      FirePushbackForce=850.000000
      FireChaos=1.000000

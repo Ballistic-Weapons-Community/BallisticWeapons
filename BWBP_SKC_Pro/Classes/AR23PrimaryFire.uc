@@ -26,7 +26,6 @@ defaultproperties
 	MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 	FlashScaleFactor=0.500000
 	BrassClass=Class'BallisticProV55.Brass_M46AR'
-	BrassOffset=(Y=10.000000)
 	FireRecoil=512.000000
 	FirePushbackForce=250.000000
 	XInaccuracy=1.500000

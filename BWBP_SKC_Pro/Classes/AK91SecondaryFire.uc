@@ -61,7 +61,6 @@ defaultproperties
      AmmoPerFire=0
      bUseWeaponMag=False
      FlashScaleFactor=1.200000
-     BrassOffset=(X=15.000000,Y=-13.000000,Z=7.000000)
      FireChaos=0.500000
      XInaccuracy=2000.000000
      YInaccuracy=2000.000000

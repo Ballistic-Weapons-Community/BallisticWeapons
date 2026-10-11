@@ -109,7 +109,6 @@ defaultproperties
 
      MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
      BrassClass=Class'BallisticProV55.Brass_Railgun'
-	 BrassOffset=(X=-33.000000,Y=-4.000000,Z=-4.000000)
 	 
 	 FireRecoil=1024.000000
 	 RailFireRecoilPenalty=3072.000000

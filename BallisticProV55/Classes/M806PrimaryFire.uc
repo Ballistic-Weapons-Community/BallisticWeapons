@@ -41,8 +41,7 @@ defaultproperties
 	bPenetrate=True
 	MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
 	BrassClass=Class'BallisticProV55.Brass_Pistol'
-	BrassBone="tip"
-	BrassOffset=(X=-30.000000,Y=1.000000)
+	BrassBone="ejector"
 	FireRecoil=256.000000
 	FireChaos=0.2
 	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Fire',Volume=0.700000)

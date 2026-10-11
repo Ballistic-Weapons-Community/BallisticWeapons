@@ -225,7 +225,6 @@ defaultproperties
 	 AimedFireAnim="SightFire"
 	 EmptyFireAnim="FireClosed"
 	 EmptyAimedFireAnim="SightFireClosed"
-     BrassOffset=(X=-50.000000,Y=1.000000)
      FireRecoil=90.000000
      XInaccuracy=32.000000
      YInaccuracy=32.000000

@@ -21,6 +21,15 @@ var() bool						bHitSounds;		// Play sounds when shell hits wall or floor
 var() array<sound>				HitSounds;		// Sound for each surface type. Use sound groups for multiple sounds per surface
 var() float						HitSoundVolume; // Volume for impact sound
 var() float						HitSoundRadius; // Radius for impact sound
+// First person ---------------------------------------------------------------
+// A casing thrown out of the first person gun is a part of that gun's picture until it meets the world. The gun is
+// drawn with a field of view of its own, in a space of its own in front of the eye: the casing is in that space for
+// that long, its weapon draws it (BallisticWeapon.DrawGunBrass) and the world neither draws nor stops it. The weapon
+// also says when that is over (BallisticWeapon.TickGunBrass)
+var   bool						bGunView;		// In its weapon's picture
+var   float						GunViewEnd;		// Until then at the latest
+var   float						GunViewSeen;	// When its weapon last drew it
+var   vector					GunViewPlace;	// Where the world's picture has it: the last such place that was clear
 /*
 	EST_Default,	0
 	EST_Rock,		1
@@ -69,6 +78,59 @@ simulated function PostBeginPlay()
 		LifeSpan *= 0.5;
 	else
 		LifeSpan *= LifeTimeScale;
+	// Tick is for the first person view below
+	Disable('Tick');
+}
+
+simulated function StartGunView(float Duration, vector Place)
+{
+	local int i;
+
+	bGunView = true;
+	GunViewEnd = Level.TimeSeconds + Duration;
+	GunViewSeen = Level.TimeSeconds;
+	GunViewPlace = Place;
+	bCollideWorld = false;
+	bHidden = true;
+	// what hangs on it (a shell's smoke) is drawn with it
+	for (i = 0; i < Attached.Length; i++)
+		if (Attached[i] != None)
+			Attached[i].bHidden = true;
+	Enable('Tick');
+}
+
+// The world's from here on, where it is. The weapon moves it first (BallisticWeapon.BrassToWorld)
+simulated function EndGunView()
+{
+	local Emitter Smoke;
+	local int i, j;
+
+	if (!bGunView)
+		return;
+	bGunView = false;
+	bCollideWorld = true;
+	bHidden = false;
+	for (i = 0; i < Attached.Length; i++)
+		if (Attached[i] != None)
+		{
+			Attached[i].bHidden = false;
+			// the smoke it has left so far is where the gun's picture had it, which the world shows somewhere else
+			Smoke = Emitter(Attached[i]);
+			for (j = 0; Smoke != None && j < Smoke.Emitters.Length; j++)
+				if (Smoke.Emitters[j] != None)
+					Smoke.Emitters[j].Reset();
+		}
+	Disable('Tick');
+}
+
+simulated function Tick(float DT)
+{
+	if (!bGunView)
+		Disable('Tick');
+	else if (BallisticWeapon(Owner) != None)
+		BallisticWeapon(Owner).TickGunBrass(self);
+	else
+		EndGunView();
 }
 
 // Set random spin
@@ -114,7 +176,8 @@ simulated function HitWall (Vector HitNormal, Actor Wall)
     Velocity = DampenFactor * ((Velocity dot HitNormal) * HitNormal * -2.0 + Velocity);
     Speed = VSize(Velocity);
     RandSpin(Spin);
-    if (Speed < 20 || (Wall != None && Mover(Wall) != None))
+	// (slow enough to stay: on something that can hold it. Off a wall or a ceiling it falls on)
+    if ((Speed < 20 && HitNormal.Z > 0.7) || (Wall != None && Mover(Wall) != None))
     {
         bBounce = False;
         SetPhysics (PHYS_None);

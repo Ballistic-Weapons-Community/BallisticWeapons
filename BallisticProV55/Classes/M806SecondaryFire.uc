@@ -254,7 +254,6 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      BrassClass=Class'BallisticProV55.Brass_Shotgun'
      bBrassOnCock=True
-     BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
      FireRecoil=512.000000
      FirePushbackForce=150.000000
      FireChaos=0.500000

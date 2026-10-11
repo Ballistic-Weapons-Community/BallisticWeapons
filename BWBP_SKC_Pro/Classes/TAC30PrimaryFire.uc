@@ -31,7 +31,6 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      FlashScaleFactor=1.000000
      BrassClass=Class'BWBP_SKC_Pro.Brass_FRAGSpent'
-     BrassOffset=(X=-1.000000,Z=-1.000000)
      XInaccuracy=32.000000
      YInaccuracy=32.000000
      FireEndAnim=

@@ -120,7 +120,6 @@ defaultproperties
 	MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
 	bBrassOnCock=True
-	BrassOffset=(X=-70.000000,Y=-12.000000,Z=10.000000)
 	AimedFireAnim="SightFireCock"
 	FireRecoil=768.000000
 	FireChaos=0.800000

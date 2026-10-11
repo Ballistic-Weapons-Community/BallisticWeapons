@@ -168,11 +168,13 @@ simulated event WeaponTick(float DT)
 	super.WeaponTick(DT);
 	
 	
+	// Out of the scope's picture while looking through it, back at the port when not. (The way back used to come
+	// after the return below, so the brass stayed out to the side for good once the scope had been used)
 	if (bScopeView)
-	{
 		BFireMode[0].BrassOffset = vect(0,-40,0);
-	}
-	
+	else
+		BFireMode[0].BrassOffset = vect(0,0,0);
+
 	if (!bScopeView || Role < Role_Authority)
 		return;
 
@@ -194,10 +196,6 @@ simulated event WeaponTick(float DT)
 	else
 	{
 		TargetTime = FMax(0, TargetTime - DT * 0.5);
-	}
-	if (!bScopeView)
-	{
-		BFireMode[0].BrassOffset = vect(0,0,0);
 	}
 }
 

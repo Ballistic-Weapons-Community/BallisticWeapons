@@ -176,8 +176,7 @@ defaultproperties
 	MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 	FlashScaleFactor=0.400000
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
-	BrassBone="tip"
-	BrassOffset=(X=-80.000000,Y=1.000000)
+	BrassBone="ejector"
 	XInaccuracy=3.200000
 	YInaccuracy=3.200000
 	BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
