@@ -176,7 +176,8 @@ simulated function HitWall (Vector HitNormal, Actor Wall)
     Velocity = DampenFactor * ((Velocity dot HitNormal) * HitNormal * -2.0 + Velocity);
     Speed = VSize(Velocity);
     RandSpin(Spin);
-    if (Speed < 20 || (Wall != None && Mover(Wall) != None))
+	// (slow enough to stay: on something that can hold it. Off a wall or a ceiling it falls on)
+    if ((Speed < 20 && HitNormal.Z > 0.7) || (Wall != None && Mover(Wall) != None))
     {
         bBounce = False;
         SetPhysics (PHYS_None);
