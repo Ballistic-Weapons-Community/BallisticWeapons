@@ -35,6 +35,7 @@ var() config float		VehicleDamageScale;			// Scales anti-vehicle damage
 var() config int		InventoryModeIndex;			// Inventory mode used in this style - server only
 var() config int		MaxInventoryCapacity;		// Maximum carrying capacity
 var() config bool		bKillstreaks;				// Use killstreaks in this style - server only
+var() config bool		bNoRandomCamo;				// Disables camo and layout randomizer
 var() config bool		bBrightPlayers;		    	// Players have ambient glow to glow in the dark like the standard pawns.
 //=============================================================================
 // NON-CONFIG VARIABLES
@@ -64,6 +65,7 @@ static final function InitializeReplicationInfo(BallisticReplicationInfo rep)
 	rep.ReloadScale				= default.ReloadScale;
 	rep.MaxInventoryCapacity	= default.MaxInventoryCapacity;
 	rep.bKillstreaks			= default.bKillstreaks;
+	rep.bNoRandomCamo			= default.bNoRandomCamo;
 	rep.PlayerWalkSpeedFactor	= default.PlayerWalkSpeedFactor;
 	rep.PlayerCrouchSpeedFactor = default.PlayerCrouchSpeedFactor;
 	rep.PlayerAnimationGroundSpeed = default.PlayerAnimationGroundSpeed;

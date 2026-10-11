@@ -56,16 +56,17 @@ function LoadSettings()
 
 function DefaultSettings()
 {
-    chk_bRemoveAmmoPacks.Checked(true);
-    chk_bRemoveUDamage.Checked(true);
-    chk_bRemoveShieldPack.Checked(true);
-    chk_bRemoveSuperShieldPack.Checked(true);
-    chk_bRemoveBandages.Checked(true);
-    chk_bRemoveHealthPack.Checked(true);
-    chk_bRemoveSuperHealthPack.Checked(true);
-    chk_bRemoveAdrenaline.Checked(true);
+    chk_bRemoveAmmoPacks.Checked(false);
+    chk_bRemoveUDamage.Checked(false);
+    chk_bRemoveShieldPack.Checked(false);
+    chk_bRemoveSuperShieldPack.Checked(false);
+    chk_bRemoveBandages.Checked(false);
+    chk_bRemoveHealthPack.Checked(false);
+    chk_bRemoveSuperHealthPack.Checked(false);
+    chk_bRemoveAdrenaline.Checked(false);
 
-    chk_AlternativePickups.Checked(true);
+	// Realism comes with manual pickups
+    chk_AlternativePickups.Checked(BaseMenu.GetGameStyle() == class'GameStyle_Realism');
 	
 	fl_NadePct.SetValue(15);
 	ch_BrightPickups.Checked(false);
@@ -113,7 +114,7 @@ function SaveSettings()
 defaultproperties
 {
      Begin Object Class=moFloatEdit Name=fl_NadePctFloat
-         MinValue=1.000000
+         MinValue=0.000000
          MaxValue=100.000000
          ComponentJustification=TXTA_Left
          CaptionWidth=0.800000

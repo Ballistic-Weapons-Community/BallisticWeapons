@@ -50,6 +50,28 @@ event Initialized()
 	}
 }
 
+// Opens the ESC menu on the Conflict loadout tab. False if this is not a Conflict game.
+final private function bool OpenGearTab()
+{
+	local UT2K4PlayerLoginMenu Menu;
+	local PlayerController PC;
+	local GUIController GC;
+
+	PC = ViewportOwner.Actor;
+	if (PC == None || PC.PlayerReplicationInfo == None || UnrealPlayer(PC) == None)
+		return false;
+	if (ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(PC.PlayerReplicationInfo)) == None)
+		return false;
+
+	GC = GUIController(PC.Player.GUIController);
+	if (GC == None || !GC.OpenMenu(UnrealPlayer(PC).LoginMenuClass))
+		return true;
+	Menu = UT2K4PlayerLoginMenu(GC.FindPersistentMenuByName(UnrealPlayer(PC).LoginMenuClass));
+	if (Menu != None)
+		Menu.c_Main.ActivateTabByName(class'ConflictLoadoutLRI'.default.MenuName, true);
+	return true;
+}
+
 final private function ModifyMenu()
 {
    local UT2K4PlayerLoginMenu Menu;
@@ -78,9 +100,24 @@ function Tick( float DeltaTime )
 
 function bool KeyEvent(EInputKey Key, EInputAction Action, FLOAT Delta )
 {
-   if (ViewPortOwner.Actor.Pawn == None && Key != class'BallisticProInteractions'.default.LoadoutKey)
+   if (ViewPortOwner.Actor.Pawn == None)
+   {
+      // Nothing is held any more. A key let go while dead never reaches the handlers below,
+      // and its flag would swallow the first press after the respawn.
+      bScopeIsUp = false;
+      bSprinting = false;
+      bReloading = false;
+      bUsingSpecial = false;
+      bSwitchingFireMode = false;
+      bStreakKeyHeld = false;
+      bMeleeKeyHeld = false;
+
+   }
+
+   // The menus are for the dead and for spectators too
+   if (ViewPortOwner.Actor.Pawn == None && Key != class'BallisticProInteractions'.default.LoadoutKey && Key != class'BallisticProInteractions'.default.PreferencesKey)
       return Super.KeyEvent(Key,Action,Delta);
-      
+
    else
    {
       if ((Action == IST_Press) && bADSKeyEnabled && (Key == class'BallisticProInteractions'.default.ADSKey))
@@ -143,7 +180,9 @@ function bool KeyEvent(EInputKey Key, EInputAction Action, FLOAT Delta )
 	}
 	else if ((Action == IST_Press) && bLoadoutKeyEnabled && (Key == class'BallisticProInteractions'.default.LoadoutKey))
 	{
-		ConsoleCommand("Mutate Loadout");
+		// Conflict has its loadout on a tab of the ESC menu and no menu of its own to ask the mutator for
+		if (!OpenGearTab())
+			ConsoleCommand("Mutate Loadout");
 		return true;
 	}
 	else if ((Action == IST_Press) && bPreferencesKeyEnabled && (Key == class'BallisticProInteractions'.default.PreferencesKey))

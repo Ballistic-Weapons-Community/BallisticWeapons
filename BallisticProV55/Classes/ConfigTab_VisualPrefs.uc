@@ -25,19 +25,23 @@ function LoadSettings()
 	fl_BrassTime.SetValue(class'BallisticBrass'.default.LifeTimeScale);
 	ch_MotionBlur.Checked(class'BallisticMod'.default.bUseMotionBlur);
 
-	for(i=0;i<class'Mut_Ballistic'.default.CamRateOptions.length;i++)
-	    co_CamRate.AddItem(class'Mut_Ballistic'.default.CamRateOptions[i] ,,string(i));
-	co_CamRate.ReadOnly(True);
-	co_CamRate.SetIndex(int(class'Mut_Ballistic'.default.CamUpdateRate));
+	// RESET comes through here again
+	if (co_CamRate.ItemCount() == 0)
+	{
+		for(i=0;i<class'Mut_Ballistic'.default.CamRateOptions.length;i++)
+			co_CamRate.AddItem(class'Mut_Ballistic'.default.CamRateOptions[i] ,,string(i));
+		co_CamRate.ReadOnly(True);
 
-	for (i=1;i<6;i+=2)
-	    co_EffectDet.AddItem(class'UT2K4Tab_DetailSettings'.default.DetailLevels[i] ,,string(i));
-	co_EffectDet.ReadOnly(True);
+		for (i=1;i<6;i+=2)
+			co_EffectDet.AddItem(class'UT2K4Tab_DetailSettings'.default.DetailLevels[i] ,,string(i));
+		co_EffectDet.ReadOnly(True);
+
+		for (i=0;i<9;i++)
+			co_WeaponDet.AddItem(class'UT2K4Tab_DetailSettings'.default.DetailLevels[i]);
+		co_WeaponDet.ReadOnly(True);
+	}
+	co_CamRate.SetIndex(int(class'Mut_Ballistic'.default.CamUpdateRate));
 	co_EffectDet.SetIndex(class'BallisticMod'.default.EffectsDetailMode);
-	
-	for (i=0;i<9;i++)
-		co_WeaponDet.AddItem(class'UT2K4Tab_DetailSettings'.default.DetailLevels[i]);
-	co_WeaponDet.ReadOnly(True);
 	OldWeaponDet = co_WeaponDet.FindIndex(ConfigMenu_Preferences(BaseMenu).GetDisplayString(PlayerOwner().ConsoleCommand("get ini:Engine.Engine.ViewportManager TextureDetailWeaponSkin")));
 	co_WeaponDet.SilentSetIndex(OldWeaponDet);
 }

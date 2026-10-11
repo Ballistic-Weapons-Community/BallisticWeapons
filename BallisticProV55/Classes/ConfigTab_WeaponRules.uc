@@ -20,7 +20,6 @@ var automated moFloatEdit	fl_VDamage;					//Damage Scale against Vehicles
 var automated moCheckbox	ch_WeaponJumpOffsetting;	//Disable Weapon Displacement when Running & Jumping
 var automated moCheckbox	ch_LongWeaponOffsetting;	//Disable Weapon Displacement when Near a Wall
 var automated moCheckbox	ch_NoReloading;				//Disable Reloading
-var automated moCheckbox	ch_NoRandomCamo;				//Disable Camo Randomizer
 var automated moNumericEdit int_MaxInventoryCapacity;	//Inventory Capacity
 
 var automated moEditBox   	eb_ItemGroup;				//The name of the Itemizer layout you want to use.
@@ -47,7 +46,6 @@ function LoadSettings()
 		ch_LongWeaponOffsetting.Checked(game_style.default.bLongWeaponOffsetting);
 		int_MaxInventoryCapacity.SetValue(game_style.default.MaxInventoryCapacity);
 		ch_NoReloading.Checked(game_style.default.bNoReloading);
-		ch_NoRandomCamo.Checked(game_style.default.bNoRandomCamo);
 	}
 
 	ch_UseItemizer.Checked(class'Mut_Ballistic'.default.bUseItemizer);
@@ -73,7 +71,6 @@ function SaveSettings()
 		game_style.default.bWeaponJumpOffsetting			= ch_WeaponJumpOffsetting.IsChecked();
 		game_style.default.bLongWeaponOffsetting			= ch_LongWeaponOffsetting.IsChecked();
 		game_style.default.bNoReloading					= ch_NoReloading.IsChecked();
-		game_style.default.bNoRandomCamo					= ch_NoRandomCamo.IsChecked();
 		game_style.default.MaxInventoryCapacity 			= int_MaxInventoryCapacity.GetValue();	
 		game_style.static.StaticSaveConfig();
 	}
@@ -89,14 +86,15 @@ function DefaultSettings()
 {
 	sl_Sway.SetValue(1.0);
 	sl_Recoil.SetValue(1.0);
+	sl_Reload.SetValue(1.0);
 	fl_Damage.SetValue(1.0);
 	fl_VDamage.SetValue(1.0);
-	ch_WeaponJumpOffsetting.Checked(false);
-	ch_LongWeaponOffsetting.Checked(false);
+	ch_WeaponJumpOffsetting.Checked(true);
+	ch_LongWeaponOffsetting.Checked(true);
 	ch_NoReloading.Checked(false);
 	int_MaxInventoryCapacity.SetValue(0);
 
-	ch_UseItemizer.Checked(true);
+	ch_UseItemizer.Checked(false);
 	eb_ItemGroup.SetText("Ballistic");
 }
 
@@ -205,19 +203,6 @@ defaultproperties
      End Object
      ch_NoReloading=moCheckBox'ch_NoReloadingCheck'
 	
-	 Begin Object Class=moCheckBox Name=ch_NoRandomCamoCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Disable Random Camos and Layouts"
-         OnCreateComponent=ch_NoRandomCamoCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Generated guns will come with the basic variant."
-         WinTop=0.50000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_NoRandomCamo=moCheckBox'ch_NoRandomCamoCheck'
-
 	 	Begin Object Class=moNumericEdit Name=int_MaxWepsInt
          MinValue=0
          MaxValue=999
@@ -227,7 +212,7 @@ defaultproperties
          OnCreateComponent=int_MaxWepsInt.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Sets the player's maximum inventory capacity. 0 is infinite."
-         WinTop=0.550000
+         WinTop=0.500000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -240,7 +225,7 @@ defaultproperties
          OnCreateComponent=UseItemizerCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Use the Itemizer to spawn aditional pickups in maps."
-         WinTop=0.600000
+         WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -251,7 +236,7 @@ defaultproperties
          Caption="Itemizer Group"
          OnCreateComponent=eb_ItemGroupEdit.InternalOnCreateComponent
          Hint="The name of the Itemizer layout you want to use. Defaults to 'Ballistic'."
-         WinTop=0.650000
+         WinTop=0.600000
          WinLeft=0.250000
          WinHeight=0.060000
      End Object

@@ -99,7 +99,11 @@ function PostBeginPlay()
 		for (j=0;j<class'Mut_Loadout'.default.Items.Length;j++)
 		{
 			if (class'Mut_Loadout'.default.Items[j].ItemName ~= ConflictWeapons[i].ClassName)
+			{
 				FullRequirementsList[i] = class'Mut_Loadout'.default.Items[j].Requirements;
+				// without the break j always ran to the end, and the weapon's built in defaults replaced what was set up
+				break;
+			}
 		}
 
 		if (j >= class'Mut_Loadout'.default.Items.Length)
@@ -305,6 +309,8 @@ static function int GetSectionIndex(class<Inventory> Item)
 function ModifyPlayer( pawn Other )
 {
 	local int i, Size;
+	local int InitialIndex;
+	local bool bInitialGiven;
 	local int SectionIndex;
 	local int SpaceUsed[2];
 	local int CamoIndex, LayoutIndex;
@@ -342,6 +348,18 @@ function ModifyPlayer( pawn Other )
 
 	CLRI.AppliedItems.length = 0;
 
+	// The weapon to come up with. Every other weapon is told not to bring itself up, so this one has to exist:
+	// a further copy of a weapon only adds ammo to the first, which makes the first the one to mark.
+	InitialIndex = CLRI.InitialWeaponIndex;
+	if (InitialIndex < 0 || InitialIndex >= CLRI.Loadout.length)
+		InitialIndex = 0;
+	for (i = 0; i < InitialIndex; i++)
+		if (CLRI.Loadout[i] ~= CLRI.Loadout[InitialIndex])
+		{
+			InitialIndex = i;
+			break;
+		}
+
 	if ( xPawn(Other) != None )
 	{
 		for (i = 0 ; i < Max(CLRI.Loadout.length,2); i++)
@@ -367,7 +385,10 @@ function ModifyPlayer( pawn Other )
 							LayoutIndex = int(CLRI.Layouts[i]);
 						if ( i < CLRI.Camos.length && CLRI.Camos[i] != "")
 							CamoIndex = int(CLRI.Camos[i]);						
-						SpawnConflictWeapon(class<BallisticWeapon>(InventoryClass), Other, 255, i == CLRI.InitialWeaponIndex, LayoutIndex, CamoIndex);
+						// if the marked entry could not be handed out, the next weapon takes its place
+						SpawnConflictWeapon(class<BallisticWeapon>(InventoryClass), Other, 255, i == InitialIndex || (i > InitialIndex && !bInitialGiven), LayoutIndex, CamoIndex);
+						if (i >= InitialIndex)
+							bInitialGiven = true;
 						LayoutIndex=0;
 						CamoIndex=0;
 					}

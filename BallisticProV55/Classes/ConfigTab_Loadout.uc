@@ -45,6 +45,7 @@ struct LOWeapInfo
 	var string		Description;
 	var Material	Icon;
 	var IntBox		IconCoords;
+	var bool		bIsBW;
 
 	var float		ReqTime;
 	var float		ReqFrags;
@@ -72,7 +73,7 @@ function InitializeConfigTab()
 
 function LoadList()
 {
-	local int i, j, k;
+	local int i, j;
 //	local class<Weapon> Weap;
 	local array<CacheManager.WeaponRecord> Recs;
 	local string s;
@@ -98,6 +99,7 @@ function LoadList()
 	WeaponInfo.length = 0;
 
 	class'CacheManager'.static.GetWeaponList(Recs);
+	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
 	for (i=0;i<Recs.Length;i++)
 	{
 		j = InStr(Recs[i].ClassName, ".");
@@ -138,24 +140,8 @@ function LoadList()
 			WeaponInfo[j].Icon = WI.SmallIconMaterial;
 			WeaponInfo[j].IconCoords = WI.SmallIconCoords;
 		}
-		for (k=0;k<class'Mut_Loadout'.default.Items.length;k++)
-		{
-			if (class'Mut_Loadout'.default.Items[k].ItemName ~= Recs[i].ClassName)
-			{
-				WeaponInfo[j].ReqTime = class'Mut_Loadout'.default.Items[k].Requirements.MatchTime;
-				WeaponInfo[j].ReqFrags = class'Mut_Loadout'.default.Items[k].Requirements.Frags;
-				WeaponInfo[j].ReqEff = class'Mut_Loadout'.default.Items[k].Requirements.Efficiency;
-				WeaponInfo[j].ReqDmgRate = class'Mut_Loadout'.default.Items[k].Requirements.DamageRate;
-				WeaponInfo[j].ReqSnprEff = class'Mut_Loadout'.default.Items[k].Requirements.SniperEff;
-				WeaponInfo[j].ReqStgnEff = class'Mut_Loadout'.default.Items[k].Requirements.ShotgunEff;
-				WeaponInfo[j].ReqHzrdEff = class'Mut_Loadout'.default.Items[k].Requirements.HazardEff;
-				break;
-			}
-		}
-		if (k >= class'Mut_Loadout'.default.Items.length && WI.bIsBW)
-		{
-			SetDefaultRequirements(Recs[i].ClassName, j);
-		}
+		WeaponInfo[j].bIsBW = WI.bIsBW;
+		LoadRequirements(j);
 
 		if (WI.ClassName != "")
 		{
@@ -197,6 +183,29 @@ function LoadList()
 		lb_NewWeapons.CheckList.SetIndex(1);
 }
 
+// Requirements of one listed weapon as the mutator has them, or what the weapon came with if the mutator doesn't list it
+function LoadRequirements(int Index)
+{
+	local int k;
+
+	for (k=0;k<class'Mut_Loadout'.default.Items.length;k++)
+	{
+		if (class'Mut_Loadout'.default.Items[k].ItemName ~= WeaponInfo[Index].ClassName)
+		{
+			WeaponInfo[Index].ReqTime = class'Mut_Loadout'.default.Items[k].Requirements.MatchTime;
+			WeaponInfo[Index].ReqFrags = class'Mut_Loadout'.default.Items[k].Requirements.Frags;
+			WeaponInfo[Index].ReqEff = class'Mut_Loadout'.default.Items[k].Requirements.Efficiency;
+			WeaponInfo[Index].ReqDmgRate = class'Mut_Loadout'.default.Items[k].Requirements.DamageRate;
+			WeaponInfo[Index].ReqSnprEff = class'Mut_Loadout'.default.Items[k].Requirements.SniperEff;
+			WeaponInfo[Index].ReqStgnEff = class'Mut_Loadout'.default.Items[k].Requirements.ShotgunEff;
+			WeaponInfo[Index].ReqHzrdEff = class'Mut_Loadout'.default.Items[k].Requirements.HazardEff;
+			return;
+		}
+	}
+	if (WeaponInfo[Index].bIsBW)
+		SetDefaultRequirements(WeaponInfo[Index].ClassName, Index);
+}
+
 function bool SetDefaultRequirements(string ClassName, int Index)
 {
 	local class<BallisticWeapon> BW;
@@ -227,6 +236,10 @@ function bool SetDefaultRequirements(string ClassName, int Index)
 function LoadBoxesFromMutator ()
 {
 	local int i, j, k;
+
+	// This runs again for RESET and DEFAULTS
+	for (j=0;j<5;j++)
+		Boxes[j].WeaponNames.length = 0;
 
 	for (i=0;i<class'Mut_Loadout'.default.Items.length;i++)
 		for (j=0;j<5;j++)
@@ -525,7 +538,24 @@ function bool InternalOnRightClick(GUIComponent Sender)
 function LoadSettings()
 {
 	LoadBoxesFromMutator();
+	ShowLoaded();
+}
+
+// Shows what LoadBoxesFromMutator has just fetched, dropping any edits
+function ShowLoaded()
+{
+	local int i;
+	local bool bWasInitialized;
+
+	for (i=0;i<WeaponInfo.length;i++)
+		LoadRequirements(i);
+	// LoadBox would write the numbers on screen into the weapon that is selected
+	bWasInitialized = bInitialized;
+	bInitialized=false;
 	LoadBox(SelectedBox);
+	bInitialized=bWasInitialized;
+	if (bInitialized)
+		DisplayWeapon();
 }
 
 function SaveSettings()
@@ -551,12 +581,18 @@ function SaveSettings()
 
 function DefaultSettings()
 {
+	local array<Mut_Loadout.LOItem> Saved;
+
+	// ResetConfig is the only way to see the list the mutator came with, and it takes the saved one out of the ini at once.
+	// Put the saved one back afterwards: nothing is final before OK.
+	Saved = class'Mut_Loadout'.default.Items;
 	class'Mut_Loadout'.static.ResetConfig("Items");
 
 	LoadBoxesFromMutator();
-	bInitialized=false;
-	LoadBox(SelectedBox);
-	bInitialized=true;
+	ShowLoaded();
+
+	class'Mut_Loadout'.default.Items = Saved;
+	class'Mut_Loadout'.static.StaticSaveConfig();
 }
 
 defaultproperties

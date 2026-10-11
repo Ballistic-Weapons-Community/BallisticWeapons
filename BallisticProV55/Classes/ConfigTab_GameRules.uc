@@ -12,6 +12,7 @@ var automated moCheckbox	ch_BrightPlayers;			//Bright Players
 var automated moCheckbox	ch_ForceBWPawn;				//Force Ballistic Pawn
 var automated moCheckbox	ch_PreCacheWeapons;			//Precache Weapons
 var automated moCheckbox	ch_KillStreaks;				//Killstreaks
+var automated moCheckbox	ch_NoRandomCamo;			//Disable Camo Randomizer
 var automated GUIButton		bn_ClientSettings;
 
 var() localized string		ArenaLOHint, SwapLOHint, LoadoutLOHint, InventoryLOHint, MeleeLOHint;
@@ -23,13 +24,17 @@ function LoadSettings()
 {
 	local class<BC_GameStyle> game_style;
 
-	co_InventoryMode.AddItem("Inventory" ,,string(0));
-	co_InventoryMode.AddItem("Loadout" ,,string(1));
-	co_InventoryMode.AddItem("Evolution Loadout",,string(2));
-	co_InventoryMode.AddItem("Pickups" ,,string(3));
-	co_InventoryMode.AddItem("Arena" ,,string(4));
-	co_InventoryMode.AddItem("Melee" ,,string(5));
-	co_InventoryMode.ReadOnly(True);
+	// RESET comes through here again
+	if (co_InventoryMode.ItemCount() == 0)
+	{
+		co_InventoryMode.AddItem("Inventory" ,,string(0));
+		co_InventoryMode.AddItem("Loadout" ,,string(1));
+		co_InventoryMode.AddItem("Evolution Loadout",,string(2));
+		co_InventoryMode.AddItem("Pickups" ,,string(3));
+		co_InventoryMode.AddItem("Arena" ,,string(4));
+		co_InventoryMode.AddItem("Melee" ,,string(5));
+		co_InventoryMode.ReadOnly(True);
+	}
 
 	ch_PreCacheWeapons.Checked(class'Mut_Ballistic'.default.bPreloadMeshes);
 	ch_ForceBWPawn.Checked(class'Mut_Ballistic'.default.bForceBallisticPawn);
@@ -45,6 +50,7 @@ function LoadSettings()
 		co_InventoryMode.SetIndex(game_style.default.InventoryModeIndex);
 		ch_KillStreaks.Checked(game_style.default.bKillstreaks);
 		ch_BrightPlayers.Checked(game_style.default.bBrightPlayers);
+		ch_NoRandomCamo.Checked(game_style.default.bNoRandomCamo);
 	}
 }
 
@@ -71,17 +77,24 @@ function SaveSettings()
 		game_style.default.InventoryModeIndex		= co_InventoryMode.GetIndex();
 		game_style.default.bBrightPlayers			= ch_BrightPlayers.IsChecked();
 		game_style.default.bKillstreaks				= ch_KillStreaks.IsChecked();
+		game_style.default.bNoRandomCamo			= ch_NoRandomCamo.IsChecked();
 		game_style.static.StaticSaveConfig();
 	}
 }
 
 function DefaultSettings()
 {
+	local class<BC_GameStyle> game_style;
+
+	game_style = BaseMenu.GetGameStyle();
+
 	co_InventoryMode.SetIndex(0);
-	ch_BrightPlayers.Checked(false);
+	// Pro and Tactical come with bright players
+	ch_BrightPlayers.Checked(game_style == class'GameStyle_Pro' || game_style == class'GameStyle_Tactical');
 	ch_ForceBWPawn.Checked(false);
 	ch_PreCacheWeapons.Checked(true);
-	ch_KillStreaks.Checked(false);
+	ch_KillStreaks.Checked(true);
+	ch_NoRandomCamo.Checked(false);
 }
 
 function bool InternalOnClick(GUIComponent Sender)
@@ -162,6 +175,19 @@ defaultproperties
          WinHeight=0.040000
      End Object
      ch_KillStreaks=moCheckBox'BallisticProV55.ConfigTab_GameRules.ch_KillStreaksCheck'
+
+	 Begin Object Class=moCheckBox Name=ch_NoRandomCamoCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Disable Random Camos/Layouts"
+         OnCreateComponent=ch_NoRandomCamoCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Generated guns will come with the basic variant."
+         WinTop=0.350000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_NoRandomCamo=moCheckBox'BallisticProV55.ConfigTab_GameRules.ch_NoRandomCamoCheck'
 
 	Begin Object Class=GUIButton Name=ClientSettingsButton
          Caption="Preferences"

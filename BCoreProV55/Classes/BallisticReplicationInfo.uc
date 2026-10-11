@@ -222,7 +222,7 @@ final function BindToReplication()
 	MRep.PlayerDodgeSpeedFactor         = PlayerDodgeSpeedFactor;
 	MRep.PlayerDodgeZ                  	= PlayerDodgeZ;
 
-	SRep.bEnableSprint					= true;
+	SRep.bEnableSprint					= bEnableSprint;
 	SRep.StaminaChargeRate				= StaminaChargeRate;
 	SRep.StaminaDrainRate				= StaminaDrainRate;
 	SRep.StaminaRechargeDelay			= StaminaRechargeDelay;
@@ -292,7 +292,7 @@ simulated final function BindFromReplication()
 	PlayerDodgeSpeedFactor        	= MRep.PlayerDodgeSpeedFactor;
 	PlayerDodgeZ                  	= MRep.PlayerDodgeZ;
 
-	bEnableSprint					= true;
+	bEnableSprint					= SRep.bEnableSprint;
 	StaminaChargeRate				= SRep.StaminaChargeRate;
 	StaminaDrainRate				= SRep.StaminaDrainRate;
 	StaminaRechargeDelay			= SRep.StaminaRechargeDelay;
@@ -344,7 +344,7 @@ simulated final function BindDefaults()
 	class.default.PlayerDodgeSpeedFactor        = PlayerDodgeSpeedFactor;
 	class.default.PlayerDodgeZ                  = PlayerDodgeZ;
 
-	class.default.bEnableSprint					= true;
+	class.default.bEnableSprint					= bEnableSprint;
 	class.default.StaminaChargeRate				= StaminaChargeRate;
 	class.default.StaminaDrainRate				= StaminaDrainRate;
 	class.default.StaminaRechargeDelay			= StaminaRechargeDelay;

@@ -73,6 +73,9 @@ var() Material 						BoxTex;
 var ConflictLoadoutLRI 				CLRI;
 
 var bool 							bWaitingWeaps, bWaitingSkill;
+var bool							bInventoryChanged;	// The player changed something here: save and send it when the menu closes
+var bool							bUserAdd;			// AddInventory is adding what the player double clicked, not loading
+var bool							bFillingPresets;
 
 var GUIStyles 						ConflictListStyle;
 
@@ -95,8 +98,13 @@ function ShowPanel(bool bShow)
 	}
 	
 	//Update menu if we're in evolution loadout
-	if (CLRI != None && CLRI.LoadoutOption == 1 && CLRI.bHasSkillInfo)
+	if (bShow && CLRI != None && CLRI.LoadoutOption == 1 && CLRI.bHasSkillInfo)
+	{
+		// The lists are rebuilt from the saved inventory: keep what has been set up since
+		if (!bWaitingWeaps && !bWaitingSkill)
+			class'ConflictLoadoutConfig'.static.UpdateSavedInventory(Inventory);
 		OnLRIAcquired();
+	}
 }
 
 function Initialize()
@@ -139,8 +147,14 @@ function Initialize()
 	ConfigList = new(None, game_style.default.StyleName) class'WeaponList_ConflictInventory';
 
 	//Load presets
+	// The first item added gets selected, which would load that preset over the inventory
+	bFillingPresets = true;
 	for(i=0;i<5;i++) //fixme
 	    cb_Presets.AddItem(ConfigList.PresetName[i] ,,string(i));
+	// Nothing is picked yet. With the first one shown as picked, picking it would not load it.
+	cb_Presets.MyComboBox.List.SilentSetIndex(-1);
+	cb_Presets.SetText("");
+	bFillingPresets = false;
 
 	/*M = Material(DynamicLoadObject("BWBP_Camos_Tex.SARCamos.AAS-Circle", class'Material')); //Todo, replace with a canary
 	if (M != None)
@@ -359,7 +373,7 @@ simulated function InitWeaponLists ()
 
 function SaveSettings()
 {
-	local int i;
+	local int i, Slot;
 	local string iw, ic, il;
 	local class<BC_GameStyle> game_style;
 	local WeaponList_ConflictInventory ConfigList;
@@ -373,7 +387,22 @@ function SaveSettings()
 	}
 
 	ConfigList = new(None, game_style.default.StyleName) class'WeaponList_ConflictInventory';
-    ConfigList.PresetName[cb_Presets.GetIndex()] = cb_Presets.GetText();
+
+	// The slot to save to: the preset with the name in the box, else the slot picked in the box, else the last one loaded.
+	// The box has no slot picked (-1, which as an array index is the first preset) once a new name is typed into it.
+	Slot = -1;
+	for (i = 0; i < 5; i++)
+		if (ConfigList.PresetName[i] ~= cb_Presets.GetText())
+		{
+			Slot = i;
+			break;
+		}
+	if (Slot < 0)
+		Slot = cb_Presets.GetIndex();
+	if (Slot < 0 || Slot > 4)
+		Slot = Min(LoadoutIndex, 4);
+	if (cb_Presets.GetText() != "")
+		ConfigList.PresetName[Slot] = cb_Presets.GetText();
 
 	//Convert our inv into a string to store
 	for (i = 0; i < Inventory.length; i++)
@@ -391,11 +420,19 @@ function SaveSettings()
 		else
 			ic = ic $ "|" $ string(Inventory[i].CamoIndex);
 	}
-	ConfigList.SavedInventory[cb_Presets.GetIndex()] = iw;
-	ConfigList.SavedLayout[cb_Presets.GetIndex()] = il;
-	ConfigList.SavedCamo[cb_Presets.GetIndex()] = ic;
-	
+	ConfigList.SavedInventory[Slot] = iw;
+	ConfigList.SavedLayout[Slot] = il;
+	ConfigList.SavedCamo[Slot] = ic;
+
 	ConfigList.SaveConfig();
+
+	// The box shows the slot under its new name
+	LoadoutIndex = Slot;
+	bFillingPresets = true;
+	cb_Presets.MyComboBox.List.SetItemAtIndex(Slot, ConfigList.PresetName[Slot]);
+	cb_Presets.MyComboBox.List.SilentSetIndex(Slot);
+	cb_Presets.SetText(ConfigList.PresetName[Slot]);
+	bFillingPresets = false;
 }
 
 //give this function a gun, grab an array of layouts from cache, add each value to the combobox
@@ -658,8 +695,12 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	SpaceUsed[SectionIndex] += Size;
 	
 	i = GetInsertionPoint(WeaponClass);
-	
+
 	Inventory.Insert(i, 1);
+
+	// The initial weapon is kept as a position in this list
+	if (bUserAdd && Inventory.length > 1 && i <= class'ConflictLoadoutConfig'.static.GetSavedInitialWeaponIndex())
+		class'ConflictLoadoutConfig'.static.UpdateSavedInitialIndex(class'ConflictLoadoutConfig'.static.GetSavedInitialWeaponIndex() + 1);
 	
 	Inventory[i].ClassName = string(WeaponClass);
 	Inventory[i].Size = Size;
@@ -706,6 +747,8 @@ function UpdateExistingInventory(int weapon_list_index)
 		if (Inventory[i].ClassName != CLRI.FullInventoryList[clri_inv_offset].ClassName)
 			continue;
 
+		if (Inventory[i].CamoIndex != CamoIndexList[weapon_list_index] || Inventory[i].LayoutIndex != LayoutIndexList[weapon_list_index])
+			bInventoryChanged = true;
 		Inventory[i].CamoIndex = CamoIndexList[weapon_list_index];
 		Inventory[i].LayoutIndex = LayoutIndexList[weapon_list_index];
 
@@ -746,7 +789,13 @@ function bool InternalOnDblClick(GUIComponent Sender)
 {
 	if (Sender==li_Weapons)
 	{
-		AddInventory(string(li_Weapons.GetObject()), class<Actor>(li_Weapons.GetObject()), li_Weapons.Get(), LayoutIndexList[li_Weapons.Index], int(cb_WeapCamoIndex.getExtra()));
+		// Rows drawn as disabled are weapons the other team gets: the server would take them out again
+		if (li_Weapons.Index < 0 || li_Weapons.IsSection() || (CLRI != None && !CLRI.CanUseWeaponAtIndex(int(li_Weapons.GetExtra()))))
+			return true;
+		bUserAdd = true;
+		if (AddInventory(string(li_Weapons.GetObject()), class<Actor>(li_Weapons.GetObject()), li_Weapons.Get(), LayoutIndexList[li_Weapons.Index], int(cb_WeapCamoIndex.getExtra())))
+			bInventoryChanged = true;
+		bUserAdd = false;
 	}
 
 	return true;
@@ -754,14 +803,20 @@ function bool InternalOnDblClick(GUIComponent Sender)
 
 function int GetClickedInventoryIndex()
 {
-    local int i, X, ItemSize;
+    local int i, X, ItemSize, MyX, SlotWidth;
+    local float ScaleFactor;
 
-    X = Box_Inventory.Bounds[0];
+    // The items are drawn inside a border, see DrawInventory
+    ScaleFactor = float(Controller.ResX)/1600;
+    MyX = Box_Inventory.Bounds[0] + 24*ScaleFactor;
+    SlotWidth = (Box_Inventory.ActualWidth() - 48*ScaleFactor) / MaxInventorySize;
+
+    X = MyX;
 
     // main items
     for (i = 0; i < Inventory.length && Inventory[i].SectionIndex == MAIN_SECTION_INDEX; i++)
     {
-        ItemSize = (Box_Inventory.ActualWidth()/MaxInventorySize) * Inventory[i].Size;
+        ItemSize = SlotWidth * Inventory[i].Size;
 
         if (Controller.MouseX > X && Controller.MouseX < X + ItemSize)
         {
@@ -770,12 +825,12 @@ function int GetClickedInventoryIndex()
         X += ItemSize;
     }
 
-    X = Box_Inventory.Bounds[0] + (Box_Inventory.ActualWidth() / MaxInventorySize) * SectionSizes[MAIN_SECTION_INDEX];
+    X = MyX + SlotWidth * SectionSizes[MAIN_SECTION_INDEX];
 
     // sub items - use offset
     while (i < Inventory.Length) // unrealscript won't handle a for loop with an empty initializer, lol
     {
-        ItemSize = (Box_Inventory.ActualWidth()/MaxInventorySize) * Inventory[i].Size;
+        ItemSize = SlotWidth * Inventory[i].Size;
 
         if (Controller.MouseX > X && Controller.MouseX < X + ItemSize)
             return i;
@@ -799,6 +854,7 @@ function bool InternalOnClick(GUIComponent Sender)
         if (i < Inventory.Length)
 		{
 		    class'ConflictLoadoutConfig'.static.UpdateSavedInitialIndex(i);
+			bInventoryChanged = true;
 			if (Inventory[i].ListIndex != 0) //Open this item in the list
 			{
 				LayoutIndexList[Inventory[i].ListIndex] = Inventory[i].LayoutIndex;
@@ -826,6 +882,9 @@ function bool InternalOnClick(GUIComponent Sender)
 		SpaceUsed[MAIN_SECTION_INDEX] = 0;
         SpaceUsed[SUB_SECTION_INDEX] = 0;
 
+		class'ConflictLoadoutConfig'.static.UpdateSavedInitialIndex(0);
+		bInventoryChanged = true;
+
         return true;
 	}
 	
@@ -840,7 +899,7 @@ function bool InternalOnClick(GUIComponent Sender)
 
 function bool InternalOnRightClick(GUIComponent Sender)
 {
-	local int i;
+	local int i, j;
 
 	//Figure out which currently existing item the player clicked on and then remove it.
 	if (Sender == Box_Inventory)
@@ -851,6 +910,14 @@ function bool InternalOnRightClick(GUIComponent Sender)
         {
 			SpaceUsed[Inventory[i].SectionIndex] -= Inventory[i].Size;
 			Inventory.Remove(i, 1);
+
+			// The initial weapon is kept as a position in this list
+			j = class'ConflictLoadoutConfig'.static.GetSavedInitialWeaponIndex();
+			if (i < j)
+				class'ConflictLoadoutConfig'.static.UpdateSavedInitialIndex(j - 1);
+			else if (i == j)
+				class'ConflictLoadoutConfig'.static.UpdateSavedInitialIndex(0);
+			bInventoryChanged = true;
         }
 
         return true;
@@ -999,7 +1066,7 @@ function InternalOnChange(GUIComponent Sender)
 		}
 	}
 	//Grab the preset data, parse it, try and shove it in our inventory
-	else if (Sender == cb_Presets && cb_Presets.GetExtra() != "") 
+	else if (Sender == cb_Presets && !bFillingPresets && cb_Presets.GetExtra() != "")
 	{
 		game_style = class'BallisticGameStyles'.static.GetReplicatedStyle();
 
@@ -1040,6 +1107,9 @@ function InternalOnChange(GUIComponent Sender)
 		{
 			Inventory[j].ListIndex=li_Weapons.FindIndex(Inventory[j].Title);
 		}
+		// A preset has no initial weapon of its own
+		class'ConflictLoadoutConfig'.static.UpdateSavedInitialIndex(0);
+		bInventoryChanged = true;
 		//Tie our inventory to the list if possible
 		/*for (i=0; i < li_Weapons.length; i++)
 		{
@@ -1056,8 +1126,15 @@ function InternalOnChange(GUIComponent Sender)
 event Closed( GUIComponent Sender, bool bCancelled )
 {
 	Super.Closed(Sender, bCancelled);
-	
-	UpdateInventory();
+
+	// Only save and send what the player changed here. The inventory on show is the saved one as far as it fits this
+	// server's style and lists, or nothing at all before the lists have arrived: saving that on every close of the
+	// ESC menu loses weapons from the saved loadout.
+	if (bInventoryChanged && !bWaitingWeaps && !bWaitingSkill)
+	{
+		bInventoryChanged = false;
+		UpdateInventory();
+	}
 }
 
 function UpdateInventory()

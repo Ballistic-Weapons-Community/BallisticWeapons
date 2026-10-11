@@ -64,5 +64,5 @@ defaultproperties
 	SwapTabLabel="Pickup Swaps"
 	SwapTabHint="Adjust how and which weapons are spawned by the 'Ballistic Weapons' mutator."
 	ArenaTabLabel="Arena"
-	ArenaTabHint"Change which weapons are used by the 'Ballistic Arena' Mutator."
+	ArenaTabHint="Change which weapons are used by the 'Ballistic Arena' Mutator."
 }

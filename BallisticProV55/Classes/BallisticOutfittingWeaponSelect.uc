@@ -111,30 +111,28 @@ simulated function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.
 // leaving the signature as it is because I'm not sure of your future intent
 function bool LoadLIFromBW(class<BallisticWeapon> BW)
 {
-	local byte GameStyleIndex;
 	local int i;
 		
 	//clear old layouts
 	cb_WeapLayoutIndex.Clear();
 	
-	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
-	if (BW.default.ParamsClasses.length < GameStyleIndex)
+	if (BW.static.GetParams() == None)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
 		return false;
 	}
 	
-	for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length; i++)
+	for (i=0; i < BW.static.GetParams().default.Layouts.length; i++)
 	{
-		if (BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName == "")
+		if (BW.static.GetParams().default.Layouts[i].LayoutName == "")
 		{
-			if (BW.default.ParamsClasses[GameStyleIndex].default.Layouts.length == 1)
+			if (BW.static.GetParams().default.Layouts.length == 1)
 				cb_WeapLayoutIndex.AddItem("Default");
 			else
 				cb_WeapLayoutIndex.AddItem("Layout: "$string(i));
 		}
 		else
-			cb_WeapLayoutIndex.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Layouts[i].LayoutName);
+			cb_WeapLayoutIndex.AddItem(BW.static.GetParams().default.Layouts[i].LayoutName);
 	}
 	
 	return true;
@@ -144,7 +142,6 @@ function bool LoadLIFromBW(class<BallisticWeapon> BW)
 
 function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 {
-	local byte GameStyleIndex;
 	local int i;
 	local array<int> AllowedCamos;
 	//clear old layouts
@@ -159,29 +156,28 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 		return true;
 	}*/
 	
-	GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 
 	// weapon has no parameters for this index
-	if (BW.default.ParamsClasses.length < GameStyleIndex)
+	if (BW.static.GetParams() == None)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
 		return false;
 	}
 
-	AllowedCamos = BW.default.ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
+	AllowedCamos = BW.static.GetParams().default.Layouts[LayoutIndex].AllowedCamos;
 
 	if (AllowedCamos.Length == 0 )
 	{
-		for (i=0; i < BW.default.ParamsClasses[GameStyleIndex].default.Camos.length; i++)
+		for (i=0; i < BW.static.GetParams().default.Camos.length; i++)
 		{
-			if (BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName == "")
+			if (BW.static.GetParams().default.Camos[i].CamoName == "")
 			{
-				if (BW.default.ParamsClasses[GameStyleIndex].default.Camos.length == 1)
+				if (BW.static.GetParams().default.Camos.length == 1)
 					cb_WeapCamoIndex.AddItem("None",, "0");
 				else
-					cb_WeapCamoIndex.AddItem("Layout: "$string(i),, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+					cb_WeapCamoIndex.AddItem("Layout: "$string(i),, String(BW.static.GetParams().default.Camos[i].Index));
 			}
-			cb_WeapCamoIndex.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[i].Index));
+			cb_WeapCamoIndex.AddItem(BW.static.GetParams().default.Camos[i].CamoName,, String(BW.static.GetParams().default.Camos[i].Index));
 		}
 		cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
 	}
@@ -189,8 +185,8 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 	{
 		for (i = 0; i < AllowedCamos.Length; i++)
 		{
-			cb_WeapCamoIndex.AddItem(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].CamoName,, String(BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index));
-			if (CamoIndexList[lb_Weapons.List.Index] == BW.default.ParamsClasses[GameStyleIndex].default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
+			cb_WeapCamoIndex.AddItem(BW.static.GetParams().default.Camos[AllowedCamos[i]].CamoName,, String(BW.static.GetParams().default.Camos[AllowedCamos[i]].Index));
+			if (CamoIndexList[lb_Weapons.List.Index] == BW.static.GetParams().default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
 				cb_WeapCamoIndex.setIndex(i);
 		}
 	}
@@ -339,7 +335,8 @@ function bool InternalOnClick(GUIComponent Sender)
 function string GetDataString()
 {
 	local String ls;
-	if(lb_Weapons.List.Index == -1)
+	// A heading is no weapon. The list starts out on one.
+	if(lb_Weapons.List.Index == -1 || lb_Weapons.List.IsSection())
 		return "";
 	ls = lb_Weapons.List.GetExtra() $ "|" $ LayoutIndexList[lb_Weapons.List.Index] $ "|" $ CamoIndexList[lb_Weapons.List.Index]; //ew
 	return ls;

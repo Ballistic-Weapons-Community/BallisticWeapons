@@ -33,6 +33,7 @@ var array<string> 		KillstreakRewards[2];
 var bool				bWeaponsReady, bPendingLoadoutSave;
 
 var String 				LastLoadout[NUM_GROUPS];
+var int					LastLayout[NUM_GROUPS], LastCamo[NUM_GROUPS];
 
 var class<Weapon> 		LastLoadoutClasses[NUM_GROUPS];
 
@@ -332,7 +333,7 @@ simulated function SortList(byte group_index)
                     
                     if (wiGroup == existingGroup)
                     {
-                        if (StrCmp(WI.ItemName, SortedWIs[j].ItemName, 6, True) <= 0)
+                        if (StrCmp(WI.ItemName, SortedWIs[j].ItemName) <= 0)
                         {	
                             SortedWIs.Insert(j, 1);
                             SortedWIs[j] = WI;
@@ -380,11 +381,17 @@ function Initialize(Mut_Outfitting MO, PlayerController P)
 
 simulated function ClientOpenLoadoutMenu()
 {
+	local GUIController GC;
+
 	if (PC ==None || PC.Player == None || (PC.IsSpectating() && !PC.IsInState('PlayerWaiting')))
 		return;
+	GC = GUIController(PC.Player.GUIController);
+	// The key pressed a second time, or pressed just before the menu comes up by itself: one menu is enough
+	if (GC != None && BallisticOutfittingMenu(GC.ActivePage) != None)
+		return;
 	PC.ClientOpenMenu ("BallisticProV55.BallisticOutfittingMenu");
-	if (PC.Player.GUIController != None)
-		BallisticOutfittingMenu(GUIController(PC.Player.GUIController).ActivePage).SetupCOI(self);		
+	if (GC != None && BallisticOutfittingMenu(GC.ActivePage) != None)
+		BallisticOutfittingMenu(GC.ActivePage).SetupCOI(self);
 }
 
 simulated event Timer()
@@ -420,13 +427,18 @@ event Destroyed()
 }
 
 // Called from menu to inform us that the client's loadout has changed.
-simulated function LoadoutChanged(string Stuff[NUM_GROUPS])
+simulated function LoadoutChanged(string Stuff[5])
 {
-	ServerLoadoutChanged(Stuff[0], Stuff[1], Stuff[2], Stuff[3], Stuff[4]);
+	// The menu has just saved the layouts and camos along with the weapons
+	ServerLoadoutChanged(Stuff[0], Stuff[1], Stuff[2], Stuff[3], Stuff[4],
+		class'Mut_Outfitting'.default.Layout[0], class'Mut_Outfitting'.default.Layout[1], class'Mut_Outfitting'.default.Layout[2],
+		class'Mut_Outfitting'.default.Layout[3], class'Mut_Outfitting'.default.Layout[4],
+		class'Mut_Outfitting'.default.Camo[0], class'Mut_Outfitting'.default.Camo[1], class'Mut_Outfitting'.default.Camo[2],
+		class'Mut_Outfitting'.default.Camo[3], class'Mut_Outfitting'.default.Camo[4]);
 }
 
 // Called from client when its loadout changes.
-function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4)
+function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4, int L0, int L1, int L2, int L3, int L4, int C0, int C1, int C2, int C3, int C4)
 {
 	local int i;
 	// FIXME: There's some hardcoded crap here for Invasion, CTF and Onslaught!
@@ -438,7 +450,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 		 (Invasion(level.Game)!=None && !Invasion(level.Game).bWaveInProgress) ||
 		 (CTFGame(level.Game)!=None && PC.GetTeamNum()<2 && VSize(CTFTeamAI(CTFGame(level.Game).Teams[PC.GetTeamNum()].AI).FriendlyFlag.HomeBase.Location - PC.Pawn.Location) < 384) )
 	{
-		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4,0,0,0,0,0,0,0,0,0,0);
+		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4, L0, L1, L2, L3, L4, C0, C1, C2, C3, C4);
 		LastLoadoutTime = level.TimeSeconds;
 	}
 
@@ -447,7 +459,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 			if ( (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByRed && PC.GetTeamNum() == 0) || (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByBlue && PC.GetTeamNum() == 1) )
 				if (VSize(ONSOnslaughtGame(level.Game).PowerCores[i].Location - PC.Pawn.Location) < 384)
 				{
-					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4,0,0,0,0,0,0,0,0,0,0);
+					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4, L0, L1, L2, L3, L4, C0, C1, C2, C3, C4);
 					LastLoadoutTime = level.TimeSeconds;
 					return;
 				}
@@ -490,7 +502,9 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 	local string Stuff[5];
 	local int Layout[5];
 	local int Camo[5];
-	
+	local Pawn P;
+	local Inventory Inv;
+
 	Stuff[0] = Stuff0;
 	Stuff[1] = Stuff1;
 	Stuff[2] = Stuff2;
@@ -509,13 +523,40 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 	Camo[3] = C3;
 	Camo[4] = C4;
 
+	// A weapon that stays but gets another layout or camo has to be handed out again
+	P = PC.Pawn;
+	if (Vehicle(P) != None && Vehicle(P).Driver != None)
+		P = Vehicle(P).Driver;
+	if (P != None)
+	{
+		for (i=0;i<5;i++)
+		{
+			if (Stuff[i] != "" && LastLoadout[i] ~= Stuff[i] && (LastLayout[i] != Layout[i] || LastCamo[i] != Camo[i]))
+			{
+				for (Inv=P.Inventory; Inv!=None; Inv=Inv.Inventory)
+					if (Weapon(Inv) != None && string(Inv.Class) ~= Stuff[i])
+					{
+						Inv.Destroy();
+						break;
+					}
+			}
+		}
+	}
+
+	// Stuff comes back as what was handed out, which is what has to go next time
 	if (PC.Pawn != None)
 		Mut.OutfitPlayer(PC.Pawn, Stuff, LastLoadout, Layout, Camo);
-		
+
 	for (i=0; i< NUM_GROUPS; i++)
 	{
 		LastLoadout[i] = Stuff[i];
-		LastLoadoutClasses[i] = class<Weapon>(DynamicLoadObject(Stuff[i], Class'Class', True));
+		LastLayout[i] = Layout[i];
+		LastCamo[i] = Camo[i];
+		// A slot that was left empty has no class to load
+		if (Stuff[i] != "")
+			LastLoadoutClasses[i] = class<Weapon>(DynamicLoadObject(Stuff[i], Class'Class', True));
+		else
+			LastLoadoutClasses[i] = None;
 		
 		if (BallisticPlayer(PC) != None)
 			BallisticPlayer(PC).LastLoadoutClasses[i] = LastLoadoutClasses[i];

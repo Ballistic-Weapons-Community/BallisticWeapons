@@ -55,7 +55,7 @@ function int WeaponRank(string PackageName, optional string ClassName, optional 
 	if (PackageName ~= "XWeapons" || PackageName ~= "UTClassic")
 		return 101;
 	if (InStr(PackageName, "Onslaught") != -1)
-		return 150;
+		return 101;
 	if (PackageName == "O")
 		return 200;
 	if (El.ExtraData == self)
@@ -159,6 +159,14 @@ function InternalOnEndDrag(GUIComponent Accepting, bool bAccepted)
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
+	Super.InitComponent(MyController, MyOwner);
+	
+	lb_UnusedWeapons.List.CompareItem = MyCompareItem;
+}
+
+// The lists are filled when the tab is first shown. Going through every weapon of the game is too much for opening the menu.
+function InitializeConfigTab()
+{
 	local array<CacheManager.WeaponRecord> Recs;
 	local BC_WeaponInfoCache.WeaponInfo WI;
 
@@ -168,10 +176,6 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 
 	local class<BC_GameStyle> game_style;
 	local WeaponList_ConflictLoadout ConfigList;
-	
-	Super.InitComponent(MyController, MyOwner);
-	
-	lb_UnusedWeapons.List.CompareItem = MyCompareItem;
 
 	lb_UnusedWeapons.List.Add(Headings[0],,"BW",true);
 	lb_UnusedWeapons.List.Add(Headings[1],,"I",true);
@@ -187,6 +191,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	ConfigList = new(None, game_style.default.StyleName) class'WeaponList_ConflictLoadout';
 
 	class'CacheManager'.static.GetWeaponList(Recs);
+	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
 
 	for (i = 0; i < Recs.Length; i++)
 	{
@@ -361,6 +366,10 @@ function SaveSettings()
 	local class<BC_GameStyle> game_style;
 	local WeaponList_ConflictLoadout ConfigList;
 
+	// A tab that was never shown has empty lists, and saving those would empty the weapon list
+	if (!bInitialized)
+		return;
+
 	game_style = BaseMenu.GetGameStyle();
 
 	if (game_style == None)
@@ -400,12 +409,54 @@ function SaveSettings()
 	SaveConfig();
 }
 
+// RESET: back to the saved list. The first time through, InitializeConfigTab has just filled the lists.
 function LoadSettings()
 {
+	local class<BC_GameStyle> game_style;
+	local WeaponList_ConflictLoadout ConfigList;
+
+	if (!bInitialized)
+		return;
+	game_style = BaseMenu.GetGameStyle();
+	if (game_style == None)
+		return;
+	ConfigList = new(None, game_style.default.StyleName) class'WeaponList_ConflictLoadout';
+	UseList(ConfigList.ConflictWeapons, ConfigList.LoadoutOption);
 }
 
+// DEFAULTS: the list the mod came with
 function DefaultSettings()
 {
+	if (BaseMenu.GetGameStyle() == None)
+		return;
+	UseList(class'WeaponList_ConflictLoadout'.default.ConflictWeapons, class'WeaponList_ConflictLoadout'.default.LoadoutOption);
+}
+
+// Fills the red and blue lists from a weapon list
+function UseList(array<WeaponList_ConflictLoadout.Entry> Weapons, byte Option)
+{
+	local int i, j;
+
+	lb_UsedRedWeapons.List.Clear();
+	lb_UsedBlueWeapons.List.Clear();
+
+	for (i=0;i<lb_UnusedWeapons.List.Elements.length;i++)
+	{
+		if (lb_UnusedWeapons.List.Elements[i].bSection)
+			continue;
+		for (j=0;j<Weapons.length;j++)
+		{
+			if (Weapons[j].ClassName ~= lb_UnusedWeapons.List.GetExtraAtIndex(i))
+			{
+				if (Weapons[j].bRed)
+					lb_UsedRedWeapons.List.Add(lb_UnusedWeapons.List.GetItemAtIndex(i), lb_UnusedWeapons.List.GetObjectAtIndex(i), lb_UnusedWeapons.List.GetExtraAtIndex(i));
+				if (Weapons[j].bBlue)
+					lb_UsedBlueWeapons.List.Add(lb_UnusedWeapons.List.GetItemAtIndex(i), lb_UnusedWeapons.List.GetObjectAtIndex(i), lb_UnusedWeapons.List.GetExtraAtIndex(i));
+				break;
+			}
+		}
+	}
+	co_LoadOpt.SetIndex(Option);
 }
 
 defaultproperties
@@ -533,6 +584,7 @@ defaultproperties
 
      Begin Object Class=GUIListBox Name=UsedRedWeaponList
          bVisibleWhenEmpty=True
+         bSorted=True
          OnCreateComponent=UsedWeaponList.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="List of the weapons for red team. Be careful to make sure there are always some available weapons when using evolution mode."
@@ -547,6 +599,7 @@ defaultproperties
 
      Begin Object Class=GUIListBox Name=UsedBlueWeaponList
          bVisibleWhenEmpty=True
+         bSorted=True
          OnCreateComponent=UsedWeaponList.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="List of the weapons for blue team. Be careful to make sure there are always some available weapons when using evolution mode."

@@ -430,7 +430,15 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 			}
 		}
 		if (bKillRogueWeaponPickups)
-			return SwapPickup(Other, Swaps[Rand(NumWeapons)].NewClasses[Rand(Swaps[i].NewClasses.length)].default.PickupClass, i);
+		{
+			// i has run off the end of the list here. Take a random entry that has something to offer.
+			i = Rand(NumWeapons);
+			for (j=0;j<NumWeapons && Swaps[i].NewClasses.length < 1;j++)
+				i = (i + 1) % NumWeapons;
+			if (Swaps[i].NewClasses.length < 1)
+				return true;
+			return SwapPickup(Other, Swaps[i].NewClasses[Rand(Swaps[i].NewClasses.length)].default.PickupClass, i);
+		}
 		return true;
 	}
 

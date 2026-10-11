@@ -100,14 +100,17 @@ function PurgeSettings()
 	class'Rules_Ballistic'.static.StaticClearConfig();
 }
 
+// Menus that are not opened for one style (ConfigMenu_Rules and ConfigMenu_Inventory themselves) set up the style in use
 function class<BC_GameStyle> GetGameStyle()
 {
+	if (ConfiguredStyle == None)
+		return class'BallisticGameStyles'.static.GetLocalStyle();
 	return ConfiguredStyle;
 }
 
 function class<BC_GameStyle_Config> GetConfigStyle()
 {
-	return class<BC_GameStyle_Config>(ConfiguredStyle);
+	return class<BC_GameStyle_Config>(GetGameStyle());
 }
 
 function LoadSettings()

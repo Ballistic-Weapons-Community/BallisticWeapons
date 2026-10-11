@@ -40,6 +40,7 @@ function InitializeConfigTab()
 		return;
 
 	class'CacheManager'.static.GetWeaponList(Recs);
+	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
 	for (i=0;i<Recs.Length;i++)
 	{
 		Weap = None;
@@ -129,14 +130,23 @@ function DefaultSettings()
 	sl_CrossGrow.SetValue(1.0);
 
 	for (i=0;i<lb_Weapons.List.Elements.Length;i++)
-	{
-		class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData).static.ResetConfig("NDCrosshairCfg");
-		Crosshairs[i] = class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData).default.NDCrosshairCfg;
-	}
-	
-	class'BallisticWeapon'.static.ResetConfig("NDCrosshairCfg");
-	Crosshairs[i] = class'BallisticWeapon'.default.NDCrosshairCfg;
+		Crosshairs[i] = GetDefaultCrosshair(class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData));
+	Crosshairs[i] = GetDefaultCrosshair(class'BallisticWeapon');
 	UpdateSettings();
+}
+
+// ResetConfig is the only way to see what a weapon came with, and it takes the saved crosshair out of the ini at once.
+// Put the saved one back: nothing is final before OK, and CANCEL has to be able to leave things alone.
+function BallisticWeapon.NonDefCrosshairCfg GetDefaultCrosshair(class<BallisticWeapon> WC)
+{
+	local BallisticWeapon.NonDefCrosshairCfg Saved, Def;
+
+	Saved = WC.default.NDCrosshairCfg;
+	WC.static.ResetConfig("NDCrosshairCfg");
+	Def = WC.default.NDCrosshairCfg;
+	WC.default.NDCrosshairCfg = Saved;
+	WC.static.StaticSaveConfig();
+	return Def;
 }
 
 function InternalOnChange(GUIComponent Sender)
