@@ -63,6 +63,8 @@ var() config int			StaminaDrainRate;
 var() config float			StaminaRechargeDelay; // Delay before stamina starts to recharge
 var() config float			SprintSpeedFactor;
 var() config float			JumpDrain;
+var() config bool			bFireEndsSprint;		// Fire pressed in a sprint ends it, and the gun comes back to shoot. Off: it fires from where the sprint holds it
+var() config bool			bSightsEndSprint;		// The sight key ends a sprint and the sights come up. Off: no sights until the sprint is over
 
 //=============================================================================
 // KILL REWARD
@@ -112,6 +114,8 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 	rep.StaminaRechargeDelay		= default.StaminaRechargeDelay;
 	rep.SprintSpeedFactor 			= default.SprintSpeedFactor;
 	rep.JumpDrain 					= default.JumpDrain;
+	rep.bFireEndsSprint				= default.bFireEndsSprint;
+	rep.bSightsEndSprint			= default.bSightsEndSprint;
 
 	rep.HealthKillReward			= default.HealthKillReward;
 	rep.KillRewardHealthMax			= default.KillRewardHealthMax;
@@ -123,4 +127,6 @@ defaultproperties
 {
 	bWeaponJumpOffsetting=True
 	bLongWeaponOffsetting=True
+	bFireEndsSprint=False
+	bSightsEndSprint=False
 }

@@ -886,13 +886,19 @@ function Mutate(string MutateString, PlayerController Sender)
     {
         SC = GetSprintControl(Sender);
         if (SC != None)
+        {
             SC.StartSprint();
+            SC.ClientSprintReply(SC.bSprintActive);
+        }
     }
     else if (MutateString ~= "BStopSprint" && class'BallisticReplicationInfo'.default.bEnableSprint)
     {
         SC = GetSprintControl(Sender);
         if (SC != None)
+        {
             SC.StopSprint();
+            SC.ClientSprintReply(SC.bSprintActive);
+        }
     }
 
     super.Mutate(MutateString, Sender);

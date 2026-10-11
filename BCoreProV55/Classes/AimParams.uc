@@ -15,6 +15,7 @@ class AimParams extends Object
 var() BUtil.IntRange		AimSpread;				// Range for how far aim can be from crosshair (rotator units) based on chaos value
 var() float					AimAdjustTime;			// Time it should take to move aim pointer to new random aim when view moves
 var() float    				OffsetAdjustTime; 		// Offsetting time for long gun and sprinting
+var() float					SprintCancelTime;		// The longest the gun takes to come back from its sprint offset when a shot or the sights end the sprint
 var() float					VelocityAimAdjustMult;	// Multiplies AimAdjustTime when in ADS, as velocity approaches max
 
 // Multipliers
@@ -43,6 +44,7 @@ defaultproperties
     AimSpread=(Min=16,Max=128)
     AimAdjustTime=0.50
     OffsetAdjustTime=0.30
+    SprintCancelTime=0.15
 	VelocityAimAdjustMult=0.67f
     CrouchMultiplier=0.80
     ADSMultiplier=1.00

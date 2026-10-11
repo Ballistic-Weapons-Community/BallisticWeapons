@@ -45,13 +45,19 @@ function Mutate(string MutateString, PlayerController Sender)
 	{
 		SC = GetSprintControl(Sender);
 		if (SC != None)
+		{
 			SC.StartSprint();
+			SC.ClientSprintReply(SC.bSprintActive);
+		}
 	}
 	else if (MutateString ~= "BStopSprint")
 	{
 		SC = GetSprintControl(Sender);
 		if (SC != None)
+		{
 			SC.StopSprint();
+			SC.ClientSprintReply(SC.bSprintActive);
+		}
 	}
 
 	super.Mutate(MutateString, Sender);
