@@ -172,6 +172,10 @@ function ModifyPlayer(Pawn Other)
 					SpawnAmmo(W.default.FireModeClass[1].default.AmmoClass, Other);
 			}
 		}
+		// Nothing puts a weapon in a bot's hands when it is given one: it takes the best of these now, as it does
+		// after the game's own default inventory. Otherwise its first decision is made without one.
+		if (Other.Weapon == None && Other.PendingWeapon == None)
+			Other.Controller.ClientSwitchToBestWeapon();
 	}
 	else if (Other.Controller != None && PlayerController(Other.Controller) != None)
 		for (i=0;i<COIPond.length;i++)
