@@ -133,6 +133,11 @@ function DoFireEffect()
 		ExtraTime += Interval;
 		ExtraAim += AimInterval;
 	}
+
+	// Every rewind needs its restore. Without one the rewound collisions stayed where this shot put them, for everyone's shots
+    if (Level.NetMode == NM_DedicatedServer && BW != None)
+        BW.RestoreCollisions();
+
 	SetTimer(FMin(0.1, FireRate/2), false);
 
 //	SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
