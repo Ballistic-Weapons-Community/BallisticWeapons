@@ -129,8 +129,6 @@ function Timer()
     local bool bNewAdmin;
     local int i;
 
-    bAdmin = true;
-
     bNewAdmin = (PlayerOwner().PlayerReplicationInfo.bAdmin || PlayerOwner().Level.NetMode == NM_Standalone);
     if(bNewAdmin == bAdmin)
         return;
