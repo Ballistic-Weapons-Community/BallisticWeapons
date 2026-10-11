@@ -549,8 +549,8 @@ simulated function Destroyed()
 // HitWall of their own
 function RelayUnseenImpact()
 {
-	local Actor A;
-	local vector HitLoc, HitNorm, Dir, Start, End, TraceLoc, TraceNorm;
+	local Actor A, Stopper;
+	local vector HitLoc, HitNorm, Dir, Start, End, TraceLoc, TraceNorm, RestLoc, RestNorm;
 	local Material HitMat;
 	local int Surf;
 
@@ -587,9 +587,20 @@ function RelayUnseenImpact()
 			A = Trace(TraceLoc, TraceNorm, End, Start, false, GetCollisionExtent());
 			if (A != None)
 			{
+				Stopper = A;
+				RestNorm = TraceNorm;
+				RestLoc = TraceLoc - TraceNorm * ((Abs(TraceNorm.X) + Abs(TraceNorm.Y)) * CollisionRadius + Abs(TraceNorm.Z) * CollisionHeight);
 				Start = TraceLoc;
 				End = TraceLoc - TraceNorm * (FMax(CollisionRadius, CollisionHeight) + 8);
 				A = Trace(TraceLoc, TraceNorm, End, Start, false,, HitMat);
+				// What stopped it need not stop a line: a blocking volume, or the hull of a mesh that stands off the
+				// mesh's surface. The impact is then where the projectile itself came to rest, as it is offline
+				if (A == None)
+				{
+					A = Stopper;
+					TraceLoc = RestLoc;
+					TraceNorm = RestNorm;
+				}
 			}
 		}
 		if (A != None)
