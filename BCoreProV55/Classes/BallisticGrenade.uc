@@ -319,7 +319,7 @@ simulated function BlowUp(vector HitLocation)
 			Spawn( FlakClass,, '', Start, Dir);
 		}
 	}
-	TargetedHurtRadius(Damage, DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
+	HurtRadiusOrCorpses(HitLocation);
 	if ( Role == ROLE_Authority )
 		MakeNoise(1.0);
 }

@@ -65,9 +65,14 @@ simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 	local Vector Dummy;
     if(Pawn(Other) != None)
 	{
-		if (Level.Game.ReduceDamage(Damage, Pawn(Other), Instigator, HitLocation, Dummy, ImpactDamageType) <= 0)
-			return;
-		IgniteActor(Other);
+		// A client's flare gets here for that client's own copy of a dead body. There is no game to ask there and
+		// nothing to set alight: the body just takes the hit
+		if (Level.Game != None)
+		{
+			if (Level.Game.ReduceDamage(Damage, Pawn(Other), Instigator, HitLocation, Dummy, ImpactDamageType) <= 0)
+				return;
+			IgniteActor(Other);
+		}
 		HitActor = Other;
 		class'BallisticDamageType'.static.GenericHurt(Other, Max(5,ImpactDamage*(1.0-FallOff)), Instigator, HitLocation, Velocity, ImpactDamageType);
 	}

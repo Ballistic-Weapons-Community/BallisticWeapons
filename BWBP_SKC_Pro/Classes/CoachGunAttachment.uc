@@ -80,6 +80,14 @@ simulated event PostNetReceive()
 		ThirdPersonEffects();
 		OldAltFireCount = AltFireCount;
 	}
+	if (MeleeFireCount != OldMeleeFireCount)
+	{
+		FiringMode = 255;
+		MeleeFireEffects();
+		HitCorpsesMelee();
+		PlayPawnFiring(FiringMode);
+		OldMeleeFireCount = MeleeFireCount;
+	}
 }
 
 //======================================================================
