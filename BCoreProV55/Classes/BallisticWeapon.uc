@@ -4131,16 +4131,17 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
     if( Instigator.PendingWeapon != None && Instigator.PendingWeapon.bForceSwitch ) 
         return;
 
+    // we don't want to do this in loadout - we want to set our desired weapon only:
+    // the others neither come up when nothing is held nor take over from it by their priority
+    if (bDeferInitialSwitch)
+    {
+        bDeferInitialSwitch = false;
+        return;
+    }
+
     // if there is no active weapon, use this one
-    // we don't want to do this in loadout - we want to set our desired weapon only
     if( Instigator.Weapon == None ) 
     {
-        if (bDeferInitialSwitch)
-        {
-            bDeferInitialSwitch = false;
-            return;
-        }
-
         Instigator.PendingWeapon = self;
         Instigator.ChangedWeapon();
     }
