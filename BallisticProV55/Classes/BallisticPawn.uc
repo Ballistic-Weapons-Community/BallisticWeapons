@@ -911,7 +911,7 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 		if (HasAnim(BAtt.IdleRifleAnim))
 			IdleRifleAnim = Batt.IdleRifleAnim;
 		else
-			IdleHeavyAnim = 'Idle_Rifle';
+			IdleRifleAnim = 'Idle_Rifle';
 		
 		FireHeavyBurstAnim = BAtt.SingleFireAnim;
 		FireHeavyRapidAnim = BAtt.RapidFireAnim;
@@ -930,13 +930,19 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 		
 		MeleeAnim = BAtt.MeleeStrikeAnim;
 		
-		IdleRestAnim = BAtt.IdleHeavyAnim;
+		// (a model that has not got the weapon's own stance rests as the stock pawn does: it was told to play the
+		// missing sequence, stood without one and logged a warning each time)
+		if (HasAnim(BAtt.IdleHeavyAnim))
+			IdleRestAnim = BAtt.IdleHeavyAnim;
+		else
+			IdleRestAnim = default.IdleRestAnim;
 	
 		if (BallisticMeleeAttachment(NewAtt) != None)
 		{
 			MeleeAltAnim = BallisticMeleeAttachment(NewAtt).MeleeAltStrikeAnim;
 			IdleWeaponAnim = IdleHeavyAnim;
-			IdleRifleAnim = BallisticMeleeAttachment(NewAtt).MeleeBlockAnim;
+			if (HasAnim(BallisticMeleeAttachment(NewAtt).MeleeBlockAnim))
+				IdleRifleAnim = BallisticMeleeAttachment(NewAtt).MeleeBlockAnim;
 		}
 
 		else 
@@ -1207,11 +1213,14 @@ simulated function StartFiring(bool bHeavy, bool bRapid)
 	else
 		FireAnim = MeleeAltAnim;
 
+	// (the strikes are the mod's own animations as well, and the stock ones have nothing like them)
+	if (HasAnim(FireAnim))
+	{
+		AnimBlendParams(1, 1.0, 0.0, 0.2, FireRootBone);
 
-    AnimBlendParams(1, 1.0, 0.0, 0.2, FireRootBone);
-
-	PlayAnim(FireAnim,, 0.0, 1);
-	FireState = FS_PlayOnce;
+		PlayAnim(FireAnim,, 0.0, 1);
+		FireState = FS_PlayOnce;
+	}
 
     IdleTime = Level.TimeSeconds;
 }
