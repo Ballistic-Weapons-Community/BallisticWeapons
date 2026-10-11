@@ -25,9 +25,8 @@ function PlayFiring()
 
 function DoFireEffect()
 {
-    local Vector StartTrace, X, Y, Z, Start, End, HitLocation, HitNormal;
+    local Vector StartTrace, X, Y, Z, Start;
     local Rotator Aim;
-	local actor Other;
     local int SpawnCount;
     
     if (level.Netmode == NM_DedicatedServer)
@@ -44,23 +43,12 @@ function DoFireEffect()
     if ( !Weapon.WeaponCentered() )
 	    StartTrace = StartTrace + Weapon.Hand * Y*SpawnOffset.Y;
 
-    // check if projectile would spawn through a wall and adjust start location accordingly
-    Other = Weapon.Trace(HitLocation, HitNormal, StartTrace, Start, false);
-    if (Other != None)
-    {
-        StartTrace = HitLocation;
-    }
-
     SpawnCount = 1;
 
 	Aim = GetFireAim(StartTrace);
 	Aim = Rotator(GetFireSpread() >> Aim);
 
-	End = Start + (Vector(Aim)*MaxRange());
-	Other = Trace (HitLocation, HitNormal, End, Start, true);
-
-	if (Other != None)
-		Aim = Rotator(HitLocation-StartTrace);
+	AimProjectile(Start, StartTrace, Aim);
     SpawnProjectile(StartTrace, Aim);
     
     if(InStr(Level.Game.GameName, "Freon") != -1 && class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo) != None)

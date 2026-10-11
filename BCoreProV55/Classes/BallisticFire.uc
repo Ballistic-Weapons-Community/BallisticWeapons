@@ -423,6 +423,60 @@ simulated function float GetSpreadRand(float RSpread)
 	return ((FRand()*RSpread*2)-RSpread);
 }
 
+// Where a projectile leaves from and which way it goes.
+// Eye is where the line of sight starts, Muzzle the place beside it that the projectile is meant to leave from
+// (SpawnOffset), Aim the line of sight with this shot's spread. The projectile is sent from the muzzle at whatever
+// the line of sight meets, so that it lands where the crosshair is.
+// Close to a wall the muzzle is no place to start from. It lies in or behind the wall, and a projectile made there
+// either does not spawn or flies off from inside the wall. The same goes for somebody who stands nearer than the
+// muzzle is far out, and for a wall so near that the projectile would have to leave more sideways than forwards.
+// The projectile then starts on the line of sight itself, as far out as the muzzle is but short of what the line
+// meets, and follows it. Returns false when it had to be moved there
+simulated function bool AimProjectile(vector Eye, out vector Muzzle, out Rotator Aim)
+{
+	local vector AimDir, HitLocation, HitNormal, BlockLocation, ToTarget, Size;
+	local Actor Other;
+	local float Ahead, Fwd;
+
+	if (Muzzle == Eye)
+		return true;
+	AimDir = Vector(Aim);
+	Other = Trace(HitLocation, HitNormal, Eye + AimDir * MaxRange(), Eye, true);
+	if (Other != None)
+	{
+		ToTarget = HitLocation - Muzzle;
+		Fwd = ToTarget dot AimDir;
+	}
+	// The room it needs, and a little more. Nothing is spawned where the level's collision is, and that reaches
+	// further than what stops a line: a blocking volume lets shots through, and the hull of a mesh fills the gaps
+	// the mesh itself leaves open. A box pushed from the eye to the muzzle finds those
+	Size = vect(2,2,2);
+	if (ProjectileClass != None)
+	{
+		Size.X += ProjectileClass.default.CollisionRadius;
+		Size.Y = Size.X;
+		Size.Z += ProjectileClass.default.CollisionHeight;
+	}
+
+	// The muzzle will do when nothing and nobody is between the eye and it, what is aimed at lies ahead of it (within
+	// 45 degrees of the line of sight), and there is room for the projectile
+	if (Trace(BlockLocation, HitNormal, Muzzle, Eye, true) == None && (Other == None || (Fwd > 0 && Fwd * Fwd * 2 >= (ToTarget dot ToTarget)))
+		&& Trace(BlockLocation, HitNormal, Muzzle, Eye, false, Size) == None)
+	{
+		if (Other != None)
+			Aim = Rotator(ToTarget);
+		return true;
+	}
+
+	Ahead = (Muzzle - Eye) dot AimDir;
+	if (Other != None)
+		Ahead = FMin(Ahead, ((HitLocation - Eye) dot AimDir) - Size.X - 4);
+	if (Ahead > 0 && Trace(BlockLocation, HitNormal, Eye + AimDir * Ahead, Eye, false, Size) != None)
+		Ahead = ((BlockLocation - Eye) dot AimDir) - 2;
+	Muzzle = Eye + AimDir * FMax(0, Ahead);
+	return false;
+}
+
 // End Aim stuff ----------------------------------------------------------------
 
 // Core Firing functions --------------------------------------------------------

@@ -21,9 +21,8 @@ simulated function float GetCrosshairInaccAngle()
 // Get aim then spawn projectile
 function DoFireEffect()
 {
-    local Vector StartTrace, X, Y, Z, Start, End, HitLocation, HitNormal;
+    local Vector StartTrace, X, Y, Z, Start;
     local Rotator Aim;
-	local actor Other;
 	local int i;
 
     Weapon.GetViewAxes(X,Y,Z);
@@ -39,11 +38,7 @@ function DoFireEffect()
 		Aim = GetFireAim(StartTrace);
 		Aim = Rotator(GetFireSpread() >> Aim);
 
-		End = Start + (Vector(Aim)*MaxRange());
-		Other = Trace (HitLocation, HitNormal, End, Start, true);
-
-		if (Other != None)
-			Aim = Rotator(HitLocation-StartTrace);
+		AimProjectile(Start, StartTrace, Aim);
 		SpawnProjectile(StartTrace, Aim);
 	}
 

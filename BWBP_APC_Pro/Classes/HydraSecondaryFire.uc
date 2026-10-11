@@ -80,9 +80,8 @@ simulated function ModeTick(float DeltaTime)
 
 function DoFireEffect()
 {
-    local Vector Start, X, Y, Z, End, HitLocation, HitNormal, StartTrace; //FireLocation
+    local Vector Start, X, Y, Z, StartTrace; //FireLocation
     local Rotator Aim, FireDirection;
-	local actor Other;
 	local int i;
 
 	if (SpawnCount < 2)
@@ -102,18 +101,7 @@ function DoFireEffect()
 	Aim = GetFireAim(StartTrace);
 	Aim = Rotator(GetFireSpread() >> Aim);
 	
-	//wall check
-	End = Start + (Vector(Aim) * SpawnOffset.X);
-	Other = Weapon.Trace(HitLocation, HitNormal, End, Start, false);
-	if (Other != None)
-		StartTrace = HitLocation;
-	//end wall check
-
-	End = Start + (Vector(Aim)*MaxRange());
-	Other = Trace (HitLocation, HitNormal, End, Start, true);
-
-	if (Other != None)
-		Aim = Rotator(HitLocation-StartTrace);
+	AimProjectile(Start, StartTrace, Aim);
 		
 	//multi-rocket code - based on UT2004 rocket launcher multi fire
 	for (i=1; i <= SpawnCount; i++)

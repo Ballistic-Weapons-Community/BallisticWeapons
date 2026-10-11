@@ -112,9 +112,8 @@ function DoFireEffect()
 
 function FireRockets(int RocketsToFire)
 {
-    local Vector StartTrace, X, Y, Z, Start, End, HitLocation, HitNormal;
+    local Vector StartTrace, X, Y, Z, Start;
     local Rotator Aim, R;
-	local actor Other;
 	local int i, L1, L2;
 
     Weapon.GetViewAxes(X,Y,Z);
@@ -127,11 +126,7 @@ function FireRockets(int RocketsToFire)
 
 	Aim = GetFireAim(StartTrace);
 
-	End = Start + (Vector(Aim)*MaxRange());
-	Other = Trace (HitLocation, HitNormal, End, Start, true);
-
-	if (Other != None)
-		Aim = Rotator(HitLocation-StartTrace);
+	AimProjectile(Start, StartTrace, Aim);
 
 
 	for (i=0; i<RocketsToFire && i<MRL.LoadedFrontBarrels+MRL.LoadedBackBarrels && i<BW.MagAmmo+MRL.BigMagAmmo; i++)

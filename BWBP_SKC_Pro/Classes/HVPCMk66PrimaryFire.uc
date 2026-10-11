@@ -29,10 +29,8 @@ function StopFiring()
 
 function DoFireEffect()
 {
-    local Vector StartTrace, StartProj, X, Y, Z, Start, End, HitLocation, HitNormal;
+    local Vector StartTrace, X, Y, Z, Start;
     local Rotator Aim;
-	local actor Other;
-	local actor Other2;
 
     Weapon.GetViewAxes(X,Y,Z);
     // the to-hit trace always starts right in front of the eye
@@ -42,29 +40,13 @@ function DoFireEffect()
     if ( !Weapon.WeaponCentered() )
 	    StartTrace = StartTrace + Weapon.Hand * Y*SpawnOffset.Y;
 
-    // Inserted Epic code segment.
-    // check if projectile would spawn through a wall and adjust start location accordingly
-    Other = Trace (HitLocation, HitNormal, StartTrace, Start, true);
-   if (Other != None)
-   {
-		StartProj = HitLocation;
-		Weapon.PlaySound(FailSound, SLOT_Misc, 1.3);
-   }
-
 	Aim = GetFireAim(StartTrace);
 	Aim = Rotator(GetFireSpread() >> Aim);
 
-	End = Start + (Vector(Aim)*MaxRange());
-	Other2 = Trace (HitLocation, HitNormal, End, Start, true);
-
-	if (Other == None)
-	{
-		if (Other2 != None)
-			Aim = Rotator(HitLocation-StartTrace);
-		SpawnProjectile(StartTrace, Aim);
-	}
-	else //If too close, fire at wall instead.
-		SpawnProjectile(StartProj, Aim);
+	// Too close to something: it is fired along the line of sight instead
+	if (!AimProjectile(Start, StartTrace, Aim))
+		Weapon.PlaySound(FailSound, SLOT_Misc, 1.3);
+	SpawnProjectile(StartTrace, Aim);
 		
 	if (Weapon.Role == ROLE_Authority  && class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo) != None)
 		class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(1, 1);
