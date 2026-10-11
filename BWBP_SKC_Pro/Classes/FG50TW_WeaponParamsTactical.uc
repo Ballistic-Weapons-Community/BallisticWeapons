@@ -131,7 +131,7 @@ defaultproperties
 		DisplaceDurationMult=1.25
 		MagAmmo=40
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
-		AimParams(0)=AimParams'TacticalAimParams'
+		AimParams(0)=AimParams'TacticalStandardAimParams'
     End Object 
 
 	Begin Object Class=WeaponParams Name=TacticalParams_Bipod

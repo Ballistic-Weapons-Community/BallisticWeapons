@@ -23,8 +23,12 @@ simulated function SetTargets(array<actor> Ts, array<vector> Vs)
 
 	while (Targets.length > Ts.length+Vs.length)
 	{
-		Targets[Targets.length-1].Flash.StopSound();
-		Targets[Targets.length-1].Flash.Kill();
+		// A target that was dead when it was added never got a flash
+		if (Targets[Targets.length-1].Flash != None)
+		{
+			Targets[Targets.length-1].Flash.StopSound();
+			Targets[Targets.length-1].Flash.Kill();
+		}
 		Targets.length = Targets.length - 1;
 	}
 	Targets.length = Ts.length + Vs.length;

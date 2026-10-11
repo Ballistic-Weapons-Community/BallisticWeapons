@@ -162,7 +162,7 @@ simulated state IncAmmo //Radius damage on world, adds heat
 	function DoFireEffect()
 	{
 		Super.DoFireEffect();
-		if (Level.NetMode == NM_DedicatedServer)
+		if (Level.NetMode == NM_DedicatedServer && !Instigator.IsLocallyControlled())
 			FG50Machinegun(BW).AddHeat(HeatPerShot);
 	}
 	// Does something to make the effects appear
@@ -213,7 +213,7 @@ simulated state APAmmo //No special func currently
 	function DoFireEffect()
 	{
 		Super.DoFireEffect();
-		if (Level.NetMode == NM_DedicatedServer)
+		if (Level.NetMode == NM_DedicatedServer && !Instigator.IsLocallyControlled())
 			FG50Machinegun(BW).AddHeat(HeatPerShot);
 	}
 

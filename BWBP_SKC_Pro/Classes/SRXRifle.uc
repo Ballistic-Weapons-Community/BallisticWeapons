@@ -10,6 +10,7 @@ var(SRX) sound		SilencerOffSound;		//
 var() array<Material> AmpMaterials; //We're using this for the amp
 
 var(SRX)   bool		bAmped;				// Amp installed, gun has new effects
+var(SRX)   bool		bHasAmp;			// This layout can mount the amp
 var(SRX) name		AmplifierBone;			// Bone to use for hiding amp
 var(SRX) name		AmplifierOnAnim;			//
 var(SRX) name		AmplifierOffAnim;		//
@@ -66,6 +67,8 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 	bHasIR=false;
+	// The scope layouts are not made for the amp: they have no recoil params for the two amplified modes
+	bHasAmp = WeaponParams.RecoilParams.Length > 2;
 	
 	bHasOptic=false;
 
@@ -222,6 +225,8 @@ exec simulated function ToggleAmplifier(optional byte i)
 {
 	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
+	if (!bHasAmp && !bAmped && !bSilenced)
+		return;
 
 	TemporaryScopeDown(0.5);
 
@@ -245,6 +250,9 @@ exec simulated function ToggleAmplifier(optional byte i)
 
 function ServerSwitchAmplifier(bool bNewValue)
 {
+	if (bNewValue && !bHasAmp)
+		return;
+
 	bAmped = bNewValue;
 
 	SwitchAmplifier(bAmped);
@@ -585,10 +593,14 @@ simulated event WeaponTick(float DT)
 		if (T==None)
 			HitLoc = End;
 
-		if (VSize(HitLoc-Start) > 400)
-			NVLight.SetLocation(Start + (HitLoc-Start)*0.5);
-		else
-			NVLight.SetLocation(HitLoc + HitNorm*30);
+		// The light only exists for the player using the scope, not on the server
+		if (NVLight != None)
+		{
+			if (VSize(HitLoc-Start) > 400)
+				NVLight.SetLocation(Start + (HitLoc-Start)*0.5);
+			else
+				NVLight.SetLocation(HitLoc + HitNorm*30);
+		}
 	}
 	else
 		SetNVLight(false);
@@ -764,7 +776,7 @@ simulated event DrawThermalMode (Canvas C)
 
 simulated function AdjustThermalView(bool bNewValue)
 {
-	if (AIController(Instigator.Controller) != None)
+	if (Instigator != None && AIController(Instigator.Controller) != None)
 		return;
 	if (!bNewValue)
 	{
@@ -824,7 +836,7 @@ simulated function AddHeat(float Amount)
 		WeaponModes[2].bUnavailable=true;
 		CurrentWeaponMode=0;
 		ServerSwitchWeaponMode(0);
-		if (Role == ROLE_Authority)
+		if (Role == ROLE_Authority && ThirdPersonActor != None)
 			SRXAttachment(ThirdPersonActor).SetAmped(false);
 	}
 }

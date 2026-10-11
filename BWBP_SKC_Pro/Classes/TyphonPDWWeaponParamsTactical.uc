@@ -120,7 +120,6 @@ defaultproperties
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
 		FireParams(1)=FireParams'TacticalPrimaryFireParamsCharged'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'TacticalParams'
 	

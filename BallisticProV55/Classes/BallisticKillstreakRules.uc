@@ -9,12 +9,13 @@ function ScoreKill(Controller Killer, Controller Killed)
 	local PlayerController PC;
 	local KillstreakLRI KLRI;
 	
-    if (Killer == None)
-        return;
-
-	PC = PlayerController(Killer);
-	
-	KLRI = class'Mut_Killstreak'.static.GetKLRI(Killer.PlayerReplicationInfo);
+	// No early return for a death without a killer (a fall, drowning): the killed player's streaks still
+	// have to be reset below, and the rules after this one still have to hear about it
+	if (Killer != None)
+	{
+		PC = PlayerController(Killer);
+		KLRI = class'Mut_Killstreak'.static.GetKLRI(Killer.PlayerReplicationInfo);
+	}
 		
 	if (KLRI != None && PC != None && Killer != Killed && PC.Pawn != None)
 	{

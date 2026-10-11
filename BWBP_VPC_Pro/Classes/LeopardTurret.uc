@@ -45,19 +45,23 @@ simulated function ToggleSmokers(bool bOn)
 	if(bOn && bAllowSmoke)
 	{
 		for(i=0;i < ShortSmokerCount;i++)
-			ShortSmoke[i].ActivateSmoke(true);
+			if (ShortSmoke[i] != None)
+				ShortSmoke[i].ActivateSmoke(true);
 
 		for(i=0;i < SmokerCount;i++)
-			LongSmoke[i].ActivateSmoke(true);
+			if (LongSmoke[i] != None)
+				LongSmoke[i].ActivateSmoke(true);
 	}
 
 	if(!bOn && bAllowSmoke)
 	{
 		for(i=0;i < ShortSmokerCount;i++)
-			ShortSmoke[i].ActivateSmoke(false);
+			if (ShortSmoke[i] != None)
+				ShortSmoke[i].ActivateSmoke(false);
 
 		for(i=0;i < SmokerCount;i++)
-			LongSmoke[i].ActivateSmoke(false);
+			if (LongSmoke[i] != None)
+				LongSmoke[i].ActivateSmoke(false);
 	}
 }
 
@@ -99,7 +103,8 @@ simulated function GetSmokeScale(float Size)
 
 	if(bAllowSmoke)
 		for(i=0;i < ShortSmokerCount;i++)
-			ShortSmoke[i].SmokeScale(Size);
+			if (ShortSmoke[i] != None)
+				ShortSmoke[i].SmokeScale(Size);
 }
 
 // Destroys the Smoke.

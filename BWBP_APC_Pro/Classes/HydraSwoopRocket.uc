@@ -90,6 +90,7 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
+    ModeIndex=1
     TurnRate=24576.000000
     LifeSpan=0.000000
 	MyDamageType=Class'BWBP_APC_Pro.DTHydraBazookaSwoop'

@@ -173,7 +173,9 @@ simulated function Notify_GrenLoaded()
 	PS9mAttachment(ThirdPersonActor).bGrenadier=true;
 	PS9mAttachment(ThirdPersonActor).IAOverride(True);	
 	PlaySound(GrenLoadSound, SLOT_Misc, 0.5, ,64);	
-	Ammo[1].UseAmmo (1, True);
+	// Server only: the count is replicated, and a client that also took one off counted the grenade twice
+	if (Role == ROLE_Authority)
+		Ammo[1].UseAmmo (1, True);
 }
 
 simulated function Notify_GrenReady()	{	ReloadState = RS_None; bLoaded = true;	}

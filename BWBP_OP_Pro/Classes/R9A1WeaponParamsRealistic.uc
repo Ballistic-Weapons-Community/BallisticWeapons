@@ -166,7 +166,6 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		FireParams(1)=FireParams'RealisticFreezeFireParams'
 		FireParams(2)=FireParams'RealisticHeatFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Holo
@@ -194,7 +193,6 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		FireParams(1)=FireParams'RealisticFreezeFireParams'
 		FireParams(2)=FireParams'RealisticHeatFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Irons
@@ -222,7 +220,6 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		FireParams(1)=FireParams'RealisticFreezeFireParams'
 		FireParams(2)=FireParams'RealisticHeatFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams'

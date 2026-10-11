@@ -69,7 +69,7 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		PreFireAnim="GLPrepFire"
 		FireAnim="GLFire"
-	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams_HE'
+	FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams_HE'
 	End Object
 	
 	//Smoke GL
@@ -95,7 +95,7 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		PreFireAnim="GLPrepFire"
 		FireAnim="GLFire"
-	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams_Smoke'
+	FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams_Smoke'
 	End Object
 	
 	//Sensor GL
@@ -121,7 +121,7 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		PreFireAnim="GLPrepFire"
 		FireAnim="GLFire"
-	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams_Sensor'
+	FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams_Sensor'
 	End Object
 	
 	//Scope

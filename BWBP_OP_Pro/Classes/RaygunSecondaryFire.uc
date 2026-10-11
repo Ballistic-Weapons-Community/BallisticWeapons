@@ -117,6 +117,8 @@ simulated event ModeDoFire()
 	if (HoldTime >= ChargeTime || (Level.NetMode == NM_DedicatedServer && HoldTime >= ChargeTime - 0.1))
 	{
 		super.ModeDoFire();
+		if (Weapon == None)
+			return;
 		Raygun(BW).PassDelay(FireRate);
 		Weapon.ThirdPersonActor.AmbientSound = None;
 		Weapon.AmbientSound = None;

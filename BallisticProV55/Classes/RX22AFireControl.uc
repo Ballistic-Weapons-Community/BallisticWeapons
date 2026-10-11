@@ -532,15 +532,23 @@ function MakeNewCloud (vector Loc, Pawn InstigatedBy)
 }
 function MakeNewSoaker (Actor Other, Pawn InstigatedBy)
 {
-	GasNodes[GasNodes.length] = Spawn(class'RX22AGasSoak',InstigatedBy,,Other.Location, Other.Rotation);
-	RX22AGasSoak(GasNodes[GasNodes.length-1]).GasControl = self;
-	RX22AGasSoak(GasNodes[GasNodes.length-1]).SetBase(Other);
+	local RX22AGasSoak Soak;
+
+	Soak = Spawn(class'RX22AGasSoak',InstigatedBy,,Other.Location, Other.Rotation);
+	// The spawn can fail, and an empty slot was then lit up later with no control
+	if (Soak == None)
+		return;
+	GasNodes[GasNodes.length] = Soak;
+	Soak.GasControl = self;
+	Soak.SetBase(Other);
 }
 function MakeNewBurner (Actor Other, int Fuel, Pawn InstigatedBy)
 {
 	local RX22AActorFire PF;
 
 	PF = Spawn(class'RX22AActorFire',InstigatedBy,,Other.Location, Other.Rotation);
+	if (PF == None)
+		return;
 	PF.SetFuel(Fuel);
 	PF.Initialize(Other);
 

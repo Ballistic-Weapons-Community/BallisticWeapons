@@ -389,7 +389,7 @@ simulated function Notify_CockAimed()
 
 simulated function Destroyed()
 {
-	if (GC.Clouds.Length == 0)
+	if (GC != None && GC.Clouds.Length == 0)
 		GC.Destroy();
 	Super.Destroyed();
 }

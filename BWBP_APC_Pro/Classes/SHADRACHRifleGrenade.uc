@@ -81,7 +81,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
             }
             else 
             {
-                damageScale = GetPenetrationDamageScale(dir, dist);
+                damageScale = GetPenetrationDamageScale(dir, dist, Victims);
 
                 if (damageScale < 0.01f)
                     continue;

@@ -160,7 +160,6 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicFreezeFireParams'
 		FireParams(2)=FireParams'ClassicHeatFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Holosight
@@ -189,7 +188,6 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicFreezeFireParams'
 		FireParams(2)=FireParams'ClassicHeatFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Scoped
@@ -220,7 +218,6 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicFreezeFireParams'
 		FireParams(2)=FireParams'ClassicHeatFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'

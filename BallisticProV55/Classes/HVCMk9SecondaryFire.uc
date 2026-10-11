@@ -57,7 +57,7 @@ simulated event ModeDoFire()
 	f = ChargePower;
 	FirePushbackForce = default.FirePushbackForce * f;
 	HVCMk9LightningGun(Weapon).AddHeat(1.2);
-	if (Instigator == None)
+	if (Instigator == None || Weapon == None)
 		return;
 	Instigator.SoundVolume = Weapon.default.SoundVolume;
 	Instigator.SoundPitch = Weapon.default.SoundPitch;

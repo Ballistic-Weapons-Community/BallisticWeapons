@@ -64,6 +64,20 @@ simulated function SpawnDust()
 	}
 }
 
+// The turret is not there yet when the tank has only just reached a client
+simulated function LeopardTurret GetTurret()
+{
+	if (Weapons.Length > 0)
+		return LeopardTurret(Weapons[0]);
+	return None;
+}
+
+simulated function TurretSmokers(bool bOn)
+{
+	if (GetTurret() != None)
+		GetTurret().ToggleSmokers(bOn);
+}
+
 // Activates the function that spawns the smoke and gives it the team number of the driver.
 simulated event TeamChanged()
 {
@@ -71,9 +85,9 @@ simulated event TeamChanged()
 
     Super.TeamChanged();
 
-	Turret = LeopardTurret(Weapons[0]);
+	Turret = GetTurret();
 
-	if (Level.NetMode != NM_DedicatedServer)
+	if (Level.NetMode != NM_DedicatedServer && Turret != None)
 		Turret.SpawnSmokers(Team);
 }
 
@@ -111,10 +125,12 @@ simulated function PreBeginPlay()
     	SpawnDust();
 
 	for (i=0;i<DustEmittersCount;i++)
-		Dust[i].UpdateTrackDust(false);
+		if (Dust[i] != None)
+			Dust[i].UpdateTrackDust(false);
 
     for (i=0;i<DustEmittersCount;i++)
-        Dust[i].SetDustColor(Level.DustColor);
+        if (Dust[i] != None)
+        	Dust[i].SetDustColor(Level.DustColor);
 
 	if ( Level.NetMode != NM_DedicatedServer )
 		SetupTreads();
@@ -128,7 +144,7 @@ simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
 
-	LeopardTurret(Weapons[0]).ToggleSmokers(false);
+	TurretSmokers(false);
 }
 // Destroys the Dust and activates the 'DestroyTreads' function.
 simulated function Destroyed()
@@ -232,10 +248,11 @@ simulated event DrivingStatusChanged()
     if (!bDriving)
     {
 		ToggleCount = 0;
-		LeopardTurret(Weapons[0]).ToggleSmokers(false);
+		TurretSmokers(false);
 
 		for (i=0;i<DustEmittersCount;i++)
-			Dust[i].UpdateTrackDust(false);
+			if (Dust[i] != None)
+				Dust[i].UpdateTrackDust(false);
 
         if ( LeftTreadPanner != None )
             LeftTreadPanner.PanRate = 0.0;
@@ -263,7 +280,8 @@ simulated function Tick(float DeltaTime)
 
 	CurrentVehicleSpeed = VSize(Velocity) * DeltaTime;
 
-	LeopardTurret(Weapons[0]).SetSpread(CurrentVehicleSpeed);
+	if (GetTurret() != None)
+		GetTurret().SetSpread(CurrentVehicleSpeed);
 
 	bOnGround = false;
 	for(i=0; i<KP.Repulsors.Length; i++)
@@ -306,21 +324,24 @@ simulated function Tick(float DeltaTime)
 			CurrentDustAmmount = 2.5;
 
     	for (i=0;i<DustEmittersCount;i++)
-        	Dust[i].DustScale(CurrentDustSize, CurrentDustVelocity, CurrentDustLife, CurrentDustFade, CurrentDustAmmount);
+        	if (Dust[i] != None)
+        		Dust[i].DustScale(CurrentDustSize, CurrentDustVelocity, CurrentDustLife, CurrentDustFade, CurrentDustAmmount);
 
 		for (i=0;i<DustEmittersCount;i++)
-			Dust[i].UpdateTrackDust(true);
+			if (Dust[i] != None)
+				Dust[i].UpdateTrackDust(true);
 
-        LeopardTurret(Weapons[0]).GetSmokeScale(CurrentDustSize);
+        if (GetTurret() != None)
+        	GetTurret().GetSmokeScale(CurrentDustSize);
 
 		if(ToggleCount == 2)
 			ToggleCount = 0; // Unsures that the variable loops, otherwise it would never go off.
 
 		if (ToggleCount >= 1)
-			LeopardTurret(Weapons[0]).ToggleSmokers(true); // If 1 it sets 'true'.
+			TurretSmokers(true); // If 1 it sets 'true'.
 
 		else if (ToggleCount < 1)
-			LeopardTurret(Weapons[0]).ToggleSmokers(false); // If 0 it sets 'false'.
+			TurretSmokers(false); // If 0 it sets 'false'.
 
 		if ( LeftTreadPanner != None )
 		{
@@ -414,7 +435,8 @@ simulated function DriverLeft()
 	ToggleCount = 0;
 
 	for (i=0;i<DustEmittersCount;i++)
-		Dust[i].UpdateTrackDust(false);
+		if (Dust[i] != None)
+			Dust[i].UpdateTrackDust(false);
 
     SVehicleUpdateParams();
 }

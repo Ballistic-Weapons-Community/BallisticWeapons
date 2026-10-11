@@ -21,7 +21,9 @@ replication
 simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
-	CurrentTracerMode = BallisticWeapon(Instigator.Weapon).CurrentWeaponMode;
+	// On clients the Instigator may not have arrived yet
+	if (Instigator != None && BallisticWeapon(Instigator.Weapon) != None)
+		CurrentTracerMode = BallisticWeapon(Instigator.Weapon).CurrentWeaponMode;
 }
 
 // Does all the effects for an instant-hit kind of fire.

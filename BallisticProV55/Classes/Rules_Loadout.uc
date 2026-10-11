@@ -105,7 +105,7 @@ Function ScoreKill(Controller Killer, Controller Killed)
 		if (ShotgunKills.length <= Killed.PlayerReplicationInfo.PlayerID)
 			ShotgunKills.length  = Killed.PlayerReplicationInfo.PlayerID + 1;
 		// Somehow managed to suicide while using a sniper weapons
-		if ((LastDT.default.bSpecial || Killed.Pawn.Weapon.bSniping) && ClassIsChildOf(Killed.Pawn.Weapon.Class, class<WeaponDamageType>(LastDT).default.WeaponClass))
+		if (Killed.Pawn != None && Killed.Pawn.Weapon != None && (LastDT.default.bSpecial || Killed.Pawn.Weapon.bSniping) && ClassIsChildOf(Killed.Pawn.Weapon.Class, class<WeaponDamageType>(LastDT).default.WeaponClass))
 			SniperKills[Killed.PlayerReplicationInfo.PlayerID] -= 1;
 		else
 			SniperKills[Killed.PlayerReplicationInfo.PlayerID] -= 0.2;

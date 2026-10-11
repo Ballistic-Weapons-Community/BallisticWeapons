@@ -377,7 +377,7 @@ simulated function float RateSelf()
 {
 	if (HeatLevel > 11)
 		CurrentRating = Super.RateSelf() * 0.2;
-	else if (PlayerController(Instigator.Controller) != None && Ammo[0].AmmoAmount < 1 && MagAmmo < 1)
+	else if (PlayerController(Instigator.Controller) != None && Ammo[0] != None && Ammo[0].AmmoAmount < 1 && MagAmmo < 1)
 		CurrentRating = Super.RateSelf() * 0.2;
 	else
 		return Super.RateSelf();

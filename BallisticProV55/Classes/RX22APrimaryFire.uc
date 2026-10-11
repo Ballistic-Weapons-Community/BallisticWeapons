@@ -80,7 +80,11 @@ function DoFireEffect()
 
 		NodeDist = VSize(GetFireControl().GasNodes[i].Location - (TraceStart + Dir * (DR * NodeDist)));
 		if (NodeDist < 128)
+		{
 			GetFireControl().GasNodes[i].TakeDamage(5, Instigator, GetFireControl().GasNodes[i].Location, vect(0,0,0), class'DTRX22ABurned');
+			if (Weapon == None)
+				return;
+		}
 	}
 
 	if (Other != None && (Other.bWorldGeometry || Mover(Other) != none))

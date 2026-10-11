@@ -686,7 +686,9 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 		Inventory[i].Ammo = WeaponClass.default.FireModeClass[1].default.AmmoClass.default.InitialAmount $ " / " $ Inventory[i].Ammo;
 	}
 	
-	if (!CLRI.ValidateWeapon(ClassName))
+	// The saved loadout is added before the loadout info has arrived (CLRI is found on a timer), and without it
+	// every weapon came out as not allowed
+	if (CLRI != None && !CLRI.ValidateWeapon(ClassName))
 		Inventory[i].bBad = true;
 	
 	return true;
@@ -1065,7 +1067,8 @@ function UpdateInventory()
 
 	class'ConflictLoadoutConfig'.static.UpdateSavedInventory(Inventory);
 
-	CLRI.OnInventoryUpdated();
+	if (CLRI != None)
+		CLRI.OnInventoryUpdated();
 }
 
 //=========================================================

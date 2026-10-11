@@ -136,7 +136,7 @@ state RepulsorBeamMode
 		else
 			Instigator.AmbientSound = FireSoundLoopPush;
 		
-		if (level.Netmode == NM_DedicatedServer)
+		if (level.Netmode == NM_DedicatedServer && !Instigator.IsLocallyControlled())
 			HMCBeamCannon(BW).AddHeat(HeatPerShot);
 
 		super.DoFireEffect();
@@ -229,7 +229,7 @@ function DoFireEffect()
 	else
 		Instigator.AmbientSound = FireSoundLoop;
 	
-	if (level.Netmode == NM_DedicatedServer)
+	if (level.Netmode == NM_DedicatedServer && !Instigator.IsLocallyControlled())
 		HMCBeamCannon(BW).AddHeat(HeatPerShot);
 
 	super.DoFireEffect();

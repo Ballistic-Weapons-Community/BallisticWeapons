@@ -124,6 +124,9 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 
 	super.ApplyDamage(Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 
+	if (Weapon == None)
+		return;
+
 	// lightning projectiles handle this by themselves, apparently
 	if (LightningProjectile(Target) != None)
 		return;

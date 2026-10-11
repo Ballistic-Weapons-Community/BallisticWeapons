@@ -117,7 +117,6 @@ defaultproperties
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryFireParamsCharged'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'

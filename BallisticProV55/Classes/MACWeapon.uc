@@ -387,6 +387,23 @@ function AttachToPawn(Pawn P)
 // AI Interface =====
 function byte BestMode()	{	return 0;	}
 
+// Fired from the shoulder the HAMR hurts its user. True when the next shot would kill a bot
+function bool BotRecoilKills()
+{
+	if (Instigator == None || Vehicle(Instigator) != None)
+		return false;
+	if (Instigator.Physics == PHYS_Falling)
+		return Instigator.Health <= 80;
+	return Instigator.Health <= 50;
+}
+
+function bool CanAttack(Actor Other)
+{
+	if (BotRecoilKills())
+		return false;
+	return Super.CanAttack(Other);
+}
+
 function float GetAIRating()
 {
 	local Bot B;
@@ -398,6 +415,9 @@ function float GetAIRating()
 	
 	if ( B == None )
 		return AIRating;
+
+	if (BotRecoilKills())
+		return 0;
 
 	Rating = Super.GetAIRating();
 

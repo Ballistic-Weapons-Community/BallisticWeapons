@@ -1072,6 +1072,12 @@ simulated event SetAnimAction(name NewAction)
 			else AnimAction = '';
 			return;
 		}
+		// Still here with one of these: the pawn's mesh doesn't have the animation. Don't fall through to playing the action's own name
+		if (AnimAction == 'MeleeStrike' || AnimAction == 'Shovel' || AnimAction == 'CockGun' || AnimAction == 'WeaponSpecial' || AnimAction == 'Stagger')
+		{
+			AnimAction = '';
+			return;
+		}
 		/*if (AnimAction == 'Blocking')
 		{
 			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
@@ -3261,7 +3267,9 @@ function IncrementBWDeathsWith()
 		WepGroup = 1;
 	else WepGroup = Weapon.InventoryGroup;
 	
-	BWPRI.Hitstats[WepGroup].DeathsWith++;
+	// Weapons from outside BW can be in groups the stats have no slot for
+	if (WepGroup < 10)
+		BWPRI.Hitstats[WepGroup].DeathsWith++;
 }
 	
 

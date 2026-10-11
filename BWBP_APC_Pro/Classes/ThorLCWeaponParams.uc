@@ -92,7 +92,7 @@ defaultproperties
 		SightingTime=0.20000
 		DisplaceDurationMult=1
 		MagAmmo=100
-        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        RecoilParams(0)=RecoilParams'ProtonRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'

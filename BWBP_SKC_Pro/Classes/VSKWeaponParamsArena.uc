@@ -101,7 +101,6 @@ defaultproperties
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireHeavyParams'
 		FireParams(1)=FireParams'ArenaPrimaryFireStandardParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ArenaParams'
 	

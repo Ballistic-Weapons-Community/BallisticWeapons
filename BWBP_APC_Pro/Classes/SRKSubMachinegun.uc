@@ -76,6 +76,10 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
+
+	// MagAmmo is only replicated when it changes, so the owner needs it now, as in BallisticWeapon.GiveTo
+	if (Role == ROLE_Authority)
+		ClientSetMagAmmo(MagAmmo);
 		
 	//Disable aim for weapons picked up by AI-controlled pawns
 	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
@@ -155,7 +159,9 @@ simulated function Notify_GrenLoaded()
 	SRKSmgAttachment(ThirdPersonActor).bGrenadier=true;	
 	SRKSmgAttachment(ThirdPersonActor).IAOverride(True);
 
-	Ammo[1].UseAmmo (1, True);
+	// Server only: the count is replicated, and a client that also took one off counted the grenade twice
+	if (Role == ROLE_Authority)
+		Ammo[1].UseAmmo (1, True);
 	if (Ammo[1].AmmoAmount == 0)
 	{
 		for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )

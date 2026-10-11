@@ -69,7 +69,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 		return;
 	}
 	HealVehicle = Vehicle(Other);
-	if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+	if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 	{
 		HealVehicle.HealDamage(AdjustedDamage, InstigatorController, myDamageType);
 		return;
@@ -136,7 +136,7 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 	local int AdjustedDamage;
 
 	HealVehicle = Vehicle(Wall);
-	if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+	if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 	{
 		AdjustedDamage = default.Damage * Instigator.DamageScaling * MyDamageType.default.VehicleDamageScaling;
 		if (Instigator.HasUDamage())
@@ -248,7 +248,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 			
 			if 
             (
-                BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victims != Instigator && Victims.bProjTarget && 
+                BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victims != None && Victims != Instigator && Victims.bProjTarget &&
                 xPawn(Victims) != None && (Pawn(Victims).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255)
             )
 				BallisticPawn(Instigator).GiveAttributedHealth(damageScale * DamageAmount * 0.6f, Instigator.SuperHealthMax, Instigator, True);

@@ -39,7 +39,7 @@ const ChargeInterval = 0.5;
 replication
 {
 	reliable if (Role < ROLE_Authority)
-		ServerSwitchSilencer;
+		ServerSwitchSilencer, ServerSwitchScopeType;
 }
 
 simulated function PostNetBeginPlay()

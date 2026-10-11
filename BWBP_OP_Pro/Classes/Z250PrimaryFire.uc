@@ -330,7 +330,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
 {
 	super.SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
-	if (level.NetMode != NM_StandAlone)
+	if (level.NetMode != NM_StandAlone && Weapon != None && Weapon.ThirdPersonActor != None)
 		Z250Attachment(Weapon.ThirdPersonActor).UpdateTurnVelocity(TurnVelocity);
 }
 
@@ -361,6 +361,9 @@ function DoFireEffect()
 		Aim += ExtraAim;
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
+		// The explosive rounds can kill the shooter, which destroys the weapon
+		if (BW == None)
+			return;
 		ApplyRecoil();
 		if (i == 1)
 			MuzzleBTime = Level.TimeSeconds + ExtraTime;

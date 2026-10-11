@@ -586,7 +586,11 @@ simulated function DoWaterTrace(int Mode, vector Start, vector End)
 	Other = Trace (HitLoc, HitNorm, End, Start, true);
 	bTraceWater=false;
 	if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume && VSize(HitLoc - Start) > 1) )
-		ModeInfos[Mode].ImpactManager.static.StartSpawn(HitLoc, Normal(Start - HitLoc), 9, Instigator);
+	{
+		// Not every fire mode has an impact manager
+		if (ModeInfos[Mode].ImpactManager != None)
+			ModeInfos[Mode].ImpactManager.static.StartSpawn(HitLoc, Normal(Start - HitLoc), 9, Instigator);
+	}
 	else
 		WaterHitLocation = vect(0,0,0);
 }

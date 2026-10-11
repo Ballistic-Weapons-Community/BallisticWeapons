@@ -152,7 +152,9 @@ simulated state Projectile
 	function SpawnProjectile (Vector Start, Rotator Dir)
 	{
 		Proj = Spawn (ProjectileClass,,, Start, Dir);
-		Proj.Instigator = Instigator;
+		// no projectile when the muzzle is inside something
+		if (Proj != None)
+			Proj.Instigator = Instigator;
 	}
 }
 

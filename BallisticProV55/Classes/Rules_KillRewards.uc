@@ -44,7 +44,7 @@ function ScoreKill(Controller Killer, Controller Killed)
 		ArmorStrength = Min(class'BallisticReplicationInfo'.default.ShieldKillReward, RewardShieldMax - KillerPawn.ShieldStrength);
 
 		if (ArmorStrength > 0)
-			xPawn(Killer.Pawn).AddShieldStrength(ArmorStrength);
+			KillerPawn.AddShieldStrength(ArmorStrength);
 	}
 }
 

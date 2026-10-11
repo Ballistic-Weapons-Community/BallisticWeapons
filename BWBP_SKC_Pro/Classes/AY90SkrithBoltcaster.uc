@@ -326,7 +326,7 @@ simulated function SetGlowSize(float SizeX,float SizeY,float SizeZ)
 
 simulated function float RateSelf()
 {
-	if (PlayerController(Instigator.Controller) != None && Ammo[0].AmmoAmount < 1 && MagAmmo < 1)
+	if (PlayerController(Instigator.Controller) != None && Ammo[0] != None && Ammo[0].AmmoAmount < 1 && MagAmmo < 1)
 		CurrentRating = Super.RateSelf() * 0.2;
 	else
 		return Super.RateSelf();

@@ -249,6 +249,7 @@ defaultproperties
 	Damage=0.000000
 	DamageRadius=250.000000
 	MyDamageType=Class'BWBP_OP_Pro.DTAmmoPack'
+	MyRadiusDamageType=Class'BWBP_OP_Pro.DTAmmoPack'
 	ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
 	StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.AmmoPackHi'
 	DrawScale=0.350000

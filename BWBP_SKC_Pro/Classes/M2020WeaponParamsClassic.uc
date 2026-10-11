@@ -252,7 +252,6 @@ defaultproperties
 		FireParams(1)=FireParams'ClassicPrimaryFireParamsPower'
 		FireParams(2)=FireParams'ClassicPrimaryFireParamsOffline'
 		FireParams(3)=FireParams'ClassicPrimaryFireParamsOffline'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Holo
@@ -283,7 +282,6 @@ defaultproperties
 		FireParams(1)=FireParams'ClassicPrimaryFireParamsPower'
 		FireParams(2)=FireParams'ClassicPrimaryFireParamsOffline'
 		FireParams(3)=FireParams'ClassicPrimaryFireParamsOffline'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Supp
@@ -316,7 +314,6 @@ defaultproperties
 		FireParams(1)=FireParams'ClassicPrimaryFireParams_Supp'
 		FireParams(2)=FireParams'ClassicPrimaryFireParamsOffline_Supp'
 		FireParams(3)=FireParams'ClassicPrimaryFireParamsOffline_Supp'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'

@@ -436,7 +436,7 @@ state NovaLightning
 			}
 
 			HealVehicle = Vehicle(Target);
-			if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+			if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 			{
 				AdjustedDamage = Damage * Instigator.DamageScaling * 15;
 				if (Instigator.HasUDamage())

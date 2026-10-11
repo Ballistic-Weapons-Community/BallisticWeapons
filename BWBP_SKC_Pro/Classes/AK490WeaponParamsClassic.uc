@@ -197,7 +197,6 @@ defaultproperties
 		InitialWeaponMode=2
 		ViewOffset=(X=6.000000,Y=5.000000,Z=-4.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
@@ -226,7 +225,6 @@ defaultproperties
 		InitialWeaponMode=2
 		ViewOffset=(X=6.000000,Y=5.000000,Z=-4.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Suppressed'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
@@ -257,7 +255,6 @@ defaultproperties
 		InitialWeaponMode=2
 		ViewOffset=(X=6.000000,Y=5.000000,Z=-4.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_HeavyBarrel'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'

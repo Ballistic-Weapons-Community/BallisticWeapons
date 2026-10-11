@@ -78,6 +78,8 @@ function DoFireEffect()
 		SpawnOffset.X = 28;
 		SpawnOffset.Z = 0;
 		super.DoFireEffect();
+		if (BW == None)
+			return;
 		if (BW.bScopeView && class'BallisticReplicationInfo'.static.IsArena())
 			return;
 		if (Instigator != None)

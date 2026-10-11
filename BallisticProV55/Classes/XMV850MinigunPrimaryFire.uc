@@ -235,6 +235,8 @@ function DoFireEffect()
 		Aim += ExtraAim;
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
+		if (BW == None)
+			return;
 		ApplyRecoil();
 		if (i == 1)
 			MuzzleBTime = Level.TimeSeconds + ExtraTime;

@@ -143,6 +143,10 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
+
+	// MagAmmo is only replicated when it changes, so the owner needs it now, as in BallisticWeapon.GiveTo
+	if (Role == ROLE_Authority)
+		ClientSetMagAmmo(MagAmmo);
 		
 	//Disable aim for weapons picked up by AI-controlled pawns
 	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
@@ -510,7 +514,7 @@ simulated function Destroyed()
 		GlowFX.Destroy();
 	if (Spiral != None)
 		Spiral.Destroy();
-	if (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == VentingSound || Instigator.AmbientSound == WarningSound)
+	if (Instigator != None && (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == VentingSound || Instigator.AmbientSound == WarningSound))
 	{
 		Instigator.AmbientSound = None;
 		Instigator.SoundVolume = Instigator.default.SoundVolume;

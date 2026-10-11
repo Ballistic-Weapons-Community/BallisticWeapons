@@ -59,7 +59,7 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	}
 
 	HealVehicle = Vehicle(Other);
-	if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+	if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 	{
 		HealVehicle.HealDamage(AdjustedRepair, Instigator.Controller, HitDT);	// XAVEDIT
 		return;

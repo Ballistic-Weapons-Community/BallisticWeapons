@@ -162,7 +162,9 @@ function DoFireEffect()
 	// Do damage for each victim
 	for (i=0; i<SwipeHits.length; i++)
 	{
-		OnTraceHit(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0, 0);
+		// A victim can be gone by now, destroyed by one of the hits before it
+		if (SwipeHits[i].Victim != None)
+			OnTraceHit(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0, 0);
 		SwipeHits[i].Victim = None;
 	}
 
