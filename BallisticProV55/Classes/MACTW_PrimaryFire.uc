@@ -2,9 +2,8 @@ class MACTW_PrimaryFire extends MACPrimaryFire;
 
 simulated function LaunchBeacon(optional byte i)
 {
-    local Vector StartTrace, X, Y, Z, Start, End, HitLocation, HitNormal;
+    local Vector StartTrace, X, Y, Z, Start;
     local Rotator Aim;
-	local actor Other;
 
     Weapon.GetViewAxes(X,Y,Z);
 
@@ -17,20 +16,15 @@ simulated function LaunchBeacon(optional byte i)
 	Aim = GetFireAim(StartTrace);
 	Aim = Rotator(GetFireSpread() >> Aim);
 
-	End = Start + (Vector(Aim)*MaxRange());
-	Other = Trace (HitLocation, HitNormal, End, Start, true);
-
-	if (Other != None)
-		Aim = Rotator(HitLocation-StartTrace);
+	AimProjectile(Start, StartTrace, Aim);
 //	MacWeapon(Weapon).AddBeacon(Spawn(class'MACBeacon_Heavy', Weapon, , StartTrace, Aim), StartTrace, Aim);
 	Spawn(class'MACBeacon_Heavy', Weapon, , StartTrace, Aim);
 }
 
 simulated function TurretLaunchBeacon()
 {
-    local Vector StartTrace, X, Y, Z, Start, End, HitLocation, HitNormal;
+    local Vector StartTrace, X, Y, Z, Start;
     local Rotator Aim;
-	local actor Other;
 
     Weapon.GetViewAxes(X,Y,Z);
 
@@ -43,11 +37,7 @@ simulated function TurretLaunchBeacon()
 	Aim = GetFireAim(StartTrace);
 	Aim = Rotator(GetFireSpread() >> Aim);
 
-	End = Start + (Vector(Aim)*MaxRange());
-	Other = Trace (HitLocation, HitNormal, End, Start, true);
-
-	if (Other != None)
-		Aim = Rotator(HitLocation-StartTrace);
+	AimProjectile(Start, StartTrace, Aim);
 
 	Spawn(class'MACBeacon_Heavy', Weapon, , StartTrace, Aim);
 }

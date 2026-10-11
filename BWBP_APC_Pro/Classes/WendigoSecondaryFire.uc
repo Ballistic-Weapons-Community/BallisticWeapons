@@ -10,10 +10,8 @@ class WendigoSecondaryFire extends BallisticProProjectileFire;
 
 function DoFireEffect()
 {
-    local Vector StartTrace, StartProj, X, Y, Z, Start, End, HitLocation, HitNormal;
+    local Vector StartTrace, X, Y, Z, Start;
     local Rotator Aim;
-	local actor Other;
-	local actor Other2;
 
     Weapon.GetViewAxes(X,Y,Z);
 	
@@ -24,27 +22,12 @@ function DoFireEffect()
     if ( !Weapon.WeaponCentered() )
 	    StartTrace = StartTrace + Weapon.Hand * Y*SpawnOffset.Y;
 
-    // Inserted Epic code segment.
-    // check if projectile would spawn through a wall and adjust start location accordingly
-    Other = Trace (HitLocation, HitNormal, StartTrace, Start, true);
-	
-	if (Other != None)
-       StartProj = HitLocation;
-
 	Aim = GetFireAim(StartTrace);
 	Aim = Rotator(GetFireSpread() >> Aim);
 
-	End = Start + (Vector(Aim)*MaxRange());
-	Other2 = Trace (HitLocation, HitNormal, End, Start, true);
-
-	if (Other == None)
-	{
-		if (Other2 != None)
-			Aim = Rotator(HitLocation-StartTrace);
-		SpawnProjectile(StartTrace, Aim);
-	}
-	else //If too close, fire at wall instead.
-		SpawnProjectile(StartProj, Aim);
+	// Too close to something: it is fired along the line of sight instead
+	AimProjectile(Start, StartTrace, Aim);
+	SpawnProjectile(StartTrace, Aim);
 
 
 	SendFireEffect(none, vect(0,0,0), StartTrace, 0);

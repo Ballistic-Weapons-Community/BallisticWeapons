@@ -80,9 +80,8 @@ simulated state Projectile
 	// Azarael edit: Wall code
 	function DoFireEffect()
 	{
-		local Vector Start, X, Y, Z, End, HitLocation, HitNormal, StartTrace;
+		local Vector Start, X, Y, Z, StartTrace;
 		local Rotator Aim;
-		local actor Other;
 
 		Weapon.GetViewAxes(X,Y,Z);
 		// the to-hit trace always starts right in front of the eye
@@ -95,18 +94,7 @@ simulated state Projectile
 		Aim = GetFireAim(StartTrace);
 		Aim = Rotator(GetFireSpread() >> Aim);
 		
-		//wall check
-		End = Start + (Vector(Aim) * SpawnOffset.X);
-		Other = Weapon.Trace(HitLocation, HitNormal, End, Start, false);
-		if (Other != None)
-			StartTrace = HitLocation;
-		//end wall check
-
-		End = Start + (Vector(Aim)*MaxRange());
-		Other = Trace (HitLocation, HitNormal, End, Start, true);
-
-		if (Other != None)
-			Aim = Rotator(HitLocation-StartTrace);
+		AimProjectile(Start, StartTrace, Aim);
 		SpawnProjectile(StartTrace, Aim);
 
 		SendFireEffect(none, vect(0,0,0), StartTrace, 0);

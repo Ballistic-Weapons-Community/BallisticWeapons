@@ -291,9 +291,8 @@ simulated function vector GetFireSpread()
 // Get aim then spawn projectile
 function DoFireEffect()
 {
-    local Vector StartTrace, X, Y, Z, Start, End, HitLocation, HitNormal, V;
+    local Vector StartTrace, X, Y, Z, Start, V;
     local Rotator Aim;
-	local actor Other;
 	local int i, ProjSpread;
 	local float ProjAngle;
 	
@@ -320,11 +319,7 @@ function DoFireEffect()
 		
 		Aim = Rotator(V >> Aim);
 
-		End = Start + (Vector(Aim)*MaxRange());
-		Other = Trace (HitLocation, HitNormal, End, Start, true);
-
-		if (Other != None)
-			Aim = Rotator(HitLocation-StartTrace);
+		AimProjectile(Start, StartTrace, Aim);
 
 		SpawnProjectile(StartTrace, Aim);
 	}

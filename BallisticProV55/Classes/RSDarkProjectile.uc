@@ -348,6 +348,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
+     bTearOffFromStart=True
     WeaponClass=Class'BallisticProV55.RSDarkStar'
 	AccelSpeed=100000.000000
 	AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire1FlyBy'

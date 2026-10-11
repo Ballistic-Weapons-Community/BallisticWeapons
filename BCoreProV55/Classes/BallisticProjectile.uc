@@ -40,6 +40,10 @@ var     bool					bExploded;				// Already Blown up. Used by troublesome rocekts 
 var     bool					bTouchDealtWith;		// ProcessTouch has hurt what was touched. See Touch
 var     Vector                  TearOffHitNormal;
 var		bool					bApplyParams;			// Apply params to this projectile (allows separation for projectiles such as flak classes)
+var     float					SpawnTime;				// When the server made it. See RelayUnseenImpact
+var     bool					bImpactRelayed;			// The clients have been sent its impact by itself
+var     vector					NetStart;				// Where the server made it. A client that is sent it in that same frame starts its copy there (StartAtNetStart)
+var     float					NetStartLag;			// How many seconds behind the server's this machine's copy is for having started there
 //=============================================================================
 // END STATE VARIABLES
 //=============================================================================
@@ -68,6 +72,7 @@ var() byte                      LayoutIndex;            // For parameter indexin
 var() byte                      CurrentWeaponMode;      // For parameter indexing - fire mode index of firing weapon
 var() bool						bOverrideMode;			// Params are coming from a source other than CurrentWeaponMode
 var() bool					    bCheckHitSurface;		// Check impact surfacetype on explode for surface dependant ImpactManagers
+var() int					    FixedImpactSurf;		// The surface type this class's own Explode always hands the ImpactManager (to pick one of its effects), -1 if it has none. See RelayUnseenImpact
 var() bool					    bPenetrate;				// Will go through enemies
 
 // this property (StartDelay) and its associated handling should be abolished.
@@ -82,6 +87,7 @@ var() float					    StartDelay;				// Used to delay projectile's entry into the 
 
 
 var() bool					    bTearOnExplode;			// If not NetTemporary, tear this projectile off when it explodes
+var() bool					    bTearOffFromStart;		// Not NetTemporary, but all a client hears of it after the first send is the tear off: its copy may start where the server made it (StartAtNetStart)
 var() float					    NetTrappedDelay;		// How long to remain in nettrapped state before being destroyed
 //-----------------------------------------------------------------------------
 // Damage
@@ -158,6 +164,8 @@ replication
         LayoutIndex, CurrentWeaponMode;
     reliable if (bNetInitial && Role == ROLE_Authority && bNetInitialRotation)
         NetInitialRotation;
+    reliable if (bNetInitial && Role == ROLE_Authority && SpawnTime == Level.TimeSeconds)
+        NetStart;
 	reliable if (bTearOff && Role == ROLE_Authority)
 		TearOffHitNormal;
 }
@@ -188,6 +196,9 @@ simulated function PostBeginPlay()
 
     if (Level.NetMode == NM_Client)
         return;
+
+    SpawnTime = Level.TimeSeconds;
+    NetStart = Location;
 
     // bind replicated parameters for indexing on client
     if (Instigator != None && BallisticWeapon(Instigator.Weapon) != None)
@@ -228,6 +239,7 @@ simulated function PostNetBeginPlay()
 
         InitParams();
         SetInitialSpeed();
+        StartAtNetStart();
     }
 
 	if (StartDelay > 0)
@@ -273,6 +285,59 @@ simulated function PostNetBeginPlay()
 			LightType = LT_None;
 		}
 	}
+}
+
+//===================================================================
+// StartAtNetStart
+//
+// A server moves a new projectile through its first tick before any
+// client is sent it, so a client first saw it one server tick's flight
+// down range: 150 units and more from the eye for an A73 bolt on a
+// server at 60 ticks, 640 at 20, where offline it leaves the muzzle.
+// A client that is sent a projectile in the frame it was made in is
+// told where that was (NetStart) and starts its copy from there.
+//
+// The copy then runs one server tick behind the real one, which is how
+// late the first sight of it always was. Where it hits and what it
+// does there are this machine's own doing, as before.
+//
+// For a projectile the server leaves to the clients once it is sent
+// (bNetTemporary), and for one that says all it hears of afterwards is
+// being torn off when it blows up (bTearOffFromStart): that copy makes
+// up the tick it is behind before it goes off (TornOff). Anything the
+// server goes on correcting or steering has to be where the server's
+// is.
+//===================================================================
+simulated function StartAtNetStart()
+{
+	local PlayerController PC;
+	local vector Start, Dir, HitLoc, HitNorm;
+	local float Dist, Ahead;
+
+	if (NetStart == vect(0,0,0) || StartDelay > 0 || (Physics != PHYS_Projectile && Physics != PHYS_Falling))
+		return;
+	if (!bNetTemporary && (!bTearOffFromStart || !bTearOnExplode || bUpdateSimulatedPosition))
+		return;
+	Dist = VSize(Location - NetStart);
+	// not worth it, or not a tick's flight: something has moved it
+	if (Dist < 16 || Dist > FMax(VSize(Velocity), Speed) * 0.25)
+		return;
+	Dir = (Location - NetStart) / Dist;
+	Start = NetStart;
+	// For the one who fired it, not from behind his eye: he has moved on since the shot
+	PC = Level.GetLocalPlayerController();
+	if (PC != None && Instigator != None && Instigator.Controller == PC)
+	{
+		Ahead = (Start - (Instigator.Location + Instigator.EyePosition())) dot Dir;
+		if (Ahead < 16)
+			Start += Dir * FMin(16 - Ahead, Dist);
+	}
+	// the way from there has to be as open on this machine as it was on the server
+	if (Start == Location || Trace(HitLoc, HitNorm, Location, Start, false) != None)
+		return;
+	Dist = VSize(Location - Start);
+	if (SetLocation(Start))
+		NetStartLag = Dist / FMax(VSize(Velocity), 1.0);
 }
 
 //===================================================================
@@ -421,6 +486,18 @@ simulated function InitEffects ()
 //===================================================================
 simulated event TornOff()
 {
+	local vector End, HitLoc, HitNorm;
+
+	// A copy that started where the server made it is a tick behind the one that has just blown up: it goes the
+	// rest of the way first, as far as there is anything in its way
+	if (NetStartLag > 0 && Velocity != vect(0,0,0))
+	{
+		End = Location + Velocity * NetStartLag;
+		if (Trace(HitLoc, HitNorm, End, Location, false) != None)
+			End = HitLoc + HitNorm;
+		SetLocation(End);
+	}
+	NetStartLag = 0;
 	Explode(Location, TearOffHitNormal);
 }
 
@@ -531,7 +608,94 @@ simulated function Destroyed()
 		else
 			Trail.Destroy();
 	}
+	if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer)
+		RelayUnseenImpact();
 	Super.Destroyed();
+}
+
+// A server moves a new projectile in the same frame it is fired in, and sends it to the clients only at the end of that
+// frame. One that has hit something by then (a wall or a player right in front of the gun) is gone before any client
+// was told of it, and they saw and heard no hit at all. One that stays with the server and is torn off when it blows
+// up fares no better: a torn off actor is never sent to a client that does not have it yet. The clients are sent the
+// impact by itself in both cases.
+// This is done from Destroyed and HideProjectile and not from Explode, because many projectiles have an Explode and a
+// HitWall of their own
+function RelayUnseenImpact()
+{
+	local Actor A, Stopper;
+	local vector HitLoc, HitNorm, Dir, Start, End, TraceLoc, TraceNorm, RestLoc, RestNorm;
+	local Material HitMat;
+	local int Surf;
+
+	if (bImpactRelayed || ImpactManager == None || SpawnTime != Level.TimeSeconds || (!bNetTemporary && !bTearOff)
+		|| (Level.NetMode != NM_DedicatedServer && Level.NetMode != NM_ListenServer))
+		return;
+
+	HitLoc = Location;
+	if (LastTouched != None)
+		HitNorm = vect(0,0,1);		// against an actor: the same as ProcessTouch tells Explode
+	else
+	{
+		if (bTearOff)
+		{
+			// Explode has stopped it and left the normal of what it hit
+			HitNorm = TearOffHitNormal;
+			if (HitNorm == vect(0,0,0))
+				HitNorm = vect(0,0,1);
+			Dir = -HitNorm;
+		}
+		else
+		{
+			Dir = Normal(Velocity);
+			if (Dir == vect(0,0,0))
+				Dir = vector(Rotation);
+		}
+		Start = Location - Dir * 12;
+		End = Location + Dir * (FMax(CollisionRadius, CollisionHeight) + 12);
+		A = Trace(TraceLoc, TraceNorm, End, Start, false,, HitMat);
+		if (A == None && !bTearOff && (CollisionRadius > 0 || CollisionHeight > 0))
+		{
+			// It has some size and came in at a flat angle: what it hit lies beside its path. The sweep that stopped
+			// it finds that again, and a line straight at it finds the place and the material
+			A = Trace(TraceLoc, TraceNorm, End, Start, false, GetCollisionExtent());
+			if (A != None)
+			{
+				Stopper = A;
+				RestNorm = TraceNorm;
+				RestLoc = TraceLoc - TraceNorm * ((Abs(TraceNorm.X) + Abs(TraceNorm.Y)) * CollisionRadius + Abs(TraceNorm.Z) * CollisionHeight);
+				Start = TraceLoc;
+				End = TraceLoc - TraceNorm * (FMax(CollisionRadius, CollisionHeight) + 8);
+				A = Trace(TraceLoc, TraceNorm, End, Start, false,, HitMat);
+				// What stopped it need not stop a line: a blocking volume, or the hull of a mesh that stands off the
+				// mesh's surface. The impact is then where the projectile itself came to rest, as it is offline
+				if (A == None)
+				{
+					A = Stopper;
+					TraceLoc = RestLoc;
+					TraceNorm = RestNorm;
+				}
+			}
+		}
+		if (A != None)
+		{
+			HitLoc = TraceLoc;
+			HitNorm = TraceNorm;
+			if (bCheckHitSurface)
+			{
+				if (HitMat == None)
+					Surf = int(A.SurfaceType);
+				else
+					Surf = int(HitMat.SurfaceType);
+			}
+		}
+		// nothing there: it did not end on a wall
+		else if (!bTearOff)
+			return;
+	}
+	if (FixedImpactSurf >= 0)
+		Surf = FixedImpactSurf;
+	bImpactRelayed = true;
+	class'BallisticImpactRelay'.static.Send(self, ImpactManager, HitLoc, HitNorm, Surf);
 }
 
 simulated function ShakeView(vector HitLocation)
@@ -638,6 +802,9 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 function HideProjectile()
 {
+	// Torn off in the frame it was fired in: no client has it, and none will be sent it now
+	RelayUnseenImpact();
+
     // Log("HideProjectile");
 
 	SetPhysics(PHYS_None);
@@ -1279,6 +1446,7 @@ defaultproperties
     RadiusFallOffType=RFO_Quadratic
     bRandomStartRotation=True
     bTearOnExplode=True
+    FixedImpactSurf=-1
     NetTrappedDelay=0.150000
 
 	// backup values in case of failure to assign

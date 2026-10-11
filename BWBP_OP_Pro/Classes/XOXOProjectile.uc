@@ -154,6 +154,7 @@ defaultproperties
 {
     WeaponClass=Class'BWBP_OP_Pro.XOXOStaff'
      ImpactManager=Class'BWBP_OP_Pro.IM_XOXO'
+     FixedImpactSurf=1
      PenetrateManager=Class'BWBP_OP_Pro.IM_XOXO'
      bRandomStartRotation=False
      AccelSpeed=100000.000000

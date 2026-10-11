@@ -133,6 +133,7 @@ defaultproperties
 {
     WeaponClass=Class'BallisticProV55.A500Reptile'
     ImpactManager=Class'BallisticProV55.IM_A500Projectile'
+    FixedImpactSurf=1
     bRandomStartRotation=False
     TrailClass=Class'BallisticProV55.A500ProjectileTrail'
     MyRadiusDamageType=Class'BallisticProV55.DTA500Blast'
