@@ -68,6 +68,7 @@ var() globalconfig int		RoundLimit;				//Number of rounds to be played before ma
 var() localized string	DisplayText[12];
 var() localized string	DescriptionText[12];
 var() vector			StaticSpawnOffsets[25];
+var array<vector>		RefusedLocs;		// Places where Spawn would not put a pawn although nobody stood there
 
 struct SafeSpawnPoints
 {
@@ -465,6 +466,42 @@ function SortPlayerStarts ()
     }
 }
 
+// Whether somebody stands where this player's pawn would be put. The slice that SpawnLocQuality sweeps does not
+// tell: it starts inside a pawn that stands on the place itself once the ground has lifted him a little, and it
+// ends above the head of one who stands a little lower. A place that Spawn has refused with nobody there counts too.
+function bool PlaceTaken (Controller P, vector Loc)
+{
+	local Pawn Q;
+	local float Radius, Height;
+	local int i;
+
+	for (i=0;i<RefusedLocs.length;i++)
+		if (VSize(RefusedLocs[i] - Loc) < 4)
+			return true;
+
+	Radius = 25;
+	Height = 44;
+	if (P != None && P.PawnClass != None)
+	{
+		Radius = P.PawnClass.default.CollisionRadius;
+		Height = P.PawnClass.default.CollisionHeight;
+	}
+	// with some room up and down: a pawn is moved to where it fits when it is made
+	foreach CollidingActors(class'Pawn', Q, 2 * Height + 64, Loc)
+		if (Q.bBlockActors && Abs(Q.Location.Z - Loc.Z) < Q.CollisionHeight + Height + 16
+			&& VSize((Q.Location - Loc) * vect(1,1,0)) < Q.CollisionRadius + Radius + 4)
+			return true;
+	return false;
+}
+
+// Spawn has refused this place. With nobody standing there it is the ground that the pawn does not fit, which
+// SpawnLocQuality's slice does not tell either: the place is not offered again on this map.
+function NoteRefusedPlace (Controller P, vector Loc)
+{
+	if (RefusedLocs.length < 256 && !PlaceTaken(P, Loc))
+		RefusedLocs[RefusedLocs.length] = Loc;
+}
+
 // 0: Good location
 // 1: Touching safe? physics volume
 // 2: Touching water
@@ -472,9 +509,13 @@ function SortPlayerStarts ()
 // 4: Not close to ground
 // 5: Touching destructive physics volume
 // 6: Touching other actor or world
+// 7: Somebody stands there, or Spawn has refused the place before
 function byte SpawnLocQuality (Controller P, vector Loc, out vector HitLoc, out vector HitNorm)
 {
 	local Actor T;
+
+	if (PlaceTaken(P, Loc))
+		return 7;
 
 	// First check the player's extent around the location
 	bTraceWater=true;
@@ -538,9 +579,9 @@ function vector GetStartLocation(Controller P, NavigationPoint StartSpot)
 			k = Rand(SafeSpawns[i].StartLocs.length);
 			for (j=0;j<SafeSpawns[i].StartLocs.length;j++)
 			{
-				T = Trace(HitLoc, HitNorm, SafeSpawns[i].StartLocs[j]-vect(0,0,20), SafeSpawns[i].StartLocs[j]+vect(0,0,50), true, vect(20,20,0));
-				if (T == None || T.bWorldGeometry)
-					Return SafeSpawns[i].StartLocs[j];
+				T = Trace(HitLoc, HitNorm, SafeSpawns[i].StartLocs[k]-vect(0,0,20), SafeSpawns[i].StartLocs[k]+vect(0,0,50), true, vect(20,20,0));
+				if ((T == None || T.bWorldGeometry) && !PlaceTaken(P, SafeSpawns[i].StartLocs[k]))
+					Return SafeSpawns[i].StartLocs[k];
 				k = class'BUtil'.static.Loop(k, 1, SafeSpawns[i].StartLocs.length-1, 0);
 			}
 		}
@@ -706,6 +747,15 @@ function RestartPlayer( Controller aPlayer )
     if ( aPlayer.PawnClass != None )
         aPlayer.Pawn = Spawn(aPlayer.PawnClass,,,StartLocation,StartSpot.Rotation);
 
+    // GetStartLocation rates a place by a thin slice of it, so now and then the pawn does not fit after all:
+    // a few other places are asked for before the round starts without this player
+    for (i = 0; i < 4 && aPlayer.Pawn == None && aPlayer.PawnClass != None; i++)
+    {
+        NoteRefusedPlace(aPlayer, StartLocation);
+        StartLocation = GetStartLocation(aPlayer, StartSpot);
+        aPlayer.Pawn = Spawn(aPlayer.PawnClass,,,StartLocation,StartSpot.Rotation);
+    }
+
     if( aPlayer.Pawn==None )
     {
         DefaultPlayerClass = GetDefaultPlayerClass(aPlayer);
@@ -713,6 +763,7 @@ function RestartPlayer( Controller aPlayer )
     }
     if ( aPlayer.Pawn == None )
     {
+        NoteRefusedPlace(aPlayer, StartLocation);
         log("Couldn't spawn player '"$aPlayer.GetHumanReadableName()$"' of type "$aPlayer.PawnClass$" at "$StartSpot);
         aPlayer.GotoState('Dead');
         if ( PlayerController(aPlayer) != None )
