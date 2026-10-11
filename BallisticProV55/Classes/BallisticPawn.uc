@@ -1399,6 +1399,21 @@ function MessageAttributedHealBlock(Pawn Healer)
 	}
 }
 
+// The blood set is found through the PlayerReplicationInfo's character. A pawn that this machine first met as
+// the driver of a vehicle is set up through the vehicle's and had none of its own then: asked again when the
+// set is needed, and given the standard choice when it has none by now either (a body).
+simulated function bool HasBloodSet()
+{
+	local int Weight;
+
+	if (BloodSet != None)
+		return true;
+	BloodSet = class'BWBloodSetHunter'.static.GetBloodSetFor(self);
+	if (BloodSet == None)
+		BloodSet = class'BWBloodSetHunter'.static.PickBloodSet(self, Weight);
+	return BloodSet != None;
+}
+
 simulated event PhysicsVolumeChange( PhysicsVolume NewVolume )
 {
     Super.PhysicsVolumeChange(NewVolume);
@@ -1407,7 +1422,7 @@ simulated event PhysicsVolumeChange( PhysicsVolume NewVolume )
 	{
 		if (BloodPool != None)	{	BloodPool.StopExpanding ();	BloodPool = None;}
 		bBloodPoolSpawned=false;
-		if (class'BWBloodControl'.default.bUseBloodPools && bBleedingCorpse && WaterBlood == None)
+		if (class'BWBloodControl'.default.bUseBloodPools && bBleedingCorpse && WaterBlood == None && HasBloodSet())
 		{
 			WaterBlood = Spawn(BloodSet.default.WaterBloodClass,self,, Location, Rotation);
 			WaterBlood.SetBase(self);
@@ -1435,7 +1450,7 @@ simulated event KImpact(actor other, vector pos, vector impactVel, vector impact
 			return;
 
 		Speed = VSize(ImpactVel);
-		if (Speed < LowImpactVelocity)
+		if (Speed < LowImpactVelocity || !HasBloodSet())
 			return;
 
 		LastImpactTime = level.TimeSeconds;
@@ -1529,7 +1544,7 @@ simulated function TickGore(float DT)
 		if (LastDragLocation == vect(0,0,0))
 			LastDragLocation = Location;
 		else if (class'BWBloodControl'.default.bUseBloodDrags && !class'GameInfo'.static.UseLowGore() && bBleedingCorpse && (!FastTrace(Location - vect(0,0,30), Location)) &&
-			level.DetailMode > DM_Low && BloodSet.default.DragDecal != None)
+			level.DetailMode > DM_Low && HasBloodSet() && BloodSet.default.DragDecal != None)
 		{
 			R = Rotator(Location - LastDragLocation);
 			R.Pitch = -16384;
@@ -1539,7 +1554,7 @@ simulated function TickGore(float DT)
 		CorpseRestTime = 0;
 	}
 	// Spawn blood pools
-	else if (class'BWBloodControl'.default.bUseBloodPools && bBleedingCorpse && BloodSet.default.BloodPool != None && !PhysicsVolume.bWaterVolume && VSize(Velocity) < MaxPoolVelocity/* && bInitialized*/)
+	else if (class'BWBloodControl'.default.bUseBloodPools && bBleedingCorpse && HasBloodSet() && BloodSet.default.BloodPool != None && !PhysicsVolume.bWaterVolume && VSize(Velocity) < MaxPoolVelocity/* && bInitialized*/)
 	{
 		if (/*BloodPool == None*/ !bBloodPoolSpawned && CorpseRestTime > 0.5)
 		{
@@ -2157,7 +2172,7 @@ simulated function DoHit (name Bone, class<DamageType> DamageType, vector HitRay
 		if (Health <= 0 && !class'GameInfo'.static.NoBlood())
 		{
 			bBleedingCorpse=true;
-			if (PhysicsVolume.bWaterVolume && WaterBlood == None && class'BWBloodControl'.default.bUseBloodPools)
+			if (PhysicsVolume.bWaterVolume && WaterBlood == None && class'BWBloodControl'.default.bUseBloodPools && HasBloodSet())
 			{
 				WaterBlood = Spawn(BloodSet.default.WaterBloodClass,self,, Location, Rotation);
 				WaterBlood.SetBase(self);
