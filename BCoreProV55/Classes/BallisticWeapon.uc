@@ -5552,20 +5552,67 @@ simulated function vector ConvertFOVs (vector InVec, float InFOV, float OutFOV, 
 // Brass is a thing in the world and is drawn with the player's field of view. The first person gun it comes out of
 // is drawn with a field of view of its own (DisplayFOV), so the same place is somewhere else on screen for the two,
 // and how far apart depends on both angles. GunLocation is a place on the first person gun; this gives the place in
-// the world that is seen in the same spot. It is always put the same way out along that line of sight (the 28: about
-// 28 units from the eye at a field of view of 90), so that brass is the same size on screen for every gun and every
-// field of view
+// the world that is seen in the same spot, and where a thing is drawn as large as it would be as a part of the gun:
+// as far to the side of the line of sight and above it as on the gun, and along it nearer or farther by
+// GetBrassDepthScale. So brass sits against the gun, and is as large against it, whatever field of view the player
+// has set, from the hip and in the sights
 simulated function vector GetBrassStart(vector GunLocation)
+{
+	local vector Eye, X, Y, Z, Dir;
+	local float DepthScale;
+
+	DepthScale = GetBrassDepthScale();
+	if (DepthScale == 1)
+		return GunLocation;
+	Eye = Instigator.Location + Instigator.EyePosition();
+	GetAxes(Instigator.GetViewRotation(), X, Y, Z);
+	Dir = GunLocation - Eye;
+	// the place is not in front of the eye
+	if ((Dir dot X) < 1)
+		return GunLocation;
+	return Eye + X * ((Dir dot X) * DepthScale) + Y * (Dir dot Y) + Z * (Dir dot Z);
+}
+
+// The gun's field of view against the player's: how much nearer to the eye (below 1) or farther from it a thing in
+// the world has to be to look like a part of the first person gun. 1 when nobody looks through this player's eyes
+simulated function float GetBrassDepthScale()
 {
 	local PlayerController PC;
 
-	if (Instigator == None)
-		return GunLocation;
-	PC = PlayerController(Instigator.Controller);
-	// nobody to see it that way, or the place is not in front of the eye
-	if (PC == None || ((GunLocation - (Instigator.Location + Instigator.EyePosition())) dot vector(Instigator.GetViewRotation())) < 1)
-		return GunLocation;
-	return ConvertFOVs(GunLocation, DisplayFOV, PC.FOVAngle, 28);
+	if (Instigator != None)
+		PC = PlayerController(Instigator.Controller);
+	if (PC == None)
+		return 1;
+	return tan(DisplayFOV * PI / 360) / tan(PC.FOVAngle * PI / 360);
+}
+
+// A piece of brass for the first person gun, thrown out at GunLocation on it.
+// The speed it starts with along the line of sight is scaled as its place was (see GetBrassStart). Left as it is, a
+// casing thrown back towards the player would come at the eye sooner the wider the field of view, and grow faster on
+// its way. What it has of its owner's own speed is not touched.
+// Pushback is what the shot has just taken off the player's speed, where it has (BallisticFire.GetBrassPushback).
+// The casing has that from its owner like the rest, and gives it back here: the player loses the push again within a
+// few steps, the casing would keep it, fly back with him and on past the camera
+simulated function Actor SpawnBrass(class<Actor> BrassClass, vector GunLocation, rotator Dir, optional vector Pushback)
+{
+	local Actor Brass;
+	local vector Start, X, Own;
+
+	Start = GetBrassStart(GunLocation);
+	Brass = Spawn(BrassClass, self,, Start, Dir);
+	if (BallisticBrass(Brass) == None || Instigator == None)
+		return Brass;
+	if (BallisticBrass(Brass).bAddOwnerVelocity)
+	{
+		Brass.Velocity = Brass.Velocity + Pushback;
+		Own = Instigator.Velocity + Pushback;
+	}
+	if (Start != GunLocation)
+	{
+		X = vector(Instigator.GetViewRotation());
+		Brass.Velocity = Brass.Velocity + X * (((Brass.Velocity - Own) dot X) * (GetBrassDepthScale() - 1));
+	}
+	return Brass;
 }
 
 simulated function vector GetEffectStart()

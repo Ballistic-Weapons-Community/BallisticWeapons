@@ -43,7 +43,7 @@ var() Name						FlashBone;			// Bone to attach muzzle flash to
 var() class<actor>				BrassClass;			// Actor to spawn for ejecting brass
 var() name						BrassBone;			// Bone where brass will be spawned
 var() bool						bBrassOnCock;		// Eject brass when cocked
-var() Vector					BrassOffset;		// Position offset for brass spawning: from BrassBone along the view axes, on the first person gun (see BallisticWeapon.GetBrassStart)
+var() Vector					BrassOffset;		// Position offset for brass spawning: from BrassBone along the view axes, on the first person gun (see BallisticWeapon.SpawnBrass)
 //-----------------------------------------------------------------------------
 // Cocking/Reloading
 //-----------------------------------------------------------------------------
@@ -101,6 +101,8 @@ var float	                            BurstFireRateFactor;// Multiplies down fir
 //-----------------------------------------------------------------------------
 var() float					            FireRecoil;			// Amount of recoil added each shot
 var() float					            FirePushbackForce;	// How much to jolt player back when they fire
+var   vector					        LastPushback;		// What that last took off the player's speed, and when (see GetBrassPushback)
+var   float					            LastPushbackTime;
 var() float					            FireChaos;			// Chaos added to aim when fired. Will be auto calculated if < 0
 var() InterpCurve			            FireChaosCurve;
 var() float					            XInaccuracy;		// Set amount that bullets can yaw away from gun's aim
@@ -359,7 +361,7 @@ function EjectBrass()
     Weapon.GetViewAxes(X,Y,Z);
 	Start = C.Origin + X * BrassOffset.X + Y * BrassOffset.Y + Z * BrassOffset.Z;
 	// that is a place on the gun: put the brass where it is seen in the same spot
-	Spawn(BrassClass, weapon,, BW.GetBrassStart(Start), Rotator(C.XAxis));
+	BW.SpawnBrass(BrassClass, Start, Rotator(C.XAxis), GetBrassPushback());
 }
 
 // Remove effects
@@ -509,8 +511,22 @@ simulated function ApplyRecoil()
 		VelRecoilVect.Z *= 0.25;
 		
 		if (Instigator.Physics != PHYS_Falling)
+		{
 			Instigator.Velocity -= VelRecoilVect;
+			LastPushback = VelRecoilVect;
+			LastPushbackTime = Level.TimeSeconds;
+		}
 	}
+}
+
+// The push this very shot has just given the player, for the brass it throws (BallisticWeapon.SpawnBrass). On the
+// machine that works the shot out the push comes before the brass, which would take it along with the rest of the
+// player's speed
+function vector GetBrassPushback()
+{
+	if (LastPushbackTime == Level.TimeSeconds)
+		return LastPushback;
+	return vect(0,0,0);
 }
 	
 simulated event ModeTick(float dt)

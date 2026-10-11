@@ -62,7 +62,7 @@ function EjectFRAGBrass()
 //	Start = C.Origin + C.XAxis * BrassOffset.X + C.YAxis * BrassOffset.Y + C.ZAxis * BrassOffset.Z;
     Weapon.GetViewAxes(X,Y,Z);
 	Start = C.Origin + X * BrassOffset.X + Y * BrassOffset.Y + Z * BrassOffset.Z;
-	Spawn(AltBrassClass2, weapon,, BW.GetBrassStart(Start), Rotator(C.XAxis));
+	BW.SpawnBrass(AltBrassClass2, Start, Rotator(C.XAxis), GetBrassPushback());
 }
 
 function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)

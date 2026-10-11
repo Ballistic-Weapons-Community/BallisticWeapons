@@ -27,7 +27,7 @@ function EjectBrass()
 //	Start = C.Origin + C.XAxis * BrassOffset.X + C.YAxis * BrassOffset.Y + C.ZAxis * BrassOffset.Z;
     Weapon.GetViewAxes(X,Y,Z);
 	Start = C.Origin + X * BrassOffset.X + Y * BrassOffset.Y + Z * BrassOffset.Z;
-	BrassActor = Spawn(BrassClass, weapon,, BW.GetBrassStart(Start), Rotator(C.XAxis));
+	BrassActor = BW.SpawnBrass(BrassClass, Start, Rotator(C.XAxis), GetBrassPushback());
 	if (BrassActor != None)
 	{
 		BrassActor.bHidden=true;
