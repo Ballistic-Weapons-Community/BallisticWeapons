@@ -338,7 +338,11 @@ function ScoreKill(Controller Killer, Controller Other)
         OtherPRI.bOutOfLives = true;
 
 	Super.ScoreKill (Killer, Other);
-	CheckScore(Killer.PlayerReplicationInfo);
+	// nobody's kill: a mine whose owner has left, a fall
+	if (Killer != None)
+		CheckScore(Killer.PlayerReplicationInfo);
+	else
+		CheckScore(None);
 }
 
 function Logout(Controller Exiting)
