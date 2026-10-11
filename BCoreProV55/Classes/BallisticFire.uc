@@ -318,7 +318,8 @@ simulated function OnEffectParamsChanged(int EffectIndex)
 // Spawn the muzzleflash actor
 function InitEffects()
 {
-	if (AIController(Instigator.Controller) != None)
+	// nobody looks at a muzzle flash on a dedicated server
+	if (Level.NetMode == NM_DedicatedServer || AIController(Instigator.Controller) != None)
 		return;
     if ((MuzzleFlashClass != None) && ((MuzzleFlash == None) || MuzzleFlash.bDeleteMe) )
 		class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, MuzzleFlashClass, Weapon.DrawScale*FlashScaleFactor, weapon, FlashBone);

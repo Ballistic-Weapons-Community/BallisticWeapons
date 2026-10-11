@@ -39,7 +39,7 @@ simulated event PostBeginPlay()
 			if (Emitters[i].DetailMode > class'BallisticMod'.default.EffectsDetailMode)
 				Emitters[i].Disabled=true;
 	}
-	if (EmitterZTestSwitches.length > 0)
+	if (EmitterZTestSwitches.length > 0 && Level.GetLocalPlayerController() != None)
 	{
 		bLOS = Level.GetLocalPlayerController().LineOfSightTo(self);
 		for (i=0;i<Min(EmitterZTestSwitches.length, Emitters.length);i++)
