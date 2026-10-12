@@ -143,7 +143,7 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 	// Shovel loop ended, start it again
 	if (ReloadState == RS_PostShellIn)
 	{
-		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= WeaponParams.MagAmmo || Ammo[0].AmmoAmount < 1 )
+		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= GetMagCapacity() || Ammo[0].AmmoAmount < 1 )
 		{
 			PlayShovelEnd();
 			ReloadState = RS_EndShovel;

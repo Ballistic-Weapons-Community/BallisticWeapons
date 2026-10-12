@@ -107,7 +107,7 @@ function ServerStartReload (optional byte i)
 		return;
 	if (ReloadState != RS_None)
 		return;
-	if (MagAmmo < WeaponParams.MagAmmo && Ammo[0].AmmoAmount > 0)
+	if (MagAmmo < GetMagCapacity() && Ammo[0].AmmoAmount > 0)
 		Loadings[0] = 1;
 	if (bHasShotgun && AltAmmo < 6 && Ammo[1].AmmoAmount > 0)
 		Loadings[1] = 1;

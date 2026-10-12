@@ -848,6 +848,12 @@ simulated function GenerateCamo(byte Index)
 	}
 }
 
+// What this weapon's magazine holds under the server's Magazine Scale
+simulated final function int GetMagCapacity()
+{
+	return class'BallisticReplicationInfo'.static.ScaleMagAmmo(WeaponParams.MagAmmo);
+}
+
 simulated function OnWeaponParamsChanged()
 {
     local int i;
@@ -855,23 +861,24 @@ simulated function OnWeaponParamsChanged()
 	
     assert(WeaponParams != None);
 
-	SightingTime 				= WeaponParams.SightingTime / ZoomTimeMod;
-	default.SightingTime 		= WeaponParams.SightingTime / ZoomTimeMod;
+	// The game style's Aim Speed scale, and the player's own Zoom Time Mod on top of it
+	SightingTime 				= class'BallisticReplicationInfo'.static.ScaleTime(WeaponParams.SightingTime, class'BallisticReplicationInfo'.default.AimSpeedScale) / ZoomTimeMod;
+	default.SightingTime 		= SightingTime;
 
     // Only the SERVER initializes live MagAmmo.
     // Clients use the replicated value coming from the server via ClientSetMagAmmo.
     // Without this guard, client PostNetBeginPlay.Initialize resets MagAmmo to full,
     // overwriting the replicated value from a dropped weapon pickup.
 	if (Role == ROLE_Authority)
-		MagAmmo = WeaponParams.MagAmmo;
+		MagAmmo = GetMagCapacity();
 	//log("OnWeaponParamsChanged MagAmmo set to " $MagAmmo$ " for "$GetHumanReadableName());
-	default.MagAmmo				= WeaponParams.MagAmmo;
+	default.MagAmmo				= GetMagCapacity();
 	
 	bMagPlusOne					= WeaponParams.bMagPlusOne;
 	default.bMagPlusOne			= WeaponParams.bMagPlusOne;
 
-	PlayerSpeedFactor 			= WeaponParams.PlayerSpeedFactor;
-	default.PlayerSpeedFactor	= WeaponParams.PlayerSpeedFactor;
+	PlayerSpeedFactor 			= class'BallisticReplicationInfo'.static.ScaleSpeedFactor(WeaponParams.PlayerSpeedFactor, class'BallisticReplicationInfo'.default.WeaponWeightScale);
+	default.PlayerSpeedFactor	= PlayerSpeedFactor;
 
 	PlayerJumpFactor 			= WeaponParams.PlayerJumpFactor;
 	//default.PlayerJumpFactor	= WeaponParams.PlayerJumpFactor;
@@ -1213,7 +1220,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	// Shovel loop ended, start it again
 	if (ReloadState == RS_PostShellIn)
 	{
-		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= WeaponParams.MagAmmo || Ammo[0].AmmoAmount < 1 )
+		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= GetMagCapacity() || Ammo[0].AmmoAmount < 1 )
 		{
 			PlayShovelEnd();
 			ReloadState = RS_EndShovel;
@@ -1614,7 +1621,7 @@ simulated function Notify_ShellIn()
 		ReloadState = RS_PostShellIn;
 		if (Role == ROLE_Authority)
 		{
-			AmmoNeeded = Min(ShovelIncrement, WeaponParams.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0)));
+			AmmoNeeded = Min(ShovelIncrement, GetMagCapacity() - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0)));
 
 			if (AmmoNeeded > Ammo[0].AmmoAmount)
 				MagAmmo+=Ammo[0].AmmoAmount;
@@ -1644,7 +1651,7 @@ simulated function Notify_ClipIn()
 	class'BUtil'.static.PlayFullSound(self, ClipInSound, true);
 	if (level.NetMode != NM_Client)
 	{
-		AmmoNeeded = WeaponParams.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0));
+		AmmoNeeded = GetMagCapacity() - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0));
 		if (AmmoNeeded > Ammo[0].AmmoAmount)
 			MagAmmo+=Ammo[0].AmmoAmount;
 		else
@@ -2158,7 +2165,7 @@ simulated final function StopScopeView(optional bool bNoAnim)
 simulated function PlayScopeDown(optional bool bNoAnim)
 {
 	if (!bNoAnim && HasAnim(ZoomOutAnim))
-	    SafePlayAnim(ZoomOutAnim, ZoomTimeMod);
+	    SafePlayAnim(ZoomOutAnim, ZoomTimeMod * class'BallisticReplicationInfo'.default.AimSpeedScale);
 	else if (SightingState == SS_Active || SightingState == SS_Raising)
 		SightingState = SS_Lowering;
 
@@ -2172,7 +2179,7 @@ simulated function PlayScopeDown(optional bool bNoAnim)
 simulated function PlayScopeUp()
 {
 	if (HasAnim(ZoomInAnim))
-	    SafePlayAnim(ZoomInAnim, ZoomTimeMod);
+	    SafePlayAnim(ZoomInAnim, ZoomTimeMod * class'BallisticReplicationInfo'.default.AimSpeedScale);
 	else
 		SightingState = SS_Raising;
 
@@ -3567,7 +3574,7 @@ function ServerStartReload (optional byte i)
 	if (ReloadState != RS_None)
 		return;
 		
-	if (MagAmmo >= WeaponParams.MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking)))
+	if (MagAmmo >= GetMagCapacity() + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking)))
 	{
 		if (bNeedCock)
 			ServerCockGun(0);
@@ -3948,7 +3955,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	AimComponent.OnWeaponSelected();
 
 	if (WeaponParams != None)
-		Instigator.WalkingPct = WeaponParams.SightMoveSpeedFactor;
+		Instigator.WalkingPct = class'BallisticReplicationInfo'.static.ScaleSpeedFactor(WeaponParams.SightMoveSpeedFactor, class'BallisticReplicationInfo'.default.AimMoveScale);
 
 	if (Role == ROLE_Authority)
 	{
@@ -4136,7 +4143,7 @@ simulated function float RateSelf()
 	{
 		CurrentRating = Instigator.Controller.RateWeapon(self);
 		if (!bNoMag){
-			if(!HasNonMagAmmo(255) && MagAmmo < WeaponParams.MagAmmo / 4)
+			if(!HasNonMagAmmo(255) && MagAmmo < GetMagCapacity() / 4)
 				CurrentRating /= (1+AIReloadTime);
 //				CurrentRating = CurrentRating * 0.25;
 			else if (MagAmmo <= 0)
@@ -4200,7 +4207,7 @@ function bool BotReload(optional bool bForced)
 // Is reloading a good idea???
 function bool BotShouldReload ()
 {
-	if ( (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime > AIReloadTime + AIReloadTime * (MagAmmo/WeaponParams.MagAmmo)) &&
+	if ( (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime > AIReloadTime + AIReloadTime * (MagAmmo/GetMagCapacity())) &&
 		 (Level.TimeSeconds - Instigator.LastPainTime > AIReloadTime) )
 		return true;
 	return false;
@@ -5741,7 +5748,7 @@ simulated function GetAmmoCount(out float MaxAmmoPrimary, out float CurAmmoPrima
 	}
 	else
 	{
-		MaxAmmoPrimary = WeaponParams.MagAmmo;
+		MaxAmmoPrimary = GetMagCapacity();
 		CurAmmoPrimary = MagAmmo;
 	}
 }

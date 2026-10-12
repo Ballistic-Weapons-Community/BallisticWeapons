@@ -125,6 +125,11 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     if (DecayRange.Max == 0 || DecayRange.Max <= DecayRange.Min)
         DecayRange.Max = TraceRange.Max;
 
+    // the server's Damage Range scale, on the range as it is used (a weapon without one of its own falls off
+    // over its whole reach)
+    DecayRange.Min *= class'BallisticReplicationInfo'.default.DamageRangeScale;
+    DecayRange.Max *= class'BallisticReplicationInfo'.default.DamageRangeScale;
+
     MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
     // FIXME - CutOffStartRange
     RangeAtten = effect_params.RangeAtten;        // Multiplier at max falloff
@@ -135,12 +140,12 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
 
     Damage = effect_params.Damage;
     DamageSpecial = effect_params.DamageSpecial;
-    HeadMult = effect_params.HeadMult;
-    LimbMult = effect_params.LimbMult;   
+    HeadMult = class'BallisticReplicationInfo'.static.ScaleHeadMult(effect_params.HeadMult);
+    LimbMult = class'BallisticReplicationInfo'.static.ScaleLimbMult(effect_params.LimbMult);
 
 	default.Damage = effect_params.Damage;
-    default.HeadMult = effect_params.HeadMult;
-    default.LimbMult = effect_params.LimbMult;
+    default.HeadMult = HeadMult;
+    default.LimbMult = LimbMult;
 
     DamageType = effect_params.DamageType;
     DamageTypeHead = effect_params.DamageTypeHead;	
@@ -153,11 +158,11 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     default.bUseRunningDamage = effect_params.UseRunningDamage;
     default.RunningSpeedThresh = effect_params.RunningSpeedThreshold;
 
-    WallPenetrationForce = effect_params.PenetrationEnergy;
-    PenetrateForce = effect_params.PenetrateForce;
+    WallPenetrationForce = effect_params.PenetrationEnergy * class'BallisticReplicationInfo'.default.PenetrationScale;
+    PenetrateForce = effect_params.PenetrateForce * class'BallisticReplicationInfo'.default.PenetrationScale;
     bPenetrate = effect_params.bPenetrate;    
-	default.WallPenetrationForce = effect_params.PenetrationEnergy;
-    default.PenetrateForce = effect_params.PenetrateForce;
+	default.WallPenetrationForce = WallPenetrationForce;
+    default.PenetrateForce = PenetrateForce;
     default.bPenetrate = effect_params.bPenetrate;
 
     // Note - Deprecate these two

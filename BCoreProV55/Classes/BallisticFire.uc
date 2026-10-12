@@ -195,8 +195,8 @@ simulated function ApplyFireEffectParams(FireEffectParams effect_params)
     FireRecoil            			= effect_params.Recoil;
     FirePushbackForce	     	 	= effect_params.PushbackForce;
     FireChaos        		       	= effect_params.Chaos;
-    XInaccuracy      		       	= effect_params.Inaccuracy.X;
-    YInaccuracy       	     		= effect_params.Inaccuracy.Y;
+    XInaccuracy      		       	= effect_params.Inaccuracy.X * class'BallisticReplicationInfo'.default.SpreadScale;
+    YInaccuracy       	     		= effect_params.Inaccuracy.Y * class'BallisticReplicationInfo'.default.SpreadScale;
     FireSpreadMode    		      	= effect_params.SpreadMode;
 	HeatPerShot						= effect_params.Heat;
 	
@@ -206,8 +206,8 @@ simulated function ApplyFireEffectParams(FireEffectParams effect_params)
     default.FireRecoil              = effect_params.Recoil;
     default.FirePushbackForce       = effect_params.PushbackForce;
     default.FireChaos               = effect_params.Chaos;
-    default.XInaccuracy             = effect_params.Inaccuracy.X;
-    default.YInaccuracy             = effect_params.Inaccuracy.Y;
+    default.XInaccuracy             = XInaccuracy;
+    default.YInaccuracy             = YInaccuracy;
     default.FireSpreadMode          = effect_params.SpreadMode;
 	default.HeatPerShot						= effect_params.Heat;
 

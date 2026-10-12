@@ -350,9 +350,21 @@ simulated function InitParams()
 {    
 	// Use the same params the weapon falls back to when it has none for this game style.
 	// Skipping this entirely leaves grenades unarmed, as ApplyParams starts their arming timer.
-    if (WeaponClass == None || WeaponClass.static.GetParams() == None)
+    if (!bApplyParams || WeaponClass == None || WeaponClass.static.GetParams() == None)
+    {
+        ScaleClassFigures();
         return;
+    }
     WeaponClass.static.GetParams().static.SetProjectileParams(self);
+}
+
+// A projectile that takes nothing from a weapon's params keeps what its class says. The server's weapon scales
+// act on that (those of a class are never overwritten: only ApplyParams writes defaults, from the params)
+simulated final function ScaleClassFigures()
+{
+	DamageRadius = default.DamageRadius * class'BallisticReplicationInfo'.default.BlastRadiusScale;
+	HeadMult = class'BallisticReplicationInfo'.static.ScaleHeadMult(default.HeadMult);
+	LimbMult = class'BallisticReplicationInfo'.static.ScaleLimbMult(default.LimbMult);
 }
 
 //===================================================================
@@ -363,7 +375,10 @@ simulated function InitParams()
 simulated function ApplyParams(ProjectileEffectParams params)
 {
 	if (!bApplyParams || params == None)
+	{
+		ScaleClassFigures();
 		return;
+	}
 	
     Speed = params.Speed;
 	default.Speed = params.Speed;
@@ -381,8 +396,8 @@ simulated function ApplyParams(ProjectileEffectParams params)
     DamageSpecial = params.DamageSpecial;
     default.DamageSpecial = params.DamageSpecial;
 	
-    DamageRadius = params.DamageRadius;
-	default.DamageRadius = params.DamageRadius;
+    DamageRadius = params.DamageRadius * class'BallisticReplicationInfo'.default.BlastRadiusScale;
+	default.DamageRadius = DamageRadius;
 	
     MomentumTransfer = params.MomentumTransfer;
 	default.MomentumTransfer = params.MomentumTransfer;
@@ -390,8 +405,8 @@ simulated function ApplyParams(ProjectileEffectParams params)
 	bLimitMomentumZ = params.bLimitMomentumZ;
 	default.bLimitMomentumZ = params.bLimitMomentumZ;
 	
-    HeadMult = params.HeadMult;
-	LimbMult = params.LimbMult; 
+    HeadMult = class'BallisticReplicationInfo'.static.ScaleHeadMult(params.HeadMult);
+	LimbMult = class'BallisticReplicationInfo'.static.ScaleLimbMult(params.LimbMult);
 
     MaxDamageGainFactor = params.MaxDamageGainFactor;    
     DamageGainStartTime = params.DamageGainStartTime;    

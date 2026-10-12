@@ -405,7 +405,7 @@ exec simulated function Reload (optional byte i)
 			Super.Reload(i);
 		else if (Othergun.ClientState != WS_ReadyToFire)
 			return;
-		else if (CanReload() && (IsSlave() || float(MagAmmo) / WeaponParams.MagAmmo <= float(OtherGun.MagAmmo) / OtherGun.WeaponParams.MagAmmo || !OtherGun.CanReload()))
+		else if (CanReload() && (IsSlave() || float(MagAmmo) / GetMagCapacity() <= float(OtherGun.MagAmmo) / OtherGun.GetMagCapacity() || !OtherGun.CanReload()))
 		{
 			Super.Reload(i);
 		}
@@ -807,7 +807,7 @@ simulated function float RateSelf()
 	{
 		CurrentRating = Instigator.Controller.RateWeapon(self);
 		if (!bNoMag){
-			if(!HasNonMagAmmo(255) && MagAmmo < WeaponParams.MagAmmo / 4)
+			if(!HasNonMagAmmo(255) && MagAmmo < GetMagCapacity() / 4)
 				CurrentRating /= (1+AIReloadTime);
 //				CurrentRating = CurrentRating * 0.25;
 			else if (MagAmmo <= 0)

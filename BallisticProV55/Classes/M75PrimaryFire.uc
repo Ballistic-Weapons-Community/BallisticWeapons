@@ -75,8 +75,8 @@ simulated state ClassicRail
 		RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range
 
 		default.Damage = effect_params.Damage;
-		HeadMult = effect_params.HeadMult;
-		LimbMult = effect_params.LimbMult;
+		HeadMult = class'BallisticReplicationInfo'.static.ScaleHeadMult(effect_params.HeadMult);
+		LimbMult = class'BallisticReplicationInfo'.static.ScaleLimbMult(effect_params.LimbMult);
 
 		DamageType = effect_params.DamageType;
 		DamageTypeHead = effect_params.DamageTypeHead;	
@@ -84,8 +84,8 @@ simulated state ClassicRail
 		bUseRunningDamage = effect_params.UseRunningDamage;
 		RunningSpeedThresh = effect_params.RunningSpeedThreshold;
 
-		default.WallPenetrationForce = effect_params.PenetrationEnergy;
-		default.PenetrateForce = effect_params.PenetrateForce;
+		default.WallPenetrationForce = effect_params.PenetrationEnergy * class'BallisticReplicationInfo'.default.PenetrationScale;
+		default.PenetrateForce = effect_params.PenetrateForce * class'BallisticReplicationInfo'.default.PenetrationScale;
 		default.FireRecoil              = effect_params.Recoil;
 		bPenetrate = effect_params.bPenetrate;
 

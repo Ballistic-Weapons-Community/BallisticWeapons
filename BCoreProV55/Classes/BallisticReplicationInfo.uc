@@ -29,6 +29,17 @@ var float					RecoilShotScale;			// Used for scaling weapon recoil per shot.
 var float					ReloadScale;				// Scales reload speeds
 var float					DamageScale;				// Scales anti-player weapon damage
 var float					VehicleDamageScale;			// Scales anti-vehicle weapon damage
+var float					MagazineScale;				// Scales magazine capacity
+var float					AimSpeedScale;				// Scales how fast sights are raised and lowered
+var float					WeaponWeightScale;			// Scales how much a weapon slows (or speeds up) its holder. 0 = not at all
+var float					AimMoveScale;				// Scales the extra slowdown while aiming down sights. 0 = none
+var float					HeadshotScale;				// Scales the damage bonus of a head hit. 0 = none
+var float					LimbScale;					// Scales the damage penalty of a limb hit. 0 = none
+var float					DamageRangeScale;			// Scales the ranges over which damage falls off
+var float					BlastRadiusScale;			// Scales the damage radius of explosives
+var float					PenetrationScale;			// Scales how much wall and how many players a shot goes through
+var float					RecoilRecoveryScale;		// Scales how fast recoil settles
+var float					SpreadScale;				// Scales the spread of shots
 var bool		    		bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
 var bool		    		bLongWeaponOffsetting;		// Causes weapons to offset when close to wall
 var bool		    		bNoReloading;				// Disables reloading and weapons use boring old style ammo handling...
@@ -129,6 +140,22 @@ var struct GeneralRep
 	var bool					bUniversalMineLights;   	// All BX5 mines are lit.
 } GRep;
 
+// The Weapons tab's further scales
+var struct WeaponRep
+{
+	var float					MagazineScale;
+	var float					AimSpeedScale;
+	var float					WeaponWeightScale;
+	var float					AimMoveScale;
+	var float					HeadshotScale;
+	var float					LimbScale;
+	var float					DamageRangeScale;
+	var float					BlastRadiusScale;
+	var float					PenetrationScale;
+	var float					RecoilRecoveryScale;
+	var float					SpreadScale;
+} WRep;
+
 var struct PawnRep
 {
 	var bool					bBrightPlayers;		    	// Players have ambient glow to glow in the dark like the standard pawns.
@@ -173,7 +200,42 @@ var struct SprintRep
 replication
 {
 	reliable if (Role == ROLE_Authority && bNetInitial)
-		GRep, PRep, MRep, SRep;
+		GRep, PRep, MRep, SRep, WRep;
+}
+
+//=============================================================================
+// The Weapons tab's further scales, as the weapon code applies them
+//=============================================================================
+// Rounds in a magazine. A weapon that has one keeps at least one round
+static final function int ScaleMagAmmo(int Rounds)
+{
+	if (Rounds <= 0 || default.MagazineScale == 1.0)
+		return Rounds;
+	return Max(1, Round(Rounds * default.MagazineScale));
+}
+
+// A factor on its holder's speed (0.9 = a tenth slower): the scale is on how far it is from 1
+static final function float ScaleSpeedFactor(float Factor, float Scale)
+{
+	return FMax(0.1, 1.0 - (1.0 - Factor) * Scale);
+}
+
+// Damage multipliers of head and limb hits: the scales are on the bonus and on the penalty
+static final function float ScaleHeadMult(float Mult)
+{
+	return FMax(0.0, 1.0 + (Mult - 1.0) * default.HeadshotScale);
+}
+
+// A limb hit always does something: not under a tenth, unless the weapon itself says less
+static final function float ScaleLimbMult(float Mult)
+{
+	return FMax(FMin(Mult, 0.1), 1.0 - (1.0 - Mult) * default.LimbScale);
+}
+
+// A time that a speed scale shortens
+static final function float ScaleTime(float Time, float SpeedScale)
+{
+	return Time / FMax(SpeedScale, 0.1);
 }
 
 final function BindToReplication()
@@ -188,6 +250,18 @@ final function BindToReplication()
 	GRep.ReloadScale			        = ReloadScale;
 	GRep.DamageScale					= DamageScale;
 	GRep.VehicleDamageScale				= VehicleDamageScale;
+
+	WRep.MagazineScale				= MagazineScale;
+	WRep.AimSpeedScale				= AimSpeedScale;
+	WRep.WeaponWeightScale			= WeaponWeightScale;
+	WRep.AimMoveScale				= AimMoveScale;
+	WRep.HeadshotScale				= HeadshotScale;
+	WRep.LimbScale					= LimbScale;
+	WRep.DamageRangeScale			= DamageRangeScale;
+	WRep.BlastRadiusScale			= BlastRadiusScale;
+	WRep.PenetrationScale			= PenetrationScale;
+	WRep.RecoilRecoveryScale			= RecoilRecoveryScale;
+	WRep.SpreadScale					= SpreadScale;
 	
 	GRep.bWeaponJumpOffsetting			= bWeaponJumpOffsetting;
 	GRep.bLongWeaponOffsetting			= bLongWeaponOffsetting;
@@ -256,6 +330,18 @@ simulated final function BindFromReplication()
 	ReloadScale			        	= GRep.ReloadScale;
 	DamageScale						= GRep.DamageScale;
 	VehicleDamageScale				= GRep.VehicleDamageScale;
+
+	MagazineScale					= WRep.MagazineScale;
+	AimSpeedScale					= WRep.AimSpeedScale;
+	WeaponWeightScale				= WRep.WeaponWeightScale;
+	AimMoveScale					= WRep.AimMoveScale;
+	HeadshotScale					= WRep.HeadshotScale;
+	LimbScale						= WRep.LimbScale;
+	DamageRangeScale				= WRep.DamageRangeScale;
+	BlastRadiusScale				= WRep.BlastRadiusScale;
+	PenetrationScale				= WRep.PenetrationScale;
+	RecoilRecoveryScale				= WRep.RecoilRecoveryScale;
+	SpreadScale						= WRep.SpreadScale;
 	
 	bWeaponJumpOffsetting			= GRep.bWeaponJumpOffsetting;
 	bLongWeaponOffsetting			= GRep.bLongWeaponOffsetting;
@@ -314,6 +400,18 @@ simulated final function BindDefaults()
 	class.default.ReloadScale			    	= ReloadScale;
 	class.default.DamageScale					= DamageScale;
 	class.default.VehicleDamageScale			= VehicleDamageScale;
+
+	class.default.MagazineScale				= MagazineScale;
+	class.default.AimSpeedScale				= AimSpeedScale;
+	class.default.WeaponWeightScale			= WeaponWeightScale;
+	class.default.AimMoveScale				= AimMoveScale;
+	class.default.HeadshotScale				= HeadshotScale;
+	class.default.LimbScale					= LimbScale;
+	class.default.DamageRangeScale			= DamageRangeScale;
+	class.default.BlastRadiusScale			= BlastRadiusScale;
+	class.default.PenetrationScale			= PenetrationScale;
+	class.default.RecoilRecoveryScale			= RecoilRecoveryScale;
+	class.default.SpreadScale					= SpreadScale;
 	
 	class.default.bWeaponJumpOffsetting			= bWeaponJumpOffsetting;
 	class.default.bLongWeaponOffsetting			= bLongWeaponOffsetting;
@@ -370,6 +468,8 @@ simulated final function BindDefaults()
 	Log("Recoil Scale: "$RecoilScale);
 	Log("Recoil Shot Scale: "$RecoilShotScale);
 	Log("Reload Scale: "$ReloadScale);
+	Log("Magazine "$MagazineScale$", aim speed "$AimSpeedScale$", weapon weight "$WeaponWeightScale$", aim move "$AimMoveScale$", headshot "$HeadshotScale$", limb "$LimbScale);
+	Log("Damage range "$DamageRangeScale$", blast radius "$BlastRadiusScale$", penetration "$PenetrationScale$", recoil recovery "$RecoilRecoveryScale$", spread "$SpreadScale);
 	Log("Sprint/Jump Weapon Offsetting: "$bWeaponJumpOffsetting);
 	Log("Long Weapon Offsetting: "$bLongWeaponOffsetting);
 	Log("Reloading: "$ !bNoReloading);
@@ -436,6 +536,17 @@ defaultproperties
 	ReloadScale=1
 	DamageScale=1
 	VehicleDamageScale=1
+	MagazineScale=1
+	AimSpeedScale=1
+	WeaponWeightScale=1
+	AimMoveScale=1
+	HeadshotScale=1
+	LimbScale=1
+	DamageRangeScale=1
+	BlastRadiusScale=1
+	PenetrationScale=1
+	RecoilRecoveryScale=1
+	SpreadScale=1
 
 	bWeaponJumpOffsetting=True
 	bLongWeaponOffsetting=False
