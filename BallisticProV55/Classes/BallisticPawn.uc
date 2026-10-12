@@ -357,6 +357,30 @@ simulated function vector CalcDrawOffset(inventory Inv)
 	return DrawOffset;
 }
 
+// The speed combo is this mod's own: the stock one ends by setting its player up like a fresh spawn (see
+// BallisticComboSpeed). The stats tell the combos apart by the class's name, so the count is put right here
+function DoCombo(class<Combo> ComboClass)
+{
+	local Combo Before;
+	local TeamPlayerReplicationInfo TPRI;
+
+	if (ComboClass != class'ComboSpeed')
+	{
+		Super.DoCombo(ComboClass);
+		return;
+	}
+
+	Before = CurrentCombo;
+	Super.DoCombo(class'BallisticComboSpeed');
+
+	TPRI = TeamPlayerReplicationInfo(PlayerReplicationInfo);
+	if (Before == None && CurrentCombo != None && TPRI != None)
+	{
+		TPRI.Combos[4] -= 1;
+		TPRI.Combos[0] += 1;
+	}
+}
+
 simulated final function BindDefaultMovement()
 {
     default.WalkingPct = WalkingPct;
