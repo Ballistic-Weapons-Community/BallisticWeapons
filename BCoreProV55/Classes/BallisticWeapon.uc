@@ -335,7 +335,6 @@ var() float 				ScopeXScale;			// Corrects for legacy scopes made for full-scree
 var() float					ScopeScale;				// General scaler for scope texture draw
 var() name					ZoomInAnim;				// Anim to play for raising weapon to view through Scope or sights
 var() name					ZoomOutAnim;			// Anim to play when lowering weapon after viewing through scope or sights
-var() globalconfig float 	ZoomTimeMod;			// Multiplier for sighting/zooming
 var() BUtil.FullSound		ZoomInSound;			// Sound when zooming in
 var() BUtil.FullSound		ZoomOutSound;			// Sound when zooming out
 var() float					SightDisplayFOV;		// DisplayFOV for drawing gun in scope/sight view. Default property setting is now ignored.
@@ -861,8 +860,9 @@ simulated function OnWeaponParamsChanged()
 	
     assert(WeaponParams != None);
 
-	// The game style's Aim Speed scale, and the player's own Zoom Time Mod on top of it
-	SightingTime 				= class'BallisticReplicationInfo'.static.ScaleTime(WeaponParams.SightingTime, class'BallisticReplicationInfo'.default.AimSpeedScale) / ZoomTimeMod;
+	// How fast sights go up is the server's rule (Aim Speed Scale). It was each player's own setting, and a
+	// server takes a client's word for when its sights are up
+	SightingTime 				= class'BallisticReplicationInfo'.static.ScaleTime(WeaponParams.SightingTime, class'BallisticReplicationInfo'.default.AimSpeedScale);
 	default.SightingTime 		= SightingTime;
 
     // Only the SERVER initializes live MagAmmo.
@@ -2165,7 +2165,7 @@ simulated final function StopScopeView(optional bool bNoAnim)
 simulated function PlayScopeDown(optional bool bNoAnim)
 {
 	if (!bNoAnim && HasAnim(ZoomOutAnim))
-	    SafePlayAnim(ZoomOutAnim, ZoomTimeMod * class'BallisticReplicationInfo'.default.AimSpeedScale);
+	    SafePlayAnim(ZoomOutAnim, class'BallisticReplicationInfo'.default.AimSpeedScale);
 	else if (SightingState == SS_Active || SightingState == SS_Raising)
 		SightingState = SS_Lowering;
 
@@ -2179,7 +2179,7 @@ simulated function PlayScopeDown(optional bool bNoAnim)
 simulated function PlayScopeUp()
 {
 	if (HasAnim(ZoomInAnim))
-	    SafePlayAnim(ZoomInAnim, ZoomTimeMod * class'BallisticReplicationInfo'.default.AimSpeedScale);
+	    SafePlayAnim(ZoomInAnim, class'BallisticReplicationInfo'.default.AimSpeedScale);
 	else
 		SightingState = SS_Raising;
 
@@ -6657,7 +6657,6 @@ defaultproperties
      MaxZoom=2.000000
      ZoomStages=2
 	 SightBobScale=0.15f
-	 ZoomTimeMod=1.000000
 	 
      SMuzzleFlashOffset=(X=25.000000,Z=-15.000000)
      MagEmptyColor=(B=50,G=50,R=255,A=150)
