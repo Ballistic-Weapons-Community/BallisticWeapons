@@ -73,7 +73,7 @@ simulated event WeaponTick(float DT)
 simulated function AddHeat(float Amount)
 {
 	HeatLevel = FClamp(HeatLevel + Amount, 0, MaxHeatLevel);
-	AK91PrimaryFire(FireMode[0]).FireRate = AK91PrimaryFire(FireMode[0]).Params.FireInterval;
+	AK91PrimaryFire(FireMode[0]).FireRate = AK91PrimaryFire(FireMode[0]).ScaledFireInterval();
 	
 	if (HeatLevel >= 9.5)
 	{

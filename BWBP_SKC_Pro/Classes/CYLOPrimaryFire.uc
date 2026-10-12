@@ -84,11 +84,11 @@ simulated event ModeDoFire()
 	{
 		if (level.Netmode == NM_Standalone)
 		{
-			FireRate = Params.FireInterval + (FRand() * 0.15);
+			FireRate = ScaledFireInterval() + (FRand() * 0.15);
 		}
 		else
 		{
-			CYLOUAW(BW).SetFireRate(Params.FireInterval + (FRand() * 0.15));
+			CYLOUAW(BW).SetFireRate(ScaledFireInterval() + (FRand() * 0.15));
 		}
 	}
 	Super.ModeDoFire();

@@ -34,6 +34,7 @@ var() config float		VehicleDamageScale;			// Scales anti-vehicle damage
 // The Weapons tab's advanced rules. A scale of 1 leaves a weapon as it is made
 var() config float		MagazineScale;			// Scales magazine capacity
 var() config float		AimSpeedScale;			// Scales how fast sights are raised and lowered
+var() config float		FireRateScale;			// Scales how fast guns fire
 var() config float		ShotgunSpreadScale;		// Scales the pellet spread of shotguns
 var() config float		HeadshotScale;			// Scales the damage bonus of a head hit. 0 = none
 var() config float		BlastRadiusScale;		// Scales the damage radius of explosives
@@ -76,6 +77,7 @@ static final function InitializeReplicationInfo(BallisticReplicationInfo rep)
 	rep.ReloadScale				= default.ReloadScale;
 	rep.MagazineScale			= default.MagazineScale;
 	rep.AimSpeedScale			= default.AimSpeedScale;
+	rep.FireRateScale			= default.FireRateScale;
 	rep.ShotgunSpreadScale		= default.ShotgunSpreadScale;
 	rep.HeadshotScale			= default.HeadshotScale;
 	rep.BlastRadiusScale		= default.BlastRadiusScale;
@@ -109,6 +111,7 @@ defaultproperties
 	VehicleDamageScale=1.0f
 	MagazineScale=1.0f
 	AimSpeedScale=1.0f
+	FireRateScale=1.0f
 	ShotgunSpreadScale=1.0f
 	HeadshotScale=1.0f
 	BlastRadiusScale=1.0f

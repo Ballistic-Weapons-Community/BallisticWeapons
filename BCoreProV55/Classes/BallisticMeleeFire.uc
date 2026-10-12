@@ -585,6 +585,12 @@ simulated event ModeHoldFire()
 		BW.PlayerSprint(false);
 }
 
+// A blade or a blow: the server's Fire Rate scale is for guns
+simulated function bool FireRateScales()
+{
+	return false;
+}
+
 defaultproperties
 {
 	SwipePoints(0)=(Weight=3,offset=(Yaw=2560))

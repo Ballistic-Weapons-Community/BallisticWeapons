@@ -16,6 +16,7 @@ var automated GUIButton		bn_OK, bn_Defaults, bn_Cancel;
 var automated moCheckBox	ch_WeaponMove;		//Weapons Affect Movement
 var automated moCheckBox	ch_AimMove;			//Aiming Slows Movement
 var automated moFloatEdit	fl_AimSpeed;		//Aim Down Sight Speed Scale
+var automated moFloatEdit	fl_FireRate;		//Fire Rate Scale
 var automated moFloatEdit	fl_Magazine;		//Magazine Size Scale
 var automated moFloatEdit	fl_ShotgunSpread;	//Shotgun Spread Scale
 var automated moFloatEdit	fl_Headshot;		//Headshot Bonus Scale
@@ -41,6 +42,7 @@ function LoadSettings()
 	ch_WeaponMove.Checked(GameStyle.default.bWeaponsAffectMovement);
 	ch_AimMove.Checked(GameStyle.default.bAimingSlowsMovement);
 	fl_AimSpeed.SetValue(GameStyle.default.AimSpeedScale);
+	fl_FireRate.SetValue(GameStyle.default.FireRateScale);
 	fl_Magazine.SetValue(GameStyle.default.MagazineScale);
 	fl_ShotgunSpread.SetValue(GameStyle.default.ShotgunSpreadScale);
 	fl_Headshot.SetValue(GameStyle.default.HeadshotScale);
@@ -58,6 +60,7 @@ function SaveSettings()
 	GameStyle.default.bWeaponsAffectMovement		= ch_WeaponMove.IsChecked();
 	GameStyle.default.bAimingSlowsMovement		= ch_AimMove.IsChecked();
 	GameStyle.default.AimSpeedScale				= fl_AimSpeed.GetValue();
+	GameStyle.default.FireRateScale				= fl_FireRate.GetValue();
 	GameStyle.default.MagazineScale				= fl_Magazine.GetValue();
 	GameStyle.default.ShotgunSpreadScale			= fl_ShotgunSpread.GetValue();
 	GameStyle.default.HeadshotScale				= fl_Headshot.GetValue();
@@ -73,6 +76,7 @@ function DefaultSettings()
 	ch_WeaponMove.Checked(true);
 	ch_AimMove.Checked(true);
 	fl_AimSpeed.SetValue(1.0);
+	fl_FireRate.SetValue(1.0);
 	fl_Magazine.SetValue(1.0);
 	fl_ShotgunSpread.SetValue(1.0);
 	fl_Headshot.SetValue(1.0);
@@ -170,7 +174,7 @@ defaultproperties
          OnCreateComponent=ch_WeaponMoveCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Off: players move and jump the same with every weapon. No weapon slows them down or speeds them up."
-         WinTop=0.230000
+         WinTop=0.227500
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
@@ -185,7 +189,7 @@ defaultproperties
          OnCreateComponent=ch_AimMoveCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Off: no slowdown while aiming down sights."
-         WinTop=0.275000
+         WinTop=0.270000
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
@@ -198,7 +202,7 @@ defaultproperties
          TextAlign=TXTA_Left
          TextColor=(B=0,G=180,R=255,A=255)
          TextFont="UT2MenuFont"
-         WinTop=0.335000
+         WinTop=0.326500
          WinLeft=0.240000
          WinWidth=0.520000
          WinHeight=0.040000
@@ -215,13 +219,31 @@ defaultproperties
          OnCreateComponent=fl_AimSpeedFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="How fast sights are raised and lowered, the same for every player. 2: twice as fast."
-         WinTop=0.380000
+         WinTop=0.369000
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
          TabOrder=2
      End Object
      fl_AimSpeed=moFloatEdit'BallisticProV55.ConfigMenu_AdvancedWeaponRules.fl_AimSpeedFloat'
+
+     Begin Object Class=moFloatEdit Name=fl_FireRateFloat
+         MinValue=0.500000
+         MaxValue=2.000000
+         Step=0.050000
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.700000
+         Caption="Fire Rate Scale"
+         OnCreateComponent=fl_FireRateFloat.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="How fast guns fire, pump and bolt actions included. 1.5: half as fast again."
+         WinTop=0.411500
+         WinLeft=0.265000
+         WinWidth=0.485000
+         WinHeight=0.040000
+         TabOrder=3
+     End Object
+     fl_FireRate=moFloatEdit'BallisticProV55.ConfigMenu_AdvancedWeaponRules.fl_FireRateFloat'
 
      Begin Object Class=moFloatEdit Name=fl_MagazineFloat
          MinValue=0.500000
@@ -233,11 +255,11 @@ defaultproperties
          OnCreateComponent=fl_MagazineFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="How many rounds a magazine holds. 1.5: a magazine of 30 holds 45."
-         WinTop=0.425000
+         WinTop=0.454000
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
-         TabOrder=3
+         TabOrder=4
      End Object
      fl_Magazine=moFloatEdit'BallisticProV55.ConfigMenu_AdvancedWeaponRules.fl_MagazineFloat'
 
@@ -251,11 +273,11 @@ defaultproperties
          OnCreateComponent=fl_ShotgunSpreadFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="How far a shotgun's pellets spread. 0.5: half as wide."
-         WinTop=0.470000
+         WinTop=0.496500
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
-         TabOrder=4
+         TabOrder=5
      End Object
      fl_ShotgunSpread=moFloatEdit'BallisticProV55.ConfigMenu_AdvancedWeaponRules.fl_ShotgunSpreadFloat'
 
@@ -264,7 +286,7 @@ defaultproperties
          TextAlign=TXTA_Left
          TextColor=(B=0,G=180,R=255,A=255)
          TextFont="UT2MenuFont"
-         WinTop=0.530000
+         WinTop=0.553000
          WinLeft=0.240000
          WinWidth=0.520000
          WinHeight=0.040000
@@ -281,11 +303,11 @@ defaultproperties
          OnCreateComponent=fl_HeadshotFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="The extra damage of a head hit. 0: a head hit does body damage. 2: twice the bonus."
-         WinTop=0.575000
+         WinTop=0.595500
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
-         TabOrder=5
+         TabOrder=6
      End Object
      fl_Headshot=moFloatEdit'BallisticProV55.ConfigMenu_AdvancedWeaponRules.fl_HeadshotFloat'
 
@@ -296,11 +318,11 @@ defaultproperties
          OnCreateComponent=ch_LimbCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Off: a hit on an arm or a leg does the damage of a body hit."
-         WinTop=0.620000
+         WinTop=0.638000
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
-         TabOrder=6
+         TabOrder=7
      End Object
      ch_Limb=moCheckBox'BallisticProV55.ConfigMenu_AdvancedWeaponRules.ch_LimbCheck'
 
@@ -311,11 +333,11 @@ defaultproperties
          OnCreateComponent=ch_FalloffCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Off: bullets do their full damage at any range."
-         WinTop=0.665000
+         WinTop=0.680500
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
-         TabOrder=7
+         TabOrder=8
      End Object
      ch_Falloff=moCheckBox'BallisticProV55.ConfigMenu_AdvancedWeaponRules.ch_FalloffCheck'
 
@@ -329,11 +351,11 @@ defaultproperties
          OnCreateComponent=fl_BlastRadiusFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="The damage radius of rockets, grenades and other explosives. 0.5: half as far."
-         WinTop=0.710000
+         WinTop=0.723000
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
-         TabOrder=8
+         TabOrder=9
      End Object
      fl_BlastRadius=moFloatEdit'BallisticProV55.ConfigMenu_AdvancedWeaponRules.fl_BlastRadiusFloat'
 
@@ -347,11 +369,11 @@ defaultproperties
          OnCreateComponent=fl_PenetrationFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="How much wall and how many players a bullet goes through. 0: it stops at the first wall or player."
-         WinTop=0.755000
+         WinTop=0.765500
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
-         TabOrder=9
+         TabOrder=10
      End Object
      fl_Penetration=moFloatEdit'BallisticProV55.ConfigMenu_AdvancedWeaponRules.fl_PenetrationFloat'
 
@@ -361,7 +383,7 @@ defaultproperties
          WinTop=0.860000
          WinLeft=0.250000
          WinWidth=0.150000
-         TabOrder=10
+         TabOrder=11
          OnClick=ConfigMenu_AdvancedWeaponRules.InternalOnClick
          OnKeyEvent=OKButton.InternalOnKeyEvent
      End Object
@@ -373,7 +395,7 @@ defaultproperties
          WinTop=0.860000
          WinLeft=0.425000
          WinWidth=0.150000
-         TabOrder=11
+         TabOrder=12
          OnClick=ConfigMenu_AdvancedWeaponRules.InternalOnClick
          OnKeyEvent=DefaultsButton.InternalOnKeyEvent
      End Object
@@ -385,7 +407,7 @@ defaultproperties
          WinTop=0.860000
          WinLeft=0.600000
          WinWidth=0.150000
-         TabOrder=12
+         TabOrder=13
          OnClick=ConfigMenu_AdvancedWeaponRules.InternalOnClick
          OnKeyEvent=CancelButton.InternalOnKeyEvent
      End Object

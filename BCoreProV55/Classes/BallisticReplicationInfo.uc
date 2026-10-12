@@ -31,6 +31,7 @@ var float					DamageScale;				// Scales anti-player weapon damage
 var float					VehicleDamageScale;			// Scales anti-vehicle weapon damage
 var float					MagazineScale;				// Scales magazine capacity
 var float					AimSpeedScale;				// Scales how fast sights are raised and lowered
+var float					FireRateScale;				// Scales how fast guns fire
 var float					ShotgunSpreadScale;			// Scales the pellet spread of shotguns
 var float					HeadshotScale;				// Scales the damage bonus of a head hit. 0 = none
 var float					BlastRadiusScale;			// Scales the damage radius of explosives
@@ -144,6 +145,7 @@ var struct WeaponRep
 {
 	var float					MagazineScale;
 	var float					AimSpeedScale;
+	var float					FireRateScale;
 	var float					ShotgunSpreadScale;
 	var float					HeadshotScale;
 	var float					BlastRadiusScale;
@@ -272,6 +274,7 @@ final function BindToReplication()
 
 	WRep.MagazineScale				= MagazineScale;
 	WRep.AimSpeedScale				= AimSpeedScale;
+	WRep.FireRateScale				= FireRateScale;
 	WRep.ShotgunSpreadScale			= ShotgunSpreadScale;
 	WRep.HeadshotScale				= HeadshotScale;
 	WRep.BlastRadiusScale			= BlastRadiusScale;
@@ -351,6 +354,7 @@ simulated final function BindFromReplication()
 
 	MagazineScale					= WRep.MagazineScale;
 	AimSpeedScale					= WRep.AimSpeedScale;
+	FireRateScale					= WRep.FireRateScale;
 	ShotgunSpreadScale				= WRep.ShotgunSpreadScale;
 	HeadshotScale					= WRep.HeadshotScale;
 	BlastRadiusScale				= WRep.BlastRadiusScale;
@@ -420,6 +424,7 @@ simulated final function BindDefaults()
 
 	class.default.MagazineScale				= MagazineScale;
 	class.default.AimSpeedScale				= AimSpeedScale;
+	class.default.FireRateScale				= FireRateScale;
 	class.default.ShotgunSpreadScale			= ShotgunSpreadScale;
 	class.default.HeadshotScale				= HeadshotScale;
 	class.default.BlastRadiusScale			= BlastRadiusScale;
@@ -484,7 +489,7 @@ simulated final function BindDefaults()
 	Log("Recoil Scale: "$RecoilScale);
 	Log("Recoil Shot Scale: "$RecoilShotScale);
 	Log("Reload Scale: "$ReloadScale);
-	Log("Magazine "$MagazineScale$", aim speed "$AimSpeedScale$", shotgun spread "$ShotgunSpreadScale$", headshot "$HeadshotScale$", blast radius "$BlastRadiusScale$", penetration "$PenetrationScale);
+	Log("Magazine "$MagazineScale$", aim speed "$AimSpeedScale$", fire rate "$FireRateScale$", shotgun spread "$ShotgunSpreadScale$", headshot "$HeadshotScale$", blast radius "$BlastRadiusScale$", penetration "$PenetrationScale);
 	Log("Weapons affect movement: "$bWeaponsAffectMovement$", aiming slows: "$bAimingSlowsMovement$", limb damage reduction: "$bLimbDamageReduction$", damage falloff: "$bDamageFalloff);
 	Log("Sprint/Jump Weapon Offsetting: "$bWeaponJumpOffsetting);
 	Log("Long Weapon Offsetting: "$bLongWeaponOffsetting);
@@ -554,6 +559,7 @@ defaultproperties
 	VehicleDamageScale=1
 	MagazineScale=1
 	AimSpeedScale=1
+	FireRateScale=1
 	ShotgunSpreadScale=1
 	HeadshotScale=1
 	BlastRadiusScale=1

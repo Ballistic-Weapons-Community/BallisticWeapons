@@ -112,6 +112,12 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	);
 }
 
+// A throw: the server's Fire Rate scale is for guns
+simulated function bool FireRateScales()
+{
+	return false;
+}
+
 defaultproperties
 {
 	bAISilent=True

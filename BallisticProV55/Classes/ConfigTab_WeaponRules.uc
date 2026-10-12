@@ -258,7 +258,7 @@ defaultproperties
 
      Begin Object Class=GUIButton Name=MoreSettingsButton
          Caption="Advanced Weapon Rules"
-         Hint="Whether weapons slow their holder, aim speed, magazine size, shotgun spread, head and limb damage, damage falloff, explosion radius and penetration."
+         Hint="Whether weapons slow their holder, aim speed, fire rate, magazine size, shotgun spread, head and limb damage, damage falloff, explosion radius and penetration."
          WinTop=0.690000
          WinHeight=0.060000
          WinLeft=0.250000

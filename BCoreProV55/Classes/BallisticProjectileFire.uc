@@ -220,6 +220,12 @@ simulated function SwitchWeaponMode (byte NewMode)
 	}
 }
 
+// Guns follow the server's Fire Rate scale
+simulated function bool FireRateScales()
+{
+	return true;
+}
+
 defaultproperties
 {
     bLeadTarget=True

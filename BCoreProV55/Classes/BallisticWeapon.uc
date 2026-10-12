@@ -255,6 +255,7 @@ var	float							MeleeFatigue;
 var   bool							bNeedReload;					// Gun needs to be reloaded. When on, pressing fire will start a reload
 var   bool							bNeedCock;						// Gun needs to be cocked. Will be cocked when reload ends
 var   bool							bReloadCocking;					// The cocking under way ends a reload, and goes at the reload's speed
+var   bool							bFireCocking;					// The cocking under way follows a shot (pump, bolt), and goes at the fire rate's
 var   bool							bPreventReload;					// Reload will not start. Used to prevent reloading while fire anim plays
 var   EReloadState					ReloadState;					// State of the gun during reloading or cocking. Set seperately on client and server
 var   bool							bServerReloading;				// Used to let clients know that server side is still reloading
@@ -1783,11 +1784,14 @@ simulated function PlayShovelLoop()
 }
 
 // The rate of the cocking animation. Cocking that ends a reload follows the server's Reload Scale like the rest
-// of the reload; any other cocking goes at the weapon's own rate
+// of the reload, cocking after each shot (pump, bolt) is part of how fast the gun fires and follows the Fire
+// Rate scale; any other cocking goes at the weapon's own rate
 simulated final function float GetCockAnimRate()
 {
 	if (bReloadCocking)
 		return CockAnimRate * class'BallisticReplicationInfo'.default.ReloadScale;
+	if (bFireCocking)
+		return CockAnimRate * FMax(class'BallisticReplicationInfo'.default.FireRateScale, 0.1);
 	return CockAnimRate;
 }
 
@@ -3146,6 +3150,7 @@ simulated function CommonCockGun(optional byte Type)
 	// Asked here, before the state says nothing but "cocking": PlayCocking looked at the state for this and
 	// so never found a reload
 	bReloadCocking = (Type == 2 || ReloadState != RS_None);
+	bFireCocking = (Type == 1 && !bReloadCocking);
 	ReloadState = RS_Cocking;
 	PlayCocking(Type);
 	for (m=0; m < NUM_FIRE_MODES; m++)
