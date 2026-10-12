@@ -55,7 +55,6 @@ function SaveSettings()
     class'BallisticWeapon'.default.ScopeHandling		= EScopeHandling(co_ADSHandling.GetIndex());
 	class'BallisticWeapon'.default.ModeHandling			= ModeSaveType(co_ModeMemory.GetIndex());
 	class'BallisticPlayer'.default.ZoomTimeMod			= fl_ZoomTimeMod.GetValue();
-    class'BallisticWeapon'.default.ZoomTimeMod			= fl_ZoomTimeMod.GetValue();
 	class'BallisticPlayer'.default.bUseWeaponUI 			= ch_WeaponUI.IsChecked();
 	class'BallisticDamageType'.default.bSimpleDeathMessages	= ch_SimpleDeathMessages.IsChecked();
 	class'BallisticDamageType'.default.bLessDisruptiveFlash	= ch_LessDisruptiveFlash.IsChecked();

@@ -54,7 +54,7 @@ function SetDet(float DetDist)
 
 simulated function AdjustProps(byte NewMode)
 {
-	FireRate = Params.FireInterval;
+	FireRate = ScaledFireInterval();
 
 	if (PumaRepeater(BW).PriDetRangeM < 30 && NewMode == 2) //Range
 	{
@@ -74,7 +74,7 @@ simulated function SwitchCannonMode (byte NewMode)
 {
 	LastFireMode = NewMode;
 	
-	FireRate = Params.FireInterval;
+	FireRate = ScaledFireInterval();
 	if (PumaRepeater(BW).PriDetRangeM < 30 && NewMode == 2) //Range
 	{
 		if (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical())
@@ -93,7 +93,7 @@ simulated function SwitchCannonMode (byte NewMode)
 
 function StartBerserk()
 {
-	FireRate = Params.FireInterval;
+	FireRate = ScaledFireInterval();
 
 	if (PumaRepeater(BW).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
 	{
@@ -110,7 +110,7 @@ function StartBerserk()
 
 function StopBerserk()
 {
-	FireRate = Params.FireInterval;
+	FireRate = ScaledFireInterval();
 	
 	if (PumaRepeater(BW).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
 	{
@@ -126,7 +126,7 @@ function StopBerserk()
 
 function StartSuperBerserk()
 {
-	FireRate = Params.FireInterval;
+	FireRate = ScaledFireInterval();
 	
 	if (PumaRepeater(BW).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
 	{

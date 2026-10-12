@@ -53,7 +53,7 @@ event ModeTick(float DT)
 	}
 	else
 	{
-		DesiredFireRate = (FMin(1.0 / (60*TridentWeapon.BarrelSpeed), 1));
+		DesiredFireRate = (FMin(1.0 / (60*TridentWeapon.BarrelSpeed * GetFireRateScale()), 1));
 		if (BW.CurrentWeaponMode == 0)
 			TraceCount = 1;
 		else

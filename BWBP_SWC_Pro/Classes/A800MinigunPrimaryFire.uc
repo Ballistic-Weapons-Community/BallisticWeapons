@@ -63,7 +63,7 @@ event ModeTick(float DT)
 		FireRate = 1.0;
 	else
 	{
-		DesiredFireRate = (FMin(1.0 / (60 * (1 + 0.25*int(BW.bBerserk)) * Minigun.BarrelSpeed), 1));
+		DesiredFireRate = (FMin(1.0 / (60 * (1 + 0.25*int(BW.bBerserk)) * Minigun.BarrelSpeed * GetFireRateScale()), 1));
 		FireRate = DesiredFireRate;
 	}
 	NextFireTime += FireRate - OldFireRate;

@@ -48,7 +48,7 @@ simulated state SpinUpFire
 		}
 		else
 		{
-			FireRate = FMin(0.66, (Params.FireInterval / (1 + 0.25*int(BW.bBerserk))) / MainGun.BarrelSpeed);
+			FireRate = FMin(0.66, (ScaledFireInterval() / (1 + 0.25*int(BW.bBerserk))) / MainGun.BarrelSpeed);
 		}
 
 		super.ModeTick(DT);

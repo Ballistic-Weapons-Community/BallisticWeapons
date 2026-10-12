@@ -254,6 +254,8 @@ var	float							MeleeFatigue;
 //-----------------------------------------------------------------------------
 var   bool							bNeedReload;					// Gun needs to be reloaded. When on, pressing fire will start a reload
 var   bool							bNeedCock;						// Gun needs to be cocked. Will be cocked when reload ends
+var   bool							bReloadCocking;					// The cocking under way ends a reload, and goes at the reload's speed
+var   bool							bFireCocking;					// The cocking under way follows a shot (pump, bolt), and goes at the fire rate's
 var   bool							bPreventReload;					// Reload will not start. Used to prevent reloading while fire anim plays
 var   EReloadState					ReloadState;					// State of the gun during reloading or cocking. Set seperately on client and server
 var   bool							bServerReloading;				// Used to let clients know that server side is still reloading
@@ -335,7 +337,6 @@ var() float 				ScopeXScale;			// Corrects for legacy scopes made for full-scree
 var() float					ScopeScale;				// General scaler for scope texture draw
 var() name					ZoomInAnim;				// Anim to play for raising weapon to view through Scope or sights
 var() name					ZoomOutAnim;			// Anim to play when lowering weapon after viewing through scope or sights
-var() globalconfig float 	ZoomTimeMod;			// Multiplier for sighting/zooming
 var() BUtil.FullSound		ZoomInSound;			// Sound when zooming in
 var() BUtil.FullSound		ZoomOutSound;			// Sound when zooming out
 var() float					SightDisplayFOV;		// DisplayFOV for drawing gun in scope/sight view. Default property setting is now ignored.
@@ -848,6 +849,12 @@ simulated function GenerateCamo(byte Index)
 	}
 }
 
+// What this weapon's magazine holds under the server's Magazine Scale
+simulated final function int GetMagCapacity()
+{
+	return class'BallisticReplicationInfo'.static.ScaleMagAmmo(WeaponParams.MagAmmo);
+}
+
 simulated function OnWeaponParamsChanged()
 {
     local int i;
@@ -855,25 +862,27 @@ simulated function OnWeaponParamsChanged()
 	
     assert(WeaponParams != None);
 
-	SightingTime 				= WeaponParams.SightingTime / ZoomTimeMod;
-	default.SightingTime 		= WeaponParams.SightingTime / ZoomTimeMod;
+	// How fast sights go up is the server's rule (Aim Speed Scale). It was each player's own setting, and a
+	// server takes a client's word for when its sights are up
+	SightingTime 				= class'BallisticReplicationInfo'.static.ScaleTime(WeaponParams.SightingTime, class'BallisticReplicationInfo'.default.AimSpeedScale);
+	default.SightingTime 		= SightingTime;
 
     // Only the SERVER initializes live MagAmmo.
     // Clients use the replicated value coming from the server via ClientSetMagAmmo.
     // Without this guard, client PostNetBeginPlay.Initialize resets MagAmmo to full,
     // overwriting the replicated value from a dropped weapon pickup.
 	if (Role == ROLE_Authority)
-		MagAmmo = WeaponParams.MagAmmo;
+		MagAmmo = GetMagCapacity();
 	//log("OnWeaponParamsChanged MagAmmo set to " $MagAmmo$ " for "$GetHumanReadableName());
-	default.MagAmmo				= WeaponParams.MagAmmo;
+	default.MagAmmo				= GetMagCapacity();
 	
 	bMagPlusOne					= WeaponParams.bMagPlusOne;
 	default.bMagPlusOne			= WeaponParams.bMagPlusOne;
 
-	PlayerSpeedFactor 			= WeaponParams.PlayerSpeedFactor;
-	default.PlayerSpeedFactor	= WeaponParams.PlayerSpeedFactor;
+	PlayerSpeedFactor 			= class'BallisticReplicationInfo'.static.GetMovementFactor(WeaponParams.PlayerSpeedFactor);
+	default.PlayerSpeedFactor	= PlayerSpeedFactor;
 
-	PlayerJumpFactor 			= WeaponParams.PlayerJumpFactor;
+	PlayerJumpFactor 			= class'BallisticReplicationInfo'.static.GetMovementFactor(WeaponParams.PlayerJumpFactor);
 	//default.PlayerJumpFactor	= WeaponParams.PlayerJumpFactor;
 	
 	ReloadAnimRate 					= WeaponParams.ReloadAnimRate;
@@ -1213,7 +1222,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	// Shovel loop ended, start it again
 	if (ReloadState == RS_PostShellIn)
 	{
-		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= WeaponParams.MagAmmo || Ammo[0].AmmoAmount < 1 )
+		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= GetMagCapacity() || Ammo[0].AmmoAmount < 1 )
 		{
 			PlayShovelEnd();
 			ReloadState = RS_EndShovel;
@@ -1306,17 +1315,23 @@ simulated function StopBerserk()
         FireMode[1].StopBerserk();
 }
 
+// Recoil settles a quarter faster while berserk. Worked out from the weapon's own times on every call: this
+// used to multiply what it found, and the calls do not come in pairs. StartBerserk comes again with every
+// change to the weapon during one combo, and StopBerserk comes once for every weapon carried when the combo
+// ends, whether it was in the hands during it or not
 simulated function UpdateBerserkRecoil()
 {
-	local float factor;
+	if (RcComponent == None || RcComponent.Params == None)
+		return;
 
-	factor = 0.75f;
+	RcComponent.DeclineTime = RcComponent.Params.DeclineTime;
+	RcComponent.DeclineDelay = RcComponent.Params.DeclineDelay;
 
-	if (!bBerserk)
-		factor = 1f / factor;
-
-	RcComponent.DeclineTime *= factor;
-	RcComponent.DeclineDelay *= factor;
+	if (bBerserk)
+	{
+		RcComponent.DeclineTime *= 0.75f;
+		RcComponent.DeclineDelay *= 0.75f;
+	}
 }
 
 //==================================================================
@@ -1614,7 +1629,7 @@ simulated function Notify_ShellIn()
 		ReloadState = RS_PostShellIn;
 		if (Role == ROLE_Authority)
 		{
-			AmmoNeeded = Min(ShovelIncrement, WeaponParams.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0)));
+			AmmoNeeded = Min(ShovelIncrement, GetMagCapacity() - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0)));
 
 			if (AmmoNeeded > Ammo[0].AmmoAmount)
 				MagAmmo+=Ammo[0].AmmoAmount;
@@ -1644,7 +1659,7 @@ simulated function Notify_ClipIn()
 	class'BUtil'.static.PlayFullSound(self, ClipInSound, true);
 	if (level.NetMode != NM_Client)
 	{
-		AmmoNeeded = WeaponParams.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0));
+		AmmoNeeded = GetMagCapacity() - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0));
 		if (AmmoNeeded > Ammo[0].AmmoAmount)
 			MagAmmo+=Ammo[0].AmmoAmount;
 		else
@@ -1775,20 +1790,37 @@ simulated function PlayShovelLoop()
 			Instigator.SetAnimAction('Shovel');
 }
 
+// The rate of the cocking animation. Cocking that ends a reload follows the server's Reload Scale like the rest
+// of the reload, cocking after each shot (pump, bolt) is part of how fast the gun fires and follows the Fire
+// Rate scale; any other cocking goes at the weapon's own rate
+simulated final function float GetCockAnimRate()
+{
+	if (bReloadCocking)
+		return CockAnimRate * class'BallisticReplicationInfo'.default.ReloadScale;
+	if (bFireCocking)
+		return CockAnimRate * FMax(class'BallisticReplicationInfo'.default.FireRateScale, 0.1);
+	return CockAnimRate;
+}
+
+// The blend into the cocking animation: a fifth of a second, shortened or stretched with the animation where a
+// scale changes its rate (at a rate three times as high the fixed blend was a third of the whole cocking)
+simulated final function float GetCockTweenTime()
+{
+	if (CockAnimRate <= 0 || GetCockAnimRate() <= 0)
+		return 0.2;
+	return 0.2 * CockAnimRate / GetCockAnimRate();
+}
+
 simulated function PlayCocking(optional byte Type)
 {
     local float AdjustedCockAnimRate;
 
-    // Adjust cock animation rate only during reloading
-    if (ReloadState != RS_None && ReloadState != RS_Cocking)
-        AdjustedCockAnimRate = CockAnimRate * class'BallisticReplicationInfo'.default.ReloadScale;
-    else
-        AdjustedCockAnimRate = CockAnimRate; // Use default rate for firing
+    AdjustedCockAnimRate = GetCockAnimRate();
 
     if (Type == 2 && HasAnim(CockAnimPostReload))
-        SafePlayAnim(CockAnimPostReload, AdjustedCockAnimRate, 0.2, , "RELOAD");
+        SafePlayAnim(CockAnimPostReload, AdjustedCockAnimRate, GetCockTweenTime(), , "RELOAD");
     else
-        SafePlayAnim(CockAnim, AdjustedCockAnimRate, 0.2, , "RELOAD");
+        SafePlayAnim(CockAnim, AdjustedCockAnimRate, GetCockTweenTime(), , "RELOAD");
 
     if (SightingState != SS_None)
         TemporaryScopeDown(default.SightingTime);
@@ -2159,7 +2191,7 @@ simulated final function StopScopeView(optional bool bNoAnim)
 simulated function PlayScopeDown(optional bool bNoAnim)
 {
 	if (!bNoAnim && HasAnim(ZoomOutAnim))
-	    SafePlayAnim(ZoomOutAnim, ZoomTimeMod);
+	    SafePlayAnim(ZoomOutAnim, class'BallisticReplicationInfo'.default.AimSpeedScale);
 	else if (SightingState == SS_Active || SightingState == SS_Raising)
 		SightingState = SS_Lowering;
 
@@ -2173,7 +2205,7 @@ simulated function PlayScopeDown(optional bool bNoAnim)
 simulated function PlayScopeUp()
 {
 	if (HasAnim(ZoomInAnim))
-	    SafePlayAnim(ZoomInAnim, ZoomTimeMod);
+	    SafePlayAnim(ZoomInAnim, class'BallisticReplicationInfo'.default.AimSpeedScale);
 	else
 		SightingState = SS_Raising;
 
@@ -3123,6 +3155,10 @@ simulated function CommonCockGun(optional byte Type)
 			if (Instigator.IsA('BallisticPawn'))
 				Instigator.SetAnimAction('CockGun');
 	}
+	// Asked here, before the state says nothing but "cocking": PlayCocking looked at the state for this and
+	// so never found a reload
+	bReloadCocking = (Type == 2 || ReloadState != RS_None);
+	bFireCocking = (Type == 1 && !bReloadCocking);
 	ReloadState = RS_Cocking;
 	PlayCocking(Type);
 	for (m=0; m < NUM_FIRE_MODES; m++)
@@ -3569,7 +3605,7 @@ function ServerStartReload (optional byte i)
 	if (ReloadState != RS_None)
 		return;
 		
-	if (MagAmmo >= WeaponParams.MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking)))
+	if (MagAmmo >= GetMagCapacity() + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking)))
 	{
 		if (bNeedCock)
 			ServerCockGun(0);
@@ -3951,7 +3987,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	AimComponent.OnWeaponSelected();
 
 	if (WeaponParams != None)
-		Instigator.WalkingPct = WeaponParams.SightMoveSpeedFactor;
+		Instigator.WalkingPct = class'BallisticReplicationInfo'.static.GetAimMoveFactor(WeaponParams.SightMoveSpeedFactor);
 
 	if (Role == ROLE_Authority)
 	{
@@ -4139,7 +4175,7 @@ simulated function float RateSelf()
 	{
 		CurrentRating = Instigator.Controller.RateWeapon(self);
 		if (!bNoMag){
-			if(!HasNonMagAmmo(255) && MagAmmo < WeaponParams.MagAmmo / 4)
+			if(!HasNonMagAmmo(255) && MagAmmo < GetMagCapacity() / 4)
 				CurrentRating /= (1+AIReloadTime);
 //				CurrentRating = CurrentRating * 0.25;
 			else if (MagAmmo <= 0)
@@ -4203,7 +4239,7 @@ function bool BotReload(optional bool bForced)
 // Is reloading a good idea???
 function bool BotShouldReload ()
 {
-	if ( (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime > AIReloadTime + AIReloadTime * (MagAmmo/WeaponParams.MagAmmo)) &&
+	if ( (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime > AIReloadTime + AIReloadTime * (MagAmmo/GetMagCapacity())) &&
 		 (Level.TimeSeconds - Instigator.LastPainTime > AIReloadTime) )
 		return true;
 	return false;
@@ -5745,7 +5781,7 @@ simulated function GetAmmoCount(out float MaxAmmoPrimary, out float CurAmmoPrima
 	}
 	else
 	{
-		MaxAmmoPrimary = WeaponParams.MagAmmo;
+		MaxAmmoPrimary = GetMagCapacity();
 		CurAmmoPrimary = MagAmmo;
 	}
 }
@@ -6654,7 +6690,6 @@ defaultproperties
      MaxZoom=2.000000
      ZoomStages=2
 	 SightBobScale=0.15f
-	 ZoomTimeMod=1.000000
 	 
      SMuzzleFlashOffset=(X=25.000000,Z=-15.000000)
      MagEmptyColor=(B=50,G=50,R=255,A=150)

@@ -127,20 +127,20 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
 
     MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
     // FIXME - CutOffStartRange
-    RangeAtten = effect_params.RangeAtten;        // Multiplier at max falloff
+    RangeAtten = class'BallisticReplicationInfo'.static.GetRangeAtten(effect_params.RangeAtten);        // Multiplier at max falloff
 	default.TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
     default.DecayRange = DecayRange;
     default.MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
-    default.RangeAtten = effect_params.RangeAtten;        // Multiplier at max falloff
+    default.RangeAtten = RangeAtten;        // Multiplier at max falloff
 
     Damage = effect_params.Damage;
     DamageSpecial = effect_params.DamageSpecial;
-    HeadMult = effect_params.HeadMult;
-    LimbMult = effect_params.LimbMult;   
+    HeadMult = class'BallisticReplicationInfo'.static.ScaleHeadMult(effect_params.HeadMult);
+    LimbMult = class'BallisticReplicationInfo'.static.GetLimbMult(effect_params.LimbMult);
 
 	default.Damage = effect_params.Damage;
-    default.HeadMult = effect_params.HeadMult;
-    default.LimbMult = effect_params.LimbMult;
+    default.HeadMult = HeadMult;
+    default.LimbMult = LimbMult;
 
     DamageType = effect_params.DamageType;
     DamageTypeHead = effect_params.DamageTypeHead;	
@@ -153,11 +153,11 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     default.bUseRunningDamage = effect_params.UseRunningDamage;
     default.RunningSpeedThresh = effect_params.RunningSpeedThreshold;
 
-    WallPenetrationForce = effect_params.PenetrationEnergy;
-    PenetrateForce = effect_params.PenetrateForce;
+    WallPenetrationForce = effect_params.PenetrationEnergy * class'BallisticReplicationInfo'.default.PenetrationScale;
+    PenetrateForce = effect_params.PenetrateForce * class'BallisticReplicationInfo'.default.PenetrationScale;
     bPenetrate = effect_params.bPenetrate;    
-	default.WallPenetrationForce = effect_params.PenetrationEnergy;
-    default.PenetrateForce = effect_params.PenetrateForce;
+	default.WallPenetrationForce = WallPenetrationForce;
+    default.PenetrateForce = PenetrateForce;
     default.bPenetrate = effect_params.bPenetrate;
 
     // Note - Deprecate these two
@@ -822,6 +822,12 @@ simulated function SwitchWeaponMode (byte NewMode)
 
 		Load=AmmoPerFire;
 	}
+}
+
+// Guns follow the server's Fire Rate scale
+simulated function bool FireRateScales()
+{
+	return true;
 }
 
 defaultproperties

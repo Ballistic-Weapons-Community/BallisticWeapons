@@ -225,18 +225,14 @@ simulated function PlayCocking(optional byte Type)
 {
 	local float AdjustedCockAnimRate;
 
-    // Adjust cock animation rate only during reloading
-    if (ReloadState != RS_None && ReloadState != RS_Cocking)
-        AdjustedCockAnimRate = CockAnimRate * class'BallisticReplicationInfo'.default.ReloadScale;
-    else
-        AdjustedCockAnimRate = CockAnimRate; // Use default rate for firing
+	AdjustedCockAnimRate = GetCockAnimRate();
 
 	if (Type == 2 && HasAnim(CockAnimPostReload))
-		SafePlayAnim(CockAnimPostReload, AdjustedCockAnimRate, 0.2, , "RELOAD");
+		SafePlayAnim(CockAnimPostReload, AdjustedCockAnimRate, GetCockTweenTime(), , "RELOAD");
 	else if (Type == 5)
-		SafePlayAnim(CockSGAnim, AdjustedCockAnimRate, 0.2, , "RELOAD");
+		SafePlayAnim(CockSGAnim, AdjustedCockAnimRate, GetCockTweenTime(), , "RELOAD");
 	else
-		SafePlayAnim(CockAnim, AdjustedCockAnimRate, 0.2, , "RELOAD");
+		SafePlayAnim(CockAnim, AdjustedCockAnimRate, GetCockTweenTime(), , "RELOAD");
 
 	if (SightingState != SS_None)
 		TemporaryScopeDown(default.SightingTime);
@@ -502,7 +498,7 @@ simulated function AddHeat(float Amount)
 			PlaySound(HighHeatSound,,1.0,,32);
 			if (level.Netmode != NM_DedicatedServer )
 				BallisticInstantFire(FireMode[0]).JamChance=0.25;
-			BallisticInstantFire(FireMode[0]).FireRate=BallisticInstantFire(FireMode[0]).Params.FireInterval*4;
+			BallisticInstantFire(FireMode[0]).FireRate=BallisticInstantFire(FireMode[0]).ScaledFireInterval()*4;
 			BallisticInstantFire(FireMode[0]).Damage = BallisticInstantFire(FireMode[0]).default.Damage+13;
 			BallisticInstantFire(FireMode[0]).MuzzleFlashClass=Class'BWBP_SKC_Pro.CYLOFirestormHeatEmitter';
 			BallisticInstantFire(FireMode[0]).DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormHot';
@@ -514,7 +510,7 @@ simulated function AddHeat(float Amount)
 			PlaySound(MedHeatSound,,0.7,,32);
 			if (level.Netmode != NM_DedicatedServer )
 				BallisticInstantFire(FireMode[0]).JamChance=0.1;
-			BallisticInstantFire(FireMode[0]).FireRate=BallisticInstantFire(FireMode[0]).Params.FireInterval*2;
+			BallisticInstantFire(FireMode[0]).FireRate=BallisticInstantFire(FireMode[0]).ScaledFireInterval()*2;
 			BallisticInstantFire(FireMode[0]).Damage = BallisticInstantFire(FireMode[0]).default.Damage+8;
 			BallisticInstantFire(FireMode[0]).MuzzleFlashClass=Class'BWBP_SKC_Pro.CYLOFirestormHeatEmitter';
 			BallisticInstantFire(FireMode[0]).DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormHot';
@@ -527,7 +523,7 @@ simulated function AddHeat(float Amount)
 				BallisticInstantFire(FireMode[0]).JamChance=0.002;
 			BallisticInstantFire(FireMode[0]).Damage = BallisticInstantFire(FireMode[0]).default.Damage;
 			BallisticInstantFire(FireMode[0]).MuzzleFlashClass = BallisticInstantFire(FireMode[0]).default.MuzzleFlashClass;
-			BallisticInstantFire(FireMode[0]).FireRate = BallisticInstantFire(FireMode[0]).Params.FireInterval;
+			BallisticInstantFire(FireMode[0]).FireRate = BallisticInstantFire(FireMode[0]).ScaledFireInterval();
 			BallisticInstantFire(FireMode[0]).DamageType = BallisticInstantFire(FireMode[0]).default.DamageType;
 			BallisticInstantFire(FireMode[0]).DamageTypeHead = BallisticInstantFire(FireMode[0]).default.DamageTypeHead;
 			BallisticInstantFire(FireMode[0]).DamageTypeArm = BallisticInstantFire(FireMode[0]).default.DamageTypeArm;

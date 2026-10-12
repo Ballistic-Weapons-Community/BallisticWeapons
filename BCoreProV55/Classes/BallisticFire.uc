@@ -144,10 +144,36 @@ var(Jamming) bool				            bJamWastesAmmo;			// Jamming wastes the ammo th
 // END JAMMING
 //=============================================================================
 
+// Whether the server's Fire Rate scale acts on this fire mode: on what shoots, not on blades, thrown grenades,
+// sights and other keys
+simulated function bool FireRateScales()
+{
+	return false;
+}
+
+simulated final function float GetFireRateScale()
+{
+	if (FireRateScales())
+		return FMax(class'BallisticReplicationInfo'.default.FireRateScale, 0.1);
+	return 1.0;
+}
+
+// The params' time between shots and rate of the fire animation, under the Fire Rate scale. For code that
+// sets FireRate from the params itself
+simulated final function float ScaledFireInterval()
+{
+	return Params.FireInterval / GetFireRateScale();
+}
+
+simulated final function float ScaledFireAnimRate()
+{
+	return Params.FireAnimRate * GetFireRateScale();
+}
+
 simulated final function ApplyFireParams()
 {
-    FireRate                		= Params.FireInterval;
-	default.FireRate        		= Params.FireInterval;
+    FireRate                		= ScaledFireInterval();
+	default.FireRate        		= FireRate;
 	
     AmmoPerFire             		= Params.AmmoPerFire;
 	default.AmmoPerFire    			= Params.AmmoPerFire;
@@ -171,12 +197,12 @@ simulated final function ApplyFireParams()
     FireEndAnim             		= Params.FireEndAnim;
 
     PreFireAnimRate         		= Params.PreFireAnimRate;
-    FireAnimRate            		= Params.FireAnimRate;
-    FireLoopAnimRate        		= Params.FireLoopAnimRate;
+    FireAnimRate            		= ScaledFireAnimRate();
+    FireLoopAnimRate        		= Params.FireLoopAnimRate * GetFireRateScale();
     FireEndAnimRate         		= Params.FireEndAnimRate;    
 	default.PreFireAnimRate         = Params.PreFireAnimRate;
-    default.FireAnimRate            = Params.FireAnimRate;
-    default.FireLoopAnimRate        = Params.FireLoopAnimRate;
+    default.FireAnimRate            = FireAnimRate;
+    default.FireLoopAnimRate        = FireLoopAnimRate;
     default.FireEndAnimRate         = Params.FireEndAnimRate;
 
     AimedFireAnim           		= Params.AimedFireAnim;
@@ -240,8 +266,8 @@ function StartBerserk()
 
     else 
     {
-        FireRate = Params.FireInterval * 0.8f;
-        FireAnimRate = Params.FireAnimRate * 1.25f;
+        FireRate = ScaledFireInterval() * 0.8f;
+        FireAnimRate = ScaledFireAnimRate() * 1.25f;
         FireRecoil = Params.FireEffectParams[BW.AmmoIndex].Recoil * 0.8f;
         FireChaos = Params.FireEffectParams[BW.AmmoIndex].Chaos* 0.8f; 
     }
@@ -259,8 +285,8 @@ function StopBerserk()
 
     else 
     {
-        FireRate = Params.FireInterval;
-        FireAnimRate = Params.FireAnimRate;
+        FireRate = ScaledFireInterval();
+        FireAnimRate = ScaledFireAnimRate();
         FireRecoil = Params.FireEffectParams[BW.AmmoIndex].Recoil;
         FireChaos = Params.FireEffectParams[BW.AmmoIndex].Chaos;
     }
@@ -278,8 +304,8 @@ function StartSuperBerserk()
 
     else 
     {
-        FireRate = Params.FireInterval/Level.GRI.WeaponBerserk;
-        FireAnimRate = Params.FireAnimRate*Level.GRI.WeaponBerserk;
+        FireRate = ScaledFireInterval()/Level.GRI.WeaponBerserk;
+        FireAnimRate = ScaledFireAnimRate()*Level.GRI.WeaponBerserk;
         FireRecoil = Params.FireEffectParams[BW.AmmoIndex].Recoil/Level.GRI.WeaponBerserk;
         FireChaos = Params.FireEffectParams[BW.AmmoIndex].Chaos/Level.GRI.WeaponBerserk; 
     }
