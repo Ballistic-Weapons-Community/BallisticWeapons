@@ -74,6 +74,8 @@ var array<Actor> PendingScreenBlood;
 
 var() float FlySpeedMulti;
 var bool bWantsSprint;
+var Pawn FlyBoostPawn;		// The pawn whose AirSpeed the sprint key has raised (fly cheat only)
+var float CheatOldAccelRate;	// Its AccelRate from before the fly cheat's own
 
 replication
 {
@@ -1176,19 +1178,26 @@ function DualServerMove
 		(PendingCompress & 128) != 0, DoubleClickMove, ClientRoll, View);
 }
 
+// The sprint key makes a spectator fly faster, and somebody who flies on the cheat. Not a player in a match:
+// the Nova Staff's flight is PlayerFlying too and has a speed of its own, which this used to set to three times
+// the pawn's on the key and back to the pawn's, without the staff's share, when the key was let go.
 function ServerSetSprint(bool bSprint)
 {
     bWantsSprint = bSprint;
     if (bSprint)
     {
-        if (Pawn != None)
-            Pawn.AirSpeed = Pawn.default.AirSpeed * FlySpeedMulti;
+        if (Pawn != None && bCheatFlying && FlyBoostPawn != Pawn)
+        {
+            Pawn.AirSpeed *= FlySpeedMulti;
+            FlyBoostPawn = Pawn;
+        }
         SetSpectateSpeed(default.SpectateSpeed * FlySpeedMulti);
     }
     else
     {
-        if (Pawn != None)
-            Pawn.AirSpeed = Pawn.default.AirSpeed;
+        if (FlyBoostPawn != None && FlyBoostPawn == Pawn)
+            Pawn.AirSpeed /= FlySpeedMulti;
+        FlyBoostPawn = None;
         SetSpectateSpeed(default.SpectateSpeed);
     }
 }
@@ -1329,7 +1338,13 @@ ignores SeePlayer, HearNoise, Bump, ServerSpectate;
             NewAccel = vect(0,0,0);
 		if ( bCheatFlying && (Pawn.Acceleration == vect(0,0,0)) )
             Pawn.Velocity = vect(0,0,0);
-		Pawn.AccelRate = 4096.0;
+		// The quick starts and stops are for the fly cheat. On the Nova Staff's wings this doubled the pawn's
+		// acceleration too, only on the machine that flies, and left it doubled on foot afterwards.
+		if (bCheatFlying && Pawn.AccelRate != 4096.0)
+		{
+			CheatOldAccelRate = Pawn.AccelRate;
+			Pawn.AccelRate = 4096.0;
+		}
 
         // Update rotation.
         oldRotation = Rotation;
@@ -1340,6 +1355,13 @@ ignores SeePlayer, HearNoise, Bump, ServerSpectate;
         else
             ProcessMove(DeltaTime, NewAccel, DCLICK_None, OldRotation - Rotation);
     }
+
+	function EndState()
+	{
+		if (CheatOldAccelRate > 0 && Pawn != None)
+			Pawn.AccelRate = CheatOldAccelRate;
+		CheatOldAccelRate = 0;
+	}
 }
 
 //Allows fast moving in sprint
