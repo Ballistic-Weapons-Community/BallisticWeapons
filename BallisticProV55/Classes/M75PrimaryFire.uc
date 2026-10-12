@@ -72,11 +72,11 @@ simulated state ClassicRail
 
 		TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
 		MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
-		RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range
+		RangeAtten = class'BallisticReplicationInfo'.static.GetRangeAtten(effect_params.RangeAtten);        // Interpolation curve for damage reduction over range
 
 		default.Damage = effect_params.Damage;
 		HeadMult = class'BallisticReplicationInfo'.static.ScaleHeadMult(effect_params.HeadMult);
-		LimbMult = class'BallisticReplicationInfo'.static.ScaleLimbMult(effect_params.LimbMult);
+		LimbMult = class'BallisticReplicationInfo'.static.GetLimbMult(effect_params.LimbMult);
 
 		DamageType = effect_params.DamageType;
 		DamageTypeHead = effect_params.DamageTypeHead;	

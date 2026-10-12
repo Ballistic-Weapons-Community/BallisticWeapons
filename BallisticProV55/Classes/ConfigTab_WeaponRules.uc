@@ -24,7 +24,7 @@ var automated moNumericEdit int_MaxInventoryCapacity;	//Inventory Capacity
 
 var automated moEditBox   	eb_ItemGroup;				//The name of the Itemizer layout you want to use.
 var automated moCheckbox	ch_UseItemizer; 			//Enable Itemizer to spawn aditional pickups in maps.
-var automated GUIButton		bn_MoreSettings;			//Opens the sub menu with the further weapon scales
+var automated GUIButton		bn_MoreSettings;			//Opens the sub menu with the advanced weapon rules
 
 //==================================================================
 // Settings & Defaults
@@ -49,7 +49,7 @@ function LoadSettings()
 		ch_NoReloading.Checked(game_style.default.bNoReloading);
 	}
 	else
-		bn_MoreSettings.DisableMe();	// a fixed style: nothing here is saved, the sub menu's scales neither
+		bn_MoreSettings.DisableMe();	// a fixed style: nothing here is saved, the sub menu's rules neither
 
 	ch_UseItemizer.Checked(class'Mut_Ballistic'.default.bUseItemizer);
 	eb_ItemGroup.SetText(class'Mut_Ballistic'.default.ItemGroup);
@@ -85,12 +85,12 @@ function SaveSettings()
 	class'Mut_Ballistic'.static.StaticSaveConfig();
 }
 
-// The further scales are the game style's too. The sub menu saves them itself
+// The advanced rules are the game style's too. The sub menu saves them itself
 function bool InternalOnClick(GUIComponent Sender)
 {
 	if (Sender == bn_MoreSettings && BaseMenu.GetConfigStyle() != None)
 	{
-		Controller.OpenMenu("BallisticProV55.ConfigMenu_WeaponScales", string(BaseMenu.GetConfigStyle()));
+		Controller.OpenMenu("BallisticProV55.ConfigMenu_AdvancedWeaponRules", string(BaseMenu.GetConfigStyle()));
 		return true;
 	}
 	return false;
@@ -257,8 +257,8 @@ defaultproperties
      eb_ItemGroup=moEditBox'eb_ItemGroupEdit'
 
      Begin Object Class=GUIButton Name=MoreSettingsButton
-         Caption="More Weapon Settings"
-         Hint="Scales for recoil recovery, spread, aim speed, magazine size, head and limb damage, range, blast radius and more."
+         Caption="Advanced Weapon Rules"
+         Hint="Whether weapons slow their holder, aim speed, magazine size, shotgun spread, head and limb damage, damage falloff, explosion radius and penetration."
          WinTop=0.690000
          WinHeight=0.060000
          WinLeft=0.250000

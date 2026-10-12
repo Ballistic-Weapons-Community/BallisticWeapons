@@ -125,23 +125,18 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     if (DecayRange.Max == 0 || DecayRange.Max <= DecayRange.Min)
         DecayRange.Max = TraceRange.Max;
 
-    // the server's Damage Range scale, on the range as it is used (a weapon without one of its own falls off
-    // over its whole reach)
-    DecayRange.Min *= class'BallisticReplicationInfo'.default.DamageRangeScale;
-    DecayRange.Max *= class'BallisticReplicationInfo'.default.DamageRangeScale;
-
     MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
     // FIXME - CutOffStartRange
-    RangeAtten = effect_params.RangeAtten;        // Multiplier at max falloff
+    RangeAtten = class'BallisticReplicationInfo'.static.GetRangeAtten(effect_params.RangeAtten);        // Multiplier at max falloff
 	default.TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
     default.DecayRange = DecayRange;
     default.MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
-    default.RangeAtten = effect_params.RangeAtten;        // Multiplier at max falloff
+    default.RangeAtten = RangeAtten;        // Multiplier at max falloff
 
     Damage = effect_params.Damage;
     DamageSpecial = effect_params.DamageSpecial;
     HeadMult = class'BallisticReplicationInfo'.static.ScaleHeadMult(effect_params.HeadMult);
-    LimbMult = class'BallisticReplicationInfo'.static.ScaleLimbMult(effect_params.LimbMult);
+    LimbMult = class'BallisticReplicationInfo'.static.GetLimbMult(effect_params.LimbMult);
 
 	default.Damage = effect_params.Damage;
     default.HeadMult = HeadMult;

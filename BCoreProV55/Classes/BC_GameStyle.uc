@@ -31,18 +31,17 @@ var() config float 		RecoilShotScale;			// Scales weapon recoil per shot (result
 var() config float 		ReloadScale;				// Scales reload speed
 var() config float		DamageScale;				// Scales anti-player damage
 var() config float		VehicleDamageScale;			// Scales anti-vehicle damage
-// The Weapons tab's further scales. 1 leaves a weapon as it is made
+// The Weapons tab's advanced rules. A scale of 1 leaves a weapon as it is made
 var() config float		MagazineScale;			// Scales magazine capacity
 var() config float		AimSpeedScale;			// Scales how fast sights are raised and lowered
-var() config float		WeaponWeightScale;		// Scales how much a weapon slows (or speeds up) its holder. 0 = not at all
-var() config float		AimMoveScale;			// Scales the extra slowdown while aiming down sights. 0 = none
+var() config float		ShotgunSpreadScale;		// Scales the pellet spread of shotguns
 var() config float		HeadshotScale;			// Scales the damage bonus of a head hit. 0 = none
-var() config float		LimbScale;				// Scales the damage penalty of a limb hit. 0 = none
-var() config float		DamageRangeScale;		// Scales the ranges over which damage falls off
 var() config float		BlastRadiusScale;		// Scales the damage radius of explosives
 var() config float		PenetrationScale;		// Scales how much wall and how many players a shot goes through
-var() config float		RecoilRecoveryScale;	// Scales how fast recoil settles
-var() config float		SpreadScale;			// Scales the spread of shots
+var() config bool		bWeaponsAffectMovement;	// A weapon slows or speeds up its holder and changes the height of jumps
+var() config bool		bAimingSlowsMovement;	// Aiming down sights slows its holder
+var() config bool		bLimbDamageReduction;	// A limb hit does less damage than a body hit
+var() config bool		bDamageFalloff;			// Bullets lose damage over distance
 
 var() config int		InventoryModeIndex;			// Inventory mode used in this style - server only
 var() config int		MaxInventoryCapacity;		// Maximum carrying capacity
@@ -77,15 +76,14 @@ static final function InitializeReplicationInfo(BallisticReplicationInfo rep)
 	rep.ReloadScale				= default.ReloadScale;
 	rep.MagazineScale			= default.MagazineScale;
 	rep.AimSpeedScale			= default.AimSpeedScale;
-	rep.WeaponWeightScale		= default.WeaponWeightScale;
-	rep.AimMoveScale			= default.AimMoveScale;
+	rep.ShotgunSpreadScale		= default.ShotgunSpreadScale;
 	rep.HeadshotScale			= default.HeadshotScale;
-	rep.LimbScale				= default.LimbScale;
-	rep.DamageRangeScale		= default.DamageRangeScale;
 	rep.BlastRadiusScale		= default.BlastRadiusScale;
 	rep.PenetrationScale		= default.PenetrationScale;
-	rep.RecoilRecoveryScale		= default.RecoilRecoveryScale;
-	rep.SpreadScale				= default.SpreadScale;
+	rep.bWeaponsAffectMovement	= default.bWeaponsAffectMovement;
+	rep.bAimingSlowsMovement	= default.bAimingSlowsMovement;
+	rep.bLimbDamageReduction	= default.bLimbDamageReduction;
+	rep.bDamageFalloff			= default.bDamageFalloff;
 	rep.MaxInventoryCapacity	= default.MaxInventoryCapacity;
 	rep.bKillstreaks			= default.bKillstreaks;
 	rep.bNoRandomCamo			= default.bNoRandomCamo;
@@ -111,15 +109,14 @@ defaultproperties
 	VehicleDamageScale=1.0f
 	MagazineScale=1.0f
 	AimSpeedScale=1.0f
-	WeaponWeightScale=1.0f
-	AimMoveScale=1.0f
+	ShotgunSpreadScale=1.0f
 	HeadshotScale=1.0f
-	LimbScale=1.0f
-	DamageRangeScale=1.0f
 	BlastRadiusScale=1.0f
 	PenetrationScale=1.0f
-	RecoilRecoveryScale=1.0f
-	SpreadScale=1.0f
+	bWeaponsAffectMovement=True
+	bAimingSlowsMovement=True
+	bLimbDamageReduction=True
+	bDamageFalloff=True
 
 	SightBobScale=1f
 

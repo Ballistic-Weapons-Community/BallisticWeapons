@@ -358,13 +358,13 @@ simulated function InitParams()
     WeaponClass.static.GetParams().static.SetProjectileParams(self);
 }
 
-// A projectile that takes nothing from a weapon's params keeps what its class says. The server's weapon scales
+// A projectile that takes nothing from a weapon's params keeps what its class says. The server's weapon rules
 // act on that (those of a class are never overwritten: only ApplyParams writes defaults, from the params)
 simulated final function ScaleClassFigures()
 {
 	DamageRadius = default.DamageRadius * class'BallisticReplicationInfo'.default.BlastRadiusScale;
 	HeadMult = class'BallisticReplicationInfo'.static.ScaleHeadMult(default.HeadMult);
-	LimbMult = class'BallisticReplicationInfo'.static.ScaleLimbMult(default.LimbMult);
+	LimbMult = class'BallisticReplicationInfo'.static.GetLimbMult(default.LimbMult);
 }
 
 //===================================================================
@@ -406,7 +406,7 @@ simulated function ApplyParams(ProjectileEffectParams params)
 	default.bLimitMomentumZ = params.bLimitMomentumZ;
 	
     HeadMult = class'BallisticReplicationInfo'.static.ScaleHeadMult(params.HeadMult);
-	LimbMult = class'BallisticReplicationInfo'.static.ScaleLimbMult(params.LimbMult);
+	LimbMult = class'BallisticReplicationInfo'.static.GetLimbMult(params.LimbMult);
 
     MaxDamageGainFactor = params.MaxDamageGainFactor;    
     DamageGainStartTime = params.DamageGainStartTime;    

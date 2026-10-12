@@ -220,8 +220,8 @@ final function Recalculate()
 	YRandFactor 		= Params.YRandFactor;
 	MinRandFactor 		= Params.MinRandFactor;
 	MaxRecoil 			= Params.MaxRecoil;
-	DeclineTime 		= class'BallisticReplicationInfo'.static.ScaleTime(Params.DeclineTime, class'BallisticReplicationInfo'.default.RecoilRecoveryScale);
-	DeclineDelay		= class'BallisticReplicationInfo'.static.ScaleTime(Params.DeclineDelay, class'BallisticReplicationInfo'.default.RecoilRecoveryScale);
+	DeclineTime 		= Params.DeclineTime;
+	DeclineDelay		= Params.DeclineDelay;
 	HipMultiplier 		= Params.HipMultiplier;
 	MaxMoveMultiplier 	= Params.MaxMoveMultiplier;
 	CrouchMultiplier 	= Params.CrouchMultiplier;

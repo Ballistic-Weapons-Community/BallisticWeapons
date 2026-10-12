@@ -877,10 +877,10 @@ simulated function OnWeaponParamsChanged()
 	bMagPlusOne					= WeaponParams.bMagPlusOne;
 	default.bMagPlusOne			= WeaponParams.bMagPlusOne;
 
-	PlayerSpeedFactor 			= class'BallisticReplicationInfo'.static.ScaleSpeedFactor(WeaponParams.PlayerSpeedFactor, class'BallisticReplicationInfo'.default.WeaponWeightScale);
+	PlayerSpeedFactor 			= class'BallisticReplicationInfo'.static.GetMovementFactor(WeaponParams.PlayerSpeedFactor);
 	default.PlayerSpeedFactor	= PlayerSpeedFactor;
 
-	PlayerJumpFactor 			= WeaponParams.PlayerJumpFactor;
+	PlayerJumpFactor 			= class'BallisticReplicationInfo'.static.GetMovementFactor(WeaponParams.PlayerJumpFactor);
 	//default.PlayerJumpFactor	= WeaponParams.PlayerJumpFactor;
 	
 	ReloadAnimRate 					= WeaponParams.ReloadAnimRate;
@@ -3955,7 +3955,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	AimComponent.OnWeaponSelected();
 
 	if (WeaponParams != None)
-		Instigator.WalkingPct = class'BallisticReplicationInfo'.static.ScaleSpeedFactor(WeaponParams.SightMoveSpeedFactor, class'BallisticReplicationInfo'.default.AimMoveScale);
+		Instigator.WalkingPct = class'BallisticReplicationInfo'.static.GetAimMoveFactor(WeaponParams.SightMoveSpeedFactor);
 
 	if (Role == ROLE_Authority)
 	{

@@ -41,6 +41,12 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
 
     super.ApplyFireEffectParams(params);
 
+    // the server's Shotgun Spread scale
+    XInaccuracy *= class'BallisticReplicationInfo'.default.ShotgunSpreadScale;
+    YInaccuracy *= class'BallisticReplicationInfo'.default.ShotgunSpreadScale;
+    default.XInaccuracy = XInaccuracy;
+    default.YInaccuracy = YInaccuracy;
+
     effect_params = ShotgunEffectParams(params);
 
     TraceCount = effect_params.TraceCount;
