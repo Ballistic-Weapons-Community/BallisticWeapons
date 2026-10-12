@@ -28,6 +28,8 @@ function DoExplosion()
 		F.Instigator = Instigator;
 		F.bHeld=true;
 		F.Initialize();
+		// as the other grenades do: the last one is gone
+		CheckNoGrenades();
 	}
 }
 
