@@ -134,17 +134,11 @@ simulated function SpawnTracer(byte Mode, Vector V)
 		bThisShot && (Mode == 1 || TracerChance >= 1 || FRand() < TracerChance))
 
 	{
-		if (Mode == 0)
-		{
-			if (Dist > 200)
-				Tracer = Spawn(TracerClasses[CurrentTracerMode], self, , TipLoc, Rotator(V - TipLoc));
-
-				if (Tracer != None)
-				Tracer.Initialize(Dist);
-		}
-
-		else
-			Tracer = Spawn(TracerClasses[0], self, , TipLoc, Rotator(V - TipLoc));
+		// both barrels at once (mode 1) are the same shot as one
+		if (Dist > 200)
+			Tracer = Spawn(TracerClasses[CurrentTracerMode], self, , TipLoc, Rotator(V - TipLoc));
+		if (Tracer != None)
+			Tracer.Initialize(Dist);
 	}
 	// Spawn under water bullet effect
 	if ( Mode == 0 && Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
@@ -173,6 +167,7 @@ defaultproperties
 	InstantMode=MU_Both
 	FlashMode=MU_Both
 	LightMode=MU_Both
+	TracerMode=MU_Both
 	TracerChance=0.500000
 	Mesh=SkeletalMesh'BWBP_JCF_Anims.SPAS_TPm'
 	DrawScale=0.300000
