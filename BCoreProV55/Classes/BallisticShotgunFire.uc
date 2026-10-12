@@ -15,6 +15,7 @@ var() float						TracerChance;	// Chance of tracer effect spawning per trace. 0=
 var() class<BCImpactManager>	ImpactManager;	// Impact manager to use for ListenServer and StandAlone impacts
 var() bool						bDoWaterSplash;	// splash when hitting water, duh...
 var() int                       MaxHits;        // Cannot hit a single target more times than this
+var() float						HeadLocationShare;	// With this share of the pellets that struck a player on the head, the volley is said to have struck the head
 //-----------------------------------------------------------------------------
 //Target collation ------------------------------------------------------------
 struct HitActorInfo
@@ -315,8 +316,9 @@ function TrackHit(Actor Target, int Damage, vector HitLocation, bool bHeadshot)
 function ApplyHits()
 {
 	local int i;
-	local Vector MomentumDir;
+	local Vector MomentumDir, HitLocation, HeadLocation;
 	local class <DamageType> HitDamageType;
+	local Pawn P;
 
 	//Log("BallisticShotgunFire::ApplyHits");
 
@@ -329,9 +331,26 @@ function ApplyHits()
 		else 
 			HitDamageType = DamageType;
 
-		MomentumDir = Normal(HitActorInfos[i].LastHitLocation - Instigator.Location);
+		// Where the volley is said to have struck decides which part a body loses when it kills. That was
+		// where the first pellet happened to land. With enough pellets on a player's head it is the head:
+		// the point where a line from the shooter to the head bone enters the player. The pawn looks along
+		// that line for the nearest bone, on this machine's own pose of the skeleton, so the bone is asked
+		// for here too and not worked out from the collision size. (The damage type, and with it the
+		// credit for a head shot, still wants half of the pellets there.)
+		HitLocation = HitActorInfos[i].LastHitLocation;
+		P = Pawn(HitActorInfos[i].HitActor);
+		if (P != None && Vehicle(P) == None && P.DrivenVehicle == None && HitActorInfos[i].HeadHits > 0
+			&& HitActorInfos[i].HeadHits >= HitActorInfos[i].TotalHits * HeadLocationShare)
+		{
+			HeadLocation = P.GetBoneCoords('head').Origin;
+			if (VSize(HeadLocation - P.Location) > 2 * P.CollisionHeight)	// a mesh without that bone
+				HeadLocation = GetHeadLocation(P);
+			HitLocation = HeadLocation + Normal(Instigator.Location - HeadLocation) * P.CollisionRadius;
+		}
 
-		ApplyDamage(HitActorInfos[i].HitActor, HitActorInfos[i].Damage, Instigator, HitActorInfos[i].LastHitLocation, MomentumDir * KickForce * HitActorInfos[i].TotalHits, HitDamageType);
+		MomentumDir = Normal(HitLocation - Instigator.Location);
+
+		ApplyDamage(HitActorInfos[i].HitActor, HitActorInfos[i].Damage, Instigator, HitLocation, MomentumDir * KickForce * HitActorInfos[i].TotalHits, HitDamageType);
 
 		HitActorInfos[i].HitActor = None;
 	}
@@ -388,6 +407,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 defaultproperties
 {
      TracerChance=0.500000
+     HeadLocationShare=0.250000
      TraceRange=(Min=500.000000,Max=2000.000000)
 	 WallPenetrationForce=0.000000
 	 bPenetrate=False
