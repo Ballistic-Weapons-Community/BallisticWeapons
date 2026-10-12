@@ -52,7 +52,8 @@ function ServerSwitchWeaponMode (byte NewMode)
 	bServerReloading = true;
 
 	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
-		Instigator.SetAnimAction('ReloadGun');
+		if (Instigator.IsA('BallisticPawn'))
+			Instigator.SetAnimAction('ReloadGun');
 
 	CommonStartReload(0);	//Server animation
 	ClientStartReload(0);	//Client animation

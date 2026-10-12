@@ -73,8 +73,12 @@ function ScrewUpBot()
 		return;
 	LastHitPawn = AC.Pawn;
 
-	Bot(AC).SetAlertness(-1);
-	Bot(AC).LoseEnemy();
+	// a monster's controller is no Bot: it only gets the lower skill
+	if (Bot(AC) != None)
+	{
+		Bot(AC).SetAlertness(-1);
+		Bot(AC).LoseEnemy();
+	}
 
 	bIsActive = true;
 }

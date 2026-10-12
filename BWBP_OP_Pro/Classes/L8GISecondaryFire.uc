@@ -15,6 +15,14 @@ event ModeDoFire()
     super.ModeDoFire();
 }
 
+// Using this is no strike: what it does comes from the animation's notify. The melee class's swipe ran on the
+// server all the same and hit whoever stood in front for 50 damage of no type (the damage has not gone
+// through DoDamage, emptied below, since OnTraceHit took its place).
+function DoFireEffect()
+{
+	Super(BallisticFire).DoFireEffect();
+}
+
 function NotifiedDoFireEffect()
 {
 	local Vector StartTrace;

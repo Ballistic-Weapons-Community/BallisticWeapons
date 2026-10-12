@@ -4,99 +4,45 @@ class WrenchMeleeFire extends BallisticMeleeFire;	// XAVEDIT
 
 var	float	RepairAmount;	// XAVEDIT
 
-// This is called to DoDamage to an actor found by this fire.
-// Adjsuts damage based on Range, Penetrates, WallPenetrates, relative velocities and runs Hurt() to do the deed...
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+// The wrench mends what is its team's or its holder's instead of striking it: objectives, vehicles and his own
+// deployables. (That was in DoDamage, which nothing has called since OnTraceHit took its place: the wrench struck
+// them like anything else.)
+function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, int WallPenForce, optional vector WaterHitLocation)
 {
-	local float				Dmg;
-	local class<DamageType>	HitDT;
-	local Actor				Victim;
-	local Vector			ForceDir, BoneTestLocation, ClosestLocation, testDir;
 	local DestroyableObjective HealObjective;
 	local Vehicle HealVehicle;
-	local int AdjustedDamage, AdjustedRepair;
-	
-	if (Other.IsA('Monster'))
-		Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
-	
-	//Locational damage code from Mr Evil under test here
-	else if(Other.IsA('xPawn'))
+	local int AdjustedRepair;
+
+	if (Instigator != None && Other != None)
 	{
-		//Find a point on the victim's Z axis at the same height as the HitLocation.
-		ClosestLocation = Other.Location;
-		ClosestLocation.Z += (HitLocation - Other.Location).Z;
-		
-		//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
-		BoneTestLocation = Dir;
-		BoneTestLocation *= VSize(ClosestLocation - HitLocation);
-		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
-		BoneTestLocation += HitLocation;
-		
-		Dmg = GetDamage(Other, BoneTestLocation, TraceStart, Dir, Victim, HitDT);
-	}
-	
-	else Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
-	//End locational damage code test
-		
-	if (Instigator != None)
-	{
-		AdjustedDamage = Dmg * Instigator.DamageScaling * DamageType.default.VehicleDamageScaling;
 		AdjustedRepair = RepairAmount * Instigator.DamageScaling;	// XAVEDIT
 		if (Instigator.HasUDamage())
-		{
-			AdjustedDamage *= 2;
 			AdjustedRepair *= 2;
-		}	
-	}
-	
-	HealObjective = DestroyableObjective(Other);
-	if ( HealObjective == None )
-		HealObjective = DestroyableObjective(Other.Owner);
-	if ( HealObjective != None && HealObjective.TeamLink(Instigator.GetTeamNum()) )
-	{
-		HealObjective.HealDamage(AdjustedRepair, Instigator.Controller, HitDT);	// XAVEDIT
-		return;
+
+		HealObjective = DestroyableObjective(Other);
+		if ( HealObjective == None )
+			HealObjective = DestroyableObjective(Other.Owner);
+		if ( HealObjective != None && HealObjective.TeamLink(Instigator.GetTeamNum()) )
+		{
+			HealObjective.HealDamage(AdjustedRepair, Instigator.Controller, DamageType);	// XAVEDIT
+			return;
+		}
+
+		HealVehicle = Vehicle(Other);
+		if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
+		{
+			HealVehicle.HealDamage(AdjustedRepair, Instigator.Controller, DamageType);	// XAVEDIT
+			return;
+		}
+
+		if (WrenchDeployable(Other) != None && Other.Instigator == Instigator)
+		{
+			WrenchDeployable(Other).AddHealth(AdjustedRepair);	// XAVEDIT
+			return;
+		}
 	}
 
-	HealVehicle = Vehicle(Other);
-	if ( HealVehicle != None && Instigator != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
-	{
-		HealVehicle.HealDamage(AdjustedRepair, Instigator.Controller, HitDT);	// XAVEDIT
-		return;
-	}
-	
-	if (WrenchDeployable(Other) != None && Other.Instigator == Instigator)
-	{
-		WrenchDeployable(Other).AddHealth(AdjustedRepair);	// XAVEDIT
-		return;
-	}
-	
-	if (HoldTime > 0)
-		Dmg += Dmg * 1.15  * (FMin(HoldTime, MaxBonusHoldTime)/MaxBonusHoldTime);
-	else if (ThisModeNum == 2 && HoldStartTime != 0)
-	{
-		Dmg += Dmg * 1.15 * (FMin(Level.TimeSeconds - HoldStartTime, MaxBonusHoldTime)/MaxBonusHoldTime);
-		HoldStartTime = 0.0f;
-	}
-	
-	if (bCanBackstab)
-	{
-		testDir = Dir;
-		testDir.Z = 0;
-	
-		if (Vector(Victim.Rotation) Dot testDir > 0.2)
-			Dmg *= 1.5;
-		Dmg = Min(Dmg, 230);
-	}
-	if (HookStopFactor != 0 && HookPullForce != 0 && Pawn(Victim) != None && Pawn(Victim).bProjTarget)
-	{
-		ForceDir = Normal(Other.Location-TraceStart);
-		ForceDir.Z *= 0.3;
-
-		Pawn(Victim).AddVelocity( Normal(Victim.Acceleration) * HookStopFactor * -FMin(Pawn(Victim).GroundSpeed, VSize(Victim.Velocity)) - ForceDir * HookPullForce );
-	}
-
-	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
+	Super.OnTraceHit(Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount, WallPenForce, WaterHitLocation);
 }
 
 simulated function bool HasAmmo()
