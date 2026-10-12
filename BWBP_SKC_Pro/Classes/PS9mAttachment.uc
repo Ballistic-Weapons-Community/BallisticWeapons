@@ -69,15 +69,6 @@ function InitFor(Inventory I)
 		IAOverride(true);
 	}
 }
-simulated event PreBeginPlay()
-{
-	super.PreBeginPlay();
-	if (class'BallisticReplicationInfo'.static.IsClassic())
-	{
-		TracerChance=1;
-		TracerMix=0;
-	}
-}
 
 
 // Does all the effects for an instant-hit kind of fire.
@@ -210,7 +201,6 @@ defaultproperties
 	WeaponClass=class'PS9mPistol'
      MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
      ImpactManager=Class'BWBP_SKC_Pro.IM_Tranq'
-	 TracerChance=0
      FlashScale=0.300000
      BrassClass=Class'BWBP_SKC_Pro.Brass_Tranq'
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq'
