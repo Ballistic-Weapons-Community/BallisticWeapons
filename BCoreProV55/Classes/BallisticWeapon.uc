@@ -1307,17 +1307,23 @@ simulated function StopBerserk()
         FireMode[1].StopBerserk();
 }
 
+// Recoil settles a quarter faster while berserk. Worked out from the weapon's own times on every call: this
+// used to multiply what it found, and the calls do not come in pairs. StartBerserk comes again with every
+// change to the weapon during one combo, and StopBerserk comes once for every weapon carried when the combo
+// ends, whether it was in the hands during it or not
 simulated function UpdateBerserkRecoil()
 {
-	local float factor;
+	if (RcComponent == None || RcComponent.Params == None)
+		return;
 
-	factor = 0.75f;
+	RcComponent.DeclineTime = RcComponent.Params.DeclineTime;
+	RcComponent.DeclineDelay = RcComponent.Params.DeclineDelay;
 
-	if (!bBerserk)
-		factor = 1f / factor;
-
-	RcComponent.DeclineTime *= factor;
-	RcComponent.DeclineDelay *= factor;
+	if (bBerserk)
+	{
+		RcComponent.DeclineTime *= 0.75f;
+		RcComponent.DeclineDelay *= 0.75f;
+	}
 }
 
 //==================================================================
