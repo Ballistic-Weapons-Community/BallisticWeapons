@@ -366,15 +366,11 @@ simulated function PlayCocking(optional byte Type)
 {
 	local float AdjustedCockAnimRate;
 
-    // Adjust cock animation rate only during reloading
-    if (ReloadState != RS_None && ReloadState != RS_Cocking)
-        AdjustedCockAnimRate = CockAnimRate * class'BallisticReplicationInfo'.default.ReloadScale;
-    else
-        AdjustedCockAnimRate = CockAnimRate; // Use default rate for firing
+	AdjustedCockAnimRate = GetCockAnimRate();
 
 	if (!bAltNeedCock)
 		SafePlayAnim(CockAnim, 1.75, 0.2, , "RELOAD");
-	else SafePlayAnim(CockAnim, AdjustedCockAnimRate, 0.2, , "RELOAD");
+	else SafePlayAnim(CockAnim, AdjustedCockAnimRate, GetCockTweenTime(), , "RELOAD");
 
 	if (SightingState != SS_None)
 		TemporaryScopeDown(default.SightingTime);
