@@ -213,7 +213,7 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=93,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=94,Scale=0f)
 		AllowedCamos(0)=0
-		
+		ViewOffset=(X=-0.500000,Y=4.500000,Z=-7.000000)
 		//Stats
 		ReloadAnimRate=1.25
 		CockAnimRate=1.25

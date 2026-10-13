@@ -19,7 +19,7 @@ defaultproperties
          Opacity=1
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
-         StartLocationOffset=(X=55.000000)
+         StartLocationOffset=(X=-5.000000)
          SpinsPerSecondRange=(Z=(Min=2.000000,Max=4.000000))
          StartSizeRange=(X=(Min=0.300000,Max=0.500000),Y=(Min=0.150000,Max=0.150000),Z=(Min=0.150000,Max=0.150000))
 		 // offset to prevent drawing the back of the tracer through the weapon

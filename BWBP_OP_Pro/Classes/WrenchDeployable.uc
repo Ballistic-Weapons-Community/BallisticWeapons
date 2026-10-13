@@ -151,7 +151,7 @@ simulated function Destroyed()
 		if (Master != None)
 			Master.LostDeployable(MasterDeployableIndex);
 		else if (!bPlacementRejected)
-			Log("NO MASTER - WrenchDeployable");
+			//Log("NO MASTER - WrenchDeployable");
 	}
 
 	super.Destroyed();

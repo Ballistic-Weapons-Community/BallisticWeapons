@@ -314,7 +314,7 @@ function PlayFiring()
     FireCount++;
 
 	if (FC01SmartGun(Weapon) != None && FC01SmartGun(Weapon).bSilenced && SilencedFireSound.Sound != None)
-		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,true);
+		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,SilencedFireSound.bAtten);
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
 

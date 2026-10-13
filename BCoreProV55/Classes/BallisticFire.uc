@@ -910,8 +910,8 @@ defaultproperties
      UnjamMethod=UJM_Cock
      JamSound=(Volume=0.800000,Radius=24.000000,Pitch=1.000000,batten=false)
      bJamWastesAmmo=True
-     SilencedFireSound=(Volume=0.7,Radius=48.000000,Pitch=1.000000,bNoOverride=True)
-     BallisticFireSound=(Volume=1.000000,Radius=512.000000,Pitch=1.000000,bNoOverride=True)
+     SilencedFireSound=(Volume=0.7,Radius=48.000000,Pitch=1.000000,batten=false,bNoOverride=True)
+     BallisticFireSound=(Volume=1.000000,Radius=512.000000,Pitch=1.000000,batten=false,bNoOverride=True)
      TransientSoundVolume=1.000000
      TweenTime=0.000000
      AmmoPerFire=1
