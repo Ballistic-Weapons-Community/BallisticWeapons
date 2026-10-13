@@ -647,6 +647,24 @@ simulated function ClientStartLoadout()
 	);
 }
 
+// What a weapon brought along when it was handed out, taken out again before a new copy of it is handed out
+function TakeBackAmmo(Weapon W)
+{
+	local int m;
+	local Ammunition A;
+
+	if (W == None || W.Instigator == None)
+		return;
+	for (m = 0; m < 2; m++)
+	{
+		if (W.GetAmmoClass(m) == None || (m == 1 && W.GetAmmoClass(1) == W.GetAmmoClass(0)))
+			continue;
+		A = Ammunition(W.Instigator.FindInventoryType(W.GetAmmoClass(m)));
+		if (A != None)
+			A.UseAmmo(A.InitialAmount, true);
+	}
+}
+
 // Loadout info sent back from client after it was requested by server.
 // Outfit the client with the standard weapons.
 function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4, int L0, int L1, int L2, int L3, int L4, int C0, int C1, int C2, int C3, int C4) //good lord whyyy
@@ -689,6 +707,8 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 				for (Inv=P.Inventory; Inv!=None; Inv=Inv.Inventory)
 					if (Weapon(Inv) != None && string(Inv.Class) ~= Stuff[i])
 					{
+						// its place is taken by a new one, which brings its ammunition again
+						TakeBackAmmo(Weapon(Inv));
 						Inv.Destroy();
 						break;
 					}
