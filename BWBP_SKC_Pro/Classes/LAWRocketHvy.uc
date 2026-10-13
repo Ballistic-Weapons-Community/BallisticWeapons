@@ -163,7 +163,10 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 	{	// Projectile can go right through enemies
 		HitActor = Other;
 		X = Normal(Velocity);
-		SetLocation(HitLocation + (X * (Other.CollisionHeight*2*X.Z + Other.CollisionRadius*2*(1-X.Z)) * 1.2));
+		// Made inside its target it is touched before it has a velocity: moving it then puts it into the collision
+		// octree twice ("Already In Octree"). See BallisticProjectile.Penetrate
+		if (X != vect(0,0,0))
+			SetLocation(HitLocation + (X * (Other.CollisionHeight*2*X.Z + Other.CollisionRadius*2*(1-X.Z)) * 1.2));
 	    if ( EffectIsRelevant(Location,false) && PenetrateManager != None)
 			PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, Other.SurfaceType, Owner, 4/*HF_NoDecals*/);
 	}
