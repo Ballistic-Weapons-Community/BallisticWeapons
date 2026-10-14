@@ -1339,7 +1339,8 @@ simulated function HurtCorpses(float DamageAmount, float DamageRadius, class<Dam
 // Target is who this is worked out for. Without it the first actor on the way is taken to be him
 function float GetPenetrationDamageScale(Vector dir, float dist, optional Actor Target)
 {
-	local int						WallCount, WallPenForce, WallPenDelta;
+	local int						WallCount;
+	local float						WallPenForce, WallPenDelta, WallDepth;
 	local float						Skip;
 	local Vector					End, X, HitLocation, HitNormal, Start, LastHitLoc, ExitNormal;
 	local Material					HitMaterial, ExitMaterial;
@@ -1400,12 +1401,12 @@ function float GetPenetrationDamageScale(Vector dir, float dist, optional Actor 
                         HitLocation, HitNormal, 
                         WallPenForce * SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial)), 
                         X, Start, 
-                        ExitNormal, ExitMaterial
+                        ExitNormal, ExitMaterial, WallDepth
                     )
                 )
 			{
 
-                WallPenDelta = VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial));
+                WallPenDelta = WallDepth / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial));
 				WallPenForce -= WallPenDelta;
 
                 //Log("GetPenetrationDamageScale: Wall Pen: pwr: "$pwr$", WallPenDelta: "$WallPenDelta);

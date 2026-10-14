@@ -162,7 +162,8 @@ function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int Pen
 // Do the trace to find out where bullet really goes
 function DoTrace (Vector InitialStart, Rotator Dir)
 {
-	local int						PenCount, WallCount, WallPenForce, HitSameCount;
+	local int						PenCount, WallCount, HitSameCount;
+	local float						WallPenForce, Depth;
 	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, ExitNorm, LastHitLocation;
 	local Material					HitMaterial;
 	local float						Dist;
@@ -208,7 +209,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{
-				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, int(WallPenForce + 0.5), WaterHitLoc);
 				LastOther = Other;
 				HitSameCount = 0;
 
@@ -235,12 +236,12 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				if (Other.bCanBeDamaged)
 				{
 					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
-					OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
+					OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, int(WallPenForce + 0.5), WaterHitLoc);
 					break;
 				}
-				if (WallCount < MAX_WALLS && class'WallPenetrationUtil'.static.GoThroughWall(Weapon, Instigator, HitLocation, HitNormal, WallPenForce, X, Start, ExitNorm))
+				if (WallCount < MAX_WALLS && class'WallPenetrationUtil'.static.GoThroughWall(Weapon, Instigator, HitLocation, HitNormal, WallPenForce, X, Start, ExitNorm, , Depth))
 				{
-					WallPenForce -= VSize(Start - HitLocation);
+					WallPenForce = FMax(0, WallPenForce - Depth);
 
 					End = Start + X * Dist;
 					if (WallEntrys.Length < 1 || VSize(HitLocation - WallEntrys[WallEntrys.Length-1]) > 80)
