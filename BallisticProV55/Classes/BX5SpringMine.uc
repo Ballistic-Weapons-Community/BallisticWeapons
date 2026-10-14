@@ -36,6 +36,10 @@ simulated function InitProjectile()
 		Proj = Spawn(class'BX5SpringProj',self,,Location, Rotation);
 		TriggerStartTime = level.TimeSeconds + 3.0;
 		Proj.Instigator=Instigator;
+		// for the rule against mines on pickups and by teleporters (it was never told, so the rule never worked)
+		Proj.OriginalPlacer = Instigator;
+		if (Instigator != None)
+			Proj.PlacerController = Instigator.Controller;
 	}
 
 	if (Proj != None)
@@ -84,6 +88,8 @@ function SteppedOn (Actor Other)
 	if (VSize(Other.Velocity) <= 170 && ( Pawn(Other).Controller == InstigatorController || Vector(Pawn(Other).GetViewRotation()) Dot Normal(Location - Other.Location) > 0.2 ) ) //FMin(160, Pawn(Other).GroundSpeed * Pawn(Other).CrouchedPct * 1.01)
 		return;
 	bDetonated = true;
+	if (Proj != None)
+		Proj.Stepper = Pawn(Other);
 	SetTimer(0.05, false);
 	bTearOff=True;
 }
@@ -196,6 +202,7 @@ defaultproperties
     WeaponClass=Class'BallisticProV55.BX5Mine'
      Health=30
      StartDelay=0.300000
+     bClientStartDelay=True
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.BX5.MineSBase2'
      CullDistance=2500.000000
      bNetTemporary=False

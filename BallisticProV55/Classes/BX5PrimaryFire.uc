@@ -33,6 +33,10 @@ simulated event ModeDoFire()
 		LastTrace = Trace(LastHitLoc, LastHitNorm, End, Start, false);
 		if (LastTrace == None || /*HitNorm.Z < 0.5 ||*/ (!LastTrace.bWorldGeometry && Mover(LastTrace) == None))
 			return;
+		// A bot keeps the trigger down and lays a mine wherever it has got to by then: never on a camping spot, where
+		// the mine would kill the bot itself when somebody else set it off
+		if (AIController(Instigator.Controller) != None && BX5Mine(Weapon) != None && BX5Mine(Weapon).IsCampingSpot(LastHitLoc))
+			return;
 		if (!Instigator.IsLocallyControlled())
 			BX5Mine(Weapon).ClientPlayMineDeploy();
 	    super.ModeDoFire();

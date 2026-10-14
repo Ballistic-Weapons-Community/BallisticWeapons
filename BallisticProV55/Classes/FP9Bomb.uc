@@ -97,8 +97,10 @@ function BlowUp(vector HitLocation)
 	if (Role < ROLE_Authority)
 		return;
 		
-	// Reverse damage if I was used to lame
-	if(bAntiLameMode && OriginalPlacer != None)
+	// Reverse damage if I was used to lame, unless the placer walked into his own laser: then I go off as a bomb does.
+	// (Set off by his own detonator I still kill him: that is the rule against bombs on pickups and teleporters)
+	if(bAntiLameMode && OriginalPlacer != None && TriggeringPawn != OriginalPlacer
+		&& !(TriggeringPawn != None && OriginalPlacer.Controller != None && TriggeringPawn.Controller == OriginalPlacer.Controller))
 	{
 		if (TriggeringPawn != None)
 			class'BallisticDamageType'.static.GenericHurt(OriginalPlacer, 666, TriggeringPawn, HitLocation, MomentumTransfer * vect(0,0,1), class'DT_TeleportLamer');

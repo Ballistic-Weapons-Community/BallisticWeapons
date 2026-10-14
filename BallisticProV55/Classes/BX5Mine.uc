@@ -165,6 +165,21 @@ function DropFrom(vector StartLocation)
 	super.DropFrom(StartLocation);
 }
 
+// Would a mine put down at Loc count as camping (touching a pickup or its base, or by a teleporter)? Such a mine kills its
+// placer when somebody else sets it off (BX5SpringMine and BX5VehicleMine.InitProjectile), so bots keep out of such spots
+function bool IsCampingSpot(vector Loc)
+{
+	local Actor A;
+	local Teleporter T;
+
+	foreach CollidingActors(class'Actor', A, 48, Loc)
+		if (xPickUpBase(A) != None || Pickup(A) != None)
+			return true;
+	foreach RadiusActors(class'Teleporter', T, 280, Loc)
+		return true;
+	return false;
+}
+
 // AI Interface =====
 function bool ShouldFireWithoutTarget()
 {
@@ -209,6 +224,16 @@ function bool CanAttack(Actor Other)
 
 	if (level.TimeSeconds - LastMineCheckTime > 1.0)
 	{
+		// Never on a camping spot, not even when nothing else works: the mine would kill its own bot
+		if (IsCampingSpot(Instigator.Location - vect(0,0,1) * Instigator.CollisionHeight))
+		{
+			LastMineCheckTime = level.TimeSeconds;
+			if (Failure < level.TimeSeconds)
+				Failure = level.TimeSeconds;
+			else
+				Failure += 2.0;
+			return false;
+		}
 		// Rules too strict, can't change weapon, just go nuts!
 		if (Failure > level.TimeSeconds + 5)
 		{
