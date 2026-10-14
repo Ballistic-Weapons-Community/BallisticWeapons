@@ -228,8 +228,9 @@ function BlowUp(vector HitLocation)
 {
 	if (Role < ROLE_Authority)
 		return;
-	// Reverse damage if I was used to lame
-	if(bAntiLameMode)
+	// Reverse damage if I was used to lame, unless the one who set me off is the one who put me there: then I go off as
+	// a mine does, and his death is his own mine's, not a camper's
+	if(bAntiLameMode && !(Stepper != None && (Stepper == OriginalPlacer || (InstigatorController != None && Stepper.Controller == InstigatorController))))
 	{
 		if(Stepper != None && OriginalPlacer != None)
 		class'BallisticDamageType'.static.GenericHurt(OriginalPlacer, 666, Stepper, HitLocation, MomentumTransfer * vect(0,0,1), class'DT_TeleportLamer');
