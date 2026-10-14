@@ -6061,6 +6061,48 @@ simulated function DrawCrosshairs(Canvas C)
 
 // Targeted hurt radius moved here to avoid crashing
 
+// During a rewind a blast of a shot (an explosive round, a beam's end) is to meet the players where the shot saw them:
+// their rewound collisions, which hand the damage on to them, and not their pawns as well
+final function bool StoodInByRewind(Actor Other)
+{
+	return RwColMgr != None && Pawn(Other) != None && RwColMgr.IsStoodIn(Pawn(Other));
+}
+
+// Actor's HurtRadius, but a pawn its rewound collision stands in for is left to the collision
+simulated function HurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation )
+{
+	local actor Victims;
+	local float damageScale, dist;
+	local vector dir;
+
+	if( bHurtEntry )
+		return;
+
+	bHurtEntry = true;
+	foreach VisibleCollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
+	{
+		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
+		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && !StoodInByRewind(Victims) )
+		{
+			dir = Victims.Location - HitLocation;
+			dist = FMax(1,VSize(dir));
+			dir = dir/dist;
+			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
+			Victims.TakeDamage
+			(
+				damageScale * DamageAmount,
+				Instigator,
+				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
+				(damageScale * Momentum * dir),
+				DamageType
+			);
+			if (Instigator != None && Vehicle(Victims) != None && Vehicle(Victims).Health > 0)
+				Vehicle(Victims).DriverRadiusDamage(DamageAmount, DamageRadius, Instigator.Controller, DamageType, Momentum, HitLocation);
+		}
+	}
+	bHurtEntry = false;
+}
+
 simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, optional Pawn ExcludedPawn )
 {
 	local actor target;
@@ -6087,6 +6129,9 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
             col = UnlaggedPawnCollision(target);
 
             if (col != None && col.UnlaggedPawn == ExcludedPawn)
+                continue;
+
+            if (StoodInByRewind(target))
                 continue;
 
 			dir = target.Location - HitLocation;

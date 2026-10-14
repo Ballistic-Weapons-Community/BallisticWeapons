@@ -352,7 +352,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 	foreach Weapon.VisibleCollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
 	{
 		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
-		if( (Victims != self) && (Victims.Role == ROLE_Authority) && UnrealPawn(Victim)==None && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim)
+		if( (Victims != self) && (Victims.Role == ROLE_Authority) && UnrealPawn(Victim)==None && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim && !BW.StoodInByRewind(Victims))
 		{
 			dir = Victims.Location - HitLocation;
 			dist = FMax(1,VSize(dir));
