@@ -211,6 +211,14 @@ final function EnableUnlag(float PingTime)
     EnabledTime = Level.TimeSeconds;
 }
 
+// The pawn a shot met: what it hit, or, while the server's collisions are rewound, the pawn this collision stands for
+static final function Pawn PawnOf(Actor Other)
+{
+    if (UnlaggedPawnCollision(Other) != None)
+        return UnlaggedPawnCollision(Other).UnlaggedPawn;
+    return Pawn(Other);
+}
+
 /*
 If in rewind state, redirect damage taken by the cylinder (explosive rounds, FP9 hijack etc) to the owning Pawn
 */

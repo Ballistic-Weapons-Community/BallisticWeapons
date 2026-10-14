@@ -118,7 +118,8 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			{
 				OnTraceHit(Other, HitLocation, InitialStart, X, 0, 0, 0);
 				
-				if (Pawn(Other) != None)
+				// (a server's rewound collision counts as the player it stands for)
+				if (class'UnlaggedPawnCollision'.static.PawnOf(Other) != None)
 					++SuccessiveHits;
 				
 				if (Vehicle(Other) != None)

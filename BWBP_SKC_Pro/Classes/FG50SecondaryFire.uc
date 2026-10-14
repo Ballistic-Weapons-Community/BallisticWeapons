@@ -102,9 +102,10 @@ simulated state RapidFire
 				
 					LastOther = Other;
 
-					if (Pawn(Other) != None)
+					// a server's rewound collision is the player it stands for
+					if (class'UnlaggedPawnCollision'.static.PawnOf(Other) != None)
 					{
-						bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+						bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, class'UnlaggedPawnCollision'.static.PawnOf(Other), WaterHitLoc);
 						break;
 					}
 					else if (Mover(Other) == None)
