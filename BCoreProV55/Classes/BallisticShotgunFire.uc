@@ -168,7 +168,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 	local Material					HitMaterial;
 	local float						Dist;
 	local Actor						Other, LastOther;
-	local bool						bHitWall;
+	local bool						bHitWall, bThrough;
 
 	WallPenForce = WallPenetrationForce;
 	BW.UpdatePenetrationStatus(0);
@@ -220,11 +220,17 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 		
 			LastOther = Other;
 
-			if (CanPenetrate(Other, HitLocation, X, PenCount))
+			// a shield is measured against the force the walls before have left
+			TraceWallForce = WallPenForce;
+			bTraceWallForce = true;
+			bThrough = CanPenetrate(Other, HitLocation, X, PenCount);
+			bTraceWallForce = false;
+
+			if (bThrough)
 			{
 				PenCount++;
 				
-				Start = HitLocation + (X * Other.CollisionRadius * 2);
+				Start = BodyExit(Other, HitLocation, X);
 				End = Start + X * Dist;
 				Weapon.bTraceWater=true;
 				if (Vehicle(Other) != None)
