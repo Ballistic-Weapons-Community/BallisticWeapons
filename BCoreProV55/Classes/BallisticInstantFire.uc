@@ -478,12 +478,13 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 	if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
 		DamageFactor *= Lerp(VSize(HitLocation-WaterHitLocation) / MaxWaterTraceRange, 1, WaterRangeAtten);
 
+	// once for each body and each wall gone through
 	if (PenetrateCount > 0)
-		DamageFactor *= PDamageFactor * PenetrateCount;
+		DamageFactor *= PDamageFactor ** PenetrateCount;
 
 	if (WallPenetrationForce > 0 && WallCount > 0)
 	{
-		DamageFactor *= WallPDamageFactor * WallCount;
+		DamageFactor *= WallPDamageFactor ** WallCount;
 		DamageFactor *= WallPenForce / WallPenetrationForce;
 	}
 	
