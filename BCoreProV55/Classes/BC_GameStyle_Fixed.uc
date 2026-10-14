@@ -123,6 +123,6 @@ defaultproperties
 {
 	bWeaponJumpOffsetting=True
 	bLongWeaponOffsetting=False
-	bFireEndsSprint=False
-	bSightsEndSprint=False
+	bFireEndsSprint=True
+	bSightsEndSprint=True
 }

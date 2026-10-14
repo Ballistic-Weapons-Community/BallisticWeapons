@@ -20,7 +20,7 @@ function TakeDamage( int Damage, Pawn instigatedBy, Vector hitlocation,
 
 	if ( Role < ROLE_Authority )
 	{
-		log(self$" client damage type "$damageType$" by "$instigatedBy);
+		//log(self$" client damage type "$damageType$" by "$instigatedBy);
 		return;
 	}
 

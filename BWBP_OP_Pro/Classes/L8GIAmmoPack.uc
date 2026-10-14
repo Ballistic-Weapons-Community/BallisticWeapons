@@ -110,6 +110,9 @@ state GiveAmmoSelf
 	
 	Begin:
 		SupplySelf(xPawn(Owner));
+		// the last pack used on oneself goes like the last one thrown: it stayed in the hand with nothing in it
+		if (Ammo[0] != None && Ammo[0].AmmoAmount < 1)
+			CheckNoGrenades();
 
 
 }

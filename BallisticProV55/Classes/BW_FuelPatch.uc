@@ -67,6 +67,11 @@ simulated function FuelOut()
 simulated event PostBeginPlay()
 {
 	super.PostBeginPlay();
+	// What a client takes for the fuel whenever it hears of this (PostNetReceive). Only SetFuel wrote it: fire made
+	// without one (a player lit by FM13 or R9000E shot) was out of fuel on clients and gone after half a second,
+	// while the server's burned on
+	if (Role == ROLE_Authority)
+		NetFuel = FClamp(Fuel, 0, 255);
 	SetTimer(0.5, true);
 }
 

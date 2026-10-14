@@ -98,6 +98,14 @@ simulated event AnimEnd (int Channel)
 	}
 }
 
+// Working the action takes a loaded grenade out. FirePressed said so on the owner's machine only: the server went on
+// thinking it was loaded and refused every shot from then on (blanks, "ClientForceAmmoUpdate" in the owner's log)
+simulated function CommonCockGun(optional byte Type)
+{
+	bAltLoaded = false;
+	super.CommonCockGun(Type);
+}
+
 //Triggered after Alt nade is shot or unloaded.
 simulated function PrepPriFire()
 {

@@ -124,26 +124,9 @@ simulated function InstantFireEffects(byte Mode)
 		ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 }
 
-// Return the location of the muzzle.
-// Specifies muzzle because moved tip didn't work (offset the tracer in much the same way as the muzzle)
-simulated function Vector GetModeTipLocation(optional byte Mode)
-{
-    local Coords C;
-	
-	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
-	{
-		if (HandGun != None)
-		{
-			C = HandGun.GetBoneCoords('Muzzle');
-		}
-		else
-			C = Instigator.Weapon.GetBoneCoords('Muzzle');
-	}
-	else
-		C = GetBoneCoords('tip');
-		
-    return C.Origin;
-}
+// Where a tracer starts is the pistol base class's business: the tip as it is seen in first person. This class had
+// a version of its own that took the first person gun's Muzzle bone as it lies in the world, which is beside the
+// camera and nowhere near the gun on screen
 
 // Spawn a tracer and water tracer
 simulated function SpawnTracer(byte Mode, Vector V)

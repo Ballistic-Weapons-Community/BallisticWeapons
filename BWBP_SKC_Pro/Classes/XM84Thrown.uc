@@ -121,7 +121,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 			}
 			
 			if (Victims != None && Level.Game.ReduceDamage(DamageAmount, Victims, Instigator, Victims.Location, Dummy, DamageType) > 0)
-				ApplySlowdown(Victims, 4);
+				ApplySlowdown(Victims, 4.0);
 		}
 	}
 	
@@ -159,8 +159,9 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 				PF.Initialize(Victims);
 			}
 			
-			if (Victims != None && Level.Game.ReduceDamage(DamageAmount, Victims, Instigator, Victims.Location, Dummy, DamageType) > 0)
-				ApplySlowdown(Victims, Damage/4);
+			if (Victims != None && Level.Game.ReduceDamage(DamageAmount, Victims, Instigator, Victims.Location, Dummy, DamageType) > 0
+				&& VSize(Victims.Location - Location) > CloseRadius)
+				ApplySlowdown(Victims, 8.0);
 		}
 	}
 	bHurtEntry = false;

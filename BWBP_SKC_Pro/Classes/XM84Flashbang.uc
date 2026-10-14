@@ -123,7 +123,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 			PF.Initialize(Victims);
 			
 			if (Pawn(Victims) != None && Level.Game.ReduceDamage(DamageAmount, Pawn(Victims), Instigator, Victims.Location, Dummy, DamageType) > 0)
-				ApplySlowdown(Pawn(Victims), DamageAmount/4);
+				ApplySlowdown(Pawn(Victims), 4.0);
 		}
 	}
 	if (bHitInstigator)
@@ -152,7 +152,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 			PF.Initialize(Victims);
 			
 			if (Pawn(Victims) != None && Level.Game.ReduceDamage(DamageAmount, Pawn(Victims), Instigator, Victims.Location, Dummy, DamageType) > 0)
-				ApplySlowdown(Pawn(Victims), DamageAmount/4);
+				ApplySlowdown(Pawn(Victims), 8.0);
 	}
 	bHurtEntry = false;
 }

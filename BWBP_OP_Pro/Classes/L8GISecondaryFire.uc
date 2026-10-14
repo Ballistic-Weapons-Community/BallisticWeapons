@@ -21,6 +21,10 @@ event ModeDoFire()
 function DoFireEffect()
 {
 	Super(BallisticFire).DoFireEffect();
+	// A mesh without the "use" animation has no notify to give anything either, and using the pack on oneself did
+	// nothing at all: the supply comes from here then
+	if (L8GIAmmoPack(Weapon) != None && !Weapon.HasAnim(FireAnim) && Weapon.AmmoAmount(0) > 0)
+		L8GIAmmoPack(Weapon).Notify_SupplySelf();
 }
 
 function NotifiedDoFireEffect()

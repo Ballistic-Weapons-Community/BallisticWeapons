@@ -103,7 +103,10 @@ auto state Pickup
 				{
 					GW = Inv;
 					Inv = Inv.Inventory;
-					BCGhostWeapon(GW).ReviveWeapon();
+					// not one whose ammunition this pack does not hand out: it came back with nothing in it, there to
+					// be picked and of no use
+					if (GivesAmmo(GhostAmmoClass(BCGhostWeapon(GW))))
+						BCGhostWeapon(GW).ReviveWeapon();
 				}
 				else
 					Inv=Inv.Inventory;

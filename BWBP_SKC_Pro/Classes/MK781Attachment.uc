@@ -271,6 +271,13 @@ simulated function SpawnTracer(byte Mode, Vector V)
 }
 
 
+// No flash of light from a suppressed shot
+simulated function FlashWeaponLight(byte Mode)
+{
+	if (!bSilenced)
+		super.FlashWeaponLight(Mode);
+}
+
 simulated function FlashMuzzleFlash(byte Mode)
 {
 	local name Bone;

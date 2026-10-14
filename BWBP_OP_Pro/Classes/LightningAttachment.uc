@@ -65,7 +65,7 @@ simulated function InstantFireEffects(byte Mode)
 
 		if (mHitActor == None)
 		{
-			log("No HitActor");
+			//log("No HitActor");
 			return;
 		}
 		// Set the hit surface type

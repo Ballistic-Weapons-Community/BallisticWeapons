@@ -227,6 +227,8 @@ var float ReplaySpeed;			// Client: GroundSpeed the replay has set
 var bool bReplaySpeedSet;		// Client: GroundSpeed has to go back from ReplaySpeed to PresentSpeed
 
 // Server settings
+var float EmptyHandsTime;		// Owner's machine: how long this pawn has carried weapons with none in hand. See TickEmptyHands
+var byte EmptyHandsWaits;
 var bool bGroundSpeedUnsent;	// Client: GroundSpeed is still what this pawn spawned with, so the server may never have sent it
 var byte SettingsChecksLeft;	// Client: this pawn arrived before the BallisticReplicationInfo carrying the server's settings. Times left to look for it
 var float NextSettingsCheckTime;
@@ -2093,6 +2095,14 @@ simulated event Tick(float DT)
 
 	TickSlideAnim();
 
+	if (Weapon == None && Health > 0 && Level.NetMode != NM_DedicatedServer && PlayerController(Controller) != None && IsLocallyControlled())
+		TickEmptyHands(DT);
+	else
+	{
+		EmptyHandsTime = 0;
+		EmptyHandsWaits = 0;
+	}
+
 	// The sprint control knows the speed the server has set, and only reaches the pawn's owner
 	if (bGroundSpeedUnsent && Sprinter != None && Sprinter.BaseGroundSpeed > 0)
 	{
@@ -3637,7 +3647,7 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
  
 		if ( Role < ROLE_Authority )
 		{
-			log(self$" client damage type "$damageType$" by "$instigatedBy);
+			//log(self$" client damage type "$damageType$" by "$instigatedBy);
 			return;
 		}
  
@@ -4308,6 +4318,45 @@ simulated function TrackSlideMomentum(vector NewVelocity)
 }
 
 // Runs once per walking move on the server and the owning client
+// A weapon only comes up by itself when it reaches its owner's machine and finds the hands empty. The server can
+// take the weapon in hand away and give another in its place (a loadout changed while alive): when word of the new
+// one overtakes the old one's removal, as a lost packet makes it, the new one finds the old one still there and
+// stays down, then the old one goes. The player was left with weapons and none in hand, on both machines, until
+// he pressed a weapon key. After three quarters of a second of that the best weapon is taken out.
+simulated function TickEmptyHands(float DT)
+{
+	local Inventory Inv;
+	local int Count;
+	local bool bCarries;
+
+	EmptyHandsTime += DT;
+	if (EmptyHandsTime < 0.75)
+		return;
+	EmptyHandsTime = 0;
+	// Not while a weapon is still on its way in (waiting for its ammunition, say): that one comes up by itself
+	// once it is all there, and is not to be asked about before. A few rounds of that are waited for, no more
+	for (Inv = Inventory; Inv != None && Count < 500; Inv = Inv.Inventory)
+	{
+		Count++;
+		if (Weapon(Inv) == None)
+			continue;
+		bCarries = true;
+		if (Inv.IsInState('PendingClientWeaponSet') && EmptyHandsWaits < 4)
+		{
+			EmptyHandsWaits++;
+			return;
+		}
+	}
+	EmptyHandsWaits = 0;
+	if (!bCarries)
+		return;
+	// a switch that was under way when the weapon in hand went, else the best there is
+	if (PendingWeapon != None)
+		ChangedWeapon();
+	else
+		Controller.SwitchToBestWeapon();
+}
+
 simulated function TickSlide(float DeltaTime, vector OldVelocity)
 {
 	local vector SlideVel;
