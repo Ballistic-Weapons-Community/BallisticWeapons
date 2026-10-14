@@ -16,6 +16,8 @@ var   float			TargetTime;
 var   float			LastSendTargetTime;
 var   vector		TargetLocation;
 var()	bool		bIsIrons;
+var() Color			NightVisionTint;	// What the night vision's overlays are drawn with. They took whatever colour the canvas
+										// held, which depends on what the HUD drew just before, so the view could change colour (#475)
 
 var() BUtil.FullSound	NVOnSound;	// Sound when activating NV/Meat mode
 var() BUtil.FullSound	NVOffSound; // Sound when deactivating NV/Meat mode
@@ -227,7 +229,11 @@ simulated event DrawMeatVisionMode (Canvas C)
 {
 	local Vector V, V2, V3, X, Y, Z;
 	local float ScaleFactor;
+	local Color OldColor;
 
+	// One colour every frame, and the canvas as it was for what is drawn after
+	OldColor = C.DrawColor;
+	C.DrawColor = NightVisionTint;
 
 	// Draw RED stuff
       C.Style = ERenderStyle.STY_Alpha;
@@ -239,7 +245,10 @@ simulated event DrawMeatVisionMode (Canvas C)
 	C.DrawTile(FinalBlend'BW_Core_WeaponTex.M75.M75LinesFinal', C.SizeX, C.SizeY, 0, 0, 512, 512);
 
 	if (Target == None || !FastTrace(Instigator.Location, Target.Location))
+	{
+		C.DrawColor = OldColor;
 		return;
+	}
 
 	// Draw Target Boxers
 	ScaleFactor = C.ClipX / 1600;
@@ -253,6 +262,7 @@ simulated event DrawMeatVisionMode (Canvas C)
       C.DrawTileStretched(Texture'BWBP_SKC_Tex.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
 
     V3 = C.WorldToScreen(Target.Location - Z*Target.CollisionHeight);
+	C.DrawColor = OldColor;
 }
 
 // AI Interface =====
@@ -291,6 +301,7 @@ defaultproperties
 	ManualLines(0)="High-powered .50 rifle fire. High damage and fire rate, but strong recoil."
 	ManualLines(1)="Deploys the rifle upon the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, becomes perfectly accurate, loses its iron sights and gains a reduction in recoil. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
 	ManualLines(2)="Weapon Function activates infrared vision. Viable infantry targets will be bordered by a box in the weapon's scope.||Effective at long range. Very effective at long range when deployed."
+	NightVisionTint=(R=127,G=127,B=127,A=255)
 	NVOnSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
 	NVOffSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
