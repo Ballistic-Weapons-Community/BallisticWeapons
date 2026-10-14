@@ -196,6 +196,7 @@ defaultproperties
     WeaponClass=Class'BallisticProV55.BX5Mine'
      Health=30
      StartDelay=0.300000
+     bClientStartDelay=True
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.BX5.MineSBase2'
      CullDistance=2500.000000
      bNetTemporary=False

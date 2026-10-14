@@ -84,6 +84,8 @@ var() bool					    bPenetrate;				// Will go through enemies
 // the correct way to handle this is to give the fire mode a prefire time and animation
 // and leave the projectile alone
 var() float					    StartDelay;				// Used to delay projectile's entry into the world
+var() bool					    bClientStartDelay;		// Clients that do not own it keep the StartDelay too (by default they show it at once). For
+														// what is set down in front of the player (mines), whose own client is no owner of it either
 
 
 var() bool					    bTearOnExplode;			// If not NetTemporary, tear this projectile off when it explodes
@@ -244,7 +246,7 @@ simulated function PostNetBeginPlay()
 
 	if (StartDelay > 0)
 	{
-		if (Role == ROLE_Authority || bNetOwner || bAlwaysRelevant)
+		if (Role == ROLE_Authority || bNetOwner || bAlwaysRelevant || bClientStartDelay)
 		{
             if (Level.NetMode == NM_Client)
             {

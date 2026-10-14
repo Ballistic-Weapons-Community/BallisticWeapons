@@ -299,6 +299,7 @@ defaultproperties
      TeamLightColor=128
      ImpactManager=Class'BallisticProV55.IM_LandMine'
      StartDelay=0.300000
+     bClientStartDelay=True
      MyRadiusDamageType=Class'BallisticProV55.DTBX5Radius'
      bTearOnExplode=False
      ShakeRadius=1200.000000
