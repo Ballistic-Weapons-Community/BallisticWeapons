@@ -64,6 +64,7 @@ var() float				DetAllDelayTime;	// DetonateAll key must be held fown for this lo
 
 var   bool				bHasDetonator;		// Does this weapona ctually have the detonater or is it just a picked up bomd?
 var   bool				bOldHasDetonator;	// Had a detonated last tick?
+var   float				NextSpentCheck;		// Server: when to look again whether anything is left to throw or set off (CheckSpent)
 var() name				DetHandBone;		// Bone name of detonator arm
 
 replication
@@ -264,6 +265,30 @@ simulated function Detonate(optional bool bAll)
 	}
 }
 
+// No packs left to throw and none of this player's out in the world: the detonator has nothing to set off. As a used up
+// hand grenade does, leave a ghost (an ammo pack brings the weapon back) and go
+function CheckSpent()
+{
+	local int i;
+	local BCGhostWeapon GW;
+
+	if (Instigator == None || bDeleteMe || AmmoAmount(0) > 0)
+		return;
+	for (i = 0; i < Bombs.length; i++)
+		if (Bombs[i] != None)
+			return;
+	GW = Spawn(class'BCGhostWeapon',,,Instigator.Location);
+	if (GW != None)
+	{
+		GW.MyWeaponClass = class;
+		GW.GiveTo(Instigator);
+	}
+	class'NullGun'.static.GiveToUnarmedBot(Instigator, self);
+	if (Instigator.Weapon == self && Instigator.Controller != None)
+		Instigator.Controller.ClientSwitchToBestWeapon();
+	Destroy();
+}
+
 function AddBomb (FP9Bomb Bomb)
 {
 	Bombs[Bombs.length] = Bomb;
@@ -398,6 +423,11 @@ function AIPickBomb()
 simulated event Tick(float DT)
 {
 	super.Tick(DT);
+	if (Role == ROLE_Authority && Level.TimeSeconds >= NextSpentCheck)
+	{
+		NextSpentCheck = Level.TimeSeconds + 0.25;
+		CheckSpent();
+	}
 
  	if (Instigator != None && AIController(Instigator.Controller) != None)
 		AIPickBomb();
