@@ -14,6 +14,8 @@ var   BX5TeamLight		TeamLight;		// A flare emitter to show team mates' mines
 var   byte					TeamLightColor;
 var   bool					bAntiLameMode;
 var   Pawn					OriginalPlacer;
+var   Controller			PlacerController;	// OriginalPlacer's controller when the mine went down
+var   Pawn					Stepper;			// who set the mine off by stepping on it
 
 replication
 {
@@ -77,9 +79,11 @@ function BlowUp(vector HitLocation)
 	if (Role < ROLE_Authority)
 		return;
 		
-	// Reverse damage if I was used to lame (hit someone directly or was teleported into)
-	if(bAntiLameMode && OriginalPlacer != None)
-		class'BallisticDamageType'.static.GenericHurt(OriginalPlacer, 666, Instigator, HitLocation, MomentumTransfer * vect(0,0,1), class'DT_TeleportLamer');
+	// Reverse damage if I was used to lame: whoever stepped on me kills the one who put me there. Set off by the placer
+	// himself, or shot, I go off as a mine does
+	if(bAntiLameMode && OriginalPlacer != None && Stepper != None && Stepper != OriginalPlacer
+		&& (PlacerController == None || Stepper.Controller != PlacerController))
+		class'BallisticDamageType'.static.GenericHurt(OriginalPlacer, 666, Stepper, HitLocation, MomentumTransfer * vect(0,0,1), class'DT_TeleportLamer');
 		
 	else if (DamageRadius > 0)
 		TargetedHurtRadius(Damage, DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
