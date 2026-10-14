@@ -196,6 +196,7 @@ var		WeaponCamo					WeaponCamo;
 var		bool						bPendingBringupTimer;
 var     int                         NetInventoryGroup;
 var     bool                        bDeferInitialSwitch, bServerDeferInitialSwitch;
+var     float                       NetHurryEnd;            // Server: until then this new weapon and its ammunition go ahead of other traffic (StartNetHurry)
 //-----------------------------------------------------------------------------
 // AI
 //-----------------------------------------------------------------------------
@@ -1360,6 +1361,9 @@ simulated function PlayerLeftVehicle(Vehicle V)
 simulated event Tick(float DT)
 {
 	super.Tick(DT);
+
+	if (NetHurryEnd > 0 && Role == ROLE_Authority)
+		TickNetHurry();
 
 	if (Instigator != None && Instigator.Weapon == self && OwnerLastVehicle != Instigator.DrivenVehicle )
 	{
@@ -4486,6 +4490,9 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 	if (MeleeFireMode != None)
 		MeleeFireMode.Instigator = Instigator;
 
+	if (bJustSpawned)
+		StartNetHurry();
+
 	if ( (Instigator.Weapon != None) && Instigator.Weapon.IsFiring() )
 		bPossiblySwitch = false;
 
@@ -4506,9 +4513,55 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 	}
 }
 
+// A loadout handed out at once reaches its owner as a dozen new actors whose links to each other (the inventory chain,
+// a weapon's link to its ammunition) can only be sent once the other end has arrived. On a busy connection inventory
+// waits behind everything else, ammunition most of all, and those links came seconds late: the weapons were there
+// but could not be picked, or did not come up at all for want of their ammunition. For two seconds a new weapon and
+// its ammunition are looked at every tick, ahead of the rest
+function StartNetHurry()
+{
+	if (Level.NetMode == NM_Standalone || Instigator == None || Instigator.IsLocallyControlled())
+		return;
+	NetHurryEnd = Level.TimeSeconds + 2.0;
+	TickNetHurry();
+}
+
+function TickNetHurry()
+{
+	local int m;
+	local bool bOn;
+
+	bOn = Level.TimeSeconds < NetHurryEnd;
+	if (bOn)
+	{
+		NetPriority = FMax(default.NetPriority, 4.0);
+		NetUpdateTime = Level.TimeSeconds - 1;
+	}
+	else
+	{
+		NetPriority = default.NetPriority;
+		NetHurryEnd = 0;
+	}
+	for (m = 0; m < NUM_FIRE_MODES; m++)
+	{
+		if (Ammo[m] == None)
+			continue;
+		if (bOn)
+		{
+			Ammo[m].NetPriority = FMax(Ammo[m].default.NetPriority, 4.0);
+			Ammo[m].NetUpdateTime = Level.TimeSeconds - 1;
+		}
+		else
+			Ammo[m].NetPriority = Ammo[m].default.NetPriority;
+	}
+}
+
 //Now adds initial ammo in all cases
 function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
 {
+	// also here: pistols and a dozen other weapons have hand-out code of their own, which calls this
+	if (bJustSpawned)
+		StartNetHurry();
     if ( FireMode[m] != None && FireMode[m].AmmoClass != None )
     {
 		Ammo[m] = Ammunition(Instigator.FindInventoryType(FireMode[m].AmmoClass));
