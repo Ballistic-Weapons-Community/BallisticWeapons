@@ -16,11 +16,8 @@ var() BUtil.FullSound	ThermalOnSound;	// Sound when activating thermal mode
 var() BUtil.FullSound	ThermalOffSound;// Sound when deactivating thermal mode
 var() BUtil.FullSound	NVOnSound;	// Sound when activating NV/Meat mode
 var() BUtil.FullSound	NVOffSound; // Sound when deactivating NV/Meat mode
-var   Array<Pawn>		PawnList;		// A list of all the potential pawns to view in thermal mode
 var() material			WallVisionSkin;	// Texture to assign to players when theyare viewed with Thermal mode
 var   bool				bThermal;		// Is thermal mode active?
-var   bool				bUpdatePawns;	// Should viewable pawn list be updated
-var   Pawn				UpdatedPawns[128];// List of pawns to view in thermal scope
 var() material			Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
 var() float				ThermalRange;	// Maximum range at which it is possible to see enemies through walls
 var   bool				bMeatVision;
@@ -49,8 +46,6 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 		Target, bMeatVision;
-	reliable if (Role < ROLE_Authority)
-		ServerAdjustThermal;
 }
 
 //change mag rotation if after firing, as well as code to continue reloading
@@ -226,42 +221,6 @@ simulated event DrawScopeOverlays (Canvas C)
 	Super.DrawScopeOverlays(C);
 }
 
-simulated event Timer()
-{
-	if (bUpdatePawns)
-		UpdatePawnList();
-	else
-		super.Timer();
-}
-
-simulated function UpdatePawnList()
-{
-	local Pawn P;
-	local int i;
-	local float Dist;
-
-	PawnList.Length=0;
-	ForEach DynamicActors( class 'Pawn', P)
-	{
-		if (P.PlayerReplicationInfo != None && P.PlayerReplicationInfo.Team != None && P.PlayerReplicationInfo.Team.TeamIndex == Instigator.PlayerReplicationInfo.Team.TeamIndex)
-			continue;
-		PawnList[PawnList.length] = P;
-		Dist = VSize(P.Location - Instigator.Location);
-		if (Dist <= ThermalRange &&
-			( Normal(P.Location-(Instigator.Location+Instigator.EyePosition())) Dot Vector(Instigator.GetViewRotation()) > 1-((Instigator.Controller.FovAngle*0.9)/180) ) &&
-			((Instigator.LineOfSightTo(P)) || Normal(P.Location - Instigator.Location) Dot Vector(Instigator.GetViewRotation()) > 0.985 + 0.015 * (Dist/ThermalRange)))
-		{
-			if (!Instigator.IsLocallyControlled())
-			{
-				P.NetUpdateTime = Level.TimeSeconds - 1;
-				P.bAlwaysRelevant = true;
-			}
-			UpdatedPawns[i]=P;
-			i++;
-		}
-	}
-}
-
 simulated function OnScopeViewChanged()
 {
 	Super.OnScopeViewChanged();
@@ -320,45 +279,6 @@ simulated event DrawThermalMode (Canvas C)
 	C.DrawTile(FinalBlend'BWBP_SKC_Tex.MARS.F2000IRNVFinal', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
 }
 
-simulated function AdjustThermalView(bool bNewValue)
-{
-	if (Instigator != None && AIController(Instigator.Controller) != None)
-		return;
-	if (!bNewValue)
-		bUpdatePawns = false;
-	else
-
-	{
-		bUpdatePawns = true;
-		UpdatePawnList();
-		SetTimer(1.0, true);
-	}
-	ServerAdjustThermal(bNewValue);
-}
-
-function ServerAdjustThermal(bool bNewValue)
-{
-
-	local int i;
-//	bThermal = bNewValue;
-	if (bNewValue)
-	{
-		bUpdatePawns = true;
-		UpdatePawnList();
-		SetTimer(1.0, true);
-	}
-	else
-	{
-		bUpdatePawns = false;
-//		SetTimer(0.0, false);
-		for (i=0;i<ArrayCount(UpdatedPawns);i++)
-		{
-			if (UpdatedPawns[i] != None)
-				UpdatedPawns[i].bAlwaysRelevant = UpdatedPawns[i].default.bAlwaysRelevant;
-		}
-	}
-}
-
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
@@ -369,7 +289,6 @@ exec simulated function WeaponSpecial(optional byte i)
 				class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
 		else
 				class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
-		AdjustThermalView(bThermal);
 		if (!bScopeView)
 			PlayerController(InstigatorController).ClientMessage("Activated nightvision scope.");
 		return;
@@ -381,7 +300,6 @@ exec simulated function WeaponSpecial(optional byte i)
 				class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
 		else
 				class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
-		AdjustThermalView(bThermal);
 		if (!bScopeView)
 			PlayerController(InstigatorController).ClientMessage("Activated infrared targeting scope.");
 		bMeatVision = !bMeatVision;
@@ -410,7 +328,6 @@ exec simulated function WeaponSpecial(optional byte i)
 
 simulated event Destroyed()
 {
-	AdjustThermalView(false);
 
 	if (NVLight != None)
 		NVLight.Destroy();
@@ -431,7 +348,6 @@ simulated function bool PutDown()
 {
 	if (Super.PutDown())
 	{
-		AdjustThermalView(false);
 		return true;
 	}
 
