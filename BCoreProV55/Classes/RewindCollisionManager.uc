@@ -54,6 +54,22 @@ final function UnregisterPawn(xPawn pawn) // might not work due to parameter pas
     }
 }
 
+// During a rewind, whether P's collision stands in for it where the shooter saw it. Whatever looks for actors around a
+// point then finds both, the pawn and its collision, and should take only the collision, which hands damage on to it
+final function bool IsStoodIn(Pawn P)
+{
+    local int i;
+
+    if (StackCount == 0 || P == None)
+        return false;
+
+    for (i = 0; i < Collisions.Length; ++i)
+        if (Collisions[i].UnlaggedPawn == P && Collisions[i].bUnlagged)
+            return true;
+
+    return false;
+}
+
 // Functions called from BallisticWeapon
 final function RewindCollisions(Actor requester, float latency)
 {
