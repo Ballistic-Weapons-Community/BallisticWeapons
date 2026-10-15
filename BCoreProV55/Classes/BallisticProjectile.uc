@@ -309,11 +309,19 @@ simulated function PostNetBeginPlay()
 // up the tick it is behind before it goes off (TornOff). Anything the
 // server goes on correcting or steering has to be where the server's
 // is.
+//
+// One that bounced off something in that first tick (a grenade fired
+// at the floor or a wall close by) is sent with what the bounce left
+// it: going another way, slower, and with the server's copy armed by
+// the hit. Put back at the start with that, a copy flies off level
+// from the gun and never meets the floor, so it is not armed by it and
+// goes off far away. That copy goes the server's way from the start
+// instead (ReplayFromNetStart), and meets the floor itself.
 //===================================================================
 simulated function StartAtNetStart()
 {
 	local PlayerController PC;
-	local vector Start, Dir, HitLoc, HitNorm;
+	local vector Start, Dir, Mean, HitLoc, HitNorm;
 	local float Dist, Ahead;
 
 	if (NetStart == vect(0,0,0) || StartDelay > 0 || (Physics != PHYS_Projectile && Physics != PHYS_Falling))
@@ -321,10 +329,24 @@ simulated function StartAtNetStart()
 	if (!bNetTemporary && (!bTearOffFromStart || !bTearOnExplode || bUpdateSimulatedPosition))
 		return;
 	Dist = VSize(Location - NetStart);
-	// not worth it, or not a tick's flight: something has moved it
-	if (Dist < 16 || Dist > FMax(VSize(Velocity), Speed) * 0.25)
+	// not a tick's flight: something has moved it
+	if (Dist < 4 || Dist > FMax(VSize(Velocity), Speed) * 0.25)
 		return;
 	Dir = (Location - NetStart) / Dist;
+	// Straight there, the way it is going now? A falling one went with half the tick's gravity less, on average. Both
+	// places come rounded to whole units
+	Mean = Velocity;
+	if (Physics == PHYS_Falling && Velocity != vect(0,0,0))
+		Mean -= 0.5 * PhysicsVolume.Gravity * Dist / VSize(Velocity);
+	if (VSize(Dir - Normal(Mean)) > 2 / Dist + 0.03)
+	{
+		if (bNetTemporary)
+			ReplayFromNetStart();
+		return;
+	}
+	// not worth it
+	if (Dist < 16)
+		return;
 	Start = NetStart;
 	// For the one who fired it, not from behind his eye: he has moved on since the shot
 	PC = Level.GetLocalPlayerController();
@@ -340,6 +362,55 @@ simulated function StartAtNetStart()
 	Dist = VSize(Location - Start);
 	if (SetLocation(Start))
 		NetStartLag = Dist / FMax(VSize(Velocity), 1.0);
+}
+
+// A copy of a projectile that changed course in the server's first tick, set off from where the server made it the way
+// the server set it off (the rotation it was made with, the class's own speed), so that it meets what the server's met and
+// does there what that did. Only if what it was sent with fits a bounce: the first thing in its way is within a tick's
+// flight, the server's copy ended on the open side of it and goes on along it the way it came. Otherwise it is left as
+// it was sent
+simulated function ReplayFromNetStart()
+{
+	local PlayerController PC;
+	local vector SentLocation, SentVelocity, SentAcceleration, HitLoc, HitNorm, Dir, Along, SentAlong, Start;
+	local rotator SentRotation;
+	local float Reach, Ahead;
+
+	SentLocation = Location;
+	SentVelocity = Velocity;
+	SentAcceleration = Acceleration;
+	SentRotation = Rotation;
+
+	// its rotation is still the one it was made with (PostNetBeginPlay)
+	SetInitialSpeed(true);
+	Reach = VSize(Velocity) * 0.25;
+	Dir = Normal(Velocity);
+	if (Reach > 0 && Trace(HitLoc, HitNorm, NetStart + Dir * Reach, NetStart, false, GetCollisionExtent()) != None
+		&& ((SentLocation - HitLoc) dot HitNorm) > -2 && VSize(HitLoc - NetStart) + VSize(SentLocation - HitLoc) < Reach + 16)
+	{
+		Along = Velocity - (Velocity dot HitNorm) * HitNorm;
+		SentAlong = SentVelocity - (SentVelocity dot HitNorm) * HitNorm;
+		if (VSize(Along) < 1 || VSize(SentAlong) < 1 || (Normal(Along) dot Normal(SentAlong)) > 0.8)
+		{
+			Start = NetStart;
+			// For the one who fired it, not from behind his eye, and well short of what it bounced off
+			PC = Level.GetLocalPlayerController();
+			if (PC != None && Instigator != None && Instigator.Controller == PC)
+			{
+				Ahead = (Start - (Instigator.Location + Instigator.EyePosition())) dot Dir;
+				if (Ahead < 16)
+					Start += Dir * FMin(16 - Ahead, VSize(HitLoc - NetStart) * 0.5);
+			}
+			if (SetLocation(Start))
+			{
+				NetStartLag = 0;
+				return;
+			}
+		}
+	}
+	Velocity = SentVelocity;
+	Acceleration = SentAcceleration;
+	SetRotation(SentRotation);
 }
 
 //===================================================================
