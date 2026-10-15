@@ -119,6 +119,14 @@ function ClientRestart(Pawn NewPawn)
 	DesiredFlashFog = vect(0,0,0);
 	bOverrideDmgFlash = false;
 
+	// A view shake still going (a blast beside the body just before the respawn) is stopped by the engine (Dead.EndState
+	// calls StopViewShaking) by zeroing how fast it moves, which leaves the camera where the shake had got to: turned and
+	// moved off the gun, which is drawn at the view rotation without the shake. It stayed so through every life until the
+	// next shake of the view, the sights off the middle of the screen and the shots off the crosshair (#486)
+	StopViewShaking();
+	ShakeRot = rot(0,0,0);
+	ShakeOffset = vect(0,0,0);
+
 	// The weapon selector does not outlive the pawn it was opened for: it came back with the respawn and took the first shot
 	bIsInWeaponUI = false;
 
