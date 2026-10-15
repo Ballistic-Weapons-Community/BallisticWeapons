@@ -25,8 +25,8 @@ var() BUtil.FullSound	ThermalOffSound;// Sound when deactivating thermal mode
 var   Array<Pawn>		PawnList;		// A list of all the potential pawns to view in thermal mode
 var() material			WallVisionSkin;	// Texture to assign to players when theyare viewed with Thermal mode
 var   bool				bThermal;		// Is thermal mode active? Clientside
-var   bool				bUpdatePawns;	// Should viewable pawn list be updated
-var   Pawn				UpdatedPawns[128];// List of pawns to view in thermal scope
+var   array<Pawn>		RelevantPawns;	// Server: the pawns the sight has made relevant to its holder's machine, to let go of again
+var   float				NextRelevanceTime;
 var() material			Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
 var() float				ThermalRange;	// Maximum range at which it is possible to see enemies through walls
 var   ColorModifier		ColorMod;
@@ -148,6 +148,7 @@ simulated event Destroyed()
 		ColorMod = None;
 	}
 	AdjustThermalView(false);
+	class'ThermalSightUtil'.static.ClearRelevant(RelevantPawns);
 	super.Destroyed();
 }
 
@@ -155,46 +156,53 @@ simulated function AdjustThermalView(bool bNewValue)
 {
 	if (Instigator != None && AIController(Instigator.Controller) != None)
 		return;
-	if (!bNewValue)
-	{
-		bUpdatePawns = false;
-	}
-	else
-	{
-		bUpdatePawns = true;
-		UpdatePawnList();
-		NextPawnListUpdateTime = Level.TimeSeconds + 1;
-	}
+	// the list is made on the next tick (WeaponTick)
+	if (bNewValue)
+		NextPawnListUpdateTime = 0;
 }
 
 function ServerAdjustThermal(bool bNewValue)
 {
-	local int i;
-	
 	if (bNewValue)
-	{
-		bUpdatePawns = true;
-		UpdatePawnList();
-		NextPawnListUpdateTime = Level.TimeSeconds + 1;
-	}
+		NextRelevanceTime = 0;
 	else
-	{
-		bUpdatePawns = false;
-		for (i=0;i<ArrayCount(UpdatedPawns);i++)
-		{
-			if (UpdatedPawns[i] != None)
-				UpdatedPawns[i].bAlwaysRelevant = UpdatedPawns[i].default.bAlwaysRelevant;
-		}
-	}
+		class'ThermalSightUtil'.static.ClearRelevant(RelevantPawns);
 }
 
-//Moved here because Timer broke the weapon
+// The thermal sight works in the scope only. On its holder's machine the enemies it may show are listed twice a second;
+// for a holder on another machine the server sends the ones behind walls (ThermalSightUtil). Nothing of it runs otherwise:
+// the list used to be made again every tick, thermal or not, and on a server that made the enemies in front of anyone
+// holding the gun relevant to every player
 simulated function WeaponTick (float DeltaTime)
 {
 	Super.WeaponTick(DeltaTime);
 
-	if (Level.TimeSeconds >= NextPawnListUpdateTime)
-		UpdatePawnList();
+	if (!bThermal || !bScopeView)
+	{
+		if (RelevantPawns.Length > 0)
+			class'ThermalSightUtil'.static.ClearRelevant(RelevantPawns);
+		return;
+	}
+	if (Instigator.IsLocallyControlled())
+	{
+		if (Level.TimeSeconds >= NextPawnListUpdateTime)
+		{
+			NextPawnListUpdateTime = Level.TimeSeconds + 0.5;
+			UpdatePawnList();
+		}
+	}
+	else if (Role == ROLE_Authority && Level.TimeSeconds >= NextRelevanceTime)
+	{
+		NextRelevanceTime = Level.TimeSeconds + 0.1;
+		UpdateRelevance();
+	}
+}
+
+// the gun is dropped without being put down: what its sight made relevant is let go here
+function HolderDied()
+{
+	class'ThermalSightUtil'.static.ClearRelevant(RelevantPawns);
+	Super.HolderDied();
 }
 
 simulated function DrawScopeMuzzleFlash(Canvas C)
@@ -225,46 +233,36 @@ simulated event DrawScopeOverlays(Canvas C)
 	Super.DrawScopeOverlays(C);
 }
 
+// The enemies the sight may show (which of them it does is worked out as it draws)
 simulated function UpdatePawnList()
 {
 	local Pawn P;
-	local int i;
-	local float Dist;
 
-	PawnList.Length=0;
-	ForEach DynamicActors( class 'Pawn', P)
-	{
-		if (P.PlayerReplicationInfo != None && P.PlayerReplicationInfo.Team != None && P.PlayerReplicationInfo.Team.TeamIndex == Instigator.PlayerReplicationInfo.Team.TeamIndex)
-			continue;
-		PawnList[PawnList.length] = P;
-		Dist = VSize(P.Location - Instigator.Location);
-		if (Dist <= ThermalRange &&
-			( Normal(P.Location-(Instigator.Location+Instigator.EyePosition())) Dot Vector(Instigator.GetViewRotation()) > 1-((Instigator.Controller.FovAngle*0.9)/180) ) &&
-			((Instigator.LineOfSightTo(P)) || Normal(P.Location - Instigator.Location) Dot Vector(Instigator.GetViewRotation()) > 0.985 + 0.015 * (Dist/ThermalRange)))
-		{
-			if (!Instigator.IsLocallyControlled())
-			{
-				P.NetUpdateTime = Level.TimeSeconds - 1;
-				P.bAlwaysRelevant = true;
-			}
-			UpdatedPawns[i]=P;
-			i++;
-		}
-	}
+	PawnList.Length = 0;
+	ForEach DynamicActors(class'Pawn', P)
+		if (class'ThermalSightUtil'.static.IsEnemy(Instigator, P))
+			PawnList[PawnList.Length] = P;
+}
+
+// Server, for a holder on another machine: the enemies behind walls its sight could show are sent there
+function UpdateRelevance()
+{
+	local Pawn P;
+	local array<Pawn> Wanted;
+
+	ForEach DynamicActors(class'Pawn', P)
+		if (class'ThermalSightUtil'.static.IsEnemy(Instigator, P) && class'ThermalSightUtil'.static.WantedThroughWalls(Instigator, P, ThermalRange))
+			Wanted[Wanted.Length] = P;
+	class'ThermalSightUtil'.static.SetRelevant(RelevantPawns, Wanted, Level.TimeSeconds);
 }
 
 // Draws players through walls and all the other Thermal Mode stuff
 simulated event DrawThermalMode (Canvas C)
 {
 	local Pawn P;
-	local int i, j;
-	local float Dist, DotP;//, OtherRatio;
-	local Array<Material>	OldSkins;
-	local int OldSkinCount;
-	local bool bLOS, bFocused;
+	local int j;
+	local float Dist, DotP, Range;
 	local vector Start;
-	local Array<Material>	AttOldSkins0;
-	local Array<Material>	AttOldSkins1;
 
 	C.Style = ERenderStyle.STY_Modulated;
 	
@@ -290,102 +288,37 @@ simulated event DrawThermalMode (Canvas C)
 	
 	for (j=0;j<PawnList.length;j++)
 	{
-		if (PawnList[j] != None && PawnList[j] != Level.GetLocalPlayerController().Pawn)
-		{
-			P = PawnList[j];
-			bFocused=false;
-			bLos=false;
-			ThermalRange = default.ThermalRange + 2000 * FMin(1, VSize(P.Velocity) / 450);
-			Dist = VSize(P.Location - Instigator.Location);
-			if (Dist > ThermalRange)
-				continue;
-			DotP = Normal(P.Location - Start) Dot Vector(Instigator.GetViewRotation());
-			if ( DotP < Cos((Instigator.Controller.FovAngle/1.7) * 0.017453) )
-				continue;
+		P = PawnList[j];
+		if (P == None || P == Level.GetLocalPlayerController().Pawn)
+			continue;
+		// moving players show further off. The gun's own ThermalRange is left as it is: it was overwritten with each
+		// player's, and the server's list used the last
+		Range = class'ThermalSightUtil'.static.RangeFor(P, ThermalRange);
+		Dist = VSize(P.Location - Instigator.Location);
+		if (Dist > Range)
+			continue;
+		DotP = Normal(P.Location - Start) Dot Vector(Instigator.GetViewRotation());
+		if ( DotP < Cos((Instigator.Controller.FovAngle/1.7) * 0.017453) )
+			continue;
 
-			// If we have a clear LOS then they can be drawn
-			if (Instigator.LineOfSightTo(P))
-				bLOS=true;
-			// Players not normally visible must be aimed at. The further a player, the closer to the crosshair they must be
-			else if (DotP > 0.984 + 0.016 * (Dist/ThermalRange))
-				bFocused=true;
-			if (bFocused || bLOS)
-			{
-				if (bLOS)
-					DotP = (DotP-0.6) / 0.4;
-				else
-					DotP = (DotP-(0.984+(Dist/ThermalRange)*0.016)) / 0.016;
+		// If we have a clear LOS then they can be drawn
+		if (Instigator.LineOfSightTo(P))
+			DotP = (DotP-0.6) / 0.4;
+		// Players not normally visible must be aimed at. The further a player, the closer to the crosshair they must be
+		else if (DotP > class'ThermalSightUtil'.static.FocusDot(Dist, Range))
+			DotP = (DotP - class'ThermalSightUtil'.static.FocusDot(Dist, Range)) / 0.016;
+		else
+			continue;
 
-				DotP = FMax(DotP, 0);
+		DotP = FMax(DotP, 0);
 
-				if (Dist < 500)
-					ColorMod.Color.R = DotP * 255.0;
-				else
-					ColorMod.Color.R = DotP * ( 255 - FClamp((Dist-500)/((ThermalRange-500)*0.8), 0, 1) * 255 );
-				ColorMod.Color.G = DotP * ( 128.0 - (Dist/ThermalRange)*96.0 );
+		if (Dist < 500)
+			ColorMod.Color.R = DotP * 255.0;
+		else
+			ColorMod.Color.R = DotP * ( 255 - FClamp((Dist-500)/((Range-500)*0.8), 0, 1) * 255 );
+		ColorMod.Color.G = DotP * ( 128.0 - (Dist/Range)*96.0 );
 
-				// Remember old skins, set new skins, turn on unlit...
-				OldSkinCount = P.Skins.length;
-				for (i=0;i<Max(2, OldSkinCount);i++)
-				{	if (OldSkinCount > i) OldSkins[i] = P.Skins[i]; else OldSkins[i]=None;	P.Skins[i] = ColorMod;	}
-				P.bUnlit=true;
-
-				for (i=0;i<P.Attached.length;i++)
-					if (P.Attached[i] != None)
-					{
-						if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
-						{
-							if (P.Attached[i].Skins.length > 0)
-							{	AttOldSkins0[i] = P.Attached[i].Skins[0];	P.Attached[i].Skins[0] = ColorMod;	}
-							else
-							{	AttOldSkins0[i] = None;	P.Attached[i].Skins[0] = ColorMod;	}
-							if (P.Attached[i].Skins.length > 1)
-							{	AttOldSkins1[i] = P.Attached[i].Skins[1];	P.Attached[i].Skins[1] = ColorMod;	}
-							if (P.Attached[i].Skins.length > 1)
-							{	AttOldSkins1[i] = None;	P.Attached[i].Skins[1] = ColorMod;	}
-						}
-						else
-							P.Attached[i].SetDrawType(DT_None);
-					}
-
-				C.DrawActor(P, false, true);
-
-				// Set old skins back, Unlit off
-				P.Skins.length = OldSkinCount;
-				for (i=0;i<P.Skins.length;i++)
-					P.Skins[i] = OldSkins[i];
-				P.bUnlit=false;
-
-				for (i=0;i<P.Attached.length;i++)
-					if (P.Attached[i] != None)
-					{
-						if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
-						{
-							if (AttOldSkins1[i] == None)
-							{
-								if (AttOldSkins0[i] == None)
-									P.Attached[i].Skins.length = 0;
-								else
-								{
-									P.Attached[i].Skins.length = 1;
-									P.Attached[i].Skins[0] = AttOldSkins0[i];
-								}
-							}
-							else
-							{
-								P.Attached[i].Skins[0] = AttOldSkins0[i];
-								P.Attached[i].Skins[1] = AttOldSkins1[i];
-							}
-						}
-						else
-							P.Attached[i].SetDrawType(P.Attached[i].default.DrawType);
-					}
-				AttOldSkins0.length = 0;
-				AttOldSkins1.length = 0;
-			}
-			else
-				continue;
-		}
+		class'ThermalSightUtil'.static.DrawPawn(C, P, ColorMod);
 	}
 }
 
