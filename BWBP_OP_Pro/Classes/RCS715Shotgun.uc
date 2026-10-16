@@ -71,6 +71,7 @@ function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
 		//if was just spawned and (wasn't dropped or there's no pickup) and (firemodes don't match)
 		else if (bJustSpawned && (WP==None || !WP.bDropped) && m == 0)
 			Ammo[m].AddAmmo(Ammo[m].InitialAmount);
+		GiveNoMagRounds(m, bJustSpawned && (WP == None || !WP.bDropped));
         Ammo[m].GotoState('');
 	}
 }
