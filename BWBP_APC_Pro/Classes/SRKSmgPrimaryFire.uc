@@ -10,11 +10,23 @@
 //=============================================================================
 class SRKSmgPrimaryFire extends BallisticProInstantFire;
 
+var bool		bLaunchedThisPull;	// this pull of the trigger launched the grenade on the barrel: no bullets until it is let go
+
+simulated event ModeTick(float DT)
+{
+	Super.ModeTick(DT);
+	if (!bIsFiring)
+		bLaunchedThisPull = false;
+}
+
 simulated event ModeDoFire()
 {
+	// The trigger fires what is on the barrel: a rifle grenade goes first, and that pull fires nothing else
+	if (bLaunchedThisPull)
+		return;
 	if (SRKSubMachinegun(Weapon).bLoaded)
 	{
-		SRKSubMachinegun(Weapon).IndirectLaunch();
+		bLaunchedThisPull = SRKSubMachinegun(Weapon).IndirectLaunch();
 		return;
 	}
 	if (!AllowFire())
