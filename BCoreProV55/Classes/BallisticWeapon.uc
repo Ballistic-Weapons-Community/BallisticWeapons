@@ -3908,8 +3908,11 @@ simulated function bool HasAmmoLoaded(byte Mode)
 // Consume ammo from one of the possible sources depending on various factors
 simulated function bool ConsumeMagAmmo(int Mode, float Load, optional bool bAmountNeededIsMax)
 {
-	if (bNoMag || (BFireMode[Mode] != None && BFireMode[Mode].bUseWeaponMag == false))
+	if (BFireMode[Mode] != None && !BFireMode[Mode].bUseWeaponMag)
 		ConsumeAmmo(Mode, Load, bAmountNeededIsMax);
+	// with reloading off, from what a reload would fill the magazine from (see BallisticFire.AllowFire)
+	else if (bNoMag)
+		ConsumeAmmo(0, Load, bAmountNeededIsMax);
 	else
 	{
 		if (MagAmmo < Load)
@@ -4577,9 +4580,31 @@ function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
 
 		else if (bJustSpawned && (WP==None || !WP.bDropped) && (m == 0 || FireMode[m].AmmoClass != FireMode[0].AmmoClass))
 			Ammo[m].AddAmmo(Ammo[m].InitialAmount);
+		GiveNoMagRounds(m, bJustSpawned && (WP == None || !WP.bDropped));
         Ammo[m].GotoState('');
 		//log(GetHumanReadableName()@" given ammo: mode "$m$" now has "$Ammo[m].AmmoAmount$" ammo.");
 	}
+}
+
+// With reloading off there is no magazine to keep rounds in: the most of the weapon's first ammo a player can carry grows
+// by the magazine he would have carried loaded (once for that ammo), and a new weapon comes with its loaded rounds among
+// the rest. A dropped weapon hands on only what its owner had left. Weapons with a GiveAmmo of their own call this too
+function GiveNoMagRounds(int m, bool bNewWeapon)
+{
+	if (m != 0 || Ammo[0] == None || NoMagAllowance() == 0)
+		return;
+	if (Ammo[0].MaxAmmo == Ammo[0].default.MaxAmmo)
+		Ammo[0].MaxAmmo += NoMagAllowance();
+	if (bNewWeapon)
+		Ammo[0].AddAmmo(MagAmmo);
+}
+
+// With reloading off (a weapon that has a magazine but may not use it), what its magazine holds; else 0
+simulated final function int NoMagAllowance()
+{
+	if (bNoMag && !default.bNoMag)
+		return GetMagCapacity();
+	return 0;
 }
 
 //Azarael - used in BallisticTurrets and by Loadout
@@ -5829,7 +5854,8 @@ simulated function GetAmmoCount(out float MaxAmmoPrimary, out float CurAmmoPrima
 
 	if (bNoMag)
 	{
-		MaxAmmoPrimary = Ammo[0].MaxAmmo;
+		// a client's ammo keeps its class's cap: the server's has the magazine on top (GiveAmmo)
+		MaxAmmoPrimary = Max(Ammo[0].MaxAmmo, Ammo[0].default.MaxAmmo + NoMagAllowance());
 		CurAmmoPrimary = Ammo[0].AmmoAmount;
 	}
 	else

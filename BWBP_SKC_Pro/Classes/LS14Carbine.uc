@@ -199,8 +199,10 @@ simulated function UpdateScreen()
 simulated function bool ConsumeMagAmmo(int Mode, float Load, optional bool bAmountNeededIsMax)
 {
 
-	if (bNoMag || (BFireMode[Mode] != None && BFireMode[Mode].bUseWeaponMag == false))
+	if (BFireMode[Mode] != None && !BFireMode[Mode].bUseWeaponMag)
 		ConsumeAmmo(Mode, Load, bAmountNeededIsMax);
+	else if (bNoMag)
+		ConsumeAmmo(0, Load, bAmountNeededIsMax);
 	else
 	{
 		if (MagAmmo < Load)
