@@ -176,7 +176,6 @@ final function EnableUnlag(float PingTime)
     UnlaggedLocation.Z = InterpCurveEval(LocZ, UnlagTime);
     
     SetLocation(UnlaggedLocation);
-    SetCollisionSize(UnlaggedRadius, UnlaggedHeight);
 
     // sanity check
     // disable unlag if parameters unlikely to be valid
@@ -186,23 +185,28 @@ final function EnableUnlag(float PingTime)
     if (UnlaggedPawn.Physics == PHYS_Ladder && VSize(Location - UnlaggedPawn.Location) > LADDER_SANITY_DIST)
         return;
 
+    // first rotation saved at or after the rewound time
+    for (i = 0; i < Rotations.Length - 1 && Rotations[i].time < UnlagTime; ++i);
+
+    SetRotation(Rotations[i].Rotation);
+
+    // Switched on with no size, and only then given the pawn's: switching collision on makes an actor touch whatever it
+    // overlaps, a change of size does not. A projectile touched by it took that for a hit on the pawn, wherever the pawn
+    // is now: a grenade lying where a player stood a ping ago went off at him at anybody's next rewound shot
+    SetCollisionSize(0, 0);
     SetCollision(true, true, true);
+    SetCollisionSize(UnlaggedRadius, UnlaggedHeight);
 
 /*
     PawnCollideActors = UnlaggedPawn.bCollideActors;
     PawnBlockActors = UnlaggedPawn.bBlockActors;
     PawnBlockPlayers = UnlaggedPawn.bBlockPlayers;
-    
+
     UnlaggedPawn.SetCollision(false, false, false);
 */
 
     UnlaggedPawn.bBlockZeroExtentTraces=False;
     UnlaggedPawn.bBlockNonZeroExtentTraces=False;
-
-    // first rotation saved at or after the rewound time
-    for (i = 0; i < Rotations.Length - 1 && Rotations[i].time < UnlagTime; ++i);
-
-    SetRotation(Rotations[i].Rotation);
 
     //log(Name @ "Pawn: X:" $ UnlaggedPawn.Location.X $ "Y: " $ UnlaggedPawn.Location.Y $ "Z: " $ UnlaggedPawn.Location.Z);
     //log(Name @ "Collision: X:" $ Location.X $ "Y: " $ Location.Y $ "Z: " $ Location.Z  $ " Rot:" $ Rotation $ " ColH: " $ CollisionHeight $ " ColR:" $ CollisionRadius);
