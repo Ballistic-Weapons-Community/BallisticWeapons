@@ -4,7 +4,8 @@
 // Loads the classes of the match's weapons on the client before they are met in play.
 // A weapon class brings its meshes, animations, effects and fire modes with it, and loading
 // those from disk in the middle of a fight is what stutters. Textures stay on demand
-// unless the server asks for them as well.
+// unless the server asks for them as well. BW's own player models are loaded first, when
+// the server has them (Mut_BallisticPreLoad.PreloadPlayerModels).
 class BallisticPreloadInteraction extends Interaction;
 
 var() float FontScaleX, FontScaleY;
@@ -28,6 +29,11 @@ var float LoadStamp, RestUntil;
 var int ShownFrames;
 var float WaitStart;
 
+var array<xUtil.PlayerRecord> Models;	// BW's player models that this machine has, when the server has them too
+var int ModelNumber;			// Next entry of Models
+var int NumModels;				// Models there was something to do for
+var bool bModelsListed;
+
 var bool bDisplayDebugText;
 
 event Initialized()
@@ -43,12 +49,15 @@ simulated function Finish()
 	// The list is the weapons of the inventory mode and, after them, the killstreak rewards
 	if (NumLoaded > 0)
 		Log("BW Preload: Loaded"@NumLoaded@"of"@MyRI.PreloadNum@"weapons ("$(MyRI.PreloadNum - MyRI.RewardNum)@"from the game's weapon list,"@MyRI.RewardNum@"killstreak rewards)");
+	if (NumModels > 0)
+		Log("BW Preload: Loaded"@NumModels@"of"@Models.Length@"player models");
 	MyRI = None;
 	Master.RemoveInteraction(Self);
 }
 
-// Draws a mesh into a corner of the screen, which sends its buffers and skins to the video card
-simulated function PrecacheMesh(Canvas C, Mesh M)
+// Draws a mesh into a corner of the screen, which sends its buffers and skins to the video card. A player model is drawn
+// in the skins a pawn gives it
+simulated function PrecacheMesh(Canvas C, Mesh M, optional Material Skin0, optional Material Skin1)
 {
 	local PlayerController PC;
 
@@ -60,6 +69,11 @@ simulated function PrecacheMesh(Canvas C, Mesh M)
 	if (PreloadMeshActor == None)
 		return;
 	PreloadMeshActor.SetLocation(PC.CalcViewLocation + vector(PC.CalcViewRotation) * 256);
+	PreloadMeshActor.Skins.Length = 0;
+	if (Skin0 != None)
+		PreloadMeshActor.Skins[0] = Skin0;
+	if (Skin1 != None)
+		PreloadMeshActor.Skins[1] = Skin1;
 	PreloadMeshActor.LinkMesh(M, false);
 	C.DrawActorClipped(PreloadMeshActor, false, 0, 0, 2, 2);
 }
@@ -132,6 +146,56 @@ simulated function PrecacheWeapon(Canvas C, class<Weapon> WeaponClass)
 		}
 }
 
+// The characters of this machine's player list that wear BW's player models
+simulated function ListPlayerModels()
+{
+	local array<xUtil.PlayerRecord> Records;
+	local int i;
+
+	class'xUtil'.static.GetPlayerList(Records);
+	for (i = 0; i < Records.Length; i++)
+		if (class'Mut_BallisticPreLoad'.static.IsPreloadedModel(Records[i].MeshName))
+			Models[Models.Length] = Records[i];
+}
+
+// What a pawn wearing this character loads on this machine (SpeciesType.Setup and SetTeamSkin): its mesh, skeleton, skins
+// and the team skins it has, drawn once so that they are on the video card. Returns whether there was anything to do
+simulated function bool PreloadPlayerModel(Canvas C, xUtil.PlayerRecord Rec)
+{
+	local Mesh M;
+	local Material Body, Face;
+	local string Skeleton;
+	local int Team;
+
+	if (FindObject(Rec.MeshName, class'Mesh') != None && FindObject(Rec.BodySkinName, class'Material') != None)
+		return false;
+
+	M = Mesh(DynamicLoadObject(Rec.MeshName, class'Mesh', True));
+	Skeleton = Rec.Skeleton;
+	if (Skeleton == "" && Rec.Species != None)
+	{
+		if (Rec.Sex ~= "Female")
+			Skeleton = Rec.Species.default.FemaleSkeleton;
+		else
+			Skeleton = Rec.Species.default.MaleSkeleton;
+	}
+	if (Skeleton != "")
+		DynamicLoadObject(Skeleton, class'Mesh', True);
+
+	Body = Material(DynamicLoadObject(Rec.BodySkinName, class'Material', True));
+	Face = Material(DynamicLoadObject(Rec.FaceSkinName, class'Material', True));
+	for (Team = 0; Team < 2; Team++)
+	{
+		DynamicLoadObject(Rec.BodySkinName $ "_" $ Team, class'Material', True);
+		if (Rec.TeamFace)
+			DynamicLoadObject(Rec.FaceSkinName $ "_" $ Team, class'Material', True);
+	}
+
+	PrecacheMesh(C, M, Body, Face);
+	NumModels++;
+	return true;
+}
+
 // Returns whether there was anything to do for this entry
 simulated function bool PreloadWeapon(Canvas C, string ClassName)
 {
@@ -200,8 +264,15 @@ simulated function PostRender(Canvas Canvas)
 	if (MyRI.PreloadNum == 0)
 		return;
 
+	if (!bModelsListed)
+	{
+		bModelsListed = true;
+		if (MyRI.bPreloadPlayerModels)
+			ListPlayerModels();
+	}
+
 	// Done. A negative count is the server saying there is nothing to load
-	if (WeaponNumber >= MyRI.PreloadNum)
+	if (WeaponNumber >= MyRI.PreloadNum && ModelNumber >= Models.Length)
 	{
 		Finish();
 		return;
@@ -225,6 +296,14 @@ simulated function PostRender(Canvas Canvas)
 		Limit = LoadsPerFrame;
 	else if (Now >= RestUntil)
 		Limit = 1;
+
+	// The player models first: there are only a few
+	while (Done < Limit && ModelNumber < Models.Length)
+	{
+		if (PreloadPlayerModel(Canvas, Models[ModelNumber]))
+			Done++;
+		ModelNumber++;
+	}
 
 	while (Done < Limit && WeaponNumber < MyRI.PreloadNum)
 	{

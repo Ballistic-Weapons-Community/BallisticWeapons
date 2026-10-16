@@ -12,6 +12,7 @@ var globalconfig bool bEnableTextureLoading;	// Also send the weapons' own skins
 
 var BallisticPreloadReplicationInfo MyRI;
 var int NumRewards;		// How many entries at the end of the list are killstreak rewards
+var string PlayerModelPackage;	// The player models of this package, BW's own characters, are loaded as the map starts
 
 event PostBeginPlay()
 {
@@ -20,6 +21,7 @@ event PostBeginPlay()
 		MyRI = Spawn(class'BallisticProV55.BallisticPreloadReplicationInfo');
 		MyRI.bEnableCamoLoading = bEnableCamoLoading;
 		MyRI.bEnableTextureLoading = bEnableTextureLoading;
+		PreloadPlayerModels();
 	}
 
 	SaveConfig();
@@ -202,6 +204,35 @@ function BuildWeaponList(out array<string> OutList)
 	Log("Mut_BallisticPreLoad: Built weapon list from"@Source@"("$(OutList.Length - NumRewards)@"weapons) and"@NumRewards@"killstreak rewards");
 }
 
+// Whether a character's mesh is one of BW's own player models
+static function bool IsPreloadedModel(string MeshName)
+{
+	return Left(MeshName, Len(default.PlayerModelPackage) + 1) ~= (default.PlayerModelPackage $ ".");
+}
+
+// BW's player models (the characters of BWGuy.upl, where they are installed) were loaded by the first pawn that wore one,
+// in the middle of play: on the server, and on every client that saw it (some 20 ms for all seven with the files cached,
+// longer from a slow disk). The server loads their meshes now, as the map starts, and has the clients load them too,
+// with their skins.
+function PreloadPlayerModels()
+{
+	local array<xUtil.PlayerRecord> Records;
+	local int i, Num;
+
+	class'xUtil'.static.GetPlayerList(Records);
+	for (i = 0; i < Records.Length; i++)
+		if (IsPreloadedModel(Records[i].MeshName))
+		{
+			DynamicLoadObject(Records[i].MeshName, class'Mesh', true);
+			Num++;
+		}
+
+	if (Num == 0)
+		return;
+	MyRI.bPreloadPlayerModels = true;
+	Log("Mut_BallisticPreLoad: Loaded"@Num@"player models of"@PlayerModelPackage);
+}
+
 function AddUniqueString(out array<string> Arr, string Value)
 {
 	local int i;
@@ -222,6 +253,7 @@ defaultproperties
 	bEnablePreloading=True
 	bEnableCamoLoading=False
 	bEnableTextureLoading=False
+	PlayerModelPackage="BWGuyAnim"
     bAddToServerPackages=True
     GroupName="BallisticPro: Resource Preload"
     FriendlyName="BallisticPro: Resource Preload"
