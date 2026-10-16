@@ -29,13 +29,28 @@ simulated function bool CheckGrenade()
 	return true;
 }
 
+// The grenade on the barrel was taken from the grenades when it was loaded, so its launch needs and takes nothing more.
+// It took a round from the magazine, and with reloading off a second grenade: the last grenade, once loaded, never went
+// and blocked the trigger
+simulated function bool AllowFire()
+{
+	if (MJ51Carbine(Weapon).bLoaded)
+		return CheckReloading() && CheckWeaponMode();
+	return Super.AllowFire();
+}
+
 simulated event ModeDoFire()
 {
+	local float LoadWas;
+
 	if (!AllowFire())
 		return;
 	if (!CheckGrenade())
 		return;
+	LoadWas = Load;
+	Load = 0;
 	Super.ModeDoFire();
+	Load = LoadWas;
 	MJ51Carbine(Weapon).bLoaded = false;
 }
 
