@@ -118,7 +118,8 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			{
 				OnTraceHit(Other, HitLocation, InitialStart, X, 0, 0, 0);
 				
-				if (Pawn(Other) != None)
+				// (a server's rewound collision counts as the player it stands for)
+				if (class'UnlaggedPawnCollision'.static.PawnOf(Other) != None)
 					++SuccessiveHits;
 				
 				if (Vehicle(Other) != None)
@@ -127,7 +128,10 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				else if (Mover(Other) == None)
 				{
 					bHitWall = true;
-					SendFireEffect(Other, HitLocation, HitNormal, HitMaterial.SurfaceType);
+					if (HitMaterial != None)
+						SendFireEffect(Other, HitLocation, HitNormal, HitMaterial.SurfaceType);
+					else
+						SendFireEffect(Other, HitLocation, HitNormal, 6);
 					break;
 				}
 			}

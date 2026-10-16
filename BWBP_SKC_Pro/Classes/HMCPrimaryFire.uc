@@ -155,16 +155,16 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 	//Radius damage or radius slow
 	if (HMCBeamCannon(Weapon) != None && HMCBeamCannon(Weapon).bGravitron)
 	{
-		HMCBeamCannon(Weapon).TargetedSlowRadius(0.3, 8, 512, HitLocation, Pawn(Other));
+HMCBeamCannon(Weapon).TargetedSlowRadius(0.3, 8, 512, HitLocation, class'UnlaggedPawnCollision'.static.PawnOf(Other));
 	}
 	else
 	{
-		BallisticWeapon(Weapon).TargetedHurtRadius(90, 200, class'DTHMCBlast', 0, HitLocation, Pawn(Other));
+BallisticWeapon(Weapon).TargetedHurtRadius(90, 200, class'DTHMCBlast', 0, HitLocation, class'UnlaggedPawnCollision'.static.PawnOf(Other));
 	}
 
 	// The blast above can kill the shooter at point blank range, destroying the weapon
 	if (BallisticWeapon(Weapon) != None)
-		BallisticWeapon(Weapon).TargetedHurtRadius(30, 512, class'DTHMCBlast', 0, HitLocation, Pawn(Other));
+BallisticWeapon(Weapon).TargetedHurtRadius(30, 512, class'DTHMCBlast', 0, HitLocation, class'UnlaggedPawnCollision'.static.PawnOf(Other));
 }
 
 simulated function ModeTick(float DT)
