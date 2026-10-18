@@ -461,6 +461,7 @@ simulated state Mount
 
 defaultproperties
 {
+	bPredictRecoil=False
      HeatPerShot=1.500000
      SpecialFireSound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2'
      TraceRange=(Min=15000.000000,Max=15000.000000)

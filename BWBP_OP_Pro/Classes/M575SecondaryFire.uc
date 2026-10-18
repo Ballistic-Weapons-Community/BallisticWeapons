@@ -16,6 +16,7 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
+	bPredictRecoil=False
      bUseWeaponMag=False
      bWaitForRelease=True
      bModeExclusive=False

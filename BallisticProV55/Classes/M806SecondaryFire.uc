@@ -228,6 +228,7 @@ simulated state Scope
 
 defaultproperties
 {
+	bPredictRecoil=False
 	//Laser
 	bUseWeaponMag=False
 	bWaitForRelease=True

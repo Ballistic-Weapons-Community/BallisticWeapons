@@ -374,6 +374,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
+	bPredictRecoil=False
 	 FireSoundLoop=Sound'BWBP_SKC_Sounds.XM20.XM20-Lase'
      ChargeSound=Sound'BWBP_SKC_Sounds.XM20.XM20-SpartanChargeSound'
 //	 ChargeSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Charge'

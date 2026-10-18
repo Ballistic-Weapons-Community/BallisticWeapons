@@ -209,6 +209,7 @@ static function int GetDPSec() {return default.ProjectileClass.default.Damage / 
 
 defaultproperties
 {
+	bPredictRecoil=False
 	ArtilleryDelay=1.250000
 	//bCockAfterFire=True
 	//MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'

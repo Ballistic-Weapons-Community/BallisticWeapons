@@ -62,6 +62,7 @@ function DoFireEffect()
 
 defaultproperties
 {
+	bPredictRecoil=False
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BallisticProV55.RSNovaFastMuzzleFlash'
      FireRecoil=100.000000

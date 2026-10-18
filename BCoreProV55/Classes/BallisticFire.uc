@@ -100,6 +100,7 @@ var float	                            BurstFireRateFactor;// Multiplies down fir
 // Dispersion
 //-----------------------------------------------------------------------------
 var() float					            FireRecoil;			// Amount of recoil added each shot
+var() bool					            bPredictRecoil;		// The owner's machine adds this mode's recoil itself as it fires, as the server will (see RecoilComponent). Only where each shot that comes to ShakeView goes through ApplyRecoil on the server
 var() float					            FirePushbackForce;	// How much to jolt player back when they fire
 var   vector					        LastPushback;		// What that last took off the player's speed, and when (see GetBrassPushback)
 var   float					            LastPushbackTime;
@@ -579,12 +580,27 @@ simulated function ReloadingGun(optional byte i)
 	}
 }
 
+// The recoil a shot adds: ApplyRecoil on the server, ShakeView on the owner's machine
+simulated function float GetShotRecoil()
+{
+	return FireRecoil;
+}
+
+// For each shot on the owner's machine. The recoil starts with it, as it will on the server
+function ShakeView()
+{
+	Super.ShakeView();
+
+	if (bPredictRecoil && BW != None && Weapon.Role < ROLE_Authority)
+		BW.PredictRecoil(GetShotRecoil());
+}
+
 simulated function ApplyRecoil()
 {
 	local Vector VelRecoilVect;
 
 	if (BW != None)
-		BW.AddRecoil(FireRecoil, FireChaos, ThisModeNum);
+		BW.AddRecoil(GetShotRecoil(), FireChaos, ThisModeNum);
 
 	if (FirePushbackForce != 0 && Instigator!= None)
 	{
@@ -916,4 +932,5 @@ defaultproperties
      TweenTime=0.000000
      AmmoPerFire=1
 	 BurstFireRateFactor=0.66
+	 bPredictRecoil=True
 }

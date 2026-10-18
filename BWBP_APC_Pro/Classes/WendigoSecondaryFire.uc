@@ -35,6 +35,7 @@ function DoFireEffect()
 
 defaultproperties
 {
+	bPredictRecoil=False
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_HVPCCells'
      AmmoPerFire=20
      MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'

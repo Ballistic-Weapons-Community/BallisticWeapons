@@ -89,6 +89,7 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
+	bPredictRecoil=False
     FirePushbackForce=1500.000000
 	Damage=35.000000
     forceMag=1000.000000

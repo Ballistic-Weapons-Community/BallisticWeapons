@@ -288,6 +288,7 @@ function StopLightning()
 
 defaultproperties
 {
+	bPredictRecoil=False
      DamageType=Class'BWBP_OP_Pro.DTProtonStreamer'
      MuzzleFlashClass=Class'BWBP_APC_Pro.ThorLCFlashEmitter'
      FireRecoil=1.000000

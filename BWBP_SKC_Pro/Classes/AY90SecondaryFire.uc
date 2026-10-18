@@ -332,6 +332,7 @@ function DoFireEffect()
 
 defaultproperties
 {
+	bPredictRecoil=False
      ChargeTime=4.000000
      AutoFireTime=5.000000
      ChargeSound=Sound'BWBP_SKC_Sounds.SkirthBow.SkrithBow-WaveCharge'

@@ -442,6 +442,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 
 defaultproperties
 {
+	bPredictRecoil=False
      SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
      bUseWeaponMag=False
      BallisticFireSound=(Sound=SoundGroup'BWBP_JW_Sound.Crowbar.Crowbar-Swing')

@@ -124,6 +124,7 @@ simulated function bool AllowFire()
 
 defaultproperties
 {
+	bPredictRecoil=False
      FireRecoil=32.000000
      XInaccuracy=128.000000
      YInaccuracy=128.000000
