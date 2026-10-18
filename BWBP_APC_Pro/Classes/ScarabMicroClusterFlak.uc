@@ -27,6 +27,7 @@ simulated function PostNetBeginPlay()
 	if (Level.NetMode == NM_DedicatedServer)
 		return;
 		
+	ArmLandedCopy();
 	InitEffects();
 	
 	if ( Level.bDropDetail || Level.DetailMode == DM_Low )
@@ -70,6 +71,14 @@ simulated event Timer()
 	
 	else if (!bCollideActors)
 		SetCollision(true,true,true);
+}
+
+// as the grenade's, with this bomblet's own fuse flag
+simulated function ArmLandedCopy()
+{
+	Super.ArmLandedCopy();
+	if (bArmed)
+		bDetonating = true;
 }
 
 simulated function InitProjectile ()

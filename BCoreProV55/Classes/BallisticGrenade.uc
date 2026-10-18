@@ -303,6 +303,26 @@ simulated function HitWall(vector HitNormal, actor Wall)
     }
 }
 
+simulated function PostNetBeginPlay()
+{
+	Super.PostNetBeginPlay();
+	ArmLandedCopy();
+}
+
+// A client is sent a grenade once, as it is after its first tick on the server. One that landed in that tick (a cluster
+// bomblet flung at the floor) comes lying still: it never lands on the client, so its fuse never lit there and it lay
+// there until its life ran out, long after the server's had gone off. Its fuse is lit now, as landing lit it on the server
+simulated function ArmLandedCopy()
+{
+	if (Role == ROLE_Authority || Physics != PHYS_None || default.Physics == PHYS_None || bHasImpacted || StartDelay > 0)
+		return;
+	if (DetonateOn != DT_ImpactTimed && DetonateOn != DT_Still)
+		return;
+	bHasImpacted = true;
+	bArmed = true;
+	SetTimer(DetonateDelay, false);
+}
+
 simulated function BlowUp(vector HitLocation)
 {
 	local vector Start;
@@ -310,7 +330,10 @@ simulated function BlowUp(vector HitLocation)
     local int i;
 
 	Start = Location/* + 10 * HitNormal*/;
-	if (FlakCount > 0 && FlakClass != None)
+	// On the server only, as the Longhorn does: clients are sent the server's pieces, which are where its blasts are. Every
+	// client also flung pieces of its own, going other ways at random, so it showed twice as many, half of them in the wrong
+	// places
+	if (FlakCount > 0 && FlakClass != None && Role == ROLE_Authority)
 	{
 		for (i=0;i<FlakCount;i++)
 		{
