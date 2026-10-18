@@ -23,6 +23,8 @@ var() BallisticPreloadReplicationInfo MyRI;
 var() Actor PreloadMeshActor;
 
 var int NumLoaded;				// Entries there was something to do for
+var int NumFailed;				// Weapon classes that could not be loaded
+var int NumSkipped;				// Entries whose name never came
 var int LoadsPerFrame;
 var bool bLoadedLastFrame;
 var float LoadStamp, RestUntil;
@@ -32,6 +34,7 @@ var float WaitStart;
 var array<xUtil.PlayerRecord> Models;	// BW's player models that this machine has, when the server has them too
 var int ModelNumber;			// Next entry of Models
 var int NumModels;				// Models there was something to do for
+var int NumModelsFailed;		// Models whose mesh could not be loaded
 var bool bModelsListed;
 
 var bool bDisplayDebugText;
@@ -43,14 +46,30 @@ event Initialized()
 
 simulated function Finish()
 {
+	local string S;
+
 	if (PreloadMeshActor != None)
 		PreloadMeshActor.Destroy();
 	PreloadMeshActor = None;
 	// The list is the weapons of the inventory mode and, after them, the killstreak rewards
 	if (NumLoaded > 0)
-		Log("BW Preload: Loaded"@NumLoaded@"of"@MyRI.PreloadNum@"weapons ("$(MyRI.PreloadNum - MyRI.RewardNum)@"from the game's weapon list,"@MyRI.RewardNum@"killstreak rewards)");
+	{
+		S = "BW Preload:" @ (MyRI.PreloadNum - NumFailed - NumSkipped) @ "of" @ MyRI.PreloadNum @ "weapons ready," @ (NumLoaded - NumFailed) @ "loaded now,"
+			@ (MyRI.PreloadNum - NumLoaded - NumSkipped) @ "were loaded already";
+		if (NumFailed > 0)
+			S = S $ "," @ NumFailed @ "could not be loaded";
+		if (NumSkipped > 0)
+			S = S $ "," @ NumSkipped @ "never named by the server";
+		Log(S @ "(" $ (MyRI.PreloadNum - MyRI.RewardNum) @ "from the game's weapon list," @ MyRI.RewardNum @ "killstreak rewards)");
+	}
 	if (NumModels > 0)
-		Log("BW Preload: Loaded"@NumModels@"of"@Models.Length@"player models");
+	{
+		S = "BW Preload:" @ (Models.Length - NumModelsFailed) @ "of" @ Models.Length @ "player models ready," @ (NumModels - NumModelsFailed) @ "loaded now,"
+			@ (Models.Length - NumModels) @ "were loaded already";
+		if (NumModelsFailed > 0)
+			S = S $ "," @ NumModelsFailed @ "could not be loaded";
+		Log(S);
+	}
 	MyRI = None;
 	Master.RemoveInteraction(Self);
 }
@@ -171,6 +190,11 @@ simulated function bool PreloadPlayerModel(Canvas C, xUtil.PlayerRecord Rec)
 		return false;
 
 	M = Mesh(DynamicLoadObject(Rec.MeshName, class'Mesh', True));
+	if (M == None)
+	{
+		NumModelsFailed++;
+		Log("BW Preload: Could not load player model" @ Rec.MeshName @ "(" $ Rec.DefaultName $ ")");
+	}
 	Skeleton = Rec.Skeleton;
 	if (Skeleton == "" && Rec.Species != None)
 	{
@@ -206,6 +230,11 @@ simulated function bool PreloadWeapon(Canvas C, string ClassName)
 		return false;
 
 	WeaponClass = class<Weapon>(DynamicLoadObject(ClassName, class'Class', True));
+	if (WeaponClass == None)
+	{
+		NumFailed++;
+		Log("BW Preload: Could not load weapon class" @ ClassName);
+	}
 	if (WeaponClass != None && (MyRI.bEnableTextureLoading || MyRI.bEnableCamoLoading))
 		PrecacheWeapon(C, WeaponClass);
 	NumLoaded++;
@@ -316,6 +345,7 @@ simulated function PostRender(Canvas Canvas)
 			{
 				WaitStart = 0;
 				WeaponNumber++;
+				NumSkipped++;
 			}
 			break;
 		}

@@ -71,17 +71,27 @@ function Tick(float DeltaTime)
 // most already, and they are skipped.
 function LoadOnServer(array<string> List)
 {
-	local int i, Num;
+	local int i, Loaded, Failed;
+	local string S;
 
 	for (i = 0; i < List.Length; i++)
-		if (FindObject(List[i], class'Class') == None)
+	{
+		if (FindObject(List[i], class'Class') != None)
+			continue;
+		if (DynamicLoadObject(List[i], class'Class', true) != None)
+			Loaded++;
+		else
 		{
-			DynamicLoadObject(List[i], class'Class', true);
-			Num++;
+			Failed++;
+			Log("Mut_BallisticPreLoad: Could not load weapon class" @ List[i]);
 		}
+	}
 
-	if (Num > 0)
-		Log("Mut_BallisticPreLoad: Loaded"@Num@"of"@List.Length@"weapon classes on the server");
+	S = "Mut_BallisticPreLoad:" @ (List.Length - Failed) @ "of" @ List.Length @ "weapon classes ready on the server," @ Loaded @ "loaded now,"
+		@ (List.Length - Loaded - Failed) @ "were loaded already";
+	if (Failed > 0)
+		S = S $ "," @ Failed @ "could not be loaded";
+	Log(S);
 }
 
 // Build weapon list dynamically from active BW mutators, falling back to config
@@ -217,20 +227,32 @@ static function bool IsPreloadedModel(string MeshName)
 function PreloadPlayerModels()
 {
 	local array<xUtil.PlayerRecord> Records;
-	local int i, Num;
+	local int i, Num, Failed;
+	local string S;
 
 	class'xUtil'.static.GetPlayerList(Records);
 	for (i = 0; i < Records.Length; i++)
-		if (IsPreloadedModel(Records[i].MeshName))
-		{
-			DynamicLoadObject(Records[i].MeshName, class'Mesh', true);
+	{
+		if (!IsPreloadedModel(Records[i].MeshName))
+			continue;
+		if (DynamicLoadObject(Records[i].MeshName, class'Mesh', true) != None)
 			Num++;
+		else
+		{
+			Failed++;
+			Log("Mut_BallisticPreLoad: Could not load player model" @ Records[i].MeshName @ "(" $ Records[i].DefaultName $ ")");
 		}
+	}
 
-	if (Num == 0)
+	if (Num + Failed == 0)
 		return;
-	MyRI.bPreloadPlayerModels = true;
-	Log("Mut_BallisticPreLoad: Loaded"@Num@"player models of"@PlayerModelPackage);
+	// clients are only told to load them when the server has them
+	if (Num > 0)
+		MyRI.bPreloadPlayerModels = true;
+	S = "Mut_BallisticPreLoad:" @ Num @ "of" @ (Num + Failed) @ "player models of" @ PlayerModelPackage @ "ready on the server";
+	if (Failed > 0)
+		S = S $ "," @ Failed @ "could not be loaded";
+	Log(S);
 }
 
 function AddUniqueString(out array<string> Arr, string Value)
