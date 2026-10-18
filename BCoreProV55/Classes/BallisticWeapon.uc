@@ -189,6 +189,15 @@ struct FireRotSample
 };
 var     array<FireRotSample>        FireRotHistory;                 // Server: the weapon's offset over the last second, while a remote player holds it (see GetFireDir)
 
+struct ShotViewReport
+{
+	var int		Count;		// the owner's number for the shot (RecoilComponent's shot count)
+	var int		View;		// the view it was fired with, packed as ServerMove packs it
+	var float	Time;		// when the report came
+};
+var     ShotViewReport              ShotViews[4];                   // Server: the views the owner's machine fired its last predicted shots with (see ServerShotView)
+var     int                         NextShotView;                   // Server: where in ShotViews the next report goes
+
 //=============================================================================
 // WEAPON STATE VARIABLES
 //=============================================================================
@@ -498,7 +507,8 @@ replication
 		ServerWeaponSpecial, ServerWeaponSpecialRelease, // weapon special ability
 		ServerSwitchWeaponMode, // weapon mode
 		ServerMeleeHold, ServerMeleeRelease, // melee integration
-		ServerSetScopeView; // ADS
+		ServerSetScopeView, // ADS
+		ServerShotView; // recoil system
 
 
 	// functions on client, called by server
@@ -5746,11 +5756,76 @@ simulated function float GetFireChaos()
 	return AimComponent.GetFireChaos();
 }
 
-// The owner's machine, for a shot of its own (see RecoilComponent: prediction)
+// The owner's machine, for a shot of its own (see RecoilComponent: prediction). The server is told the view the
+// shot was fired with (see ServerShotView)
 simulated final function PredictRecoil(float Recoil)
 {
-	if (Role < ROLE_Authority && RcComponent != None && Instigator != None && Instigator.IsLocallyControlled())
-		RcComponent.PredictRecoil(Recoil);
+	local int Count;
+	local Rotator V;
+
+	if (Role == ROLE_Authority || RcComponent == None || Instigator == None || !Instigator.IsLocallyControlled() || Instigator.Controller == None)
+		return;
+
+	Count = RcComponent.GetShotCount();
+	V = Instigator.Controller.Rotation;
+	RcComponent.PredictRecoil(Recoil);
+	if (RcComponent.GetShotCount() != Count)
+		ServerShotView(RcComponent.GetShotCount(), ((V.Yaw & 65535) << 16) + (V.Pitch & 65535));
+}
+
+//================================================================================
+// ServerShotView, ShotViewAim
+//
+// The owner's machine kicks its view with the recoil of a shot it predicted as
+// it fires the shot. The kicked view comes here with its next moves, and often
+// before the server fires the shot, a tick after it is told the trigger is
+// down: the whole kick of a recoil that climbs at once (M99) went into the shot
+// it came from about every second time. So the owner's machine sends the view
+// it fired with, and the shot is aimed from that view.
+// A report is used for the shot about to add recoil with its number, and only
+// when it came after the last shot that added recoil here: when the counts of
+// the two machines part (a shot one of them fired and the other did not) the
+// view of an older shot is not taken.
+//================================================================================
+function ServerShotView(int Count, int View)
+{
+	ShotViews[NextShotView].Count = Count;
+	ShotViews[NextShotView].View = View;
+	ShotViews[NextShotView].Time = Level.TimeSeconds;
+	NextShotView = (NextShotView + 1) & 3;
+}
+
+// Server: Aim, worked out from the remote shooter's view as it is here now, turned to the view the shot was fired with
+final function Rotator ShotViewAim(Rotator Aim)
+{
+	local int i, j, Count, DP, DY;
+
+	if (Instigator == None || Instigator.IsLocallyControlled() || PlayerController(Instigator.Controller) == None || RcComponent == None)
+		return Aim;
+
+	Count = RcComponent.GetShotCount() + 1;
+	for (j = 1; j <= 4; j++)
+	{
+		i = (NextShotView - j) & 3;
+		if (ShotViews[i].Count == Count && ShotViews[i].Time >= RcComponent.GetLastRecoilTime() && Level.TimeSeconds - ShotViews[i].Time <= 0.5)
+			break;
+	}
+	if (j > 4)
+		return Aim;
+
+	DP = ((ShotViews[i].View & 65535) - Instigator.Controller.Rotation.Pitch) & 65535;
+	DY = (((ShotViews[i].View >> 16) & 65535) - Instigator.Controller.Rotation.Yaw) & 65535;
+	if (DP > 32767)
+		DP -= 65536;
+	if (DY > 32767)
+		DY -= 65536;
+	// never more than a quarter turn
+	if (Abs(DP) > 16384 || Abs(DY) > 16384)
+		return Aim;
+
+	Aim.Pitch += DP;
+	Aim.Yaw += DY;
+	return Aim;
 }
 
 // Whether the owner's machine predicts the recoil of this fire mode

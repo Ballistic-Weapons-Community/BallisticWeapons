@@ -473,6 +473,22 @@ final function bool OwnerPredicts()
 	return bOwnerPredicts;
 }
 
+//===========================================================
+// GetShotCount, GetLastRecoilTime
+//
+// The shots that added recoil so far, and when the last one
+// did
+//===========================================================
+final function int GetShotCount()
+{
+	return ShotCount;
+}
+
+final function float GetLastRecoilTime()
+{
+	return LastRecoilTime;
+}
+
 final function StartRecoilDecline()
 {
 	MoveState = ERecoilState.Declining;

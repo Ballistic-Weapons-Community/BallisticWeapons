@@ -407,6 +407,9 @@ function Rotator AdjustAim(Vector Start, float InAimError)
 {
 	if (BW.bUseSpecialAim)
 		return BW.GetPlayerAim(true);
+	// a remote player's predicted shot: from the view it was fired with (see BallisticWeapon.ServerShotView)
+	if (bPredictRecoil && Weapon.Role == ROLE_Authority)
+		return BW.ShotViewAim(super.AdjustAim(Start, InAimError));
     return super.AdjustAim(Start, InAimError);
 }
 // Returns the normal of the player's aim with weapon aim/pitch applied. Also sets StartTrace vector
