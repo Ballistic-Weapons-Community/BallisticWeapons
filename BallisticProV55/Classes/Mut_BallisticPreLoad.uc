@@ -40,6 +40,7 @@ function Tick(float DeltaTime)
 		return;
 
 	BuildWeaponList(PreloadList);
+	LoadOnServer(PreloadList);
 
 	// The clients wait for a count. A negative one tells them there is nothing to come.
 	if (PreloadList.Length == 0)
@@ -59,6 +60,26 @@ function Tick(float DeltaTime)
 	for (i = 0; i < PreloadList.Length; i++)
 		MyRI.CurrentName[i] = PreloadList[i];
 	MyRI.PreloadNum = PreloadList.Length;
+}
+
+// A server loaded each weapon the first time somebody was handed it, in the middle of play, and every player felt
+// it: a frame of 50 to 300 ms whenever a bot came in or back with a weapon new to the map (bots take theirs at
+// random, so it went on for minutes, and addbots handed out a whole set at once). The server loads them all here,
+// in its first moment on the map. A dedicated server has hardly any of them by then; a host or an offline game has
+// most already, and they are skipped.
+function LoadOnServer(array<string> List)
+{
+	local int i, Num;
+
+	for (i = 0; i < List.Length; i++)
+		if (FindObject(List[i], class'Class') == None)
+		{
+			DynamicLoadObject(List[i], class'Class', true);
+			Num++;
+		}
+
+	if (Num > 0)
+		Log("Mut_BallisticPreLoad: Loaded"@Num@"of"@List.Length@"weapon classes on the server");
 }
 
 // Build weapon list dynamically from active BW mutators, falling back to config
