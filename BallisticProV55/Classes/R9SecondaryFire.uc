@@ -22,16 +22,15 @@ simulated function float GetShotRecoil()
 	return FireRecoil;
 }
 
-simulated function ApplyRecoil()
+simulated function ApplyPushback()
 {
 	local Vector VelRecoilVect;
-	if (BW != None)
-		BW.AddRecoil(GetShotRecoil(), FireChaos, ThisModeNum);
+
 	if (FirePushbackForce != 0 && Instigator!= None)
 	{
 		VelRecoilVect = Vector(Instigator.GetViewRotation()) * FirePushbackForce;
 		VelRecoilVect.Z *= 0.25;
-		
+
 		if (Instigator.Physics == PHYS_Falling)
 			Instigator.Velocity -= VelRecoilVect * 0.5;
 		else

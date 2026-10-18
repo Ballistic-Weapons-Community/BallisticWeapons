@@ -586,33 +586,43 @@ simulated function float GetShotRecoil()
 	return FireRecoil;
 }
 
-// For each shot on the owner's machine. The recoil starts with it, as it will on the server
+// For each shot on the owner's machine. The recoil starts with it, as it will on the server, and so does the push back:
+// the server's push came to this machine a round trip later, as a correction of where the player was
 function ShakeView()
 {
 	Super.ShakeView();
 
 	if (bPredictRecoil && BW != None && Weapon.Role < ROLE_Authority)
+	{
 		BW.PredictRecoil(GetShotRecoil());
+		ApplyPushback();
+	}
 }
 
 simulated function ApplyRecoil()
 {
-	local Vector VelRecoilVect;
-
 	if (BW != None)
 		BW.AddRecoil(GetShotRecoil(), FireChaos, ThisModeNum);
 
-	if (FirePushbackForce != 0 && Instigator!= None)
+	ApplyPushback();
+}
+
+// The shot pushes the player back: ApplyRecoil on the server, ShakeView on the owner's machine
+simulated function ApplyPushback()
+{
+	local Vector VelRecoilVect;
+
+	if (FirePushbackForce == 0 || Instigator == None)
+		return;
+
+	VelRecoilVect = Vector(Instigator.GetViewRotation()) * FirePushbackForce;
+	VelRecoilVect.Z *= 0.25;
+
+	if (Instigator.Physics != PHYS_Falling)
 	{
-		VelRecoilVect = Vector(Instigator.GetViewRotation()) * FirePushbackForce;
-		VelRecoilVect.Z *= 0.25;
-		
-		if (Instigator.Physics != PHYS_Falling)
-		{
-			Instigator.Velocity -= VelRecoilVect;
-			LastPushback = VelRecoilVect;
-			LastPushbackTime = Level.TimeSeconds;
-		}
+		Instigator.Velocity -= VelRecoilVect;
+		LastPushback = VelRecoilVect;
+		LastPushbackTime = Level.TimeSeconds;
 	}
 }
 
