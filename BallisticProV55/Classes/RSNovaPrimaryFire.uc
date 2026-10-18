@@ -1003,7 +1003,6 @@ state ChainLightning
 
 defaultproperties
 {
-	bPredictRecoil=False
 	ChnLtngSoundLoop=Sound'BW_Core_WeaponSound.NovaStaff.Nova-ChainLightning'
 	FireSoundLoop=Sound'BW_Core_WeaponSound.NovaStaff.Nova-AltFireLoop'
 	Damage=2
