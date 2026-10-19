@@ -49,6 +49,7 @@ var	globalconfig	array<String>   ModelWhitelist;
 var Actor					        OldBase;
 var float					        LastMoverLeaveTime, MoverLeaveGrace;
 var bool					        bSpawnFinished;		// PostBeginPlay has run: no damage before that (see PostBeginPlay)
+var float					        ServerEyeZ;			// Dedicated server: the height the eye height was last worked out at (see UpdateEyeHeight)
 
 // Netcode ------------------------
 var RewindCollisionManager          RwColMgr;
@@ -230,6 +231,8 @@ var bool bReplaySpeedSet;		// Client: GroundSpeed has to go back from ReplaySpee
 // Server settings
 var float EmptyHandsTime;		// Owner's machine: how long this pawn has carried weapons with none in hand. See TickEmptyHands
 var byte EmptyHandsWaits;
+var float Dbg474Seen;		// #474 logging
+var byte Dbg474Step;
 var bool bGroundSpeedUnsent;	// Client: GroundSpeed is still what this pawn spawned with, so the server may never have sent it
 var byte SettingsChecksLeft;	// Client: this pawn arrived before the BallisticReplicationInfo carrying the server's settings. Times left to look for it
 var float NextSettingsCheckTime;
@@ -298,6 +301,7 @@ replication
 simulated function PostBeginPlay()
 {
 	bSpawnFinished = true;
+	ServerEyeZ = Location.Z;
 	Super.PostBeginPlay();
 }
 
@@ -2114,6 +2118,7 @@ simulated event Tick(float DT)
 		EmptyHandsTime = 0;
 		EmptyHandsWaits = 0;
 	}
+	Dbg474Tick();
 
 	// The sprint control knows the speed the server has set, and only reaches the pawn's owner
 	if (bGroundSpeedUnsent && Sprinter != None && Sprinter.BaseGroundSpeed > 0)
@@ -3009,6 +3014,7 @@ event StartCrouch(float HeightAdjust)
 {
 	EyeHeight += HeightAdjust;
 	OldZ -= HeightAdjust;
+	ServerEyeZ -= HeightAdjust;
 	BaseEyeheight = CrouchEyeHeight;
 }
 
@@ -3016,8 +3022,56 @@ event EndCrouch(float HeightAdjust)
 {
 	EyeHeight -= HeightAdjust;
 	OldZ += HeightAdjust;
+	ServerEyeZ += HeightAdjust;
 	BaseEyeHeight = Default.BaseEyeHeight;
 	JumpCrouchEnd = MoveTime() + JumpCrouchTime;
+}
+
+// A player's own machine smooths its eye height up and down stairs and slopes (Pawn.UpdateEyeHeight): the view trails a
+// climb by about a tenth of the climbing speed, below BaseEyeHeight going up and above it going down. A dedicated server
+// kept the eye at BaseEyeHeight, and shots start from the eye, so on slopes they started above the player's gun going
+// up and below it going down, and instant hits were traced from there. The server now smooths a player's eye the same
+// way, from the climb since its last tick: OldZ is no use here, as the physics of every move the client sends set it,
+// several to a tick. The client smooths in steps of a frame and lags further behind the smaller they are; the server's
+// steps are a tick long, so it uses the same smoothing worked out without steps, which is where a client at a high
+// frame rate ends up. Left out: the dip of the view on landing, a few units for a moment
+event UpdateEyeHeight(float DeltaTime)
+{
+	local float K, Decay, MaxEyeHeight, Climb, Rate;
+	local Actor HitActor;
+	local vector HitLocation, HitNormal;
+
+	if (Level.NetMode != NM_DedicatedServer || PlayerController(Controller) == None || bTearOff)
+	{
+		Super.UpdateEyeHeight(DeltaTime);
+		return;
+	}
+
+	Climb = Location.Z - ServerEyeZ;
+	ServerEyeZ = Location.Z;
+	// a teleport
+	if (Abs(Climb) > 200)
+		Climb = 0;
+
+	HitActor = Trace(HitLocation, HitNormal, Location + (CollisionHeight + MAXSTEPHEIGHT + 14) * vect(0,0,1),
+		Location + CollisionHeight * vect(0,0,1), true);
+	if (HitActor == None)
+		MaxEyeHeight = CollisionHeight + MAXSTEPHEIGHT;
+	else
+		MaxEyeHeight = HitLocation.Z - Location.Z - 14;
+
+	if (DeltaTime <= 0)
+		return;
+	// the eye is pulled back to BaseEyeHeight at a rate of 10 per second, while the climb takes it away
+	K = 10.0 / Level.TimeDilation;
+	Decay = Exp(-K * DeltaTime);
+	if (Physics == PHYS_Walking || Physics == PHYS_Spider)
+	{
+		Rate = Climb / DeltaTime;
+		EyeHeight = FClamp(BaseEyeHeight - Rate / K + (EyeHeight - BaseEyeHeight + Rate / K) * Decay, -0.5 * CollisionHeight, MaxEyeHeight);
+	}
+	else
+		EyeHeight = FMin(BaseEyeHeight + (EyeHeight - BaseEyeHeight) * Decay, MaxEyeHeight);
 }
 
 // The player's controller calls this from ProcessMove at the start of every walking move,
@@ -4371,6 +4425,87 @@ simulated function TickEmptyHands(float DT)
 		ChangedWeapon();
 	else
 		Controller.SwitchToBestWeapon();
+}
+
+// #474 logging: on the owner's machine 3 s and 8 s after the pawn turned up there, on the server 3 s after the spawn
+simulated function Dbg474Tick()
+{
+	if (Health <= 0 || PlayerController(Controller) == None)
+		return;
+	if (Level.NetMode == NM_Client && IsLocallyControlled())
+	{
+		if (Dbg474Seen == 0)
+		{
+			Dbg474Seen = Level.TimeSeconds;
+			Log("BW474|client|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|my new pawn|" $ self);
+		}
+		if (Dbg474Step == 0 && Level.TimeSeconds - Dbg474Seen > 3)
+		{
+			Dbg474Step = 1;
+			Dbg474Report("client|3 s after spawning");
+		}
+		else if (Dbg474Step == 1 && Level.TimeSeconds - Dbg474Seen > 8)
+		{
+			Dbg474Step = 2;
+			Dbg474Report("client|8 s after spawning");
+		}
+	}
+	else if (Role == ROLE_Authority && Level.NetMode != NM_Standalone && Dbg474Step == 0 && Level.TimeSeconds - SpawnTime > 3)
+	{
+		Dbg474Step = 1;
+		Dbg474Report("server|3 s after the spawn");
+	}
+}
+
+simulated function Dbg474Report(string When)
+{
+	local Inventory Inv;
+	local Weapon W;
+	local string Chain, Outside, Waiting, Verdict;
+	local int n, nW, nOut, k;
+	local bool bIn;
+
+	for (Inv = Inventory; Inv != None && n < 100; Inv = Inv.Inventory)
+	{
+		n++;
+		Chain = Chain $ Inv.Class.Name;
+		if (Weapon(Inv) != None)
+		{
+			nW++;
+			Chain = Chain $ "(" $ int(Weapon(Inv).ClientState) $ "," $ Inv.GetStateName() $ ",has ammo " $ Weapon(Inv).HasAmmo() $ ",group " $ Inv.InventoryGroup $ ")";
+		}
+		else if (Ammunition(Inv) != None)
+			Chain = Chain $ "(" $ Ammunition(Inv).AmmoAmount $ ")";
+		Chain = Chain $ " ";
+	}
+	foreach DynamicActors(class'Weapon', W)
+	{
+		if (W.Owner != self || W.bDeleteMe)
+			continue;
+		bIn = false;
+		k = 0;
+		for (Inv = Inventory; Inv != None && k < 100; Inv = Inv.Inventory)
+		{
+			k++;
+			if (Inv == W)
+			{
+				bIn = true;
+				break;
+			}
+		}
+		if (!bIn)
+		{
+			nOut++;
+			Outside = Outside $ W.Class.Name $ "(" $ int(W.ClientState) $ "," $ W.GetStateName() $ ") ";
+		}
+		if (W.IsInState('PendingClientWeaponSet'))
+			Waiting = Waiting $ W.Class.Name $ " ";
+	}
+	Verdict = "ok";
+	if (nOut > 0 || Waiting != "" || Weapon == None)
+		Verdict = "SHORT";
+	Log("BW474|" $ When $ "|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|" $ PlayerReplicationInfo.PlayerName $ "|" $ Verdict $ "|in hand " $ Weapon $ "|pending " $ PendingWeapon
+		$ "|weapons in the list " $ nW $ "|weapons outside the list " $ nOut $ ": " $ Outside $ "|waiting: " $ Waiting $ "|list: " $ Chain);
 }
 
 simulated function TickSlide(float DeltaTime, vector OldVelocity)

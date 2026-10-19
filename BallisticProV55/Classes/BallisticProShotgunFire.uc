@@ -76,6 +76,10 @@ simulated event ModeDoFire()
    		}
     }
 
+	// diagnostic build: the state before the shot clears it
+	if (BW != None && class'BallisticDiag'.static.Logs(Instigator))
+		BW.DiagShot(ThisModeNum);
+
 	if (BW != None)
 	{
 		BW.bPreventReload=true;

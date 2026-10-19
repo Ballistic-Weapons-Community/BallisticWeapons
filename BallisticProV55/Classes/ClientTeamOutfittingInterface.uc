@@ -601,6 +601,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 {
 	local int i;
 	// FIXME: There's some hardcoded crap here for Invasion, CTF and Onslaught!
+	Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|menu DONE|" $ PC.PlayerReplicationInfo.PlayerName $ "|" $ Stuff0 $ ", " $ Stuff1 $ ", " $ Stuff2 $ ", " $ Stuff3 $ ", " $ Stuff4 $ "|pawn " $ PC.Pawn);
 	if (PC.Pawn == None || PC.Pawn.Health < 1)
 		return;
 	
@@ -716,6 +717,10 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 		}
 	}
 
+	if (PC.Pawn != None)
+		Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|loadout arrives|" $ PC.PlayerReplicationInfo.PlayerName $ "|" $ PC.Pawn $ " alive for " $ (Level.TimeSeconds - PC.Pawn.SpawnTime) $ " s");
+	else
+		Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|loadout arrives|" $ PC.PlayerReplicationInfo.PlayerName $ "|NO PAWN, nothing handed out");
 	// Stuff comes back as what was handed out, which is what has to go next time
 	if (PC.Pawn != None)
 		Mut.OutfitPlayer(PC.Pawn, Stuff, LastLoadout, Layout, Camo);

@@ -348,6 +348,16 @@ function ModifyPlayer( pawn Other )
 
 	CLRI.AppliedItems.length = 0;
 
+	if (PlayerController(Other.Controller) != None)
+	{
+		s = "";
+		for (i = 0; i < CLRI.Loadout.length; i++)
+			s = s $ CLRI.Loadout[i] $ ", ";
+		Log(class'BallisticDiag'.static.Head(Level, "conflict") $ class'BallisticDiag'.static.Who(Other) $ "|" $ Other $ "|asked for: " $ s $ "|initial " $ CLRI.InitialWeaponIndex $ "|room " $ MaxSlots[0] $ " / " $ MaxSlots[1]
+			$ "|carried before: " $ class'Mut_Outfitting'.static.Dbg474Carried(Other));
+		s = "";
+	}
+
 	// The weapon to come up with. Every other weapon is told not to bring itself up, so this one has to exist:
 	// a further copy of a weapon only adds ammo to the first, which makes the first the one to mark.
 	InitialIndex = CLRI.InitialWeaponIndex;
@@ -377,7 +387,14 @@ function ModifyPlayer( pawn Other )
 					Size = GetItemSize(InventoryClass);
 
 					if (SpaceUsed[SectionIndex] + Size > MaxSlots[SectionIndex])
+					{
+						if (PlayerController(Other.Controller) != None)
+							Log(class'BallisticDiag'.static.Head(Level, "conflict") $ class'BallisticDiag'.static.Who(Other) $ "|item " $ i $ "|" $ InventoryClass $ "|NO ROOM: section " $ SectionIndex $ " has " $ SpaceUsed[SectionIndex]
+								$ " used, needs " $ Size $ ", holds " $ MaxSlots[SectionIndex]);
 						continue;
+					}
+					if (PlayerController(Other.Controller) != None)
+						Log(class'BallisticDiag'.static.Head(Level, "conflict") $ class'BallisticDiag'.static.Who(Other) $ "|item " $ i $ "|" $ InventoryClass $ "|given (section " $ SectionIndex $ ", size " $ Size $ ")");
 				
 					if (class<BallisticWeapon>(InventoryClass) != None)
 					{
@@ -468,6 +485,9 @@ function ModifyPlayer( pawn Other )
 
 	for (i = 0; i < CLRI.AppliedItems.length; i++)
 		CLRI.AppliedItems[i].static.PostApply(Other);
+
+	if (PlayerController(Other.Controller) != None)
+		Log(class'BallisticDiag'.static.Head(Level, "conflict") $ class'BallisticDiag'.static.Who(Other) $ "|done|carried now: " $ class'Mut_Outfitting'.static.Dbg474Carried(Other));
 }
 
 function SpawnInventoryItem(class<Inventory> InvClass, Pawn Other)

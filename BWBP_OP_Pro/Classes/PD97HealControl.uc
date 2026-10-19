@@ -23,6 +23,7 @@ simulated function Initialize(Pawn V, PD97Bloodhound Gun)
 event Timer()
 {
 	local int i;
+	local Pawn Healer;
 	//Can only be called on client when torn off
 	if (bTearOff)
 	{
@@ -39,14 +40,16 @@ event Timer()
 
 	else
 	{
-		if (Instigator != None)
+		// Healing goes on after the shooter's body is gone, as the poison darts do
+		if (Victim.bProjTarget && InstigatorController != None && Victim.Controller != None)
 		{
-			if (Victim.bProjTarget && InstigatorController != None && Victim.Controller != None)
-			{
-				if(BallisticPawn(Victim) != None)
-					BallisticPawn(Victim).GiveAttributedHealth(Damage * DartDurations.Length, Victim.HealthMax, Instigator);
-				else Victim.GiveHealth(Damage,100);
-			}
+			if (Instigator != None)
+				Healer = Instigator;
+			else
+				Healer = InstigatorController.Pawn;
+			if(BallisticPawn(Victim) != None)
+				BallisticPawn(Victim).GiveAttributedHealth(Damage * DartDurations.Length, Victim.HealthMax, Healer);
+			else Victim.GiveHealth(Damage,100);
 		}
 	
 		for (i=0; i < DartDurations.Length; i++)

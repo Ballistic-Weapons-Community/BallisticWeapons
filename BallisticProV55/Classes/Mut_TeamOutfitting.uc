@@ -249,9 +249,16 @@ function ModifyPlayer(Pawn Other)
 		}
 	}
 	else if (Other.Controller != None && PlayerController(Other.Controller) != None)
+	{
 		for (i=0;i<COIPond.length;i++)
 			if (COIPond[i].PC == Other.Controller)
-			{	COIPond[i].ClientStartLoadout();	return;	}
+			{
+				Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|spawn|" $ Other.PlayerReplicationInfo.PlayerName $ "|" $ Other $ "|asking the client for its loadout");
+				COIPond[i].ClientStartLoadout();
+				return;
+			}
+		Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|spawn|" $ Other.PlayerReplicationInfo.PlayerName $ "|" $ Other $ "|NO LOADOUT INTERFACE for this player, nothing is handed out");
+	}
 }
 	
 // Use the console command "Mutate Loadout" to open the loadout menu
