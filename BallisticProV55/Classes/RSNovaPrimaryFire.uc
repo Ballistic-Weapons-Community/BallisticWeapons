@@ -578,10 +578,14 @@ state Zap
 	function OnTraceHit(Actor Other, vector HitLocation, vector Dir)
 {
 		local bool bWasAlive;
+		local Pawn P;
 
-		if (xPawn(Other) != None && Pawn(Other).Health > 0)
+		// a server's rewound collision is the player it stands for
+		P = class'UnlaggedPawnCollision'.static.PawnOf(Other);
+
+		if (xPawn(P) != None && P.Health > 0)
 		{
-			if (Monster(xPawn(Other)) == None || Pawn(Other).default.Health > 275)
+			if (Monster(P) == None || P.default.Health > 275)
 				bWasAlive = true;
 		}
 		else if (Vehicle(Other) != None && Vehicle(Other).Driver!=None && Vehicle(Other).Driver.Health > 0)
@@ -589,8 +593,8 @@ state Zap
 
 		class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, 50000 * Dir, class'DT_RSNovaOneShotZap');
 
-		if (bWasAlive && Pawn(Other).Health <= 0)
-			class'RSNovaSoul'.static.SpawnSoul(Other.Location, Instigator, Pawn(Other), Weapon);
+		if (bWasAlive && P.Health <= 0)
+			class'RSNovaSoul'.static.SpawnSoul(Other.Location, Instigator, P, Weapon);
 	}
 
 	function DoFireEffect()

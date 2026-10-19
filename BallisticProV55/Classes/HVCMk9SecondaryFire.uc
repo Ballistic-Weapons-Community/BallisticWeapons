@@ -273,7 +273,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 	foreach Instigator.VisibleCollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
 	{
-		if( (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim)
+		if( (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim && !BW.StoodInByRewind(Victims))
 		{
 			dir = Victims.Location - HitLocation;
 			dist = FMax(1,VSize(dir));
