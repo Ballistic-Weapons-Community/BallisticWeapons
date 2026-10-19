@@ -55,6 +55,7 @@ function AddDart()
 event Timer()
 {
 	local int i;
+	local Pawn Shooter;
 	//Can only be called on client when torn off
 	if (bTearOff)
 	{
@@ -74,18 +75,24 @@ event Timer()
 
 	else
 	{
-		if (Instigator != None)
+		// The darts work on after the shooter's body is gone (a server removes the dead a second after death).
+		// They stop if the shooter leaves the game
+		if (InstigatorController != None)
 		{
-			if (InstigatorController != None && Victim.Controller != None && InstigatorController.SameTeamAs(Victim.Controller))
+			if (Instigator != None)
+				Shooter = Instigator;
+			if (Victim.Controller != None && InstigatorController.SameTeamAs(Victim.Controller))
 			{
+				if (Shooter == None)
+					Shooter = InstigatorController.Pawn;
 				if(BallisticPawn(Victim) != None)
-					BallisticPawn(Victim).GiveAttributedHealth(Damage * DartDurations.Length, Victim.HealthMax, Instigator);
+					BallisticPawn(Victim).GiveAttributedHealth(Damage * DartDurations.Length, Victim.HealthMax, Shooter);
 				else Victim.GiveHealth(Damage,Victim.HealthMax);
 			}
-			else 
+			else
 			{
 				Victim.SetDelayedDamageInstigatorController( InstigatorController );
-				class'BallisticDamageType'.static.GenericHurt (Victim, Damage * DartDurations.Length, Instigator, Location, vect(0,0,0), DamageType);
+				class'BallisticDamageType'.static.GenericHurt (Victim, Damage * DartDurations.Length, Shooter, Location, vect(0,0,0), DamageType);
 			}
 		}
 	

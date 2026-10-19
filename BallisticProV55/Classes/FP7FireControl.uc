@@ -41,8 +41,9 @@ function Reset()
 
 //Prevents multiple hits when fire patches overlap
 function TryDamage (Pawn Victim, float Interval, class<DamageType> DamageType)
-{	
+{
 	local int Index;
+	local Pawn Thrower;
 
     if (Victim == None)
         return;
@@ -52,10 +53,11 @@ function TryDamage (Pawn Victim, float Interval, class<DamageType> DamageType)
 	if (HitPawnData[Index].HitTime + Interval < Level.TimeSeconds || HitPawnData[Index].HitTime == 0 )
 	{
 		HitPawnData[Index].HitTime = Level.TimeSeconds;
+		// The fire burns on after the thrower's body is gone (a server removes the dead a second after death).
+		// The fire patch has then given the victim the thrower's controller, which gets the kill
 		if (Instigator != None)
-    	{
-		class'BallisticDamageType'.static.GenericHurt (Victim, Damage, Instigator, Victim.Location, vect(0,0,0), DamageType);
-		}
+			Thrower = Instigator;
+		class'BallisticDamageType'.static.GenericHurt (Victim, Damage, Thrower, Victim.Location, vect(0,0,0), DamageType);
 	}
 }
 
