@@ -127,20 +127,27 @@ simulated event ModeDoFire()
 function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int PenCount)
 {
 	local float Resistance;
+	local Pawn P;
 
 	if (!bPenetrate || Other == None || Other.bWorldGeometry || Mover(Other) != None)
 		return false;
 
 	if (BallisticShield(Other) != None)
-		return BallisticShield(Other).EffectiveThickness < WallPenetrationForce;
+		return BallisticShield(Other).EffectiveThickness < WallForceLeft();
+
+	// What a server traces against during a rewind is a collision standing in for the pawn: the pawn's own health and
+	// shield resist, as they do where nothing is rewound
+	P = Pawn(Other);
+	if (UnlaggedPawnCollision(Other) != None)
+		P = UnlaggedPawnCollision(Other).UnlaggedPawn;
 
 	// Resistance is random between 0 and enemy max health
-	if (Pawn(Other) != None)
+	if (P != None)
 	{
-		Resistance = FRand() * Pawn(Other).HealthMax;
+		Resistance = FRand() * P.HealthMax;
 		// Add target shield to resistance
-		if (xPawn(Other) != None)
-			Resistance += xPawn(Other).ShieldStrength;
+		if (xPawn(P) != None)
+			Resistance += xPawn(P).ShieldStrength;
 		else
 		{
 			// Half resistance for legs
@@ -162,12 +169,13 @@ function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int Pen
 // Do the trace to find out where bullet really goes
 function DoTrace (Vector InitialStart, Rotator Dir)
 {
-	local int						PenCount, WallCount, WallPenForce, HitSameCount;
+	local int						PenCount, WallCount, HitSameCount;
+	local float						WallPenForce, Depth;
 	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, ExitNorm, LastHitLocation;
 	local Material					HitMaterial;
 	local float						Dist;
 	local Actor						Other, LastOther;
-	local bool						bHitWall;
+	local bool						bHitWall, bThrough;
 
 	WallPenForce = WallPenetrationForce;
 	BW.UpdatePenetrationStatus(0);
@@ -208,18 +216,24 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{
-				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, int(WallPenForce + 0.5), WaterHitLoc);
 				LastOther = Other;
 				HitSameCount = 0;
 
 				if (Vehicle(Other) != None)
 					ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
 
-				if (CanPenetrate(Other, HitLocation, X, PenCount))
+				// a shield is measured against the force the walls before have left
+				TraceWallForce = WallPenForce;
+				bTraceWallForce = true;
+				bThrough = CanPenetrate(Other, HitLocation, X, PenCount);
+				bTraceWallForce = false;
+
+				if (bThrough)
 				{
 					PenCount++;
 					
-					Start = HitLocation + (X * FMax(Other.CollisionRadius * 2, 8.0));
+					Start = BodyExit(Other, HitLocation, X);
 					End = Start + X * Dist;
 					continue;
 				}
@@ -235,12 +249,12 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				if (Other.bCanBeDamaged)
 				{
 					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
-					OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
+					OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, int(WallPenForce + 0.5), WaterHitLoc);
 					break;
 				}
-				if (WallCount < MAX_WALLS && class'WallPenetrationUtil'.static.GoThroughWall(Weapon, Instigator, HitLocation, HitNormal, WallPenForce, X, Start, ExitNorm))
+				if (WallCount < MAX_WALLS && class'WallPenetrationUtil'.static.GoThroughWall(Weapon, Instigator, HitLocation, HitNormal, WallPenForce, X, Start, ExitNorm, , Depth))
 				{
-					WallPenForce -= VSize(Start - HitLocation);
+					WallPenForce = FMax(0, WallPenForce - Depth);
 
 					End = Start + X * Dist;
 					if (WallEntrys.Length < 1 || VSize(HitLocation - WallEntrys[WallEntrys.Length-1]) > 80)

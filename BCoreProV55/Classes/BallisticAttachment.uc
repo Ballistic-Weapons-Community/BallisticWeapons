@@ -725,26 +725,30 @@ simulated function FlyByEffects(byte Mode, Vector HitLoc)
 	class'BCFlyByActor'.static.SoundOff(self, FlyBySound, PointX, XDist/FlyByBulletSpeed);
 }
 
-// Find the wall entry and exit 'wounds' and do the effects...
+// Find the wall entry and exit 'wounds' and do the effects: for every wall on the way to End, where the shot ended
 simulated function DoWallPenetrate(byte Mode, vector Start, vector End)
 {
-	local vector HitLoc, HitNorm;
+	local vector HitLoc, HitNorm, ExitLoc, ExitNorm, Dir;
 	local actor Other;
-	local int Surf;
-	local Material HitMat;
+	local int Surf, Walls;
+	local Material HitMat, ExitMat;
 
-	Other = Trace(HitLoc, HitNorm, End, Start, false,,HitMat);
-	if (Other != None)
+	Dir = Normal(End - Start);
+	for (Walls = 0; Walls < 5; Walls++)
 	{
+		Other = Trace(HitLoc, HitNorm, End, Start, false,,HitMat);
+		// nothing more on the way, or the wall the shot stopped in
+		if (Other == None || VSize(End - HitLoc) < 6)
+			return;
 		if (HitMat == None)Surf = int(Other.SurfaceType); else Surf = int(HitMat.SurfaceType);
 		WallPenetrateEffect(Mode, HitLoc, HitNorm, Surf);
 
-		Other = Trace (HitLoc, HitNorm, Start, End, false,,HitMat);
-		if (Other != None)
-		{
-			if (HitMat == None)Surf = int(Other.SurfaceType); else Surf = int(HitMat.SurfaceType);
-			WallPenetrateEffect(Mode, HitLoc, HitNorm, Surf, true);
-		}
+		if (!class'WallPenetrationUtil'.static.GoThroughWall(self, Instigator, HitLoc, HitNorm, FMin(VSize(End - HitLoc), 512), Dir, ExitLoc, ExitNorm, ExitMat))
+			return;
+		if (ExitMat != None)
+			Surf = int(ExitMat.SurfaceType);
+		WallPenetrateEffect(Mode, ExitLoc, ExitNorm, Surf, true);
+		Start = ExitLoc;
 	}
 }
 // Find the water and spawn a splash...

@@ -162,12 +162,13 @@ function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector 
 // Do the trace to find out where bullet really goes
 function DoTrace (Vector InitialStart, Rotator Dir)
 {
-	local int						PenCount, WallCount, WallPenForce;
-	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc, ExitNormal;
-	local Material					HitMaterial, ExitMaterial;
+	local int						PenCount, WallCount;
+	local float						WallPenForce;
+	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc;
+	local Material					HitMaterial;
 	local float						Dist;
 	local Actor						Other, LastOther;
-	local bool						bHitWall;
+	local bool						bHitWall, bThrough;
 
 	WallPenForce = WallPenetrationForce;
 	BW.UpdatePenetrationStatus(0);
@@ -215,15 +216,21 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 		// Got something interesting
 		if (!Other.bWorldGeometry && Other != LastOther)
 		{
-			OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
+			OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, int(WallPenForce + 0.5), WaterHitLoc);
 		
 			LastOther = Other;
 
-			if (CanPenetrate(Other, HitLocation, X, PenCount))
+			// a shield is measured against the force the walls before have left
+			TraceWallForce = WallPenForce;
+			bTraceWallForce = true;
+			bThrough = CanPenetrate(Other, HitLocation, X, PenCount);
+			bTraceWallForce = false;
+
+			if (bThrough)
 			{
 				PenCount++;
 				
-				Start = HitLocation + (X * Other.CollisionRadius * 2);
+				Start = BodyExit(Other, HitLocation, X);
 				End = Start + X * Dist;
 				Weapon.bTraceWater=true;
 				if (Vehicle(Other) != None)
@@ -246,26 +253,12 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			if (Other.bCanBeDamaged)
 			{
 				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
-				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, int(WallPenForce + 0.5), WaterHitLoc);
 				break;
 			}
 
-			if (
-                    WallCount < MAX_WALLS && WallPenForce > 0 && 
-                    class'WallPenetrationUtil'.static.GoThroughWall
-                    (
-                        Weapon, Instigator, 
-                        HitLocation, HitNormal, 
-                        WallPenForce * SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial)), 
-                        X, Start, 
-                        ExitNormal, ExitMaterial
-                    )
-                )
+			if (WallCount < MAX_WALLS && PenetrateWall(Other, HitLocation, HitNormal, HitMaterial, X, Start, WallPenForce))
 			{
-				WallPenForce -= VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial));
-
-				WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
-				WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
 				Weapon.bTraceWater=true;
 				continue;
 			}

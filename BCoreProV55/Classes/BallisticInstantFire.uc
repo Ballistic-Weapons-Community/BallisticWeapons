@@ -77,6 +77,8 @@ var() int						PenetrateForce;					// The penetrating power of these bullets.
 var() bool						bPenetrate;						// Bullets can go though enemies
 var() float						PDamageFactor;					// Damage multiplied by this with each penetration
 var() float						WallPDamageFactor;				// Damage multiplied by this for each wall penetration
+var float						TraceWallForce;					// Wall force the shot being traced has left (a shield is measured against it)
+var bool						bTraceWallForce;				// TraceWallForce is that of a trace going on
 var() bool						bUseRunningDamage;				// Enable damage variations when running towards/away from enemies
 var() float						RunningSpeedThresh;				// Instigator speed divided by this to figure out Running damage bonus
 var	bool						bNoPositionalDamage;
@@ -220,19 +222,26 @@ function DoFireEffect()
 function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int PenCount)
 {
 	local float Resistance;
+	local Pawn P;
 
 	if (!bPenetrate || Other == None || Other.bWorldGeometry || Mover(Other) != None)
 		return false;
 
 	if (BallisticShield(Other) != None)
-		return BallisticShield(Other).EffectiveThickness < WallPenetrationForce;
+		return BallisticShield(Other).EffectiveThickness < WallForceLeft();
+
+	// What a server traces against during a rewind is a collision standing in for the pawn: the pawn's own health and
+	// shield resist, as they do where nothing is rewound
+	P = Pawn(Other);
+	if (UnlaggedPawnCollision(Other) != None)
+		P = UnlaggedPawnCollision(Other).UnlaggedPawn;
 
 	// Resistance is random between 0 and enemy max health
-	if (Pawn(Other) != None)
-		Resistance = FRand() * Pawn(Other).HealthMax;
+	if (P != None)
+		Resistance = FRand() * P.HealthMax;
 	// Add target shield to resistance
-	if (xPawn(Other) != None)
-		Resistance += xPawn(Other).ShieldStrength;
+	if (xPawn(P) != None)
+		Resistance += xPawn(P).ShieldStrength;
 	// Half resistance for legs
 	if (Vehicle(Other) == None && HitLocation.Z < Other.Location.Z - 5)
 		Resistance *= 0.5;
@@ -242,6 +251,52 @@ function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int Pen
 
 	if (PenetrateForce/(PenCount+1) > Resistance)
 		return true;
+}
+
+// The wall force the shot has left: during a trace, what the walls before have not used up
+function float WallForceLeft()
+{
+	if (bTraceWallForce)
+		return TraceWallForce;
+	return WallPenetrationForce;
+}
+
+// The shot meets a wall at HitLocation. If the force it has left takes it through, Start is where it comes out, the wall's
+// cost (its thickness, scaled for what it is made of) is taken off WallForce and the effects for both sides are done
+function bool PenetrateWall(Actor Other, vector HitLocation, vector HitNormal, Material HitMaterial, vector X, out vector Start, out float WallForce)
+{
+	local vector ExitLocation, ExitNormal;
+	local Material ExitMaterial;
+	local float Scale, Depth;
+
+	if (WallForce <= 0)
+		return false;
+
+	Scale = SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial));
+
+	if (!class'WallPenetrationUtil'.static.GoThroughWall(Weapon, Instigator, HitLocation, HitNormal, WallForce * Scale, X, ExitLocation, ExitNormal, ExitMaterial, Depth))
+		return false;
+
+	//log("BallisticInstantFire: Penetrated: thickness "$Depth$" units, energy cost "$(Depth / Scale)$", initial force "$WallForce);
+
+	Start = ExitLocation;
+	WallForce = FMax(0, WallForce - Depth / Scale);
+
+	WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
+	WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
+	return true;
+}
+
+// Where the shot comes out of an actor it went through, having hit it at HitLocation: its far side along the shot, from a
+// trace against that actor alone coming back from beyond it. Anything longer along the shot than that (a vehicle) is
+// left at twice its radius from the hit, as before
+function vector BodyExit(Actor Other, vector HitLocation, vector X)
+{
+	local vector HL, HN;
+
+	if (!Other.TraceThisActor(HL, HN, HitLocation, HitLocation + X * (Other.CollisionRadius * 2 + 32)) && ((HL - HitLocation) dot X) > 0)
+		return HL + X;
+	return HitLocation + X * Other.CollisionRadius * 2;
 }
 
 // Figure out the damage, damagetype and potentially change victim, e.g. driver instead of vehicle
@@ -423,12 +478,13 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 	if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
 		DamageFactor *= Lerp(VSize(HitLocation-WaterHitLocation) / MaxWaterTraceRange, 1, WaterRangeAtten);
 
+	// once for each body and each wall gone through
 	if (PenetrateCount > 0)
-		DamageFactor *= PDamageFactor * PenetrateCount;
+		DamageFactor *= PDamageFactor ** PenetrateCount;
 
 	if (WallPenetrationForce > 0 && WallCount > 0)
 	{
-		DamageFactor *= WallPDamageFactor * WallCount;
+		DamageFactor *= WallPDamageFactor ** WallCount;
 		DamageFactor *= WallPenForce / WallPenetrationForce;
 	}
 	
@@ -500,12 +556,13 @@ function ApplyForce(Pawn Victim, Vector Start, float ScaleFactor)
 // Do the trace to find out where bullet really goes
 function DoTrace (Vector InitialStart, Rotator Dir)
 {
-	local int						PenCount, WallCount, WallPenForce;
-	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc, ExitNormal;
-	local Material					HitMaterial, ExitMaterial;
+	local int						PenCount, WallCount;
+	local float						WallPenForce;
+	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc;
+	local Material					HitMaterial;
 	local float						Dist;
 	local Actor						Other, LastOther;
-	local bool						bHitWall;
+	local bool						bHitWall, bThrough;
 
 	if (Weapon == None || BW == None)
 		return;
@@ -559,18 +616,24 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 		// Got something interesting
 		if (!Other.bWorldGeometry && Other != LastOther)
 		{
-			OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
+			OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, int(WallPenForce + 0.5), WaterHitLoc);
 
 			if (Weapon == None || BW == None)
 				return;
 
 			LastOther = Other;
 
-			if (CanPenetrate(Other, HitLocation, X, PenCount))
+			// a shield is measured against the force the walls before have left
+			TraceWallForce = WallPenForce;
+			bTraceWallForce = true;
+			bThrough = CanPenetrate(Other, HitLocation, X, PenCount);
+			bTraceWallForce = false;
+
+			if (bThrough)
 			{
 				PenCount++;
 				
-				Start = HitLocation + (X * Other.CollisionRadius * 2);
+				Start = BodyExit(Other, HitLocation, X);
 				End = Start + X * Dist;
 				Weapon.bTraceWater=true;
 				if (Vehicle(Other) != None)
@@ -591,40 +654,17 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			if (Other.bCanBeDamaged)
 			{
 				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
-				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, int(WallPenForce + 0.5), WaterHitLoc);
 				break;
 			}
 
 			//log("BallisticInstantFire: Attempting wall penetration: force "$WallPenForce$" with surface scaler "$ SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial)));
 
-			if (
-                    WallCount < MAX_WALLS && WallPenForce > 0 && 
-                    class'WallPenetrationUtil'.static.GoThroughWall
-                    (
-                        Weapon, Instigator, 
-                        HitLocation, HitNormal, 
-                        WallPenForce * SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial)), 
-                        X, Start, 
-                        ExitNormal, ExitMaterial
-                    )
-                )
+			// The shot goes on along the line it was fired on, and what it meets behind the wall is tested for head and limb
+			// hits against that line
+			if (WallCount < MAX_WALLS && PenetrateWall(Other, HitLocation, HitNormal, HitMaterial, X, Start, WallPenForce))
 			{
-
-				//log("BallisticInstantFire: Penetrated: distance "$VSize(Start - HitLocation)$" units, energy cost "$ (VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial))) $", initial force "$WallPenForce);
-			
-				WallPenForce -= (VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial)));
-
-				// todo: reduce dist by energy loss
-
-				// deviate next shot slightly, to stop player firing through concealment / cover in front of them, accurately, at distant target
-				Dir.Yaw += 32 - (FRand() * 64);
-				Dir.Pitch += 32 - (FRand() * 64);
-				X = Normal(Vector(Dir));
-
 				//log("BallisticInstantFire: remaining force "$WallPenForce);
-
-				WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
-				WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
 				Weapon.bTraceWater=true;
 				continue;
 			}
