@@ -34,6 +34,14 @@ simulated event Timer()
 		SetCollision(true,true,true);
 }
 
+// as the grenade's, with this bomblet's own fuse flag
+simulated function ArmLandedCopy()
+{
+	Super.ArmLandedCopy();
+	if (bArmed)
+		bDetonating = true;
+}
+
 simulated function InitProjectile ()
 {   	
 	if (DetonateOn == DT_ImpactTimed || DetonateOn == DT_Timer)
