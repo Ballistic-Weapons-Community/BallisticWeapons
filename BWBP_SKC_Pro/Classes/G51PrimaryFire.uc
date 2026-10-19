@@ -10,11 +10,23 @@
 //=============================================================================
 class G51PrimaryFire extends BallisticProInstantFire;
 
+var bool		bLaunchedThisPull;	// this pull of the trigger launched the grenade on the barrel: no bullets until it is let go
+
+simulated event ModeTick(float DT)
+{
+	Super.ModeTick(DT);
+	if (!bIsFiring)
+		bLaunchedThisPull = false;
+}
+
 simulated event ModeDoFire()
 {
+	// The trigger fires what is on the barrel: a rifle grenade goes first, and that pull fires nothing else
+	if (bLaunchedThisPull)
+		return;
 	if (G51Carbine(Weapon).bLoaded)
 	{
-		G51Carbine(Weapon).IndirectLaunch();
+		bLaunchedThisPull = G51Carbine(Weapon).IndirectLaunch();
 		return;
 	}
 	if (!AllowFire())

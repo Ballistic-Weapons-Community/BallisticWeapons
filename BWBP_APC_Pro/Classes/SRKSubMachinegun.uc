@@ -181,9 +181,12 @@ simulated function Notify_GrenLaunch()
 }
 simulated function Notify_GrenInvisible()	{ SetBoneScale (5, 0.0, GrenBone);	}
 
-simulated function IndirectLaunch()
+// The trigger with a grenade on the barrel launches it, the way the alt fire does. True if it went
+simulated function bool IndirectLaunch()
 {
-//	StartFire(1);
+	if (FireMode[1] != None)
+		FireMode[1].ModeDoFire();
+	return !bLoaded;
 }
 
 // HARDCODED SIGHTING TIME
