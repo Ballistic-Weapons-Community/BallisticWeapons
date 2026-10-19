@@ -393,8 +393,10 @@ simulated event WeaponTick(float DT)
 
 simulated function bool ConsumeMRLAmmo(int Mode, float Load, float LoadB)
 {
-	if (bNoMag || (BFireMode[Mode] != None && BFireMode[Mode].bUseWeaponMag == false))
+	if (BFireMode[Mode] != None && !BFireMode[Mode].bUseWeaponMag)
 		ConsumeAmmo(Mode, Load+LoadB);
+	else if (bNoMag)
+		ConsumeAmmo(0, Load+LoadB);
 	else
 	{
 		if (MagAmmo < Load)

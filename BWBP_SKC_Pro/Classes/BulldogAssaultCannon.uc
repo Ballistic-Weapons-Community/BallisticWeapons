@@ -93,6 +93,7 @@ function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
 			
 			else Ammo[m].AddAmmo(Ammo[m].InitialAmount);
 		}
+		GiveNoMagRounds(m, bJustSpawned && (WP == None || !WP.bDropped));
         Ammo[m].GotoState('');
 	}
 }

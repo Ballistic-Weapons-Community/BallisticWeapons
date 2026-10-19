@@ -863,7 +863,9 @@ simulated function bool AllowFire()
 
 	if (!bUseWeaponMag || BW.bNoMag)
 	{
-		if(!Super.AllowFire())
+		// With reloading off, a mode that shoots from the magazine shoots from what a reload would fill it from: the
+		// weapon's first ammo. An alt fire with an ammo of its own, or none, looked there and was dead (AY90, Longhorn)
+		if ((bUseWeaponMag && BW.AmmoAmount(0) < AmmoPerFire) || (!bUseWeaponMag && !Super.AllowFire()))
 		{
 			if (DryFireSound.Sound != None)
 				Weapon.PlayOwnedSound(DryFireSound.Sound,DryFireSound.Slot,DryFireSound.Volume,DryFireSound.bNoOverride,DryFireSound.Radius,DryFireSound.Pitch,DryFireSound.bAtten);
