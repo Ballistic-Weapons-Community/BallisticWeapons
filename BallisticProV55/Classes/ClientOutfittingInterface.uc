@@ -442,6 +442,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 {
 	local int i;
 	// FIXME: There's some hardcoded crap here for Invasion, CTF and Onslaught!
+	Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|menu DONE|" $ PC.PlayerReplicationInfo.PlayerName $ "|" $ Stuff0 $ ", " $ Stuff1 $ ", " $ Stuff2 $ ", " $ Stuff3 $ ", " $ Stuff4 $ "|pawn " $ PC.Pawn);
 	if (PC.Pawn == None || PC.Pawn.Health < 1)
 		return;
 	
@@ -469,6 +470,8 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 // Called at respawn of player.
 simulated function ClientStartLoadout()
 {
+	Log("BW474|client|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|the server asks for the loadout|sending " $ class'Mut_Outfitting'.default.LoadOut[0] $ ", " $ class'Mut_Outfitting'.default.LoadOut[1] $ ", "
+		$ class'Mut_Outfitting'.default.LoadOut[2] $ ", " $ class'Mut_Outfitting'.default.LoadOut[3] $ ", " $ class'Mut_Outfitting'.default.LoadOut[4]);
 	ServerSetLoadout(
 	class'Mut_Outfitting'.default.LoadOut[0],
 	class'Mut_Outfitting'.default.LoadOut[1],
@@ -563,6 +566,10 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 		}
 	}
 
+	if (PC.Pawn != None)
+		Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|loadout arrives|" $ PC.PlayerReplicationInfo.PlayerName $ "|" $ PC.Pawn $ " alive for " $ (Level.TimeSeconds - PC.Pawn.SpawnTime) $ " s");
+	else
+		Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|loadout arrives|" $ PC.PlayerReplicationInfo.PlayerName $ "|NO PAWN, nothing handed out");
 	// Stuff comes back as what was handed out, which is what has to go next time
 	if (PC.Pawn != None)
 		Mut.OutfitPlayer(PC.Pawn, Stuff, LastLoadout, Layout, Camo);

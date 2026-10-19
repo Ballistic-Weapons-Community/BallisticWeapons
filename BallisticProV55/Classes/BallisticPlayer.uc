@@ -82,7 +82,7 @@ replication
 	reliable if (Role == ROLE_Authority)
 		LastLoadoutClasses;
 	reliable if (Role < ROLE_Authority)
-		ServerCamDist, ServerReloaded, ServerSetSprint;
+		ServerCamDist, ServerReloaded, ServerSetSprint, ServerDiagMark;
     unreliable if( Role==ROLE_Authority )
         ClientDmgFlash;
 }
@@ -435,6 +435,21 @@ simulated function DrawWeaponUI(Canvas C)
 }
 
 // Weapon group key pressed
+// Diagnostic build: "DiagMark" in the console, or on a key (set input F9 DiagMark), puts a BWDBG|mark line in this
+// machine's log and the server's, and shows its time on screen, so that the moment can be found in the logs and a recording
+exec function DiagMark()
+{
+	Log(class'BallisticDiag'.static.Head(Level, "mark") $ PlayerReplicationInfo.PlayerName);
+	ClientMessage("Diag mark " $ class'BallisticDiag'.static.Stamp(Level));
+	if (Role < ROLE_Authority)
+		ServerDiagMark();
+}
+
+function ServerDiagMark()
+{
+	Log(class'BallisticDiag'.static.Head(Level, "mark") $ PlayerReplicationInfo.PlayerName);
+}
+
 exec function SwitchWeapon(byte F)
 {
 	local int i;

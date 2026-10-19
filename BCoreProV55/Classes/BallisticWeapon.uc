@@ -197,6 +197,7 @@ struct ShotViewReport
 };
 var     ShotViewReport              ShotViews[4];                   // Server: the views the owner's machine fired its last predicted shots with (see ServerShotView)
 var     int                         NextShotView;                   // Server: where in ShotViews the next report goes
+var     bool                        bDiagShotView;                  // Diagnostic build: ShotViewAim's last call used a report
 
 //=============================================================================
 // WEAPON STATE VARIABLES
@@ -207,6 +208,9 @@ var		bool						bPendingBringupTimer;
 var     int                         NetInventoryGroup;
 var     bool                        bDeferInitialSwitch, bServerDeferInitialSwitch;
 var     float                       NetHurryEnd;            // Server: until then this new weapon and its ammunition go ahead of other traffic (StartNetHurry)
+var     bool                        bDbg474Waited;          // #474 logging: the wait was logged once
+var     int                         DiagShots;              // diagnostic build: shots of this weapon on this machine
+var     int                         DiagShotMs;             // diagnostic build: the wall clock at its last shot (owner's machine)
 //-----------------------------------------------------------------------------
 // AI
 //-----------------------------------------------------------------------------
@@ -1460,6 +1464,9 @@ simulated function TickFireCounter (float DT)
 
 event ServerStartFire(byte Mode)
 {
+	local bool bDiagTimeOk;
+	local string DiagVerdict;
+
 	if ( (Instigator != None) && (Instigator.Weapon != self) )
 	{
 		if ( Instigator.Weapon == None )
@@ -1472,18 +1479,85 @@ event ServerStartFire(byte Mode)
 	if (!FireMode[Mode].bIsFiring)
 		FireCount = 0;
 
-	if ( (FireMode[Mode].NextFireTime <= Level.TimeSeconds + FireMode[Mode].PreFireTime)
-		&& StartFire(Mode) )
+	bDiagTimeOk = FireMode[Mode].NextFireTime <= Level.TimeSeconds + FireMode[Mode].PreFireTime;
+	if (bDiagTimeOk && class'BallisticDiag'.static.Logs(Instigator))
+		DiagVerdict = DiagState(Mode);
+	if ( bDiagTimeOk && StartFire(Mode) )
 	{
 		FireMode[Mode].ServerStartFireTime = Level.TimeSeconds;
 		FireMode[Mode].bServerDelayStartFire = false;
+		DiagVerdict = "starts|" $ DiagVerdict;
 	}
 	else if ( FireMode[Mode].AllowFire() )
 	{
 		FireMode[Mode].bServerDelayStartFire = true;
+		if (bDiagTimeOk)
+			DiagVerdict = "WAITS: the weapon would not start|" $ DiagVerdict;
+		else
+			DiagVerdict = "WAITS: its fire time is not there yet|" $ DiagVerdict;
 	}
 	else
+	{
 		ClientForceAmmoUpdate(Mode, AmmoAmount(Mode));
+		DiagVerdict = "REFUSED: fire not allowed|" $ DiagVerdict;
+	}
+	if (class'BallisticDiag'.static.Logs(Instigator))
+	{
+		if (!bDiagTimeOk)
+			DiagVerdict = DiagVerdict $ DiagState(Mode);
+		Log(class'BallisticDiag'.static.Head(Level, "start fire") $ class'BallisticDiag'.static.Who(Instigator) $ "|" $ Class.Name $ "|mode " $ Mode $ "|" $ DiagVerdict);
+	}
+}
+
+// Diagnostic build: a shot of a human player's weapon, on the server and on its owner's machine (BallisticFire.ModeDoFire)
+simulated final function DiagShot(int Mode)
+{
+	local Rotator V, O, V0;
+	local string SV;
+
+	DiagShots++;
+	if (Level.NetMode == NM_Client)
+		DiagShotMs = class'BallisticDiag'.static.WallMs(Level);
+	// where the shot goes: the view, and the offset from it this machine fires with (the server: what it really uses)
+	if (Instigator != None)
+		V = Instigator.GetViewRotation();
+	// the server: a remote player's predicted shot is aimed from the view it was fired with (ShotViewAim)
+	if (Role == ROLE_Authority && Instigator != None && !Instigator.IsLocallyControlled() && ModePredictsRecoil(Mode))
+	{
+		V0 = V;
+		V = ShotViewAim(V);
+		if (bDiagShotView)
+			SV = "|shooter's view used, moved " $ (V.Pitch - V0.Pitch) $ "," $ (V.Yaw - V0.Yaw);
+		else
+			SV = "|shooter's view none";
+	}
+	V.Pitch = V.Pitch & 65535;
+	V.Yaw = V.Yaw & 65535;
+	if (V.Pitch > 32767)
+		V.Pitch -= 65536;
+	O = Rotator(GetFireDir());
+	if (O.Pitch > 32767)
+		O.Pitch -= 65536;
+	if (O.Yaw > 32767)
+		O.Yaw -= 65536;
+	Log(class'BallisticDiag'.static.Head(Level, "shot") $ class'BallisticDiag'.static.Who(Instigator) $ "|" $ Class.Name $ "|mode " $ Mode
+		$ "|shot " $ DiagShots $ "|" $ DiagState(Mode) $ "|view " $ V.Pitch $ "," $ V.Yaw $ "|offset " $ O.Pitch $ "," $ O.Yaw $ SV);
+}
+
+// Diagnostic build: what decides whether this weapon may fire, as this machine has it
+simulated final function string DiagState(int Mode)
+{
+	local name Seq;
+	local float Frame, Rate;
+	local string S;
+
+	GetAnimParams(0, Seq, Frame, Rate);
+	S = "reload " $ GetEnum(enum'EReloadState', ReloadState) $ "|need cock " $ bNeedCock $ "|mag " $ MagAmmo
+		$ "|client state " $ GetEnum(enum'EWeaponClientState', ClientState) $ "|weapon state " $ GetStateName()
+		$ "|anim " $ Seq $ " " $ Frame;
+	if (Mode < NUM_FIRE_MODES && FireMode[Mode] != None)
+		S = S $ "|next fire in ms " $ int(1000 * (FireMode[Mode].NextFireTime - Level.TimeSeconds)) $ "|firing " $ FireMode[Mode].bIsFiring;
+	return S;
 }
 
 final function RewindCollisions()
@@ -4642,6 +4716,19 @@ function SetAmmoTo(int Amount, int m)
 	Ammo[m].AmmoAmount = Amount;
 }
 
+// #474 logging, on the owner's machine only
+simulated function Dbg474(string S)
+{
+	if (Level.NetMode == NM_Client)
+		Log("BW474|client|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|weapon arrives|" $ Name $ "|" $ S);
+}
+simulated function Dbg474Wait(string S)
+{
+	if (!bDbg474Waited)
+		Dbg474("waits: " $ S);
+	bDbg474Waited = true;
+}
+
 simulated function ClientWeaponSet(bool bPossiblySwitch)
 {
     local int Mode;
@@ -4652,6 +4739,7 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
 
     if( Instigator == None )
     {
+        Dbg474Wait("no owner yet");
         GotoState('PendingClientWeaponSet');
         return;
     }
@@ -4661,6 +4749,7 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
 	// Wait for them, or BringUp/SetHand run without params and the client never gets the right WalkingPct.
 	if (WeaponParams == None && Level.NetMode == NM_Client && ParamsClasses[GameStyleIndex] != None)
 	{
+		Dbg474Wait("no settings yet");
 		GotoState('PendingClientWeaponSet');
 		return;
 	}
@@ -4671,12 +4760,14 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
         {
             if(FireMode[Mode] == None )
             {
+                Dbg474Wait("no fire mode " $ Mode);
                 GotoState('PendingClientWeaponSet');
                 return;
             }
             
             else if (( FireMode[Mode].AmmoClass != None ) && ( Ammo[Mode] == None ) )
             {
+                Dbg474Wait("no link to its ammunition " $ Mode);
                 GotoState('PendingClientWeaponSet');
                 return;
             }
@@ -4692,7 +4783,10 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
     GotoState('Hidden');
 
     if( Level.NetMode == NM_DedicatedServer || !Instigator.IsHumanControlled() )
+    {
+        Dbg474("ready, but the owner is not a player on this machine (controller " $ Instigator.Controller $ ")");
         return;
+    }
 		
     // set up mode handling
 	if (Instigator.IsLocallyControlled())
@@ -4713,6 +4807,7 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
     // if this weapon was switched to while waiting for replication, switch to it now
     if( Instigator.Weapon == self || Instigator.PendingWeapon == self ) 
     {
+        Dbg474("ready, was chosen already: comes up");
         if (Instigator.PendingWeapon != None)
             Instigator.ChangedWeapon();
         else
@@ -4722,12 +4817,16 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
 
     // don't allow switching if pending weapon is game-relevant and would block it (bombing run ball launcher)
     if( Instigator.PendingWeapon != None && Instigator.PendingWeapon.bForceSwitch ) 
+    {
+        Dbg474("ready, stays down: a forced switch to " $ Instigator.PendingWeapon $ " is under way");
         return;
+    }
 
     // we don't want to do this in loadout - we want to set our desired weapon only:
     // the others neither come up when nothing is held nor take over from it by their priority
     if (bDeferInitialSwitch)
     {
+        Dbg474("ready, stays down: not the initial weapon");
         bDeferInitialSwitch = false;
         return;
     }
@@ -4735,6 +4834,7 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
     // if there is no active weapon, use this one
     if( Instigator.Weapon == None ) 
     {
+        Dbg474("ready, hands empty: comes up");
         Instigator.PendingWeapon = self;
         Instigator.ChangedWeapon();
     }
@@ -4744,6 +4844,7 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
     // otherwise, check if player would want to switch
     else if ( bPossiblySwitch && !Instigator.Weapon.IsFiring() ) 
     {
+        Dbg474("ready, in hand " $ Instigator.Weapon $ ", pending " $ Instigator.PendingWeapon $ ": by rating, " $ RateSelf() $ " against " $ Instigator.Weapon.RateSelf());
         // don't switch if player has it disabled
 		if ( PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).bNeverSwitchOnPickup )
 			return;
@@ -5058,6 +5159,8 @@ simulated function ClientWeaponThrown()
 {
     local int m;
 
+	if (Level.NetMode == NM_Client)
+		Log("BW474|client|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|weapon thrown|" $ Name $ "|owner " $ Instigator);
     if (Instigator != None && PlayerController(Instigator.Controller) != None)
         PlayerController(Instigator.Controller).EndZoom();
     AmbientSound = None;
@@ -5465,6 +5568,10 @@ simulated final function ReceiveNetRecoil(int count, int recoil, int pitch, int 
 		return;
 
 	RcComponent.ReceiveNetRecoil(count, recoil, pitch, yaw, shift_time * 0.01f);
+	if (Instigator != None && Instigator.IsLocallyControlled())
+		Log(class'BallisticDiag'.static.Head(Level, "recoil arrives") $ class'BallisticDiag'.static.Who(Instigator) $ "|" $ Class.Name
+			$ "|shot " $ count $ "|recoil " $ recoil $ "|pitch " $ pitch $ "|yaw " $ yaw $ "|over " $ (shift_time * 0.01f) $ " s|after my shot " $ DiagShots
+			$ " by ms " $ class'BallisticDiag'.static.MsSince(Level, DiagShotMs) $ "|" $ RcComponent.DiagHow);
 }
 
 // End Net Stuff <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -5825,6 +5932,7 @@ final function Rotator ShotViewAim(Rotator Aim)
 {
 	local int i, j, Count, DP, DY;
 
+	bDiagShotView = false;
 	if (Instigator == None || Instigator.IsLocallyControlled() || PlayerController(Instigator.Controller) == None || RcComponent == None)
 		return Aim;
 
@@ -5848,6 +5956,7 @@ final function Rotator ShotViewAim(Rotator Aim)
 	if (Abs(DP) > 16384 || Abs(DY) > 16384)
 		return Aim;
 
+	bDiagShotView = true;
 	Aim.Pitch += DP;
 	Aim.Yaw += DY;
 	return Aim;

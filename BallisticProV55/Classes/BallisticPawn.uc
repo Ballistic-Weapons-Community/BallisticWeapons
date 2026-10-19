@@ -230,6 +230,8 @@ var bool bReplaySpeedSet;		// Client: GroundSpeed has to go back from ReplaySpee
 // Server settings
 var float EmptyHandsTime;		// Owner's machine: how long this pawn has carried weapons with none in hand. See TickEmptyHands
 var byte EmptyHandsWaits;
+var float Dbg474Seen;		// #474 logging
+var byte Dbg474Step;
 var bool bGroundSpeedUnsent;	// Client: GroundSpeed is still what this pawn spawned with, so the server may never have sent it
 var byte SettingsChecksLeft;	// Client: this pawn arrived before the BallisticReplicationInfo carrying the server's settings. Times left to look for it
 var float NextSettingsCheckTime;
@@ -2114,6 +2116,7 @@ simulated event Tick(float DT)
 		EmptyHandsTime = 0;
 		EmptyHandsWaits = 0;
 	}
+	Dbg474Tick();
 
 	// The sprint control knows the speed the server has set, and only reaches the pawn's owner
 	if (bGroundSpeedUnsent && Sprinter != None && Sprinter.BaseGroundSpeed > 0)
@@ -4371,6 +4374,87 @@ simulated function TickEmptyHands(float DT)
 		ChangedWeapon();
 	else
 		Controller.SwitchToBestWeapon();
+}
+
+// #474 logging: on the owner's machine 3 s and 8 s after the pawn turned up there, on the server 3 s after the spawn
+simulated function Dbg474Tick()
+{
+	if (Health <= 0 || PlayerController(Controller) == None)
+		return;
+	if (Level.NetMode == NM_Client && IsLocallyControlled())
+	{
+		if (Dbg474Seen == 0)
+		{
+			Dbg474Seen = Level.TimeSeconds;
+			Log("BW474|client|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|my new pawn|" $ self);
+		}
+		if (Dbg474Step == 0 && Level.TimeSeconds - Dbg474Seen > 3)
+		{
+			Dbg474Step = 1;
+			Dbg474Report("client|3 s after spawning");
+		}
+		else if (Dbg474Step == 1 && Level.TimeSeconds - Dbg474Seen > 8)
+		{
+			Dbg474Step = 2;
+			Dbg474Report("client|8 s after spawning");
+		}
+	}
+	else if (Role == ROLE_Authority && Level.NetMode != NM_Standalone && Dbg474Step == 0 && Level.TimeSeconds - SpawnTime > 3)
+	{
+		Dbg474Step = 1;
+		Dbg474Report("server|3 s after the spawn");
+	}
+}
+
+simulated function Dbg474Report(string When)
+{
+	local Inventory Inv;
+	local Weapon W;
+	local string Chain, Outside, Waiting, Verdict;
+	local int n, nW, nOut, k;
+	local bool bIn;
+
+	for (Inv = Inventory; Inv != None && n < 100; Inv = Inv.Inventory)
+	{
+		n++;
+		Chain = Chain $ Inv.Class.Name;
+		if (Weapon(Inv) != None)
+		{
+			nW++;
+			Chain = Chain $ "(" $ int(Weapon(Inv).ClientState) $ "," $ Inv.GetStateName() $ ",has ammo " $ Weapon(Inv).HasAmmo() $ ",group " $ Inv.InventoryGroup $ ")";
+		}
+		else if (Ammunition(Inv) != None)
+			Chain = Chain $ "(" $ Ammunition(Inv).AmmoAmount $ ")";
+		Chain = Chain $ " ";
+	}
+	foreach DynamicActors(class'Weapon', W)
+	{
+		if (W.Owner != self || W.bDeleteMe)
+			continue;
+		bIn = false;
+		k = 0;
+		for (Inv = Inventory; Inv != None && k < 100; Inv = Inv.Inventory)
+		{
+			k++;
+			if (Inv == W)
+			{
+				bIn = true;
+				break;
+			}
+		}
+		if (!bIn)
+		{
+			nOut++;
+			Outside = Outside $ W.Class.Name $ "(" $ int(W.ClientState) $ "," $ W.GetStateName() $ ") ";
+		}
+		if (W.IsInState('PendingClientWeaponSet'))
+			Waiting = Waiting $ W.Class.Name $ " ";
+	}
+	Verdict = "ok";
+	if (nOut > 0 || Waiting != "" || Weapon == None)
+		Verdict = "SHORT";
+	Log("BW474|" $ When $ "|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|" $ PlayerReplicationInfo.PlayerName $ "|" $ Verdict $ "|in hand " $ Weapon $ "|pending " $ PendingWeapon
+		$ "|weapons in the list " $ nW $ "|weapons outside the list " $ nOut $ ": " $ Outside $ "|waiting: " $ Waiting $ "|list: " $ Chain);
 }
 
 simulated function TickSlide(float DeltaTime, vector OldVelocity)

@@ -46,6 +46,7 @@ var   array<PickupSwap> 		PickupSwaps;				// Pickups waiting to be swapped
 
 var	  globalconfig bool 		bLogCheckReplacement;	// debugging
 var   globalconfig bool			bPreloadMeshes;			// Enables Mesh Preloader
+var   BallisticDiagFrames		DiagFrames;				// diagnostic build: frame times
 var   globalconfig bool			bUseItemizer;			// Should extra items be spawned using the Itemizer system
 var   globalconfig string		ItemGroup;				// Group to use for Itemizer. Only items of this group will spawned by Itemizer.
 var   globalconfig bool			bLeaveSuper;			// Don't replace super weapons
@@ -164,6 +165,9 @@ simulated function BeginPlay()
 function PostBeginPlay()
 {
 	super.PostBeginPlay();
+	// diagnostic build: frame times on the server and its clients
+	if (Role == ROLE_Authority)
+		DiagFrames = Spawn(class'BallisticDiagFrames');
 	// Use Itemizer to spawn extra Ballistic Pickups
 	if (bUseItemizer && Role == ROLE_Authority)
 		bDoItemize=true;
@@ -235,6 +239,9 @@ function ModifyPlayer(Pawn Other)
     local BallisticPawn BPawn;
 
     BPawn = BallisticPawn(Other);
+
+	if (DiagFrames != None && Other != None)
+		DiagFrames.NoteEvent("spawn " $ class'BallisticDiag'.static.Who(Other));
 
 	//adds sprint support to mutator
     if (xPawn(Other) != None && GetSprintControl(Other.Controller) == None)
@@ -552,6 +559,8 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	local BallisticPlayerReplicationInfo BPRI;
 	local LinkedReplicationInfo LPRI;
 	
+	if (DiagFrames != None)
+		DiagFrames.NoteSpawn(Other);
 	bSuperRelevant = 0;
 
 	if(Controller(Other) != None && InStr(Caps(Level.Game.GameName),"FREON") == -1 && InStr(Caps(Level.Game.GameName),"ARENAMASTER") == -1) //bypass this in 3SPN, handled differently

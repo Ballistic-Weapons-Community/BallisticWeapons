@@ -137,6 +137,7 @@ var private int					ShotCount;					// Shots that added recoil. The owner's machi
 var private bool				bPredicting;				// Owner's machine: running the recoil itself, since a shot it predicted
 var private PredictedShot		Predicted[16];				// Owner's machine: where its last predicted shots took the recoil, at ShotCount & 15
 var private bool				bOwnerPredicts;				// Server: the owner's machine predicted the last shot that added recoil
+var string						DiagHow;					// DIAG: what the owner's machine made of the server's last numbers
 var private int					ServerCount;				// Owner's machine: the shot the server's last numbers were for
 var private float				RoundTrip;					// Owner's machine: how long the server's numbers for a predicted shot took
 const RECOIL_TOLERANCE_DIV		= 64;						// Predicted and server's recoil amounts within MaxRecoil / this agree
@@ -342,6 +343,10 @@ final function AddRecoil (float Amount, optional byte Mode)
 
 	bOwnerPredicts = BW.ModePredictsRecoil(Mode);
 	BW.SendNetRecoil(ShotCount, Target.Recoil, TargetPivot.Pitch, TargetPivot.Yaw, Params.ClimbTime);
+	if (class'BallisticDiag'.static.Logs(BW.Instigator))
+		Log(class'BallisticDiag'.static.Head(BW.Level, "recoil sent") $ class'BallisticDiag'.static.Who(BW.Instigator) $ "|" $ BW.Class.Name
+			$ "|after shot " $ BW.DiagShots $ "|shot " $ ShotCount $ "|recoil " $ Target.Recoil $ "|pitch " $ TargetPivot.Pitch $ "|yaw " $ TargetPivot.Yaw
+			$ "|mode " $ Mode $ " predicted " $ bOwnerPredicts $ "|climb over " $ Params.ClimbTime $ " s");
 }
 
 //===========================================================
@@ -360,7 +365,11 @@ final function PredictRecoil(float Amount)
 	// Every earlier shot of this machine has been answered by now. One the server never fired (it can happen with
 	// the last of a burst) leaves the server's count behind: go on from it
 	if (ShotCount > ServerCount && RoundTrip > 0 && MoveState != ERecoilState.Climbing && Level.TimeSeconds - LastRecoilTime > RoundTrip + 0.1)
+	{
+		Log(class'BallisticDiag'.static.Head(BW.Level, "recoil predicted") $ class'BallisticDiag'.static.Who(BW.Instigator) $ "|" $ BW.Class.Name
+			$ "|count " $ ShotCount $ " taken back to the server's " $ ServerCount $ " from rest");
 		ShotCount = ServerCount;
+	}
 
 	ShotRecoil(Amount);
 	bPredicting = true;
@@ -370,6 +379,9 @@ final function PredictRecoil(float Amount)
 	Predicted[i].Recoil = Target.Recoil;
 	Predicted[i].Pivot = TargetPivot;
 	Predicted[i].Time = Level.TimeSeconds;
+	Log(class'BallisticDiag'.static.Head(BW.Level, "recoil predicted") $ class'BallisticDiag'.static.Who(BW.Instigator) $ "|" $ BW.Class.Name
+		$ "|my shot " $ BW.DiagShots $ "|shot " $ ShotCount $ "|recoil " $ Target.Recoil $ "|pitch " $ TargetPivot.Pitch $ "|yaw " $ TargetPivot.Yaw
+		$ "|amount " $ Amount $ "|rand " $ Target.XRand $ " " $ Target.YRand);
 }
 
 //===========================================================
@@ -505,7 +517,15 @@ final function StartRecoilDecline()
 	AdjustmentTime = DeclineTime * (float(Current.Recoil) / float(MaxRecoil));
 
 	if (BW.Role == ROLE_Authority)
+	{
 		BW.SendNetRecoil(ShotCount, -1, 0, 0, AdjustmentTime);
+		if (class'BallisticDiag'.static.Logs(BW.Instigator))
+			Log(class'BallisticDiag'.static.Head(BW.Level, "recoil sent") $ class'BallisticDiag'.static.Who(BW.Instigator) $ "|" $ BW.Class.Name
+				$ "|after shot " $ BW.DiagShots $ "|shot " $ ShotCount $ "|decline over " $ AdjustmentTime $ " s");
+	}
+	else if (class'BallisticDiag'.static.Logs(BW.Instigator))
+		Log(class'BallisticDiag'.static.Head(BW.Level, "recoil predicted") $ class'BallisticDiag'.static.Who(BW.Instigator) $ "|" $ BW.Class.Name
+			$ "|decline after shot " $ ShotCount $ " over " $ AdjustmentTime $ " s");
 }
 
 final function float ScaleRecoilAmount(float amount)
@@ -700,22 +720,36 @@ final function ReceiveNetRecoil(int Count, int Recoil, int Pitch, int Yaw, float
 			// This machine started its own decline a round trip ago. If it has not fired since, it goes on from the
 			// server's count: a shot fired on one machine and not on the other would leave every later shot's random
 			// part different
+			DiagHow = "decline, mine started already";
 			if (MoveState == ERecoilState.Declining || Current.Recoil == 0)
+			{
+				if (ShotCount != Count)
+					DiagHow = "decline, my count " $ ShotCount $ " taken back to " $ Count;
 				ShotCount = Count;
+			}
 			return;
 		}
 
 		i = Count & 15;
+		DiagHow = "too old to check";
 		if (Predicted[i].Count != Count)
 			return;
 		RoundTrip = Level.TimeSeconds - Predicted[i].Time;
+		DiagHow = "as predicted";
 
 		Diff.Pitch = Pitch - Predicted[i].Pivot.Pitch;
 		Diff.Yaw = Yaw - Predicted[i].Pivot.Yaw;
 		if (Abs(Recoil - Predicted[i].Recoil) > Max(4, MaxRecoil / RECOIL_TOLERANCE_DIV) || Abs(Diff.Pitch) > PIVOT_TOLERANCE || Abs(Diff.Yaw) > PIVOT_TOLERANCE)
+		{
+			DiagHow = "PUT RIGHT by recoil " $ (Recoil - Predicted[i].Recoil) $ " pitch " $ Diff.Pitch $ " yaw " $ Diff.Yaw $ ", mine was " $ GetEnum(enum'ERecoilState', MoveState);
 			CorrectPrediction(Count, Recoil - Predicted[i].Recoil, Diff, ShiftTime);
+		}
+		else if (Recoil != Predicted[i].Recoil || Diff.Pitch != 0 || Diff.Yaw != 0)
+			DiagHow = "as predicted within the tolerance: recoil " $ (Recoil - Predicted[i].Recoil) $ " pitch " $ Diff.Pitch $ " yaw " $ Diff.Yaw;
 		return;
 	}
+
+	DiagHow = "NOT PREDICTED, my count " $ ShotCount $ ", predicting " $ bPredicting;
 
 	// shots this machine did not predict: as the server has them, a round trip after it
 	ShotCount = Count;

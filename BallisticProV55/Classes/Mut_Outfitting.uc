@@ -197,9 +197,16 @@ function ModifyPlayer(Pawn Other)
 	}
 	
 	else if (Other.Controller != None && PlayerController(Other.Controller) != None)
+	{
 		for (i=0;i<COIPond.length;i++)
 			if (COIPond[i].PC == Other.Controller)
-			{	COIPond[i].ClientStartLoadout();	return;	}
+			{
+				Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|spawn|" $ Other.PlayerReplicationInfo.PlayerName $ "|" $ Other $ "|asking the client for its loadout");
+				COIPond[i].ClientStartLoadout();
+				return;
+			}
+		Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|spawn|" $ Other.PlayerReplicationInfo.PlayerName $ "|" $ Other $ "|NO LOADOUT INTERFACE for this player, nothing is handed out");
+	}
 }
 	
 // Use the console command "Mutate Loadout" to open the loadout menu
@@ -381,6 +388,26 @@ function RemoveWeapon(PlayerController Sender, array<String> split_string)
 	}
 }
 
+// #474 logging: what a pawn carries, with ammunition
+static function string Dbg474Carried(Pawn P)
+{
+	local Inventory Inv;
+	local string S;
+	local int n;
+
+	if (P == None)
+		return "no pawn";
+	for (Inv = P.Inventory; Inv != None && n < 100; Inv = Inv.Inventory)
+	{
+		n++;
+		S = S $ Inv.Class.Name;
+		if (Ammunition(Inv) != None)
+			S = S $ "(" $ Ammunition(Inv).AmmoAmount $ ")";
+		S = S $ " ";
+	}
+	return S $ "|in hand " $ P.Weapon $ "|pending " $ P.PendingWeapon;
+}
+
 // Goes through inventory and gets rid of stuff that ain't in the loadout
 function ChangeLoadout (Pawn P, out string Stuff[NUM_GROUPS], optional string OldStuff[NUM_GROUPS])
 {
@@ -412,7 +439,10 @@ function ChangeLoadout (Pawn P, out string Stuff[NUM_GROUPS], optional string Ol
 	while (BadInv.length > 0)
 	{
 		if (BadInv[0] != None)
+		{
+			Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|hand out|takes away " $ BadInv[0]);
 			BadInv[0].Destroy();
+		}
 		BadInv.Remove(0, 1);
 	}
 }
@@ -425,10 +455,13 @@ function OutfitPlayer(Pawn Other, out string Stuff[NUM_GROUPS], optional string 
 	local byte i, j, k, m;
 	local bool bMatch;
 	local class<weapon> W;
+	local Weapon DbgW;
 	
 	if (Vehicle(Other) != None && Vehicle(Other).Driver != None)
 		Other = Vehicle(Other).Driver;
 
+	Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|hand out|" $ Other $ "|asked for: " $ Stuff[0] $ ", " $ Stuff[1] $ ", " $ Stuff[2] $ ", " $ Stuff[3] $ ", " $ Stuff[4]
+		$ "|last time: " $ OldStuff[0] $ ", " $ OldStuff[1] $ ", " $ OldStuff[2] $ ", " $ OldStuff[3] $ ", " $ OldStuff[4] $ "|carried before: " $ Dbg474Carried(Other));
 	// Make sure everything is legit
 	for (i=0;i<NUM_GROUPS;i++)
 	{
@@ -493,13 +526,18 @@ function OutfitPlayer(Pawn Other, out string Stuff[NUM_GROUPS], optional string 
 	
 	for (i=2;i<NUM_GROUPS;i+=0)
 	{
+		if (Stuff[i] == "")
+			Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|hand out|slot " $ i $ "|nothing to hand out: the group is empty, or the weapon is carried already (" $ Granted[i] $ ")");
 		if (Stuff[i] != "")
 		{
 			W = class<weapon>(DynamicLoadObject(Stuff[i],class'Class'));
 			if (W == None)
-				log("Could not load outfitted weapon "$Stuff[i]);
+				Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|hand out|slot " $ i $ "|COULD NOT LOAD " $ Stuff[i]);
 			else
-				SpawnWeaponLayout(W, Other, Layouts[i], Camos[i]);
+			{
+				DbgW = SpawnWeaponLayout(W, Other, Layouts[i], Camos[i]);
+				Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|hand out|slot " $ i $ "|" $ W $ "|layout " $ Layouts[i] $ "|gives " $ DbgW);
+			}
 		}
 
 		if (i == 0)
@@ -511,6 +549,7 @@ function OutfitPlayer(Pawn Other, out string Stuff[NUM_GROUPS], optional string 
 	}
 	for (g=0;g<NUM_GROUPS;g++)
 		Stuff[g] = Granted[g];
+	Log("BW474|server|" $ class'BallisticDiag'.static.Stamp(Level) $ "|" $ Level.TimeSeconds $ "|hand out done|carried now: " $ Dbg474Carried(Other));
 }
 
 static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P)
