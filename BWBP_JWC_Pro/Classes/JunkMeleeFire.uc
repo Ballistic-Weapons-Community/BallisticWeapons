@@ -317,6 +317,7 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
+	bPredictRecoil=False
      FireAnims(0)="Hit1"
      FireAnims(1)="Hit2"
      FireAnims(2)="Hit3"

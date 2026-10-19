@@ -100,6 +100,7 @@ var float	                            BurstFireRateFactor;// Multiplies down fir
 // Dispersion
 //-----------------------------------------------------------------------------
 var() float					            FireRecoil;			// Amount of recoil added each shot
+var() bool					            bPredictRecoil;		// The owner's machine adds this mode's recoil itself as it fires, as the server will (see RecoilComponent). Only where each shot that comes to ShakeView goes through ApplyRecoil on the server
 var() float					            FirePushbackForce;	// How much to jolt player back when they fire
 var   vector					        LastPushback;		// What that last took off the player's speed, and when (see GetBrassPushback)
 var   float					            LastPushbackTime;
@@ -406,6 +407,9 @@ function Rotator AdjustAim(Vector Start, float InAimError)
 {
 	if (BW.bUseSpecialAim)
 		return BW.GetPlayerAim(true);
+	// a remote player's predicted shot: from the view it was fired with (see BallisticWeapon.ServerShotView)
+	if (bPredictRecoil && Weapon.Role == ROLE_Authority)
+		return BW.ShotViewAim(super.AdjustAim(Start, InAimError));
     return super.AdjustAim(Start, InAimError);
 }
 // Returns the normal of the player's aim with weapon aim/pitch applied. Also sets StartTrace vector
@@ -579,24 +583,49 @@ simulated function ReloadingGun(optional byte i)
 	}
 }
 
+// The recoil a shot adds: ApplyRecoil on the server, ShakeView on the owner's machine
+simulated function float GetShotRecoil()
+{
+	return FireRecoil;
+}
+
+// For each shot on the owner's machine. The recoil starts with it, as it will on the server, and so does the push back:
+// the server's push came to this machine a round trip later, as a correction of where the player was
+function ShakeView()
+{
+	Super.ShakeView();
+
+	if (bPredictRecoil && BW != None && Weapon.Role < ROLE_Authority)
+	{
+		BW.PredictRecoil(GetShotRecoil());
+		ApplyPushback();
+	}
+}
+
 simulated function ApplyRecoil()
+{
+	if (BW != None)
+		BW.AddRecoil(GetShotRecoil(), FireChaos, ThisModeNum);
+
+	ApplyPushback();
+}
+
+// The shot pushes the player back: ApplyRecoil on the server, ShakeView on the owner's machine
+simulated function ApplyPushback()
 {
 	local Vector VelRecoilVect;
 
-	if (BW != None)
-		BW.AddRecoil(FireRecoil, FireChaos, ThisModeNum);
+	if (FirePushbackForce == 0 || Instigator == None)
+		return;
 
-	if (FirePushbackForce != 0 && Instigator!= None)
+	VelRecoilVect = Vector(Instigator.GetViewRotation()) * FirePushbackForce;
+	VelRecoilVect.Z *= 0.25;
+
+	if (Instigator.Physics != PHYS_Falling)
 	{
-		VelRecoilVect = Vector(Instigator.GetViewRotation()) * FirePushbackForce;
-		VelRecoilVect.Z *= 0.25;
-		
-		if (Instigator.Physics != PHYS_Falling)
-		{
-			Instigator.Velocity -= VelRecoilVect;
-			LastPushback = VelRecoilVect;
-			LastPushbackTime = Level.TimeSeconds;
-		}
+		Instigator.Velocity -= VelRecoilVect;
+		LastPushback = VelRecoilVect;
+		LastPushbackTime = Level.TimeSeconds;
 	}
 }
 
@@ -918,4 +947,5 @@ defaultproperties
      TweenTime=0.000000
      AmmoPerFire=1
 	 BurstFireRateFactor=0.66
+	 bPredictRecoil=True
 }

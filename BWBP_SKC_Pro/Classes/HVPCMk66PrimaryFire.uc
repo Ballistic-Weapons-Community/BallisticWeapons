@@ -61,6 +61,7 @@ function DoFireEffect()
 
 defaultproperties
 {
+	bPredictRecoil=False
      FailSound=Sound'BWBP_SKC_Sounds.HyperBeamCannon.343Primary-Fail'
      SpawnOffset=(X=100.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BWBP_SKC_Pro.BFGFlashEmitter'

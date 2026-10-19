@@ -14,11 +14,9 @@ var() class<Actor>				SMuzzleFlashClass;
 var() Name						SFlashBone;
 var() float						SFlashScaleFactor;
 
-simulated function ApplyRecoil()
+simulated function ApplyPushback()
 {
-	BW.AddRecoil(FireRecoil, FireChaos, ThisModeNum);
-
-	if (FirePushbackForce != 0)
+	if (FirePushbackForce != 0 && Instigator != None)
 	{
 		if (Instigator.Physics == PHYS_Falling)
 			Instigator.Velocity -= Vector(Instigator.GetViewRotation()) * FirePushbackForce * 0.25;

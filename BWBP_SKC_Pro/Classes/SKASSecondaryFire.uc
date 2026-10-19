@@ -204,6 +204,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
+	bPredictRecoil=False
      ChargeRate=1.000000
      PowerLevel=1.000000
      ChargeSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-TriCharge'

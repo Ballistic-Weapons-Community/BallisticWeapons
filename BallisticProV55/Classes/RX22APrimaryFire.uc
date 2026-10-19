@@ -293,6 +293,7 @@ simulated function InitEffects()
 
 defaultproperties
 {
+	bPredictRecoil=False
      FireSoundLoop=Sound'BW_Core_WeaponSound.RX22A.RX22A-FireLoop'
      TraceRange=(Min=1800.000000,Max=1800.000000)
      Damage=14.000000

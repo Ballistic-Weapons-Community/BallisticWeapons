@@ -15,20 +15,22 @@ class R9SecondaryFire extends R9PrimaryFire;
 
 var float BurstInterval;
 
-simulated function ApplyRecoil()
+simulated function float GetShotRecoil()
+{
+	if (BurstCount > 0)
+		return FireRecoil * 1.5;
+	return FireRecoil;
+}
+
+simulated function ApplyPushback()
 {
 	local Vector VelRecoilVect;
-	if (BW != None)
-	{
-		if (BurstCount > 0)
-			BW.AddRecoil(FireRecoil * 1.5, FireChaos, ThisModeNum);
-		else BW.AddRecoil(FireRecoil, FireChaos, ThisModeNum);
-	}
+
 	if (FirePushbackForce != 0 && Instigator!= None)
 	{
 		VelRecoilVect = Vector(Instigator.GetViewRotation()) * FirePushbackForce;
 		VelRecoilVect.Z *= 0.25;
-		
+
 		if (Instigator.Physics == PHYS_Falling)
 			Instigator.Velocity -= VelRecoilVect * 0.5;
 		else

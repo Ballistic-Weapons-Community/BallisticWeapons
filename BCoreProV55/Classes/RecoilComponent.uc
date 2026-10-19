@@ -114,6 +114,34 @@ var private float               ADSViewBindOverride;        // Per weapon ADS vi
 var private float               LastRecoilTime;             // Last time at which recoil was added
 var private ERecoilState		MoveState;
 
+//=============================================================================
+// PREDICTION
+//
+// The owner's machine adds the recoil of its own shots as it fires them, the way the server will a moment later.
+// It used to wait for the server's numbers, so the kick of a shot came a round trip after it: 60 ms at 60 ping,
+// 200 ms at 200. The random part of a shot comes from the weapon's RecoilSeed and the shot's number, so both
+// machines draw the same. The server still sends its numbers for every shot. Where they differ from what was
+// predicted the difference is eased in, and shots that were not predicted are taken from them as before.
+//
+// A fire mode is predicted when its bPredictRecoil is set (BallisticFire.ShakeView). The server then aims the
+// unbound part of the recoil as it is now, not as it was a round trip ago (BallisticWeapon.GetPastFireRot).
+//=============================================================================
+struct PredictedShot
+{
+	var int			Count;
+	var int			Recoil;
+	var Rotator		Pivot;
+	var float		Time;
+};
+var private int					ShotCount;					// Shots that added recoil. The owner's machine counts its own, and takes the server's when they part
+var private bool				bPredicting;				// Owner's machine: running the recoil itself, since a shot it predicted
+var private PredictedShot		Predicted[16];				// Owner's machine: where its last predicted shots took the recoil, at ShotCount & 15
+var private bool				bOwnerPredicts;				// Server: the owner's machine predicted the last shot that added recoil
+var private int					ServerCount;				// Owner's machine: the shot the server's last numbers were for
+var private float				RoundTrip;					// Owner's machine: how long the server's numbers for a predicted shot took
+const RECOIL_TOLERANCE_DIV		= 64;						// Predicted and server's recoil amounts within MaxRecoil / this agree
+const PIVOT_TOLERANCE			= 16;						// Predicted and server's pivots within this agree (0.09 degrees)
+
 // Replication
 // var private bool                bForceUpdate;               // Forces ApplyAimToView call to recalculate recoil (set after ReceiveNetRecoil)
 
@@ -164,6 +192,8 @@ final function bool ShouldUpdateView()
 
 final function Cleanup()
 {
+	local int i;
+
 	BW = None;
 	Level = None;
 
@@ -196,6 +226,14 @@ final function Cleanup()
 
 	AdjustmentPhase = 0;
 	AdjustmentTime = 0;
+
+	ShotCount = 0;
+	bPredicting = false;
+	bOwnerPredicts = false;
+	ServerCount = 0;
+	RoundTrip = 0;
+	for (i = 0; i < ArrayCount(Predicted); i++)
+		Predicted[i].Count = 0;
 
 	//bForceUpdate = false;
 }
@@ -265,12 +303,9 @@ final function UpdateRecoil(float dt)
 		// x64 fix for bad Lerp handling
 		if (AdjustmentPhase < 1f)
 		{
-			if (BW.Role == ROLE_Authority)
-			{
-				Current.Recoil = Lerp(AdjustmentPhase, Start.Recoil, Target.Recoil);
-				Current.XRand = Lerp(AdjustmentPhase, Start.XRand, Target.XRand);
-				Current.YRand = Lerp(AdjustmentPhase, Start.YRand, Target.YRand);
-			}
+			Current.Recoil = Lerp(AdjustmentPhase, Start.Recoil, Target.Recoil);
+			Current.XRand = Lerp(AdjustmentPhase, Start.XRand, Target.XRand);
+			Current.YRand = Lerp(AdjustmentPhase, Start.YRand, Target.YRand);
 
 			CurrentPivot.Pitch = Lerp(AdjustmentPhase, StartPivot.Pitch, TargetPivot.Pitch);
 			CurrentPivot.Yaw = Lerp(AdjustmentPhase, StartPivot.Yaw, TargetPivot.Yaw);
@@ -278,8 +313,7 @@ final function UpdateRecoil(float dt)
 
 		else 
 		{
-			if (BW.Role == ROLE_Authority)
-				Current = Target;
+			Current = Target;
 
 			CurrentPivot = TargetPivot;
 
@@ -288,7 +322,7 @@ final function UpdateRecoil(float dt)
 	}
 
 	// initiate view decline if past recoil decline delay
-	else if (BW.Role == ROLE_Authority && Current.Recoil > 0 && CanDeclineRecoil())
+	else if (RunsRecoil() && Current.Recoil > 0 && CanDeclineRecoil())
 	{
 		StartRecoilDecline();
 	}
@@ -301,13 +335,56 @@ final function UpdateRecoil(float dt)
 //===========================================================
 final function AddRecoil (float Amount, optional byte Mode)
 {
-	local StateData NewTarget;
-	local Rotator NewTargetDeltaPivot;
-
 	if (BW.bAimDisabled || Amount == 0 || BW.Role < ROLE_Authority)
 		return;
 
+	ShotRecoil(Amount);
+
+	bOwnerPredicts = BW.ModePredictsRecoil(Mode);
+	BW.SendNetRecoil(ShotCount, Target.Recoil, TargetPivot.Pitch, TargetPivot.Yaw, Params.ClimbTime);
+}
+
+//===========================================================
+// PredictRecoil
+//
+// Called on the owner's machine for a shot of its own,
+// ahead of the server's numbers for it
+//===========================================================
+final function PredictRecoil(float Amount)
+{
+	local int i;
+
+	if (BW.bAimDisabled || Amount == 0 || BW.Role == ROLE_Authority)
+		return;
+
+	// Every earlier shot of this machine has been answered by now. One the server never fired (it can happen with
+	// the last of a burst) leaves the server's count behind: go on from it
+	if (ShotCount > ServerCount && RoundTrip > 0 && MoveState != ERecoilState.Climbing && Level.TimeSeconds - LastRecoilTime > RoundTrip + 0.1)
+		ShotCount = ServerCount;
+
+	ShotRecoil(Amount);
+	bPredicting = true;
+
+	i = ShotCount & 15;
+	Predicted[i].Count = ShotCount;
+	Predicted[i].Recoil = Target.Recoil;
+	Predicted[i].Pivot = TargetPivot;
+	Predicted[i].Time = Level.TimeSeconds;
+}
+
+//===========================================================
+// ShotRecoil
+//
+// One shot's recoil, the same on the server and the owner's
+// machine
+//===========================================================
+private final function ShotRecoil(float Amount)
+{
+	local StateData NewTarget;
+	local Rotator NewTargetDeltaPivot;
+
 	Amount = ScaleRecoilAmount(Amount);
+	ShotCount++;
 
 	// always interpolate from our current position on the path when the shot was fired
 	Start = Current;
@@ -322,8 +399,8 @@ final function AddRecoil (float Amount, optional byte Mode)
 
 	// create new recoil state for this shot
 	NewTarget.Recoil = FMin(MaxRecoil, Target.Recoil + Amount);
-	NewTarget.XRand = FRand();
-	NewTarget.YRand = FRand();
+	NewTarget.XRand = ShotRand(1);
+	NewTarget.YRand = ShotRand(2);
 	
 	if (NewTarget.Recoil == MaxRecoil)
 	{
@@ -352,9 +429,64 @@ final function AddRecoil (float Amount, optional byte Mode)
 	MoveState = ERecoilState.Climbing;
 
 	LastRecoilTime = BW.Level.TimeSeconds;
+}
 
-	if (BW.Role == ROLE_Authority)
-		BW.SendNetRecoil(TargetPivot.Pitch, TargetPivot.Yaw, Params.ClimbTime);
+//===========================================================
+// ShotRand
+//
+// The random factor of this shot's recoil, from the weapon's
+// seed and the shot's number: both machines draw the same
+//===========================================================
+private final function float ShotRand(int Salt)
+{
+	local int X, i;
+
+	X = BW.RecoilSeed + ShotCount * 7919 + Salt * 104729;
+	for (i = 0; i < 3; i++)
+	{
+		X = X ^ (X << 13);
+		X = X ^ (X >>> 17);
+		X = X ^ (X << 5);
+	}
+	return float(X & 16777215) / 16777216.0;
+}
+
+//===========================================================
+// RunsRecoil
+//
+// The machine that moves the recoil on: the server, and the
+// owner's machine while it predicts
+//===========================================================
+final function bool RunsRecoil()
+{
+	return BW.Role == ROLE_Authority || bPredicting;
+}
+
+//===========================================================
+// OwnerPredicts
+//
+// Server: the owner's machine predicted the last shot that
+// added recoil, so it shows the recoil as it is here now
+//===========================================================
+final function bool OwnerPredicts()
+{
+	return bOwnerPredicts;
+}
+
+//===========================================================
+// GetShotCount, GetLastRecoilTime
+//
+// The shots that added recoil so far, and when the last one
+// did
+//===========================================================
+final function int GetShotCount()
+{
+	return ShotCount;
+}
+
+final function float GetLastRecoilTime()
+{
+	return LastRecoilTime;
 }
 
 final function StartRecoilDecline()
@@ -372,7 +504,8 @@ final function StartRecoilDecline()
 	AdjustmentPhase = 0;
 	AdjustmentTime = DeclineTime * (float(Current.Recoil) / float(MaxRecoil));
 
-	BW.SendNetRecoil(0, 0, AdjustmentTime);
+	if (BW.Role == ROLE_Authority)
+		BW.SendNetRecoil(ShotCount, -1, 0, 0, AdjustmentTime);
 }
 
 final function float ScaleRecoilAmount(float amount)
@@ -546,20 +679,109 @@ final function bool BotShouldFire(float Dist)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Replication
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-final function ReceiveNetRecoil(int pitch, int yaw, float shift_time)
+//===========================================================
+// ReceiveNetRecoil
+//
+// The server's recoil after shot Count, on the owner's
+// machine. Recoil < 0: the server started to decline it
+//===========================================================
+final function ReceiveNetRecoil(int Count, int Recoil, int Pitch, int Yaw, float ShiftTime)
 {
+	local int i;
+	local Rotator Diff;
+
+	ServerCount = Count;
+
+	// a shot this machine predicted, or the decline after one
+	if (bPredicting && Count <= ShotCount)
+	{
+		if (Recoil < 0)
+		{
+			// This machine started its own decline a round trip ago. If it has not fired since, it goes on from the
+			// server's count: a shot fired on one machine and not on the other would leave every later shot's random
+			// part different
+			if (MoveState == ERecoilState.Declining || Current.Recoil == 0)
+				ShotCount = Count;
+			return;
+		}
+
+		i = Count & 15;
+		if (Predicted[i].Count != Count)
+			return;
+		RoundTrip = Level.TimeSeconds - Predicted[i].Time;
+
+		Diff.Pitch = Pitch - Predicted[i].Pivot.Pitch;
+		Diff.Yaw = Yaw - Predicted[i].Pivot.Yaw;
+		if (Abs(Recoil - Predicted[i].Recoil) > Max(4, MaxRecoil / RECOIL_TOLERANCE_DIV) || Abs(Diff.Pitch) > PIVOT_TOLERANCE || Abs(Diff.Yaw) > PIVOT_TOLERANCE)
+			CorrectPrediction(Count, Recoil - Predicted[i].Recoil, Diff, ShiftTime);
+		return;
+	}
+
+	// shots this machine did not predict: as the server has them, a round trip after it
+	ShotCount = Count;
+	bPredicting = false;
+
+	Start = Current;
 	StartPivot = CurrentPivot;
 
-	TargetPivot.Pitch = pitch;
-	TargetPivot.Yaw = yaw;
+	TargetPivot.Pitch = Pitch;
+	TargetPivot.Yaw = Yaw;
 
 	AdjustmentPhase = 0;
-	AdjustmentTime = shift_time;
+	AdjustmentTime = ShiftTime;
 
-	if (TargetPivot != rot(0,0,0))
+	if (Recoil >= 0)
+	{
+		Target.Recoil = Recoil;
 		MoveState = ERecoilState.Climbing;
+		LastRecoilTime = Level.TimeSeconds;
+	}
 	else
+	{
+		Target.Recoil = 0;
+		Target.XRand = 0;
+		Target.YRand = 0;
 		MoveState = ERecoilState.Declining;
+	}
+}
+
+//===========================================================
+// CorrectPrediction
+//
+// Puts right where a predicted shot took the recoil, from
+// the server's numbers for it. The shots predicted after it
+// built on it, so they move with it
+//===========================================================
+private final function CorrectPrediction(int Count, int RecoilDiff, Rotator Diff, float ShiftTime)
+{
+	local int i;
+
+	for (i = Count + 1; i <= ShotCount && i <= Count + 15; i++)
+	{
+		if (Predicted[i & 15].Count != i)
+			continue;
+		Predicted[i & 15].Recoil += RecoilDiff;
+		Predicted[i & 15].Pivot += Diff;
+	}
+
+	Current.Recoil = Clamp(Current.Recoil + RecoilDiff, 0, MaxRecoil);
+
+	// on the way back to rest already, and that goes to nothing whatever the shot did
+	if (MoveState == ERecoilState.Declining)
+	{
+		Start.Recoil = Clamp(Start.Recoil + RecoilDiff, 0, MaxRecoil);
+		return;
+	}
+
+	Start = Current;
+	Target.Recoil = Clamp(Target.Recoil + RecoilDiff, 0, MaxRecoil);
+
+	StartPivot = CurrentPivot;
+	TargetPivot += Diff;
+
+	AdjustmentPhase = 0;
+	AdjustmentTime = ShiftTime;
+	MoveState = ERecoilState.Climbing;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -573,7 +795,7 @@ final function int DrawDebug(Canvas Canvas, int YPos, int YL)
 	Canvas.DrawText("Pivot: ("$ CurrentPivot.Pitch $", "$ CurrentPivot.Yaw $"), Start: ("$ StartPivot.Pitch $", "$ StartPivot.Yaw $"), Target: ("$ TargetPivot.Pitch $", "$ TargetPivot.Yaw $"), Last: ("$ LastPivot.Pitch $", "$ LastPivot.Yaw $")");
 	YPos += YL;
 	Canvas.SetPos(4, YPos);
-	Canvas.DrawText("State: "$ GetEnum(enum'ERecoilState', MoveState) $", Should Shift: "$ ShouldShift() $", ViewBindFactor: Cur " $ ViewBindFactor $ ", Hip "$ Params.ViewBindFactor $ ", ADS " $ Params.ADSViewBindFactor);
+	Canvas.DrawText("State: "$ GetEnum(enum'ERecoilState', MoveState) $", Should Shift: "$ ShouldShift() $", ViewBindFactor: Cur " $ ViewBindFactor $ ", Hip "$ Params.ViewBindFactor $ ", ADS " $ Params.ADSViewBindFactor $ ", Shots: " $ ShotCount $ ", Predicting: " $ bPredicting);
 
 	return YPos;
 }

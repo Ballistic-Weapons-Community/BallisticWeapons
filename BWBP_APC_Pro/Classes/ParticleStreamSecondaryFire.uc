@@ -294,6 +294,7 @@ function FlashMuzzleFlash();
 
 defaultproperties
 {
+	bPredictRecoil=False
      DamageType=Class'BWBP_OP_Pro.DTProtonStreamer'
      MuzzleFlashClass=Class'BWBP_APC_Pro.ParticleFlashEmitter'
      FireRecoil=1.000000

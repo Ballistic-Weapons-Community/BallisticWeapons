@@ -184,9 +184,19 @@ var     float                       RewindLatency, RewindLatencyTime; // GetRewi
 struct FireRotSample
 {
 	var float	Time;
-	var Rotator	Rot;
+	var Rotator	Rot;		// aim
+	var Rotator	Esc;		// the part of the recoil not bound to the view
 };
 var     array<FireRotSample>        FireRotHistory;                 // Server: the weapon's offset over the last second, while a remote player holds it (see GetFireDir)
+
+struct ShotViewReport
+{
+	var int		Count;		// the owner's number for the shot (RecoilComponent's shot count)
+	var int		View;		// the view it was fired with, packed as ServerMove packs it
+	var float	Time;		// when the report came
+};
+var     ShotViewReport              ShotViews[4];                   // Server: the views the owner's machine fired its last predicted shots with (see ServerShotView)
+var     int                         NextShotView;                   // Server: where in ShotViews the next report goes
 
 //=============================================================================
 // WEAPON STATE VARIABLES
@@ -265,6 +275,7 @@ var   bool     						bMagPlusOne;              		// A true value means weapon ca
 // Recoil
 //-----------------------------------------------------------------------------
 var() editinline RecoilComponent	RcComponent;					// Object which handles recoil
+var int							RecoilSeed;						// Picked by the server: with a shot's number it gives that shot's random recoil, the same on the owner's machine (see RecoilComponent)
 //-----------------------------------------------------------------------------
 // Aim
 //-----------------------------------------------------------------------------
@@ -487,7 +498,7 @@ replication
 {
 	// Things the server should send to the owning client
 	reliable if (bNetOwner && Role == ROLE_Authority)
-		MagAmmo, bServerReloading, NetInventoryGroup, GameStyleIndex, LayoutIndex, CamoIndex, bServerDeferInitialSwitch;
+		MagAmmo, bServerReloading, NetInventoryGroup, GameStyleIndex, LayoutIndex, CamoIndex, bServerDeferInitialSwitch, RecoilSeed;
 
 	// functions on server, called by client
    	reliable if (Role < ROLE_Authority)
@@ -496,7 +507,8 @@ replication
 		ServerWeaponSpecial, ServerWeaponSpecialRelease, // weapon special ability
 		ServerSwitchWeaponMode, // weapon mode
 		ServerMeleeHold, ServerMeleeRelease, // melee integration
-		ServerSetScopeView; // ADS
+		ServerSetScopeView, // ADS
+		ServerShotView; // recoil system
 
 
 	// functions on client, called by server
@@ -567,6 +579,8 @@ simulated function PostBeginPlay()
     {
         if (int(class'BallisticReplicationInfo'.default.GameStyle) < ParamsClasses.Length && ParamsClasses[int(class'BallisticReplicationInfo'.default.GameStyle)] != None)
             GameStyleIndex = int(class'BallisticReplicationInfo'.default.GameStyle);
+
+        RecoilSeed = Rand(65536);
     }
 
 	// this is used to deal with weapons clipping into the view
@@ -1550,6 +1564,10 @@ final function float GetRewindLatency(PlayerController PC)
 // collisions are rewound. With the current offset, shots went where the gun
 // pointed a ping later: with quickly resetting recoil, tens of units off at
 // range even at a standing target.
+//
+// Recoil of a shot the owner's machine predicted is on its screen when the
+// shot is fired there, as it is on the server when the shot arrives here, so
+// that part is taken as it is now (see RecoilComponent).
 //================================================================================
 final function SaveFireRot()
 {
@@ -1574,14 +1592,15 @@ final function SaveFireRot()
 		i--;
 	FireRotHistory.Length = i + 1;
 	FireRotHistory[i].Time = Level.TimeSeconds;
-	FireRotHistory[i].Rot = GetFireRot();
+	FireRotHistory[i].Rot = GetAimPivot();
+	FireRotHistory[i].Esc = RcComponent.GetEscapePivot();
 }
 
 final function Rotator GetPastFireRot()
 {
 	local float T, Latency, Alpha;
 	local int i;
-	local Rotator A, B;
+	local Rotator A, B, AEsc, BEsc;
 
 	Latency = GetRewindLatency(PlayerController(InstigatorController));
 	if (Latency <= 0 || FireRotHistory.Length == 0)
@@ -1593,15 +1612,22 @@ final function Rotator GetPastFireRot()
 	for (i = FireRotHistory.Length - 1; i > 0 && FireRotHistory[i].Time > T; i--);
 
 	A = FireRotHistory[i].Rot;
-	if (i == FireRotHistory.Length - 1 || FireRotHistory[i].Time >= T)
-		return A;
+	AEsc = FireRotHistory[i].Esc;
+	if (i < FireRotHistory.Length - 1 && FireRotHistory[i].Time < T)
+	{
+		B = FireRotHistory[i + 1].Rot;
+		BEsc = FireRotHistory[i + 1].Esc;
+		Alpha = (T - FireRotHistory[i].Time) / (FireRotHistory[i + 1].Time - FireRotHistory[i].Time);
+		// small offsets from the view, nothing wraps
+		A.Pitch += int((B.Pitch - A.Pitch) * Alpha);
+		A.Yaw += int((B.Yaw - A.Yaw) * Alpha);
+		AEsc.Pitch += int((BEsc.Pitch - AEsc.Pitch) * Alpha);
+		AEsc.Yaw += int((BEsc.Yaw - AEsc.Yaw) * Alpha);
+	}
 
-	B = FireRotHistory[i + 1].Rot;
-	Alpha = (T - FireRotHistory[i].Time) / (FireRotHistory[i + 1].Time - FireRotHistory[i].Time);
-	// small offsets from the view, nothing wraps
-	A.Pitch += int((B.Pitch - A.Pitch) * Alpha);
-	A.Yaw += int((B.Yaw - A.Yaw) * Alpha);
-	return A;
+	if (RcComponent.OwnerPredicts())
+		return A + RcComponent.GetEscapePivot();
+	return A + AEsc;
 }
 
 final function RestoreCollisions()
@@ -5426,19 +5452,19 @@ simulated final function ReceiveNetAim(float Yaw, float Pitch, float Time, float
 }
 
 // Compress and send recoil data from server
-final function SendNetRecoil(int pitch, int yaw, float shift_time)
+final function SendNetRecoil(int count, int recoil, int pitch, int yaw, float shift_time)
 {
 	if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer && !Instigator.IsLocallyControlled())
-		ReceiveNetRecoil(pitch, yaw, int(shift_time * 100) );
+		ReceiveNetRecoil(count, recoil, pitch, yaw, int(shift_time * 100) );
 }
 
 // Apply recoil from server.
-simulated final function ReceiveNetRecoil(int pitch, int yaw, int shift_time)
+simulated final function ReceiveNetRecoil(int count, int recoil, int pitch, int yaw, int shift_time)
 {
 	if (Role == ROLE_Authority)
 		return;
 
-	RcComponent.ReceiveNetRecoil(pitch, yaw, shift_time * 0.01f);
+	RcComponent.ReceiveNetRecoil(count, recoil, pitch, yaw, shift_time * 0.01f);
 }
 
 // End Net Stuff <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -5753,6 +5779,84 @@ simulated function AddRecoil(float Recoil, float FireChaos, optional byte Mode)
 simulated function float GetFireChaos()
 {
 	return AimComponent.GetFireChaos();
+}
+
+// The owner's machine, for a shot of its own (see RecoilComponent: prediction). The server is told the view the
+// shot was fired with (see ServerShotView)
+simulated final function PredictRecoil(float Recoil)
+{
+	local int Count;
+	local Rotator V;
+
+	if (Role == ROLE_Authority || RcComponent == None || Instigator == None || !Instigator.IsLocallyControlled() || Instigator.Controller == None)
+		return;
+
+	Count = RcComponent.GetShotCount();
+	V = Instigator.Controller.Rotation;
+	RcComponent.PredictRecoil(Recoil);
+	if (RcComponent.GetShotCount() != Count)
+		ServerShotView(RcComponent.GetShotCount(), ((V.Yaw & 65535) << 16) + (V.Pitch & 65535));
+}
+
+//================================================================================
+// ServerShotView, ShotViewAim
+//
+// The owner's machine kicks its view with the recoil of a shot it predicted as
+// it fires the shot. The kicked view comes here with its next moves, and often
+// before the server fires the shot, a tick after it is told the trigger is
+// down: the whole kick of a recoil that climbs at once (M99) went into the shot
+// it came from about every second time. So the owner's machine sends the view
+// it fired with, and the shot is aimed from that view.
+// A report is used for the shot about to add recoil with its number, and only
+// when it came after the last shot that added recoil here: when the counts of
+// the two machines part (a shot one of them fired and the other did not) the
+// view of an older shot is not taken.
+//================================================================================
+function ServerShotView(int Count, int View)
+{
+	ShotViews[NextShotView].Count = Count;
+	ShotViews[NextShotView].View = View;
+	ShotViews[NextShotView].Time = Level.TimeSeconds;
+	NextShotView = (NextShotView + 1) & 3;
+}
+
+// Server: Aim, worked out from the remote shooter's view as it is here now, turned to the view the shot was fired with
+final function Rotator ShotViewAim(Rotator Aim)
+{
+	local int i, j, Count, DP, DY;
+
+	if (Instigator == None || Instigator.IsLocallyControlled() || PlayerController(Instigator.Controller) == None || RcComponent == None)
+		return Aim;
+
+	Count = RcComponent.GetShotCount() + 1;
+	for (j = 1; j <= 4; j++)
+	{
+		i = (NextShotView - j) & 3;
+		if (ShotViews[i].Count == Count && ShotViews[i].Time >= RcComponent.GetLastRecoilTime() && Level.TimeSeconds - ShotViews[i].Time <= 0.5)
+			break;
+	}
+	if (j > 4)
+		return Aim;
+
+	DP = ((ShotViews[i].View & 65535) - Instigator.Controller.Rotation.Pitch) & 65535;
+	DY = (((ShotViews[i].View >> 16) & 65535) - Instigator.Controller.Rotation.Yaw) & 65535;
+	if (DP > 32767)
+		DP -= 65536;
+	if (DY > 32767)
+		DY -= 65536;
+	// never more than a quarter turn
+	if (Abs(DP) > 16384 || Abs(DY) > 16384)
+		return Aim;
+
+	Aim.Pitch += DP;
+	Aim.Yaw += DY;
+	return Aim;
+}
+
+// Whether the owner's machine predicts the recoil of this fire mode
+final function bool ModePredictsRecoil(byte Mode)
+{
+	return Mode < NUM_FIRE_MODES && BFireMode[Mode] != None && BFireMode[Mode].bPredictRecoil;
 }
 
 simulated function AddFireChaos(float chaos)

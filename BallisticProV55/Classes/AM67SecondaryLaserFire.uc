@@ -97,7 +97,7 @@ simulated event ModeDoFire()
 simulated function ApplyRecoil ()
 {
 	if (BW != None)
-		BW.AddRecoil(FireRecoil, ThisModeNum);
+		BW.AddRecoil(FireRecoil, ThisModeNum, ThisModeNum);
 }
 
 function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
