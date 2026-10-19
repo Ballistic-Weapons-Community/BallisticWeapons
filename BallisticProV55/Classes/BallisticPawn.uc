@@ -48,6 +48,7 @@ var	globalconfig	array<String>   ModelWhitelist;
 
 var Actor					        OldBase;
 var float					        LastMoverLeaveTime, MoverLeaveGrace;
+var bool					        bSpawnFinished;		// PostBeginPlay has run: no damage before that (see PostBeginPlay)
 
 // Netcode ------------------------
 var RewindCollisionManager          RwColMgr;
@@ -287,6 +288,17 @@ replication
 	// The owning client predicts its own slides. See SyncSlidePrediction
 	reliable if (Role == ROLE_Authority && !bNetOwner)
 		bIsSliding;
+}
+
+// The engine fires a new pawn's touches (the encroachment check in SpawnActor) before PostBeginPlay, which is where
+// SpawnTime, and with it the spawn protection, starts. A grenade lying on the spawn point went off in that check and
+// killed the pawn before its player had it. The player was then given the dead body: torn off, so the server sent
+// it to no client. Nobody saw it and its player never got control of it, while on the server it stood there
+// until it was shot
+simulated function PostBeginPlay()
+{
+	bSpawnFinished = true;
+	Super.PostBeginPlay();
 }
 
 simulated event PostNetBeginPlay()
@@ -3651,6 +3663,10 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 			return;
 		}
  
+		// A pawn the engine is still spawning (see PostBeginPlay)
+		if (!bSpawnFinished)
+			return;
+
 		if ( Health <= 0 )
 			return;
 			
