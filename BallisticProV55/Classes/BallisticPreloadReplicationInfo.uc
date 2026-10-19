@@ -6,11 +6,12 @@ var() int RewardNum;	// How many of them are killstreak rewards (they come last)
 var bool bAddedInteraction;
 var bool bEnableCamoLoading;
 var bool bEnableTextureLoading;
+var bool bPreloadPlayerModels;	// The server has BW's player models: the clients load them too (Mut_BallisticPreLoad)
 
 replication
 {
     reliable if(Role == ROLE_Authority)
-        CurrentName, PreloadNum, RewardNum, bEnableCamoLoading, bEnableTextureLoading;
+        CurrentName, PreloadNum, RewardNum, bEnableCamoLoading, bEnableTextureLoading, bPreloadPlayerModels;
 }
 
 simulated function PostBeginPlay()

@@ -12,6 +12,7 @@ var globalconfig bool bEnableTextureLoading;	// Also send the weapons' own skins
 
 var BallisticPreloadReplicationInfo MyRI;
 var int NumRewards;		// How many entries at the end of the list are killstreak rewards
+var string PlayerModelPackage;	// The player models of this package, BW's own characters, are loaded as the map starts
 
 event PostBeginPlay()
 {
@@ -20,6 +21,7 @@ event PostBeginPlay()
 		MyRI = Spawn(class'BallisticProV55.BallisticPreloadReplicationInfo');
 		MyRI.bEnableCamoLoading = bEnableCamoLoading;
 		MyRI.bEnableTextureLoading = bEnableTextureLoading;
+		PreloadPlayerModels();
 	}
 
 	SaveConfig();
@@ -40,6 +42,7 @@ function Tick(float DeltaTime)
 		return;
 
 	BuildWeaponList(PreloadList);
+	LoadOnServer(PreloadList);
 
 	// The clients wait for a count. A negative one tells them there is nothing to come.
 	if (PreloadList.Length == 0)
@@ -59,6 +62,36 @@ function Tick(float DeltaTime)
 	for (i = 0; i < PreloadList.Length; i++)
 		MyRI.CurrentName[i] = PreloadList[i];
 	MyRI.PreloadNum = PreloadList.Length;
+}
+
+// A server loaded each weapon the first time somebody was handed it, in the middle of play, and every player felt
+// it: a frame of 50 to 300 ms whenever a bot came in or back with a weapon new to the map (bots take theirs at
+// random, so it went on for minutes, and addbots handed out a whole set at once). The server loads them all here,
+// in its first moment on the map. A dedicated server has hardly any of them by then; a host or an offline game has
+// most already, and they are skipped.
+function LoadOnServer(array<string> List)
+{
+	local int i, Loaded, Failed;
+	local string S;
+
+	for (i = 0; i < List.Length; i++)
+	{
+		if (FindObject(List[i], class'Class') != None)
+			continue;
+		if (DynamicLoadObject(List[i], class'Class', true) != None)
+			Loaded++;
+		else
+		{
+			Failed++;
+			Log("Mut_BallisticPreLoad: Could not load weapon class" @ List[i]);
+		}
+	}
+
+	S = "Mut_BallisticPreLoad:" @ (List.Length - Failed) @ "of" @ List.Length @ "weapon classes ready on the server," @ Loaded @ "loaded now,"
+		@ (List.Length - Loaded - Failed) @ "were loaded already";
+	if (Failed > 0)
+		S = S $ "," @ Failed @ "could not be loaded";
+	Log(S);
 }
 
 // Build weapon list dynamically from active BW mutators, falling back to config
@@ -181,6 +214,47 @@ function BuildWeaponList(out array<string> OutList)
 	Log("Mut_BallisticPreLoad: Built weapon list from"@Source@"("$(OutList.Length - NumRewards)@"weapons) and"@NumRewards@"killstreak rewards");
 }
 
+// Whether a character's mesh is one of BW's own player models
+static function bool IsPreloadedModel(string MeshName)
+{
+	return Left(MeshName, Len(default.PlayerModelPackage) + 1) ~= (default.PlayerModelPackage $ ".");
+}
+
+// BW's player models (the characters of BWGuy.upl, where they are installed) were loaded by the first pawn that wore one,
+// in the middle of play: on the server, and on every client that saw it (some 20 ms for all seven with the files cached,
+// longer from a slow disk). The server loads their meshes now, as the map starts, and has the clients load them too,
+// with their skins.
+function PreloadPlayerModels()
+{
+	local array<xUtil.PlayerRecord> Records;
+	local int i, Num, Failed;
+	local string S;
+
+	class'xUtil'.static.GetPlayerList(Records);
+	for (i = 0; i < Records.Length; i++)
+	{
+		if (!IsPreloadedModel(Records[i].MeshName))
+			continue;
+		if (DynamicLoadObject(Records[i].MeshName, class'Mesh', true) != None)
+			Num++;
+		else
+		{
+			Failed++;
+			Log("Mut_BallisticPreLoad: Could not load player model" @ Records[i].MeshName @ "(" $ Records[i].DefaultName $ ")");
+		}
+	}
+
+	if (Num + Failed == 0)
+		return;
+	// clients are only told to load them when the server has them
+	if (Num > 0)
+		MyRI.bPreloadPlayerModels = true;
+	S = "Mut_BallisticPreLoad:" @ Num @ "of" @ (Num + Failed) @ "player models of" @ PlayerModelPackage @ "ready on the server";
+	if (Failed > 0)
+		S = S $ "," @ Failed @ "could not be loaded";
+	Log(S);
+}
+
 function AddUniqueString(out array<string> Arr, string Value)
 {
 	local int i;
@@ -201,6 +275,7 @@ defaultproperties
 	bEnablePreloading=True
 	bEnableCamoLoading=False
 	bEnableTextureLoading=False
+	PlayerModelPackage="BWGuyAnim"
     bAddToServerPackages=True
     GroupName="BallisticPro: Resource Preload"
     FriendlyName="BallisticPro: Resource Preload"
