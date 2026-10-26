@@ -41,15 +41,27 @@ var array<ProjFireModeInfo> FireModes;
 simulated function ApplyFireEffectParams(FireEffectParams params)
 {
     local ProjectileEffectParams effect_params;
+	local class<BallisticProjectile> BProjClass;
 
     super.ApplyFireEffectParams(params);
 
     effect_params = ProjectileEffectParams(params);
 
     ProjectileClass =  effect_params.ProjectileClass;
-    SpawnOffset = effect_params.SpawnOffset;    
+    SpawnOffset = effect_params.SpawnOffset;
 	default.ProjectileClass =  effect_params.ProjectileClass;
     default.SpawnOffset = effect_params.SpawnOffset;
+
+	// MaxRange and the bots' lead read the speeds from the projectile's class, where ApplyParams only puts them when
+	// a projectile of it spawns. One with no speed of its own had no range until then, so bots never fired a weapon
+	// whose fire modes were all such (the A73) until somebody else had fired one
+	BProjClass = class<BallisticProjectile>(ProjectileClass);
+	if (BProjClass != None && BProjClass.default.bApplyParams)
+	{
+		BProjClass.default.Speed = effect_params.Speed;
+		BProjClass.default.AccelSpeed = effect_params.AccelSpeed;
+		BProjClass.default.MaxSpeed = effect_params.MaxSpeed;
+	}
 }
 
 // Became complicated when acceleration came into the picture
