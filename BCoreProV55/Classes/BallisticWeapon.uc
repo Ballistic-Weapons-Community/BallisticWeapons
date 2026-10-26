@@ -207,6 +207,8 @@ var		bool						bPendingBringupTimer;
 var     int                         NetInventoryGroup;
 var     bool                        bDeferInitialSwitch, bServerDeferInitialSwitch;
 var     float                       NetHurryEnd;            // Server: until then this new weapon and its ammunition go ahead of other traffic (StartNetHurry)
+var     bool                        bServerScopeChange;     // Client: ClientDisplaceAim is running (SetScopeView)
+var     bool                        bScopeViewUnsent;       // Client: the server is told of the scope view in the next tick (ClientDisplaceAim)
 //-----------------------------------------------------------------------------
 // AI
 //-----------------------------------------------------------------------------
@@ -1379,6 +1381,12 @@ simulated event Tick(float DT)
 	if (NetHurryEnd > 0 && Role == ROLE_Authority)
 		TickNetHurry();
 
+	if (bScopeViewUnsent)
+	{
+		bScopeViewUnsent = false;
+		ServerSetScopeView(bScopeView);
+	}
+
 	if (Instigator != None && Instigator.Weapon == self && OwnerLastVehicle != Instigator.DrivenVehicle )
 	{
 		if (Instigator.DrivenVehicle != None)
@@ -2163,8 +2171,14 @@ simulated final function SetScopeView(bool bNewValue)
 	if (bScopeView == bNewValue)
 		return;
 
+	// A change made while this machine handles ClientDisplaceAim is sent from the next tick (see there)
 	if (Level.NetMode == NM_Client)
-		ServerSetScopeView(bNewValue);
+	{
+		if (bServerScopeChange)
+			bScopeViewUnsent = true;
+		else
+			ServerSetScopeView(bNewValue);
+	}
 
 	if (Role == ROLE_Authority && ThirdPersonActor != None)
 		BallisticAttachment(ThirdPersonActor).SetAimed(bNewValue);
@@ -5648,11 +5662,20 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	AimComponent.ApplyDamageFactor(Damage);
 }
 
+// The server has displaced the aim already and ended the scope view on its side (AimComponent.DisplaceAim). It sends this
+// in the packet of the hit, and when the hit kills, the same packet goes on to throw the weapon away and close its channel.
+// A machine acknowledges a packet before it reads it, so a call this machine sends on the weapon while it reads that
+// packet reaches a server that has already deleted the channel. The engine refuses it as a channel opened by a client,
+// and that refusal leaves the server's next channel on the same slot unable to reach this machine: the weapon handed out
+// first in the next life (or the next pawn, or whatever came next) never arrived, and nothing was logged (#474).
+// So the scope view going down is sent from the next tick, which a weapon thrown away in this packet does not get
 final simulated final function ClientDisplaceAim(float Duration)
 {
 	if (Level.NetMode != NM_Client)
 		return;
+	bServerScopeChange = true;
 	AimComponent.DisplaceAim(Duration);
+	bServerScopeChange = false;
 }
 
 simulated function ClientPlayerDamaged(int Damage)
