@@ -18,6 +18,7 @@ static function class<Effects> GetPawnDamageEffect( vector HitLocation, float Da
 
 defaultproperties
 {
+     bHeaddie=True
      FlashF2=0.300000
      FlashV2=(Y=2000.000000)
      DeathStrings(0)="%o took %k's tranquilizer dart in the face."

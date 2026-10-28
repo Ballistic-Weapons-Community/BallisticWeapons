@@ -10,6 +10,7 @@ class DT_SkrithStaffHead extends DT_BWMiscDamage;
 
 defaultproperties
 {
+     bHeaddie=True
      DeathStrings(0)="%o failed to see %k's plasma bolt to the face."
      DeathStrings(1)="%k made a jack-o-lantern with %o's skull and a plasma bolt."
      DeathStrings(2)="%o got a bolt to the bonce by %k's Shillelagh."

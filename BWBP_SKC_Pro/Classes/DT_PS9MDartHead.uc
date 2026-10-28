@@ -8,6 +8,7 @@ class DT_PS9MDartHead extends DT_BWMiscDamage;
 
 defaultproperties
 {
+     bHeaddie=True
      DeathStrings(0)="%o's brain had a bad trip on %k's neurotoxin."
      DeathStrings(1)="%k gave %o an oral dose of PS9m neurotoxin."
      DeathStrings(2)="%k's PS9m toxin went to work on %o's brain."

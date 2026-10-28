@@ -10,6 +10,7 @@ class DTAY90SkrithHead extends DT_BWMiscDamage;
 
 defaultproperties
 {
+     bHeaddie=True
      DeathStrings(0)="%k's Vulture went straight for %o's eyes and plucked them out."
      DeathStrings(1)="%o's face was ripped off due to %k's boltcaster."
      DeathStrings(2)="%k turned %o's head into dust with an explosive headshot."
