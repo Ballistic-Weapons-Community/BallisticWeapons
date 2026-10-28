@@ -154,6 +154,9 @@ var() globalconfig	byte			MaxInventoryCapacity;   // total InventorySize player 
 // END GLOBALLY CONFIGURABLE SETTINGS
 //=============================================================================
 
+var	float						ThirdPersonCrossTime;			// When ThirdPersonCrossEnd was last worked out
+var	vector						ThirdPersonCrossEnd;			// Where a shot fired now would land (see ThirdPersonCrosshair)
+
 //=============================================================================
 // CONFIGURABLE SETTINGS
 //=============================================================================
@@ -6170,9 +6173,21 @@ simulated function DrawGraphicalCrosshairs(Canvas C)
 //Draws simple crosshairs to accurately describe hipfire at any FOV and resolution.
 simulated function DrawCrosshairs(Canvas C)
 {
+	local float X, Y, OldX, OldY;
+	local bool bMoved;
+
 	// Draw weapon specific Crosshairs
 	if (PlayerController(Instigator.Controller) == None || (Instigator.IsFirstPerson() && bScopeView))
 		return;
+
+	// in third person round where the shot will land: the crosshairs are drawn round the middle of the canvas
+	if (CrosshairMode != CHM_Unreal && ThirdPersonCrosshair(C, X, Y))
+	{
+		OldX = C.OrgX;
+		OldY = C.OrgY;
+		C.SetOrigin(X - C.ClipX / 2, Y - C.ClipY / 2);
+		bMoved = true;
+	}
 
 	switch (CrosshairMode)
 	{
@@ -6185,6 +6200,37 @@ simulated function DrawCrosshairs(Canvas C)
 		case CHM_Unreal:
 			break;
 	}
+
+	if (bMoved)
+		C.SetOrigin(OldX, OldY);
+}
+
+// In third person the camera is off the line of fire, so the crosshair belongs where a shot fired now would land: the
+// line of fire from the eyes, with the gun's aim and recoil, to what it meets first. Its place on the screen (X, Y), if
+// the player's settings want it there (BC_ThirdPersonSettings). The HUD's own crosshair uses it too (BallisticPawn)
+simulated final function bool ThirdPersonCrosshair(Canvas C, out float X, out float Y)
+{
+	local PlayerController PC;
+	local vector Start, HitLocation, HitNormal, P;
+
+	if (Instigator == None || !class'BC_ThirdPersonSettings'.default.bAimCrosshair)
+		return false;
+	PC = PlayerController(Instigator.Controller);
+	if (PC == None || !PC.bBehindView || PC.ViewTarget != Instigator)
+		return false;
+
+	if (ThirdPersonCrossTime != Level.TimeSeconds)
+	{
+		ThirdPersonCrossTime = Level.TimeSeconds;
+		Start = Instigator.Location + Instigator.EyePosition();
+		ThirdPersonCrossEnd = Start + 20000 * (Vector(GetFireRot()) >> GetPlayerAim());
+		if (Instigator.Trace(HitLocation, HitNormal, ThirdPersonCrossEnd, Start, true) != None)
+			ThirdPersonCrossEnd = HitLocation;
+	}
+	P = C.WorldToScreen(ThirdPersonCrossEnd);
+	X = P.X;
+	Y = P.Y;
+	return true;
 }
 
 // End render stuff ----------------------------------------------------------------------------------------------------

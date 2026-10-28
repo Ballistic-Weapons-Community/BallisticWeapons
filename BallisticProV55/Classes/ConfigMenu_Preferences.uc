@@ -17,6 +17,7 @@ var() localized string		GameplayTabLabel,GameplayTabHint;
 var() localized string		VisualTabLabel,VisualTabHint;
 var() localized string		BloodTabLabel,BloodTabHint;
 var() localized string		CrossTabLabel,CrossTabHint;
+var() localized string		ThirdPersonTabLabel,ThirdPersonTabHint;
 
 var() localized string		DetailSettings[9];
 
@@ -27,6 +28,7 @@ function AddTabs()
 	c_Tabs.AddTab(VisualTabLabel,"BallisticProV55.ConfigTab_VisualPrefs",,VisualTabHint);
 	c_Tabs.AddTab(BloodTabLabel,"BallisticProV55.ConfigTab_Blood",,BloodTabHint);
 	c_Tabs.AddTab(CrossTabLabel,"BallisticProV55.ConfigTab_Crosshairs",,CrossTabHint);
+	c_Tabs.AddTab(ThirdPersonTabLabel,"BallisticProV55.ConfigTab_ThirdPerson",,ThirdPersonTabHint);
 }
 
 final function string GetDisplayString(string ConfigString)
@@ -71,6 +73,9 @@ defaultproperties
 	 
      CrossTabLabel="Graphical Crosshairs"
      CrossTabHint="Configure the graphical crosshairs."
+
+     ThirdPersonTabLabel="Third Person"
+     ThirdPersonTabHint="Configure the third person camera."
 
 	 DetailSettings(0)="UltraLow"
      DetailSettings(1)="VeryLow"

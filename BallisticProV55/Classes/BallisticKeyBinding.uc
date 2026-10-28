@@ -20,4 +20,6 @@ defaultproperties
      KeyData(10)=(Alias="CockGun",KeyLabel="Cock Weapon (optional)")
      KeyData(11)=(Alias="BWStats",KeyLabel="Ballistic Weapons Stats/Manual")
      KeyData(12)=(Alias="Ballistic",KeyLabel="Ballistic Preferences Menu")
+     KeyData(13)=(Alias="ToggleBehindView",KeyLabel="Third Person")
+     KeyData(14)=(Alias="SwapShoulder",KeyLabel="Swap Shoulder (third person)")
 }
