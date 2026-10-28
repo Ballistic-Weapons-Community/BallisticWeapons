@@ -74,7 +74,7 @@ defaultproperties
 		Caption="Third person camera"
 		OnCreateComponent=ch_ThirdPersonCheck.InternalOnCreateComponent
 		IniOption="@Internal"
-		Hint="Play on foot in third person. The Third Person key switches it in the game (Controls > Ballistic Weapons Keybinds), and your choice is kept. Online, the server has to allow behind view."
+		Hint="Play on foot in third person. The behind view key (Toggle BehindView in Controls, F4 unless changed) switches it in the game, and your choice is kept. Online, the server has to allow behind view."
 		WinTop=0.100000
 		WinLeft=0.250000
 		WinHeight=0.040000
@@ -214,7 +214,7 @@ defaultproperties
 	b_Close=GUIButton'CloseButton'
 
 	Begin Object Class=GUILabel Name=KeysLabel
-		Caption="Keys: Third Person and Swap Shoulder, under Controls > Ballistic Weapons Keybinds. In a vehicle the Third Person key works as before."
+		Caption="Keys: Toggle BehindView (F4 unless changed) switches the camera; in a vehicle it works as before. Swap Shoulder is under Controls > Ballistic Weapons Keybinds."
 		TextColor=(B=200,G=200,R=200)
 		bMultiLine=True
 		WinTop=0.660000

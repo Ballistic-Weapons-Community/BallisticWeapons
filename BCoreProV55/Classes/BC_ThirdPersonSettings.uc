@@ -10,7 +10,7 @@
 class BC_ThirdPersonSettings extends Object
 	config(User);
 
-var config bool		bThirdPerson;			// Third person on foot. The Third Person key switches it
+var config bool		bThirdPerson;			// Third person on foot. The behind view key (ToggleBehindView) switches it
 var config float	Distance;				// How far behind the eyes the camera sits
 var config float	Height;					// How far above the eyes
 var config float	Side;					// How far to the right of them, to the left below 0. Swap Shoulder flips it

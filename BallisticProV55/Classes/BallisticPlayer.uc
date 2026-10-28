@@ -236,7 +236,7 @@ function ClientBehindViewRefused()
 	ClientMessage(ThirdPersonRefusedText, 'CriticalEvent');
 }
 
-// The Third Person key (ToggleBehindView) switches the camera on foot for good, kept with the settings, also while waiting
+// The behind view key (ToggleBehindView) switches the camera on foot for good, kept with the settings, also while waiting
 // to respawn (when it moves the camera round the body as well). In a vehicle, for a spectator and when looking through
 // something else (a guided rocket) it works as it did
 exec function ToggleBehindView()
