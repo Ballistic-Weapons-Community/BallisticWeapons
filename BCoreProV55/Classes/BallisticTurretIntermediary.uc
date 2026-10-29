@@ -14,6 +14,7 @@ var byte CamoIndex;
 var int TurretAmmoAmount;
 var int WeaponMode;
 var int WeaponData;
+var bool bBroughtUp;		// the gun has been put in the hands
 
 replication
 {
@@ -67,7 +68,15 @@ simulated function Timer()
 					BW.SetTurretData(WeaponData);
 				}
 			}
-			
+
+			// A listen server's own player has the gun now and never acknowledges it: this timer destroyed the gun
+			// and gave a new one every second, magazine and ammo back to what they were at the undeploy
+			if (myPawn.IsLocallyControlled())
+			{
+				BringUpGun();
+				Destroy();
+				return;
+			}
 			ClientConfirmWeaponReceived();
 		}
 		
@@ -75,7 +84,20 @@ simulated function Timer()
 	}
 	
 	else	if (Controller(Owner).Pawn.FindInventoryType(GunClass) != None)
+	{
+		BringUpGun();
 		ServerAcknowledgeWepReceive();
+	}
+}
+
+// The undeployed gun goes into the hands. GiveTo switches only to a weapon that rates higher than the one held, and
+// never with switching on pickup off, so it often stayed away and the player was left holding something else
+simulated function BringUpGun()
+{
+	if (bBroughtUp || Controller(Owner) == None || Controller(Owner).Pawn == None)
+		return;
+	bBroughtUp = true;
+	Controller(Owner).ClientSetWeapon(GunClass);
 }
 
 simulated function ClientConfirmWeaponReceived()
