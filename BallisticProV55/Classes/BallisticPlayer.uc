@@ -36,12 +36,18 @@ var	Sound								WeapUIChange;		// Sound when moving selection to another group
 var 	int								InventoryLength;	// Number of items last in the inventory chain. Use to see if inventory changes
 
 var	globalconfig	float				ZoomTimeMod;		//A modifier on how fast zoom changes.
-var 	globalconfig 	bool			bOldBehindView;
-
-var Rotator								BehindViewAimRotator;
+var 	globalconfig 	bool			bOldBehindView;		// Behind view is UT's own: straight behind, aims the way the body faces
 
 var globalconfig		float			SavedBehindDistFactor;
 var float								BehindDistFactor;
+
+// Third person camera on foot (CalcThirdPersonView). Its settings are in BC_ThirdPersonSettings
+var	float								ThirdPersonFocus;				// The camera turns in to meet the line of aim this far ahead
+var	vector								TPAnchor;						// The eyes, as the camera follows them
+var	float								TPSide, TPDist, TPLastTime;		// Shoulder offset and free distance as they are now, eased
+var	bool								bTPValid;						// The above are under way (false: start afresh)
+var	bool								bTPRefused;						// The server does not allow behind view: asked again only after the key
+var() localized string					ThirdPersonRefusedText;
 var() localized string					WeapUIHelp[4];
 
 var 	float							IconPulsePhase;		// Stuff for pulsing selected icon
@@ -82,7 +88,9 @@ replication
 	reliable if (Role == ROLE_Authority)
 		LastLoadoutClasses;
 	reliable if (Role < ROLE_Authority)
-		ServerCamDist, ServerReloaded, ServerSetSprint;
+		ServerCamDist, ServerReloaded, ServerSetSprint, ServerSetBehindView;
+	reliable if (Role == ROLE_Authority)
+		ClientBehindViewRefused;
     unreliable if( Role==ROLE_Authority )
         ClientDmgFlash;
 }
@@ -130,6 +138,9 @@ function ClientRestart(Pawn NewPawn)
 	// The weapon selector does not outlive the pawn it was opened for: it came back with the respawn and took the first shot
 	bIsInWeaponUI = false;
 
+	// the third person camera starts afresh behind the new body
+	bTPValid = false;
+
 	// ChangeCamDist saves the distance, but nothing put it to use again on the next map
 	if (SavedBehindDistFactor > 0 && BehindDistFactor != SavedBehindDistFactor)
 	{
@@ -155,6 +166,98 @@ exec simulated function ChangeCamDist(float F)
 function ServerCamDist(float F)
 {
 	BehindDistFactor = F;
+}
+
+//===========================================================================
+// Third person on foot
+//
+// Behind view on foot follows the player's choice (BC_ThirdPersonSettings),
+// and first person while the sights are up if they like. Each change is
+// made here and told to the server, which has to know: BW's aim and recoil
+// work differently in behind view (AimComponent, RecoilComponent).
+//===========================================================================
+
+// The view the player wants on foot now
+simulated function bool WantsThirdPerson()
+{
+	local BallisticWeapon BW;
+
+	if (!class'BC_ThirdPersonSettings'.default.bThirdPerson || bTPRefused)
+		return false;
+	BW = BallisticWeapon(Pawn.Weapon);
+	return !class'BC_ThirdPersonSettings'.default.bSightsFirstPerson || BW == None || (!BW.bScopeView && BW.SightingState == SS_None);
+}
+
+event PlayerTick(float DeltaTime)
+{
+	Super.PlayerTick(DeltaTime);
+
+	if (!bOldBehindView && IsLocalViewer() && Pawn != None && ViewTarget == Pawn && Vehicle(Pawn) == None && Pawn.Health > 0
+		&& bBehindView != WantsThirdPerson())
+		SetFootBehindView(!bBehindView);
+}
+
+simulated function SetFootBehindView(bool B)
+{
+	bBehindView = B;
+	bTPValid = false;
+	ViewTarget.POVChanged(self, true);
+	if (Role < ROLE_Authority)
+		ServerSetBehindView(B);
+	else if (B && !BehindViewAllowed())
+		ClientBehindViewRefused();
+}
+
+function ServerSetBehindView(bool B)
+{
+	if (B && !BehindViewAllowed())
+	{
+		bBehindView = false;
+		ClientBehindViewRefused();
+		return;
+	}
+	bBehindView = B;
+}
+
+// The same as the engine's own behind view commands ask
+function bool BehindViewAllowed()
+{
+	return Level.NetMode == NM_Standalone || bDemoOwner || Level.Game.bAllowBehindView || PlayerReplicationInfo.bAdmin || IsA('Admin');
+}
+
+function ClientBehindViewRefused()
+{
+	bTPRefused = true;
+	if (bBehindView && Pawn != None && ViewTarget == Pawn)
+	{
+		bBehindView = false;
+		ViewTarget.POVChanged(self, true);
+	}
+	ClientMessage(ThirdPersonRefusedText, 'CriticalEvent');
+}
+
+// The behind view key (ToggleBehindView) switches the camera on foot for good, kept with the settings, also while waiting
+// to respawn (when it moves the camera round the body as well). In a vehicle, for a spectator and when looking through
+// something else (a guided rocket) it works as it did
+exec function ToggleBehindView()
+{
+	if (bOldBehindView || Vehicle(Pawn) != None || (Pawn != None && ViewTarget != Pawn) || PlayerReplicationInfo == None
+		|| PlayerReplicationInfo.bOnlySpectator)
+	{
+		Super.ToggleBehindView();
+		return;
+	}
+	class'BC_ThirdPersonSettings'.default.bThirdPerson = !class'BC_ThirdPersonSettings'.default.bThirdPerson;
+	class'BC_ThirdPersonSettings'.static.StaticSaveConfig();
+	bTPRefused = false;
+	if (Pawn == None)
+		Super.ToggleBehindView();
+}
+
+exec function SwapShoulder()
+{
+	class'BC_ThirdPersonSettings'.default.Side = -class'BC_ThirdPersonSettings'.default.Side;
+	class'BC_ThirdPersonSettings'.static.StaticSaveConfig();
 }
 
 function WeaponShakeView
@@ -887,92 +990,89 @@ simulated event PlayerCalcView(out actor ViewActor, out vector CameraLocation, o
 }
 
 //===========================================================================
-// Behind View support
+// Third person camera
 //
-// Over the shoulder
+// Shots leave the eyes where the player looks, as in first person. The camera
+// sits behind and beside the eyes and turns in to meet the line of aim
+// ThirdPersonFocus ahead; the crosshair is drawn where the shot will land
+// (BallisticWeapon.ThirdPersonCrosshair).
 //===========================================================================
 function CalcBehindView(out vector CameraLocation, out rotator CameraRotation, float Dist)
 {
-    local vector View,HitLocation,HitNormal;
-    local float ViewDist,RealDist;
-    local vector globalX,globalY,globalZ;
-    local vector localX,localY,localZ;
-	
-	if (bOldBehindView || ViewTarget != Pawn || !Pawn.bProjTarget)
+	if (bOldBehindView || ViewTarget != Pawn || Pawn == None || !Pawn.bProjTarget || Vehicle(Pawn) != None)
 	{
 		Super.CalcBehindView(CameraLocation, CameraRotation, Dist);
 		return;
 	}
+	CalcThirdPersonView(CameraLocation, CameraRotation);
+}
 
-    CameraRotation = Rotation;
-    CameraRotation.Roll = 0;
-	
-	GetAxes(CameraRotation, localX, localY, localZ);
-	
-	CameraLocation.Z += 22;
-	CameraLocation += localY * 1.8 * CameraDist;// * BehindDistFactor;
-	CameraLocation += localZ * 3.4 * CameraDist;// * BehindDistFactor;
+simulated function CalcThirdPersonView(out vector CameraLocation, out rotator CameraRotation)
+{
+	local vector Eye, WantedLoc, Dir, HitLocation, HitNormal;
+	local rotator R;
+	local float DT, Want, Free;
 
-    // add view rotation offset to cameraview (amb)
-    CameraRotation += CameraDeltaRotation;
+	DT = FClamp(Level.TimeSeconds - TPLastTime, 0, 0.1);
+	TPLastTime = Level.TimeSeconds;
 
-    View = vect(1,0,0) >> CameraRotation;
-
-    // add view radius offset to camera location and move viewpoint up from origin (amb)
-    RealDist = Dist;
-    Dist += CameraDeltaRad;
-
-	Dist *=  BehindDistFactor;
-    if( Trace( HitLocation, HitNormal, CameraLocation - Dist * vector(CameraRotation), CameraLocation,false,vect(10,10,10) ) != None )
-        ViewDist = FMin( (CameraLocation - HitLocation) Dot View, Dist );
-    else
-        ViewDist = Dist;
-
-    if ( !bBlockCloseCamera || !bValidBehindCamera || (ViewDist > 10 + FMax(ViewTarget.CollisionRadius, ViewTarget.CollisionHeight)) )
+	// the eyes without the walk bob; the eye height eases through crouching and steps by itself
+	Eye = Pawn.Location + Pawn.EyeHeight * vect(0,0,1);
+	if (!bTPValid)
 	{
-		bValidBehindCamera = true;
-		OldCameraLoc = CameraLocation - ViewDist * View;
-		OldCameraRot = CameraRotation;
+		TPAnchor = Eye;
+		TPSide = class'BC_ThirdPersonSettings'.default.Side;
 	}
 	else
-		SetRotation(OldCameraRot);
+	{
+		// smoothing: the camera follows the eyes a little late, never more than 32 units, and never through a wall
+		if (class'BC_ThirdPersonSettings'.default.Smoothing > 0)
+		{
+			TPAnchor += (Eye - TPAnchor) * (1 - Exp(-DT / (0.12 * class'BC_ThirdPersonSettings'.default.Smoothing)));
+			if (VSize(TPAnchor - Eye) > 32)
+				TPAnchor = Eye + 32 * Normal(TPAnchor - Eye);
+			if (Trace(HitLocation, HitNormal, TPAnchor, Eye, false, vect(10,10,10)) != None)
+				TPAnchor = HitLocation;
+		}
+		else
+			TPAnchor = Eye;
+		// a change of shoulder takes a moment
+		TPSide += FClamp(class'BC_ThirdPersonSettings'.default.Side - TPSide, -320 * DT, 320 * DT);
+	}
 
-    CameraLocation = OldCameraLoc;
-    CameraRotation = OldCameraRot;
+	// back along the line of sight, so looking down lifts the camera; to the side and up on the level
+	R.Yaw = Rotation.Yaw + 16384;
+	WantedLoc = TPAnchor - class'BC_ThirdPersonSettings'.default.Distance * BehindDistFactor * vector(Rotation) + TPSide * vector(R)
+		+ class'BC_ThirdPersonSettings'.default.Height * vect(0,0,1);
 
-    // add view swivel rotation to cameraview (amb)
-    GetAxes(CameraSwivel,globalX,globalY,globalZ);
-    localX = globalX >> CameraRotation;
-    localY = globalY >> CameraRotation;
-    localZ = globalZ >> CameraRotation;
-    CameraRotation = OrthoRotation(localX,localY,localZ);
+	// a wall in the way pulls the camera in at once; it goes back out more slowly
+	Want = VSize(WantedLoc - TPAnchor);
+	if (Want < 1)
+		CameraLocation = TPAnchor;
+	else
+	{
+		Dir = (WantedLoc - TPAnchor) / Want;
+		if (Trace(HitLocation, HitNormal, WantedLoc, TPAnchor, false, vect(10,10,10)) != None)
+			Free = VSize(HitLocation - TPAnchor);
+		else
+			Free = Want;
+		if (!bTPValid || Free < TPDist)
+			TPDist = Free;
+		else
+			TPDist = FMin(Free, TPDist + 600 * DT);
+		CameraLocation = TPAnchor + TPDist * Dir;
+	}
+	bTPValid = true;
+
+	CameraRotation = rotator(Eye + ThirdPersonFocus * vector(Rotation) - CameraLocation);
 }
 
-//Free aim in behind view.
+// Behind view on foot aims where the player looks, as first person does; UT's own and a vehicle's the way the body faces
 simulated function rotator GetViewRotation()
 {
-	if (Pawn != None)
-	{	
-		if ( bBehindView )
-		{
-			if (bOldBehindView || Vehicle(Pawn) != None) 
-				return Pawn.Rotation;
-			return TraceView();	
-		}
-	}
-    return Rotation;
-}
-
-simulated function rotator TraceView()
-{
-	local Vector HitLocation, HitNormal;
-	
-	if ( LastPlayerCalcView == Level.TimeSeconds && CalcViewActor != None && CalcViewActor.Location == CalcViewActorLocation )
-		return BehindViewAimRotator;
-	if (Trace( HitLocation, HitNormal, 15000 * vector(OldCameraRot) + OldCameraLoc, OldCameraLoc,false) != None)
-		BehindViewAimRotator = Rotator(HitLocation - (Pawn.Location + Pawn.EyePosition()));
-	else BehindViewAimRotator = Rotator(15000 * vector(OldCameraRot) + OldCameraLoc - (Pawn.Location + Pawn.EyePosition()));
-	return BehindViewAimRotator;
+	if (Pawn != None && bBehindView && (bOldBehindView || Vehicle(Pawn) != None))
+		return Pawn.Rotation;
+	return Rotation;
 }
 
 function rotator AdjustAim(FireProperties FiredAmmunition, vector projStart, int aimerror)
@@ -1474,10 +1574,7 @@ state PlayerWalking
         else if ( bPressedJump )
 			Pawn.DoJump(bUpdating);
 
-		if (!bBehindView)
-			Pawn.SetViewPitch(Rotation.Pitch);
-		else
-			Pawn.SetViewPitch(BehindViewAimRotator.Pitch);
+		Pawn.SetViewPitch(Rotation.Pitch);
 
         if ( Pawn.Physics != PHYS_Falling )
         {
@@ -2007,7 +2104,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
     if(Pawn == None)
         return;
 	Canvas.SetDrawColor(255, 255, 255);
-	Canvas.DrawText("Rotation:"@Rotation@"Pawn Rotation:"@Pawn.Rotation@"Smooth View Yaw:"@Pawn.SmoothViewYaw@"Aim rotator:"@BehindViewAimRotator);
+	Canvas.DrawText("Rotation:"@Rotation@"Pawn Rotation:"@Pawn.Rotation@"Smooth View Yaw:"@Pawn.SmoothViewYaw);
 	YPos += YL;
 	Canvas.SetPos(4, YPos);
 }
@@ -2141,6 +2238,8 @@ defaultproperties
     ZoomTimeMod=1.500000
     SavedBehindDistFactor=1.000000
     BehindDistFactor=1.000000
+    ThirdPersonFocus=1200
+    ThirdPersonRefusedText="This server does not allow third person."
     WeapUIHelp(0)="Fire to confirm selection."
     WeapUIHelp(1)="Altfire to exit UI."
     WeapUIHelp(2)="Next and Previous Weapon to cycle."

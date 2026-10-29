@@ -2720,6 +2720,34 @@ simulated function DrawHUD(Canvas C)
 		BallisticPlayer(Controller).DrawScreenFlash(C);
 }
 
+// The HUD asks here for its own crosshair (bSpecialCrosshair), so that the UT2004 crosshair type goes where the shot will
+// land in third person, as BW's own crosshairs do (BallisticWeapon.ThirdPersonCrosshair); otherwise the HUD draws it as ever
+simulated function SpecialDrawCrosshair(Canvas C)
+{
+	local PlayerController PC;
+	local float X, Y, OldX, OldY;
+	local bool bMoved;
+
+	PC = Level.GetLocalPlayerController();
+	if (PC == None || PC.MyHud == None)
+		return;
+
+	if (BallisticWeapon(Weapon) != None && BallisticWeapon(Weapon).ThirdPersonCrosshair(C, X, Y))
+	{
+		OldX = C.OrgX;
+		OldY = C.OrgY;
+		C.SetOrigin(X - C.ClipX / 2, Y - C.ClipY / 2);
+		bMoved = true;
+	}
+
+	bSpecialCrosshair = false;
+	PC.MyHud.DrawCrosshair(C);
+	bSpecialCrosshair = true;
+
+	if (bMoved)
+		C.SetOrigin(OldX, OldY);
+}
+
 simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
 {
 	//Exclude Matrix because it's cheap. Treat incoming Jakobs as the default character.
@@ -4667,6 +4695,7 @@ simulated function LoopSlideAnim()
 
 defaultproperties
 {
+	bSpecialCrosshair=True
 	bAlwaysRelevant=True
 	bCanDodge=True
 	bCanDoubleJump=True
