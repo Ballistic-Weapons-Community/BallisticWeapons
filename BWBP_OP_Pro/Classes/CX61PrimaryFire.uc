@@ -83,7 +83,8 @@ simulated state Flechette
 	function SpawnProjectile (Vector Start, Rotator Dir)
 	{
 		Proj = Spawn (ProjectileClass,,, Start, Dir);
-		Proj.Instigator = Instigator;
+		if (Proj != None)
+			Proj.Instigator = Instigator;
 	}
 }
 

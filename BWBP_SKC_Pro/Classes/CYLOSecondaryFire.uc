@@ -264,7 +264,8 @@ simulated state HESlug
 	function SpawnProjectile (Vector Start, Rotator Dir)
 	{
 		Proj = Spawn (ProjectileClass,,, Start, Dir);
-		Proj.Instigator = Instigator;
+		if (Proj != None)
+			Proj.Instigator = Instigator;
 	}
 }
 

@@ -1255,7 +1255,9 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	// End of reloading, either cock the gun or go to idle
 	if (ReloadState == RS_PostClipIn || ReloadState == RS_EndShovel)
 	{
-		if (bNeedCock && MagAmmo > 0)
+		// A gun that does not cock (bNonCocking) finishes here: CommonCockGun does nothing for it, and the reload waited
+		// forever, e.g. a CoachGun picked up empty in Pro, whose layouts draw it with bNeedCock
+		if (bNeedCock && MagAmmo > 0 && !bNonCocking)
 			CommonCockGun();
 		else
 		{

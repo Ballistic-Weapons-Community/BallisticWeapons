@@ -15,7 +15,8 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	local vector EnemyDir;
 
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
-	Proj.Instigator = Instigator;
+	if (Proj != None)
+		Proj.Instigator = Instigator;
 
 	if (BallisticKHandGrenadeProjectile(Proj) != None)
 	{

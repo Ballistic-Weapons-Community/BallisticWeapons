@@ -387,15 +387,25 @@ simulated function bool CanReload ()
 
 exec simulated function Reload (optional byte i)
 {
+	local bool bMine, bOther;
+
 	if (bUseDualReload && OtherGun != None)
 	{
-		if (IsMaster() && (!CanReload() || !OtherGun.CanReload() || ClientState != WS_ReadyToFire || OtherGun.ClientState != WS_ReadyToFire) )
-			return;
-			
-		Super.Reload(i);
-		
 		if (IsMaster())
-			OtherGun.Reload(i);
+		{
+			if (ClientState != WS_ReadyToFire || OtherGun.ClientState != WS_ReadyToFire)
+				return;
+			// Both guns at once, or the one that can when the other is full: a full gun used to stop both, so a pair
+			// that had fired one shot could not be reloaded. Both asked first: CanReload is false while the other gun reloads
+			bMine = CanReload();
+			bOther = OtherGun.CanReload();
+			if (bMine)
+				Super.Reload(i);
+			if (bOther)
+				OtherGun.Reload(i);
+			return;
+		}
+		Super.Reload(i);
 	}
 	else
 	{
@@ -1562,6 +1572,9 @@ function DropFrom(vector StartLocation)
 
 	if (IsMaster()/* && OtherGun.bCanThrow*/)
 	{
+		// the gun in the other hand goes, thrown as this one would be: with no speed of its own it fell at the
+		// player's feet and was picked straight up again
+		OtherGun.Velocity = Velocity;
 		OtherGun.DropFrom(StartLocation);
 		if (Instigator.Health > 0)
 			return;
