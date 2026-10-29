@@ -777,7 +777,6 @@ exec function SetWeapon(Weapon NewWeapon)
 		Pawn.ChangedWeapon();
 }
 
-// Subclaseed to switch to next best weapon when already holding best weapon
 // A dual wielder throws the gun in the other hand and keeps the one in hand (BallisticHandgun.DropFrom); the engine's
 // version then switched to the best weapon as if the hands were empty
 function ServerThrowWeapon()
@@ -794,6 +793,7 @@ function ServerThrowWeapon()
 	Super.ServerThrowWeapon();
 }
 
+// Subclaseed to switch to next best weapon when already holding best weapon
 exec function SwitchToBestWeapon()
 {
 	local float rating;
