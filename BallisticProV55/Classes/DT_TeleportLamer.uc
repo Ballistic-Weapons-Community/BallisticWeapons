@@ -27,11 +27,11 @@ static function string SuicideMessage(PlayerReplicationInfo Victim)
 	{
 			return "%o [Teleport Camper Suicide]";
 	}
-	if (Victim.bIsFemale && default.FemaleSuicides.Length < 1)
+	if (Victim != None && Victim.bIsFemale && default.FemaleSuicides.Length < 1)
 		return default.FemaleSuicide;
 	if (default.MaleSuicides.Length < 1)
 		return default.MaleSuicide;
-	if (Victim.bIsFemale)
+	if (Victim != None && Victim.bIsFemale)
 		return default.FemaleSuicides[Rand(default.FemaleSuicides.Length)];
 	return default.MaleSuicides[Rand(default.MaleSuicides.Length)];
 }
