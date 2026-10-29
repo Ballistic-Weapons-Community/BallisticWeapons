@@ -1572,6 +1572,9 @@ function DropFrom(vector StartLocation)
 
 	if (IsMaster()/* && OtherGun.bCanThrow*/)
 	{
+		// the gun in the other hand goes, thrown as this one would be: with no speed of its own it fell at the
+		// player's feet and was picked straight up again
+		OtherGun.Velocity = Velocity;
 		OtherGun.DropFrom(StartLocation);
 		if (Instigator.Health > 0)
 			return;
