@@ -179,7 +179,7 @@ simulated state ElektroShot
 			DoTrace(StartTrace, R);
 		}
 
-		if (Level.NetMode == NM_DedicatedServer)
+		if (Level.NetMode == NM_DedicatedServer && BW != None)
 			BW.RestoreCollisions();
 
 		ApplyHits();

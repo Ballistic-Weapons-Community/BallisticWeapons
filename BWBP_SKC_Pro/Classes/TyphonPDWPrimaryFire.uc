@@ -134,10 +134,13 @@ function DoFireEffect()
 		Aim = GetFireAim(StartTrace);
 		Aim = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, Aim);
+		// A kill can get the shooter removed (a bot the match has too many of), which destroys the weapon
+		if (BW == None)
+			return;
 		ApplyRecoil();
 	}
 
-    if (Level.NetMode == NM_DedicatedServer)
+    if (Level.NetMode == NM_DedicatedServer && BW != None)
         BW.RestoreCollisions();
 
 	SetTimer(FMin(0.1, FireRate/2), false);
