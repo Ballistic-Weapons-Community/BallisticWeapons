@@ -370,7 +370,8 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	// End of reloading, either cock the gun or go to idle
 	if (ReloadState == RS_PostClipIn || ReloadState == RS_EndShovel)
 	{
-		if (bNeedCock && MagAmmo > 0)
+		// a gun that does not cock finishes here (see BallisticWeapon.AnimEnded)
+		if (bNeedCock && MagAmmo > 0 && !bNonCocking)
 			CommonCockGun();
 		else
 		{
