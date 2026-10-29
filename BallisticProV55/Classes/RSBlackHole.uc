@@ -15,6 +15,7 @@ var float Charge;
 var float PreviousCharge;
 var bool  bExploded;
 var bool InitScaled;
+var int   CreatorTeam;	// team of the player who made it, kept here: their body can be gone before the black hole is
 
 replication
 {
@@ -36,6 +37,13 @@ simulated event PostNetReceive()
 simulated event PostNetBeginPlay()
 {
 	super.PostBeginPlay();
+
+	if (Role == ROLE_Authority)
+	{
+		CreatorTeam = 255;
+		if (Instigator != None)
+			CreatorTeam = Instigator.GetTeamNum();
+	}
 
 	SetTimer(0.1, true);
 	PreviousCharge = Charge;
@@ -107,7 +115,7 @@ simulated event Timer()
 	{
 		if (i >= Touching.length)
 			continue;
-		if (Touching[i] == None || !Touching[i].bCanBeDamaged || (Pawn(Touching[i]) != None && Instigator.GetTeamNum() != 255 && Pawn(Touching[i]).GetTeamNum() == Instigator.GetTeamNum()))
+		if (Touching[i] == None || !Touching[i].bCanBeDamaged || (Pawn(Touching[i]) != None && CreatorTeam != 255 && Pawn(Touching[i]).GetTeamNum() == CreatorTeam))
 			continue;
 		if (Projectile(Touching[i])!=None)
 		{
