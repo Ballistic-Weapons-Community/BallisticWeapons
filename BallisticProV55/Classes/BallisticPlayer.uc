@@ -157,22 +157,6 @@ function ServerCamDist(float F)
 	BehindDistFactor = F;
 }
 
-// A dual wielder throws the gun in the other hand and keeps the one in hand (BallisticHandgun.DropFrom); the engine's
-// version then switched to the best weapon as if the hands were empty
-function ServerThrowWeapon()
-{
-	local Vector TossVel;
-
-	if (Pawn != None && BallisticHandgun(Pawn.Weapon) != None && BallisticHandgun(Pawn.Weapon).IsMaster() && Pawn.CanThrowWeapon())
-	{
-		TossVel = Vector(GetViewRotation());
-		TossVel = TossVel * ((Pawn.Velocity Dot TossVel) + 500) + Vect(0,0,250);
-		Pawn.TossWeapon(TossVel);
-		return;
-	}
-	Super.ServerThrowWeapon();
-}
-
 function WeaponShakeView
 (
 	vector shRotMag, vector shRotRate,float shRotTime,
@@ -794,6 +778,22 @@ exec function SetWeapon(Weapon NewWeapon)
 }
 
 // Subclaseed to switch to next best weapon when already holding best weapon
+// A dual wielder throws the gun in the other hand and keeps the one in hand (BallisticHandgun.DropFrom); the engine's
+// version then switched to the best weapon as if the hands were empty
+function ServerThrowWeapon()
+{
+	local Vector TossVel;
+
+	if (Pawn != None && BallisticHandgun(Pawn.Weapon) != None && BallisticHandgun(Pawn.Weapon).IsMaster() && Pawn.CanThrowWeapon())
+	{
+		TossVel = Vector(GetViewRotation());
+		TossVel = TossVel * ((Pawn.Velocity Dot TossVel) + 500) + Vect(0,0,250);
+		Pawn.TossWeapon(TossVel);
+		return;
+	}
+	Super.ServerThrowWeapon();
+}
+
 exec function SwitchToBestWeapon()
 {
 	local float rating;
