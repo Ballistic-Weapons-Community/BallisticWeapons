@@ -119,7 +119,7 @@ simulated state FireShot
 				GetFireControl().FireShotRotated(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, None, R);
 		}
 
-		if (Level.NetMode == NM_DedicatedServer)
+		if (Level.NetMode == NM_DedicatedServer && BW != None)
 			BW.RestoreCollisions();
 
 		ApplyHits();

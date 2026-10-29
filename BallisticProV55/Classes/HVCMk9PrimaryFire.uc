@@ -92,7 +92,7 @@ simulated state DirectFire
 		
 		DoTrace(StartTrace, Aim);
 
-		if (Level.NetMode == NM_DedicatedServer)
+		if (Level.NetMode == NM_DedicatedServer && BW != None)
 			BW.RestoreCollisions();
 		
 		// A bot stops firing the moment its enemy dies, which can be right inside the trace above. StopFiring has ended

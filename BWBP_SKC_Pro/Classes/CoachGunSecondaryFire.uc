@@ -135,7 +135,7 @@ simulated state ShotgunZap
 			DoTrace(StartTrace, R);
 		}
 
-		if (Level.NetMode == NM_DedicatedServer)
+		if (Level.NetMode == NM_DedicatedServer && BW != None)
 			BW.RestoreCollisions();
 
 		ApplyHits();
@@ -191,7 +191,7 @@ simulated state ShotgunHE
 			DoTrace(StartTrace, R);
 		}
 
-		if (Level.NetMode == NM_DedicatedServer)
+		if (Level.NetMode == NM_DedicatedServer && BW != None)
 			BW.RestoreCollisions();
 
 		// update client's dispersion values before shot
@@ -271,7 +271,7 @@ simulated state ShotgunIncendiary
 			DoTrace(Start, R);
 		}
 		
-		if (Level.NetMode == NM_DedicatedServer)
+		if (Level.NetMode == NM_DedicatedServer && BW != None)
 			BW.RestoreCollisions();
 		
 		ApplyHits();

@@ -156,7 +156,7 @@ function DoFireEffect()
 
 	//MeleeDoTrace(StartTrace, Aim);
 
-    if (Level.NetMode == NM_DedicatedServer)
+    if (Level.NetMode == NM_DedicatedServer && BW != None)
         BW.RestoreCollisions();
  
 	// Do damage for each victim

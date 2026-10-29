@@ -231,7 +231,7 @@ function DoFireEffect()
 		MeleeDoTrace(StartTrace, PointAim, i==WallHitPoint, SwipePoints[i].Weight);
 	}
 
-    if (Level.NetMode == NM_DedicatedServer)
+    if (Level.NetMode == NM_DedicatedServer && BW != None)
         BW.RestoreCollisions();
 	
 	bHitThisTick = SwipeHits.Length > 0;

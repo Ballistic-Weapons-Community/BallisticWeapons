@@ -610,7 +610,7 @@ state Zap
 
 		DoTrace(StartTrace, Aim);
 
-        if (Level.NetMode == NM_DedicatedServer)
+        if (Level.NetMode == NM_DedicatedServer && BW != None)
             BW.RestoreCollisions();
 
 		ApplyRecoil();

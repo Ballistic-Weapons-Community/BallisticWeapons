@@ -225,7 +225,7 @@ function DoFireEffect()
 		ExtraAim += AimInterval;
 	}
 	
-	if (Level.NetMode == NM_DedicatedServer)
+	if (Level.NetMode == NM_DedicatedServer && BW != None)
         BW.RestoreCollisions();
 
 	ApplyHits();
