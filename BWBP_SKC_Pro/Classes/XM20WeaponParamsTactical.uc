@@ -220,6 +220,7 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
 		WeaponModes(1)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams_Proto'
