@@ -165,7 +165,8 @@ var		class<DamageType>	LastDamagedType;
 
 //Sloth variables
 var 	float 				StrafeScale, BackpedalScale;
-var 	float 				MyFriction, OldMovementSpeed;
+var		float				DecelFriction;		// Player Deceleration: share of its speed a player loses per second when no move key is held
+var		float				DecelStopSpeed;		// ...but never less than DecelFriction times this a second, so the stop ends cleanly
 var     bool                bCanDodge;
 
 // Sliding Variables
@@ -3975,7 +3976,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 {
 	local Vector X, Y, Z, dir;
-	local float FSpeed, Control, NewSpeed, Drop, XSpeed, YSpeed, CosAngle, MaxStrafeSpeed, MaxBackSpeed;
+	local float FSpeed, NewSpeed, XSpeed, YSpeed, CosAngle, MaxStrafeSpeed, MaxBackSpeed;
 
 	if (Controller == none)
 		return;
@@ -3984,6 +3985,19 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 
 	if (Physics == PHYS_Walking)
 	{
+		// Player Deceleration: with no move key held, slow down the way Half-Life does (its own friction and stop speed)
+		// instead of the engine's hard braking, which has just been applied, so start again from the speed before it.
+		// Full speed to a stop takes about 0.4 s in Realism and Tactical, against about 0.15 s for most of it before
+		if (class'BallisticReplicationInfo'.default.bPlayerDeceleration && VSize(Acceleration) < 1.0 && !bIsSliding)
+		{
+			FSpeed = VSize(OldVelocity);
+			if (FSpeed > 1.0)
+			{
+				NewSpeed = FMax(FSpeed - FMax(FSpeed, DecelStopSpeed) * DecelFriction * DeltaTime, 0);
+				Velocity = OldVelocity * (NewSpeed / FSpeed);
+			}
+		}
+
 		// constrains strafe move
 		if (StrafeScale < 1f || BackpedalScale < 1f)
 		{
@@ -4014,27 +4028,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 			}
 		}
 
-		//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
-			
-		// Applies decelerative friction
-		if (class'BallisticReplicationInfo'.default.bPlayerDeceleration)
-		{
-			FSpeed = VSize(Velocity);
-				
-			if (VSize(Acceleration) < 1.00 && FSpeed > 1.00 && !bIsSliding) //We don't want this when sliding
-			{
-				Control = FMin(100, FSpeed);
-					
-				Drop = Control * DeltaTime * MyFriction;
-				NewSpeed = FSpeed + drop;
-				NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
-				Velocity *= NewSpeed;
-			}
-		}
-
 		TickSlide(DeltaTime, OldVelocity);
-
-		OldMovementSpeed = VSize(Velocity);
 	}
 	else
 	{
@@ -4737,7 +4731,8 @@ defaultproperties
 	
 	StrafeScale=1.000000
 	BackpedalScale=1.000000
-	//MyFriction=4.000000
+	DecelFriction=4
+	DecelStopSpeed=100
 	RagdollLifeSpan=20.000000
 
 // the default value of this variable is used by C++ to work out move animation rates.
