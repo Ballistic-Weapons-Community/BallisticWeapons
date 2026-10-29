@@ -209,6 +209,25 @@ static function bool IsAimed(PlayerController PC)
 	return false;
 }
 
+// The "Head Shot!" message and voice for a kill with a headshot damage type, and Head Hunter after fifteen.
+// Stock UT only has them on its sniper rifles' damage types, so BW head damage types without a copy of this were silent
+static function IncrementKills(Controller Killer)
+{
+	local xPlayerReplicationInfo xPRI;
+
+	if (!default.bHeaddie || PlayerController(Killer) == None)
+		return;
+
+	PlayerController(Killer).ReceiveLocalizedMessage(class'SpecialKillMessage', 0, Killer.PlayerReplicationInfo, None, None);
+	xPRI = xPlayerReplicationInfo(Killer.PlayerReplicationInfo);
+	if (xPRI != None)
+	{
+		xPRI.headcount++;
+		if (xPRI.headcount == 15 && UnrealPlayer(Killer) != None)
+			UnrealPlayer(Killer).ClientDelayedAnnouncementNamed('HeadHunter', 15);
+	}
+}
+
 // Random messages
 static function string DeathMessage(PlayerReplicationInfo Killer, PlayerReplicationInfo Victim)
 {

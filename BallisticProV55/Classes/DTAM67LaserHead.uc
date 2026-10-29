@@ -17,6 +17,7 @@ static function class<Effects> GetPawnDamageEffect( vector HitLocation, float Da
 
 defaultproperties
 {
+     bHeaddie=True
      FlashF=0.300000
      FlashV=(X=2000.000000,Y=700.000000,Z=700.000000)
      DeathStrings(0)="%o's head was illuminated off by %k's AM67 beam."

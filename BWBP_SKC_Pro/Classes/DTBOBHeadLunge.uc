@@ -10,6 +10,7 @@ class DTBOBHeadLunge extends DT_BWBlade;
 
 defaultproperties
 {
+     bHeaddie=True
      DeathStrings(0)="%k shoved %kh black ops blade into %o's eye socket."
      DeathStrings(1)="%k's X5W plunged deep into %o's face."
      DeathStrings(2)="%o's brain was shredded by %k's X5W wrist blade."

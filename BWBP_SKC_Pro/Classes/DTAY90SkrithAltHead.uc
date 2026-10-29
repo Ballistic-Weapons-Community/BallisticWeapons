@@ -10,6 +10,7 @@ class DTAY90SkrithAltHead extends DT_BWMiscDamage;
 
 defaultproperties
 {
+     bHeaddie=True
      DeathStrings(0)="%k decapitated and cauterized %o's neck stump."
      DeathStrings(1)="%o's head was bifurcated by %k's Vulture."
      DeathStrings(2)="%k's Vulture annihilated %o's face into something unrecognizable."

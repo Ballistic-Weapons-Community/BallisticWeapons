@@ -10,6 +10,7 @@ class DTBOBHead extends DT_BWBlade;
 
 defaultproperties
 {
+     bHeaddie=True
      DeathStrings(0)="%k's X5W cut some pieces out of %o's head."
      DeathStrings(1)="%k plunged %kh black ops blade deep into %o's head."
      DeathStrings(2)="%o's throat was slit by by %k's X5W wrist blade."

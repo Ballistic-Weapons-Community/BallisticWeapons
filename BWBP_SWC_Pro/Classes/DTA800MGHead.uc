@@ -10,6 +10,7 @@ class DTA800MGHead extends DT_BWMiscDamage;
 
 defaultproperties
 {
+     bHeaddie=True
      DeathStrings(0)="%k's monster gun tore %o's head off."
      DeathStrings(1)="%o's head was turned to slag by %k's Hyperblaster."
      DeathStrings(2)="%o found %vh cranium being vapourised by %k's A800."
