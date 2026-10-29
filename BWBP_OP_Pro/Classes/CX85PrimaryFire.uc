@@ -79,8 +79,10 @@ simulated state SeekerFlechette
 	function SpawnProjectile (Vector Start, Rotator Dir)
 	{
 		Proj = Spawn (ProjectileClass,,, Start, Dir);
-		Proj.Instigator = Instigator;
-		CX85Flechette(Proj).Master = CX85AssaultWeapon(BW);
+		if (Proj != None)
+			Proj.Instigator = Instigator;
+		if (CX85Flechette(Proj) != None)
+			CX85Flechette(Proj).Master = CX85AssaultWeapon(BW);
 	}
 }
 

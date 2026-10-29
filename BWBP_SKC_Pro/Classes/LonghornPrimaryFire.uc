@@ -28,7 +28,8 @@ function PlayFiring()
 function SpawnProjectile (Vector Start, Rotator Dir)
 {
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
-	Proj.Instigator = Instigator;
+	if (Proj != None)
+		Proj.Instigator = Instigator;
 	LastGrenade = LonghornGrenade(Proj);
 }
 
@@ -37,9 +38,13 @@ simulated state ComboCharge //Explodes manually or after impact
 	function SpawnProjectile (Vector Start, Rotator Dir)
 	{
 		Proj = Spawn (ProjectileClass,,, Start, Dir);
-		Proj.Instigator = Instigator;
-		LonghornGrenade(Proj).DetonationType = DET_ImpactTimed;
+		if (Proj != None)
+			Proj.Instigator = Instigator;
 		LastGrenade = LonghornGrenade(Proj);
+		if (LastGrenade != None)
+		{
+			LastGrenade.DetonationType = DET_ImpactTimed;
+		}
 	}
 }
 
@@ -48,10 +53,14 @@ simulated state TimedCharge //Explodes regardless of being held
 	function SpawnProjectile (Vector Start, Rotator Dir)
 	{
 		Proj = Spawn (ProjectileClass,,, Start, Dir);
-		Proj.Instigator = Instigator;
-		LonghornGrenade(Proj).DetonationType = DET_ImpactTimed;
-		LonghornGrenade(Proj).bFireReleased=True;
+		if (Proj != None)
+			Proj.Instigator = Instigator;
 		LastGrenade = LonghornGrenade(Proj);
+		if (LastGrenade != None)
+		{
+			LastGrenade.DetonationType = DET_ImpactTimed;
+			LastGrenade.bFireReleased=True;
+		}
 	}
 }
 

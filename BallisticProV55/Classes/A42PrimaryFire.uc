@@ -41,7 +41,8 @@ simulated state SpreadShot
 			Dir = Rotator(GetFireSpread() >> Dir);
 
 			Proj = Spawn (ProjectileClass,,, Start, rotator((Vector(rot(0,1,0)*FireSpread) >> R) >> Dir) );
-			Proj.Instigator = Instigator;
+			if (Proj != None)
+				Proj.Instigator = Instigator;
 
 			//log("SkrithPistol PrimaryFire: isSlave: "$BallisticHandgun(BW).IsSlave()$" Cycle: "$Cycle$" Shot: "$i$" Heat Added: "$(HeatPerShot*ConsumedLoad)$" Current Heat: "$A48SkrithPistolBal(BW).Heat);
 			Cycle++;

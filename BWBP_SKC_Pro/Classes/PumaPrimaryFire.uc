@@ -32,7 +32,8 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	local float DetonateDelay;
 
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
-	Proj.Instigator = Instigator;
+	if (Proj != None)
+		Proj.Instigator = Instigator;
 	if (PumaProjectileRanged(Proj) != None)
 	{
 
