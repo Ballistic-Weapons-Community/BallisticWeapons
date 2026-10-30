@@ -256,7 +256,8 @@ function bool MaintainConnection(vector AimVec)
 			Vehicle(LockedTarget).HealDamage(Damage, Instigator.Controller, DamageType);
 		else Pawn(LockedTarget).GiveHealth(Damage, Pawn(LockedTarget).HealthMax);
 	}
-	else DestroyableObjective(LockedTarget).HealDamage(Damage * 3, Instigator.Controller, DamageType);
+	else if (DestroyableObjective(LockedTarget) != None)
+		DestroyableObjective(LockedTarget).HealDamage(Damage * 3, Instigator.Controller, DamageType);
 
 	return true;
 }
