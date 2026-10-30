@@ -495,7 +495,8 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 simulated function SwitchWeaponMode (byte newMode)
 {
 
-	CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(newMode);
+	if (Weapon.ThirdPersonActor != None)
+		CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(newMode);
 
     SwitchShotParams();
 }

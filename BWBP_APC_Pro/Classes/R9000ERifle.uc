@@ -43,7 +43,8 @@ function ServerSwitchWeaponMode (byte NewMode)
 		NetUpdateTime = Level.TimeSeconds - 1;
 	}
 	
-	R9000EAttachment(ThirdPersonActor).CurrentTracerMode = CurrentWeaponMode;
+	if (ThirdPersonActor != None)
+		R9000EAttachment(ThirdPersonActor).CurrentTracerMode = CurrentWeaponMode;
 		
 	for (m=0; m < NUM_FIRE_MODES; m++)
 		if (FireMode[m] != None && FireMode[m].bIsFiring)
