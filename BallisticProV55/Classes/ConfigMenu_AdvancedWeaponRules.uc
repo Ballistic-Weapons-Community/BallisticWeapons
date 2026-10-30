@@ -254,7 +254,7 @@ defaultproperties
          Caption="Magazine Size Scale"
          OnCreateComponent=fl_MagazineFloat.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="How many rounds a magazine holds. 1.5: a magazine of 30 holds 45."
+         Hint="How many rounds a magazine holds. 1.5: a magazine of 30 holds 45, and a plasma or lightning gun 1.5 times its cells."
          WinTop=0.454000
          WinLeft=0.265000
          WinWidth=0.485000

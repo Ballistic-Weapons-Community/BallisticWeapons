@@ -259,6 +259,14 @@ function bool SlotCapacityReached(Pawn P, int InvGroup, int Max)
 }
 
 //Provides ammo to an existing copy of this weapon.
+// What a new gun comes with
+simulated final function int GetInitialRounds(Weapon W, int m)
+{
+	if (class<BallisticAmmo>(W.GetAmmoClass(m)) != None)
+		return class<BallisticAmmo>(W.GetAmmoClass(m)).static.GetScaledInitialAmount();
+	return W.GetAmmoClass(m).default.InitialAmount;
+}
+
 function GiveWeaponAmmo (Weapon W, Pawn Other)
 {
 	local BallisticWeapon BW;
@@ -275,9 +283,9 @@ function GiveWeaponAmmo (Weapon W, Pawn Other)
 	if (class<BallisticWeapon>(InventoryType) != None && class<BallisticWeapon>(InventoryType).default.bNoMag == false)
 		W.AddAmmo(class<BallisticWeapon>(InventoryType).static.GetPickupMagAmmo() * 2, 0);	//BE: Doubled amount of ammo recieved from weapon pickups.
 	else
-		W.AddAmmo(W.GetAmmoClass(0).default.InitialAmount, 0);
+		W.AddAmmo(GetInitialRounds(W, 0), 0);
 	if (W.GetAmmoClass(1) != None && W.GetAmmoClass(1) != W.GetAmmoClass(0))
-		W.AddAmmo(W.GetAmmoClass(1).default.InitialAmount, 1);
+		W.AddAmmo(GetInitialRounds(W, 1), 1);
 }
 
 //Adds initial ammo if this wasn't a dropped pickup.
@@ -326,7 +334,7 @@ simulated function GetAmmoAmount (int m, Weapon W)
 		if (BallisticWeapon(W)!=None && BallisticWeapon(W).bNoMag==false)
 			AmmoAmount[m] = Min(W.AmmoAmount(m), BallisticWeapon(W).static.GetPickupMagAmmo());
 		else
-			AmmoAmount[m] = Min(W.AmmoAmount(m), W.GetAmmoClass(m).default.InitialAmount);
+			AmmoAmount[m] = Min(W.AmmoAmount(m), GetInitialRounds(W, m));
 	}
 	else
 		AmmoAmount[m] = W.AmmoAmount(m);

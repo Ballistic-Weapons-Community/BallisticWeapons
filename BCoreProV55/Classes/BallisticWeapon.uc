@@ -4638,10 +4638,18 @@ function GiveNoMagRounds(int m, bool bNewWeapon)
 {
 	if (m != 0 || Ammo[0] == None || NoMagAllowance() == 0)
 		return;
-	if (Ammo[0].MaxAmmo == Ammo[0].default.MaxAmmo)
+	if (Ammo[0].MaxAmmo == GetBaseMaxAmmo())
 		Ammo[0].MaxAmmo += NoMagAllowance();
 	if (bNewWeapon)
 		Ammo[0].AddAmmo(MagAmmo);
+}
+
+// The most a player can carry of the weapon's first ammo, with no magazine on top
+simulated final function int GetBaseMaxAmmo()
+{
+	if (BallisticAmmo(Ammo[0]) != None)
+		return BallisticAmmo(Ammo[0]).static.GetScaledMaxAmmo();
+	return Ammo[0].default.MaxAmmo;
 }
 
 // With reloading off (a weapon that has a magazine but may not use it), what its magazine holds; else 0
@@ -5987,7 +5995,7 @@ simulated function GetAmmoCount(out float MaxAmmoPrimary, out float CurAmmoPrima
 	if (bNoMag)
 	{
 		// a client's ammo keeps its class's cap: the server's has the magazine on top (GiveAmmo)
-		MaxAmmoPrimary = Max(Ammo[0].MaxAmmo, Ammo[0].default.MaxAmmo + NoMagAllowance());
+		MaxAmmoPrimary = Max(Ammo[0].MaxAmmo, GetBaseMaxAmmo() + NoMagAllowance());
 		CurAmmoPrimary = Ammo[0].AmmoAmount;
 	}
 	else
