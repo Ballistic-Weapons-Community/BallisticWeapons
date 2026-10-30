@@ -4644,6 +4644,14 @@ function GiveNoMagRounds(int m, bool bNewWeapon)
 		Ammo[0].AddAmmo(MagAmmo);
 }
 
+// The engine's reads the class's cap, which Magazine Size Scale and reloading being off don't change
+simulated function int MaxAmmo(int mode)
+{
+	if (Ammo[mode] != None)
+		return Ammo[mode].MaxAmmo;
+	return Super.MaxAmmo(mode);
+}
+
 // The most a player can carry of the weapon's first ammo, with no magazine on top
 simulated final function int GetBaseMaxAmmo()
 {
