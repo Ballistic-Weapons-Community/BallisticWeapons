@@ -307,7 +307,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 				(damageScale * Momentum * dir),
 				DamageType
 			);
-			if (bWasAlive && Pawn(Victims).Health <= 0)
+			if (bWasAlive && (Pawn(Victims) == None || Pawn(Victims).Health <= 0))
 				class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Victims), self);
 /*			{
 				Soul = Spawn(class'RSDarkSoul',,, HitLocation);

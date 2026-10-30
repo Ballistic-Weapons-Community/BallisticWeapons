@@ -104,12 +104,12 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	else if (Vehicle(Victim) != None && Vehicle(Victim).Driver!=None && Vehicle(Victim).Driver.Health > 0)
 		bWasAlive = true;
 
-	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && xPawn(Victim) != None && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim != None && Victim != Instigator && Victim.bProjTarget && xPawn(Victim) != None && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
 		BallisticPawn(Instigator).GiveAttributedShield(int(Dmg * 0.6f), Instigator);
 
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, GetMomentumVector(Normal(Velocity)), DT);
 
-	if (bWasAlive && Pawn(Victim).Health <= 0)
+	if (bWasAlive && (Pawn(Victim) == None || Pawn(Victim).Health <= 0))
 		class'RSNovaSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Other), self);
 }
 

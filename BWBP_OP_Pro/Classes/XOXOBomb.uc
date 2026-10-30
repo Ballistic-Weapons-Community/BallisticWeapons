@@ -54,7 +54,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), DT);
 
-	if (bWasAlive && Pawn(Victim).Health <= 0)
+	if (bWasAlive && (Pawn(Victim) == None || Pawn(Victim).Health <= 0))
 		class'XOXOLewdness'.static.DistributeLewd(HitLocation, Instigator, Pawn(Other), self);
 }
 
@@ -98,7 +98,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 				DamageType
 			);
 
-			if (bWasAlive && Pawn(Victims).Health <= 0)
+			if (bWasAlive && Victims != None && Pawn(Victims).Health <= 0)
 				class'XOXOLewdness'.static.DistributeLewd(Victims.Location, Instigator, Pawn(Victims), self);
 		 }
 	}

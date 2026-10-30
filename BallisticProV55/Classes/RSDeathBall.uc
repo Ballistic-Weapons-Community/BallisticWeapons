@@ -100,7 +100,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	else
 		class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType);
 
-	if (bWasAlive && Pawn(Other).Health <= 0)
+	if (bWasAlive && (Pawn(Other) == None || Pawn(Other).Health <= 0))
 	{
 		if (bIsEvil)
 			class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Other), self);

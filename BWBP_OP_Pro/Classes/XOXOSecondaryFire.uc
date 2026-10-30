@@ -104,7 +104,7 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 			
 		class'BallisticDamageType'.static.GenericHurt (Victim, Min(Dmg + SuccessiveHits, 30), Instigator, HitLocation, 10000 * Dir, HitDT);
 
-		if (bWasAlive && Pawn(Victim).Health <= 0)
+		if (bWasAlive && (Pawn(Victim) == None || Pawn(Victim).Health <= 0))
 			class'XOXOLewdness'.static.DistributeLewd(HitLocation, Instigator, Pawn(Victim), Weapon);
 	}
 }
