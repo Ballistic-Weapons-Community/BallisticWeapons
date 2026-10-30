@@ -89,9 +89,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	local vector Start, NewNormal;
     local rotator Dir;
     local int i;
-	local BallisticWeapon BW;
 
-	BW = BallisticWeapon(Instigator.Weapon);
 
 	Start = Location + 30 * HitNormal;
 	if (FlakCount > 0 && FlakClass != None)

@@ -27,7 +27,7 @@ simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
 	
-	if (Instigator.IsLocallyControlled())
+	if (Instigator != None && Instigator.IsLocallyControlled())
 		ServerNotifyReceived();
 }
 

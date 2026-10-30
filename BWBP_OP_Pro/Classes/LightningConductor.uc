@@ -180,7 +180,9 @@ static function bool ValidTarget(Pawn Instigator, Actor Target, LevelInfo Level)
 	if (Pawn(Target).Controller == None)
 		return true;
 
-	Team = Instigator.Controller.GetTeamNum();
+	Team = 255;
+	if (Instigator != None && Instigator.Controller != None)
+		Team = Instigator.Controller.GetTeamNum();
 	InTeam = Pawn(Target).Controller.GetTeamNum();
 
 	return (Level.TimeSeconds - Pawn(Target).SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime && (InTeam == 255 || InTeam != Team));

@@ -48,7 +48,7 @@ function Initialize(class<Actor> InClass, byte deployable_index, float Construct
 
 event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
 {
-	if (EventInstigator != None && EventInstigator.Controller != None && EventInstigator != Instigator && EventInstigator.Controller.SameTeamAs(Instigator.Controller))
+	if (EventInstigator != None && EventInstigator.Controller != None && Instigator != None && EventInstigator != Instigator && EventInstigator.Controller.SameTeamAs(Instigator.Controller))
 		return;
 		
 	if (Health < 1)

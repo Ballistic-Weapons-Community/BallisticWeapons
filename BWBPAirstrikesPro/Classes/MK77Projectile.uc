@@ -26,7 +26,8 @@ simulated function Destroyed()
 {
 	if ( SmokeTrail != None )
 		SmokeTrail.Destroy();
-		PowerNode.PowerCoreDestroyed();
+		if (PowerNode != None)
+			PowerNode.PowerCoreDestroyed();
 	Super.Destroyed();
 }
 

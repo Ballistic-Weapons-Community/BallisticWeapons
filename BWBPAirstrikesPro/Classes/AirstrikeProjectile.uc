@@ -15,7 +15,7 @@ simulated function HurtRadius( float DamageAmount, float DamageRadius, class<Dam
 		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
 		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) )
 		{
-			if (Pawn(Victims) != None && Pawn(Victims).Controller != None && Pawn(Victims).Controller.SameTeamAs(Instigator.Controller))
+			if (Instigator != None && Pawn(Victims) != None && Pawn(Victims).Controller != None && Pawn(Victims).Controller.SameTeamAs(Instigator.Controller))
 				continue;
 			dir = Victims.Location - HitLocation;
 			dist = FMax(1,VSize(dir));

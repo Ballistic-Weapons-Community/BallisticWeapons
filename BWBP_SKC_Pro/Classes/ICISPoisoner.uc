@@ -39,7 +39,7 @@ simulated event Timer()
 {
 	if (Victim != None && Level.NetMode != NM_Client)
 	{
-		if (Instigator.bProjTarget)
+		if (Instigator != None && Instigator.bProjTarget)
 			Victim.GiveHealth(5 * Pwr, Instigator.HealthMax);
 	}
 
