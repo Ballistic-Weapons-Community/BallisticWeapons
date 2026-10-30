@@ -711,7 +711,7 @@ function Bot SpawnBot(optional string botName)
 		  {		   
 			   for (C = Level.ControllerList; C != None; C = C.NextController)
 			   {
-					if (C.PlayerReplicationInfo.Team == B.PlayerReplicationInfo.Team)
+					if (C.PlayerReplicationInfo != None && C.PlayerReplicationInfo.Team == B.PlayerReplicationInfo.Team)
 						TeamGunLevel = Max(TeamGunLevel, GunGamePRI(C.PlayerReplicationInfo).GunLevel);
 			   }
 			   if (TeamGunLevel != 1)
@@ -1229,7 +1229,8 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
                          bNoUpgrade = true;   //Do not upgrade std weapon kills by default
                          KillerPRI.bStdWeaponKill = true;  //Activate MultiKill block later -> one feauture award per shot, avoid massive feauture gaining (when Redeemer is std. weapon), avoid normal scoring
 
-						 PlayerController(Killer).PlayRewardAnnouncement('Denied',1, true);
+						 if (PlayerController(Killer) != None)
+						     PlayerController(Killer).PlayRewardAnnouncement('Denied',1, true);
 
                          //The std. weapon's special feature will be processed here
                          switch (StdWeaponFeature)
