@@ -63,6 +63,8 @@ function Timer()
 		return;
 	}
 	class'BallisticDamageType'.static.GenericHurt (Target, 10, Instigator, Target.Location + (Normal(Target.Location - Instigator.Location))*-24, vect(0,0,0), class'DTPD97Tazer');
+	if (Target == None)
+		return;
 	class'BCSprintControl'.static.AddSlowTo(Target, 0.4, EffectInterval);
 	if (Target.Health > 0)
 		TazeOverlay();

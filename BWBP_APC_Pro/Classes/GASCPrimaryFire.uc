@@ -34,7 +34,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 {
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (Victim.bProjTarget && class'BallisticReplicationInfo'.static.IsArena())
+	if (Victim != None && Victim.bProjTarget && class'BallisticReplicationInfo'.static.IsArena())
 	{
 		if (BallisticShield(Victim) != None)
 			BW.TargetedHurtRadius(2, 64, class'DTGASCPistol', 50, HitLocation, Pawn(Victim));
