@@ -12,7 +12,8 @@ var   byte HitType;
 
 event PostBeginPlay()
 {
-	AttachToPawn(Pawn(Owner));
+	if (Pawn(Owner) != None)
+		AttachToPawn(Pawn(Owner));
 	super.PostBeginPlay();
 }
 
@@ -28,6 +29,14 @@ function AttachToPawn(Pawn P)
 		ThirdPersonActor.NetUpdateTime = Level.TimeSeconds - 1;
 	ThirdPersonActor.SetLocation(P.Location);
 	ThirdPersonActor.SetBase(P);
+}
+
+// Pawn.CreateInventory spawns inventory with no owner, gives it, and only then calls this
+function PickupFunction(Pawn Other)
+{
+	Super.PickupFunction(Other);
+	if (ThirdPersonActor == None)
+		AttachToPawn(Other);
 }
 
 function ArmorImpactEffect(vector HitLocation)
