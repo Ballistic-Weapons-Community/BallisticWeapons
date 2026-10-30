@@ -866,6 +866,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	//Cock anim ended, goto idle
 	if (ReloadState == RS_Cocking)
 	{
+		bNeedCock=false;
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
