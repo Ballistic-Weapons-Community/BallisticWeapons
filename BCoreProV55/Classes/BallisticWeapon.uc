@@ -4618,6 +4618,7 @@ function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
             Ammo[m] = Spawn(FireMode[m].AmmoClass, instigator);
             Instigator.AddInventory(Ammo[m]);
         }
+		RaiseNoMagCap(m);
 		//Dropped pickup, just add ammo
         if ((WP != None) && (WP.bDropped || WP.AmmoAmount[m] > 0))
 			Ammo[m].AddAmmo(WP.AmmoAmount[m]);
@@ -4632,15 +4633,19 @@ function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
 }
 
 // With reloading off there is no magazine to keep rounds in: the most of the weapon's first ammo a player can carry grows
-// by the magazine he would have carried loaded (once for that ammo), and a new weapon comes with its loaded rounds among
-// the rest. A dropped weapon hands on only what its owner had left. Weapons with a GiveAmmo of their own call this too
+// by the magazine they would have carried loaded (once for that ammo). Before any rounds go in: a dropped weapon can hold
+// that many. Weapons with a GiveAmmo of their own call this too
+function RaiseNoMagCap(int m)
+{
+	if (m == 0 && Ammo[0] != None && Ammo[0].MaxAmmo == GetBaseMaxAmmo())
+		Ammo[0].MaxAmmo += NoMagAllowance();
+}
+
+// A new weapon comes with its loaded rounds among the rest. A dropped weapon hands on only what its owner had left.
+// Weapons with a GiveAmmo of their own call this too
 function GiveNoMagRounds(int m, bool bNewWeapon)
 {
-	if (m != 0 || Ammo[0] == None || NoMagAllowance() == 0)
-		return;
-	if (Ammo[0].MaxAmmo == GetBaseMaxAmmo())
-		Ammo[0].MaxAmmo += NoMagAllowance();
-	if (bNewWeapon)
+	if (m == 0 && bNewWeapon && Ammo[0] != None && NoMagAllowance() != 0)
 		Ammo[0].AddAmmo(MagAmmo);
 }
 
