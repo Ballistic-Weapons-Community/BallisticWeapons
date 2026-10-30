@@ -229,7 +229,7 @@ defaultproperties
 
      Begin Object Class=moFloatEdit Name=fl_FireRateFloat
          MinValue=0.500000
-         MaxValue=2.000000
+         MaxValue=3.000000
          Step=0.050000
          ComponentJustification=TXTA_Left
          CaptionWidth=0.700000
