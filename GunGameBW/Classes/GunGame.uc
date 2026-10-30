@@ -740,7 +740,7 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
          if (KilledPRI.Suicides < KilledPRI.GunLevel)
             KilledPRI.AdjustLevel( -1 );
      }
-     else
+     else if ( KillerPRI != None )
      {
           //Here I get the very last weapondamage actively done to Killed. So I know when Killed has been pushed out, which weapon caused that
           if ( class<WeaponDamageType>(damageType) != None )
@@ -973,11 +973,12 @@ function ScoreKill(Controller Killer, Controller Other)
      local GunGamePRI KillerPRI;
 
      OtherPRI = GunGamePRI(Other.PlayerReplicationInfo);
-     KillerPRI = GunGamePRI(Killer.PlayerReplicationInfo);
+     if ( Killer != None )
+          KillerPRI = GunGamePRI(Killer.PlayerReplicationInfo);
 
      if ( OtherPRI != None )
      {
-          if ( !KillerPRI.bStdWeaponKill )  //Std weapon kills does not influence the normal scoring system, they use its own by default -> check Killed() for details
+          if ( KillerPRI == None || !KillerPRI.bStdWeaponKill )  //Std weapon kills does not influence the normal scoring system, they use its own by default -> check Killed() for details
                OtherPRI.NumLives++;
 
           if ( (MaxLives > 0) && (OtherPRI.NumLives >=MaxLives) )
