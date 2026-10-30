@@ -96,7 +96,8 @@ simulated function RotateClip()
 	MagBoneRotation.Roll = -4 * (8-MagAmmo) * (65536/360);
 	SetBoneRotation(MagBone, MagBoneRotation, 0, 1.0);
 	//hide the arrow that has been shot
-	SetBoneScale(MagAmmo-1, 0.0, ArrowBones[MagAmmo-1].BoneName);
+	if (MagAmmo > 0)
+		SetBoneScale(MagAmmo-1, 0.0, ArrowBones[MagAmmo-1].BoneName);
 	bNeedRotate=false;
 }
 simulated function RemoveGunArrow()
