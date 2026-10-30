@@ -192,8 +192,10 @@ event PlayerTick(float DeltaTime)
 {
 	Super.PlayerTick(DeltaTime);
 
+	// The end of a match or round has a camera of its own: everyone gets behind view, and the winner's view target
+	// is their own pawn
 	if (!bOldBehindView && IsLocalViewer() && Pawn != None && ViewTarget == Pawn && Vehicle(Pawn) == None && Pawn.Health > 0
-		&& bBehindView != WantsThirdPerson())
+		&& !IsInState('GameEnded') && !IsInState('RoundEnded') && bBehindView != WantsThirdPerson())
 		SetFootBehindView(!bBehindView);
 }
 
