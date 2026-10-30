@@ -88,6 +88,7 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 {
 	local float BoneDist;
 	local xPawn HitPawn;
+	local Vector VNorm;
 
 	if (Other == Instigator && (!bCanHitOwner))
 		return;
@@ -100,10 +101,11 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
 	if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact)
 	{
+		VNorm = Normal(HitLocation-Other.Location);
 		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
 //		Other.TakeDamage(ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
 		HitActor = Other;
-		Explode(HitLocation, Normal(HitLocation-Other.Location));
+		Explode(HitLocation, VNorm);
 		return;
 	}
 	if ( PlayerImpactType == PIT_Bounce || (PlayerImpactType == PIT_Stick && (VSize (Velocity) < MinStickVelocity)) )
@@ -144,10 +146,11 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 	}
 	if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact)
 	{
+		VNorm = Normal(HitLocation-Other.Location);
 		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
 //		Other.TakeDamage(ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
 		HitActor = Other;
-		Explode(HitLocation, Normal(HitLocation-Other.Location));
+		Explode(HitLocation, VNorm);
 		return;
 	}
 }

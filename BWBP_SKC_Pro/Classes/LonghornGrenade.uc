@@ -180,9 +180,8 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 		}
 		else 
 		{
-			class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage * VSize(Velocity) / MaxSpeed, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
-			
 			ReflectNorm = Location - Other.Location;
+			class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage * VSize(Velocity) / MaxSpeed, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
 			ReflectNorm.Z = 0;
 			ReflectNorm = Normal(ReflectNorm);
 			

@@ -49,9 +49,10 @@ simulated event ProcessTouch(actor Other, vector HitLocation)
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
 	if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact)
 	{
+		VNorm = Normal(HitLocation-Other.Location);
 		Other.TakeDamage(Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType);
 		HitActor = Other;
-		Explode(HitLocation, Normal(HitLocation-Other.Location));
+		Explode(HitLocation, VNorm);
 		return;
 	}
 	if ( (PlayerImpactType == PIT_Bounce || PlayerImpactType == PIT_Stick) && VSize(Velocity) > MinStickVelocity )
