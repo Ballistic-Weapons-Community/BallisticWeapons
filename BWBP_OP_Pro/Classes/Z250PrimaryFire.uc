@@ -323,7 +323,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 	// Tell the attachment to spawn effects and so on
 	SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
-	if (!bAISilent)
+	if (!bAISilent && Instigator != None)
 		Instigator.MakeNoise(1.0);
 	return true;
 }
@@ -343,7 +343,7 @@ function DoFireEffect()
 	local int i;
 	local float Interval, ExtraTime;
 
-	if (!bAISilent)
+	if (!bAISilent && Instigator != None)
 		Instigator.MakeNoise(1.0);
 
 	if (TraceCount > 1)

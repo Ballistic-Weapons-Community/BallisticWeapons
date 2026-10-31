@@ -517,7 +517,7 @@ simulated function bool AimProjectile(vector Eye, out vector Muzzle, out Rotator
 // Server side fire stuff. Spawn projectiles/Traces from here
 function DoFireEffect()
 {
-	if (!bAISilent)
+	if (!bAISilent && Instigator != None)
 		Instigator.MakeNoise(1.0);
 	ApplyRecoil();
 	bPendingTryJam=true;
