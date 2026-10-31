@@ -395,7 +395,7 @@ function byte BestMode()
 
 function bool CanAttack(Actor Other)
 {
-	if (bAltNeedCock)
+	if (bAltNeedCock && Instigator != None && AIController(Instigator.Controller) != None)
 	{
 		if (IsReloadingShotgun())
 		{
