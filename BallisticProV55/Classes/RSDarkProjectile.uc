@@ -229,16 +229,19 @@ simulated function bool CanTouch (Actor Other)
 // Hit something interesting
 simulated function ProcessTouch (Actor Other, vector HitLocation)
 {
+	local Vector ToOther;
+
     if (!CanTouch(Other))
         return;
 
+	ToOther = Other.Location-HitLocation;
 	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits
 		DoDamage(Other, HitLocation);
     
 	if (Pawn(Other) != None && Pawn(Other).Health <= 0)
-		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 2, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
+		PenetrateManager.static.StartSpawn(HitLocation, ToOther, 2, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
 	else
-		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 1, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
+		PenetrateManager.static.StartSpawn(HitLocation, ToOther, 1, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
 	
 	ImpactManager = None;
 	
@@ -307,7 +310,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 				(damageScale * Momentum * dir),
 				DamageType
 			);
-			if (bWasAlive && Pawn(Victims).Health <= 0)
+			if (bWasAlive && (Pawn(Victims) == None || Pawn(Victims).Health <= 0))
 				class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Victims), self);
 /*			{
 				Soul = Spawn(class'RSDarkSoul',,, HitLocation);

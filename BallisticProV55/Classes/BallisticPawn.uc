@@ -3797,13 +3797,13 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
         // If we're attached to a cover object, share the damage from frontal locational hits to that object instead
 		if (CoverAnchors.Length > 0 && DamageType.default.bArmorStops)
 		{
-			while (CoverAnchors[0] == None && CoverAnchors.Length > 0)
+			while (CoverAnchors.Length > 0 && CoverAnchors[0] == None)
 				CoverAnchors.Remove(0, 1);
 
 			HitLocationMatchZ = HitLocation;
 			HitLocationMatchZ.Z = Location.Z;
 			
-			if ( (DamageType.default.bInstantHit && Normal(instigatedBy.Location - Location) dot Vector(Rotation) > 0) || (Normal(HitLocationMatchZ - Location) dot Vector(Rotation) > 0))
+			if ( CoverAnchors.Length > 0 && ((DamageType.default.bInstantHit && instigatedBy != None && Normal(instigatedBy.Location - Location) dot Vector(Rotation) > 0) || (Normal(HitLocationMatchZ - Location) dot Vector(Rotation) > 0)))
 			{
 				CoverAnchors[0].TakeDamage(actualDamage * 0.8, instigatedby, CoverAnchors[0].Location, vect(0,0,0), DamageType);
 				actualDamage *= 0.2;

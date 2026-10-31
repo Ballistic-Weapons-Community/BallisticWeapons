@@ -221,7 +221,7 @@ simulated state ShotgunHE
 	{
 		super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 		
-		if (Target.bProjTarget)
+		if (Target != None && Target.bProjTarget)
 			BW.TargetedHurtRadius(Damage, 512, class'DT_CoachGunExplosive', 200, HitLocation, Pawn(Target));
 	}
 }

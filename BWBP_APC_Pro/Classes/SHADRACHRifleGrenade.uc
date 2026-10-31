@@ -115,7 +115,7 @@ function bool AllowPlague(Actor Other)
 		Pawn(Other) != None 
 		&& Pawn(Other).Health > 0 
 		&& Vehicle(Other) == None 
-		&& (Pawn(Other).GetTeamNum() == 255 || Pawn(Other).GetTeamNum() != Instigator.GetTeamNum())
+		&& (Pawn(Other).GetTeamNum() == 255 || Instigator == None || Pawn(Other).GetTeamNum() != Instigator.GetTeamNum())
 		&& Level.TimeSeconds - Pawn(Other).SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime;
 }
 

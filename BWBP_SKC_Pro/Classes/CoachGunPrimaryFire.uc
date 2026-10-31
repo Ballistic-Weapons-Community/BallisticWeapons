@@ -245,7 +245,7 @@ simulated state ShotgunHE
 	{
 		super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 		
-		if (Target.bProjTarget)
+		if (Target != None && Target.bProjTarget)
 			BW.TargetedHurtRadius(Damage, 512, class'DT_CoachGunExplosive', 200, HitLocation, Pawn(Target));
 	}
 }
@@ -495,7 +495,8 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 simulated function SwitchWeaponMode (byte newMode)
 {
 
-	CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(newMode);
+	if (Weapon.ThirdPersonActor != None)
+		CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(newMode);
 
     SwitchShotParams();
 }

@@ -201,13 +201,15 @@ simulated function CommonSwitchWeaponMode (byte newMode)
 	SX45PrimaryFire(FireMode[0]).SwitchWeaponMode(newMode);
 	if (newMode == 1 && AmpCharge > 0)
 	{
-		SX45Attachment(ThirdPersonActor).SetAmpColour(true, false);
+		if (ThirdPersonActor != None)
+			SX45Attachment(ThirdPersonActor).SetAmpColour(true, false);
 		Skins[6]=AmpMaterials[1];
 		Skins[7]=AmpMaterials[2];
 	}
 	else if (newMode == 2 && AmpCharge > 0)
 	{
-		SX45Attachment(ThirdPersonActor).SetAmpColour(false, true);
+		if (ThirdPersonActor != None)
+			SX45Attachment(ThirdPersonActor).SetAmpColour(false, true);
 		Skins[6]=AmpMaterials[0];
 		Skins[7]=AmpMaterials[3];
 	}

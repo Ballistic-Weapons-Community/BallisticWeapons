@@ -76,7 +76,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), DT);
 
-	if (bWasAlive && Pawn(Victim).Health <= 0)
+	if (bWasAlive && (Pawn(Victim) == None || Pawn(Victim).Health <= 0))
 		class'XOXOLewdness'.static.DistributeLewd(HitLocation, Instigator, Pawn(Victim), self);
 }
 

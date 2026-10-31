@@ -238,17 +238,23 @@ simulated function Tick(float DeltaTime)
 
     Super.Tick(DeltaTime);
 
-	Pack = KHMKIIRocketPack(Weapons[0]);
+	// Only the server and the driver's client have the weapons
+	if (Weapons.Length > 0)
+		Pack = KHMKIIRocketPack(Weapons[0]);
 
-	AmmoCount = KHMKIIRocketPack(Weapons[0]).LoadedShotCount;
-	bPackRequiresReloading = KHMKIIRocketPack(Weapons[0]).bRequiresReloading;
-	PackDFOffset = KHMKIIRocketPack(Weapons[0]).NewDualFireOffset;
+	if (Pack != None)
+	{
+		AmmoCount = Pack.LoadedShotCount;
+		bPackRequiresReloading = Pack.bRequiresReloading;
+		PackDFOffset = Pack.NewDualFireOffset;
+	}
 
 	if ( Level.NetMode != NM_DedicatedServer )
 	{
 		CurrentVehicleSpeed = VSize(Velocity) * DeltaTime;
 
-		Pack.SetSpread(CurrentVehicleSpeed);
+		if (Pack != None)
+			Pack.SetSpread(CurrentVehicleSpeed);
 
 		EnginePitch = MinSoundPitch + VSize(Velocity)/MaxPitchSpeed * 64.0;
 		SoundPitch = FClamp(EnginePitch, MinSoundPitch, MaxSoundPitch);

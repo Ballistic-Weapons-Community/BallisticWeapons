@@ -167,7 +167,7 @@ simulated state RapidFire
 	{
 		super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 		
-		if (Victim.bProjTarget)
+		if (Victim != None && Victim.bProjTarget)
 		{
 			if (BallisticShield(Victim) != None)
 				BW.TargetedHurtRadius(Damage, 192, class'DT_FG50Explosion', 500, HitLocation, Pawn(Victim));

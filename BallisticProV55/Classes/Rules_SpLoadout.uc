@@ -28,7 +28,7 @@ Function ScoreKill(Controller Killer, Controller Killed)
 	if ((Killer == None || Killer == Killed) && Killed != None && Killed.PlayerReplicationInfo!= None && class<WeaponDamageType>(LastDT) != None)
 	{
 		// Somehow managed to suicide while using a sniper weapons
-		if ((LastDT.default.bSpecial || Killed.Pawn.Weapon.bSniping) && ClassIsChildOf(Killed.Pawn.Weapon.Class, class<WeaponDamageType>(LastDT).default.WeaponClass))
+		if (Killed.Pawn != None && Killed.Pawn.Weapon != None && (LastDT.default.bSpecial || Killed.Pawn.Weapon.bSniping) && ClassIsChildOf(Killed.Pawn.Weapon.Class, class<WeaponDamageType>(LastDT).default.WeaponClass))
 			ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(Killed.PlayerReplicationInfo)).SniperKills -= 1;
 		else
 			ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(Killed.PlayerReplicationInfo)).SniperKills -= 0.2;

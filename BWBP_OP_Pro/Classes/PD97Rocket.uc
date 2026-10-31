@@ -127,7 +127,7 @@ simulated event PostNetBeginPlay()
 	local vector X,Y,Z;
 	super.PostNetBeginPlay();
 
-	if (Instigator.IsLocallyControlled())
+	if (Instigator != None && Instigator.IsLocallyControlled())
 		ServerNotifyReceived();
 		
 	GetAxes(Rotation, X,Y,Z);

@@ -142,6 +142,12 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 		   	class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage*0.5, Instigator, HitLocation, Velocity, ImpactDamageType);
 	}
 
+	if (Other == None)
+	{
+		Explode(HitLocation, vect(0,0,1));
+		return;
+	}
+
 	if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact || (default.LifeSpan - LifeSpan > EXP_LIFE_TIME && !bHasImpacted))
 	{
 		Explode(HitLocation, Normal(HitLocation-Other.Location));

@@ -173,7 +173,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 
 				DoDamage(Other, HitLocation);
 
-				if (bWasAlive && Pawn(Other).Health <= 0)
+				if (bWasAlive && (Pawn(Other) == None || Pawn(Other).Health <= 0))
 					class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Other), self);
 
 			if (Pawn(other) != None)

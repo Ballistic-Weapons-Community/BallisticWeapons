@@ -95,7 +95,7 @@ simulated state CombatLaser
 	{
 		super.ApplyDamage (Victim, Damage * (1 + 4*FMax(0, AM67Pistol(Weapon).LaserAmmo - 0.4)), Instigator, HitLocation, MomentumDir, DamageType);
 		
-		if (Victim.bProjTarget)
+		if (Victim != None && Victim.bProjTarget)
 		{
 			BW.TargetedHurtRadius(5 * (1 + 4*FMax(0, AM67Pistol(Weapon).LaserAmmo - 0.4)), 20, class'DTSARLaser', 0, HitLocation, Pawn(Victim));
 		}

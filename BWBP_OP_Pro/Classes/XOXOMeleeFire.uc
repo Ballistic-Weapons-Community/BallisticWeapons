@@ -15,7 +15,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (bWasAlive && Pawn(Victim).Health <= 0)
+	if (bWasAlive && (Pawn(Victim) == None || Pawn(Victim).Health <= 0))
 		class'XOXOLewdness'.static.DistributeLewd(HitLocation, Instigator, Pawn(Victim), Weapon);
 }
 

@@ -57,7 +57,8 @@ function ServerSwitchWeaponMode (byte NewMode)
 	}
 	
 	// mode switch for this weapon causes a reload
-	R9Attachment(ThirdPersonActor).CurrentTracerMode = CurrentWeaponMode;
+	if (ThirdPersonActor != None)
+		R9Attachment(ThirdPersonActor).CurrentTracerMode = CurrentWeaponMode;
 		
 	for (m=0; m < NUM_FIRE_MODES; m++)
 		if (FireMode[m] != None && FireMode[m].bIsFiring)

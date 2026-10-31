@@ -97,6 +97,13 @@ function StopBerserk()
     FireChaos = default.FireChaos;
 }
 
+// A gun not in the hands has no attachment
+simulated function SetAttachmentTracer(byte Mode)
+{
+	if (Weapon.ThirdPersonActor != None)
+		M2020GaussAttachment(Weapon.ThirdPersonActor).CurrentTracerMode = Mode;
+}
+
 simulated function SwitchWeaponMode (byte NewMode)
 {
 	if (NewMode == 0)	//gauss normal
@@ -105,9 +112,9 @@ simulated function SwitchWeaponMode (byte NewMode)
 		bFlashAlt=false;
 		KickForce = default.KickForce;
 		if (M2020GaussDMR(Weapon).bSuppressed)
-			M2020GaussAttachment(Weapon.ThirdPersonActor).CurrentTracerMode=1;
+			SetAttachmentTracer(1);
 		else
-			M2020GaussAttachment(Weapon.ThirdPersonActor).CurrentTracerMode=2;
+			SetAttachmentTracer(2);
 	}
 	
 	else if (NewMode == 1)	//gauss power
@@ -115,14 +122,14 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FirePushbackForce=120.000000;
 		KickForce=1000;
 		bFlashAlt=false;
-		M2020GaussAttachment(Weapon.ThirdPersonActor).CurrentTracerMode=3;
+		SetAttachmentTracer(3);
 	}
 	else if (NewMode == 2 || NewMode == 3)	//gauss offline or gauss deflection
 	{
 		FirePushbackForce=0.000000;
 		bFlashAlt=true;
 		KickForce = default.KickForce;
-		M2020GaussAttachment(Weapon.ThirdPersonActor).CurrentTracerMode=0;
+		SetAttachmentTracer(0);
 
 	}
 }

@@ -75,7 +75,8 @@ function ServerSwitchWeaponMode (byte NewMode)
 		NetUpdateTime = Level.TimeSeconds - 1;
 	}
 	
-	R9A1Attachment(ThirdPersonActor).CurrentTracerMode = CurrentWeaponMode;
+	if (ThirdPersonActor != None)
+		R9A1Attachment(ThirdPersonActor).CurrentTracerMode = CurrentWeaponMode;
 		
 	for (m=0; m < NUM_FIRE_MODES; m++)
 		if (FireMode[m] != None && FireMode[m].bIsFiring)

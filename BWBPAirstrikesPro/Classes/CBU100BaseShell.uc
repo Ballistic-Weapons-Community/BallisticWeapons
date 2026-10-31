@@ -118,7 +118,7 @@ simulated function ExplodeInAir()
 	if ( Level.NetMode != NM_DedicatedServer )
 		spawn(AirExplosionEffectClass);
 
-    Explode(Location, Location - Instigator.Location);
+    Explode(Location, vect(0,0,1));
     Destroy();
 }
 

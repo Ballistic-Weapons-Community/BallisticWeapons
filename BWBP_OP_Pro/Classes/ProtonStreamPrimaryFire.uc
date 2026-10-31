@@ -75,7 +75,7 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 	if (SuccessiveHits > 1)
 		class'BallisticDamageType'.static.GenericHurt (Victim, Min(Dmg + SuccessiveHits, 12), Instigator, HitLocation, vect(0,0,0), HitDT);
 	else class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, vect(0,0,0), HitDT);
-	if (bWasAlive && (Pawn(Victim).Controller == None || !Pawn(Victim).Controller.SameTeamAs(Instigator.Controller)))
+	if (bWasAlive && (Pawn(Victim) == None || Pawn(Victim).Controller == None || !Pawn(Victim).Controller.SameTeamAs(Instigator.Controller)))
 		if (BW != None)
 			ProtonStreamer(BW).BonusAmmo(1);
 }

@@ -104,7 +104,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 {
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (Victim.bProjTarget)
+	if (Victim != None && Victim.bProjTarget)
 	{
 		BW.TargetedHurtRadius(3 * (1 + 5*FMax(0, AM67Pistol(Weapon).LaserAmmo - 0.5)), 10, class'DTAM67Laser', 0, HitLocation, Pawn(Victim));
 	}

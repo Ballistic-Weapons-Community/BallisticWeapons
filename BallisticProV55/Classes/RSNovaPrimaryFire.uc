@@ -370,6 +370,7 @@ state NovaLightning
 		local int AdjustedDamage;
 		local bool bWasAlive;
 		local RSBlackHole BH;
+		local Vector TargetLocation;
 
 		bIsZapping=true;
 
@@ -466,10 +467,11 @@ state NovaLightning
 			else if (Vehicle(Target) != None && Vehicle(Target).Driver!=None && Vehicle(Target).Driver.Health > 0)
 				bWasAlive = true;
 			ForceDir = (Instigator.Location + vector(Instigator.GetViewRotation()) * 700) - Target.Location;
+			TargetLocation = Target.Location;
 			class'BallisticDamageType'.static.GenericHurt (Target, Damage, Instigator, Target.Location + (Normal(Target.Location - Instigator.Location))*-24, 40000 * FMax(0.1, 1-(VSize(ForceDir)/2000)) * Normal(ForceDir), class'DT_RSNovaLightning');
 
-			if (bWasAlive && Pawn(Target).Health <= 0)
-				class'RSNovaSoul'.static.SpawnSoul(Target.Location, Instigator, Pawn(Target), Weapon);
+			if (bWasAlive && (Pawn(Target) == None || Pawn(Target).Health <= 0))
+				class'RSNovaSoul'.static.SpawnSoul(TargetLocation, Instigator, Pawn(Target), Weapon);
 
 			NovaStaff.SetTargetZap(Target, false);
 			
@@ -593,8 +595,8 @@ state Zap
 
 		class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, 50000 * Dir, class'DT_RSNovaOneShotZap');
 
-		if (bWasAlive && P.Health <= 0)
-			class'RSNovaSoul'.static.SpawnSoul(Other.Location, Instigator, P, Weapon);
+		if (bWasAlive && (P == None || P.Health <= 0))
+			class'RSNovaSoul'.static.SpawnSoul(HitLocation, Instigator, P, Weapon);
 	}
 
 	function DoFireEffect()
@@ -910,7 +912,7 @@ state ChainLightning
 				ForceDir = (Instigator.Location + vector(Instigator.GetViewRotation()) * 700) - ChainVics[i].ZapVic.Location;
 				class'BallisticDamageType'.static.GenericHurt (ChainVics[i].ZapVic, Damage*2, Instigator, ChainVics[i].ZapVic.Location + (Normal(ChainVics[i].ZapVic.Location - Instigator.Location))*-24, 40000 * FMax(0.1, 1-(VSize(ForceDir)/2000)) * Normal(ForceDir), class'DT_RSNovaChainLightning');
 
-				if (bWasAlive && Pawn(ChainVics[i].ZapVic).Health <= 0)
+				if (bWasAlive && ChainVics[i].ZapVic != None && Pawn(ChainVics[i].ZapVic).Health <= 0)
 					class'RSNovaSoul'.static.SpawnSoul(ChainVics[i].ZapVic.Location, Instigator, Pawn(ChainVics[i].ZapVic), Weapon);
 			}
 			NovaStaff.SetChainZap();

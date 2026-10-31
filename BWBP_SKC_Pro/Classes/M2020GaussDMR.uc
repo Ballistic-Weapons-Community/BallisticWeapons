@@ -382,7 +382,7 @@ simulated function CommonStartReload (optional byte i)
 
 simulated function CommonSwitchWeaponMode (byte newMode)
 {
-	if (Role == ROLE_Authority)
+	if (Role == ROLE_Authority && ThirdPersonActor != None)
 	{
 		if (newMode == 2 && newMode == 3)	//gauss is off
 			M2020GaussAttachment(ThirdPersonActor).SetTracerMode(0);

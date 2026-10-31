@@ -62,7 +62,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 			IgniteActor(Victim);
 	}
 	class'BallisticDamageType'.static.GenericHurt(Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
-	if ( Victim.bCanBeDamaged && bDOT)
+	if ( Victim != None && Victim.bCanBeDamaged && bDOT)
 	{
 		DoTazerBlurEffect(Victim);
 	}

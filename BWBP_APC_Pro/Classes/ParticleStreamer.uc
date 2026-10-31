@@ -90,7 +90,8 @@ function ServerSwitchWeaponMode (byte NewMode)
 		
 	Super.ServerSwitchWeaponMode(NewMode);
 	
-	ParticleStreamAttachment(ThirdPersonActor).ModeColor = CurrentWeaponMode;
+	if (ThirdPersonActor != None)
+		ParticleStreamAttachment(ThirdPersonActor).ModeColor = CurrentWeaponMode;
 }
 
 simulated function ClientSwitchWeaponMode (byte newMode)

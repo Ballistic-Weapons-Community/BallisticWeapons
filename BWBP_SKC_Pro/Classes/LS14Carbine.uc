@@ -1021,7 +1021,8 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 function ServerSwitchWeaponMode(byte NewMode)
 {
 	super.ServerSwitchWeaponMode(NewMode);
-	LS14Attachment(ThirdPersonActor).bDouble = bool(CurrentWeaponMode);
+	if (ThirdPersonActor != None)
+		LS14Attachment(ThirdPersonActor).bDouble = bool(CurrentWeaponMode);
 }
 
 simulated function PlayShovelLoop()

@@ -711,7 +711,7 @@ function Bot SpawnBot(optional string botName)
 		  {		   
 			   for (C = Level.ControllerList; C != None; C = C.NextController)
 			   {
-					if (C.PlayerReplicationInfo.Team == B.PlayerReplicationInfo.Team)
+					if (C.PlayerReplicationInfo != None && C.PlayerReplicationInfo.Team == B.PlayerReplicationInfo.Team)
 						TeamGunLevel = Max(TeamGunLevel, GunGamePRI(C.PlayerReplicationInfo).GunLevel);
 			   }
 			   if (TeamGunLevel != 1)
@@ -1212,7 +1212,7 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
           
      else
      {
-          if ( bEnemyKill )  //Skip if it was a teamkill, as we don't need to check the validity of the kill here
+          if ( bEnemyKill && KillerPRI != None )  //Skip if it was a teamkill, as we don't need to check the validity of the kill here
           {
                //Here I get the very last weapondamage actively done to Killed. So I know when Killed has been pushed out, which weapon caused that
                if ( class<WeaponDamageType>(damageType) != None )
@@ -1229,7 +1229,8 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
                          bNoUpgrade = true;   //Do not upgrade std weapon kills by default
                          KillerPRI.bStdWeaponKill = true;  //Activate MultiKill block later -> one feauture award per shot, avoid massive feauture gaining (when Redeemer is std. weapon), avoid normal scoring
 
-						 PlayerController(Killer).PlayRewardAnnouncement('Denied',1, true);
+						 if (PlayerController(Killer) != None)
+						     PlayerController(Killer).PlayRewardAnnouncement('Denied',1, true);
 
                          //The std. weapon's special feature will be processed here
                          switch (StdWeaponFeature)
@@ -1606,7 +1607,8 @@ function ScoreKill(Controller Killer, Controller Other)
      local GunGamePRI KillerPRI;
 
      OtherPRI = GunGamePRI(Other.PlayerReplicationInfo);
-     KillerPRI = GunGamePRI(Killer.PlayerReplicationInfO);
+     if ( Killer != None )
+          KillerPRI = GunGamePRI(Killer.PlayerReplicationInfo);
 
      if ( Mode == 0 && OtherPRI != None )
           OtherPRI.bOutOfLives = true;
@@ -1621,7 +1623,7 @@ function ScoreKill(Controller Killer, Controller Other)
           //DeathMatch
           if ( OtherPRI != None )  //Std weapon kills does not influence the normal scoring system, they use its own by default -> check Killed() for details
           {
-               if ( !KillerPRI.bStdWeaponKill )  //Std weapon kills does not influence the normal scoring system, they use its own by default -> check Killed() for details
+               if ( KillerPRI == None || !KillerPRI.bStdWeaponKill )  //Std weapon kills does not influence the normal scoring system, they use its own by default -> check Killed() for details
                     OtherPRI.NumLives++;
 
                if ( (MaxLives > 0) && (OtherPRI.NumLives >=MaxLives) )
@@ -1707,7 +1709,7 @@ function ScoreKill(Controller Killer, Controller Other)
           {
                Other.PlayerReplicationInfo.Team.Score -= 1;
                Other.PlayerReplicationInfo.Team.NetUpdateTime = Level.TimeSeconds - 1;
-               TeamScoreEvent(Killer.PlayerReplicationInfo.Team.TeamIndex, 1, "team_frag");
+               TeamScoreEvent(Other.PlayerReplicationInfo.Team.TeamIndex, 1, "team_frag");
           }
           else if ( Killer.PlayerReplicationInfo.Team != Other.PlayerReplicationInfo.Team )
           {

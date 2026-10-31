@@ -67,6 +67,8 @@ function Timer()
 	}
 	
 	class'BallisticDamageType'.static.GenericHurt (Target, 7, Instigator, Target.Location + (Normal(Target.Location - Instigator.Location))*-24, vect(0,0,0), class'DTMRS138TazerLine');
+	if (Target == None)
+		return;
 	
 	class'BCSprintControl'.static.AddSlowTo(Target, 0.4, EffectInterval);
 	if (Target.Health > 0)

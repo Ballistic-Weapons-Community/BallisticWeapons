@@ -64,7 +64,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 			IgniteActor(Victim);
 	}
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
-	if (Victim.bCanBeDamaged)
+	if (Victim != None && Victim.bCanBeDamaged)
 		DoTazerBlurEffect(Victim);
 }
 

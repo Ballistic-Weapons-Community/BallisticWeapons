@@ -74,7 +74,7 @@ var float								FlashGoalZ;							// Where FlashFog.Z is heading (the view volu
 var bool								bFlashFades;						// This ClientFlash runs long enough to hold its colour and fade out
 
 // Fractional Parts of Pitch/Yaw Input
-var transient float PitchFraction, YawFraction;
+var transient float InputPitchFraction, InputYawFraction;
 
 var array<Actor> PendingScreenBlood;
 
@@ -2155,17 +2155,17 @@ function UpdateRotation(float DeltaTime, float maxPitch)
     {
         if (bFreeCamZoom == True)
         {
-            CameraDeltaRad += FractionCorrection(DeltaTime * 0.25 * aLookUp, PitchFraction);
+            CameraDeltaRad += FractionCorrection(DeltaTime * 0.25 * aLookUp, InputPitchFraction);
         }
         else if (bFreeCamSwivel == True)
         {
-            CameraSwivel.Yaw += FractionCorrection(16.0 * DeltaTime * aTurn, YawFraction);
-            CameraSwivel.Pitch += FractionCorrection(16.0 * DeltaTime * aLookUp, PitchFraction);
+            CameraSwivel.Yaw += FractionCorrection(16.0 * DeltaTime * aTurn, InputYawFraction);
+            CameraSwivel.Pitch += FractionCorrection(16.0 * DeltaTime * aLookUp, InputPitchFraction);
         }
         else
         {
-            CameraDeltaRotation.Yaw += FractionCorrection(32.0 * DeltaTime * aTurn, YawFraction);
-            CameraDeltaRotation.Pitch += FractionCorrection(32.0 * DeltaTime * aLookUp, PitchFraction);
+            CameraDeltaRotation.Yaw += FractionCorrection(32.0 * DeltaTime * aTurn, InputYawFraction);
+            CameraDeltaRotation.Pitch += FractionCorrection(32.0 * DeltaTime * aLookUp, InputPitchFraction);
         }
     }
     else
@@ -2194,8 +2194,8 @@ function UpdateRotation(float DeltaTime, float maxPitch)
             TurnTarget = None;
             bRotateToDesired = false;
             bSetTurnRot = false;
-            ViewRotation.Yaw += FractionCorrection(32.0 * DeltaTime * aTurn, YawFraction);
-            ViewRotation.Pitch += FractionCorrection(32.0 * DeltaTime * aLookUp, PitchFraction);
+            ViewRotation.Yaw += FractionCorrection(32.0 * DeltaTime * aTurn, InputYawFraction);
+            ViewRotation.Pitch += FractionCorrection(32.0 * DeltaTime * aLookUp, InputPitchFraction);
         }
         if (Pawn != None)
             ViewRotation.Pitch = Pawn.LimitPitch(ViewRotation.Pitch);

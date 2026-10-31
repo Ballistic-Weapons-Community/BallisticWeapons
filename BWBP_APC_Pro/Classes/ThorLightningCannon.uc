@@ -79,7 +79,8 @@ function ServerSwitchWeaponMode (byte NewMode)
 		
 	Super.ServerSwitchWeaponMode(NewMode);
 	
-	ThorLCAttachment(ThirdPersonActor).ModeColor = CurrentWeaponMode;
+	if (ThirdPersonActor != None)
+		ThorLCAttachment(ThirdPersonActor).ModeColor = CurrentWeaponMode;
 }
 
 simulated function ClientSwitchWeaponMode (byte newMode)

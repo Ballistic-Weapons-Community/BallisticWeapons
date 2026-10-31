@@ -370,13 +370,15 @@ simulated function CommonSwitchWeaponMode (byte newMode)
 	SRXPrimaryFire(FireMode[0]).SwitchWeaponMode(newMode);
 	if (newMode == 1 && AmpCharge > 0)	//red
 	{
-		SRXAttachment(ThirdPersonActor).SetAmpColour(true, false);
+		if (ThirdPersonActor != None)
+			SRXAttachment(ThirdPersonActor).SetAmpColour(true, false);
 		Skins[14]=AmpMaterials[0];
 		Skins[15]=AmpMaterials[2];
 	}
 	else if (newMode == 2 && AmpCharge > 0)	//green
 	{
-		SRXAttachment(ThirdPersonActor).SetAmpColour(false, true);
+		if (ThirdPersonActor != None)
+			SRXAttachment(ThirdPersonActor).SetAmpColour(false, true);
 		Skins[14]=AmpMaterials[1];
 		Skins[15]=AmpMaterials[3];
 	}

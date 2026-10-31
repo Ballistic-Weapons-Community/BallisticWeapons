@@ -104,12 +104,12 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	else if (Vehicle(Victim) != None && Vehicle(Victim).Driver!=None && Vehicle(Victim).Driver.Health > 0)
 		bWasAlive = true;
 
-	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && xPawn(Victim) != None && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim != None && Victim != Instigator && Victim.bProjTarget && xPawn(Victim) != None && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
 		BallisticPawn(Instigator).GiveAttributedShield(int(Dmg * 0.6f), Instigator);
 
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, GetMomentumVector(Normal(Velocity)), DT);
 
-	if (bWasAlive && Pawn(Victim).Health <= 0)
+	if (bWasAlive && (Pawn(Victim) == None || Pawn(Victim).Health <= 0))
 		class'RSNovaSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Other), self);
 }
 
@@ -170,17 +170,20 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 // Hit something interesting
 simulated function ProcessTouch (Actor Other, vector HitLocation)
 {
+	local Vector ToOther;
+
     if (!CanTouch(Other))
         return;
 	if (RSNovaProjectile(Other)!=None || RSNovaFastProjectile(Other)!=None)
 		return;
 
+	ToOther = Other.Location-HitLocation;
 	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits
 		DoDamage(Other, HitLocation);
 	if (Pawn(Other) != None && Pawn(Other).Health <= 0)
-		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 2, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
+		PenetrateManager.static.StartSpawn(HitLocation, ToOther, 2, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
 	else
-		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 1, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
+		PenetrateManager.static.StartSpawn(HitLocation, ToOther, 1, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
 	
 	ImpactManager = None;
 	

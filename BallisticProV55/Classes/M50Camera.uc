@@ -47,7 +47,7 @@ simulated event PostNetReceive()
 		default.HitCount = HitCount;
 		OnCameraDie();
 		if (DeadEffect != None)
-			DeadEffect.Trigger(self, Weapon.Instigator);
+			DeadEffect.Trigger(self, None);
 		else
 			DeadEffect = Spawn(class'M50CamDieEmitter',self,,Location);
 		AmbientSound=NoiseSound;
