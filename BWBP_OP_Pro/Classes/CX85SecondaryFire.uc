@@ -64,12 +64,19 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
         if (MasterProj != None)
         {
             Proj = Spawn (class'CX85DartDirect',MasterProj,, HitLocation, R);
+            if (Proj == None)
+                return;
             Proj.Tracked = Pawn(Target);
         }
         else
         {
             CX85AssaultWeapon(BW).bPendingReceive=True; //Weapon needs to wait for acknowledgement for the leader dart, which is used clientside for tracking.
             Proj = Spawn (class'CX85DartDirect',BW,, HitLocation, R);
+            if (Proj == None)
+            {
+                CX85AssaultWeapon(BW).bPendingReceive = False;
+                return;
+            }
             Proj.Tracked = Pawn(Target);
             Proj.SetMaster();
         }

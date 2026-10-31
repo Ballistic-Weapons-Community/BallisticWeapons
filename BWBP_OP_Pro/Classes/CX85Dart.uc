@@ -62,12 +62,23 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	if (MasterProj != None)
 	{
 		Proj = Spawn (class'CX85DartDirect',MasterProj,, LastHitLoc, R);
+		if (Proj == None)
+		{
+			Destroy();
+			return;
+		}
 		Proj.Tracked = Pawn(StuckActor);
 	}
 	else
 	{
 		Master.bPendingReceive=True; //Weapon needs to wait for acknowledgement for the leader dart, which is used clientside for tracking.
 		Proj = Spawn (class'CX85DartDirect',Master,, LastHitLoc, R);
+		if (Proj == None)
+		{
+			Master.bPendingReceive = False;
+			Destroy();
+			return;
+		}
 		Proj.Tracked = Pawn(StuckActor);
 		Proj.SetMaster();
 	}
