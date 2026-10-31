@@ -229,7 +229,7 @@ defaultproperties
 
      Begin Object Class=moFloatEdit Name=fl_FireRateFloat
          MinValue=0.500000
-         MaxValue=2.000000
+         MaxValue=3.000000
          Step=0.050000
          ComponentJustification=TXTA_Left
          CaptionWidth=0.700000
@@ -254,7 +254,7 @@ defaultproperties
          Caption="Magazine Size Scale"
          OnCreateComponent=fl_MagazineFloat.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="How many rounds a magazine holds. 1.5: a magazine of 30 holds 45."
+         Hint="How many rounds a magazine holds. 1.5: a magazine of 30 holds 45, and a plasma or lightning gun 1.5 times its cells."
          WinTop=0.454000
          WinLeft=0.265000
          WinWidth=0.485000

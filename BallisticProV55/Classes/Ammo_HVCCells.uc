@@ -12,6 +12,7 @@ defaultproperties
 {
 	MaxAmmo=150
 	InitialAmount=150
+	bScalesAsMagazine=True
 	IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIcon_LGFlash'
 	PickupClass=Class'BallisticProV55.AP_HVCMk9Cell'
 	IconMaterial=Texture'BW_Core_WeaponTex.Lighter.AmmoIconLG'

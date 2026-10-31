@@ -151,6 +151,7 @@ function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
             Ammo[m] = Spawn(FireMode[m].AmmoClass, instigator);
             Instigator.AddInventory(Ammo[m]);
         }
+		RaiseNoMagCap(m);
 		//Dropped pickup, just add ammo
         if ((WP != None) && (WP.bDropped || WP.AmmoAmount[m] > 0))
 			Ammo[m].AddAmmo(WP.AmmoAmount[m]);

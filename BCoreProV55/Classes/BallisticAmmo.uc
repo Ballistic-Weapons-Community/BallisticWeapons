@@ -7,6 +7,7 @@
 class BallisticAmmo extends Ammunition;
 
 var AmmoParams	Params[4];
+var bool		bScalesAsMagazine;	// The guns that use this have no magazine: Magazine Size Scale acts on this ammo instead
 
 static final function bool ResuppliesFromPack()
 {
@@ -18,12 +19,37 @@ static final function float GetKillInitialAmmoMult()
 	return default.Params[class'BallisticReplicationInfo'.default.GameStyle].KillInitialAmmoMult;
 }
 
+// The most a player can carry
+static final function int GetScaledMaxAmmo()
+{
+	if (default.bScalesAsMagazine)
+		return class'BallisticReplicationInfo'.static.ScaleMagAmmo(default.MaxAmmo);
+	return default.MaxAmmo;
+}
+
+// What a new gun comes with. A scale under 1 only brings it down to the cap: one HVPC Mk66 shot can take 100 cells
+static final function int GetScaledInitialAmount()
+{
+	if (default.bScalesAsMagazine)
+		return Min(Max(default.InitialAmount, class'BallisticReplicationInfo'.static.ScaleMagAmmo(default.InitialAmount)), GetScaledMaxAmmo());
+	return default.InitialAmount;
+}
+
 static final function int GetKillResupplyAmmo()
 {
     if (default.InitialAmount > 0)
-	    return default.InitialAmount * GetKillInitialAmmoMult(); // usually one mag
+	    return GetScaledInitialAmount() * GetKillInitialAmmoMult(); // usually one mag
         
-    return default.MaxAmmo * GetKillInitialAmmoMult() * 0.5f;
+    return GetScaledMaxAmmo() * GetKillInitialAmmoMult() * 0.5f;
+}
+
+// On clients too: MaxAmmo isn't replicated
+simulated function PostBeginPlay()
+{
+	Super.PostBeginPlay();
+
+	MaxAmmo = GetScaledMaxAmmo();
+	InitialAmount = GetScaledInitialAmount();
 }
 
 function bool AddAmmo(int AmmoToAdd)
