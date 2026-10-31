@@ -6227,6 +6227,7 @@ simulated function DrawCrosshairs(Canvas C)
 {
 	local float X, Y, OldX, OldY;
 	local bool bMoved;
+	local byte OldStyle;
 
 	// Draw weapon specific Crosshairs
 	if (PlayerController(Instigator.Controller) == None || (Instigator.IsFirstPerson() && bScopeView))
@@ -6241,6 +6242,11 @@ simulated function DrawCrosshairs(Canvas C)
 		bMoved = true;
 	}
 
+	// The canvas has the style of what the HUD drew last: a team HUD's score leaves alpha, but a Deathmatch HUD leaves the
+	// plain style, which takes no notice of a crosshair's opacity
+	OldStyle = C.Style;
+	C.Style = ERenderStyle.STY_Alpha;
+
 	switch (CrosshairMode)
 	{
 		case CHM_Simple:
@@ -6252,6 +6258,8 @@ simulated function DrawCrosshairs(Canvas C)
 		case CHM_Unreal:
 			break;
 	}
+
+	C.Style = OldStyle;
 
 	if (bMoved)
 		C.SetOrigin(OldX, OldY);
