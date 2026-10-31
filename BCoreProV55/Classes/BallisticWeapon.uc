@@ -4280,6 +4280,9 @@ function bool DiscourageReload()
 // Allows clever bots to reload when they get the chance and dumb ones only when they have to
 function bool BotReload(optional bool bForced)
 {
+	// Bots ask CanAttack about the players they fight too, and this is not the place to touch a player's gun
+	if (AIController(Instigator.Controller) == None)
+		return false;
 	if (bForced || AIController(Instigator.Controller).Skill > Rand(5))
 	{
 		ServerStartReload();
@@ -4291,6 +4294,8 @@ function bool BotReload(optional bool bForced)
 // Is reloading a good idea???
 function bool BotShouldReload ()
 {
+	if (AIController(Instigator.Controller) == None)
+		return false;
 	if ( (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime > AIReloadTime + AIReloadTime * (MagAmmo/GetMagCapacity())) &&
 		 (Level.TimeSeconds - Instigator.LastPainTime > AIReloadTime) )
 		return true;
@@ -4320,7 +4325,8 @@ function bool CanAttack(Actor Other)
 	
 	if (!bNonCocking && bNeedCock && !bNeedReload && MagAmmo > 0)
 	{
-		CommonCockGun();
+		if (AIController(Instigator.Controller) != None)
+			CommonCockGun();
 		return false;
 	}
 

@@ -646,6 +646,15 @@ function Class<Inventory> GetInventoryClass(string InventoryClassName)
 	return None;
 }
 
+// Last Man Standing hands everybody its stock arsenal at each spawn. Players here carry what they chose, so that isn't
+// swapped for Ballistic weapons: as stock weapons it's turned down in CheckReplacement
+function string GetInventoryClassOverride(string InventoryClassName)
+{
+	if (Level.Game.IsA('xLastManStandingGame'))
+		return Super(Mutator).GetInventoryClassOverride(InventoryClassName);
+	return Super.GetInventoryClassOverride(InventoryClassName);
+}
+
 static function SpawnAmmo(class<Ammunition> newClass, Pawn P, optional float Multiplier)
 {
 	local Ammunition Ammo;
@@ -741,6 +750,11 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 		xPawn(Other).RequiredEquipment[1] = "";
 		return true;
 	}
+
+	// Last Man Standing's stock arsenal: see GetInventoryClassOverride
+	else if (Weapon(Other) != None && (!Weapon(Other).bNoInstagibReplace) && Translauncher(Other)==None
+		&& Left(string(Other.Class), 9) ~= "XWeapons." && Level.Game.IsA('xLastManStandingGame'))
+		return false;
 
 	// No weapon pickups unless they are dropped. Dropped BWs are owned by the weapon that dropped them
 	else if (WeaponPickup(Other) != None && Other.Owner == None)
