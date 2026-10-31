@@ -235,7 +235,7 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 			if (Pawn(Victims) != None)
 			{
 				ChargeControl.FireSinge(Pawn(Victims), Instigator, 2, int(HeatLevel)); //The 2 designates this weapon is an AK91, used for death messages, adds HeatLevel # of zaps
-				if ( Pawn(Victims).bProjTarget)
+				if (Pawn(Victims) != None && Pawn(Victims).bProjTarget)
 					Pawn(Victims).AddVelocity(vect(0,0,200) + (Normal(Victims.Acceleration) * -FMin(Pawn(Victims).GroundSpeed, VSize(Victims.Velocity)) + Normal(dir) * 3000 * damageScale));
 			}
 

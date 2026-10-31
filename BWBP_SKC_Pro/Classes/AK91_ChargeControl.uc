@@ -195,6 +195,9 @@ simulated function BurnRadius( float DamageAmount, float DamageRadius, class<Dam
 				continue;
 			if (Pawn(Victims) != None && FRand()-0.4 < damageScale)
 				FireSinge(Pawn(Victims), InstigatedBy, TriggerType);
+			// its detonator can destroy what it singes
+			if (Victims == None)
+				continue;
 			class'BallisticDamageType'.static.GenericHurt
 			(
 				Victims,

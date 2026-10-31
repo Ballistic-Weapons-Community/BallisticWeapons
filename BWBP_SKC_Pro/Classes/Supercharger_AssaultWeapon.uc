@@ -167,7 +167,8 @@ simulated function AddHeat(float Amount)
 	{
 		Heatlevel = 12;
 		class'BallisticDamageType'.static.GenericHurt (Instigator, 20+Rand(40), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DT_SuperchargeOverheat');
-		ChargeControl.FireSinge(Instigator, Instigator, 1, 5);
+		if (Instigator != None)
+			ChargeControl.FireSinge(Instigator, Instigator, 1, 5);
 	}
 }
 
