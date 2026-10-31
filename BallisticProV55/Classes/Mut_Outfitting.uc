@@ -624,6 +624,15 @@ function Class<Inventory> GetInventoryClass(string InventoryClassName)
 	return None;
 }
 
+// Last Man Standing hands everybody its stock arsenal at each spawn. Players here carry what they chose, so that isn't
+// swapped for Ballistic weapons: as stock weapons it's turned down in CheckReplacement
+function string GetInventoryClassOverride(string InventoryClassName)
+{
+	if (Level.Game.IsA('xLastManStandingGame'))
+		return Super(Mutator).GetInventoryClassOverride(InventoryClassName);
+	return Super.GetInventoryClassOverride(InventoryClassName);
+}
+
 simulated event Timer()
 {
 	super.Timer();
