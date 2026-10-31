@@ -113,6 +113,11 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	if(StuckActor == None)
 	{
 		Proj = Spawn (class'PD97TrackerBeacon',,, LastHitLoc, R);
+		if (Proj == None)
+		{
+			Destroy();
+			return;
+		}
 		Proj.Instigator = Instigator;
 		PD97TrackerBeacon(Proj).Master = Master;
 		if (Master != None)
@@ -123,6 +128,11 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	else
 	{
 		Proj = Spawn (class'PD97TrackerBeacon',,, LastHitLoc, R);
+		if (Proj == None)
+		{
+			Destroy();
+			return;
+		}
 		Proj.Instigator = Instigator;
 		PD97TrackerBeacon(Proj).Master = Master;
 		if (Master != None)

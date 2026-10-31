@@ -92,7 +92,7 @@ simulated function FireSinge(Pawn P, Pawn InstigatedBy, int triggerType, optiona
 					SingeVictims[i].Burns += numZaps;
 				if (SingeVictims[i].Burns == 15 || (numZaps > 1 && SingeVictims[i].Burns >= 15))
 					MakeNewExploder(P, InstigatedBy, triggerType);
-				if (SingeVictims[i].Burns == 10 || (numZaps > 1 && SingeVictims[i].Burns >= 10))
+				if (P != None && (SingeVictims[i].Burns == 10 || (numZaps > 1 && SingeVictims[i].Burns >= 10)))
 					MakeNewBurner(P, InstigatedBy, triggerType);
 				return;
 			}
@@ -200,6 +200,9 @@ simulated function BurnRadius( float DamageAmount, float DamageRadius, class<Dam
 				continue;
 			if (Pawn(Victims) != None && FRand()-0.4 < damageScale)
 				FireSinge(Pawn(Victims), InstigatedBy, TriggerType);
+			// its detonator can destroy what it singes
+			if (Victims == None)
+				continue;
 			class'BallisticDamageType'.static.GenericHurt
 			(
 				Victims,

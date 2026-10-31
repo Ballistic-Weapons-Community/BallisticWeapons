@@ -89,6 +89,11 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	if(StuckActor == None)
 	{
 		Proj = Spawn (class'LAWMineHvy',,, LastHitLoc, R);
+		if (Proj == None)
+		{
+			Destroy();
+			return;
+		}
 		Proj.Instigator = Instigator;
 		Proj.bHardAttach = true;
 		Proj.SetBase(LastTrace);
@@ -96,6 +101,11 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	else
 	{
 		Proj = Spawn (class'LAWRocket',,, LastHitLoc, R);
+		if (Proj == None)
+		{
+			Destroy();
+			return;
+		}
 		Proj.Instigator = Instigator;
 		Proj.SetPhysics(PHYS_None);
 		Proj.bHardAttach = true;

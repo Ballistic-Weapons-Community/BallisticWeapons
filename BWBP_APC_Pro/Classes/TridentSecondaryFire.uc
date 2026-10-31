@@ -41,7 +41,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	if (!Other.bWorldGeometry && Mover(Other) == None)
 		return false;
 
-	if (!bAISilent)
+	if (!bAISilent && Instigator != None)
 		Instigator.MakeNoise(1.0);
 	if (ImpactManager != None && Weapon.EffectIsRelevant(HitLocation,false))
 	{
@@ -196,7 +196,7 @@ function DoFireEffect()
 	local int i;
 	local float Interval, ExtraTime;
 
-	if (!bAISilent)
+	if (!bAISilent && Instigator != None)
 		Instigator.MakeNoise(1.0);
 
 	if (TraceCount > 1)

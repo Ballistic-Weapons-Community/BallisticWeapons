@@ -127,7 +127,7 @@ simulated state HEAmmo //Explodes on human targets
 
 		// Tell the attachment to spawn effects and so on
 		SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
-		if (!bAISilent)
+		if (!bAISilent && Instigator != None)
 			Instigator.MakeNoise(1.0);
 		return true;
 	}
@@ -186,7 +186,7 @@ simulated state IncAmmo //Radius damage on world, adds heat
 
 		// Tell the attachment to spawn effects and so on
 		SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
-		if (!bAISilent)
+		if (!bAISilent && Instigator != None)
 			Instigator.MakeNoise(1.0);
 		return true;
 	}

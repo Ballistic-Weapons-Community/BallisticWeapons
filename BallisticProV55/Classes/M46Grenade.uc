@@ -119,6 +119,11 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	else
 	{
 		Proj = Spawn (class'M46StickyMine',,, LastHitLoc, R);
+		if (Proj == None)
+		{
+			Destroy();
+			return;
+		}
 		Proj.Instigator = Instigator;
 		Proj.SetPhysics(PHYS_None);
 		Proj.bHardAttach = true;
@@ -128,8 +133,11 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 			Proj.SetBase(StuckActor);
 	}
 
-	Proj.SetRotation(R);
-	Proj.Velocity = vect(0,0,0);
+	if (Proj != None)
+	{
+		Proj.SetRotation(R);
+		Proj.Velocity = vect(0,0,0);
+	}
 
 	Destroy();
 }

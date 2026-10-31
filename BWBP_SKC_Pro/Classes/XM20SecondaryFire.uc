@@ -215,7 +215,7 @@ simulated state Laser
 		}
 		bLaserFiring=true;
 
-		if (!bAISilent)
+		if (!bAISilent && Instigator != None)
 			Instigator.MakeNoise(1.0);
 
 		if (Level.NetMode == NM_DedicatedServer)
