@@ -37,7 +37,7 @@ function AlignButtons()
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
-    Log("BallisticTeamOutfittingWeaponSelect::InitComponent");
+    //Log("BallisticTeamOutfittingWeaponSelect::InitComponent");
 
 	Super.InitComponent(MyController, MyOwner);
 
@@ -59,7 +59,7 @@ function LoadWeapons(ClientTeamOutfittingInterface COI, int group)
 	local int i, lastIndex;
 	local BC_WeaponInfoCache.WeaponInfo WI;
 	
-    Log("BallisticTeamOutfittingWeaponSelect::LoadWeapons");
+    //Log("BallisticTeamOutfittingWeaponSelect::LoadWeapons");
 
 	lb_Weapons.List.Clear();
 
