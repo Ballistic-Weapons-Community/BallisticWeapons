@@ -6128,7 +6128,7 @@ simulated final function DrawSimpleCrosshairBars(Canvas C, int XOffset, int YOff
 	}
 	*/
 
-	// inner
+	// inner, with DrawTile: DrawTileStretched takes no notice of the canvas's origin, see DrawCrosshairs
 	if (!bNoMag && MagAmmo == 0)
 		C.DrawColor = MagEmptyColor;
 	else if (bNeedCock)
@@ -6138,17 +6138,17 @@ simulated final function DrawSimpleCrosshairBars(Canvas C, int XOffset, int YOff
 
 	//hor
 	C.SetPos((C.ClipX / 2) - (LongBound + XOffset), (C.ClipY/2) - (ShortBound/2));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
+	C.DrawTile(Texture'Engine.WhiteTexture', LongBound, ShortBound, 0, 0, 1, 1);
 
 	C.SetPos((C.ClipX / 2) + XOffset, (C.ClipY/2) - (ShortBound/2));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
+	C.DrawTile(Texture'Engine.WhiteTexture', LongBound, ShortBound, 0, 0, 1, 1);
 
 	//ver
 	C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) - (LongBound + YOffset));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
+	C.DrawTile(Texture'Engine.WhiteTexture', ShortBound, LongBound, 0, 0, 1, 1);
 
 	C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) + YOffset);
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
+	C.DrawTile(Texture'Engine.WhiteTexture', ShortBound, LongBound, 0, 0, 1, 1);
 
 	
 	if (bDrawCrosshairDot)
@@ -6156,7 +6156,7 @@ simulated final function DrawSimpleCrosshairBars(Canvas C, int XOffset, int YOff
 		// Solid. The canvas's own alpha is no guide: it is what the HUD left, and that is a message's fade after a pickup
 		C.DrawColor.A = 255;
 		C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
+		C.DrawTile(Texture'Engine.WhiteTexture', 2, 2, 0, 0, 1, 1);
 	}
 	
 
