@@ -618,6 +618,20 @@ final function Rotator GetViewEscapePivot()
 }
 
 //===========================================================
+// GetRecoilFactor
+//
+// How far along its recoil the gun is, from 0 to 1. The
+// graphical crosshairs grow with it.
+//===========================================================
+final function float GetRecoilFactor()
+{
+	if (MaxRecoil <= 0)
+		return 0;
+
+	return float(Current.Recoil) / MaxRecoil;
+}
+
+//===========================================================
 // CalculateRecoil
 //
 // Calculates the offset for the current recoil state by 

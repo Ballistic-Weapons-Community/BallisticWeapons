@@ -794,6 +794,22 @@ final simulated function ApplyDamageFactor(int Damage)
         BW.ClientPlayerDamaged(Damage);
 }
 
+// How far movement and firing have opened up the aim, from 0 to 1, as the crosshairs show it
+final simulated function float GetCrosshairChaos()
+{
+    local float ShownChaos;
+
+    if (AimSpread.Max <= 32)
+        return 0;
+
+    if (bReaiming)
+        ShownChaos = Lerp(ReaimPhase/ReaimTime, OldChaos, NewChaos);
+    else
+        ShownChaos = NewChaos;
+
+    return FClamp(ShownChaos + ((1 - (360/Params.ChaosSpeedThreshold) * NewChaos) * FireChaos), 0, 1);
+}
+
 final simulated function float CalcCrosshairOffset(Canvas C)
 {
     local float OffsetAdjustment;
@@ -803,10 +819,7 @@ final simulated function float CalcCrosshairOffset(Canvas C)
 
     OffsetAdjustment = C.ClipX / 2;
     
-    if (bReaiming)
-        OffsetAdjustment *= tan ((AimSpread.Min + ((AimSpread.Max - AimSpread.Min) * FClamp(Lerp(ReaimPhase/ReaimTime, OldChaos, NewChaos) + ((1 - (360/Params.ChaosSpeedThreshold)* NewChaos) * FireChaos), 0, 1))) * 0.000095873799) / tan((BW.InstigatorController.FovAngle/2) * 0.01745329252);
-    else
-        OffsetAdjustment *= tan ((AimSpread.Min + ((AimSpread.Max - AimSpread.Min) * FClamp(NewChaos + ((1 - (360/Params.ChaosSpeedThreshold) * NewChaos) * FireChaos), 0, 1))) * 0.000095873799) / tan((BW.InstigatorController.FovAngle/2) * 0.01745329252);
+    OffsetAdjustment *= tan ((AimSpread.Min + ((AimSpread.Max - AimSpread.Min) * GetCrosshairChaos())) * 0.000095873799) / tan((BW.InstigatorController.FovAngle/2) * 0.01745329252);
 
     return OffsetAdjustment;
 }

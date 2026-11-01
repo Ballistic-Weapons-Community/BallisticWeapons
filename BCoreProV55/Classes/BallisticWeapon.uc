@@ -5821,14 +5821,6 @@ simulated function AddRecoil(float Recoil, float FireChaos, optional byte Mode)
 {
 	RcComponent.AddRecoil(Recoil, Mode);
 	AimComponent.AddFireChaos(FireChaos);
-
-	/*
-	// Set crosshair size
-	if (bReaiming)
-		NDCrosshairInfo.CurrentScale = FMin(1, Lerp(ReaimPhase/ReaimTime, OldChaos, NewChaos)*NDCrosshairChaosFactor*class'BallisticReplicationInfo'.default.AccuracyScale + (Recoil/RecoilMax)*class'BallisticReplicationInfo'.default.RecoilScale) * NDCrosshairInfo.MaxScale * NDCrosshairScaleFactor;
-	else
-		NDCrosshairInfo.CurrentScale = FMin(1, NewChaos*NDCrosshairChaosFactor*class'BallisticReplicationInfo'.default.AccuracyScale + (Recoil/RecoilMax)*class'BallisticReplicationInfo'.default.RecoilScale) * NDCrosshairInfo.MaxScale * NDCrosshairScaleFactor;
-	*/
 }
 
 simulated function float GetFireChaos()
@@ -6204,6 +6196,10 @@ simulated function DrawGraphicalCrosshairs(Canvas C)
 	// Draw primary
 	if (CHCfg.Pic1 != None)
 	{
+	// Inaccuracy and recoil spread it out
+	NDCrosshairInfo.CurrentScale = FMin(1, AimComponent.GetCrosshairChaos() * NDCrosshairChaosFactor * class'BallisticReplicationInfo'.default.AccuracyScale
+		+ RcComponent.GetRecoilFactor() * class'BallisticReplicationInfo'.default.RecoilScale) * NDCrosshairInfo.MaxScale * class'BallisticWeapon'.default.NDCrosshairScaleFactor;
+
 
 		C.DrawColor = CHCfg.Color1;
 		if (bScopeView)    C.DrawColor.A = float(C.DrawColor.A) / 1.3;
