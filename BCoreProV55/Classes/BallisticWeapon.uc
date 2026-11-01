@@ -6161,7 +6161,8 @@ simulated final function DrawSimpleCrosshairBars(Canvas C, int XOffset, int YOff
 	
 	if (bDrawCrosshairDot)
 	{
-		C.DrawColor.A = SavedDrawColor.A;
+		// Solid. The canvas's own alpha is no guide: it is what the HUD left, and that is a message's fade after a pickup
+		C.DrawColor.A = 255;
 		C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
 		C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
 	}
