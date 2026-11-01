@@ -74,6 +74,25 @@ static event string GetDescriptionText(string PropName)
      return Super.GetDescriptionText(PropName);
 }
 
+static function bool AllowMutator( string MutatorClassName )
+{
+	if ( MutatorClassName == "" )
+		return false;
+
+	if ( MutatorClassName ~= "BallisticProV55.Mut_BallisticClassic" )
+		return false;
+	if ( MutatorClassName ~= "BallisticProV55.Mut_BallisticPro" )
+		return false;
+
+     if ( MutatorClassName ~= "BallisticProV55.Mut_BallisticRealism" )
+		return false;
+
+	if ( MutatorClassName ~= "BallisticProV55.Mut_BallisticTactical" )
+		return false;
+
+	return super.AllowMutator(MutatorClassName);
+}
+
 static function PrecacheGameTextures(LevelInfo myLevel)
 {
      local int i;
