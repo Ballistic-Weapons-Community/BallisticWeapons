@@ -2721,7 +2721,7 @@ simulated function DrawHUD(Canvas C)
 }
 
 // The HUD asks here for its own crosshair (bSpecialCrosshair), so that the UT2004 crosshair type goes where the shot will
-// land in third person, as BW's own crosshairs do (BallisticWeapon.ThirdPersonCrosshair); otherwise the HUD draws it as ever
+// land, as BW's own crosshairs do (BallisticWeapon.GetCrosshairAim); otherwise the HUD draws it as ever
 simulated function SpecialDrawCrosshair(Canvas C)
 {
 	local PlayerController PC;
@@ -2732,7 +2732,7 @@ simulated function SpecialDrawCrosshair(Canvas C)
 	if (PC == None || PC.MyHud == None)
 		return;
 
-	if (BallisticWeapon(Weapon) != None && BallisticWeapon(Weapon).ThirdPersonCrosshair(C, X, Y))
+	if (BallisticWeapon(Weapon) != None && BallisticWeapon(Weapon).GetCrosshairAim(C, X, Y))
 	{
 		OldX = C.OrgX;
 		OldY = C.OrgY;

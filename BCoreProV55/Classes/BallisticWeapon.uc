@@ -98,6 +98,13 @@ enum ECrosshairMode
 	CHM_Unreal
 };
 
+enum ECrosshairAim
+{
+	CHA_Off,			// The crosshair stays in the middle of the screen
+	CHA_ThirdPerson,	// It goes where a shot would land in third person, where the camera is off the line of fire
+	CHA_Always			// It goes there in first person as well, following sway, recoil and the sprint offset
+};
+
 //=============================================================================
 // STRUCTS
 //=============================================================================
@@ -148,14 +155,15 @@ var() globalconfig  bool			bInvertScope;			// Inverts Prev/Next weap relation to
 var() globalconfig 	EScopeHandling  ScopeHandling;			// Should iron sights continue when the key is released, once activated?
 var() globalconfig 	float			AimKnockScale;			// Scale the weapon displacement caused by taking damage
 var() globalconfig 	ECrosshairMode	CrosshairMode; 			// Draw descriptive crosshairs?
+var() globalconfig 	ECrosshairAim	CrosshairAim;			// Does the crosshair go where a shot would land? Read from this class
 var() globalconfig	bool			bUseBigIcon;			// For HUDFix huds - makes the Icon the BigIcon
 var() globalconfig	byte			MaxInventoryCapacity;   // total InventorySize player can carry
 //=============================================================================
 // END GLOBALLY CONFIGURABLE SETTINGS
 //=============================================================================
 
-var	float						ThirdPersonCrossTime;			// When ThirdPersonCrossEnd was last worked out
-var	vector						ThirdPersonCrossEnd;			// Where a shot fired now would land (see ThirdPersonCrosshair)
+var	float						CrosshairAimTime;				// When CrosshairAimEnd was last worked out
+var	vector						CrosshairAimEnd;				// Where a shot fired now would land (see GetCrosshairAim)
 
 //=============================================================================
 // CONFIGURABLE SETTINGS
@@ -2543,6 +2551,10 @@ simulated final function ScopeModifyCrosshair()
 	local PlayerController PC;
 
 	PC = PlayerController(InstigatorController);
+
+	// In third person the sights leave the view as it is, and a Ballistic crosshair stays up (see DrawCrosshairs)
+	if (PC.bBehindView && CrosshairMode != CHM_Unreal)
+		return;
 
 	if ( PC.bBehindView )
 		bNoCrosshairInScope = False;
@@ -6167,11 +6179,8 @@ simulated function DrawSimpleCrosshairs(Canvas C)
 {
 	local float 		OffsetAdjustment;
 
-	if (!bScopeView)
-	{
-		OffsetAdjustment = AimComponent.CalcCrosshairOffset(C);
-		DrawSimpleCrosshairBars(C, OffsetAdjustment, OffsetAdjustment);
-	}
+	OffsetAdjustment = AimComponent.CalcCrosshairOffset(C);
+	DrawSimpleCrosshairBars(C, OffsetAdjustment, OffsetAdjustment);
 }
 
 simulated function DrawGraphicalCrosshairs(Canvas C)
@@ -6187,6 +6196,10 @@ simulated function DrawGraphicalCrosshairs(Canvas C)
 	else
 		CHCfg = NDCrosshairCfg;
 	
+	// Inaccuracy and recoil spread it out
+	NDCrosshairInfo.CurrentScale = FMin(1, AimComponent.GetCrosshairChaos() * NDCrosshairChaosFactor * class'BallisticReplicationInfo'.default.AccuracyScale
+		+ RcComponent.GetRecoilFactor() * class'BallisticReplicationInfo'.default.RecoilScale) * NDCrosshairInfo.MaxScale * class'BallisticWeapon'.default.NDCrosshairScaleFactor;
+
 	//Work out the exact size of the crosshair
 	Size.X1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.X1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
 	Size.Y1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.Y1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
@@ -6196,10 +6209,6 @@ simulated function DrawGraphicalCrosshairs(Canvas C)
 	// Draw primary
 	if (CHCfg.Pic1 != None)
 	{
-	// Inaccuracy and recoil spread it out
-	NDCrosshairInfo.CurrentScale = FMin(1, AimComponent.GetCrosshairChaos() * NDCrosshairChaosFactor * class'BallisticReplicationInfo'.default.AccuracyScale
-		+ RcComponent.GetRecoilFactor() * class'BallisticReplicationInfo'.default.RecoilScale) * NDCrosshairInfo.MaxScale * class'BallisticWeapon'.default.NDCrosshairScaleFactor;
-
 
 		C.DrawColor = CHCfg.Color1;
 		if (bScopeView)    C.DrawColor.A = float(C.DrawColor.A) / 1.3;
@@ -6230,12 +6239,12 @@ simulated function DrawCrosshairs(Canvas C)
 	if (PlayerController(Instigator.Controller) == None || (Instigator.IsFirstPerson() && bScopeView))
 		return;
 
-	// in third person round where the shot will land: the crosshairs are drawn round the middle of the canvas
-	if (CrosshairMode != CHM_Unreal && ThirdPersonCrosshair(C, X, Y))
+	// round where the shot will land, if that is wanted: the crosshairs are drawn round the middle of the canvas
+	if (CrosshairMode != CHM_Unreal && GetCrosshairAim(C, X, Y))
 	{
 		OldX = C.OrgX;
 		OldY = C.OrgY;
-		C.SetOrigin(X - C.ClipX / 2, Y - C.ClipY / 2);
+		C.SetOrigin(int(X - C.ClipX / 2), int(Y - C.ClipY / 2));
 		bMoved = true;
 	}
 
@@ -6262,29 +6271,32 @@ simulated function DrawCrosshairs(Canvas C)
 		C.SetOrigin(OldX, OldY);
 }
 
-// In third person the camera is off the line of fire, so the crosshair belongs where a shot fired now would land: the
-// line of fire from the eyes, with the gun's aim and recoil, to what it meets first. Its place on the screen (X, Y), if
-// the player's settings want it there (BC_ThirdPersonSettings). The HUD's own crosshair uses it too (BallisticPawn)
-simulated final function bool ThirdPersonCrosshair(Canvas C, out float X, out float Y)
+// Where a shot fired now would land: the line of fire from the eyes, with the gun's aim and recoil, to what it meets
+// first. Its place on the screen (X, Y), if the crosshair is to go there (CrosshairAim, a setting of the player's: in
+// third person the camera is off the line of fire, in first person the gun moves off it). The HUD's own crosshair uses
+// it too (BallisticPawn)
+simulated final function bool GetCrosshairAim(Canvas C, out float X, out float Y)
 {
 	local PlayerController PC;
 	local vector Start, HitLocation, HitNormal, P;
 
-	if (Instigator == None || !class'BC_ThirdPersonSettings'.default.bAimCrosshair)
+	if (Instigator == None || class'BallisticWeapon'.default.CrosshairAim == CHA_Off)
 		return false;
 	PC = PlayerController(Instigator.Controller);
-	if (PC == None || !PC.bBehindView || PC.ViewTarget != Instigator)
+	if (PC == None || PC.ViewTarget != Instigator)
+		return false;
+	if (!PC.bBehindView && class'BallisticWeapon'.default.CrosshairAim != CHA_Always)
 		return false;
 
-	if (ThirdPersonCrossTime != Level.TimeSeconds)
+	if (CrosshairAimTime != Level.TimeSeconds)
 	{
-		ThirdPersonCrossTime = Level.TimeSeconds;
+		CrosshairAimTime = Level.TimeSeconds;
 		Start = Instigator.Location + Instigator.EyePosition();
-		ThirdPersonCrossEnd = Start + 20000 * (Vector(GetFireRot()) >> GetPlayerAim());
-		if (Instigator.Trace(HitLocation, HitNormal, ThirdPersonCrossEnd, Start, true) != None)
-			ThirdPersonCrossEnd = HitLocation;
+		CrosshairAimEnd = Start + 20000 * (Vector(GetFireRot()) >> GetPlayerAim());
+		if (Instigator.Trace(HitLocation, HitNormal, CrosshairAimEnd, Start, true) != None)
+			CrosshairAimEnd = HitLocation;
 	}
-	P = C.WorldToScreen(ThirdPersonCrossEnd);
+	P = C.WorldToScreen(CrosshairAimEnd);
 	X = P.X;
 	Y = P.Y;
 	return true;
@@ -7006,6 +7018,7 @@ defaultproperties
      NDCrosshairChaosFactor=0.400000
 	 NDCrosshairScaleFactor=1.000000
 	 CrosshairMode=CHM_Simple
+	 CrosshairAim=CHA_ThirdPerson
 	 
      bUseSights=True
 	 ScopeScale=1

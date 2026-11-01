@@ -3,12 +3,12 @@
 //
 // The third person camera's settings (BC_ThirdPersonSettings), kept on this
 // machine: whether to play in third person on foot, where the camera sits,
-// and how the sights and the crosshair work with it. Three presets set the
-// camera's place in one go.
+// and how the sights work with it. Three presets set the camera's place in
+// one go. Whether the crosshair goes where shots land is on ConfigTab_GameplayPrefs.
 //=============================================================================
 class ConfigTab_ThirdPerson extends ConfigTabBase;
 
-var automated moCheckbox	ch_ThirdPerson, ch_SightsFirstPerson, ch_AimCrosshair;
+var automated moCheckbox	ch_ThirdPerson, ch_SightsFirstPerson;
 var automated moSlider		sl_Distance, sl_Height, sl_Side, sl_Smoothing;
 var automated GUILabel		l_Presets, l_Keys;
 var automated GUIButton		b_Shoulder, b_High, b_Close;
@@ -21,7 +21,6 @@ function LoadSettings()
 	sl_Side.SetValue(class'BC_ThirdPersonSettings'.default.Side);
 	sl_Smoothing.SetValue(class'BC_ThirdPersonSettings'.default.Smoothing);
 	ch_SightsFirstPerson.Checked(class'BC_ThirdPersonSettings'.default.bSightsFirstPerson);
-	ch_AimCrosshair.Checked(class'BC_ThirdPersonSettings'.default.bAimCrosshair);
 }
 
 function SaveSettings()
@@ -35,7 +34,6 @@ function SaveSettings()
 	class'BC_ThirdPersonSettings'.default.Side					= sl_Side.GetValue();
 	class'BC_ThirdPersonSettings'.default.Smoothing				= sl_Smoothing.GetValue();
 	class'BC_ThirdPersonSettings'.default.bSightsFirstPerson	= ch_SightsFirstPerson.IsChecked();
-	class'BC_ThirdPersonSettings'.default.bAimCrosshair			= ch_AimCrosshair.IsChecked();
 	class'BC_ThirdPersonSettings'.static.StaticSaveConfig();
 }
 
@@ -45,7 +43,6 @@ function DefaultSettings()
 	SetCamera(110, 12, 32);
 	sl_Smoothing.SetValue(0.3);
 	ch_SightsFirstPerson.Checked(true);
-	ch_AimCrosshair.Checked(true);
 }
 
 function SetCamera(float Distance, float Height, float Side)
@@ -156,19 +153,6 @@ defaultproperties
 		WinHeight=0.040000
 	End Object
 	ch_SightsFirstPerson=moCheckBox'ch_SightsFirstPersonCheck'
-
-	Begin Object Class=moCheckBox Name=ch_AimCrosshairCheck
-		ComponentJustification=TXTA_Left
-		CaptionWidth=0.900000
-		Caption="Crosshair shows where shots land"
-		OnCreateComponent=ch_AimCrosshairCheck.InternalOnCreateComponent
-		IniOption="@Internal"
-		Hint="In third person your shots leave your eyes, not the camera. With this the crosshair moves to what they would hit, so a wall or a corner in front of your gun shows. Without it the crosshair stays in the middle of the screen."
-		WinTop=0.440000
-		WinLeft=0.250000
-		WinHeight=0.040000
-	End Object
-	ch_AimCrosshair=moCheckBox'ch_AimCrosshairCheck'
 
 	Begin Object Class=GUILabel Name=PresetsLabel
 		Caption="Camera presets"

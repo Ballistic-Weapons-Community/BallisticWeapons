@@ -9,7 +9,7 @@
 //=============================================================================
 class ConfigTab_GameplayPrefs extends ConfigTabBase;
 
-var automated moComboBox		co_Crosshairs, co_ADSHandling, co_ModeMemory;
+var automated moComboBox		co_Crosshairs, co_CrosshairAim, co_ADSHandling, co_ModeMemory;
 var automated moFloatEdit		fl_ZoomTimeMod;
 var automated moCheckbox		ch_Crosshairdot,ch_WeaponUI, ch_SimpleDeathMessages, ch_LessDisruptiveFlash;
 
@@ -23,6 +23,11 @@ function LoadSettings()
 		co_Crosshairs.AddItem("UT2004" ,,string(2));
 		co_Crosshairs.ReadOnly(True);
 
+		co_CrosshairAim.AddItem("Off" ,,string(0));
+		co_CrosshairAim.AddItem("Third Person Only" ,,string(1));
+		co_CrosshairAim.AddItem("First and Third Person" ,,string(2));
+		co_CrosshairAim.ReadOnly(True);
+
 		co_ADSHandling.AddItem("Default" ,,string(0));
 		co_ADSHandling.AddItem("Hold" ,,string(1));
 		co_ADSHandling.AddItem("Toggle" ,,string(2));
@@ -34,6 +39,7 @@ function LoadSettings()
 		co_ModeMemory.ReadOnly(True);
 	}
 	co_Crosshairs.SetIndex(class'BallisticWeapon'.default.CrosshairMode);
+	co_CrosshairAim.SetIndex(class'BallisticWeapon'.default.CrosshairAim);
 	ch_Crosshairdot.Checked(class'BallisticWeapon'.default.bDrawCrosshairDot);
 	co_ADSHandling.SetIndex(class'BallisticWeapon'.default.ScopeHandling);
 	co_ModeMemory.SetIndex(class'BallisticWeapon'.default.ModeHandling);
@@ -51,6 +57,7 @@ function SaveSettings()
 		return;
 
  	class'BallisticWeapon'.default.CrosshairMode		= ECrosshairMode(co_Crosshairs.GetIndex());
+ 	class'BallisticWeapon'.default.CrosshairAim			= ECrosshairAim(co_CrosshairAim.GetIndex());
  	class'BallisticWeapon'.default.bDrawCrosshairDot	= ch_Crosshairdot.IsChecked();
     class'BallisticWeapon'.default.ScopeHandling		= EScopeHandling(co_ADSHandling.GetIndex());
 	class'BallisticWeapon'.default.ModeHandling			= ModeSaveType(co_ModeMemory.GetIndex());
@@ -67,6 +74,7 @@ function SaveSettings()
 function DefaultSettings()
 {
 	co_Crosshairs.SetIndex(0);
+	co_CrosshairAim.SetIndex(1);
 	ch_Crosshairdot.Checked(true);
 	co_ADSHandling.SetIndex(0);
 	co_ModeMemory.SetIndex(0);
@@ -102,6 +110,18 @@ defaultproperties
      End Object
      ch_Crosshairdot=moCheckBox'ch_CrosshairdotCheck'     
 
+     Begin Object Class=moComboBox Name=co_CrosshairAimCombo
+        ComponentJustification=TXTA_Left
+        CaptionWidth=0.550000
+        Caption="Crosshair Follows Aim"
+        OnCreateComponent=co_CrosshairAimCombo.InternalOnCreateComponent
+        IniOption="@Internal"
+        Hint="Whether the crosshair goes where a shot would land, following sway, recoil and the drop of a sprint, whichever crosshair type you use.||Off: The crosshair stays in the middle of the screen.||Third Person Only: In third person the camera is off the line of fire, so the crosshair shows what your shots would hit. In first person it stays in the middle.||First and Third Person: In first person as well, like follow recoil in Counter-Strike."
+        WinTop=0.20
+        WinLeft=0.250000
+     End Object
+     co_CrosshairAim=moComboBox'co_CrosshairAimCombo'
+
      Begin Object Class=moComboBox Name=co_ADSHandlingCombo
         ComponentJustification=TXTA_Left
         CaptionWidth=0.550000
@@ -109,7 +129,7 @@ defaultproperties
         OnCreateComponent=co_ADSHandlingCombo.InternalOnCreateComponent
         IniOption="@Internal"
         Hint="How the ADS key should function.||Default: Hold to raise the weapon into scope. Weapon stays in scope until key is pressed again.||Hold: Hold key to ADS. Release to lower.||Toggle: Press key to ADS. Press again to lower."
-        WinTop=0.20
+        WinTop=0.25
         WinLeft=0.250000
      End Object
      co_ADSHandling=moComboBox'co_ADSHandlingCombo'
@@ -122,7 +142,7 @@ defaultproperties
          IniOption="@Internal"
          IniDefault="High"
          Hint="Controls how Ballistic handles the initial weapon mode when a weapon is spawned. ||None - the set default mode is always used.||Last - the last used mode is used. ||Saved - uses the mode saved by the SetDefaultMode command.||Reset it with ClearDefaultMode and get its name with GetDefaultMode."
-         WinTop=0.25
+         WinTop=0.30
          WinLeft=0.250000
      End Object
      co_ModeMemory=moComboBox'co_ModeCombo'
@@ -136,7 +156,7 @@ defaultproperties
          OnCreateComponent=fl_ZoomTimeModFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Multiplier for the rate of change of zoom levels. 1 to 4."
-         WinTop=0.30
+         WinTop=0.35
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -149,7 +169,7 @@ defaultproperties
          OnCreateComponent=ch_WeaponUICheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Enable the selection UI when changing weapons."
-         WinTop=0.35
+         WinTop=0.40
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -162,7 +182,7 @@ defaultproperties
          OnCreateComponent=ch_SimpleDeathMessagesCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Renders death messages as Killer [Weapon] Killed"
-         WinTop=0.40
+         WinTop=0.45
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -175,7 +195,7 @@ defaultproperties
          OnCreateComponent=ch_LessDisruptiveFlashCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Changes white blinding flashes to black"
-         WinTop=0.45
+         WinTop=0.50
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

@@ -1013,7 +1013,7 @@ simulated event PlayerCalcView(out actor ViewActor, out vector CameraLocation, o
 // Shots leave the eyes where the player looks, as in first person. The camera
 // sits behind and beside the eyes and turns in to meet the line of aim
 // ThirdPersonFocus ahead; the crosshair is drawn where the shot will land
-// (BallisticWeapon.ThirdPersonCrosshair).
+// (BallisticWeapon.GetCrosshairAim).
 //===========================================================================
 function CalcBehindView(out vector CameraLocation, out rotator CameraRotation, float Dist)
 {

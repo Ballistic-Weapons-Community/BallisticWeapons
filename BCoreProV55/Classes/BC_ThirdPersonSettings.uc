@@ -16,7 +16,6 @@ var config float	Height;					// How far above the eyes
 var config float	Side;					// How far to the right of them, to the left below 0. Swap Shoulder flips it
 var config float	Smoothing;				// 0: the camera keeps exactly to the player. 1: it follows loosely
 var config bool		bSightsFirstPerson;		// First person while the sights are up
-var config bool		bAimCrosshair;			// The crosshair is drawn where a shot would land, not in the middle
 
 defaultproperties
 {
@@ -25,5 +24,4 @@ defaultproperties
 	Side=32
 	Smoothing=0.3
 	bSightsFirstPerson=True
-	bAimCrosshair=True
 }
