@@ -539,6 +539,9 @@ simulated function bool PutDown()
 
 simulated event Destroyed()
 {
+	if (WeaponScreen.Client == self)
+		WeaponScreen.Client = None;
+
 	if (ColorMod != None)
 	{
 		Level.ObjectPool.FreeObject(ColorMod);

@@ -140,8 +140,20 @@ static function BallisticInteraction Launch (PlayerController ThePC)
 	return NI;
 }
 
+// A gun with a screen makes itself the client of a ScriptedTexture, which stays in memory with its package when the level
+// goes. A level's actors go without Destroyed, so the texture would go on naming a gun that is gone, and the next thing to
+// draw it (the preloader draws every weapon) would call RenderTexture on whatever is at that address by then
+final function ReleaseScriptedTextures()
+{
+	local ScriptedTexture Tex;
+
+	foreach AllObjects(class'ScriptedTexture', Tex)
+		Tex.Client = None;
+}
+
 event NotifyLevelChange()
 {
+	ReleaseScriptedTextures();
 	PC = None;
 	Master.RemoveInteraction(self);
 }

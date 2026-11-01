@@ -73,7 +73,7 @@ final function bool PointInSolid(vector V)
 // Spawn impact effects, run BlowUp() and then die.
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
-	local int 		Surf;
+	local int 		Surf, ExitSurf;
 	local Material 	HitMaterial;
 	
 	local bool 		bNoSecondary;
@@ -90,6 +90,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		CheckSurface(HitLocation, HitNormal, Surf);
 	
 		Trace(tHitLoc, tHitNorm, HitLocation, HitLocation + (DamageRadius * SurfaceScale(Surf) * Normal(Velocity)), False, , HitMaterial);
+		if (HitMaterial != None)
+			ExitSurf = int(HitMaterial.SurfaceType);
 		
 		if (tHitLoc == vect(0,0,0) || PointInSolid(tHitLoc) || WallPenetrationForce < VSize(Location - HitLocation))
 			bNoSecondary = True;
@@ -98,13 +100,13 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		{
 			ImpactManager.static.StartSpawn(HitLocation, HitNormal, Surf, Level.GetLocalPlayerController()/*.Pawn*/);
 			if (!bNoSecondary)
-				ImpactManager.static.StartSpawn(tHitLoc, tHitNorm, int(HitMaterial.SurfaceType), Level.GetLocalPlayerController()/*.Pawn*/);
+				ImpactManager.static.StartSpawn(tHitLoc, tHitNorm, ExitSurf, Level.GetLocalPlayerController()/*.Pawn*/);
 		}
 		else
 		{
 			ImpactManager.static.StartSpawn(HitLocation, HitNormal, Surf, Instigator);
 			if (!bNoSecondary)
-				ImpactManager.static.StartSpawn(tHitLoc, tHitNorm, int(HitMaterial.SurfaceType), Level.GetLocalPlayerController()/*.Pawn*/);
+				ImpactManager.static.StartSpawn(tHitLoc, tHitNorm, ExitSurf, Level.GetLocalPlayerController()/*.Pawn*/);
 		}
 	}
 	

@@ -186,6 +186,10 @@ function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDr
     local Vector HitDir;
     local Vector FaceDir;
 
+    // in a vehicle a pawn has no controller of its own, and no shield up
+    if (Instigator.Controller == None)
+        return false;
+
     FaceDir = Vector(Instigator.Controller.Rotation);
     HitDir = Normal(Instigator.Location - HitLocation + Vect(0,0,8));
 

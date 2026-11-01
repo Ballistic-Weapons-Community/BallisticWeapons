@@ -840,8 +840,8 @@ simulated function bool PutDown()
 }
 simulated function Destroyed()
 {
-	if (Instigator != None && AIController(Instigator.Controller) == None)
-		WeaponScreen.client=None;
+	if (WeaponScreen.Client == self)
+		WeaponScreen.Client = None;
 		
 	if (BarrelFlare != None)	BarrelFlare.Destroy();
 	if (BarrelFlareSmall != None)	BarrelFlareSmall.Destroy();
