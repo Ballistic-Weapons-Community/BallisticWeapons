@@ -146,8 +146,8 @@ simulated function ScreenStart()
 
 simulated event Destroyed()
 {
-	if (Instigator != None && AIController(Instigator.Controller) == None)
-		WeaponScreen.client=None;
+	if (WeaponScreen.Client == self)
+		WeaponScreen.Client = None;
 
 	if (Arc != None)	
 		Arc.Destroy();

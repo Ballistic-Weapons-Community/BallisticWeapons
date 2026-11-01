@@ -446,8 +446,8 @@ function ServerReloadRelease(optional byte i)
 
 simulated function Destroyed()
 {
-	if (Instigator != None && AIController(Instigator.Controller) == None)
-		WeaponScreen.client=None;
+	if (WeaponScreen.Client == self)
+		WeaponScreen.Client = None;
 	if (ClawSpark1 != None)
 		ClawSpark1.Destroy();
 	if (Instigator != None && (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == VentingSound))

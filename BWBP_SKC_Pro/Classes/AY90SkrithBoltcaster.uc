@@ -300,8 +300,8 @@ simulated event Timer()
 
 simulated event Destroyed()
 {
-	if (Instigator != None && AIController(Instigator.Controller) == None)
-		WeaponScreen.client=None;
+	if (WeaponScreen.Client == self)
+		WeaponScreen.Client = None;
 	if (GlowFX != None)
 		GlowFX.Destroy();
 	if (ChargeGlowFX != None)

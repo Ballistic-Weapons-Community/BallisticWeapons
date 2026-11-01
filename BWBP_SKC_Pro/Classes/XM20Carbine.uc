@@ -287,8 +287,8 @@ simulated function bool PutDown()
 
 simulated function Destroyed()
 {
-	if (Instigator != None && AIController(Instigator.Controller) == None)
-		WeaponScreen.client=None;
+	if (WeaponScreen.Client == self)
+		WeaponScreen.Client = None;
 	if (Glow1 != None)	Glow1.Destroy();
 	if (CoverGlow != None)	CoverGlow.Destroy();
 	if (Laser != None)	Laser.Destroy();
