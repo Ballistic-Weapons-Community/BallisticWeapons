@@ -39,7 +39,7 @@ function LoadSettings()
 		co_ModeMemory.ReadOnly(True);
 	}
 	co_Crosshairs.SetIndex(class'BallisticWeapon'.default.CrosshairMode);
-	co_CrosshairAim.SetIndex(class'BallisticWeapon'.default.CrosshairAim);
+	co_CrosshairAim.SetIndex(class'BC_CrosshairSettings'.default.CrosshairAim);
 	ch_Crosshairdot.Checked(class'BallisticWeapon'.default.bDrawCrosshairDot);
 	co_ADSHandling.SetIndex(class'BallisticWeapon'.default.ScopeHandling);
 	co_ModeMemory.SetIndex(class'BallisticWeapon'.default.ModeHandling);
@@ -57,7 +57,7 @@ function SaveSettings()
 		return;
 
  	class'BallisticWeapon'.default.CrosshairMode		= ECrosshairMode(co_Crosshairs.GetIndex());
- 	class'BallisticWeapon'.default.CrosshairAim			= ECrosshairAim(co_CrosshairAim.GetIndex());
+ 	class'BC_CrosshairSettings'.default.CrosshairAim	= co_CrosshairAim.GetIndex();
  	class'BallisticWeapon'.default.bDrawCrosshairDot	= ch_Crosshairdot.IsChecked();
     class'BallisticWeapon'.default.ScopeHandling		= EScopeHandling(co_ADSHandling.GetIndex());
 	class'BallisticWeapon'.default.ModeHandling			= ModeSaveType(co_ModeMemory.GetIndex());
@@ -69,6 +69,7 @@ function SaveSettings()
 	class'BallisticWeapon'.static.StaticSaveConfig();
 	class'BallisticDamageType'.static.StaticSaveConfig();
 	class'BallisticPlayer'.static.StaticSaveConfig();
+	class'BC_CrosshairSettings'.static.StaticSaveConfig();
 }
 
 function DefaultSettings()
@@ -116,7 +117,7 @@ defaultproperties
         Caption="Crosshair Follows Aim"
         OnCreateComponent=co_CrosshairAimCombo.InternalOnCreateComponent
         IniOption="@Internal"
-        Hint="Whether the crosshair goes where a shot would land, following sway, recoil and the drop of a sprint, whichever crosshair type you use.||Off: The crosshair stays in the middle of the screen.||Third Person Only: In third person the camera is off the line of fire, so the crosshair shows what your shots would hit. In first person it stays in the middle.||First and Third Person: In first person as well, like follow recoil in Counter-Strike."
+        Hint="Whether the crosshair goes where a shot would land, following sway, recoil and the drop of a sprint, whichever crosshair type you use.||Off: The crosshair stays in the middle of the screen.||Third Person Only: In third person the camera is off the line of fire, so the crosshair shows what your shots would hit. In first person it stays in the middle.||First and Third Person: In first person as well, if the server allows it, like follow recoil in Counter-Strike."
         WinTop=0.20
         WinLeft=0.250000
      End Object

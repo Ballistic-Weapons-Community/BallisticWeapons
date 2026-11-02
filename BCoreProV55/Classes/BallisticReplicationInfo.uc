@@ -94,6 +94,7 @@ var() config float			SprintSpeedFactor;
 var() config float			JumpDrain;
 var bool					bFireEndsSprint;			// Fire pressed in a sprint ends it, and the gun comes back to shoot
 var bool					bSightsEndSprint;			// The sight key ends a sprint and the sights come up
+var bool					bFirstPersonCrosshairAim;	// Players may have the crosshair follow the gun's aim in first person
 
 //=============================================================================
 // CROUCH SLIDING
@@ -195,6 +196,7 @@ var struct SprintRep
 	var() config float			JumpDrain;
 	var bool					bFireEndsSprint;
 	var bool					bSightsEndSprint;
+	var bool					bFirstPersonCrosshairAim;
 } SRep;
 
 replication
@@ -325,6 +327,7 @@ final function BindToReplication()
 	SRep.JumpDrain						= JumpDrain;
 	SRep.bFireEndsSprint				= bFireEndsSprint;
 	SRep.bSightsEndSprint				= bSightsEndSprint;
+	SRep.bFirstPersonCrosshairAim		= bFirstPersonCrosshairAim;
 
 }
 
@@ -405,6 +408,7 @@ simulated final function BindFromReplication()
 	JumpDrain					= SRep.JumpDrain;
 	bFireEndsSprint					= SRep.bFireEndsSprint;
 	bSightsEndSprint				= SRep.bSightsEndSprint;
+	bFirstPersonCrosshairAim		= SRep.bFirstPersonCrosshairAim;
 }
 
 simulated final function BindDefaults()
@@ -473,6 +477,7 @@ simulated final function BindDefaults()
 	class.default.JumpDrain				= JumpDrain;
 	class.default.bFireEndsSprint				= bFireEndsSprint;
 	class.default.bSightsEndSprint				= bSightsEndSprint;
+	class.default.bFirstPersonCrosshairAim		= bFirstPersonCrosshairAim;
 
 	class.default.bHealthRegeneration			= bHealthRegeneration;
 	class.default.bShieldRegeneration			= bShieldRegeneration;
@@ -572,6 +577,7 @@ defaultproperties
 	bWeaponJumpOffsetting=True
 	bLongWeaponOffsetting=False
 	bFireEndsSprint=False
+	bFirstPersonCrosshairAim=True
 	bSightsEndSprint=False
 	bNoReloading=False
 	bNoRandomCamo=True
