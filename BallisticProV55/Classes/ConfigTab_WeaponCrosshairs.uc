@@ -24,7 +24,7 @@ function InitializeConfigTab()
 {
 	local array<CacheManager.WeaponRecord> Recs;
 	local class<Weapon> Weap;
-	local int i, j;
+	local int i;
 	local array<string> CHClassNames;
 	local class<BallisticCrosshairPack>	CHClass;
 
@@ -48,21 +48,27 @@ function InitializeConfigTab()
 	class'BC_WeaponInfoCache'.static.EndSession();
 	lb_Weapons.List.OnChange = InternalOnChange;
 
+	AddCrosshairPack(class'BWCrosshairPack');
 	PlayerOwner().GetAllInt("BCoreProV55.BallisticCrosshairPack", CHClassNames);
     for (i=0;i<CHClassNames.length;i++)
     {
     	CHClass = class<BallisticCrosshairPack>(DynamicLoadObject(CHClassNames[i],class'Class'));
     	if (CHClass != None)
-		{
-    		for (j=0;j<CHClass.default.Crosshairs.length;j++)
-    		{
-	    		cb_CrossList1.AddItem(CHClass.default.Crosshairs[j].FriendlyName, CHClass, string(j));
-	    		cb_CrossList2.AddItem(CHClass.default.Crosshairs[j].FriendlyName, CHClass, string(j));
-	    	}
-		}
+			AddCrosshairPack(CHClass);
 	}
 	LoadSettings();
 	bLoadInitialized = true;
+}
+
+function AddCrosshairPack(class<BallisticCrosshairPack> CHClass)
+{
+	local int i;
+
+	for (i=0;i<CHClass.default.Crosshairs.length;i++)
+	{
+		cb_CrossList1.AddItem(CHClass.default.Crosshairs[i].FriendlyName, CHClass, string(i));
+		cb_CrossList2.AddItem(CHClass.default.Crosshairs[i].FriendlyName, CHClass, string(i));
+	}
 }
 
 // Load all settings
@@ -170,7 +176,7 @@ function UpdateImages()
 // Set all sliders and options for currently selected crosshair
 function UpdateSettings()
 {
-	local int i, CHIndex;
+	local int CHIndex;
 
 	CHIndex = lb_Weapons.List.Index;
 
@@ -179,22 +185,31 @@ function UpdateSettings()
 	sl_Blue1.SetValue(	Crosshairs[CHIndex].Color1.B);
 	sl_Alpha1.SetValue(	Crosshairs[CHIndex].Color1.A);
 	sl_Size1.SetValue(	Crosshairs[CHIndex].StartSize1);
-	for (i=0;i<cb_CrossList1.List.Elements.length;i++)
-		if (class<BallisticCrosshairPack>(cb_CrossList1.GetItemObject(i)).default.Crosshairs[int(cb_CrossList1.List.Elements[i].ExtraStrData)].Image == Crosshairs[CHIndex].Pic1)	{
-			bInitialized=false;	cb_CrossList1.SetText(cb_CrossList1.List.Elements[i].Item);	bInitialized=true;
-			break;
-	}
+	ShowCrosshairImage(cb_CrossList1, Crosshairs[CHIndex].Pic1);
 	sl_Red2.SetValue(	Crosshairs[CHIndex].Color2.R);
 	sl_Green2.SetValue(	Crosshairs[CHIndex].Color2.G);
 	sl_Blue2.SetValue(	Crosshairs[CHIndex].Color2.B);
 	sl_Alpha2.SetValue(	Crosshairs[CHIndex].Color2.A);
 	sl_Size2.SetValue(	Crosshairs[CHIndex].StartSize2);
-	for (i=0;i<cb_CrossList2.List.Elements.length;i++)
-		if (class<BallisticCrosshairPack>(cb_CrossList2.GetItemObject(i)).default.Crosshairs[int(cb_CrossList2.List.Elements[i].ExtraStrData)].Image == Crosshairs[CHIndex].Pic2)	{
-			bInitialized=false;	cb_CrossList2.SetText(cb_CrossList2.List.Elements[i].Item);	bInitialized=true;
-			break;
-	}
+	ShowCrosshairImage(cb_CrossList2, Crosshairs[CHIndex].Pic2);
 	UpdateImages();
+}
+
+// Picks this image in a box, or nothing if it isn't on the list: another mod's weapon may have its own
+function ShowCrosshairImage(GUIComboBox Box, Material Pic)
+{
+	local int i;
+
+	bInitialized=false;
+	Box.SetIndex(-1);
+	Box.Edit.SetText("");
+	for (i=0;i<Box.List.Elements.length;i++)
+		if (class<BallisticCrosshairPack>(Box.GetItemObject(i)).default.Crosshairs[int(Box.List.Elements[i].ExtraStrData)].Image == Pic)
+		{
+			Box.SetIndex(i);
+			break;
+		}
+	bInitialized=true;
 }
 // Draw the crosshairs precisely
 function bool InternalOnPreDraw(Canvas Canvas)
@@ -504,6 +519,7 @@ defaultproperties
      lb_Weapons=GUIListBox'BallisticProV55.ConfigTab_WeaponCrosshairs.lb_WeaponsList'
 
      Begin Object Class=GUIComboBox Name=cb_CrossList1ComBox
+         bReadOnly=True
          MaxVisibleItems=16
          Hint="Choose the style of the outer crosshair."
          WinTop=0.650000
@@ -517,6 +533,7 @@ defaultproperties
      cb_CrossList1=GUIComboBox'BallisticProV55.ConfigTab_WeaponCrosshairs.cb_CrossList1ComBox'
 
      Begin Object Class=GUIComboBox Name=cb_CrossList2ComBox
+         bReadOnly=True
          MaxVisibleItems=16
          Hint="Choose the style of the inner crosshair."
          WinTop=0.650000
