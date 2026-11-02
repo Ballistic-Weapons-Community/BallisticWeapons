@@ -71,8 +71,8 @@ defaultproperties
 	 BloodTabLabel="Blood"
      BloodTabHint="Configure blood and gore settings."
 	 
-     CrossTabLabel="Graphical Crosshairs"
-     CrossTabHint="Configure the graphical crosshairs."
+     CrossTabLabel="Crosshairs"
+     CrossTabHint="Configure the crosshairs' type, colours and size."
 
      ThirdPersonTabLabel="Third Person"
      ThirdPersonTabHint="Configure the third person camera."

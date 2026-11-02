@@ -98,6 +98,11 @@ enum ECrosshairMode
 	CHM_Unreal
 };
 
+const CROSSHAIR_NEAR = 150.0;			// Distances at which a crosshair has its largest and its smallest size
+const CROSSHAIR_FAR = 4000.0;
+const CROSSHAIR_NEAR_SIZE = 1.3;
+const CROSSHAIR_FAR_SIZE = 0.55;
+
 enum ECrosshairAim
 {
 	CHA_Off,			// The crosshair stays in the middle of the screen
@@ -162,7 +167,9 @@ var() globalconfig	byte			MaxInventoryCapacity;   // total InventorySize player 
 //=============================================================================
 
 var	float						CrosshairAimTime;				// When CrosshairAimEnd was last worked out
-var	vector						CrosshairAimEnd;				// Where a shot fired now would land (see GetCrosshairAim)
+var	vector						CrosshairAimEnd;				// Where a shot fired now would land (see GetCrosshairHit)
+var	float						CrosshairSize;					// What the crosshair's size is now for how far off that is
+var	float						CrosshairSizeTime;				// When CrosshairSize was last worked out
 
 //=============================================================================
 // CONFIGURABLE SETTINGS
@@ -180,9 +187,6 @@ var() config array<SpecialInfoEntry> SpecialInfo; 			// A list of special info s
 //=============================================================================
 // STATIC DEFINITIONS
 //=============================================================================
-var Object.Color  					MagEmptyColor;			//used by Simple XHairs if mag is empty
-var Object.Color					CockingColor;			//used by Simple XHairs when weapon needs cocking
-var Object.Color  					CrosshairColor;			//used by Simple XHairs
 //=============================================================================
 // END STATIC DEFINITIONS
 //=============================================================================
@@ -406,11 +410,9 @@ var	  float					FireAnimCutThreshold;   	// Cuts the fire anim if the SightingSt
 //-----------------------------------------------------------------------------
 // Crosshair Info
 //-----------------------------------------------------------------------------
-var() globalconfig bool		bGlobalCrosshair;			// All Ballistic Weapons use the universal crosshair instead of weapon specific ones
 var() globalconfig bool		bDrawCrosshairDot;			// Add a dot to the center of the dynamic crosshair
 var() config NonDefCrosshairCfg NDCrosshairCfg;			// Configurable crosshair settings
 var() config NonDefCrosshairInfo NDCrosshairInfo;		// Weapon specific Crosshair settings
-var   float					NDCrosshairScale;			// HUD scales crosshair by this
 var() float					NDCrosshairChaosFactor;		//How much crosshair size is affected by chaos. 0=none, 1=full chaos is max crosshairsize
 var() globalconfig float   	NDCrosshairScaleFactor;		// Adjusts how much crosshair is scaled up by recoil and chaos
 //-----------------------------------------------------------------------------
@@ -1373,14 +1375,14 @@ simulated function PlayerEnteredVehicle(Vehicle V)
 	ReloadState = RS_None;
 	PlayIdle();
 
-	if (CrosshairMode == CHM_Unreal)
+	if (class'BallisticWeapon'.default.CrosshairMode == CHM_Unreal)
 		return;
 	if (PlayerController(InstigatorController)!=None && PlayerController(InstigatorController).MyHud != None)
 		HideStockCrosshair(false);
 }
 simulated function PlayerLeftVehicle(Vehicle V)
 {
-	if (CrosshairMode == CHM_Unreal)
+	if (class'BallisticWeapon'.default.CrosshairMode == CHM_Unreal)
 		return;
 	if (PlayerController(InstigatorController)!=None && PlayerController(InstigatorController).MyHud != None/* && (CrosshairPic1 != None || CrosshairPic2 != None)*/)
 		HideStockCrosshair(true);
@@ -2552,7 +2554,7 @@ simulated final function ScopeModifyCrosshair()
 	PC = PlayerController(InstigatorController);
 
 	// In third person the sights leave the view as it is, and a Ballistic crosshair stays up (see DrawCrosshairs)
-	if (PC.bBehindView && CrosshairMode != CHM_Unreal)
+	if (PC.bBehindView && class'BallisticWeapon'.default.CrosshairMode != CHM_Unreal)
 		return;
 
 	if ( PC.bBehindView )
@@ -2563,7 +2565,7 @@ simulated final function ScopeModifyCrosshair()
 	//Take down normal crosshairs if the weapon has none in scope view
 	if (bNoCrosshairInScope)
 	{
-		if (CrosshairMode == CHM_Unreal && !StockCrosshairHidden())
+		if (class'BallisticWeapon'.default.CrosshairMode == CHM_Unreal && !StockCrosshairHidden())
 		{
 			bStandardCrosshairOff = True;
 			HideStockCrosshair(true);
@@ -2621,7 +2623,7 @@ simulated final function ScopeRestoreCrosshair()
 {
 	if (bStandardCrosshairOff)
 	{
-		if (CrosshairMode == CHM_Unreal)
+		if (class'BallisticWeapon'.default.CrosshairMode == CHM_Unreal)
 		{
 			bStandardCrosshairOff = False;
 			if (PlayerController(InstigatorController) != None && PlayerController(InstigatorController).myHud != None)
@@ -2629,7 +2631,7 @@ simulated final function ScopeRestoreCrosshair()
 		}
 	}
 	// Ballistic crosshair users: Hide crosshair if weapon has crosshair in scope
-	else if (CrosshairMode != CHM_Unreal)
+	else if (class'BallisticWeapon'.default.CrosshairMode != CHM_Unreal)
 	{
 		if (PlayerController(InstigatorController) != None && PlayerController(InstigatorController).myHud != None)
 			HideStockCrosshair(true);
@@ -4089,7 +4091,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 	if (PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 	{
-		if (CrosshairMode == CHM_Unreal)
+		if (class'BallisticWeapon'.default.CrosshairMode == CHM_Unreal)
 			HideStockCrosshair(false);
 		else
 			HideStockCrosshair(true);
@@ -4178,7 +4180,7 @@ simulated function bool PutDown()
 			MeleeState = MS_None;
 		bPendingSightUp=false;
 //		if (PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
-		if (CrosshairMode != CHM_Unreal && (Instigator.PendingWeapon == None || BallisticWeapon(Instigator.PendingWeapon) == None) && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
+		if (class'BallisticWeapon'.default.CrosshairMode != CHM_Unreal && (Instigator.PendingWeapon == None || BallisticWeapon(Instigator.PendingWeapon) == None) && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 			HideStockCrosshair(false);
 		if (PutDownSound.Sound != None)
 			class'BUtil'.static.PlayFullSound(self, PutDownSound);
@@ -5161,7 +5163,7 @@ simulated event Timer()
 				FireMode[Mode].InitEffects();
         PlayIdle();
         ClientState = WS_ReadyToFire;
-		if (CrosshairMode != CHM_Unreal && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
+		if (class'BallisticWeapon'.default.CrosshairMode != CHM_Unreal && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 			HideStockCrosshair(true);
 		if (bNeedCock)
 		{
@@ -6103,73 +6105,74 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	}
 }
 
+// What a crosshair has to warn of, if the player wants warnings: an empty magazine, then a gun that needs cocking
+simulated final function bool GetCrosshairWarning(out Color Warning)
+{
+	if (!class'BC_CrosshairSettings'.default.bWarningColours)
+		return false;
+
+	if (!bNoMag && MagAmmo == 0)
+		Warning = class'BC_CrosshairSettings'.default.MagEmptyColor;
+	else if (bNeedCock)
+		Warning = class'BC_CrosshairSettings'.default.CockingColor;
+	else
+		return false;
+
+	return true;
+}
+
+// The Simple crosshair round a point of the canvas. Size is 1 at 1080p with the default Global Size, where the bars are 10
+// by 2. The gaps show an angle and stay as they are given. BarScale changes the bars alone (GetCrosshairDistanceScale).
+// DrawTile and not DrawTileStretched, which takes no notice of the canvas's origin (see DrawCrosshairs)
+static final function DrawCrosshairBars(Canvas C, float X, float Y, int XGap, int YGap, Color Col, float Size, float BarScale, bool bDot)
+{
+	local int LongBound, ShortBound, Odd;
+
+	LongBound = Max(2, int(10 * Size * BarScale + 0.5));
+	ShortBound = Max(1, int(2 * Size * BarScale + 0.5));
+
+	// Bars of an odd thickness have their middle in a pixel, half a pixel past X and Y, so the far bars move out one to match
+	Odd = ShortBound & 1;
+
+	C.DrawColor = Col;
+
+	//hor
+	C.SetPos(X - (LongBound + XGap), Y - (ShortBound/2));
+	C.DrawTile(Texture'Engine.WhiteTexture', LongBound, ShortBound, 0, 0, 1, 1);
+
+	C.SetPos(X + XGap + Odd, Y - (ShortBound/2));
+	C.DrawTile(Texture'Engine.WhiteTexture', LongBound, ShortBound, 0, 0, 1, 1);
+
+	//ver
+	C.SetPos(X - (ShortBound/2), Y - (LongBound + YGap));
+	C.DrawTile(Texture'Engine.WhiteTexture', ShortBound, LongBound, 0, 0, 1, 1);
+
+	C.SetPos(X - (ShortBound/2), Y + YGap + Odd);
+	C.DrawTile(Texture'Engine.WhiteTexture', ShortBound, LongBound, 0, 0, 1, 1);
+
+	if (bDot)
+	{
+		// As thick as the bars and in line with them, but stronger: solid at the default opacity
+		C.DrawColor.A = Min(255, int(Col.A * 1.7));
+		C.SetPos(X - (ShortBound/2), Y - (ShortBound/2));
+		C.DrawTile(Texture'Engine.WhiteTexture', ShortBound, ShortBound, 0, 0, 1, 1);
+	}
+}
+
 simulated final function DrawSimpleCrosshairBars(Canvas C, int XOffset, int YOffset)
 {
-	local int 	ShortBound, LongBound;
-	local Color SavedDrawColor;
+	local Color Col, Warning, SavedDrawColor;
 
 	SavedDrawColor = C.DrawColor;
 
-	ShortBound = 2;
-	LongBound = 10;
-
-	// outer black
-
-	/*
-	C.SetDrawColor(0,0,0,C.DrawColor.A);
-
-	// hor
-	C.SetPos((C.ClipX / 2) - (LongBound + XOffset+1), (C.ClipY/2) - (ShortBound/2+1));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
-
-	C.SetPos((C.ClipX / 2) + XOffset -1, (C.ClipY/2) - (ShortBound/2+1));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
-
-	//ver
-	C.SetPos((C.ClipX / 2) - (ShortBound/2+1), (C.ClipY/2) - (LongBound + YOffset+1));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
-
-	C.SetPos((C.ClipX / 2) - (ShortBound/2+1), (C.ClipY/2) + YOffset-1);
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
-
-	if (bDrawCrosshairDot)
+	Col = class'BC_CrosshairSettings'.default.CrosshairColor;
+	if (GetCrosshairWarning(Warning))
 	{
-		C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
+		Warning.A = Col.A;
+		Col = Warning;
 	}
-	*/
-
-	// inner, with DrawTile: DrawTileStretched takes no notice of the canvas's origin, see DrawCrosshairs
-	if (!bNoMag && MagAmmo == 0)
-		C.DrawColor = MagEmptyColor;
-	else if (bNeedCock)
-		C.DrawColor = CockingColor;
-	else 
-		C.DrawColor = CrosshairColor;
-
-	//hor
-	C.SetPos((C.ClipX / 2) - (LongBound + XOffset), (C.ClipY/2) - (ShortBound/2));
-	C.DrawTile(Texture'Engine.WhiteTexture', LongBound, ShortBound, 0, 0, 1, 1);
-
-	C.SetPos((C.ClipX / 2) + XOffset, (C.ClipY/2) - (ShortBound/2));
-	C.DrawTile(Texture'Engine.WhiteTexture', LongBound, ShortBound, 0, 0, 1, 1);
-
-	//ver
-	C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) - (LongBound + YOffset));
-	C.DrawTile(Texture'Engine.WhiteTexture', ShortBound, LongBound, 0, 0, 1, 1);
-
-	C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) + YOffset);
-	C.DrawTile(Texture'Engine.WhiteTexture', ShortBound, LongBound, 0, 0, 1, 1);
-
-	
-	if (bDrawCrosshairDot)
-	{
-		// Solid. The canvas's own alpha is no guide: it is what the HUD left, and that is a message's fade after a pickup
-		C.DrawColor.A = 255;
-		C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
-		C.DrawTile(Texture'Engine.WhiteTexture', 2, 2, 0, 0, 1, 1);
-	}
-	
+	DrawCrosshairBars(C, C.ClipX / 2, C.ClipY / 2, XOffset, YOffset, Col, C.ClipY / 1080 * class'HUD'.default.CrosshairScale,
+		GetCrosshairDistanceScale(), class'BallisticWeapon'.default.bDrawCrosshairDot);
 
 	C.DrawColor = SavedDrawColor;
 }
@@ -6182,49 +6185,66 @@ simulated function DrawSimpleCrosshairs(Canvas C)
 	DrawSimpleCrosshairBars(C, OffsetAdjustment, OffsetAdjustment);
 }
 
+// A graphical crosshair's two images round a point of the canvas
+static final function DrawCrosshairImages(Canvas C, float X, float Y, NonDefCrosshairCfg CHCfg, IntBox Size)
+{
+	if (CHCfg.Pic1 != None)
+	{
+		C.DrawColor = CHCfg.Color1;
+		C.SetPos(X - (Size.X1/2), Y - (Size.Y1/2));
+		C.DrawTile(CHCfg.Pic1, Size.X1, Size.Y1, 0, 0, CHCfg.USize1, CHCfg.VSize1);
+	}
+
+	if (CHCfg.Pic2 != None)
+	{
+		C.DrawColor = CHCfg.Color2;
+		C.SetPos(X - (Size.X2/2), Y - (Size.Y2/2));
+		C.DrawTile(CHCfg.Pic2, Size.X2, Size.Y2, 0, 0, CHCfg.USize2, CHCfg.VSize2);
+	}
+}
+
 simulated function DrawGraphicalCrosshairs(Canvas C)
 {
 	local IntBox				Size;
 	local NonDefCrosshairCfg 	CHCfg;
 	local float					ScaleFactor;
+	local Color					Warning;
 
-	ScaleFactor = C.ClipX / 1600;
+	ScaleFactor = C.ClipX / 1600 * class'HUD'.default.CrosshairScale * GetCrosshairDistanceScale();
 
-	if (bGlobalCrosshair)
-		CHCfg = class'BallisticWeapon'.default.NDCrosshairCfg;
-	else
-		CHCfg = NDCrosshairCfg;
-	
+	CHCfg = NDCrosshairCfg;
+
+	if (class'BC_CrosshairSettings'.default.bOneColour)
+	{
+		CHCfg.Color1 = class'BC_CrosshairSettings'.default.CrosshairColor;
+		CHCfg.Color2 = CHCfg.Color1;
+	}
+
+	if (GetCrosshairWarning(Warning))
+	{
+		Warning.A = CHCfg.Color1.A;
+		CHCfg.Color1 = Warning;
+		Warning.A = CHCfg.Color2.A;
+		CHCfg.Color2 = Warning;
+	}
+
+	if (bScopeView)
+	{
+		CHCfg.Color1.A = float(CHCfg.Color1.A) / 1.3;
+		CHCfg.Color2.A = float(CHCfg.Color2.A) / 1.5;
+	}
+
 	// Inaccuracy and recoil spread it out
 	NDCrosshairInfo.CurrentScale = FMin(1, AimComponent.GetCrosshairChaos() * NDCrosshairChaosFactor * class'BallisticReplicationInfo'.default.AccuracyScale
 		+ RcComponent.GetRecoilFactor() * class'BallisticReplicationInfo'.default.RecoilScale) * NDCrosshairInfo.MaxScale * class'BallisticWeapon'.default.NDCrosshairScaleFactor;
 
 	//Work out the exact size of the crosshair
-	Size.X1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.X1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-	Size.Y1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.Y1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-	Size.X2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.X2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
-	Size.Y2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.Y2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
+	Size.X1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.X1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X1)) * ScaleFactor;
+	Size.Y1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.Y1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y1)) * ScaleFactor;
+	Size.X2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.X2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X2)) * ScaleFactor;
+	Size.Y2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.Y2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y2)) * ScaleFactor;
 
-	// Draw primary
-	if (CHCfg.Pic1 != None)
-	{
-
-		C.DrawColor = CHCfg.Color1;
-		if (bScopeView)    C.DrawColor.A = float(C.DrawColor.A) / 1.3;
-		C.SetPos((C.ClipX / 2) - (Size.X1/2), (C.ClipY / 2) - (Size.Y1/2));
-
-		C.DrawTile (CHCfg.Pic1, Size.X1, Size.Y1, 0, 0, CHCfg.USize1, CHCfg.VSize1);
-	}
-	
-	// Draw secondary
-	if (CHCfg.Pic2 != None)
-	{
-		C.DrawColor = CHCfg.Color2;
-		if (bScopeView)    C.DrawColor.A = float(C.DrawColor.A) / 1.5;
-		C.SetPos((C.ClipX / 2) - (Size.X2/2), (C.ClipY / 2) - (Size.Y2/2));
-
-		C.DrawTile (CHCfg.Pic2, Size.X2, Size.Y2, 0, 0, CHCfg.USize2, CHCfg.VSize2);
-	}
+	DrawCrosshairImages(C, C.ClipX / 2, C.ClipY / 2, CHCfg, Size);
 }
 
 //Draws simple crosshairs to accurately describe hipfire at any FOV and resolution.
@@ -6239,7 +6259,7 @@ simulated function DrawCrosshairs(Canvas C)
 		return;
 
 	// round where the shot will land, if that is wanted: the crosshairs are drawn round the middle of the canvas
-	if (CrosshairMode != CHM_Unreal && GetCrosshairAim(C, X, Y))
+	if (class'BallisticWeapon'.default.CrosshairMode != CHM_Unreal && GetCrosshairAim(C, X, Y))
 	{
 		OldX = C.OrgX;
 		OldY = C.OrgY;
@@ -6252,7 +6272,7 @@ simulated function DrawCrosshairs(Canvas C)
 	OldStyle = C.Style;
 	C.Style = ERenderStyle.STY_Alpha;
 
-	switch (CrosshairMode)
+	switch (class'BallisticWeapon'.default.CrosshairMode)
 	{
 		case CHM_Simple:
 			DrawSimpleCrosshairs(C);
@@ -6271,21 +6291,10 @@ simulated function DrawCrosshairs(Canvas C)
 }
 
 // Where a shot fired now would land: the line of fire from the eyes, with the gun's aim and recoil, to what it meets
-// first. Its place on the screen (X, Y), if the crosshair is to go there (BC_CrosshairSettings: in third person the camera
-// is off the line of fire, in first person the gun moves off it). A server can keep it in the middle in first person,
-// where it would show what sway hides. The HUD's own crosshair uses it too (BallisticPawn)
-simulated final function bool GetCrosshairAim(Canvas C, out float X, out float Y)
+// first. Worked out once a frame
+simulated final function vector GetCrosshairHit()
 {
-	local PlayerController PC;
-	local vector Start, HitLocation, HitNormal, P;
-
-	if (Instigator == None || class'BC_CrosshairSettings'.default.CrosshairAim == ECrosshairAim.CHA_Off)
-		return false;
-	PC = PlayerController(Instigator.Controller);
-	if (PC == None || PC.ViewTarget != Instigator)
-		return false;
-	if (!PC.bBehindView && (class'BC_CrosshairSettings'.default.CrosshairAim != ECrosshairAim.CHA_Always || !class'BallisticReplicationInfo'.default.bFirstPersonCrosshairAim))
-		return false;
+	local vector Start, HitLocation, HitNormal;
 
 	if (CrosshairAimTime != Level.TimeSeconds)
 	{
@@ -6295,10 +6304,54 @@ simulated final function bool GetCrosshairAim(Canvas C, out float X, out float Y
 		if (Instigator.Trace(HitLocation, HitNormal, CrosshairAimEnd, Start, true) != None)
 			CrosshairAimEnd = HitLocation;
 	}
-	P = C.WorldToScreen(CrosshairAimEnd);
+	return CrosshairAimEnd;
+}
+
+// Where on the screen (X, Y) the crosshair goes, if it is to go where the shot lands (BC_CrosshairSettings: in third person
+// the camera is off the line of fire, in first person the gun moves off it). A server can keep it in the middle in first
+// person, where it would show what sway hides. The HUD's own crosshair uses it too (BallisticPawn)
+simulated final function bool GetCrosshairAim(Canvas C, out float X, out float Y)
+{
+	local PlayerController PC;
+	local vector P;
+
+	if (Instigator == None || class'BC_CrosshairSettings'.default.CrosshairAim == ECrosshairAim.CHA_Off)
+		return false;
+	PC = PlayerController(Instigator.Controller);
+	if (PC == None || PC.ViewTarget != Instigator)
+		return false;
+	if (!PC.bBehindView && (class'BC_CrosshairSettings'.default.CrosshairAim != ECrosshairAim.CHA_Always || !class'BallisticReplicationInfo'.default.bFirstPersonCrosshairAim))
+		return false;
+
+	P = C.WorldToScreen(GetCrosshairHit());
 	X = P.X;
 	Y = P.Y;
 	return true;
+}
+
+// How large a crosshair is drawn on something this far off: a little larger up close, down to about half far away, and
+// evenly per doubling of the distance, as what is further off changes less
+static final function float CrosshairDistanceScale(float Distance)
+{
+	return Lerp(FClamp(Loge(FMax(Distance, CROSSHAIR_NEAR) / CROSSHAIR_NEAR) / Loge(CROSSHAIR_FAR / CROSSHAIR_NEAR), 0, 1), CROSSHAIR_NEAR_SIZE, CROSSHAIR_FAR_SIZE);
+}
+
+// The size for what the shot would hit now, if the player wants that (BC_CrosshairSettings). It eases there, as the distance
+// jumps when the aim crosses an edge. The first frame after a while starts where it should be
+simulated final function float GetCrosshairDistanceScale()
+{
+	local float Wanted;
+
+	if (!class'BC_CrosshairSettings'.default.bDistanceSize || Instigator == None)
+		return 1;
+
+	if (CrosshairSizeTime != Level.TimeSeconds)
+	{
+		Wanted = CrosshairDistanceScale(VSize(GetCrosshairHit() - (Instigator.Location + Instigator.EyePosition())));
+		CrosshairSize += (Wanted - CrosshairSize) * (1 - Exp((CrosshairSizeTime - Level.TimeSeconds) * 15));
+		CrosshairSizeTime = Level.TimeSeconds;
+	}
+	return CrosshairSize;
 }
 
 // End render stuff ----------------------------------------------------------------------------------------------------
@@ -7034,9 +7087,6 @@ defaultproperties
 	 SightBobScale=0.15f
 	 
      SMuzzleFlashOffset=(X=25.000000,Z=-15.000000)
-     MagEmptyColor=(B=50,G=50,R=255,A=150)
-     CockingColor=(B=50,G=175,R=255,A=150)
-	 CrosshairColor=(B=255,G=225,R=255,A=150)
      GunLength=64.000000
      LongGunPivot=(Pitch=-4000,Yaw=-12000)
      LongGunOffset=(X=5.000000,Y=10.000000,Z=-11.000000)
