@@ -9,24 +9,16 @@
 //=============================================================================
 class ConfigTab_GameplayPrefs extends ConfigTabBase;
 
-var automated moComboBox		co_Crosshairs, co_CrosshairAim, co_ADSHandling, co_ModeMemory;
+var automated moComboBox		co_ADSHandling, co_ModeMemory;
 var automated moFloatEdit		fl_ZoomTimeMod;
-var automated moCheckbox		ch_Crosshairdot,ch_WeaponUI, ch_SimpleDeathMessages, ch_LessDisruptiveFlash;
+var automated moCheckbox		ch_WeaponUI, ch_SimpleDeathMessages, ch_LessDisruptiveFlash;
 
 function LoadSettings()
 {
 	// RESET comes through here again
-	if (co_Crosshairs.ItemCount() == 0)
+	if (co_ADSHandling.ItemCount() == 0)
 	{
-		co_Crosshairs.AddItem("Simple" ,,string(0));
-		co_Crosshairs.AddItem("Graphical" ,,string(1));
-		co_Crosshairs.AddItem("UT2004" ,,string(2));
-		co_Crosshairs.ReadOnly(True);
 
-		co_CrosshairAim.AddItem("Off" ,,string(0));
-		co_CrosshairAim.AddItem("Third Person Only" ,,string(1));
-		co_CrosshairAim.AddItem("First and Third Person" ,,string(2));
-		co_CrosshairAim.ReadOnly(True);
 
 		co_ADSHandling.AddItem("Default" ,,string(0));
 		co_ADSHandling.AddItem("Hold" ,,string(1));
@@ -38,9 +30,6 @@ function LoadSettings()
 		co_ModeMemory.AddItem("Saved Mode" ,,string(2));
 		co_ModeMemory.ReadOnly(True);
 	}
-	co_Crosshairs.SetIndex(class'BallisticWeapon'.default.CrosshairMode);
-	co_CrosshairAim.SetIndex(class'BC_CrosshairSettings'.default.CrosshairAim);
-	ch_Crosshairdot.Checked(class'BallisticWeapon'.default.bDrawCrosshairDot);
 	co_ADSHandling.SetIndex(class'BallisticWeapon'.default.ScopeHandling);
 	co_ModeMemory.SetIndex(class'BallisticWeapon'.default.ModeHandling);
 
@@ -56,9 +45,6 @@ function SaveSettings()
 	if (!bInitialized)
 		return;
 
- 	class'BallisticWeapon'.default.CrosshairMode		= ECrosshairMode(co_Crosshairs.GetIndex());
- 	class'BC_CrosshairSettings'.default.CrosshairAim	= co_CrosshairAim.GetIndex();
- 	class'BallisticWeapon'.default.bDrawCrosshairDot	= ch_Crosshairdot.IsChecked();
     class'BallisticWeapon'.default.ScopeHandling		= EScopeHandling(co_ADSHandling.GetIndex());
 	class'BallisticWeapon'.default.ModeHandling			= ModeSaveType(co_ModeMemory.GetIndex());
 	class'BallisticPlayer'.default.ZoomTimeMod			= fl_ZoomTimeMod.GetValue();
@@ -69,14 +55,10 @@ function SaveSettings()
 	class'BallisticWeapon'.static.StaticSaveConfig();
 	class'BallisticDamageType'.static.StaticSaveConfig();
 	class'BallisticPlayer'.static.StaticSaveConfig();
-	class'BC_CrosshairSettings'.static.StaticSaveConfig();
 }
 
 function DefaultSettings()
 {
-	co_Crosshairs.SetIndex(0);
-	co_CrosshairAim.SetIndex(1);
-	ch_Crosshairdot.Checked(true);
 	co_ADSHandling.SetIndex(0);
 	co_ModeMemory.SetIndex(0);
 	fl_ZoomTimeMod.SetValue(1.5);
@@ -86,43 +68,6 @@ function DefaultSettings()
 
 defaultproperties
 {
-	Begin Object Class=moComboBox Name=co_CrosshairCombo
-        ComponentJustification=TXTA_Left
-        CaptionWidth=0.550000
-        Caption="Crosshair Type"
-        OnCreateComponent=co_CrosshairCombo.InternalOnCreateComponent
-        IniOption="@Internal"
-        Hint="Which crosshairs to use.||Simple: Draws simple crosshairs which show hipfire inaccuracy and change color to indicate when a weapon needs reloading or cocking.||Graphical: Draws custom, configurable graphical crosshairs for each weapon.||UT2004: Uses your Unreal Tournament 2004 crosshairs for each weapon."
-        WinTop=0.1
-        WinLeft=0.250000
-     End Object
-     co_Crosshairs=moComboBox'co_CrosshairCombo'
-
-	 Begin Object Class=moCheckBox Name=ch_CrosshairdotCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Show dot in crosshair"
-         OnCreateComponent=ch_CrosshairdotCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Add a dot to the center of the dynamic crosshair."
-         WinTop=0.15
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_Crosshairdot=moCheckBox'ch_CrosshairdotCheck'     
-
-     Begin Object Class=moComboBox Name=co_CrosshairAimCombo
-        ComponentJustification=TXTA_Left
-        CaptionWidth=0.550000
-        Caption="Crosshair Follows Aim"
-        OnCreateComponent=co_CrosshairAimCombo.InternalOnCreateComponent
-        IniOption="@Internal"
-        Hint="Whether the crosshair goes where a shot would land, following sway, recoil and the drop of a sprint, whichever crosshair type you use.||Off: The crosshair stays in the middle of the screen.||Third Person Only: In third person the camera is off the line of fire, so the crosshair shows what your shots would hit. In first person it stays in the middle.||First and Third Person: In first person as well, if the server allows it, like follow recoil in Counter-Strike."
-        WinTop=0.20
-        WinLeft=0.250000
-     End Object
-     co_CrosshairAim=moComboBox'co_CrosshairAimCombo'
-
      Begin Object Class=moComboBox Name=co_ADSHandlingCombo
         ComponentJustification=TXTA_Left
         CaptionWidth=0.550000
@@ -130,7 +75,7 @@ defaultproperties
         OnCreateComponent=co_ADSHandlingCombo.InternalOnCreateComponent
         IniOption="@Internal"
         Hint="How the ADS key should function.||Default: Hold to raise the weapon into scope. Weapon stays in scope until key is pressed again.||Hold: Hold key to ADS. Release to lower.||Toggle: Press key to ADS. Press again to lower."
-        WinTop=0.25
+        WinTop=0.10
         WinLeft=0.250000
      End Object
      co_ADSHandling=moComboBox'co_ADSHandlingCombo'
@@ -143,7 +88,7 @@ defaultproperties
          IniOption="@Internal"
          IniDefault="High"
          Hint="Controls how Ballistic handles the initial weapon mode when a weapon is spawned. ||None - the set default mode is always used.||Last - the last used mode is used. ||Saved - uses the mode saved by the SetDefaultMode command.||Reset it with ClearDefaultMode and get its name with GetDefaultMode."
-         WinTop=0.30
+         WinTop=0.15
          WinLeft=0.250000
      End Object
      co_ModeMemory=moComboBox'co_ModeCombo'
@@ -157,7 +102,7 @@ defaultproperties
          OnCreateComponent=fl_ZoomTimeModFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Multiplier for the rate of change of zoom levels. 1 to 4."
-         WinTop=0.35
+         WinTop=0.20
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -170,7 +115,7 @@ defaultproperties
          OnCreateComponent=ch_WeaponUICheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Enable the selection UI when changing weapons."
-         WinTop=0.40
+         WinTop=0.25
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -183,7 +128,7 @@ defaultproperties
          OnCreateComponent=ch_SimpleDeathMessagesCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Renders death messages as Killer [Weapon] Killed"
-         WinTop=0.45
+         WinTop=0.30
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -196,7 +141,7 @@ defaultproperties
          OnCreateComponent=ch_LessDisruptiveFlashCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Changes white blinding flashes to black"
-         WinTop=0.50
+         WinTop=0.35
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

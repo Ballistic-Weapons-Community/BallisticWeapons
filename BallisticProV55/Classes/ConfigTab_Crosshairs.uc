@@ -1,594 +1,628 @@
 //=============================================================================
-// ConfigTab_Crosshairs.
+// ConfigTab_Crosshairs
 //
-// This page is used to configure the Ballistic Weapons crosshairs.
-// It includes:
-// A list of all weapons that can have their crosshairs changed
-// Seperate Sliders for the colors of both inner and outer crosshairs.
-// Seperate Scale for both crosshairs
-// Combo boxes to select the style of each crosshair
-// Checkboxes for Old Crosshairs option and Universal Crosshair option
-// Slider for Global Scaling and Crosshair expansion factor
-// The crosshairs are visible in their actual in game size
-// A changing screenshot is added to show crosshairs against different scenes
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2006 RuneStorm. All Rights Reserved.
+// What all crosshairs share: their type, where they go, their colours and their
+// size, with a preview drawn the way the game draws them, at their real size.
+// Each weapon's own graphical crosshair is on ConfigMenu_WeaponCrosshairs.
 //=============================================================================
 class ConfigTab_Crosshairs extends ConfigTabBase;
 
-var bool					bLoadInitialized;
+const PRESET_COUNT = 10;				// With the last one, Custom
+const COLOUR_MAIN = 0;
+const COLOUR_EMPTY = 1;
+const COLOUR_COCKING = 2;
+const PREVIEW_GAP = 4;					// The Simple crosshair's gap at rest
 
-var automated moSlider		sl_GlobalScale, sl_CrossGrow;
-var automated moSlider		sl_Red1, sl_Green1, sl_Blue1, sl_Alpha1, sl_Size1, sl_Red2, sl_Green2, sl_Blue2, sl_Alpha2, sl_Size2;
-var Automated GUIImage		Box_WeapList, Img_Cross1, Img_Cross2, Img_BackShot, Box_Shot, Box_Inner, Box_Outer;
-var automated GUILabel   	l_WeaponsList, l_Inner, l_Outer;
-var automated GUIListBox	lb_Weapons;
-var automated GUIComboBox	cb_CrossList1, cb_CrossList2;
+var automated moComboBox	co_Crosshairs, co_CrosshairAim, co_Colour, co_EmptyColour, co_CockingColour;
+var automated moCheckbox	ch_Crosshairdot, ch_Distance, ch_OneColour, ch_Warnings;
+var automated moSlider		sl_GlobalScale, sl_CrossGrow, sl_Opacity, sl_Red, sl_Green, sl_Blue;
+var automated GUIImage		Img_BackShot, Box_Shot;
+var automated GUIButton		b_WeaponCrosshairs;
+var automated GUILabel		l_Custom, l_StockNote;
 
-var() array<BallisticWeapon.NonDefCrosshairCfg>		Crosshairs;
+var() localized string		PresetNames[PRESET_COUNT];
+var() Color					PresetColours[PRESET_COUNT];	// The first is the default crosshair, the last two the default warnings' places
+var() localized string		CustomCaptions[3];
+
+var Color					Colours[3];		// The three colours being edited, without their opacity
+var int						CustomColour;	// Which of them the Custom sliders show
+var bool					bSettingUp;		// The boxes are being filled, not changed by the player
+var float					PreviewTime;
 
 function InitializeConfigTab()
 {
-	local array<CacheManager.WeaponRecord> Recs;
-	local class<Weapon> Weap;
-	local int i, j;
-	local array<string> CHClassNames;
-	local class<BallisticCrosshairPack>	CHClass;
+	co_Crosshairs.AddItem("Simple" ,,string(0));
+	co_Crosshairs.AddItem("Graphical" ,,string(1));
+	co_Crosshairs.AddItem("UT2004" ,,string(2));
+	co_Crosshairs.ReadOnly(True);
 
-	if (bLoadInitialized)
-		return;
+	co_CrosshairAim.AddItem("Off" ,,string(0));
+	co_CrosshairAim.AddItem("Third Person Only" ,,string(1));
+	co_CrosshairAim.AddItem("First and Third Person" ,,string(2));
+	co_CrosshairAim.ReadOnly(True);
 
-	class'CacheManager'.static.GetWeaponList(Recs);
-	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
-	for (i=0;i<Recs.Length;i++)
-	{
-		Weap = None;
-		// Tap into the BW weapon cache system to identify BallisticWeapons before loading them
-		if (!class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
-			continue;
-/*		if (!class'BC_WeaponInfoCache'.static.FindWeaponInfo(Recs[i].ClassName, WI))
-		{
-			Weap = class<Weapon>(DynamicLoadObject(Recs[i].ClassName, class'Class'));
-			if (Weap != None)
-				WI = class'BC_WeaponInfoCache'.static.AddWeaponInfo(Weap);
-			else
-				continue;
-		}
-		if (!WI.bIsBW)
-			continue;
-*/		if (Weap == None)
-			Weap = class<Weapon>(DynamicLoadObject(Recs[i].ClassName, class'Class'));
-		if (Weap != None)
-			lb_Weapons.List.Add(Recs[i].FriendlyName, Weap);
-
-//		Weap = class<BallisticWeapon>(DynamicLoadObject(Recs[i].ClassName, class'Class'));
-//		if (Weap != None)
-//			lb_Weapons.List.Add(Recs[i].FriendlyName, Weap);
-	}
-	class'BC_WeaponInfoCache'.static.EndSession();
-	lb_Weapons.List.OnChange = InternalOnChange;
-
-	PlayerOwner().GetAllInt("BCoreProV55.BallisticCrosshairPack", CHClassNames);
-    for (i=0;i<CHClassNames.length;i++)
-    {
-    	CHClass = class<BallisticCrosshairPack>(DynamicLoadObject(CHClassNames[i],class'Class'));
-    	if (CHClass != None)
-		{
-    		for (j=0;j<CHClass.default.Crosshairs.length;j++)
-    		{
-	    		cb_CrossList1.AddItem(CHClass.default.Crosshairs[j].FriendlyName, CHClass, string(j));
-	    		cb_CrossList2.AddItem(CHClass.default.Crosshairs[j].FriendlyName, CHClass, string(j));
-	    	}
-		}
-	}
-	LoadSettings();
-	bLoadInitialized = true;
+	AddPresets(co_Colour);
+	AddPresets(co_EmptyColour);
+	AddPresets(co_CockingColour);
 }
 
-// Load all settings
+function AddPresets(moComboBox Box)
+{
+	local int i;
+
+	for (i = 0; i < PRESET_COUNT; i++)
+		Box.AddItem(PresetNames[i] ,,string(i));
+	Box.ReadOnly(True);
+}
+
+function moComboBox ColourBox(int i)
+{
+	switch (i)
+	{
+		case COLOUR_EMPTY:		return co_EmptyColour;
+		case COLOUR_COCKING:	return co_CockingColour;
+	}
+	return co_Colour;
+}
+
+// The preset with this colour, or Custom
+function int FindPreset(Color Col)
+{
+	local int i;
+
+	for (i = 0; i < PRESET_COUNT - 1; i++)
+		if (PresetColours[i].R == Col.R && PresetColours[i].G == Col.G && PresetColours[i].B == Col.B)
+			return i;
+	return PRESET_COUNT - 1;
+}
+
+function SetColours(Color Main, Color Empty, Color Cocking, byte Opacity)
+{
+	Colours[COLOUR_MAIN] = Main;
+	Colours[COLOUR_EMPTY] = Empty;
+	Colours[COLOUR_COCKING] = Cocking;
+
+	bSettingUp = true;
+	co_Colour.SetIndex(FindPreset(Main));
+	co_EmptyColour.SetIndex(FindPreset(Empty));
+	co_CockingColour.SetIndex(FindPreset(Cocking));
+	sl_Opacity.SetValue(Opacity);
+	bSettingUp = false;
+
+	ShowCustomColour(COLOUR_MAIN);
+}
+
+// What the Custom sliders say belongs to the colour they show
+function ReadCustomColour()
+{
+	if (!sl_Red.bVisible)
+		return;
+
+	Colours[CustomColour].R = sl_Red.GetValue();
+	Colours[CustomColour].G = sl_Green.GetValue();
+	Colours[CustomColour].B = sl_Blue.GetValue();
+}
+
+// The Custom sliders belong to the colour box used last, and only show if it is on Custom
+function ShowCustomColour(int i)
+{
+	local bool bCustom;
+
+	CustomColour = i;
+	bCustom = ColourBox(i).GetIndex() == PRESET_COUNT - 1;
+
+	sl_Red.SetVisibility(bCustom);
+	sl_Green.SetVisibility(bCustom);
+	sl_Blue.SetVisibility(bCustom);
+	l_Custom.SetVisibility(bCustom);
+	l_Custom.Caption = CustomCaptions[i];
+
+	if (bCustom)
+	{
+		bSettingUp = true;
+		sl_Red.SetValue(Colours[i].R);
+		sl_Green.SetValue(Colours[i].G);
+		sl_Blue.SetValue(Colours[i].B);
+		bSettingUp = false;
+	}
+}
+
+// Rows that mean nothing for this crosshair type are greyed out, and the warning boxes with the warnings off
+function UpdateRows()
+{
+	local bool bBallistic, bSimple, bGraphical;
+
+	bSimple = co_Crosshairs.GetIndex() == 0;
+	bGraphical = co_Crosshairs.GetIndex() == 1;
+	bBallistic = bSimple || bGraphical;
+
+	l_StockNote.SetVisibility(!bBallistic);
+	SetEnabled(ch_Crosshairdot, bSimple);
+	SetEnabled(sl_CrossGrow, bGraphical);
+	SetEnabled(ch_OneColour, bGraphical);
+	SetEnabled(co_Colour, bBallistic);
+	SetEnabled(sl_Opacity, bBallistic);
+	SetEnabled(ch_Warnings, bBallistic);
+	SetEnabled(ch_Distance, bBallistic);
+	SetEnabled(co_EmptyColour, bBallistic && ch_Warnings.IsChecked());
+	SetEnabled(co_CockingColour, bBallistic && ch_Warnings.IsChecked());
+}
+
+function SetEnabled(GUIComponent Comp, bool bEnable)
+{
+	if (bEnable)
+		Comp.EnableMe();
+	else
+		Comp.DisableMe();
+}
+
 function LoadSettings()
 {
-	local int i;
-
+	bSettingUp = true;
+	co_Crosshairs.SetIndex(class'BallisticWeapon'.default.CrosshairMode);
+	co_CrosshairAim.SetIndex(class'BC_CrosshairSettings'.default.CrosshairAim);
+	ch_Crosshairdot.Checked(class'BallisticWeapon'.default.bDrawCrosshairDot);
+	ch_Distance.Checked(class'BC_CrosshairSettings'.default.bDistanceSize);
+	ch_OneColour.Checked(class'BC_CrosshairSettings'.default.bOneColour);
+	ch_Warnings.Checked(class'BC_CrosshairSettings'.default.bWarningColours);
 	sl_GlobalScale.SetValue(class'HUD'.default.CrosshairScale);
 	sl_CrossGrow.SetValue(class'BallisticWeapon'.default.NDCrosshairScaleFactor);
+	bSettingUp = false;
 
-	for (i=0;i<lb_Weapons.List.Elements.Length;i++)
-		Crosshairs[i] = class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData).default.NDCrosshairCfg;
-	Crosshairs[i] = class'BallisticWeapon'.default.NDCrosshairCfg;
-	UpdateSettings();
-	bInitialized=true;
+	SetColours(class'BC_CrosshairSettings'.default.CrosshairColor, class'BC_CrosshairSettings'.default.MagEmptyColor,
+		class'BC_CrosshairSettings'.default.CockingColor, class'BC_CrosshairSettings'.default.CrosshairColor.A);
+	UpdateRows();
 }
-// Save all settings
+
 function SaveSettings()
 {
-	local int i;
-
-	if (!bLoadInitialized || !bInitialized)
-		return;
-
-	class'HUD'.default.CrosshairScale					= sl_GlobalScale.GetValue();
-	class'BallisticWeapon'.default.NDCrosshairScaleFactor	= sl_CrossGrow.GetValue();
-
-	class'BallisticWeapon'.default.NDCrosshairCfg	= Crosshairs[lb_Weapons.List.Elements.Length];
-	class'HUD'.static.StaticSaveConfig();
-	class'BallisticWeapon'.static.StaticSaveConfig();
-
-	for (i=0;i<lb_Weapons.List.Elements.Length;i++)
-	{
-		class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData).default.NDCrosshairCfg = Crosshairs[i];
-		class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData).static.StaticSaveConfig();
-	}
-}
-// Reset everything to defaults
-function DefaultSettings()
-{
-	local int i;
-
-	sl_GlobalScale.SetValue(1.0);
-	sl_CrossGrow.SetValue(1.0);
-
-	for (i=0;i<lb_Weapons.List.Elements.Length;i++)
-		Crosshairs[i] = GetDefaultCrosshair(class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData));
-	Crosshairs[i] = GetDefaultCrosshair(class'BallisticWeapon');
-	UpdateSettings();
-}
-
-// ResetConfig is the only way to see what a weapon came with, and it takes the saved crosshair out of the ini at once.
-// Put the saved one back: nothing is final before OK, and CANCEL has to be able to leave things alone.
-function BallisticWeapon.NonDefCrosshairCfg GetDefaultCrosshair(class<BallisticWeapon> WC)
-{
-	local BallisticWeapon.NonDefCrosshairCfg Saved, Def;
-
-	Saved = WC.default.NDCrosshairCfg;
-	WC.static.ResetConfig("NDCrosshairCfg");
-	Def = WC.default.NDCrosshairCfg;
-	WC.default.NDCrosshairCfg = Saved;
-	WC.static.StaticSaveConfig();
-	return Def;
-}
-
-function InternalOnChange(GUIComponent Sender)
-{
-	local int CHIndex;
+	local Color Col;
+	local byte Opacity;
 
 	if (!bInitialized)
 		return;
 
-	CHIndex = lb_Weapons.List.Index;
+	class'BallisticWeapon'.default.CrosshairMode			= ECrosshairMode(co_Crosshairs.GetIndex());
+	class'BallisticWeapon'.default.bDrawCrosshairDot		= ch_Crosshairdot.IsChecked();
+	class'BallisticWeapon'.default.NDCrosshairScaleFactor	= sl_CrossGrow.GetValue();
+	class'HUD'.default.CrosshairScale						= sl_GlobalScale.GetValue();
 
-	if (Sender == sl_Red1)				// Cross1 Red
-		Crosshairs[CHIndex].Color1.R = sl_Red1.GetValue();
-	else if (Sender == sl_Green1)		// Cross1 Green
-		Crosshairs[CHIndex].Color1.G = sl_Green1.GetValue();
-	else if (Sender == sl_Blue1)		// Cross1 Blue
-		Crosshairs[CHIndex].Color1.B = sl_Blue1.GetValue();
-	else if (Sender == sl_Alpha1)		// Cross1 Alpha
-		Crosshairs[CHIndex].Color1.A = sl_Alpha1.GetValue();
-	else if (Sender == sl_Size1)		// Cross1 Size
-		Crosshairs[CHIndex].StartSize1 = sl_Size1.GetValue();
-	else if (Sender == sl_Red2)			// Cross2 Red
-		Crosshairs[CHIndex].Color2.R = sl_Red2.GetValue();
-	else if (Sender == sl_Green2)		// Cross2 Green
-		Crosshairs[CHIndex].Color2.G = sl_Green2.GetValue();
-	else if (Sender == sl_Blue2)		// Cross2 Blue
-		Crosshairs[CHIndex].Color2.B = sl_Blue2.GetValue();
-	else if (Sender == sl_Alpha2)		// Cross2 Alpha
-		Crosshairs[CHIndex].Color2.A = sl_Alpha2.GetValue();
-	else if (Sender == sl_Size2)		// Cross2 Size
-		Crosshairs[CHIndex].StartSize2 = sl_Size2.GetValue();
-	else if (Sender == cb_CrossList1){	// Cross1 Tex
-		Crosshairs[CHIndex].Pic1 = class<BallisticCrosshairPack>(cb_CrossList1.GetObject()).default.Crosshairs[int(cb_CrossList1.GetExtra())].Image;
-		Crosshairs[CHIndex].USize1 = class<BallisticCrosshairPack>(cb_CrossList1.GetObject()).default.Crosshairs[int(cb_CrossList1.GetExtra())].USize;
-		Crosshairs[CHIndex].VSize1 = class<BallisticCrosshairPack>(cb_CrossList1.GetObject()).default.Crosshairs[int(cb_CrossList1.GetExtra())].VSize;
-	}
-	else if (Sender == cb_CrossList2){	// Cross2 Tex
-		Crosshairs[CHIndex].Pic2 = class<BallisticCrosshairPack>(cb_CrossList2.GetObject()).default.Crosshairs[int(cb_CrossList2.GetExtra())].Image;
-		Crosshairs[CHIndex].USize2 = class<BallisticCrosshairPack>(cb_CrossList2.GetObject()).default.Crosshairs[int(cb_CrossList2.GetExtra())].USize;
-		Crosshairs[CHIndex].VSize2 = class<BallisticCrosshairPack>(cb_CrossList2.GetObject()).default.Crosshairs[int(cb_CrossList2.GetExtra())].VSize;
-	}
-	else if (Sender == lb_Weapons.List)	// Weapon List
-		UpdateSettings();
-	UpdateImages();
+	ReadCustomColour();
+	Opacity = sl_Opacity.GetValue();
+	class'BC_CrosshairSettings'.default.CrosshairAim		= co_CrosshairAim.GetIndex();
+	class'BC_CrosshairSettings'.default.bDistanceSize		= ch_Distance.IsChecked();
+	class'BC_CrosshairSettings'.default.bOneColour			= ch_OneColour.IsChecked();
+	class'BC_CrosshairSettings'.default.bWarningColours		= ch_Warnings.IsChecked();
+	Col = Colours[COLOUR_MAIN];
+	Col.A = Opacity;
+	class'BC_CrosshairSettings'.default.CrosshairColor		= Col;
+	Col = Colours[COLOUR_EMPTY];
+	Col.A = Opacity;
+	class'BC_CrosshairSettings'.default.MagEmptyColor		= Col;
+	Col = Colours[COLOUR_COCKING];
+	Col.A = Opacity;
+	class'BC_CrosshairSettings'.default.CockingColor		= Col;
+
+	class'BallisticWeapon'.static.StaticSaveConfig();
+	class'BC_CrosshairSettings'.static.StaticSaveConfig();
+	class'HUD'.static.StaticSaveConfig();
+
+	// A weapon decides on the UT2004 crosshair as it comes up, so the one in the hands has to be told
+	if (PlayerOwner().Pawn != None && BallisticWeapon(PlayerOwner().Pawn.Weapon) != None)
+		BallisticWeapon(PlayerOwner().Pawn.Weapon).HideStockCrosshair(co_Crosshairs.GetIndex() != 2);
 }
 
-function UpdateImages()
+function DefaultSettings()
 {
-	local int CHIndex;
+	bSettingUp = true;
+	co_Crosshairs.SetIndex(0);
+	co_CrosshairAim.SetIndex(1);
+	ch_Crosshairdot.Checked(true);
+	ch_Distance.Checked(false);
+	ch_OneColour.Checked(false);
+	ch_Warnings.Checked(true);
+	sl_GlobalScale.SetValue(1.0);
+	sl_CrossGrow.SetValue(1.0);
+	bSettingUp = false;
 
-	CHIndex = lb_Weapons.List.Index;
-	Img_Cross1.Image 		= Crosshairs[CHIndex].Pic1;
-	Img_Cross1.ImageColor 	= Crosshairs[CHIndex].Color1;
-	Img_Cross2.Image 		= Crosshairs[CHIndex].Pic2;
-	Img_Cross2.ImageColor 	= Crosshairs[CHIndex].Color2;
+	SetColours(PresetColours[0], PresetColours[7], PresetColours[8], 150);
+	UpdateRows();
 }
-// Set all sliders and options for currently selected crosshair
-function UpdateSettings()
+
+function InternalOnChange(GUIComponent Sender)
 {
-	local int i, CHIndex;
+	if (!bInitialized || bSettingUp)
+		return;
 
-	CHIndex = lb_Weapons.List.Index;
-
-	sl_Red1.SetValue(	Crosshairs[CHIndex].Color1.R);
-	sl_Green1.SetValue(	Crosshairs[CHIndex].Color1.G);
-	sl_Blue1.SetValue(	Crosshairs[CHIndex].Color1.B);
-	sl_Alpha1.SetValue(	Crosshairs[CHIndex].Color1.A);
-	sl_Size1.SetValue(	Crosshairs[CHIndex].StartSize1);
-	for (i=0;i<cb_CrossList1.List.Elements.length;i++)
-		if (class<BallisticCrosshairPack>(cb_CrossList1.GetItemObject(i)).default.Crosshairs[int(cb_CrossList1.List.Elements[i].ExtraStrData)].Image == Crosshairs[CHIndex].Pic1)	{
-			bInitialized=false;	cb_CrossList1.SetText(cb_CrossList1.List.Elements[i].Item);	bInitialized=true;
-			break;
+	switch (Sender)
+	{
+		case co_Colour:			PickColour(COLOUR_MAIN);	break;
+		case co_EmptyColour:	PickColour(COLOUR_EMPTY);	break;
+		case co_CockingColour:	PickColour(COLOUR_COCKING);	break;
+		case co_Crosshairs:
+		case ch_Warnings:		UpdateRows();				break;
 	}
-	sl_Red2.SetValue(	Crosshairs[CHIndex].Color2.R);
-	sl_Green2.SetValue(	Crosshairs[CHIndex].Color2.G);
-	sl_Blue2.SetValue(	Crosshairs[CHIndex].Color2.B);
-	sl_Alpha2.SetValue(	Crosshairs[CHIndex].Color2.A);
-	sl_Size2.SetValue(	Crosshairs[CHIndex].StartSize2);
-	for (i=0;i<cb_CrossList2.List.Elements.length;i++)
-		if (class<BallisticCrosshairPack>(cb_CrossList2.GetItemObject(i)).default.Crosshairs[int(cb_CrossList2.List.Elements[i].ExtraStrData)].Image == Crosshairs[CHIndex].Pic2)	{
-			bInitialized=false;	cb_CrossList2.SetText(cb_CrossList2.List.Elements[i].Item);	bInitialized=true;
-			break;
-	}
-	UpdateImages();
 }
-// Draw the crosshairs precisely
-function bool InternalOnPreDraw(Canvas Canvas)
+
+function PickColour(int i)
 {
-	local float ScaleFactor;
-	local int CHIndex;
+	local int Preset;
 
-	if (!bLoadInitialized || !bInitialized)
-		return false;
+	ReadCustomColour();
+	Preset = ColourBox(i).GetIndex();
+	if (Preset < PRESET_COUNT - 1)
+		Colours[i] = PresetColours[Preset];
+	ShowCustomColour(i);
+}
 
-	CHIndex = lb_Weapons.List.Index;
+function bool InternalOnClick(GUIComponent Sender)
+{
+	if (Sender == b_WeaponCrosshairs)
+		Controller.OpenMenu("BallisticProV55.ConfigMenu_WeaponCrosshairs");
+	return true;
+}
 
-	ScaleFactor = float(Controller.ResX)/1600  * sl_GlobalScale.GetValue()/*class'HUD'.default.CrosshairScale*/;
+// The crosshair of the weapon in the player's hands, or of the M50 outside a game
+function BallisticWeapon.NonDefCrosshairCfg PreviewCrosshair()
+{
+	if (PlayerOwner().Pawn != None && BallisticWeapon(PlayerOwner().Pawn.Weapon) != None)
+		return BallisticWeapon(PlayerOwner().Pawn.Weapon).NDCrosshairCfg;
+	return class'M50AssaultRifle'.default.NDCrosshairCfg;
+}
 
-	Img_Cross1.WinWidth =	ScaleFactor * Crosshairs[CHIndex].StartSize1;
-	Img_Cross1.WinLeft =	ActualWidth()*0.75 - Img_Cross1.WinWidth/2;
-	Img_Cross1.WinHeight =	ScaleFactor * Crosshairs[CHIndex].StartSize1;
-	Img_Cross1.WinTop =		ActualHeight()*0.325 - Img_Cross1.WinHeight/2;
+function DrawPreviewCrosshair(Canvas C, float X, float Y, int ColourIndex, float DistanceScale)
+{
+	local BallisticWeapon.NonDefCrosshairCfg Cfg;
+	local IntBox Size;
+	local Color Col;
+	local float Scale;
 
-	Img_Cross2.WinWidth =	ScaleFactor * Crosshairs[CHIndex].StartSize2;
-	Img_Cross2.WinLeft =	ActualWidth()*0.75 - Img_Cross2.WinWidth/2;
-	Img_Cross2.WinHeight =	ScaleFactor * Crosshairs[CHIndex].StartSize2;
-	Img_Cross2.WinTop =		ActualHeight()*0.325 - Img_Cross2.WinHeight/2;
-	return false;
+	Col = Colours[ColourIndex];
+	Col.A = sl_Opacity.GetValue();
+
+	if (co_Crosshairs.GetIndex() == 0)
+	{
+		class'BallisticWeapon'.static.DrawCrosshairBars(C, X, Y, PREVIEW_GAP, PREVIEW_GAP, Col, C.ClipY / 1080 * sl_GlobalScale.GetValue(), DistanceScale, ch_Crosshairdot.IsChecked());
+		return;
+	}
+
+	Cfg = PreviewCrosshair();
+	if (ch_OneColour.IsChecked() || ColourIndex != COLOUR_MAIN)
+	{
+		Cfg.Color1 = Col;
+		Cfg.Color2 = Col;
+	}
+	Scale = C.ClipX / 1600 * sl_GlobalScale.GetValue() * DistanceScale;
+	Size.X1 = Cfg.StartSize1 * Scale;
+	Size.Y1 = Size.X1;
+	Size.X2 = Cfg.StartSize2 * Scale;
+	Size.Y2 = Size.X2;
+	class'BallisticWeapon'.static.DrawCrosshairImages(C, X, Y, Cfg, Size);
+}
+
+// With distance on, the crosshair goes through the sizes it has from near to far. With warnings on, they stand beside it
+function DrawPreview(Canvas C)
+{
+	local float Left, Top, Width, Height, DistanceScale;
+
+	if (!bInitialized || co_Crosshairs.GetIndex() == 2)
+		return;
+
+	ReadCustomColour();
+
+	Left = Img_BackShot.ActualLeft();
+	Top = Img_BackShot.ActualTop();
+	Width = Img_BackShot.ActualWidth();
+	Height = Img_BackShot.ActualHeight();
+
+	DistanceScale = 1;
+	if (ch_Distance.IsChecked())
+	{
+		PreviewTime += Controller.RenderDelta;
+		DistanceScale = class'BallisticWeapon'.static.CrosshairDistanceScale(Exp((0.5 - 0.5 * Cos(PreviewTime * 1.5)) * 8.3));
+	}
+
+	C.Style = 5; //STY_Alpha
+	if (ch_Warnings.IsChecked())
+	{
+		DrawPreviewCrosshair(C, Left + Width * 0.2, Top + Height * 0.5, COLOUR_EMPTY, DistanceScale);
+		DrawPreviewCrosshair(C, Left + Width * 0.8, Top + Height * 0.5, COLOUR_COCKING, DistanceScale);
+	}
+	DrawPreviewCrosshair(C, Left + Width * 0.5, Top + Height * 0.5, COLOUR_MAIN, DistanceScale);
 }
 
 defaultproperties
 {
-     Begin Object Class=moSlider Name=sl_GlobalScaleSlider
-         MaxValue=2.000000
-         Caption="Global Size"
-         OnCreateComponent=sl_GlobalScaleSlider.InternalOnCreateComponent
-         Hint="Scale the size of all crosshairs, including stock UT2004's, but excluding Universal Simple crosshairs."
-         WinTop=0.920000
-         WinLeft=0.520000
-         WinWidth=0.470000
-         WinHeight=0.037833
-     End Object
-     sl_GlobalScale=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_GlobalScaleSlider'
+	Begin Object Class=moComboBox Name=co_CrosshairCombo
+		ComponentJustification=TXTA_Left
+		CaptionWidth=0.550000
+		Caption="Crosshair Type"
+		OnCreateComponent=co_CrosshairCombo.InternalOnCreateComponent
+		IniOption="@Internal"
+		Hint="Simple shows inaccuracy with its gap. Graphical uses each weapon's own crosshair, and grows with inaccuracy and recoil. UT2004 uses your Unreal Tournament 2004 crosshair."
+		WinTop=0.030000
+		WinLeft=0.020000
+		WinWidth=0.470000
+		WinHeight=0.040000
+		OnChange=ConfigTab_Crosshairs.InternalOnChange
+	End Object
+	co_Crosshairs=moComboBox'co_CrosshairCombo'
 
-     Begin Object Class=moSlider Name=sl_CrossGrowSlider
-         MaxValue=2.000000
-         Caption="Crosshair Expansion"
-         OnCreateComponent=sl_CrossGrowSlider.InternalOnCreateComponent
-         Hint="Scale the degree of expansion to show inaccuracy for image-based crosshairs."
-         WinTop=0.920000
-         WinLeft=0.010000
-         WinWidth=0.470000
-         WinHeight=0.037833
-     End Object
-     sl_CrossGrow=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_CrossGrowSlider'
+	Begin Object Class=moComboBox Name=co_CrosshairAimCombo
+		ComponentJustification=TXTA_Left
+		CaptionWidth=0.550000
+		Caption="Crosshair Follows Aim"
+		OnCreateComponent=co_CrosshairAimCombo.InternalOnCreateComponent
+		IniOption="@Internal"
+		Hint="Whether the crosshair goes where a shot would land, following sway, recoil and the drop of a sprint. In third person the camera is off the line of fire, so Third Person Only shows what your shots would hit there. First and Third Person does the same in first person, if the server allows it."
+		WinTop=0.085000
+		WinLeft=0.020000
+		WinWidth=0.470000
+		WinHeight=0.040000
+	End Object
+	co_CrosshairAim=moComboBox'co_CrosshairAimCombo'
 
-     Begin Object Class=moSlider Name=sl_Red1Slider
-         MaxValue=255.000000
-         bIntSlider=True
-         CaptionWidth=0.350000
-         Caption="Red"
-         OnCreateComponent=sl_Red1Slider.InternalOnCreateComponent
-         Hint="Adjust the red component of the outer crosshair."
-         WinTop=0.690000
-         WinLeft=0.050000
-         WinWidth=0.400000
-         WinHeight=0.038400
-         OnChange=ConfigTab_Crosshairs.InternalOnChange
-     End Object
-     sl_Red1=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Red1Slider'
+	Begin Object Class=moCheckBox Name=ch_CrosshairdotCheck
+		ComponentJustification=TXTA_Left
+		CaptionWidth=0.900000
+		Caption="Show Dot In Crosshair"
+		OnCreateComponent=ch_CrosshairdotCheck.InternalOnCreateComponent
+		IniOption="@Internal"
+		Hint="Add a dot to the center of the Simple crosshair."
+		WinTop=0.140000
+		WinLeft=0.020000
+		WinWidth=0.470000
+		WinHeight=0.040000
+	End Object
+	ch_Crosshairdot=moCheckBox'ch_CrosshairdotCheck'
 
-     Begin Object Class=moSlider Name=sl_Green1Slider
-         MaxValue=255.000000
-         bIntSlider=True
-         CaptionWidth=0.350000
-         Caption="Green"
-         OnCreateComponent=sl_Green1Slider.InternalOnCreateComponent
-         Hint="Adjust Green component of Outer crosshair"
-         WinTop=0.730000
-         WinLeft=0.050000
-         WinWidth=0.400000
-         WinHeight=0.038400
-         OnChange=ConfigTab_Crosshairs.InternalOnChange
-     End Object
-     sl_Green1=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Green1Slider'
+	Begin Object Class=moCheckBox Name=ch_DistanceCheck
+		ComponentJustification=TXTA_Left
+		CaptionWidth=0.900000
+		Caption="Size Changes With Distance"
+		OnCreateComponent=ch_DistanceCheck.InternalOnCreateComponent
+		IniOption="@Internal"
+		Hint="The crosshair gets smaller the further away your shot would land, so it looks stuck to what you aim at. The Simple crosshair's gap still shows inaccuracy."
+		WinTop=0.195000
+		WinLeft=0.020000
+		WinWidth=0.470000
+		WinHeight=0.040000
+	End Object
+	ch_Distance=moCheckBox'ch_DistanceCheck'
 
-     Begin Object Class=moSlider Name=sl_Blue1Slider
-         MaxValue=255.000000
-         bIntSlider=True
-         CaptionWidth=0.350000
-         Caption="Blue"
-         OnCreateComponent=sl_Blue1Slider.InternalOnCreateComponent
-         Hint="Adjust Blue component of Outer crosshair"
-         WinTop=0.770000
-         WinLeft=0.050000
-         WinWidth=0.400000
-         WinHeight=10.038400
-         OnChange=ConfigTab_Crosshairs.InternalOnChange
-     End Object
-     sl_Blue1=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Blue1Slider'
+	Begin Object Class=moSlider Name=sl_GlobalScaleSlider
+		MaxValue=2.000000
+		Caption="Global Size"
+		OnCreateComponent=sl_GlobalScaleSlider.InternalOnCreateComponent
+		Hint="The size of all crosshairs, including stock UT2004's."
+		WinTop=0.250000
+		WinLeft=0.020000
+		WinWidth=0.470000
+		WinHeight=0.040000
+	End Object
+	sl_GlobalScale=moSlider'sl_GlobalScaleSlider'
 
-     Begin Object Class=moSlider Name=sl_Alpha1Slider
-         MaxValue=255.000000
-         bIntSlider=True
-         bIgnoreChange=True
-         CaptionWidth=0.350000
-         Caption="Opacity"
-         OnCreateComponent=sl_Alpha1Slider.InternalOnCreateComponent
-         Hint="Adjust Opactiy of Outer crosshair"
-         WinTop=0.810000
-         WinLeft=0.050000
-         WinWidth=0.400000
-         WinHeight=0.038400
-         OnChange=ConfigTab_Crosshairs.InternalOnChange
-     End Object
-     sl_Alpha1=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Alpha1Slider'
+	Begin Object Class=moSlider Name=sl_CrossGrowSlider
+		MaxValue=2.000000
+		Caption="Crosshair Expansion"
+		OnCreateComponent=sl_CrossGrowSlider.InternalOnCreateComponent
+		Hint="How much graphical crosshairs grow to show inaccuracy and recoil."
+		WinTop=0.305000
+		WinLeft=0.020000
+		WinWidth=0.470000
+		WinHeight=0.040000
+	End Object
+	sl_CrossGrow=moSlider'sl_CrossGrowSlider'
 
-     Begin Object Class=moSlider Name=sl_Size1Slider
-         MaxValue=512.000000
-         MinValue=8.000000
-         bIntSlider=True
-         CaptionWidth=0.250000
-         Caption="Scale"
-         OnCreateComponent=sl_Size1Slider.InternalOnCreateComponent
-         Hint="Adjust the base size of the outer crosshair."
-         WinTop=0.850000
-         WinLeft=0.050000
-         WinWidth=0.400000
-         WinHeight=0.038400
-         OnChange=ConfigTab_Crosshairs.InternalOnChange
-     End Object
-     sl_Size1=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Size1Slider'
+	Begin Object Class=GUIButton Name=WeaponCrosshairsButton
+		Caption="Edit Weapon Crosshairs"
+		Hint="Choose each weapon's own graphical crosshair: its images, colours and sizes."
+		WinTop=0.375000
+		WinLeft=0.120000
+		WinWidth=0.270000
+		WinHeight=0.050000
+		OnClick=ConfigTab_Crosshairs.InternalOnClick
+		OnKeyEvent=WeaponCrosshairsButton.InternalOnKeyEvent
+	End Object
+	b_WeaponCrosshairs=GUIButton'WeaponCrosshairsButton'
 
-     Begin Object Class=moSlider Name=sl_Red2Slider
-         MaxValue=255.000000
-         bIntSlider=True
-         CaptionWidth=0.350000
-         Caption="Red"
-         OnCreateComponent=sl_Red2Slider.InternalOnCreateComponent
-         Hint="Adjust the red component of the inner crosshair."
-         WinTop=0.690000
-         WinLeft=0.539000
-         WinWidth=0.400000
-         WinHeight=0.038400
-         OnChange=ConfigTab_Crosshairs.InternalOnChange
-     End Object
-     sl_Red2=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Red2Slider'
+	Begin Object Class=GUIImage Name=Box_ShotImg
+		Image=Texture'2K4Menus.NewControls.Display99'
+		ImageStyle=ISTY_Stretched
+		WinTop=0.020000
+		WinLeft=0.505000
+		WinWidth=0.480000
+		WinHeight=0.425000
+		RenderWeight=0.001000
+	End Object
+	Box_Shot=GUIImage'Box_ShotImg'
 
-     Begin Object Class=moSlider Name=sl_Green2Slider
-         MaxValue=255.000000
-         bIntSlider=True
-         CaptionWidth=0.350000
-         Caption="Green"
-         OnCreateComponent=sl_Green2Slider.InternalOnCreateComponent
-         Hint="Adjust the green component of the inner crosshair."
-         WinTop=0.730000
-         WinLeft=0.539000
-         WinWidth=0.400000
-         WinHeight=0.038400
-         OnChange=ConfigTab_Crosshairs.InternalOnChange
-     End Object
-     sl_Green2=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Green2Slider'
+	Begin Object Class=GUIImage Name=Img_BackShotImg
+		Image=MaterialSequence'BW_Core_WeaponTex.Misc.MenuSequence'
+		ImageStyle=ISTY_Scaled
+		WinTop=0.035000
+		WinLeft=0.520000
+		WinWidth=0.450000
+		WinHeight=0.395000
+		RenderWeight=0.001500
+		OnRendered=ConfigTab_Crosshairs.DrawPreview
+	End Object
+	Img_BackShot=GUIImage'Img_BackShotImg'
 
-     Begin Object Class=moSlider Name=sl_Blue2Slider
-         MaxValue=255.000000
-         bIntSlider=True
-         CaptionWidth=0.350000
-         Caption="Blue"
-         OnCreateComponent=sl_Blue2Slider.InternalOnCreateComponent
-         Hint="Adjust the blue component of the inner crosshair."
-         WinTop=0.770000
-         WinLeft=0.539000
-         WinWidth=0.400000
-         WinHeight=0.038400
-         OnChange=ConfigTab_Crosshairs.InternalOnChange
-     End Object
-     sl_Blue2=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Blue2Slider'
+	Begin Object Class=GUILabel Name=StockNoteLabel
+		Caption="The UT2004 crosshair is set in the game's own HUD settings."
+		TextAlign=TXTA_Center
+		TextColor=(B=255,G=255,R=255)
+		bMultiLine=True
+		WinTop=0.180000
+		WinLeft=0.540000
+		WinWidth=0.410000
+		WinHeight=0.100000
+		RenderWeight=0.002000
+	End Object
+	l_StockNote=GUILabel'StockNoteLabel'
 
-     Begin Object Class=moSlider Name=sl_Alpha2Slider
-         MaxValue=255.000000
-         bIntSlider=True
-         CaptionWidth=0.350000
-         Caption="Opacity"
-         OnCreateComponent=sl_Alpha2Slider.InternalOnCreateComponent
-         Hint="Adjust the opacity of the inner crosshair."
-         WinTop=0.810000
-         WinLeft=0.539000
-         WinWidth=0.400000
-         WinHeight=0.038400
-         OnChange=ConfigTab_Crosshairs.InternalOnChange
-     End Object
-     sl_Alpha2=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Alpha2Slider'
+	Begin Object Class=moComboBox Name=co_ColourCombo
+		ComponentJustification=TXTA_Left
+		CaptionWidth=0.550000
+		Caption="Crosshair Colour"
+		OnCreateComponent=co_ColourCombo.InternalOnCreateComponent
+		IniOption="@Internal"
+		Hint="The colour of the Simple crosshair, and of Graphical ones with Use One Colour For All Weapons."
+		WinTop=0.470000
+		WinLeft=0.020000
+		WinWidth=0.470000
+		WinHeight=0.040000
+		OnChange=ConfigTab_Crosshairs.InternalOnChange
+	End Object
+	co_Colour=moComboBox'co_ColourCombo'
 
-     Begin Object Class=moSlider Name=sl_Size2Slider
-         MaxValue=512.000000
-         MinValue=8.000000
-         bIntSlider=True
-         CaptionWidth=0.250000
-         Caption="Scale"
-         OnCreateComponent=sl_Size2Slider.InternalOnCreateComponent
-         Hint="Adjust the base size of the inner crosshair."
-         WinTop=0.850000
-         WinLeft=0.539000
-         WinWidth=0.400000
-         WinHeight=0.038400
-         OnChange=ConfigTab_Crosshairs.InternalOnChange
-     End Object
-     sl_Size2=moSlider'BallisticProV55.ConfigTab_Crosshairs.sl_Size2Slider'
+	Begin Object Class=moSlider Name=sl_OpacitySlider
+		MaxValue=255.000000
+		bIntSlider=True
+		Caption="Crosshair Opacity"
+		OnCreateComponent=sl_OpacitySlider.InternalOnCreateComponent
+		Hint="How solid the crosshair is, from invisible to fully solid. The Simple crosshair's dot stays stronger than its bars."
+		WinTop=0.525000
+		WinLeft=0.020000
+		WinWidth=0.470000
+		WinHeight=0.040000
+	End Object
+	sl_Opacity=moSlider'sl_OpacitySlider'
 
-     Begin Object Class=GUIImage Name=Box_WeapListImg
-         Image=Texture'2K4Menus.NewControls.Display99'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.035000
-         WinLeft=0.035000
-         WinWidth=0.430000
-         WinHeight=0.575000
-         RenderWeight=0.002000
-     End Object
-     Box_WeapList=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Box_WeapListImg'
+	Begin Object Class=moCheckBox Name=ch_OneColourCheck
+		ComponentJustification=TXTA_Left
+		CaptionWidth=0.900000
+		Caption="Use One Colour For All Weapons"
+		OnCreateComponent=ch_OneColourCheck.InternalOnCreateComponent
+		IniOption="@Internal"
+		Hint="Graphical crosshairs take the colour and opacity above. Off: each weapon keeps its own."
+		WinTop=0.580000
+		WinLeft=0.020000
+		WinWidth=0.470000
+		WinHeight=0.040000
+	End Object
+	ch_OneColour=moCheckBox'ch_OneColourCheck'
 
-     Begin Object Class=GUIImage Name=Img_Cross1Img
-         Image=Texture'BW_Core_WeaponTex.Crosshairs.M50Out'
-         ImageStyle=ISTY_Scaled
-         WinTop=0.050000
-         WinLeft=0.500000
-         WinWidth=0.200000
-         WinHeight=0.266600
-         RenderWeight=0.002000
-     End Object
-     Img_Cross1=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Img_Cross1Img'
+	Begin Object Class=moCheckBox Name=ch_WarningsCheck
+		ComponentJustification=TXTA_Left
+		CaptionWidth=0.900000
+		Caption="Warning Colours"
+		OnCreateComponent=ch_WarningsCheck.InternalOnCreateComponent
+		IniOption="@Internal"
+		Hint="The crosshair changes colour when the magazine is empty and when the gun needs cocking."
+		WinTop=0.635000
+		WinLeft=0.020000
+		WinWidth=0.470000
+		WinHeight=0.040000
+		OnChange=ConfigTab_Crosshairs.InternalOnChange
+	End Object
+	ch_Warnings=moCheckBox'ch_WarningsCheck'
 
-     Begin Object Class=GUIImage Name=Img_Cross2Img
-         Image=Texture'BW_Core_WeaponTex.Crosshairs.M50In'
-         ImageStyle=ISTY_Scaled
-         WinTop=0.050000
-         WinLeft=0.500000
-         WinWidth=0.200000
-         WinHeight=0.266600
-         RenderWeight=0.003000
-     End Object
-     Img_Cross2=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Img_Cross2Img'
+	Begin Object Class=moComboBox Name=co_EmptyColourCombo
+		ComponentJustification=TXTA_Left
+		CaptionWidth=0.550000
+		Caption="Empty Magazine Colour"
+		OnCreateComponent=co_EmptyColourCombo.InternalOnCreateComponent
+		IniOption="@Internal"
+		Hint="The crosshair's colour when the magazine is empty."
+		WinTop=0.690000
+		WinLeft=0.020000
+		WinWidth=0.470000
+		WinHeight=0.040000
+		OnChange=ConfigTab_Crosshairs.InternalOnChange
+	End Object
+	co_EmptyColour=moComboBox'co_EmptyColourCombo'
 
-     Begin Object Class=GUIImage Name=Img_BackShotImg
-         Image=MaterialSequence'BW_Core_WeaponTex.Misc.MenuSequence'
-         ImageStyle=ISTY_Scaled
-         WinTop=0.050000
-         WinLeft=0.500000
-         WinWidth=0.475000
-         WinHeight=0.550000
-         RenderWeight=0.001500
-     End Object
-     Img_BackShot=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Img_BackShotImg'
+	Begin Object Class=moComboBox Name=co_CockingColourCombo
+		ComponentJustification=TXTA_Left
+		CaptionWidth=0.550000
+		Caption="Needs Cocking Colour"
+		OnCreateComponent=co_CockingColourCombo.InternalOnCreateComponent
+		IniOption="@Internal"
+		Hint="The crosshair's colour when the gun needs cocking."
+		WinTop=0.745000
+		WinLeft=0.020000
+		WinWidth=0.470000
+		WinHeight=0.040000
+		OnChange=ConfigTab_Crosshairs.InternalOnChange
+	End Object
+	co_CockingColour=moComboBox'co_CockingColourCombo'
 
-     Begin Object Class=GUIImage Name=Box_ShotImg
-         Image=Texture'2K4Menus.NewControls.Display99'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.035000
-         WinLeft=0.485000
-         WinWidth=0.505000
-         WinHeight=0.580000
-         RenderWeight=0.001000
-     End Object
-     Box_Shot=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Box_ShotImg'
+	Begin Object Class=GUILabel Name=CustomLabel
+		TextAlign=TXTA_Center
+		TextColor=(B=0,G=180,R=255,A=255)
+		WinTop=0.470000
+		WinLeft=0.520000
+		WinWidth=0.450000
+		WinHeight=0.040000
+	End Object
+	l_Custom=GUILabel'CustomLabel'
 
-     Begin Object Class=GUIImage Name=Box_InnerImg
-         Image=Texture'2K4Menus.Controls.thinpipe_b'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.635000
-         WinLeft=0.524000
-         WinWidth=0.430000
-         WinHeight=0.265000
-         RenderWeight=0.002000
-     End Object
-     Box_Inner=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Box_InnerImg'
+	Begin Object Class=moSlider Name=sl_RedSlider
+		MaxValue=255.000000
+		bIntSlider=True
+		CaptionWidth=0.350000
+		Caption="Red"
+		OnCreateComponent=sl_RedSlider.InternalOnCreateComponent
+		Hint="The red in this custom colour."
+		WinTop=0.525000
+		WinLeft=0.520000
+		WinWidth=0.450000
+		WinHeight=0.040000
+	End Object
+	sl_Red=moSlider'sl_RedSlider'
 
-     Begin Object Class=GUIImage Name=Box_OuterImg
-         Image=Texture'2K4Menus.Controls.thinpipe_b'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.635000
-         WinLeft=0.035000
-         WinWidth=0.430000
-         WinHeight=0.265000
-         RenderWeight=0.002000
-     End Object
-     Box_Outer=GUIImage'BallisticProV55.ConfigTab_Crosshairs.Box_OuterImg'
+	Begin Object Class=moSlider Name=sl_GreenSlider
+		MaxValue=255.000000
+		bIntSlider=True
+		CaptionWidth=0.350000
+		Caption="Green"
+		OnCreateComponent=sl_GreenSlider.InternalOnCreateComponent
+		Hint="The green in this custom colour."
+		WinTop=0.580000
+		WinLeft=0.520000
+		WinWidth=0.450000
+		WinHeight=0.040000
+	End Object
+	sl_Green=moSlider'sl_GreenSlider'
 
-     Begin Object Class=GUILabel Name=l_WeaponsListlabel
-         Caption="Weapons"
-         TextAlign=TXTA_Center
-         TextColor=(B=255,G=255,R=255)
-         WinTop=0.035000
-         WinLeft=0.050000
-         WinWidth=0.400000
-         WinHeight=0.050000
-     End Object
-     l_WeaponsList=GUILabel'BallisticProV55.ConfigTab_Crosshairs.l_WeaponsListlabel'
+	Begin Object Class=moSlider Name=sl_BlueSlider
+		MaxValue=255.000000
+		bIntSlider=True
+		CaptionWidth=0.350000
+		Caption="Blue"
+		OnCreateComponent=sl_BlueSlider.InternalOnCreateComponent
+		Hint="The blue in this custom colour."
+		WinTop=0.635000
+		WinLeft=0.520000
+		WinWidth=0.450000
+		WinHeight=0.040000
+	End Object
+	sl_Blue=moSlider'sl_BlueSlider'
 
-     Begin Object Class=GUILabel Name=l_Innerlab
-         Caption="Inner"
-         TextAlign=TXTA_Center
-         TextColor=(B=0,G=255,R=255)
-         bTransparent=False
-         FontScale=FNS_Small
-         WinTop=0.620000
-         WinLeft=0.631500
-         WinWidth=0.215000
-         WinHeight=0.030000
-     End Object
-     l_Inner=GUILabel'BallisticProV55.ConfigTab_Crosshairs.l_Innerlab'
+	PresetNames(0)="Default"
+	PresetNames(1)="White"
+	PresetNames(2)="Yellow"
+	PresetNames(3)="Green"
+	PresetNames(4)="Cyan"
+	PresetNames(5)="Blue"
+	PresetNames(6)="Magenta"
+	PresetNames(7)="Red"
+	PresetNames(8)="Orange"
+	PresetNames(9)="Custom"
 
-     Begin Object Class=GUILabel Name=l_Outerlab
-         Caption="Outer"
-         TextAlign=TXTA_Center
-         TextColor=(B=0,R=255)
-         bTransparent=False
-         FontScale=FNS_Small
-         WinTop=0.620000
-         WinLeft=0.142500
-         WinWidth=0.215000
-         WinHeight=0.030000
-     End Object
-     l_Outer=GUILabel'BallisticProV55.ConfigTab_Crosshairs.l_Outerlab'
+	PresetColours(0)=(B=255,G=225,R=255)
+	PresetColours(1)=(B=255,G=255,R=255)
+	PresetColours(2)=(B=0,G=255,R=255)
+	PresetColours(3)=(B=0,G=255,R=0)
+	PresetColours(4)=(B=255,G=255,R=0)
+	PresetColours(5)=(B=255,G=120,R=80)
+	PresetColours(6)=(B=255,G=0,R=255)
+	PresetColours(7)=(B=50,G=50,R=255)
+	PresetColours(8)=(B=50,G=175,R=255)
 
-     Begin Object Class=GUIListBox Name=lb_WeaponsList
-         bVisibleWhenEmpty=True
-         OnCreateComponent=lb_WeaponsList.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Select a weapon to change its crosshair."
-         WinTop=0.075000
-         WinLeft=0.050000
-         WinWidth=0.400000
-         WinHeight=0.500000
-         RenderWeight=0.520000
-         TabOrder=1
-     End Object
-     lb_Weapons=GUIListBox'BallisticProV55.ConfigTab_Crosshairs.lb_WeaponsList'
-
-     Begin Object Class=GUIComboBox Name=cb_CrossList1ComBox
-         MaxVisibleItems=16
-         Hint="Choose the style of the outer crosshair."
-         WinTop=0.650000
-         WinLeft=0.050000
-         WinWidth=0.400000
-         WinHeight=0.038400
-         TabOrder=0
-         OnChange=ConfigTab_Crosshairs.InternalOnChange
-         OnKeyEvent=cb_CrossList1ComBox.InternalOnKeyEvent
-     End Object
-     cb_CrossList1=GUIComboBox'BallisticProV55.ConfigTab_Crosshairs.cb_CrossList1ComBox'
-
-     Begin Object Class=GUIComboBox Name=cb_CrossList2ComBox
-         MaxVisibleItems=16
-         Hint="Choose the style of the inner crosshair."
-         WinTop=0.650000
-         WinLeft=0.539000
-         WinWidth=0.400000
-         WinHeight=0.038400
-         TabOrder=0
-         OnChange=ConfigTab_Crosshairs.InternalOnChange
-         OnKeyEvent=cb_CrossList2ComBox.InternalOnKeyEvent
-     End Object
-     cb_CrossList2=GUIComboBox'BallisticProV55.ConfigTab_Crosshairs.cb_CrossList2ComBox'
-
-     OnPreDraw=ConfigTab_Crosshairs.InternalOnPreDraw
+	CustomCaptions(0)="Custom crosshair colour"
+	CustomCaptions(1)="Custom empty magazine colour"
+	CustomCaptions(2)="Custom needs cocking colour"
 }
