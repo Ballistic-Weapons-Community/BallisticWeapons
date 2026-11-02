@@ -155,7 +155,6 @@ var() globalconfig  bool			bInvertScope;			// Inverts Prev/Next weap relation to
 var() globalconfig 	EScopeHandling  ScopeHandling;			// Should iron sights continue when the key is released, once activated?
 var() globalconfig 	float			AimKnockScale;			// Scale the weapon displacement caused by taking damage
 var() globalconfig 	ECrosshairMode	CrosshairMode; 			// Draw descriptive crosshairs?
-var() globalconfig 	ECrosshairAim	CrosshairAim;			// Does the crosshair go where a shot would land? Read from this class
 var() globalconfig	bool			bUseBigIcon;			// For HUDFix huds - makes the Icon the BigIcon
 var() globalconfig	byte			MaxInventoryCapacity;   // total InventorySize player can carry
 //=============================================================================
@@ -6272,20 +6271,20 @@ simulated function DrawCrosshairs(Canvas C)
 }
 
 // Where a shot fired now would land: the line of fire from the eyes, with the gun's aim and recoil, to what it meets
-// first. Its place on the screen (X, Y), if the crosshair is to go there (CrosshairAim, a setting of the player's: in
-// third person the camera is off the line of fire, in first person the gun moves off it). The HUD's own crosshair uses
-// it too (BallisticPawn)
+// first. Its place on the screen (X, Y), if the crosshair is to go there (BC_CrosshairSettings: in third person the camera
+// is off the line of fire, in first person the gun moves off it). A server can keep it in the middle in first person,
+// where it would show what sway hides. The HUD's own crosshair uses it too (BallisticPawn)
 simulated final function bool GetCrosshairAim(Canvas C, out float X, out float Y)
 {
 	local PlayerController PC;
 	local vector Start, HitLocation, HitNormal, P;
 
-	if (Instigator == None || class'BallisticWeapon'.default.CrosshairAim == CHA_Off)
+	if (Instigator == None || class'BC_CrosshairSettings'.default.CrosshairAim == ECrosshairAim.CHA_Off)
 		return false;
 	PC = PlayerController(Instigator.Controller);
 	if (PC == None || PC.ViewTarget != Instigator)
 		return false;
-	if (!PC.bBehindView && class'BallisticWeapon'.default.CrosshairAim != CHA_Always)
+	if (!PC.bBehindView && (class'BC_CrosshairSettings'.default.CrosshairAim != ECrosshairAim.CHA_Always || !class'BallisticReplicationInfo'.default.bFirstPersonCrosshairAim))
 		return false;
 
 	if (CrosshairAimTime != Level.TimeSeconds)
@@ -7018,7 +7017,6 @@ defaultproperties
      NDCrosshairChaosFactor=0.400000
 	 NDCrosshairScaleFactor=1.000000
 	 CrosshairMode=CHM_Simple
-	 CrosshairAim=CHA_ThirdPerson
 	 
      bUseSights=True
 	 ScopeScale=1
