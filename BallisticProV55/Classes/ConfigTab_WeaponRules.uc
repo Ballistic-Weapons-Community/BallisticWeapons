@@ -51,10 +51,20 @@ function LoadSettings()
 		ch_FirstPersonCrosshairAim.Checked(game_style.default.bFirstPersonCrosshairAim);
 	}
 	else
-		bn_MoreSettings.DisableMe();	// a fixed style: nothing here is saved, the sub menu's rules neither
+	{
+		// a fixed style: nothing here is saved, the sub menu's rules neither. The itemizer is no rule of a style
+		DisableStyleRows();
+		ch_UseItemizer.EnableMe();
+	}
 
 	ch_UseItemizer.Checked(class'Mut_Ballistic'.default.bUseItemizer);
 	eb_ItemGroup.SetText(class'Mut_Ballistic'.default.ItemGroup);
+	UpdateRows();
+}
+
+function UpdateRows()
+{
+	SetRowEnabled(eb_ItemGroup, ch_UseItemizer.IsChecked());
 }
 
 function SaveSettings()
@@ -114,6 +124,7 @@ function DefaultSettings()
 
 	ch_UseItemizer.Checked(false);
 	eb_ItemGroup.SetText("Ballistic");
+	UpdateRows();
 }
 
 defaultproperties
@@ -246,6 +257,7 @@ defaultproperties
          WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
+         OnChange=ConfigTab_WeaponRules.RowChanged
      End Object
      ch_UseItemizer=moCheckBox'UseItemizerCheck'
 

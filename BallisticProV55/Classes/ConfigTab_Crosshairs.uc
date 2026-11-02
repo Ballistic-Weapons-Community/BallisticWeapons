@@ -137,23 +137,15 @@ function UpdateRows()
 	bBallistic = bSimple || bGraphical;
 
 	l_StockNote.SetVisibility(!bBallistic);
-	SetEnabled(ch_Crosshairdot, bSimple);
-	SetEnabled(sl_CrossGrow, bGraphical);
-	SetEnabled(ch_OneColour, bGraphical);
-	SetEnabled(co_Colour, bBallistic);
-	SetEnabled(sl_Opacity, bBallistic);
-	SetEnabled(ch_Warnings, bBallistic);
-	SetEnabled(ch_Distance, bBallistic);
-	SetEnabled(co_EmptyColour, bBallistic && ch_Warnings.IsChecked());
-	SetEnabled(co_CockingColour, bBallistic && ch_Warnings.IsChecked());
-}
-
-function SetEnabled(GUIComponent Comp, bool bEnable)
-{
-	if (bEnable)
-		Comp.EnableMe();
-	else
-		Comp.DisableMe();
+	SetRowEnabled(ch_Crosshairdot, bSimple);
+	SetRowEnabled(sl_CrossGrow, bGraphical);
+	SetRowEnabled(ch_OneColour, bGraphical);
+	SetRowEnabled(co_Colour, bBallistic);
+	SetRowEnabled(sl_Opacity, bBallistic);
+	SetRowEnabled(ch_Warnings, bBallistic);
+	SetRowEnabled(ch_Distance, bBallistic);
+	SetRowEnabled(co_EmptyColour, bBallistic && ch_Warnings.IsChecked());
+	SetRowEnabled(co_CockingColour, bBallistic && ch_Warnings.IsChecked());
 }
 
 function LoadSettings()

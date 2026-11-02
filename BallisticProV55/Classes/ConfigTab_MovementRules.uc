@@ -48,7 +48,25 @@ function LoadSettings()
     	fe_StaminaRechargeDelay.SetValue(game_style.default.StaminaRechargeDelay);
 		cb_FireEndsSprint.Checked(game_style.default.bFireEndsSprint);
 		cb_SightsEndSprint.Checked(game_style.default.bSightsEndSprint);
+		UpdateRows();
 	}
+	else
+		DisableStyleRows();
+}
+
+// Jumps and slides use stamina too, so only what a sprint alone uses goes with it
+function UpdateRows()
+{
+	local bool bSprint;
+
+	if (bRowsFixed)
+		return;
+
+	bSprint = cb_bUseSprint.IsChecked();
+	SetRowEnabled(cb_FireEndsSprint, bSprint);
+	SetRowEnabled(cb_SightsEndSprint, bSprint);
+	SetRowEnabled(ne_StaminaDrainRate, bSprint);
+	SetRowEnabled(fe_InitSpeedFactor, bSprint);
 }
 
 function DefaultSettings()
@@ -83,6 +101,7 @@ function DefaultSettings()
     fe_StaminaRechargeDelay.SetValue(1.5);
 	cb_FireEndsSprint.Checked(false);
 	cb_SightsEndSprint.Checked(false);
+	UpdateRows();
 }
 
 function SaveSettings()
@@ -232,6 +251,7 @@ defaultproperties
          WinTop=0.500000
          WinLeft=0.250000
          WinHeight=0.040000
+         OnChange=ConfigTab_MovementRules.RowChanged
      End Object
      cb_bUseSprint=moCheckBox'cb_bUseSprintC'
 

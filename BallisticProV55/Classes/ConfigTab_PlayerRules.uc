@@ -43,6 +43,8 @@ function LoadSettings()
     	ne_ShieldKillReward.SetValue(game_style.default.ShieldKillReward);
     	ne_KillRewardShieldMax.SetValue(game_style.default.KillRewardShieldMax);
 	}
+	else
+		DisableStyleRows();
 }
 
 function DefaultSettings()

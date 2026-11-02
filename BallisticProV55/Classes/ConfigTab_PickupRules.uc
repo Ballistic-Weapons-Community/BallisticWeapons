@@ -52,6 +52,8 @@ function LoadSettings()
 	{
     	chk_AlternativePickups.Checked(game_style.default.bAlternativePickups);
 	}
+	else
+		chk_AlternativePickups.DisableMe();		// the only rule here that belongs to the style
 }
 
 function DefaultSettings()

@@ -23,6 +23,7 @@ function LoadSettings()
 	ch_ImpStay.Checked(class'AD_ImpactDecal'.default.bPermanentImpacts);
 	ch_MSmoke.Checked(class'BallisticMod'.default.bMuzzleSmoke);
 	fl_BrassTime.SetValue(class'BallisticBrass'.default.LifeTimeScale);
+	UpdateRows();
 	ch_MotionBlur.Checked(class'BallisticMod'.default.bUseMotionBlur);
 
 	// RESET comes through here again
@@ -70,6 +71,11 @@ function SaveSettings()
 	}
 }
 
+function UpdateRows()
+{
+	SetRowEnabled(fl_BrassTime, ch_UseBrass.IsChecked());
+}
+
 function DefaultSettings()
 {
 	co_CamRate.SetIndex(1);
@@ -77,6 +83,7 @@ function DefaultSettings()
 	co_WeaponDet.SilentSetIndex(OldWeaponDet);
 	ch_UseBrass.Checked(true);
 	fl_BrassTime.SetValue(1.0);
+	UpdateRows();
 	ch_ImpStay.Checked(false);
 	ch_MSmoke.Checked(true);
 	ch_MotionBlur.Checked(false);
@@ -132,6 +139,7 @@ defaultproperties
          WinTop=0.25000
          WinLeft=0.250000
          WinHeight=0.040000
+         OnChange=ConfigTab_VisualPrefs.RowChanged
      End Object
      ch_UseBrass=moCheckBox'ch_UseBrassCheck'
 
