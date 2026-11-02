@@ -25,6 +25,7 @@ var automated moNumericEdit 	ne_KillRewardShieldMax;			//Armour Reward Cap
 function LoadSettings()
 {
 	local class<BC_GameStyle_Config> game_style;
+	local class<BC_GameStyle_Fixed> fixed_style;
 
 	game_style = BaseMenu.GetConfigStyle();
 
@@ -44,12 +45,31 @@ function LoadSettings()
     	ne_KillRewardShieldMax.SetValue(game_style.default.KillRewardShieldMax);
 	}
 	else
+	{
+		fixed_style = class<BC_GameStyle_Fixed>(BaseMenu.GetGameStyle());
+
+		ne_StartingHealth.SetValue(fixed_style.default.StartingHealth);
+		ne_PlayerHealthMax.SetValue(fixed_style.default.PlayerHealthMax);
+		ne_PlayerSuperHealthMax.SetValue(fixed_style.default.PlayerSuperHealthMax);
+		ch_HealthRegen.Checked(fixed_style.default.bHealthRegeneration);
+		ne_HeathKillReward.SetValue(fixed_style.default.HealthKillReward);
+		ne_KillRewardHealthMax.SetValue(fixed_style.default.KillRewardHealthMax);
+
+		ne_StartingShield.SetValue(fixed_style.default.StartingShield);
+		ne_PlayerShieldMax.SetValue(fixed_style.default.PlayerShieldMax);
+		ch_ShieldRegen.Checked(fixed_style.default.bShieldRegeneration);
+		ne_ShieldKillReward.SetValue(fixed_style.default.ShieldKillReward);
+		ne_KillRewardShieldMax.SetValue(fixed_style.default.KillRewardShieldMax);
 		DisableStyleRows();
+	}
 }
 
 function DefaultSettings()
 {
 	local bool bRealism;
+
+	if (bRowsFixed)
+		return;
 
 	bRealism = BaseMenu.GetGameStyle() == class'GameStyle_Realism';
 
