@@ -52,6 +52,11 @@ function LoadSettings()
 	{
     	chk_AlternativePickups.Checked(game_style.default.bAlternativePickups);
 	}
+	else
+	{
+		chk_AlternativePickups.Checked(class<BC_GameStyle_Fixed>(BaseMenu.GetGameStyle()).default.bAlternativePickups);
+		chk_AlternativePickups.DisableMe();		// the only rule here that belongs to the style
+	}
 }
 
 function DefaultSettings()
@@ -66,7 +71,8 @@ function DefaultSettings()
     chk_bRemoveAdrenaline.Checked(false);
 
 	// Realism comes with manual pickups
-    chk_AlternativePickups.Checked(BaseMenu.GetGameStyle() == class'GameStyle_Realism');
+	if (BaseMenu.GetConfigStyle() != None)
+		chk_AlternativePickups.Checked(BaseMenu.GetGameStyle() == class'GameStyle_Realism');
 	
 	fl_NadePct.SetValue(15);
 	ch_BrightPickups.Checked(false);

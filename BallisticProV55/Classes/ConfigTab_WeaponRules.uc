@@ -34,6 +34,7 @@ var automated GUIButton		bn_MoreSettings;			//Opens the sub menu with the advanc
 function LoadSettings()
 {
 	local class<BC_GameStyle_Config> game_style;
+	local class<BC_GameStyle_Fixed> fixed_style;
 
 	game_style = BaseMenu.GetConfigStyle();
 
@@ -51,10 +52,33 @@ function LoadSettings()
 		ch_FirstPersonCrosshairAim.Checked(game_style.default.bFirstPersonCrosshairAim);
 	}
 	else
-		bn_MoreSettings.DisableMe();	// a fixed style: nothing here is saved, the sub menu's rules neither
+	{
+		fixed_style = class<BC_GameStyle_Fixed>(BaseMenu.GetGameStyle());
+
+		sl_Sway.SetValue(fixed_style.default.SwayScale);
+		sl_Recoil.SetValue(fixed_style.default.RecoilScale);
+		sl_Reload.SetValue(fixed_style.default.ReloadScale);
+		fl_Damage.SetValue(fixed_style.default.DamageScale);
+		fl_VDamage.SetValue(fixed_style.default.VehicleDamageScale);
+		ch_WeaponJumpOffsetting.Checked(fixed_style.default.bWeaponJumpOffsetting);
+		ch_LongWeaponOffsetting.Checked(fixed_style.default.bLongWeaponOffsetting);
+		int_MaxInventoryCapacity.SetValue(fixed_style.default.MaxInventoryCapacity);
+		ch_NoReloading.Checked(fixed_style.default.bNoReloading);
+		ch_FirstPersonCrosshairAim.Checked(fixed_style.default.bFirstPersonCrosshairAim);
+
+		// a fixed style: nothing here is saved, the sub menu's rules neither. The itemizer is no rule of a style
+		DisableStyleRows();
+		ch_UseItemizer.EnableMe();
+	}
 
 	ch_UseItemizer.Checked(class'Mut_Ballistic'.default.bUseItemizer);
 	eb_ItemGroup.SetText(class'Mut_Ballistic'.default.ItemGroup);
+	UpdateRows();
+}
+
+function UpdateRows()
+{
+	SetRowEnabled(eb_ItemGroup, ch_UseItemizer.IsChecked());
 }
 
 function SaveSettings()
@@ -101,19 +125,23 @@ function bool InternalOnClick(GUIComponent Sender)
 
 function DefaultSettings()
 {
-	sl_Sway.SetValue(1.0);
-	sl_Recoil.SetValue(1.0);
-	sl_Reload.SetValue(1.0);
-	fl_Damage.SetValue(1.0);
-	fl_VDamage.SetValue(1.0);
-	ch_WeaponJumpOffsetting.Checked(true);
-	ch_LongWeaponOffsetting.Checked(true);
-	ch_FirstPersonCrosshairAim.Checked(true);
-	ch_NoReloading.Checked(false);
-	int_MaxInventoryCapacity.SetValue(0);
+	if (!bRowsFixed)
+	{
+		sl_Sway.SetValue(1.0);
+		sl_Recoil.SetValue(1.0);
+		sl_Reload.SetValue(1.0);
+		fl_Damage.SetValue(1.0);
+		fl_VDamage.SetValue(1.0);
+		ch_WeaponJumpOffsetting.Checked(true);
+		ch_LongWeaponOffsetting.Checked(true);
+		ch_FirstPersonCrosshairAim.Checked(true);
+		ch_NoReloading.Checked(false);
+		int_MaxInventoryCapacity.SetValue(0);
+	}
 
 	ch_UseItemizer.Checked(false);
 	eb_ItemGroup.SetText("Ballistic");
+	UpdateRows();
 }
 
 defaultproperties
@@ -246,6 +274,7 @@ defaultproperties
          WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
+         OnChange=ConfigTab_WeaponRules.RowChanged
      End Object
      ch_UseItemizer=moCheckBox'UseItemizerCheck'
 

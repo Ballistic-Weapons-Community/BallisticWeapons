@@ -27,6 +27,7 @@ var automated moFloatEdit       fe_StaminaRechargeDelay;	// Stamina Recharge Del
 function LoadSettings()
 {
 	local class<BC_GameStyle_Config> game_style;
+	local class<BC_GameStyle_Fixed> fixed_style;
 
 	game_style = BaseMenu.GetConfigStyle();
 
@@ -48,11 +49,52 @@ function LoadSettings()
     	fe_StaminaRechargeDelay.SetValue(game_style.default.StaminaRechargeDelay);
 		cb_FireEndsSprint.Checked(game_style.default.bFireEndsSprint);
 		cb_SightsEndSprint.Checked(game_style.default.bSightsEndSprint);
+		UpdateRows();
 	}
+	else
+	{
+		fixed_style = class<BC_GameStyle_Fixed>(BaseMenu.GetGameStyle());
+
+		ne_PlayerGroundSpeed.SetValue(fixed_style.default.PlayerGroundSpeed);
+		ne_PlayerAccelRate.SetValue(fixed_style.default.PlayerAccelRate);
+		cb_bPlayerDeceleration.Checked(fixed_style.default.bPlayerDeceleration);
+		fe_PlayerStrafeScale.SetValue(fixed_style.default.PlayerStrafeScale);
+		fe_PlayerBackpedalScale.SetValue(fixed_style.default.PlayerBackpedalScale);
+		ch_AllowDodging.Checked(fixed_style.default.bAllowDodging);
+		ch_AllowDoubleJump.Checked(fixed_style.default.bAllowDoubleJump);
+		cb_AllowCrouchSliding.Checked(fixed_style.default.bAllowCrouchSliding);
+		cb_bUseSprint.Checked(fixed_style.default.bEnableSprint);
+		ne_StaminaDrainRate.SetValue(fixed_style.default.StaminaDrainRate);
+		ne_StaminaChargeRate.SetValue(fixed_style.default.StaminaChargeRate);
+		fe_InitSpeedFactor.SetValue(fixed_style.default.SprintSpeedFactor);
+		fe_JumpDrain.SetValue(fixed_style.default.JumpDrain);
+		fe_StaminaRechargeDelay.SetValue(fixed_style.default.StaminaRechargeDelay);
+		cb_FireEndsSprint.Checked(fixed_style.default.bFireEndsSprint);
+		cb_SightsEndSprint.Checked(fixed_style.default.bSightsEndSprint);
+		DisableStyleRows();
+	}
+}
+
+// Jumps and slides use stamina too, so only what a sprint alone uses goes with it
+function UpdateRows()
+{
+	local bool bSprint;
+
+	if (bRowsFixed)
+		return;
+
+	bSprint = cb_bUseSprint.IsChecked();
+	SetRowEnabled(cb_FireEndsSprint, bSprint);
+	SetRowEnabled(cb_SightsEndSprint, bSprint);
+	SetRowEnabled(ne_StaminaDrainRate, bSprint);
+	SetRowEnabled(fe_InitSpeedFactor, bSprint);
 }
 
 function DefaultSettings()
 {
+	if (bRowsFixed)
+		return;
+
 	if (BaseMenu.GetGameStyle() == class'GameStyle_Realism')
 	{
 		ne_PlayerGroundSpeed.SetValue(200);
@@ -83,6 +125,7 @@ function DefaultSettings()
     fe_StaminaRechargeDelay.SetValue(1.5);
 	cb_FireEndsSprint.Checked(false);
 	cb_SightsEndSprint.Checked(false);
+	UpdateRows();
 }
 
 function SaveSettings()
@@ -232,6 +275,7 @@ defaultproperties
          WinTop=0.500000
          WinLeft=0.250000
          WinHeight=0.040000
+         OnChange=ConfigTab_MovementRules.RowChanged
      End Object
      cb_bUseSprint=moCheckBox'cb_bUseSprintC'
 
