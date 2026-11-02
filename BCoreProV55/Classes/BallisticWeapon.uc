@@ -6126,10 +6126,13 @@ simulated final function bool GetCrosshairWarning(out Color Warning)
 // DrawTile and not DrawTileStretched, which takes no notice of the canvas's origin (see DrawCrosshairs)
 static final function DrawCrosshairBars(Canvas C, float X, float Y, int XGap, int YGap, Color Col, float Size, float BarScale, bool bDot)
 {
-	local int LongBound, ShortBound;
+	local int LongBound, ShortBound, Odd;
 
 	LongBound = Max(2, int(10 * Size * BarScale + 0.5));
 	ShortBound = Max(1, int(2 * Size * BarScale + 0.5));
+
+	// Bars of an odd thickness have their middle in a pixel, half a pixel past X and Y, so the far bars move out one to match
+	Odd = ShortBound & 1;
 
 	C.DrawColor = Col;
 
@@ -6137,14 +6140,14 @@ static final function DrawCrosshairBars(Canvas C, float X, float Y, int XGap, in
 	C.SetPos(X - (LongBound + XGap), Y - (ShortBound/2));
 	C.DrawTile(Texture'Engine.WhiteTexture', LongBound, ShortBound, 0, 0, 1, 1);
 
-	C.SetPos(X + XGap, Y - (ShortBound/2));
+	C.SetPos(X + XGap + Odd, Y - (ShortBound/2));
 	C.DrawTile(Texture'Engine.WhiteTexture', LongBound, ShortBound, 0, 0, 1, 1);
 
 	//ver
 	C.SetPos(X - (ShortBound/2), Y - (LongBound + YGap));
 	C.DrawTile(Texture'Engine.WhiteTexture', ShortBound, LongBound, 0, 0, 1, 1);
 
-	C.SetPos(X - (ShortBound/2), Y + YGap);
+	C.SetPos(X - (ShortBound/2), Y + YGap + Odd);
 	C.DrawTile(Texture'Engine.WhiteTexture', ShortBound, LongBound, 0, 0, 1, 1);
 
 	if (bDot)
