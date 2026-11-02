@@ -6126,7 +6126,7 @@ simulated final function bool GetCrosshairWarning(out Color Warning)
 // DrawTile and not DrawTileStretched, which takes no notice of the canvas's origin (see DrawCrosshairs)
 static final function DrawCrosshairBars(Canvas C, float X, float Y, int XGap, int YGap, Color Col, float Size, float BarScale, bool bDot)
 {
-	local int LongBound, ShortBound, DotSize;
+	local int LongBound, ShortBound;
 
 	LongBound = Max(2, int(10 * Size * BarScale + 0.5));
 	ShortBound = Max(1, int(2 * Size * BarScale + 0.5));
@@ -6149,11 +6149,10 @@ static final function DrawCrosshairBars(Canvas C, float X, float Y, int XGap, in
 
 	if (bDot)
 	{
-		// Stronger than the bars: solid at the default opacity
+		// As thick as the bars and in line with them, but stronger: solid at the default opacity
 		C.DrawColor.A = Min(255, int(Col.A * 1.7));
-		DotSize = 2 * Max(1, int(Size + 0.5));
-		C.SetPos(X - DotSize / 2, Y - DotSize / 2);
-		C.DrawTile(Texture'Engine.WhiteTexture', DotSize, DotSize, 0, 0, 1, 1);
+		C.SetPos(X - (ShortBound/2), Y - (ShortBound/2));
+		C.DrawTile(Texture'Engine.WhiteTexture', ShortBound, ShortBound, 0, 0, 1, 1);
 	}
 }
 
