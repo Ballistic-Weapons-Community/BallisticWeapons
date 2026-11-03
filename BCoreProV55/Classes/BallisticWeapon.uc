@@ -4219,6 +4219,15 @@ simulated function Weapon WeaponChange( byte F, bool bSilent )
 // need to figure out modified rating based on enemy/tactical situation
 simulated function float RateSelf()
 {
+	// A weapon that is used up and about to go (the last grenade thrown, a mine or sandbags laid) says so with an
+	// AIRating of -999. A player's rating is its class's Priority, which never sees that (the Priority = -999 written
+	// beside it is a byte: it reads 25), and on its owner's machine the weapon stays in the inventory until the server
+	// takes it away (a client cannot destroy it): the best weapon switch picked it again
+	if (AIRating <= -999)
+	{
+		CurrentRating = -999;
+		return CurrentRating;
+	}
     if ( !HasAmmo() )
         CurrentRating = -2;
 	else if ( Instigator.Controller == None )
