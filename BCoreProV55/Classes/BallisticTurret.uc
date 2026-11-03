@@ -227,6 +227,12 @@ simulated event Destroyed()
 {
 	if (Role == ROLE_Authority)
 		RemoveFromList();
+	// (spawned in PreBeginPlay; it stayed in the level, one for every turret that went)
+	if (MyUseTrigger != None)
+	{
+		MyUseTrigger.Destroy();
+		MyUseTrigger = None;
+	}
 	super.Destroyed();
 }
 
@@ -327,10 +333,22 @@ function InitUndeployedWeapon(Weapon Weap)
 	}
 }
 // Turret is being abandoned and weapon destroyed. Chance to save important info about the weapon.
+// Only what the weapon changes: ammo, mode and its own data. The camo and layout stay the deployed gun's. The turret's
+// weapon is given them, but picks a camo of its own when its list is shorter (BallisticWeapon.GenerateCamo), and saving
+// through InitDeployedTurretFor copied that back: the gun came back from its turret in another camo. That also set
+// bPendingDeploy, so the next player to use the turret skipped TryToDrive's checks, and re-skinned the turret
 function SaveTurretWeaponInfo()
 {
-	if (Weapon != None)
-		InitDeployedTurretFor(Weapon);
+	if (Weapon == None)
+		return;
+	if (BallisticWeapon(Weapon) != None)
+	{
+		MagAmmoAmount = BallisticWeapon(Weapon).MagAmmo;
+		WeaponMode = BallisticWeapon(Weapon).CurrentWeaponMode;
+		WeaponData = BallisticWeapon(Weapon).GetTurretData();
+	}
+	AmmoAmount[0] = Weapon.AmmoAmount(0);
+	AmmoAmount[1] = Weapon.AmmoAmount(1);
 }
 
 function UpdateWeaponRotation()
@@ -489,7 +507,7 @@ function UpdateRocketAcceleration(float DT, float YawChange, float PitchChange)
 		CameraDirection = TempRot;
 	}
 
-	if (AIController(Controller) == None)
+	if (Controller != None && AIController(Controller) == None)
 		Controller.SetRotation(CameraRotation + Rotation);
 	// GunRotation must be sent from here for listenservers
 	if (level.NetMode == NM_ListenServer)
@@ -735,6 +753,7 @@ function UndeployTurret ()
 		if (W != None)
 		{
 			InitUndeployedWeapon(W);
+			BringUpUndeployed(OldDriver, WC);
 			Destroy();
 			return;
 		}
@@ -752,6 +771,7 @@ function UndeployTurret ()
 				W.GiveTo(OldDriver);
 
 				InitUndeployedWeapon(W);
+				BringUpUndeployed(OldDriver, WC);
 				Destroy();
 			}
 		}
@@ -773,6 +793,14 @@ function UndeployTurret ()
 				Destroy();
 		}
 	}
+}
+
+// The gun just undeployed goes into the hands. GiveTo only brings up a weapon that rates higher than the one held: offline,
+// with another weapon carried, that one came up instead (online BallisticTurretIntermediary brings the gun up)
+function BringUpUndeployed(Pawn P, class<Weapon> WC)
+{
+	if (P != None && P.Controller != None && P.Health > 0)
+		P.Controller.ClientSetWeapon(WC);
 }
 
 state NetTrapped
@@ -822,9 +850,11 @@ function UnPossessed()
 	}
 	
 	SaveTurretWeaponInfo();
-	
-	Level.Game.DiscardInventory( Self );
-	
+
+	// (this also runs on the gunner's own machine, which has no game)
+	if (Level.Game != None)
+		Level.Game.DiscardInventory( Self );
+
 	LastUsedTime = Level.TimeSeconds;
 
 	NetUpdateTime = Level.TimeSeconds - 1;
@@ -1192,6 +1222,28 @@ function DriverDied()
 {
 	SaveTurretWeaponInfo();
 	super.DriverDied();
+}
+
+// The turret cannot be hurt (TakeDamage passes nothing on), but code that kills the pawn a player controls kills it all
+// the same: a team change (Pawn.PlayerChangedTeam), a game type or mutator ending a round. Vehicle.Died only takes the
+// driver out for Karma vehicles, so a turret went on to Pawn.Died with its gunner still at it: the player was left in
+// PlayerTurreting in a dead turret, fire did not respawn him, and his body stood at the gun with his name over it.
+// The gunner dies instead, as he would have on foot, and the turret stays behind abandoned
+function Died(Controller Killer, class<DamageType> DamageType, vector HitLocation)
+{
+	local Pawn D;
+
+	if (bDeleteMe || Level.bLevelChange)
+		return;
+	D = Driver;
+	if (D == None || Controller == None)
+	{
+		Super.Died(Killer, DamageType, HitLocation);
+		return;
+	}
+	KDriverLeave(true);
+	if (D != None && !D.bDeleteMe && D.Health > 0)
+		D.Died(Killer, DamageType, HitLocation);
 }
 
 simulated function bool StopWeaponFiring()
