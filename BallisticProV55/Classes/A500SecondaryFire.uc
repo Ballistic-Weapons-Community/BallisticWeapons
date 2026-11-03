@@ -20,8 +20,21 @@ function ModeHoldFire()
     {
         Super.ModeHoldFire();
 		BW.bPreventReload = True;
+		// (a hold always starts afresh: going to the state it is already in runs no BeginState)
+		if (IsInState('Hold'))
+			GotoState('');
         GotoState('Hold');
     }
+}
+
+// The blob is spawned on the server only, and SpawnProjectile leaves Hold there. The owner's machine leaves it here,
+// as the A49 does: kept in it, the shot's own timer ran Hold's Timer and took one cell more than the server did, and
+// every later hold found it still in Hold, so it never charged on that machine again
+simulated event ModeDoFire()
+{
+	Super.ModeDoFire();
+	if (IsInState('Hold'))
+		GotoState('');
 }
 
 state Hold
