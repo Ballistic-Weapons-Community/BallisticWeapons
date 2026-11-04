@@ -45,6 +45,7 @@ var(DecalEx) bool			bAbandonOnFinish;	// Abandon decal when at max drawscale
 var(DecalEx) bool			bExpandingDecal;	// Decal spawns at MinDrawScale and expands until it reaches MaxDrawScale
 var			 float			ExpandTimePassed;	// How much time has passed since it began expanding
 var			 float			InitialDrawScale;	// DrawScale before expansion
+var			 float			NextGrowAttachTime;	// An expanding decal that isn't painted on a body is attached again no sooner than this
 // ----------------------------------------------------------------------------
 
 simulated event PreBeginPlay()
@@ -121,18 +122,32 @@ event Tick (float DT)
 	if (!bDynamicDecal && !bExpandingDecal)
 		return;
 
-//	DetachProjector(true);
-	DetachProjector();
+	// Attaching clips the decal against the world afresh, and that costs (blood pools were the largest script cost
+	// of a frame with bodies about). Only a decal painted on a body moves. One that doesn't is attached again for its
+	// growth alone, ten times a second (a tenth of a second of growth is too little to see), and once grown it is
+	// attached a last time and then left as it is until its time is up
 	if (bExpandingDecal)
 	{
-		if (ExpandTimePassed > ExpandTime)
+		ExpandTimePassed += DT;
+		if (ExpandTimePassed >= ExpandTime)
 		{
 			bExpandingDecal = False;
 			LifeSpan = StayTime;
+			SetDrawScale (InitialDrawScale * MaxDrawScale);
+			if (!bPaintToBone)
+				bDynamicDecal = False;
 		}
-		SetDrawScale (InitialDrawScale * (MinDrawScale + (MaxDrawScale - MinDrawScale) * (ExpandTimePassed / ExpandTime) ));
-		ExpandTimePassed += DT;
+		else if (!bPaintToBone && Level.TimeSeconds < NextGrowAttachTime)
+			return;
+		else
+		{
+			NextGrowAttachTime = Level.TimeSeconds + 0.1;
+			SetDrawScale (InitialDrawScale * (MinDrawScale + (MaxDrawScale - MinDrawScale) * (ExpandTimePassed / ExpandTime) ));
+		}
 	}
+
+//	DetachProjector(true);
+	DetachProjector();
 
 	if (bPaintToBone)
 	{
