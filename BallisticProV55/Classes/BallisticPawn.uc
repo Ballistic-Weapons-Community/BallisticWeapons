@@ -2810,7 +2810,7 @@ function PlayTeleportEffect( bool bOut, bool bSound)
 		Spawn(TransEffects[0],self,,Location + CollisionHeight * vect(0,0,0.75));
 	else
 		Spawn(TransEffects[1],self,,Location + CollisionHeight * vect(0,0,0.75));
-    Super(UnrealPlayer).PlayTeleportEffect( bOut, bSound );
+    Super(UnrealPawn).PlayTeleportEffect( bOut, bSound );
 }
 
 simulated function StartDeRes()
