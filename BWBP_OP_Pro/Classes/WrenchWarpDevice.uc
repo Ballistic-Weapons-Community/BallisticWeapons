@@ -361,6 +361,7 @@ function Notify_WrenchDeploy()
 	local WrenchPreconstructor WP;
 	local WrenchDeployable D;
 	local ASTurret_Minigun MT;
+	local PlayerController PC;
 	
 	Start = Instigator.Location + Instigator.EyePosition();
 	End = Start + vector(Instigator.GetViewRotation()) * DeployRange;
@@ -391,32 +392,38 @@ function Notify_WrenchDeploy()
 		return;
 	}
 	
+	PC = PlayerController(Instigator.Controller);
+
 	//Safety for mode switch during attack
 	if (Deployables[CurrentWeaponMode].AmmoReq > Ammo[0].AmmoAmount)
 	{
 		Instigator.ClientMessage("Not enough charge to warp in"@WeaponModes[CurrentWeaponMode].ModeName$".");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		if (PC != None)
+			PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 		
 	if (HitActor == None || !HitActor.bWorldGeometry)
 	{
 		Instigator.ClientMessage("Must target an unoccupied surface.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		if (PC != None)
+			PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
 	if (HitLoc == vect(0,0,0))
 	{
 		Instigator.ClientMessage("Out of range.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		if (PC != None)
+			PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
 	if (Deployables[CurrentWeaponMode].CheckSlope && HitNorm dot vect(0,0,1) < 0.9)
 	{
 		Instigator.ClientMessage("Surface is too steep for construction.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		if (PC != None)
+			PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
@@ -425,14 +432,16 @@ function Notify_WrenchDeploy()
 	if (!SpaceToDeploy(HitLoc + HitNorm, HitNorm, rot(0,0,0), Deployables[CurrentWeaponMode].dClass.default.CollisionHeight, Deployables[CurrentWeaponMode].dClass.default.CollisionRadius))
 	{
 		Instigator.ClientMessage("Insufficient space for construction.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		if (PC != None)
+			PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 
 	if (Deployables[CurrentWeaponMode].Limit > 0 && DeployableCount[CurrentWeaponMode] >= Deployables[CurrentWeaponMode].Limit)
 	{
 		Instigator.ClientMessage("You have "$DeployableCount[CurrentWeaponMode]$" of this item and the limit is "$Deployables[CurrentWeaponMode].Limit$".");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		if (PC != None)
+			PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
@@ -441,21 +450,24 @@ function Notify_WrenchDeploy()
 		foreach RadiusActors(class'WrenchDeployable', D, 512, HitLoc)
 		{
 			Instigator.ClientMessage("Too close to a major deployable.");
-			PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+			if (PC != None)
+				PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 			return;
 		}
 
 			foreach RadiusActors(class'ASTurret_Minigun', MT, 512, HitLoc)
 		{
 			Instigator.ClientMessage("Too close to a minigun turret.");
-			PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+			if (PC != None)
+				PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 			return;
 		}
 		
 		foreach RadiusActors(class'WrenchPreconstructor', WP, 512, HitLoc)
 		{
 			Instigator.ClientMessage("Too close to a warping deployable.");
-			PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+			if (PC != None)
+				PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 			return;
 		}
 	}

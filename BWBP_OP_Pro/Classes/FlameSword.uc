@@ -127,6 +127,7 @@ function Notify_BarrierDeploy()
 	local Actor HitActor;
 	local Vector Start, End, HitNorm, HitLoc;
 	local FlameSwordPreconstructor FSP;
+	local PlayerController PC;
 	
 	local Rotator SlopeInputYaw, SlopeRotation;
 
@@ -148,6 +149,8 @@ function Notify_BarrierDeploy()
 		return;
 	}
 	
+	PC = PlayerController(Instigator.Controller);
+
 	//Safety for mode switch during attack
 	/*if (AltDeployable.AmmoReq > Ammo[0].AmmoAmount)
 	{
@@ -159,14 +162,16 @@ function Notify_BarrierDeploy()
 	if (HitActor == None || !HitActor.bWorldGeometry)
 	{
 		Instigator.ClientMessage("Must target an unoccupied surface.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		if (PC != None)
+			PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
 	if (HitLoc == vect(0,0,0))
 	{
 		Instigator.ClientMessage("Out of range.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		if (PC != None)
+			PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
@@ -179,7 +184,8 @@ function Notify_BarrierDeploy()
 	if (!SpaceToDeploy(HitLoc, HitNorm, SlopeRotation, AltDeployable.dClass.default.CollisionHeight, AltDeployable.dClass.default.CollisionRadius))
 	{
 		Instigator.ClientMessage("Insufficient space for construction.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		if (PC != None)
+			PC.ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
