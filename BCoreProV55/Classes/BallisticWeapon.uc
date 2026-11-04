@@ -2426,7 +2426,7 @@ simulated function StartScopeZoom()
 	if (ZoomInSound.Sound != None)	
 		class'BUtil'.static.PlayFullSound(self, ZoomInSound);
 
-	if(!CanUseSights())
+	if (PC == None || !CanUseSights())
 		return;
 
     PlayerZoom(PC);
@@ -2475,6 +2475,10 @@ simulated final function EndScopeZoom()
 	if (ZoomOutSound.Sound != None)	
 		class'BUtil'.static.PlayFullSound(self, ZoomOutSound);
 	
+	// Only a player's view zooms (a bot has no PlayerController)
+	if (PC == None)
+		return;
+
 	OldZoomFOV = PC.FovAngle;
 
 	// On turrets, restore to TurretFOV instead of DefaultFOV
