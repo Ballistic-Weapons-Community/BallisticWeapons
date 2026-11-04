@@ -26,8 +26,8 @@ replication
 {
 	reliable if (Role==ROLE_Authority && bNetDirty)
 		bDischarge, ChargePower;
-	reliable if (Role==ROLE_Authority && bNetOwner && bNetInitial)
-		LG;
+	// LG is not replicated: no client reads it, and only the owner's could have the gun (a reference the engine
+	// can't send to a client keeps the attachment dirty for that client for good, whatever the condition says)
 }
 
 simulated function SetOverlayMaterial( Material mat, float time, bool bOverride )
