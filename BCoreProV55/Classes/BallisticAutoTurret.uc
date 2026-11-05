@@ -229,6 +229,12 @@ simulated event Destroyed()
 {
 	if (Role == ROLE_Authority)
 		RemoveFromList();
+	// (spawned in PreBeginPlay; it stayed in the level, one for every turret that went)
+	if (MyUseTrigger != None)
+	{
+		MyUseTrigger.Destroy();
+		MyUseTrigger = None;
+	}
 	super.Destroyed();
 }
 
@@ -433,7 +439,7 @@ function UpdateRocketAcceleration(float DT, float YawChange, float PitchChange)
 		CameraDirection = TempRot;
 	}
 
-	if (AIController(Controller) == None)
+	if (Controller != None && AIController(Controller) == None)
 		Controller.SetRotation(CameraRotation + Rotation);
 	// GunRotation must be sent from here for listenservers
 	if (level.NetMode == NM_ListenServer)
@@ -728,7 +734,9 @@ function UnPossessed()
 
 	SaveTurretWeaponInfo();
 
-	Level.Game.DiscardInventory( Self );
+	// (this also runs on the gunner's own machine, which has no game)
+	if (Level.Game != None)
+		Level.Game.DiscardInventory( Self );
 
 	LastUsedTime = Level.TimeSeconds;
 

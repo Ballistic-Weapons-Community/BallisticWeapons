@@ -49,6 +49,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
 		FireInterval=1.000000
 		FireEffectParams(0)=FireEffectParams'TacticalSecondaryEffectParams'
+		AmmoPerFire=0
 	End Object
 		
 	//=================================================================

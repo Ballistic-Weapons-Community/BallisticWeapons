@@ -53,6 +53,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
 		BurstFireRateFactor=1.00
 	FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
+		AmmoPerFire=0
 	End Object
 		
 	//=================================================================
