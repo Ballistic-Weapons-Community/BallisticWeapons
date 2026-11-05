@@ -240,6 +240,8 @@ var float NextSettingsCheckTime;
 // Sliding Animations
 var bool  bSlideAnimating;        // slide animations are playing on this machine
 var bool  bSlideWaitingStart;     // waiting for start anim to finish
+// A sequence name is looked up in the model's own animations before the linked BallisticThird ones,
+// so these must not be names a model already has: the stock female and Juggernaut sets have SlideF/L/R/B
 var 	name 		SlideAnims[4]; 
 var 	name 		SlideStartAnims[4]; 
 var 	name 		SlideEndAnims[4]; 
@@ -4812,10 +4814,10 @@ defaultproperties
 	BackSlidePowerScale=0.60
 	BackMaxSlideSpeedScale=0.75
 	BackSlideDotThreshold=-0.25
-	SlideAnims(0)="SlideF"
-	SlideAnims(1)="SlideL"
-	SlideAnims(2)="SlideR"
-	SlideAnims(3)="SlideB"
+	SlideAnims(0)="SlideFLoop"
+	SlideAnims(1)="SlideLLoop"
+	SlideAnims(2)="SlideRLoop"
+	SlideAnims(3)="SlideBLoop"
 	SlideStartAnims(0)="SlideFStart"
 	SlideStartAnims(1)="SlideLStart"
 	SlideStartAnims(2)="SlideRStart"
