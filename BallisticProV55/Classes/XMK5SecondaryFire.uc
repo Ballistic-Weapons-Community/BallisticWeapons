@@ -38,7 +38,9 @@ simulated function bool AllowFire()
 	if (!CheckWeaponMode())
 		return false;		// Will weapon mode allow further firing
 
-	if(!Super.AllowFire() || !bLoaded)
+	// Only the darts and a loaded one count. BallisticFire's version also refuses while the SMG needs cocking, which
+	// its last round sets (bCockAfterEmpty), so a loaded dart couldn't be fired until the SMG had been reloaded
+	if(!Super(WeaponFire).AllowFire() || !bLoaded)
 	{
 		if (DryFireSound.Sound != None)
 			Weapon.PlayOwnedSound(DryFireSound.Sound,DryFireSound.Slot,DryFireSound.Volume,DryFireSound.bNoOverride,DryFireSound.Radius,DryFireSound.Pitch,DryFireSound.bAtten);
