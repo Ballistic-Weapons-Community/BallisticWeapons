@@ -592,7 +592,7 @@ simulated function EmptyFire (byte Mode)
 		Super.EmptyFire(Mode);
 	else if (bNeedReload && ClientState == WS_ReadyToFire && FireCount < 1 && Othergun.FireCount < 1 && Instigator.IsLocallyControlled() &&
 		(Othergun.bNeedReload || !Othergun.HasAmmoLoaded(Mode)))
-		ServerStartReload(Mode);
+		RequestEmptyReload(Mode);
 }
 
 // Fire pressed. Change weapon if out of ammo, reload if empty mag or skip reloading if possible

@@ -110,7 +110,8 @@ var   float				LastImpactTime;		// Time of last impact mark spawn
 var() float				TimeBetweenImpacts;	// Minimum time between impact mark spawning
 var   vector			LastImpactNormal;	// Normal of last impact
 var   vector			LastImpactLocation;	// Location of last impact
-var   BCSprintControl   Sprinter;
+var   BCSprintControl   Sprinter;			// Set by AddInventory on the server, found in the inventory on the owner's client (FindSprinter)
+var   float				NextSprinterSearchTime;
 var	  float				DodgeReadyTime;		// MoveTime from which the next dodge is allowed
 var	  float				DodgeInterval;
 // -------------------------------------------------------
@@ -286,7 +287,8 @@ replication
 		bFallGib;
 	reliable if (Role == ROLE_Authority)
 		ClientHits, HitCounter, ClientSetCrouchAbility,
-		Sprinter, ClientSlideState;
+		ClientSlideState;
+	// Sprinter is not replicated: see FindSprinter
 	// The owning client predicts its own slides. See SyncSlidePrediction
 	reliable if (Role == ROLE_Authority && !bNetOwner)
 		bIsSliding;
@@ -690,6 +692,24 @@ function bool AddInventory( inventory NewItem )
 	}
 
     return ret;
+}
+
+// Client: AddInventory runs on the server alone, and the reference isn't replicated. Only the owner's client could
+// have the sprint control, and a reference the engine can't send to a client keeps the pawn dirty for that client
+// for good (compared in full every update), whatever the replication condition says. So the owner looks for it
+simulated function FindSprinter()
+{
+	local Inventory Inv;
+
+	NextSprinterSearchTime = Level.TimeSeconds + 0.1;
+	for (Inv = Inventory; Inv != None; Inv = Inv.Inventory)
+	{
+		if (BCSprintControl(Inv) != None)
+		{
+			Sprinter = BCSprintControl(Inv);
+			return;
+		}
+	}
 }
 
 event HitWall(vector HitNormal, actor Wall)
@@ -2117,6 +2137,10 @@ simulated event Tick(float DT)
 		EmptyHandsTime = 0;
 		EmptyHandsWaits = 0;
 	}
+
+	// Only the owner's client gets the inventory (the engine sends it to the owner alone)
+	if (Sprinter == None && Role < ROLE_Authority && Inventory != None && Level.TimeSeconds >= NextSprinterSearchTime)
+		FindSprinter();
 
 	// The sprint control knows the speed the server has set, and only reaches the pawn's owner
 	if (bGroundSpeedUnsent && Sprinter != None && Sprinter.BaseGroundSpeed > 0)

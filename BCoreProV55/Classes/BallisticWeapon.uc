@@ -287,6 +287,7 @@ var   bool							bPreventReload;					// Reload will not start. Used to prevent r
 var   EReloadState					ReloadState;					// State of the gun during reloading or cocking. Set seperately on client and server
 var   bool							bServerReloading;				// Used to let clients know that server side is still reloading
 var   bool     						bMagPlusOne;              		// A true value means weapon can store an extra round in chamber.
+var   float							NextEmptyReloadTime;			// Fire on an empty magazine asks for a reload no sooner than this. See RequestEmptyReload
 //-----------------------------------------------------------------------------
 // Recoil
 //-----------------------------------------------------------------------------
@@ -1910,7 +1911,19 @@ simulated function bool MayNeedReload(byte Mode, float Load)
 simulated function EmptyFire (byte Mode)
 {
 	if (/*bNeedReload && */ClientState == WS_ReadyToFire && FireCount < 1 && Instigator.IsLocallyControlled())
-		ServerStartReload(Mode);
+		RequestEmptyReload(Mode);
+}
+
+// The engine asks the held fire mode to start every tick while it can't, and each of those asks lands in EmptyFire.
+// ServerStartReload is reliable, so one request is enough: it is sent again only after a while, for when the server
+// turned it down (still busy, or a gun that never reloads). A client sent one each frame until the server's reload
+// came back, and for as long as the button was held when it never did
+simulated final function RequestEmptyReload(byte Mode)
+{
+	if (Level.TimeSeconds < NextEmptyReloadTime)
+		return;
+	NextEmptyReloadTime = Level.TimeSeconds + 0.25;
+	ServerStartReload(Mode);
 }
 
 // Fire pressed. Change weapon if out of ammo, reload if empty mag or skip reloading if possible

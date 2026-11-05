@@ -276,7 +276,7 @@ simulated function EmptyFire (byte Mode)
 		Super.EmptyFire(Mode);
 	else if ((bNeedReload || !HasAmmoLoaded(Mode)) && ClientState == WS_ReadyToFire && FireCount < 1 && Othergun.FireCount < 1 && Instigator.IsLocallyControlled() &&
 		(Othergun.bNeedReload || !Othergun.HasAmmoLoaded(Mode)))
-		ServerStartReload(Mode);
+		RequestEmptyReload(Mode);
 }
 
 // See if firing modes will let us fire another round or not

@@ -78,6 +78,8 @@ simulated function bool MayNeedReload(byte Mode, float Load)
 }
 
 function ServerStartReload (optional byte i);
+// It recharges on its own and never reloads, so fire without charge doesn't ask the server for one
+simulated function EmptyFire (byte Mode);
 
 simulated function string GetHUDAmmoText(int Mode)
 {

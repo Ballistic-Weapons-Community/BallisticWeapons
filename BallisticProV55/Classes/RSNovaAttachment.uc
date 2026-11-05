@@ -15,7 +15,7 @@ var actor		ZapTarget, 	  ZapTargetOld;			// Target getting zapped
 var byte		TargZapCount, TargZapCountOld;		// Update counters
 var byte		FreeZapCount, FreeZapCountOld;
 var byte		KillZapCount, KillZapCountOld;
-var RSNovaStaff	NovaStaff;							// Access to the staff itself (only available to owner)
+var RSNovaStaff	NovaStaff;							// Access to the staff itself (only on the server and its owner's client, see FindNovaStaff)
 
 var actor		FastMuzzleFlash;
 var byte		FastFireCount, FastFireCountOld;
@@ -42,8 +42,7 @@ replication
 {
 	reliable if (Role==ROLE_Authority && bNetDirty)
 		ZapTarget, TargZapCount, FreeZapCount, KillZapCount, FastFireCount, bHealing, BigZapCount, ChainVics, ChainVicNum, ChainZapCount, FreeChainZapCount, KillChainZapsCount, bRampage;
-	reliable if (Role==ROLE_Authority && bNetOwner && bNetInitial)
-		NovaStaff;
+	// NovaStaff is not replicated: see FindNovaStaff
 }
 
 simulated event PostNetReceive()
@@ -289,7 +288,7 @@ simulated function SetFreeChainZap ()
 		FreeChainZap = spawn(class'RSNova_FreeChainZap', self);
 		AttachToBone(FreeChainZap, 'tip');
 	}
-	if (level.NetMode == NM_Client && NovaStaff != None)
+	if (level.NetMode == NM_Client && FindNovaStaff() != None)
 		NovaStaff.SetFreeChainZap();
 }
 
@@ -303,7 +302,7 @@ simulated function KillChainZaps ()
 	StopMuzzleZap();
 	KillChainZap();
 	KillFreeChainZap();
-	if (level.NetMode == NM_Client && NovaStaff != None)
+	if (level.NetMode == NM_Client && FindNovaStaff() != None)
 		NovaStaff.KillChainZaps();
 }
 
@@ -325,7 +324,7 @@ simulated function KillFreeChainZap()
 	{
 		FreeChainZap.Kill();
 		FreeChainZap = None;
-		if (level.NetMode == NM_Client && NovaStaff != None)
+		if (level.NetMode == NM_Client && FindNovaStaff() != None)
 			NovaStaff.KillFreeChainZap();
 	}
 }
@@ -338,6 +337,16 @@ function InitFor(Inventory I)
 	Super.InitFor(I);
 	if (I != None && RSNovaStaff(I) != None)
 		NovaStaff = RSNovaStaff(I);
+}
+
+// Client: the staff only reaches its owner's client, and a reference the engine can't send to a client keeps the
+// attachment dirty for that client for good (compared in full every update), whatever the replication condition
+// says. So it isn't replicated, and the owner's client takes it from its pawn's weapon, which a client sets itself
+simulated function RSNovaStaff FindNovaStaff()
+{
+	if (NovaStaff == None && Instigator != None)
+		NovaStaff = RSNovaStaff(Instigator.Weapon);
+	return NovaStaff;
 }
 
 simulated function SetTargetZap(Actor Targ, bool bHeal)
@@ -379,7 +388,7 @@ simulated function SetFreeZap ()
 		UpdateFreeZap();
 		AttachToBone(FreeZap, 'tip');
 	}
-	if (level.NetMode == NM_Client && NovaStaff != None)
+	if (level.NetMode == NM_Client && FindNovaStaff() != None)
 		NovaStaff.SetFreeZap();
 }
 
@@ -393,7 +402,7 @@ simulated function KillZap ()
 	StopMuzzleZap();
 	KillTargetZap();
 	KillFreeZap();
-	if (level.NetMode == NM_Client && NovaStaff != None)
+	if (level.NetMode == NM_Client && FindNovaStaff() != None)
 		NovaStaff.KillZap();
 }
 
@@ -412,7 +421,7 @@ simulated function KillFreeZap()
 	{
 		FreeZap.Kill();
 		FreeZap = None;
-		if (level.NetMode == NM_Client && NovaStaff != None)
+		if (level.NetMode == NM_Client && FindNovaStaff() != None)
 			NovaStaff.KillFreeZap();
 	}
 }

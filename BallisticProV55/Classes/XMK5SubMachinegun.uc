@@ -113,7 +113,9 @@ function ServerStartReload (optional byte i)
 		if (AmmoAmount(1) > 0 && !IsReloadingDart())
 		{
 			LoadDart();
-			ClientStartReload(1);
+			// Only when a dart load started: one already loaded leaves LoadDart with nothing to do
+			if (ReloadState != RS_None)
+				ClientStartReload(1);
 		}
 		return;
 	}

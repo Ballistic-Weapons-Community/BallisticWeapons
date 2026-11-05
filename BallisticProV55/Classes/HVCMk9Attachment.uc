@@ -43,8 +43,7 @@ replication
 {
 	reliable if (Role==ROLE_Authority)
 		ZapTargets, TargZapCount, FreeZapCount, KillZapCount, ZapLures, bDischarge, ChargePower, StreamEffect;
-	reliable if (Role==ROLE_Authority && bNetOwner && bNetInitial)
-		LG;
+	// LG is not replicated: see FindLG
 }
 
 simulated function PostNetBeginPlay()
@@ -198,7 +197,7 @@ simulated function SetTargetZap(array<actor> Ts, array<vector> Vs)
 	}
 	else
 		TargetZap.SetTargets(Ts, Vs);
-	if (level.NetMode == NM_Client && LG != None)
+	if (level.NetMode == NM_Client && FindLG() != None)
 		LG.SetTargetZap(Ts, Vs);
 }
 
@@ -217,7 +216,7 @@ simulated function SetFreeZap ()
 		UpdateFreeZap();
 		AttachToBone(FreeZap, 'tip');
 	}
-	if (level.NetMode == NM_Client && LG != None)
+	if (level.NetMode == NM_Client && FindLG() != None)
 		LG.SetFreeZap();
 }
 
@@ -250,7 +249,7 @@ simulated function KillZap ()
 	StopMuzzleZap();
 	KillTargetZap();
 	KillFreeZap();
-	if (level.NetMode == NM_Client && LG != None)
+	if (level.NetMode == NM_Client && FindLG() != None)
 		LG.KillZap();
 }
 
@@ -316,6 +315,16 @@ function InitFor(Inventory I)
 	Super.InitFor(I);
 	if (I != None && HVCMk9LightningGun(I) != None)
 		LG = HVCMk9LightningGun(I);
+}
+
+// Client: the gun only reaches its owner's client, and a reference the engine can't send to a client keeps the
+// attachment dirty for that client for good (compared in full every update), whatever the replication condition
+// says. So it isn't replicated, and the owner's client takes it from its pawn's weapon, which a client sets itself
+simulated function HVCMk9LightningGun FindLG()
+{
+	if (LG == None && Instigator != None)
+		LG = HVCMk9LightningGun(Instigator.Weapon);
+	return LG;
 }
 
 simulated function StartMuzzleZap()
