@@ -82,6 +82,7 @@ var() float FlySpeedMulti;
 var bool bWantsSprint;
 var Pawn FlyBoostPawn;		// The pawn whose AirSpeed the sprint key has raised (fly cheat only)
 var float CheatOldAccelRate;	// Its AccelRate from before the fly cheat's own
+var bool bBestWeaponAsked;		// SwitchToBestWeapon runs for ClientSwitchToBestWeapon, not for the key
 
 replication
 {
@@ -898,24 +899,41 @@ function ServerThrowWeapon()
 	Super.ServerThrowWeapon();
 }
 
+// The server's "take out your best weapon" (and some weapons' own, when they are used up): only the best, never the
+// key's next best. When the last grenade goes, its owner's machine has switched to the best weapon itself by the time
+// the server's call arrives; taken as the key, that call put the weapon down again in the middle of its bring up, for
+// the grenade that was going, and cut off the cocking of a weapon brought up uncocked
+function ClientSwitchToBestWeapon()
+{
+	bBestWeaponAsked = true;
+	SwitchToBestWeapon();
+	bBestWeaponAsked = false;
+}
+
 // Subclaseed to switch to next best weapon when already holding best weapon
 exec function SwitchToBestWeapon()
 {
 	local float rating;
+	local Weapon Lowered;
+	local byte OldPriority;
 
 	if ( Pawn == None || Pawn.Inventory == None )
 		return;
 
     if ( (Pawn.PendingWeapon == None) )
     {
-    	// Give current weapon low priority
-    	if (Pawn.Weapon != None && level.TimeSeconds - Pawn.SpawnTime > 3)
-			Pawn.Weapon.default.Priority = 0;
+    	// Give current weapon low priority (the key only)
+    	if (Pawn.Weapon != None && !bBestWeaponAsked && level.TimeSeconds - Pawn.SpawnTime > 3)
+		{
+			Lowered = Pawn.Weapon;
+			OldPriority = Lowered.default.Priority;
+			Lowered.default.Priority = 0;
+		}
 		// Now find the best weapon...
 	    Pawn.PendingWeapon = Pawn.Inventory.RecommendWeapon(rating);
-    	// Restore it's old priority
-    	if (Pawn.Weapon != None)
-			Pawn.Weapon.default.Priority = Pawn.Weapon.Priority;
+    	// Restore its old priority (the class's own: a used up weapon's Priority reads 25, see BallisticWeapon.RateSelf)
+    	if (Lowered != None)
+			Lowered.default.Priority = OldPriority;
 
 	    if ( Pawn.PendingWeapon == Pawn.Weapon )
 		    Pawn.PendingWeapon = None;
