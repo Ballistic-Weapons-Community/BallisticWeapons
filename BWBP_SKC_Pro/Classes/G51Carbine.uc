@@ -359,9 +359,6 @@ simulated event RenderOverlays (Canvas C)
 	if ( (Instigator == None) || (Instigator.Controller == None))
 		return;
 
-	if (SprintControl != None)
-		SprintControl.RenderOverlays(C);
-
 	if (!bScopeView || ZoomType == ZT_Irons)
 		DrawFPWeapon(C);
 	else

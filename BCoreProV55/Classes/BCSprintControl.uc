@@ -78,6 +78,8 @@ var		bool		bStaleAltFire;			// Local player: the same for alt fire
 var byte	SettingsChecksLeft;			// Client: spawned before the BallisticReplicationInfo carrying the server's settings arrived. Times left to look for it
 var float	NextSettingsCheckTime;
 
+var BCStaminaOverlay	StaminaOverlay;	// Local player: the stamina bar on the HUD
+
 
 replication
 {
@@ -206,6 +208,9 @@ simulated event Tick(float DT)
 			ApplyServerSettings();
 		}
 	}
+
+	if (Level.NetMode != NM_DedicatedServer)
+		UpdateStaminaOverlay();
 
 	if (PredictEndTime > 0)
 	{
@@ -584,28 +589,43 @@ simulated function TickSprint(float DT)
 	Stamina = FClamp(Stamina, 0, MaxStamina);
 }
 
-simulated event RenderOverlays( canvas C )
+//=============================================================================
+// STAMINA BAR
+//=============================================================================
+
+// Local player: the stamina bar is a HUD overlay, so the HUD draws it in first and third person, over the gun.
+// A new HUD (ClientSetHUD) starts without it, so it is added again.
+simulated function UpdateStaminaOverlay()
 {
-	local float	ScaleFactor, SprintFactor;
+	local PlayerController PC;
 
-	ScaleFactor = C.ClipX / 1600;
+	PC = PlayerController(Instigator.Controller);
+	if (PC == None || PC.myHUD == None || !Instigator.IsLocallyControlled())
+		return;
 
-	if (Stamina < MaxStamina)
+	if (StaminaOverlay == None || StaminaOverlay.bDeleteMe)
 	{
-		SprintFactor = Stamina / MaxStamina;
-		C.CurX = C.OrgX  + 5    * ScaleFactor * class'HUD'.default.HudScale;
-		C.CurY = C.ClipY - 330  * ScaleFactor * class'HUD'.default.HudScale;
-
-		if (SprintFactor < 0.2)
-			C.SetDrawColor(255, 0, 0);
-		else if (SprintFactor < 0.5)
-			C.SetDrawColor(64, 128, 255);
-		else
-			C.SetDrawColor(0, 0, 255);
-
-		C.DrawTile(Texture'Engine.MenuWhite', 200 * ScaleFactor * class'HUD'.default.HudScale * SprintFactor, 30 * ScaleFactor * class'HUD'.default.HudScale, 0, 0, 1, 1);
+		StaminaOverlay = Spawn(class'BCStaminaOverlay');
+		StaminaOverlay.Control = self;
 	}
+
+	if (StaminaOverlay.Owner != PC.myHUD)
+		PC.myHUD.AddHudOverlay(StaminaOverlay);
 }
+
+simulated event Destroyed()
+{
+	if (StaminaOverlay != None)
+	{
+		StaminaOverlay.Destroy();
+		StaminaOverlay = None;
+	}
+
+	Super.Destroyed();
+}
+
+// The stamina bar is drawn by BCStaminaOverlay now. Kept for packages that still call this
+simulated event RenderOverlays(Canvas C);
 
 //=============================================================================
 // SLOW
