@@ -2873,9 +2873,6 @@ simulated event RenderOverlays (Canvas C)
 
 	ApplyStockCrosshair();
 
-	if (SprintControl != None)
-		SprintControl.RenderOverlays(C);
-
 	if (!bScopeView || ZoomType == ZT_Irons)
 		DrawFPWeapon(C);
 	else
