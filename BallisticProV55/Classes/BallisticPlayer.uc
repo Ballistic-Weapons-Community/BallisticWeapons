@@ -72,6 +72,7 @@ var bool								bScreenFlashesChecked, bScreenFlashesOff;
 var vector								FlashColor;							// Colour a ClientFlash started with
 var float								FlashGoalZ;							// Where FlashFog.Z is heading (the view volume's fog)
 var bool								bFlashFades;						// This ClientFlash runs long enough to hold its colour and fade out
+var bool								bDarkFlash;							// This ClientFlash is shown in black (Dark Screen Flashes, see ClientFlash)
 
 // Fractional Parts of Pitch/Yaw Input
 var transient float InputPitchFraction, InputYawFraction;
@@ -1897,6 +1898,12 @@ function ClientDmgFlash( float scale, vector fog )
 }
 
 // disallow scaling flash
+//
+// Dark Screen Flashes (BallisticDamageType.bLessDisruptiveFlash) shows every flash that comes through here in black, as
+// solid and for as long as in its colour. It is the player's own setting, so it is looked at here, on the player's
+// machine: the damage types that send most flashes run on the server, which used to read the server's setting. The blue part of the
+// fog is also the flash's clock (ViewFlash runs it down and ends the flash with it), so it is kept and GetFlashDisplay
+// leaves it out. The red flash of a hit (ClientDmgFlash) does not come through here and keeps its colour.
 function ClientFlash( float scale, vector fog )
 {
     if (bGodMode)
@@ -1907,10 +1914,19 @@ function ClientFlash( float scale, vector fog )
     flashfog = 0.001 * fog;
 	bOverrideDmgFlash = true;
 
+	bDarkFlash = class'BallisticDamageType'.default.bLessDisruptiveFlash;
+	if (bDarkFlash)
+	{
+		FlashFog.X = 0;
+		FlashFog.Y = 0;
+	}
+
 	// see GetFlashDisplay
 	FlashColor.X = FClamp(FlashFog.X, 0, 1);
 	FlashColor.Y = FClamp(FlashFog.Y, 0, 1);
 	FlashColor.Z = FClamp(FlashFog.Z, 0, 1);
+	if (bDarkFlash)
+		FlashColor.Z = 0;
 	bFlashFades = FlashFog.Z - FlashGoalZ >= FLASH_FADE_Z;
 
 	PublishFlash();
@@ -1965,6 +1981,9 @@ final function GetFlashDisplay(out vector Scale, out vector Fog)
 		Scale = (1.0 - Alpha) * vect(1,1,1);
 		Fog = FlashColor;
 	}
+	// A short dark flash: its blue is only the clock (see ClientFlash), the view volume's is shown
+	else if (bOverrideDmgFlash && bDarkFlash)
+		Fog.Z = FMin(FlashFog.Z, FlashGoalZ);
 }
 
 final function PublishFlash()

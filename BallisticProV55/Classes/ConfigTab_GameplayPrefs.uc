@@ -64,6 +64,7 @@ function DefaultSettings()
 	fl_ZoomTimeMod.SetValue(1.5);
 	ch_WeaponUI.Checked(false); // gets you killed
 	ch_SimpleDeathMessages.Checked(false); // compromise
+	ch_LessDisruptiveFlash.Checked(false);
 }
 
 defaultproperties
@@ -137,10 +138,10 @@ defaultproperties
 	 Begin Object Class=moCheckBox Name=ch_LessDisruptiveFlashCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Reduce Flash Intensity"
+         Caption="Dark Screen Flashes"
          OnCreateComponent=ch_LessDisruptiveFlashCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Changes white blinding flashes to black"
+         Hint="Screen flashes from weapons (flashbangs, gas, darts, tazers, lasers, fire) are black instead of white or coloured. They last as long and cover as much of the screen. The red flash when you are hurt stays red."
          WinTop=0.35
          WinLeft=0.250000
          WinHeight=0.040000
