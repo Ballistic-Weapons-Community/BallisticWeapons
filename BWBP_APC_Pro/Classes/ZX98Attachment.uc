@@ -178,7 +178,7 @@ defaultproperties
 	ReloadAnimRate=1.075000
 	CockAnimRate=1.100000
     Mesh=SkeletalMesh'BWBP_APC_Anim.ZX98_TPm'
-    RelativeLocation=(Z=1.000000)
+    RelativeLocation=(X=-13.000000,Z=6.500000)
     RelativeRotation=(Pitch=32768)
     DrawScale=0.180000
 }

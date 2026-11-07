@@ -144,7 +144,7 @@ defaultproperties
 	ReloadAnimRate=1.075000
 	CockAnimRate=0.800000
 	bRapidFire=True
-	RelativeLocation=(X=-20.000000,Y=-5.000000,Z=1.000000)
+	RelativeLocation=(X=-13.000000,Y=-5.000000,Z=7.000000)
 	Mesh=SkeletalMesh'BWBP_APC_Anim.GASC_TPm'
 	DrawScale=1.000000
 }
