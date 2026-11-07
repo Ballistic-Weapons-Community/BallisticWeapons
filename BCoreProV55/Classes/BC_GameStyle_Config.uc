@@ -44,7 +44,7 @@ var() config bool			bPlayerDeceleration;		// Decel mechanics when stopping
 var() config bool			bAllowDodging;			    // Disables dodging.
 var() config bool			bAllowDoubleJump;	        // Disables double jump.
 var() config bool			bAllowCrouchSliding;		// Allows crouch sliding, which is a sprinting mechanic that allows players to slide while crouching.
-var() config bool			bSlideJump;		// Jumping out of a slide keeps its speed and full jump height. Landing with crouch held slides on, with no new push
+var() config bool			bSlideJump;		// Jumping out of a slide keeps its speed and full jump height. A slide from any landing goes on with the speed landed with, no new push
 var() config bool			bLandIntoSlide;		// Landing with crouch held turns the fall into slide speed: along a downhill slope, and a little on flat ground after a long drop
 var() config bool			bSlideSteering;		// The movement keys bend a slide's path a little, and the back key brakes it
 var() config bool			bSlideToSprint;		// Letting go of crouch in a slide with the sprint key held goes straight into a sprint

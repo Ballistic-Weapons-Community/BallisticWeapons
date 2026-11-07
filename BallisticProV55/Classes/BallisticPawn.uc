@@ -192,7 +192,7 @@ var float MaxSlideSpeed;		// Maximum speed during sliding
 
 // Movement prototypes. Each is a game style rule (BallisticReplicationInfo), off unless a server switches it on.
 // Made to try the feel offline first: a network client doesn't yet keep the wall run through the replays of a correction
-var() float SlideJumpLandKeep;		// Slide Jumps: share of its speed a slide jump keeps when it lands into a slide again
+var() float SlideJumpLandKeep;		// Slide Jumps: share of the speed landed with that a slide started from the landing keeps
 var() float LandSlideFlatShare;		// Land Into Slides: share of the fall speed above LandSlideFlatMin a landing on flat ground turns into slide speed
 var() float LandSlideFlatMin;		// ...fall speed up to which a flat landing gives nothing. A plain jump lands at about JumpZ
 var() float SlideSteerRate;			// Slide Steering: degrees a second a slide turns at most toward the movement keys
@@ -215,7 +215,7 @@ var() float WallRunGapTime;			// ...how long the run goes on past a gap in the w
 var() int   WallRunViewRoll;		// ...first person view tilt away from the wall, in rotator units
 
 var bool	bSlideJumping;			// This fall began in a slide (Slide Jumps)
-var float	SlideChainEnd;			// MoveTime until which a slide that starts goes on from a slide jump: no new push, no cooldown
+var float	SlideChainEnd;			// MoveTime until which a slide that starts goes on from a landing: no new push, no cooldown
 var bool	bSlideSprintPending;	// A slide just ended with the sprint key held: the sprint starts once the player is up (Slide To Sprint)
 var float	SlideSprintPendingEnd;	// Level.TimeSeconds after which that is given up
 var vector	MoveInput;				// The movement keys' acceleration for this move, as the controller set it. In the air the engine scales Acceleration down, to nothing near a wall
@@ -780,9 +780,9 @@ event Landed(vector HitNormal)
 	bWallRunUsed = false;
 	WallJumpGraceEnd = 0;
 
-	// Slide Jumps: a slide that left the ground can go on where it lands, for as long as a slide can still start
-	// off the landing's momentum
-	if (bSlideJumping)
+	// Slide Jumps: a slide that starts from a landing goes on with the speed landed with, for as long as a slide can
+	// still start off the landing's momentum. That goes for any landing, so a plain jump gets no more than a slide jump
+	if (class'BallisticReplicationInfo'.default.bSlideJump)
 		SlideChainEnd = MoveTime() + SlideMomentumTime;
 
 	if (Controller != None && Controller.bDuck > 0 && bCanCrouch)
@@ -4652,7 +4652,7 @@ simulated function BeginSlide(out vector SlideVel)
 	local float Speed, EffSlidePower, EffMaxSlideSpeed, StaminaPct;
 	local bool bChain;
 
-	// Slide Jumps: landing from one goes on sliding with what speed is left, so no cooldown and no new push
+	// Slide Jumps: a slide from a landing goes on with what speed is left, so no cooldown and no new push
 	bChain = MoveTime() < SlideChainEnd;
 
 	if (!bAllowCrouchSliding || (MoveTime() < SlideCooldownEnd && !bChain))

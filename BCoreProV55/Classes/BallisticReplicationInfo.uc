@@ -100,7 +100,7 @@ var bool					bFirstPersonCrosshairAim;	// Players may have the crosshair follow 
 // CROUCH SLIDING
 //=============================================================================
 var() config bool					bAllowCrouchSliding;		// Allows crouch sliding, pretty self explainatory 
-var bool					bSlideJump;		// Jumping out of a slide keeps its speed and full jump height. Landing with crouch held slides on, with no new push
+var bool					bSlideJump;		// Jumping out of a slide keeps its speed and full jump height. A slide from any landing goes on with the speed landed with, no new push
 var bool					bLandIntoSlide;		// Landing with crouch held turns the fall into slide speed: along a downhill slope, and a little on flat ground after a long drop
 var bool					bSlideSteering;		// The movement keys bend a slide's path a little, and the back key brakes it
 var bool					bSlideToSprint;		// Letting go of crouch in a slide with the sprint key held goes straight into a sprint
