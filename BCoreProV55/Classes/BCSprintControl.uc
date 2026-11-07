@@ -317,6 +317,21 @@ simulated function PredictStopSprint()
 	ClientUpdateSpeed();
 }
 
+// Client: the server is about to start a sprint on its own, because a slide ended with the sprint key held
+// (the Slide To Sprint movement rule). It goes by the same checks as StartSprint
+simulated function PredictStartSprint()
+{
+	if (!class'BallisticReplicationInfo'.default.bEnableSprint || IsSprintActive() || !CanPredictSpeed())
+		return;
+	if (Stamina <= 0 || Instigator.Physics != PHYS_Walking || Instigator.bIsCrouched || !CheckDirection())
+		return;
+
+	CancelEndTime = 0;
+	bPredictedSprint = true;
+	PredictEndTime = Level.TimeSeconds + PredictionWindow();
+	ClientUpdateSpeed();
+}
+
 // Client: the move that predicted a stamina cost is being run again and will predict it once more
 simulated function UnpredictJumped()
 {

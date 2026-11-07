@@ -192,6 +192,46 @@ var float SlideEasyStartSpeed;	 // Speed required to start sliding when landing 
 var float SlideStopSpeed;		 // Speed below which sliding stops
 var float MaxSlideSpeed;		// Maximum speed during sliding
 
+// Movement prototypes. Each is a game style rule (BallisticReplicationInfo), off unless a server switches it on.
+// Wall Running is commented out for now: a network client doesn't keep it through the replays of a correction, and others don't see it
+var() float SlideJumpLandKeep;		// Slide Jumps: share of the speed landed with that a slide started from the landing keeps
+var() float SlideLandPushShare;		// ...share of the slide's push (SlidePower) it gets on top, scaled by stamina like any slide's
+var() float LandSlideFlatShare;		// Land Into Slides: share of the fall speed above LandSlideFlatMin a landing on flat ground turns into slide speed
+var() float LandSlideFlatMin;		// ...fall speed up to which a flat landing gives nothing. A plain jump lands at about JumpZ
+var() float SlideSteerRate;			// Slide Steering: degrees a second a slide turns at most toward the movement keys
+var() float SlideSteerCost;			// ...share of its speed a slide loses for each 90 degrees it is turned
+var() float SlideBrakeFriction;		// ...extra friction while the back key is held against the slide
+//var() float WallRunTime;			// Wall Running: longest run along one wall, in seconds
+//var() float WallRunGravityScale;	// ...share of gravity felt on the wall
+//var() float WallRunMaxSink;			// ...fastest the runner slides down the wall
+//var() float WallRunMaxLift;			// ...fastest upward speed kept when the run starts
+//var() float WallRunDrag;			// ...share of its speed the run loses each second
+//var() float WallRunMinSpeedPct;		// ...speed along the wall needed to start, as a share of the style's ground speed. The run ends below 2/3 of it
+//var() float WallRunStaminaScale;	// ...stamina used on the wall, as a share of what a sprint uses
+//var() float WallRunMinStamina;		// ...stamina needed to start a run
+//var() float WallRunReach;			// ...how far beyond the collision cylinder a wall is found
+//var() float WallRunStick;			// ...speed toward the wall that keeps the runner on it
+//var() float WallJumpPushPct;		// ...speed away from the wall a wall jump gives, as a share of the style's ground speed
+//var() float WallJumpZScale;			// ...upward speed of a wall jump, as a share of JumpZ
+//var() float WallJumpGraceTime;		// ...a jump this soon after falling off a wall still kicks off it
+//var() float WallRunGapTime;			// ...how long the run goes on past a gap in the wall: a column, a doorway's edge
+//var() int   WallRunViewRoll;		// ...first person view tilt away from the wall, in rotator units
+
+var bool	bSlideJumping;			// This fall began in a slide (Slide Jumps)
+var float	SlideChainEnd;			// MoveTime until which a slide that starts goes on from a landing: a small push, no cooldown
+var bool	bSlideSprintPending;	// A slide just ended with the sprint key held: the sprint starts once the player is up (Slide To Sprint)
+var float	SlideSprintPendingEnd;	// Level.TimeSeconds after which that is given up
+//var vector	MoveInput;				// The movement keys' acceleration for this move, as the controller set it. In the air the engine scales Acceleration down, to nothing near a wall
+//var bool	bWallRunning;			// Running along a wall
+//var vector	WallRunNormal;			// Normal of the wall being run, or of the last one run since landing
+//var vector	WallRunSpot;			// A point on that wall
+//var bool	bWallRunUsed;			// A wall has been run since landing. That one can't be run again until the player lands or runs another
+//var float	WallRunEndTime;			// MoveTime at which the run is over
+//var float	WallJumpGraceEnd;		// MoveTime until which a jump still kicks off the wall just left
+//var float	WallGapEnd;				// MoveTime at which a run that has lost the wall is over, 0 while it has it
+//var bool	bWallRunAnimating;		// Wall run animation playing on this machine
+//var float	ViewRollAmount;			// Owner's first person view: tilt from a wall run, eased toward its target
+
 // Slide prediction
 struct SlideState				// Slide state that the engine neither rewinds nor corrects
 {
@@ -202,6 +242,8 @@ struct SlideState				// Slide state that the engine neither rewinds nor corrects
 	var float	LandGraceEnd;
 	var vector	Momentum;
 	var float	MomentumEnd;
+	var bool	bSlideJumping;
+	var float	ChainEnd;
 };
 var SlideState SavedSlide;		// Client: slide state at the start of the latest move
 var bool bSlideMoveStart;		// Client: a move has started and its slide state hasn't been saved yet
@@ -739,11 +781,26 @@ event Landed(vector HitNormal)
 	// is never set while airborne (dodge requires crouch=false to initiate).
 	// Force crouch intent here so the native Crouch() fires next tick, and
 	// let that crouch start a slide off the momentum kept from the fall.
+	//EndWallRun(false);
+	//bWallRunUsed = false;
+	//WallJumpGraceEnd = 0;
+
+	// Slide Jumps: a slide that starts from a landing goes on with the speed landed with, for as long as a slide can
+	// still start off the landing's momentum. That goes for any landing, so a plain jump gets no more than a slide jump
+	if (class'BallisticReplicationInfo'.default.bSlideJump)
+		SlideChainEnd = MoveTime() + SlideMomentumTime;
+
 	if (Controller != None && Controller.bDuck > 0 && bCanCrouch)
 	{
 		bWantsToCrouch = true;
 		SlideLandGraceEnd = MoveTime() + SlideLandGraceTime;
+		LandIntoSlide(HitNormal);
 	}
+	// Slide To Sprint: landing on his feet from a slide jump with the sprint key held
+	else if (bSlideJumping)
+		QueueSlideSprint();
+
+	bSlideJumping = false;
 
 	// temporary hardcode
     if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
@@ -2173,6 +2230,11 @@ simulated event Tick(float DT)
 	super.Tick(DT);
 
 	TickSlideAnim();
+	//TickWallRunAnim();
+	//if (bWallRunning || ViewRollAmount != 0)
+		//TickWallRunStamina(DT);
+	if (bSlideSprintPending)
+		TickSlideSprint();
 
 	if (Weapon == None && Health > 0 && Level.NetMode != NM_DedicatedServer && PlayerController(Controller) != None && IsLocallyControlled())
 		TickEmptyHands(DT);
@@ -3395,6 +3457,7 @@ function bool Dodge(eDoubleClickDir DoubleClickMove)
 
         if (Role == ROLE_Authority)
             Inventory.OwnerEvent('Dodged');
+		//EndWallRun(true);
         return true;
     }
 
@@ -3436,6 +3499,14 @@ function bool DoJump( bool bUpdating )
 	if (BallisticWeapon(Weapon) != None)
         JumpZ = BallisticWeapon(Weapon).GetModifiedJumpZ(self);
 
+	// Wall Running: a jump on the wall, or just after falling off it, kicks off it
+	//if (CanWallJump())
+	//{
+		//DoWallJump(bUpdating);
+		//JumpZ = OldJumpZ;
+		//return true;
+	//}
+
     if ( !bUpdating && CanDoubleJump() && (Abs(Velocity.Z) < 100) && IsLocallyControlled() )
     {
 		if ( PlayerController(Controller) != None )
@@ -3467,7 +3538,8 @@ function bool DoJump( bool bUpdating )
 		if ( (Base != None) && !Base.bWorldGeometry )
 			Velocity += Base.Velocity;
 
-        if( bIsCrouched || bWantsToCrouch || MoveTime() < JumpCrouchEnd )
+        // Slide Jumps: a jump out of a slide goes as high as one from a run
+        if( (bIsCrouched || bWantsToCrouch || MoveTime() < JumpCrouchEnd) && !(bIsSliding && class'BallisticReplicationInfo'.default.bSlideJump) )
             Velocity.Z -= JumpZ * JumpCrouchPenalty;
 	
 		SetPhysics(PHYS_Falling);
@@ -4130,13 +4202,23 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 	{
 		// Slides need the ground, and crouch has to be pressed again after leaving it
 		if (bIsSliding)
+		{
+			// Slide Jumps: a fall that starts in a slide can go on as one where it lands
+			if (Physics == PHYS_Falling && class'BallisticReplicationInfo'.default.bSlideJump)
+				bSlideJumping = true;
 			EndSlide();
+		}
 		bSlideCrouchHeld = false;
 
 		// Keep the peak horizontal speed seen during this fall so dodge-slide
 		// uses the launch velocity, not the decayed landing-subtick velocity.
 		if (Physics == PHYS_Falling)
+		{
 			TrackSlideMomentum(Velocity);
+			//TickWallRun(DeltaTime, OldVelocity);
+		}
+		//else if (bWallRunning)
+		//	EndWallRun(false);
 	}
 
 	if (Bot(Controller) != None)
@@ -4237,6 +4319,8 @@ simulated final function SaveSlideState()
 	SavedSlide.LandGraceEnd = SlideLandGraceEnd;
 	SavedSlide.Momentum = SlideMomentum;
 	SavedSlide.MomentumEnd = SlideMomentumEnd;
+	SavedSlide.bSlideJumping = bSlideJumping;
+	SavedSlide.ChainEnd = SlideChainEnd;
 }
 
 simulated final function RestoreSlideState()
@@ -4247,6 +4331,8 @@ simulated final function RestoreSlideState()
 	SlideLandGraceEnd = SavedSlide.LandGraceEnd;
 	SlideMomentum = SavedSlide.Momentum;
 	SlideMomentumEnd = SavedSlide.MomentumEnd;
+	bSlideJumping = SavedSlide.bSlideJumping;
+	SlideChainEnd = SavedSlide.ChainEnd;
 }
 
 // Keeps the owning client's slide state in step with its Location and Velocity.
@@ -4541,7 +4627,10 @@ simulated function TickSlide(float DeltaTime, vector OldVelocity)
 	if (bIsSliding)
 	{
 		if (!bCrouchHeld)
+		{
 			EndSlide();
+			QueueSlideSprint();
+		}
 	}
 	else
 	{
@@ -4560,6 +4649,8 @@ simulated function TickSlide(float DeltaTime, vector OldVelocity)
 	if (bIsSliding)
 	{
 		HandleSliding(DeltaTime, SlideVel);
+		if (class'BallisticReplicationInfo'.default.bSlideSteering)
+			SteerSlide(DeltaTime, SlideVel);
 		Velocity = SlideVel;
 		if (VSize(SlideVel) < SlideStopSpeed)
 			EndSlide();
@@ -4604,8 +4695,12 @@ simulated function BeginSlide(out vector SlideVel)
 {
 	local vector X, Y, Z, Dir;
 	local float Speed, EffSlidePower, EffMaxSlideSpeed, StaminaPct;
+	local bool bChain;
 
-	if (!bAllowCrouchSliding || MoveTime() < SlideCooldownEnd)
+	// Slide Jumps: a slide from a landing keeps the speed landed with and gets a little of the push, with no cooldown
+	bChain = MoveTime() < SlideChainEnd;
+
+	if (!bAllowCrouchSliding || (MoveTime() < SlideCooldownEnd && !bChain))
 		return;
 
 	if (Controller.bDuck == 0 && !bBotSlideRequest)
@@ -4617,6 +4712,8 @@ simulated function BeginSlide(out vector SlideVel)
 	else
 		Dir = Normal(SlideMomentum);
 	Speed = FMax(Speed, VSize(SlideMomentum));
+	if (bChain)
+		Speed *= SlideJumpLandKeep;
 
 	if (MoveTime() < SlideLandGraceEnd || IsMovingDownhill(Dir))
 	{
@@ -4647,6 +4744,8 @@ simulated function BeginSlide(out vector SlideVel)
 		StaminaPct = Round(StaminaPct * 20.0) / 20.0;
 		EffSlidePower = FMax(EffSlidePower * 0.25, EffSlidePower * StaminaPct);
 	}
+	if (bChain)
+		EffSlidePower *= SlideLandPushShare;
 
 	SlideVel = Dir * FMin(Speed + EffSlidePower, EffMaxSlideSpeed);
 
@@ -4708,6 +4807,439 @@ simulated function HandleSliding(float DT, out vector SlideVel)
 	SlideVel.Z = 0;
 	SlideVel = Normal(SlideVel) * FClamp(VSize(SlideVel) - DynamicFriction * Gravity * Cos(SlopeAngleRad) * DT, 0.0, MaxSlideSpeed);
 }
+
+//===========================================================================
+// Movement prototypes: Slide Jumps, Land Into Slides, Slide Steering, Slide To Sprint
+// and Wall Running. Game style rules, off unless a server switches them on
+//===========================================================================
+
+// Land Into Slides: a landing with crouch held puts the fall into the slide. On a slope the part of the landing speed
+// that runs along the floor carries on, as it would; on flat ground only a long drop gives a little, as a roll would.
+// What comes of it is left as the slide's momentum, which BeginSlide starts the slide with
+simulated function LandIntoSlide(vector HitNormal)
+{
+	local vector V, H, Dir;
+	local float FlatSpeed, SurfaceSpeed, RollSpeed, Speed;
+
+	if (!class'BallisticReplicationInfo'.default.bLandIntoSlide || !bAllowCrouchSliding)
+		return;
+
+	H = Velocity;
+	H.Z = 0;
+	FlatSpeed = VSize(H);
+
+	// along the floor, if that goes downhill
+	V = Velocity - (Velocity dot HitNormal) * HitNormal;
+	SurfaceSpeed = 0;
+	if (V.Z < 0)
+		SurfaceSpeed = VSize(V);
+
+	// a roll on flat ground goes the way the player was moving, and needs him to be moving
+	RollSpeed = 0;
+	if (FlatSpeed > 1.0)
+		RollSpeed = FlatSpeed + FMax(-Velocity.Z - LandSlideFlatMin, 0) * LandSlideFlatShare;
+
+	if (RollSpeed >= SurfaceSpeed)
+	{
+		Speed = RollSpeed;
+		Dir = H;
+	}
+	else
+	{
+		Speed = SurfaceSpeed;
+		Dir = V;
+		Dir.Z = 0;
+	}
+
+	Speed = FMin(Speed, class'BallisticReplicationInfo'.default.PlayerGroundSpeed * 2.5);
+	if (Speed <= FlatSpeed + 1.0 || VSize(Dir) < 0.001)
+		return;
+
+	SlideMomentum = Normal(Dir) * Speed;
+	SlideMomentumEnd = MoveTime() + SlideMomentumTime;
+}
+
+// Slide Steering: the slide turns toward the movement keys, so with forward held it follows the view. A turn costs
+// some speed, as carving would; the back key held against the slide brakes it instead
+simulated function SteerSlide(float DT, out vector SlideVel)
+{
+	local vector Want, Dir, Side;
+	local float Speed, CosA, Turn;
+
+	Want = Acceleration;
+	Want.Z = 0;
+	Speed = VSize(SlideVel);
+	if (VSize(Want) < 1.0 || Speed < 1.0)
+		return;
+	Want = Normal(Want);
+	Dir = SlideVel / Speed;
+	CosA = Dir dot Want;
+
+	if (CosA < -0.7)
+	{
+		Speed = FMax(Speed + SlideBrakeFriction * PhysicsVolume.Gravity.Z * DT, 0);
+		SlideVel = Dir * Speed;
+		return;
+	}
+
+	Turn = FMin(Acos(FClamp(CosA, -1.0, 1.0)), SlideSteerRate * (Pi / 180.0) * DT);
+	if (Turn < 0.0001)
+		return;
+	Side = Normal(Want - CosA * Dir);
+	Dir = Normal(Dir * Cos(Turn) + Side * Sin(Turn));
+	Speed *= 1.0 - SlideSteerCost * Turn / (Pi * 0.5);
+	SlideVel = Dir * Speed;
+	SlideVel.Z = 0;
+}
+
+// Slide To Sprint: a slide is over with the sprint key held. The sprint starts once the player is standing again
+simulated function QueueSlideSprint()
+{
+	if (!class'BallisticReplicationInfo'.default.bSlideToSprint || IsReplayingMoves() || !WantsSprint())
+		return;
+	bSlideSprintPending = true;
+	SlideSprintPendingEnd = Level.TimeSeconds + 0.4;
+}
+
+simulated function bool WantsSprint()
+{
+	return BallisticPlayer(Controller) != None && BallisticPlayer(Controller).bWantsSprint;
+}
+
+simulated function TickSlideSprint()
+{
+	if (Sprinter == None || !WantsSprint() || Level.TimeSeconds > SlideSprintPendingEnd || bIsSliding)
+	{
+		bSlideSprintPending = false;
+		return;
+	}
+	// still getting up
+	if (bIsCrouched || Physics != PHYS_Walking)
+		return;
+
+	bSlideSprintPending = false;
+	// The server's bSprintActive reaches the owner by itself, as when stamina runs out
+	if (Role == ROLE_Authority)
+		Sprinter.StartSprint();
+	else
+		Sprinter.PredictStartSprint();
+}
+
+/* Wall Running is commented out for now: a network client doesn't keep it through the replays of a correction, and others don't see it
+
+// Wall Running: a wall beside the player, or ahead to the side, tall enough to run along. Its normal and a point on it
+simulated function bool FindRunWall(vector Dir, out vector WallNormal, out vector WallSpot)
+{
+	local vector Side, Start, HitLocation, HitNormal, Up;
+	local vector Try[4];
+	local Actor HitActor;
+	local float Reach, BestDist, Dist;
+	local int i;
+	local bool bFound;
+
+	Side = Normal(Dir cross vect(0,0,1));
+	Try[0] = Side;
+	Try[1] = -Side;
+	Try[2] = Normal(Side + Dir);
+	Try[3] = Normal(Dir - Side);
+	Reach = CollisionRadius + WallRunReach;
+	BestDist = 100000;
+
+	// at three heights, as walls have trims, pipes and ledges that a single line would take for the wall
+	for (i = 0; i < 12; i++)
+	{
+		Start = Location + vect(0,0,1) * CollisionHeight * WallTraceHeight(i % 3);
+		HitActor = Trace(HitLocation, HitNormal, Start + Try[i / 3] * Reach, Start, false);
+		if (HitActor == None || !(HitActor.bWorldGeometry || Mover(HitActor) != None) || Abs(HitNormal.Z) > 0.3)
+			continue;
+		Dist = VSize(HitLocation - Start);
+		if (Dist < BestDist)
+		{
+			BestDist = Dist;
+			WallNormal = HitNormal;
+			WallSpot = HitLocation;
+			bFound = true;
+		}
+	}
+	if (!bFound)
+		return false;
+
+	// the wall has to reach up past the head as well, not be a rail at the waist
+	Up = Location + vect(0,0,1) * CollisionHeight * 0.8;
+	HitActor = Trace(HitLocation, HitNormal, Up - WallNormal * (Reach + 16), Up, false);
+	return HitActor != None && Abs(HitNormal.Z) <= 0.3;
+}
+
+// Heights of the wall checks, as shares of the collision height above the middle
+simulated final function float WallTraceHeight(int i)
+{
+	switch (i)
+	{
+		case 0:	return 0;
+		case 1:	return 0.6;
+	}
+	return -0.5;
+}
+
+simulated function bool CanStartWallRun()
+{
+	local vector H, Dir, N, Spot;
+	local float Speed;
+
+	if (!class'BallisticReplicationInfo'.default.bWallRun || PlayerController(Controller) == None || Sprinter == None)
+		return false;
+	if (PhysicsVolume.bWaterVolume || Controller.bDuck > 0)
+		return false;
+	if (!Sprinter.IsSprintActive() || Sprinter.Stamina < WallRunMinStamina)
+		return false;
+	// a long fall is past catching a wall
+	if (Velocity.Z < -WallRunMaxSink * 2)
+		return false;
+
+	H = Velocity;
+	H.Z = 0;
+	Speed = VSize(H);
+	if (Speed < WallRunMinSpeedPct * class'BallisticReplicationInfo'.default.PlayerGroundSpeed)
+		return false;
+	Dir = H / Speed;
+
+	// forward held, the way the player is going
+	if (VSize(MoveInput) < 1.0 || (Normal(MoveInput) dot Dir) < 0.3)
+		return false;
+
+	if (!FindRunWall(Dir, N, Spot))
+		return false;
+
+	// going along the wall, not into it
+	if (Abs(Dir dot N) > 0.8)
+		return false;
+	// what is left along the wall has to be enough
+	H -= (H dot N) * N;
+	if (VSize(H) < WallRunMinSpeedPct * class'BallisticReplicationInfo'.default.PlayerGroundSpeed)
+		return false;
+
+	// not the wall just run
+	if (bWallRunUsed && (N dot WallRunNormal) > 0.9 && Abs((Spot - WallRunSpot) dot N) < 24)
+		return false;
+
+	WallRunNormal = N;
+	WallRunSpot = Spot;
+	return true;
+}
+
+// Runs in every step of a fall, inside the engine's move (ModifyVelocity)
+simulated function TickWallRun(float DT, vector OldVelocity)
+{
+	if (bWallRunning)
+		RunAlongWall(DT, OldVelocity);
+	else if (CanStartWallRun())
+		StartWallRun(OldVelocity);
+}
+
+// The engine moves a falling pawn through a step at the velocity of the step's middle (NewFallVelocity is half a step),
+// then takes the step's change as twice what that changed, unless it rose against a fall. So for the step to end at
+// EndVel, this sets the middle. Setting EndVel itself would double the change: a jump caught at the wall turned into a fall
+simulated final function SetFallVelocity(vector OldVel, vector EndVel)
+{
+	local vector MidVel;
+
+	MidVel = (OldVel + EndVel) * 0.5;
+	if (MidVel.Z < OldVel.Z || OldVel.Z >= 0)
+		Velocity = MidVel;
+	else
+		Velocity = EndVel;
+}
+
+simulated function StartWallRun(vector OldVelocity)
+{
+	local vector H;
+
+	bWallRunning = true;
+	bWallRunUsed = true;
+	WallJumpGraceEnd = 0;
+	WallGapEnd = 0;
+	WallRunEndTime = MoveTime() + WallRunTime;
+
+	// along the wall only, and with not much of the jump's rise or the fall left
+	H = OldVelocity;
+	H.Z = 0;
+	H -= (H dot WallRunNormal) * WallRunNormal;
+	H.Z = FClamp(OldVelocity.Z, -40, WallRunMaxLift);
+	SetFallVelocity(OldVelocity, H);
+	Velocity -= WallRunNormal * WallRunStick;
+}
+
+simulated function bool StillOnWall()
+{
+	local vector Start, HitLocation, HitNormal;
+	local Actor HitActor;
+	local int i;
+
+	for (i = 0; i < 3; i++)
+	{
+		Start = Location + vect(0,0,1) * CollisionHeight * WallTraceHeight(i);
+		HitActor = Trace(HitLocation, HitNormal, Start - WallRunNormal * (CollisionRadius + WallRunReach), Start, false);
+		if (HitActor == None || Abs(HitNormal.Z) > 0.3 || (HitNormal dot WallRunNormal) < 0.7)
+			continue;
+		// a wall that curves is followed
+		WallRunNormal = HitNormal;
+		WallRunSpot = HitLocation;
+		return true;
+	}
+	return false;
+}
+
+simulated function RunAlongWall(float DT, vector OldVelocity)
+{
+	local vector Along, EndVel;
+	local float EndZ, MinSpeed;
+
+	// Over when time or stamina run out, on crouch, with the keys let go or turned off the wall,
+	// when something throws the runner off, or when the wall ends
+	if (MoveTime() >= WallRunEndTime || Sprinter == None || Sprinter.Stamina <= 0 || Controller == None || Controller.bDuck > 0
+		|| VSize(MoveInput) < 1.0 || (Normal(MoveInput) dot WallRunNormal) > 0.5 || (OldVelocity dot WallRunNormal) > 150)
+	{
+		EndWallRun(false);
+		return;
+	}
+
+	// past a short gap in the wall the run goes on, past a longer one it is over
+	if (StillOnWall())
+		WallGapEnd = 0;
+	else if (WallGapEnd == 0)
+		WallGapEnd = MoveTime() + WallRunGapTime;
+	else if (MoveTime() >= WallGapEnd)
+	{
+		EndWallRun(false);
+		return;
+	}
+
+	Along = OldVelocity;
+	Along.Z = 0;
+	Along -= (Along dot WallRunNormal) * WallRunNormal;
+	MinSpeed = WallRunMinSpeedPct * class'BallisticReplicationInfo'.default.PlayerGroundSpeed * 0.667;
+	if (VSize(Along) < MinSpeed || (Normal(MoveInput) dot Normal(Along)) < 0)
+	{
+		EndWallRun(false);
+		return;
+	}
+
+	// a third of gravity, down to the sink speed, and a little drag along the wall
+	EndZ = FMax(OldVelocity.Z + PhysicsVolume.Gravity.Z * WallRunGravityScale * DT, FMin(OldVelocity.Z, -WallRunMaxSink));
+	EndVel = Along * (1.0 - WallRunDrag * DT);
+	EndVel.Z = EndZ;
+	SetFallVelocity(OldVelocity, EndVel);
+	Velocity -= WallRunNormal * WallRunStick;
+}
+
+simulated function EndWallRun(bool bJumped)
+{
+	if (!bWallRunning)
+		return;
+	bWallRunning = false;
+	if (bJumped)
+		WallJumpGraceEnd = 0;
+	else
+		WallJumpGraceEnd = MoveTime() + WallJumpGraceTime;
+}
+
+simulated function bool CanWallJump()
+{
+	if (!class'BallisticReplicationInfo'.default.bWallRun || Physics != PHYS_Falling)
+		return false;
+	return bWallRunning || MoveTime() < WallJumpGraceEnd;
+}
+
+// Off the wall: away from it and up, keeping the speed along it
+function DoWallJump(bool bUpdating)
+{
+	local vector Along;
+
+	Along = Velocity;
+	Along.Z = 0;
+	Along -= (Along dot WallRunNormal) * WallRunNormal;
+	Velocity = Along + WallRunNormal * WallJumpPushPct * class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+	Velocity.Z = JumpZ * WallJumpZScale;
+
+	EndWallRun(true);
+	WallJumpGraceEnd = 0;
+
+	if (Role == ROLE_Authority)
+	{
+		if ((Level.Game != None) && (Level.Game.GameDifficulty > 2))
+			MakeNoise(0.1 * Level.Game.GameDifficulty);
+		if (bCountJumps && Inventory != None)
+			Inventory.OwnerEvent('Jumped');
+	}
+	if (!bUpdating)
+	{
+		PlayOwnedSound(GetSound(EST_Jump), SLOT_Pain, GruntVolume,,GruntRadius);
+		PlayDoubleJump();
+	}
+}
+
+// Stamina on the wall, used up on each machine for itself like a sprint's, and the owner's view tilt
+simulated function TickWallRunStamina(float DT)
+{
+	local vector X, Y, Z;
+	local float Target, Step;
+
+	if (bWallRunning && Sprinter != None)
+	{
+		Sprinter.Stamina = FMax(0, Sprinter.Stamina - Sprinter.StaminaDrainRate * WallRunStaminaScale * DT);
+		Sprinter.DelayRecharge();
+	}
+
+	if (Level.NetMode == NM_DedicatedServer || !IsLocallyControlled())
+	{
+		ViewRollAmount = 0;
+		return;
+	}
+
+	// the head leans away from the wall
+	Target = 0;
+	if (bWallRunning)
+	{
+		GetAxes(Rotation, X, Y, Z);
+		if ((WallRunNormal dot Y) < 0)
+			Target = -WallRunViewRoll;
+		else
+			Target = WallRunViewRoll;
+	}
+	Step = WallRunViewRoll * 5.0 * DT;
+	if (ViewRollAmount < Target)
+		ViewRollAmount = FMin(ViewRollAmount + Step, Target);
+	else
+		ViewRollAmount = FMax(ViewRollAmount - Step, Target);
+}
+
+// The run animation the way the player goes along the wall, in place of the jump's
+simulated function TickWallRunAnim()
+{
+	local name Anim, CurAnim;
+	local float Frame, Rate;
+
+	if (Level.NetMode == NM_DedicatedServer || bPlayedDeath)
+		return;
+
+	if (bWallRunning)
+	{
+		Anim = MovementAnims[Get4WayDirection()];
+		if (Anim == '' || !HasAnim(Anim))
+			return;
+		GetAnimParams(0, CurAnim, Frame, Rate);
+		if (CurAnim != Anim)
+			LoopAnim(Anim, 1.1, 0.15);
+		bWallRunAnimating = true;
+		bWaitForAnim = true;
+	}
+	else if (bWallRunAnimating)
+	{
+		bWallRunAnimating = false;
+		bWaitForAnim = false;
+	}
+}
+*/
 
 // Slide animations. Every machine works them out for itself from bIsSliding,
 // so they don't depend on what the pawn's owner predicts or replays.
@@ -4830,6 +5362,30 @@ defaultproperties
 	BackpedalScale=1.000000
 	DecelFriction=4
 	DecelStopSpeed=100
+
+	SlideJumpLandKeep=1.000000
+	SlideLandPushShare=0.333000
+	LandSlideFlatShare=0.300000
+	LandSlideFlatMin=350.000000
+	SlideSteerRate=70.000000
+	SlideSteerCost=0.120000
+	SlideBrakeFriction=1.000000
+	//WallRunTime=1.200000
+	//WallRunGravityScale=0.300000
+	//WallRunMaxSink=220.000000
+	//WallRunMaxLift=150.000000
+	//WallRunDrag=0.150000
+	//WallRunMinSpeedPct=0.900000
+	//WallRunStaminaScale=1.250000
+	//WallRunMinStamina=10.000000
+	//WallRunReach=18.000000
+	//WallRunStick=40.000000
+	//WallJumpPushPct=0.800000
+	//WallJumpZScale=0.900000
+	//WallJumpGraceTime=0.200000
+	//WallRunGapTime=0.150000
+	//WallRunViewRoll=1456
+
 	RagdollLifeSpan=20.000000
 
 // the default value of this variable is used by C++ to work out move animation rates.
