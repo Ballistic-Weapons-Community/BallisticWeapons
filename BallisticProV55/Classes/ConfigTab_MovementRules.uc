@@ -437,7 +437,7 @@ defaultproperties
 		ComponentWidth=0.175000
 		Caption="Slide Jumps"
 		OnCreateComponent=cb_SlideJumpC.InternalOnCreateComponent
-		Hint="Jumping out of a slide keeps its speed and goes full height. A slide from any landing goes on with the speed you land with, no new push."
+		Hint="Jumping out of a slide keeps its speed and goes full height. A slide from any landing keeps the speed you land with, plus a small push."
 		WinTop=0.550000
 		WinLeft=0.520000
 		WinWidth=0.460000
