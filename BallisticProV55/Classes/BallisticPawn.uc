@@ -211,6 +211,7 @@ var() float WallRunStick;			// ...speed toward the wall that keeps the runner on
 var() float WallJumpPushPct;		// ...speed away from the wall a wall jump gives, as a share of the style's ground speed
 var() float WallJumpZScale;			// ...upward speed of a wall jump, as a share of JumpZ
 var() float WallJumpGraceTime;		// ...a jump this soon after falling off a wall still kicks off it
+var() float WallRunGapTime;			// ...how long the run goes on past a gap in the wall: a column, a doorway's edge
 var() int   WallRunViewRoll;		// ...first person view tilt away from the wall, in rotator units
 
 var bool	bSlideJumping;			// This fall began in a slide (Slide Jumps)
@@ -224,6 +225,7 @@ var vector	WallRunSpot;			// A point on that wall
 var bool	bWallRunUsed;			// A wall has been run since landing. That one can't be run again until the player lands or runs another
 var float	WallRunEndTime;			// MoveTime at which the run is over
 var float	WallJumpGraceEnd;		// MoveTime until which a jump still kicks off the wall just left
+var float	WallGapEnd;				// MoveTime at which a run that has lost the wall is over, 0 while it has it
 var bool	bWallRunAnimating;		// Wall run animation playing on this machine
 var float	ViewRollAmount;			// Owner's first person view: tilt from a wall run, eased toward its target
 
@@ -4881,7 +4883,7 @@ simulated function TickSlideSprint()
 // Wall Running: a wall beside the player, or ahead to the side, tall enough to run along. Its normal and a point on it
 simulated function bool FindRunWall(vector Dir, out vector WallNormal, out vector WallSpot)
 {
-	local vector Side, End, HitLocation, HitNormal, Up;
+	local vector Side, Start, HitLocation, HitNormal, Up;
 	local vector Try[4];
 	local Actor HitActor;
 	local float Reach, BestDist, Dist;
@@ -4896,13 +4898,14 @@ simulated function bool FindRunWall(vector Dir, out vector WallNormal, out vecto
 	Reach = CollisionRadius + WallRunReach;
 	BestDist = 100000;
 
-	for (i = 0; i < 4; i++)
+	// at three heights, as walls have trims, pipes and ledges that a single line would take for the wall
+	for (i = 0; i < 12; i++)
 	{
-		End = Location + Try[i] * Reach;
-		HitActor = Trace(HitLocation, HitNormal, End, Location, false);
+		Start = Location + vect(0,0,1) * CollisionHeight * WallTraceHeight(i % 3);
+		HitActor = Trace(HitLocation, HitNormal, Start + Try[i / 3] * Reach, Start, false);
 		if (HitActor == None || !(HitActor.bWorldGeometry || Mover(HitActor) != None) || Abs(HitNormal.Z) > 0.3)
 			continue;
-		Dist = VSize(HitLocation - Location);
+		Dist = VSize(HitLocation - Start);
 		if (Dist < BestDist)
 		{
 			BestDist = Dist;
@@ -4918,6 +4921,17 @@ simulated function bool FindRunWall(vector Dir, out vector WallNormal, out vecto
 	Up = Location + vect(0,0,1) * CollisionHeight * 0.8;
 	HitActor = Trace(HitLocation, HitNormal, Up - WallNormal * (Reach + 16), Up, false);
 	return HitActor != None && Abs(HitNormal.Z) <= 0.3;
+}
+
+// Heights of the wall checks, as shares of the collision height above the middle
+simulated final function float WallTraceHeight(int i)
+{
+	switch (i)
+	{
+		case 0:	return 0;
+		case 1:	return 0.6;
+	}
+	return -0.5;
 }
 
 simulated function bool CanStartWallRun()
@@ -4996,6 +5010,7 @@ simulated function StartWallRun(vector OldVelocity)
 	bWallRunning = true;
 	bWallRunUsed = true;
 	WallJumpGraceEnd = 0;
+	WallGapEnd = 0;
 	WallRunEndTime = MoveTime() + WallRunTime;
 
 	// along the wall only, and with not much of the jump's rise or the fall left
@@ -5009,16 +5024,22 @@ simulated function StartWallRun(vector OldVelocity)
 
 simulated function bool StillOnWall()
 {
-	local vector HitLocation, HitNormal;
+	local vector Start, HitLocation, HitNormal;
 	local Actor HitActor;
+	local int i;
 
-	HitActor = Trace(HitLocation, HitNormal, Location - WallRunNormal * (CollisionRadius + WallRunReach), Location, false);
-	if (HitActor == None || Abs(HitNormal.Z) > 0.3 || (HitNormal dot WallRunNormal) < 0.7)
-		return false;
-	// a wall that curves is followed
-	WallRunNormal = HitNormal;
-	WallRunSpot = HitLocation;
-	return true;
+	for (i = 0; i < 3; i++)
+	{
+		Start = Location + vect(0,0,1) * CollisionHeight * WallTraceHeight(i);
+		HitActor = Trace(HitLocation, HitNormal, Start - WallRunNormal * (CollisionRadius + WallRunReach), Start, false);
+		if (HitActor == None || Abs(HitNormal.Z) > 0.3 || (HitNormal dot WallRunNormal) < 0.7)
+			continue;
+		// a wall that curves is followed
+		WallRunNormal = HitNormal;
+		WallRunSpot = HitLocation;
+		return true;
+	}
+	return false;
 }
 
 simulated function RunAlongWall(float DT, vector OldVelocity)
@@ -5029,8 +5050,18 @@ simulated function RunAlongWall(float DT, vector OldVelocity)
 	// Over when time or stamina run out, on crouch, with the keys let go or turned off the wall,
 	// when something throws the runner off, or when the wall ends
 	if (MoveTime() >= WallRunEndTime || Sprinter == None || Sprinter.Stamina <= 0 || Controller == None || Controller.bDuck > 0
-		|| VSize(MoveInput) < 1.0 || (Normal(MoveInput) dot WallRunNormal) > 0.5 || (OldVelocity dot WallRunNormal) > 150
-		|| !StillOnWall())
+		|| VSize(MoveInput) < 1.0 || (Normal(MoveInput) dot WallRunNormal) > 0.5 || (OldVelocity dot WallRunNormal) > 150)
+	{
+		EndWallRun(false);
+		return;
+	}
+
+	// past a short gap in the wall the run goes on, past a longer one it is over
+	if (StillOnWall())
+		WallGapEnd = 0;
+	else if (WallGapEnd == 0)
+		WallGapEnd = MoveTime() + WallRunGapTime;
+	else if (MoveTime() >= WallGapEnd)
 	{
 		EndWallRun(false);
 		return;
@@ -5303,6 +5334,7 @@ defaultproperties
 	WallJumpPushPct=0.800000
 	WallJumpZScale=0.900000
 	WallJumpGraceTime=0.200000
+	WallRunGapTime=0.150000
 	WallRunViewRoll=1456
 
 	RagdollLifeSpan=20.000000
