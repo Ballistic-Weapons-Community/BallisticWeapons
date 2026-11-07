@@ -70,7 +70,8 @@ simulated function BringUp(optional Weapon PrevWeapon)
 simulated function Notify_CockStart()
 {
 	if (ReloadState == RS_None)	return;
-		ReloadState = RS_Cocking;
+	PlayPawnCockingInReload();
+	ReloadState = RS_Cocking;
 	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
 }
 

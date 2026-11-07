@@ -71,7 +71,8 @@ simulated function BringUp(optional Weapon PrevWeapon)
 simulated function Notify_CockStart()
 {
 	if (ReloadState == RS_None)	return;
-		ReloadState = RS_Cocking;
+	PlayPawnCockingInReload();
+	ReloadState = RS_Cocking;
 	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
 }
 
@@ -372,7 +373,8 @@ simulated function PlayShovelLoop()
 		ReloadAnim = 'ReloadLoop5';
 	
 	SafePlayAnim(ReloadAnim, ReloadAnimRate, 0.0, , "RELOAD");
-	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
+	// The server's, which goes to everybody: the player's own call here was the only one ever seen
+	if (Role == ROLE_Authority && BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
 		if (Instigator.IsA('BallisticPawn'))
 			Instigator.SetAnimAction('Shovel');
 }

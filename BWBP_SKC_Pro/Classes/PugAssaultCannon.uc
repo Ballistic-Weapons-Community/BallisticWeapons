@@ -172,6 +172,8 @@ simulated function Notify_CockStart()
 			Grenades--;
 	}*/
 	
+	// The cocking in ReloadEmpty
+	PlayPawnCockingInReload();
 	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
 }
 

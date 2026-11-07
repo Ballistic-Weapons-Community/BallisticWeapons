@@ -41,6 +41,8 @@ class BallisticPawn extends xPawn;
 #EXEC OBJ LOAD File="BallisticThird.ukx"
 
 var	bool				            bResetAnimationAction;
+var	bool							bCockAfterSwitch;		// The weapon switch's draw cocks the gun: the cocking follows the switch
+var	bool							bShovelAlt;				// Server: the last shell went as ShovelAlt
 
 var globalconfig	bool	        bLocalDisableAnimation;
 var 				bool	        bDisablePawnAnimation;
@@ -1091,16 +1093,32 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 	}
 }
 
+// A draw with the cocking in it (the weapon's CockSelectAnim) shows the cocking after the switch, as a draw and a
+// cocking of its own do. That pullout plays only on the player's own machine, so the server asks the weapon
+function PlayWeaponSwitch(Weapon NewWeapon)
+{
+	if (BallisticWeapon(NewWeapon) != None && BallisticWeapon(NewWeapon).CocksInBringUp())
+		SetAnimAction('Weapon_SwitchCock');
+	else
+		SetAnimAction('Weapon_Switch');
+}
+
 simulated event SetAnimAction(name NewAction)
 {
 	// A slide only holds the movement animations back. See TickSlideAnim
     if (!bWaitForAnim || bSlideAnimating)
     {
 	    AnimAction = NewAction;
-		if ( AnimAction == 'Weapon_Switch' )
+		// Weapon_SwitchCock: a draw that cocks the gun (see PlayWeaponSwitch), the cocking plays when the switch ends.
+		// Cleared when the cocking ends, or the next such draw was never sent (the engine clears an action named as
+		// the animation it plays, Weapon_Switch, when that ends, but not this one)
+		if ( AnimAction == 'Weapon_Switch' || AnimAction == 'Weapon_SwitchCock' )
         {
             AnimBlendParams(1, 1.0, 0.0, 0.2, FireRootBone);
-            PlayAnim(NewAction,, 0.0, 1);
+            PlayAnim('Weapon_Switch',, 0.0, 1);
+			bCockAfterSwitch = (AnimAction == 'Weapon_SwitchCock');
+			if (bCockAfterSwitch)
+				bResetAnimationAction = True;
 			return;
         }
 		// Special animations for Ballistic Weapons.
@@ -1125,13 +1143,23 @@ simulated event SetAnimAction(name NewAction)
 			bResetAnimationAction=True;
 			return;
 		}
-		if (AnimAction == 'Shovel' && HasAnim('Reload_ShovelBottom'))
+		// A shell going in. The action was cleared here at once, so the server never sent it and other players saw
+		// one shell (the reload's own animation) for the whole reload. Each shell has to differ from the one before
+		// to be sent: the server names every second one ShovelAlt
+		if ((AnimAction == 'Shovel' || AnimAction == 'ShovelAlt') && HasAnim('Reload_ShovelBottom'))
 		{
+			if (Role == ROLE_Authority)
+			{
+				bShovelAlt = !bShovelAlt;
+				if (bShovelAlt)
+					AnimAction = 'ShovelAlt';
+				else
+					AnimAction = 'Shovel';
+			}
 			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
 			PlayAnim('Reload_ShovelBottom', 1, 0.25, 1);
 			FireState=FS_PlayOnce;
-			AnimAction = '';
-			//bResetAnimationAction=True;
+			bResetAnimationAction=True;
 			return;
 		}
 		if (AnimAction == 'CockGun' && HasAnim(CockingAnim))
@@ -1171,7 +1199,7 @@ simulated event SetAnimAction(name NewAction)
 			return;
 		}
 		// Still here with one of these: the pawn's mesh doesn't have the animation. Don't fall through to playing the action's own name
-		if (AnimAction == 'MeleeStrike' || AnimAction == 'Shovel' || AnimAction == 'CockGun' || AnimAction == 'WeaponSpecial' || AnimAction == 'Stagger')
+		if (AnimAction == 'MeleeStrike' || AnimAction == 'Shovel' || AnimAction == 'ShovelAlt' || AnimAction == 'CockGun' || AnimAction == 'WeaponSpecial' || AnimAction == 'Stagger')
 		{
 			AnimAction = '';
 			return;
@@ -1360,7 +1388,21 @@ simulated function AnimEnd(int Channel)
     if (Channel == 1)
     {
 		GetAnimParams(1, anim, frame, rate);
-		
+
+		// The weapon switch ended and the draw cocks the gun. CockingAnim is the new weapon's by now: its attachment
+		// came with the switch
+		if (bCockAfterSwitch)
+		{
+			bCockAfterSwitch = false;
+			if (anim == 'Weapon_Switch' && CockingAnim != '' && HasAnim(CockingAnim))
+			{
+				AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
+				PlayAnim(CockingAnim, CockAnimRate, 0.25, 1);
+				FireState = FS_PlayOnce;
+				return;
+			}
+		}
+
 		if (IdleWeaponAnim == IdleRifleAnim && FireState != FS_Looping)
 		{
 			LoopAnim(IdleWeaponAnim,, 0.2, 1);
