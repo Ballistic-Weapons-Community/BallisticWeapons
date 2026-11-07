@@ -242,6 +242,7 @@ var bool  bSlideAnimating;        // slide animations are playing on this machin
 var bool  bSlideWaitingStart;     // waiting for start anim to finish
 // A sequence name is looked up in the model's own animations before the linked BallisticThird ones,
 // so these must not be names a model already has: the stock female and Juggernaut sets have SlideF/L/R/B
+// Indexed by Get4WayDirection: 0 forward, 1 back, 2 left, 3 right (the order of MovementAnims)
 var 	name 		SlideAnims[4]; 
 var 	name 		SlideStartAnims[4]; 
 var 	name 		SlideEndAnims[4]; 
@@ -4814,18 +4815,19 @@ defaultproperties
 	BackSlidePowerScale=0.60
 	BackMaxSlideSpeedScale=0.75
 	BackSlideDotThreshold=-0.25
+	// In the order of Get4WayDirection: forward, back, left, right
 	SlideAnims(0)="SlideFLoop"
-	SlideAnims(1)="SlideLLoop"
-	SlideAnims(2)="SlideRLoop"
-	SlideAnims(3)="SlideBLoop"
+	SlideAnims(1)="SlideBLoop"
+	SlideAnims(2)="SlideLLoop"
+	SlideAnims(3)="SlideRLoop"
 	SlideStartAnims(0)="SlideFStart"
-	SlideStartAnims(1)="SlideLStart"
-	SlideStartAnims(2)="SlideRStart"
-	SlideStartAnims(3)="SlideBStart"
+	SlideStartAnims(1)="SlideBStart"
+	SlideStartAnims(2)="SlideLStart"
+	SlideStartAnims(3)="SlideRStart"
 	SlideEndAnims(0)="SlideFEnd"
-	SlideEndAnims(1)="SlideLEnd"
-	SlideEndAnims(2)="SlideREnd"
-	SlideEndAnims(3)="SlideBEnd"
+	SlideEndAnims(1)="SlideBEnd"
+	SlideEndAnims(2)="SlideLEnd"
+	SlideEndAnims(3)="SlideREnd"
 	//ControllerClass=Class'BallisticProV55.BallisticBot'
 	Begin Object Class=KarmaParamsSkel Name=PawnKParams
 		KConvulseSpacing=(Max=2.200000)
