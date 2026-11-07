@@ -41,6 +41,7 @@ class BallisticPawn extends xPawn;
 #EXEC OBJ LOAD File="BallisticThird.ukx"
 
 var	bool				            bResetAnimationAction;
+var	bool							bCockAfterSwitch;		// The weapon switch's draw cocks the gun: the cocking follows the switch
 
 var globalconfig	bool	        bLocalDisableAnimation;
 var 				bool	        bDisablePawnAnimation;
@@ -1089,16 +1090,30 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 	}
 }
 
+// A draw with the cocking in it (the weapon's CockSelectAnim) shows the cocking after the switch, as a draw and a
+// cocking of its own do. That pullout plays only on the player's own machine, so the server asks the weapon
+function PlayWeaponSwitch(Weapon NewWeapon)
+{
+	if (BallisticWeapon(NewWeapon) != None && BallisticWeapon(NewWeapon).CocksInBringUp())
+		SetAnimAction('Weapon_SwitchCock');
+	else
+		SetAnimAction('Weapon_Switch');
+}
+
 simulated event SetAnimAction(name NewAction)
 {
 	// A slide only holds the movement animations back. See TickSlideAnim
     if (!bWaitForAnim || bSlideAnimating)
     {
 	    AnimAction = NewAction;
-		if ( AnimAction == 'Weapon_Switch' )
+		// Weapon_SwitchCock: a draw that cocks the gun (see PlayWeaponSwitch), the cocking plays when the switch ends.
+		// Cleared once the animations end, as the other actions are, or the next switch the same was never sent
+		if ( AnimAction == 'Weapon_Switch' || AnimAction == 'Weapon_SwitchCock' )
         {
             AnimBlendParams(1, 1.0, 0.0, 0.2, FireRootBone);
-            PlayAnim(NewAction,, 0.0, 1);
+            PlayAnim('Weapon_Switch',, 0.0, 1);
+			bCockAfterSwitch = (AnimAction == 'Weapon_SwitchCock');
+			bResetAnimationAction = True;
 			return;
         }
 		// Special animations for Ballistic Weapons.
@@ -1358,7 +1373,21 @@ simulated function AnimEnd(int Channel)
     if (Channel == 1)
     {
 		GetAnimParams(1, anim, frame, rate);
-		
+
+		// The weapon switch ended and the draw cocks the gun. CockingAnim is the new weapon's by now: its attachment
+		// came with the switch
+		if (bCockAfterSwitch)
+		{
+			bCockAfterSwitch = false;
+			if (anim == 'Weapon_Switch' && CockingAnim != '' && HasAnim(CockingAnim))
+			{
+				AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
+				PlayAnim(CockingAnim, CockAnimRate, 0.25, 1);
+				FireState = FS_PlayOnce;
+				return;
+			}
+		}
+
 		if (IdleWeaponAnim == IdleRifleAnim && FireState != FS_Looping)
 		{
 			LoopAnim(IdleWeaponAnim,, 0.2, 1);

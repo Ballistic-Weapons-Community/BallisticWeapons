@@ -143,6 +143,9 @@ simulated function Notify_CockStart()
 		PlayOwnedSound(ClipHitSound.Sound,ClipHitSound.Slot,ClipHitSound.Volume,ClipHitSound.bNoOverride,ClipHitSound.Radius,ClipHitSound.Pitch,ClipHitSound.bAtten);
 	else
 		PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
+	// The reload's end takes the place of a cocking the gun needed
+	if (bNeedCock)
+		PlayPawnCockingInReload();
 	bGunCocked=true;
 	bNeedCock=false;
 }

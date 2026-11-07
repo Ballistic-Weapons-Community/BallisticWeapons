@@ -1734,6 +1734,7 @@ simulated function Notify_ClipOut()
 simulated function Notify_CockStart()
 {
 	if (ReloadState == RS_None && !bNeedCock)	return;
+	PlayPawnCockingInReload();
 	ReloadState = RS_Cocking;
 	class'BUtil'.static.PlayFullSound(self, CockSound, true);
 }
@@ -3228,12 +3229,8 @@ simulated function CommonCockGun(optional byte Type)
 	if (bNonCocking || ReloadState == RS_Cocking || bPreventReload) //Azarael - G5 fix
 		return;
 	if (Role == ROLE_Authority)
-	{
 		bServerReloading=true;
-		if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).CockingAnim != '')
-			if (Instigator.IsA('BallisticPawn'))
-				Instigator.SetAnimAction('CockGun');
-	}
+	PlayPawnCocking();
 	// Asked here, before the state says nothing but "cocking": PlayCocking looked at the state for this and
 	// so never found a reload
 	bReloadCocking = (Type == 2 || ReloadState != RS_None);
@@ -3243,6 +3240,34 @@ simulated function CommonCockGun(optional byte Type)
 	for (m=0; m < NUM_FIRE_MODES; m++)
 		if (BFireMode[m] != None)
 			BFireMode[m].CockingGun(Type);
+}
+
+// The cocking in third person. The server tells the pawn, whose AnimAction goes to everybody, the gun's own player
+// included
+simulated final function PlayPawnCocking()
+{
+	if (Role == ROLE_Authority && Instigator != None && Instigator.IsA('BallisticPawn')
+		&& BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).CockingAnim != '')
+		Instigator.SetAnimAction('CockGun');
+}
+
+// A reload animation that works the action itself (most ReloadEmpty animations, a shovel end with the pump) cocks
+// the gun at its Notify_CockStart, without CommonCockGun: third person showed the reload and never the cocking.
+// Called by the notify before the state turns to cocking. Not for a cocking already under way, nor for a pullout
+// or a fire animation with the cocking in it (the pullout plays only on the player's own machine, the fire
+// animations have third person fire animations of their own)
+simulated final function PlayPawnCockingInReload()
+{
+	if (ReloadState != RS_None && ReloadState != RS_Cocking && ReloadState != RS_GearSwitch)
+		PlayPawnCocking();
+}
+
+// Whether this bring up plays the pullout with the cocking in it (CockSelectAnim), which cocks the gun. Asked by
+// BringUp, and by the pawn on the server when it plays the third person weapon switch: that pullout plays only on
+// the player's own machine, so its cocking notify never tells the pawn
+simulated function bool CocksInBringUp()
+{
+	return bNeedCock && MagAmmo > 0 && HasAnim(CockSelectAnim);
 }
 //---------------------------------------------------------------------------
 // END WEAPON COCKING
@@ -4123,14 +4148,14 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
         if (Instigator.IsLocallyControlled())
         {
-			if (bNeedCock && MagAmmo > 0 && HasAnim(CockSelectAnim)) 
+			if (CocksInBringUp())
 				PlayAnim(CockSelectAnim, CockSelectAnimRate, 0.0);
             else if (HasAnim(SelectAnim))
                 PlayAnim(SelectAnim, SelectAnimRate, 0.0);
 		}
         ClientState = WS_BringUp;
 	}
-	if (bNeedCock && MagAmmo > 0 && HasAnim(CockSelectAnim)) 
+	if (CocksInBringUp())
 		BringUpTime = CockingBringUpTime;
 	else BringUpTime = default.BringUpTime;
 	
