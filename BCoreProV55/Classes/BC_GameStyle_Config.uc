@@ -48,7 +48,7 @@ var() config bool			bSlideJump;		// Jumping out of a slide keeps its speed and f
 var() config bool			bLandIntoSlide;		// Landing with crouch held turns the fall into slide speed: along a downhill slope, and a little on flat ground after a long drop
 var() config bool			bSlideSteering;		// The movement keys bend a slide's path a little, and the back key brakes it
 var() config bool			bSlideToSprint;		// Letting go of crouch in a slide with the sprint key held goes straight into a sprint
-var() config bool			bWallRun;		// Jumping at a wall from a sprint runs along it for a moment on stamina. Jump again to kick off it
+//var() config bool			bWallRun;		// Jumping at a wall from a sprint runs along it for a moment on stamina. Jump again to kick off it
 var() config float			PlayerStrafeScale;
 var() config float			PlayerBackpedalScale;
 var() config float			PlayerGroundSpeed;
@@ -107,7 +107,7 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 	rep.bLandIntoSlide = default.bLandIntoSlide;
 	rep.bSlideSteering = default.bSlideSteering;
 	rep.bSlideToSprint = default.bSlideToSprint;
-	rep.bWallRun = default.bWallRun;
+	//rep.bWallRun = default.bWallRun;
     rep.PlayerStrafeScale 			= default.PlayerStrafeScale;
 	rep.PlayerBackpedalScale 		= default.PlayerBackpedalScale;
 	rep.PlayerGroundSpeed 			= default.PlayerGroundSpeed;

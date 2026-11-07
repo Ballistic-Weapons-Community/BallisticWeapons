@@ -19,7 +19,7 @@ var automated moNumericEdit     ne_StaminaChargeRate;		// Stamina Charge Rate
 var automated moFloatEdit       fe_InitSpeedFactor;			// Speed During Sprint
 var automated moFloatEdit       fe_JumpDrain;			    // Jump Drain Factor
 var automated moFloatEdit       fe_StaminaRechargeDelay;	// Stamina Recharge Delay
-var automated moCheckBox        cb_WallRun;					// Wall Running
+//var automated moCheckBox        cb_WallRun;					// Wall Running
 var automated moCheckBox        cb_SlideJump;				// Slide Jumps
 var automated moCheckBox        cb_LandIntoSlide;			// Land Into Slides
 var automated moCheckBox        cb_SlideSteering;			// Slide Steering
@@ -56,7 +56,7 @@ function LoadSettings()
     	fe_StaminaRechargeDelay.SetValue(game_style.default.StaminaRechargeDelay);
 		cb_FireEndsSprint.Checked(game_style.default.bFireEndsSprint);
 		cb_SightsEndSprint.Checked(game_style.default.bSightsEndSprint);
-		cb_WallRun.Checked(game_style.default.bWallRun);
+		//cb_WallRun.Checked(game_style.default.bWallRun);
 		cb_SlideJump.Checked(game_style.default.bSlideJump);
 		cb_LandIntoSlide.Checked(game_style.default.bLandIntoSlide);
 		cb_SlideSteering.Checked(game_style.default.bSlideSteering);
@@ -83,7 +83,7 @@ function LoadSettings()
 		fe_StaminaRechargeDelay.SetValue(fixed_style.default.StaminaRechargeDelay);
 		cb_FireEndsSprint.Checked(fixed_style.default.bFireEndsSprint);
 		cb_SightsEndSprint.Checked(fixed_style.default.bSightsEndSprint);
-		cb_WallRun.Checked(fixed_style.default.bWallRun);
+		//cb_WallRun.Checked(fixed_style.default.bWallRun);
 		cb_SlideJump.Checked(fixed_style.default.bSlideJump);
 		cb_LandIntoSlide.Checked(fixed_style.default.bLandIntoSlide);
 		cb_SlideSteering.Checked(fixed_style.default.bSlideSteering);
@@ -106,8 +106,8 @@ function UpdateRows()
 	SetRowEnabled(cb_SightsEndSprint, bSprint);
 	SetRowEnabled(ne_StaminaDrainRate, bSprint);
 	SetRowEnabled(fe_InitSpeedFactor, bSprint);
-	// a wall run starts from a sprint
-	SetRowEnabled(cb_WallRun, bSprint);
+	// a wall run starts from a sprint (commented out)
+	//SetRowEnabled(cb_WallRun, bSprint);
 	SetRowEnabled(cb_SlideJump, bSlide);
 	SetRowEnabled(cb_LandIntoSlide, bSlide);
 	SetRowEnabled(cb_SlideSteering, bSlide);
@@ -149,7 +149,7 @@ function DefaultSettings()
     fe_StaminaRechargeDelay.SetValue(1.5);
 	cb_FireEndsSprint.Checked(false);
 	cb_SightsEndSprint.Checked(false);
-	cb_WallRun.Checked(false);
+	//cb_WallRun.Checked(false);
 	cb_SlideJump.Checked(false);
 	cb_LandIntoSlide.Checked(false);
 	cb_SlideSteering.Checked(false);
@@ -185,7 +185,7 @@ function SaveSettings()
     	game_style.default.JumpDrain 		= fe_JumpDrain.GetValue();
 		game_style.default.bFireEndsSprint 		= cb_FireEndsSprint.IsChecked();
 		game_style.default.bSightsEndSprint 	= cb_SightsEndSprint.IsChecked();
-		game_style.default.bWallRun = cb_WallRun.IsChecked();
+		//game_style.default.bWallRun = cb_WallRun.IsChecked();
 		game_style.default.bSlideJump = cb_SlideJump.IsChecked();
 		game_style.default.bLandIntoSlide = cb_LandIntoSlide.IsChecked();
 		game_style.default.bSlideSteering = cb_SlideSteering.IsChecked();
@@ -421,17 +421,17 @@ defaultproperties
      End Object
      fe_StaminaRechargeDelay=moFloatEdit'fe_StaminaRechargeDelayC'
 
-	Begin Object Class=moCheckBox Name=cb_WallRunC
-		ComponentWidth=0.175000
-		Caption="Wall Running"
-		OnCreateComponent=cb_WallRunC.InternalOnCreateComponent
-		Hint="Jump at a wall from a sprint to run along it for a moment, using stamina. Jump again to kick off it."
-		WinTop=0.450000
-		WinLeft=0.020000
-		WinWidth=0.460000
-		WinHeight=0.040000
-	End Object
-	cb_WallRun=moCheckBox'cb_WallRunC'
+	//Begin Object Class=moCheckBox Name=cb_WallRunC
+		//ComponentWidth=0.175000
+		//Caption="Wall Running"
+		//OnCreateComponent=cb_WallRunC.InternalOnCreateComponent
+		//Hint="Jump at a wall from a sprint to run along it for a moment, using stamina. Jump again to kick off it."
+		//WinTop=0.450000
+		//WinLeft=0.020000
+		//WinWidth=0.460000
+		//WinHeight=0.040000
+	//End Object
+	//cb_WallRun=moCheckBox'cb_WallRunC'
 
 	Begin Object Class=moCheckBox Name=cb_SlideJumpC
 		ComponentWidth=0.175000

@@ -1024,9 +1024,9 @@ simulated event PlayerCalcView(out actor ViewActor, out vector CameraLocation, o
 
     Super.PlayerCalcView(ViewActor, CameraLocation, CameraRotation);
 
-	// A wall run tilts the first person view away from the wall. Only the view: aim goes by Rotation
-	if (!bBehindView && ViewTarget == Pawn && BallisticPawn(Pawn) != None && BallisticPawn(Pawn).ViewRollAmount != 0)
-		CameraRotation.Roll += BallisticPawn(Pawn).ViewRollAmount;
+	// A wall run tilts the first person view away from the wall. Only the view: aim goes by Rotation (wall running is commented out)
+	//if (!bBehindView && ViewTarget == Pawn && BallisticPawn(Pawn) != None && BallisticPawn(Pawn).ViewRollAmount != 0)
+		//CameraRotation.Roll += BallisticPawn(Pawn).ViewRollAmount;
 }
 
 //===========================================================================
@@ -1609,9 +1609,9 @@ state PlayerWalking
         OldAccel = Pawn.Acceleration;
         if ( Pawn.Acceleration != NewAccel )
 			Pawn.Acceleration = NewAccel;
-		// In the air the engine scales Acceleration down for the move, to nothing beside a wall. A wall run needs the keys
-		if (BallisticPawn(Pawn) != None)
-			BallisticPawn(Pawn).MoveInput = NewAccel;
+		// In the air the engine scales Acceleration down for the move, to nothing beside a wall. A wall run needs the keys (commented out with it)
+		//if (BallisticPawn(Pawn) != None)
+			//BallisticPawn(Pawn).MoveInput = NewAccel;
 		if ( bDoubleJump && (bUpdating || Pawn.CanDoubleJump()) )
 			Pawn.DoDoubleJump(bUpdating);
         else if ( bPressedJump )

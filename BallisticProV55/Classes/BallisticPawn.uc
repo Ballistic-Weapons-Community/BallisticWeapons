@@ -191,7 +191,7 @@ var float SlideStopSpeed;		 // Speed below which sliding stops
 var float MaxSlideSpeed;		// Maximum speed during sliding
 
 // Movement prototypes. Each is a game style rule (BallisticReplicationInfo), off unless a server switches it on.
-// Made to try the feel offline first: a network client doesn't yet keep the wall run through the replays of a correction
+// Wall Running is commented out for now: a network client doesn't keep it through the replays of a correction, and others don't see it
 var() float SlideJumpLandKeep;		// Slide Jumps: share of the speed landed with that a slide started from the landing keeps
 var() float SlideLandPushShare;		// ...share of the slide's push (SlidePower) it gets on top, scaled by stamina like any slide's
 var() float LandSlideFlatShare;		// Land Into Slides: share of the fall speed above LandSlideFlatMin a landing on flat ground turns into slide speed
@@ -199,36 +199,36 @@ var() float LandSlideFlatMin;		// ...fall speed up to which a flat landing gives
 var() float SlideSteerRate;			// Slide Steering: degrees a second a slide turns at most toward the movement keys
 var() float SlideSteerCost;			// ...share of its speed a slide loses for each 90 degrees it is turned
 var() float SlideBrakeFriction;		// ...extra friction while the back key is held against the slide
-var() float WallRunTime;			// Wall Running: longest run along one wall, in seconds
-var() float WallRunGravityScale;	// ...share of gravity felt on the wall
-var() float WallRunMaxSink;			// ...fastest the runner slides down the wall
-var() float WallRunMaxLift;			// ...fastest upward speed kept when the run starts
-var() float WallRunDrag;			// ...share of its speed the run loses each second
-var() float WallRunMinSpeedPct;		// ...speed along the wall needed to start, as a share of the style's ground speed. The run ends below 2/3 of it
-var() float WallRunStaminaScale;	// ...stamina used on the wall, as a share of what a sprint uses
-var() float WallRunMinStamina;		// ...stamina needed to start a run
-var() float WallRunReach;			// ...how far beyond the collision cylinder a wall is found
-var() float WallRunStick;			// ...speed toward the wall that keeps the runner on it
-var() float WallJumpPushPct;		// ...speed away from the wall a wall jump gives, as a share of the style's ground speed
-var() float WallJumpZScale;			// ...upward speed of a wall jump, as a share of JumpZ
-var() float WallJumpGraceTime;		// ...a jump this soon after falling off a wall still kicks off it
-var() float WallRunGapTime;			// ...how long the run goes on past a gap in the wall: a column, a doorway's edge
-var() int   WallRunViewRoll;		// ...first person view tilt away from the wall, in rotator units
+//var() float WallRunTime;			// Wall Running: longest run along one wall, in seconds
+//var() float WallRunGravityScale;	// ...share of gravity felt on the wall
+//var() float WallRunMaxSink;			// ...fastest the runner slides down the wall
+//var() float WallRunMaxLift;			// ...fastest upward speed kept when the run starts
+//var() float WallRunDrag;			// ...share of its speed the run loses each second
+//var() float WallRunMinSpeedPct;		// ...speed along the wall needed to start, as a share of the style's ground speed. The run ends below 2/3 of it
+//var() float WallRunStaminaScale;	// ...stamina used on the wall, as a share of what a sprint uses
+//var() float WallRunMinStamina;		// ...stamina needed to start a run
+//var() float WallRunReach;			// ...how far beyond the collision cylinder a wall is found
+//var() float WallRunStick;			// ...speed toward the wall that keeps the runner on it
+//var() float WallJumpPushPct;		// ...speed away from the wall a wall jump gives, as a share of the style's ground speed
+//var() float WallJumpZScale;			// ...upward speed of a wall jump, as a share of JumpZ
+//var() float WallJumpGraceTime;		// ...a jump this soon after falling off a wall still kicks off it
+//var() float WallRunGapTime;			// ...how long the run goes on past a gap in the wall: a column, a doorway's edge
+//var() int   WallRunViewRoll;		// ...first person view tilt away from the wall, in rotator units
 
 var bool	bSlideJumping;			// This fall began in a slide (Slide Jumps)
 var float	SlideChainEnd;			// MoveTime until which a slide that starts goes on from a landing: a small push, no cooldown
 var bool	bSlideSprintPending;	// A slide just ended with the sprint key held: the sprint starts once the player is up (Slide To Sprint)
 var float	SlideSprintPendingEnd;	// Level.TimeSeconds after which that is given up
-var vector	MoveInput;				// The movement keys' acceleration for this move, as the controller set it. In the air the engine scales Acceleration down, to nothing near a wall
-var bool	bWallRunning;			// Running along a wall
-var vector	WallRunNormal;			// Normal of the wall being run, or of the last one run since landing
-var vector	WallRunSpot;			// A point on that wall
-var bool	bWallRunUsed;			// A wall has been run since landing. That one can't be run again until the player lands or runs another
-var float	WallRunEndTime;			// MoveTime at which the run is over
-var float	WallJumpGraceEnd;		// MoveTime until which a jump still kicks off the wall just left
-var float	WallGapEnd;				// MoveTime at which a run that has lost the wall is over, 0 while it has it
-var bool	bWallRunAnimating;		// Wall run animation playing on this machine
-var float	ViewRollAmount;			// Owner's first person view: tilt from a wall run, eased toward its target
+//var vector	MoveInput;				// The movement keys' acceleration for this move, as the controller set it. In the air the engine scales Acceleration down, to nothing near a wall
+//var bool	bWallRunning;			// Running along a wall
+//var vector	WallRunNormal;			// Normal of the wall being run, or of the last one run since landing
+//var vector	WallRunSpot;			// A point on that wall
+//var bool	bWallRunUsed;			// A wall has been run since landing. That one can't be run again until the player lands or runs another
+//var float	WallRunEndTime;			// MoveTime at which the run is over
+//var float	WallJumpGraceEnd;		// MoveTime until which a jump still kicks off the wall just left
+//var float	WallGapEnd;				// MoveTime at which a run that has lost the wall is over, 0 while it has it
+//var bool	bWallRunAnimating;		// Wall run animation playing on this machine
+//var float	ViewRollAmount;			// Owner's first person view: tilt from a wall run, eased toward its target
 
 // Slide prediction
 struct SlideState				// Slide state that the engine neither rewinds nor corrects
@@ -777,9 +777,9 @@ event Landed(vector HitNormal)
 	// is never set while airborne (dodge requires crouch=false to initiate).
 	// Force crouch intent here so the native Crouch() fires next tick, and
 	// let that crouch start a slide off the momentum kept from the fall.
-	EndWallRun(false);
-	bWallRunUsed = false;
-	WallJumpGraceEnd = 0;
+	//EndWallRun(false);
+	//bWallRunUsed = false;
+	//WallJumpGraceEnd = 0;
 
 	// Slide Jumps: a slide that starts from a landing goes on with the speed landed with, for as long as a slide can
 	// still start off the landing's momentum. That goes for any landing, so a plain jump gets no more than a slide jump
@@ -2186,9 +2186,9 @@ simulated event Tick(float DT)
 	super.Tick(DT);
 
 	TickSlideAnim();
-	TickWallRunAnim();
-	if (bWallRunning || ViewRollAmount != 0)
-		TickWallRunStamina(DT);
+	//TickWallRunAnim();
+	//if (bWallRunning || ViewRollAmount != 0)
+		//TickWallRunStamina(DT);
 	if (bSlideSprintPending)
 		TickSlideSprint();
 
@@ -3413,7 +3413,7 @@ function bool Dodge(eDoubleClickDir DoubleClickMove)
 
         if (Role == ROLE_Authority)
             Inventory.OwnerEvent('Dodged');
-		EndWallRun(true);
+		//EndWallRun(true);
         return true;
     }
 
@@ -3456,12 +3456,12 @@ function bool DoJump( bool bUpdating )
         JumpZ = BallisticWeapon(Weapon).GetModifiedJumpZ(self);
 
 	// Wall Running: a jump on the wall, or just after falling off it, kicks off it
-	if (CanWallJump())
-	{
-		DoWallJump(bUpdating);
-		JumpZ = OldJumpZ;
-		return true;
-	}
+	//if (CanWallJump())
+	//{
+		//DoWallJump(bUpdating);
+		//JumpZ = OldJumpZ;
+		//return true;
+	//}
 
     if ( !bUpdating && CanDoubleJump() && (Abs(Velocity.Z) < 100) && IsLocallyControlled() )
     {
@@ -4171,10 +4171,10 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 		if (Physics == PHYS_Falling)
 		{
 			TrackSlideMomentum(Velocity);
-			TickWallRun(DeltaTime, OldVelocity);
+			//TickWallRun(DeltaTime, OldVelocity);
 		}
-		else if (bWallRunning)
-			EndWallRun(false);
+		//else if (bWallRunning)
+		//	EndWallRun(false);
 	}
 
 	if (Bot(Controller) != None)
@@ -4881,6 +4881,8 @@ simulated function TickSlideSprint()
 		Sprinter.PredictStartSprint();
 }
 
+/* Wall Running is commented out for now: a network client doesn't keep it through the replays of a correction, and others don't see it
+
 // Wall Running: a wall beside the player, or ahead to the side, tall enough to run along. Its normal and a point on it
 simulated function bool FindRunWall(vector Dir, out vector WallNormal, out vector WallSpot)
 {
@@ -5193,6 +5195,7 @@ simulated function TickWallRunAnim()
 		bWaitForAnim = false;
 	}
 }
+*/
 
 // Slide animations. Every machine works them out for itself from bIsSliding,
 // so they don't depend on what the pawn's owner predicts or replays.
@@ -5323,21 +5326,21 @@ defaultproperties
 	SlideSteerRate=70.000000
 	SlideSteerCost=0.120000
 	SlideBrakeFriction=1.000000
-	WallRunTime=1.200000
-	WallRunGravityScale=0.300000
-	WallRunMaxSink=220.000000
-	WallRunMaxLift=150.000000
-	WallRunDrag=0.150000
-	WallRunMinSpeedPct=0.900000
-	WallRunStaminaScale=1.250000
-	WallRunMinStamina=10.000000
-	WallRunReach=18.000000
-	WallRunStick=40.000000
-	WallJumpPushPct=0.800000
-	WallJumpZScale=0.900000
-	WallJumpGraceTime=0.200000
-	WallRunGapTime=0.150000
-	WallRunViewRoll=1456
+	//WallRunTime=1.200000
+	//WallRunGravityScale=0.300000
+	//WallRunMaxSink=220.000000
+	//WallRunMaxLift=150.000000
+	//WallRunDrag=0.150000
+	//WallRunMinSpeedPct=0.900000
+	//WallRunStaminaScale=1.250000
+	//WallRunMinStamina=10.000000
+	//WallRunReach=18.000000
+	//WallRunStick=40.000000
+	//WallJumpPushPct=0.800000
+	//WallJumpZScale=0.900000
+	//WallJumpGraceTime=0.200000
+	//WallRunGapTime=0.150000
+	//WallRunViewRoll=1456
 
 	RagdollLifeSpan=20.000000
 
