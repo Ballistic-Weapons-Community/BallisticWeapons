@@ -810,7 +810,18 @@ final simulated function float GetCrosshairChaos()
     else
         ShownChaos = NewChaos;
 
-    return FClamp(ShownChaos + ((1 - (360/Params.ChaosSpeedThreshold) * NewChaos) * FireChaos), 0, 1);
+    return FClamp(ShownChaos * GetSightsUnboundAim() + ((1 - (360/Params.ChaosSpeedThreshold) * NewChaos) * FireChaos), 0, 1);
+}
+
+// How much of the aim's wander still moves the shot away from where the player looks, from 1 at the hip down to
+// 1 - ADSViewBindFactor with the sights up (none by default: the view follows the aim, so the shot always lands in the
+// middle of the sights). Only what the sights add to the view binding counts, so the hip crosshair stays as it was
+final simulated function float GetSightsUnboundAim()
+{
+    if (Params == None || Params.ViewBindFactor >= 1 || ViewBindFactor <= Params.ViewBindFactor)
+        return 1;
+
+    return FClamp((1 - ViewBindFactor) / (1 - Params.ViewBindFactor), 0, 1);
 }
 
 final simulated function float CalcCrosshairOffset(Canvas C)
