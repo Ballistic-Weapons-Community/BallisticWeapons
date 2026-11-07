@@ -373,7 +373,8 @@ simulated function PlayShovelLoop()
 		ReloadAnim = 'ReloadLoop5';
 	
 	SafePlayAnim(ReloadAnim, ReloadAnimRate, 0.0, , "RELOAD");
-	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
+	// The server's, which goes to everybody: the player's own call here was the only one ever seen
+	if (Role == ROLE_Authority && BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
 		if (Instigator.IsA('BallisticPawn'))
 			Instigator.SetAnimAction('Shovel');
 }

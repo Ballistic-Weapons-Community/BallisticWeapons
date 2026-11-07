@@ -42,6 +42,7 @@ class BallisticPawn extends xPawn;
 
 var	bool				            bResetAnimationAction;
 var	bool							bCockAfterSwitch;		// The weapon switch's draw cocks the gun: the cocking follows the switch
+var	bool							bShovelAlt;				// Server: the last shell went as ShovelAlt
 
 var globalconfig	bool	        bLocalDisableAnimation;
 var 				bool	        bDisablePawnAnimation;
@@ -1107,13 +1108,15 @@ simulated event SetAnimAction(name NewAction)
     {
 	    AnimAction = NewAction;
 		// Weapon_SwitchCock: a draw that cocks the gun (see PlayWeaponSwitch), the cocking plays when the switch ends.
-		// Cleared once the animations end, as the other actions are, or the next switch the same was never sent
+		// Cleared when the cocking ends, or the next such draw was never sent (the engine clears an action named as
+		// the animation it plays, Weapon_Switch, when that ends, but not this one)
 		if ( AnimAction == 'Weapon_Switch' || AnimAction == 'Weapon_SwitchCock' )
         {
             AnimBlendParams(1, 1.0, 0.0, 0.2, FireRootBone);
             PlayAnim('Weapon_Switch',, 0.0, 1);
 			bCockAfterSwitch = (AnimAction == 'Weapon_SwitchCock');
-			bResetAnimationAction = True;
+			if (bCockAfterSwitch)
+				bResetAnimationAction = True;
 			return;
         }
 		// Special animations for Ballistic Weapons.
@@ -1138,13 +1141,23 @@ simulated event SetAnimAction(name NewAction)
 			bResetAnimationAction=True;
 			return;
 		}
-		if (AnimAction == 'Shovel' && HasAnim('Reload_ShovelBottom'))
+		// A shell going in. The action was cleared here at once, so the server never sent it and other players saw
+		// one shell (the reload's own animation) for the whole reload. Each shell has to differ from the one before
+		// to be sent: the server names every second one ShovelAlt
+		if ((AnimAction == 'Shovel' || AnimAction == 'ShovelAlt') && HasAnim('Reload_ShovelBottom'))
 		{
+			if (Role == ROLE_Authority)
+			{
+				bShovelAlt = !bShovelAlt;
+				if (bShovelAlt)
+					AnimAction = 'ShovelAlt';
+				else
+					AnimAction = 'Shovel';
+			}
 			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
 			PlayAnim('Reload_ShovelBottom', 1, 0.25, 1);
 			FireState=FS_PlayOnce;
-			AnimAction = '';
-			//bResetAnimationAction=True;
+			bResetAnimationAction=True;
 			return;
 		}
 		if (AnimAction == 'CockGun' && HasAnim(CockingAnim))
@@ -1184,7 +1197,7 @@ simulated event SetAnimAction(name NewAction)
 			return;
 		}
 		// Still here with one of these: the pawn's mesh doesn't have the animation. Don't fall through to playing the action's own name
-		if (AnimAction == 'MeleeStrike' || AnimAction == 'Shovel' || AnimAction == 'CockGun' || AnimAction == 'WeaponSpecial' || AnimAction == 'Stagger')
+		if (AnimAction == 'MeleeStrike' || AnimAction == 'Shovel' || AnimAction == 'ShovelAlt' || AnimAction == 'CockGun' || AnimAction == 'WeaponSpecial' || AnimAction == 'Stagger')
 		{
 			AnimAction = '';
 			return;
