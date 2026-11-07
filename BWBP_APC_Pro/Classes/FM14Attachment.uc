@@ -22,6 +22,7 @@ defaultproperties
      MeleeStrikeAnim="Melee_swing"
      SingleFireAnim="RifleHip_FireCock"
      SingleAimedFireAnim="RifleAimed_FireCock"
+     RelativeLocation=(X=5.000000,Z=6.000000)
      Mesh=SkeletalMesh'BWBP_OP_Anim.FM14_TPm'
      DrawScale=0.180000
 }
