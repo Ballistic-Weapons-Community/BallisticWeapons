@@ -4975,6 +4975,20 @@ simulated function TickWallRun(float DT, vector OldVelocity)
 		StartWallRun(OldVelocity);
 }
 
+// The engine moves a falling pawn through a step at the velocity of the step's middle (NewFallVelocity is half a step),
+// then takes the step's change as twice what that changed, unless it rose against a fall. So for the step to end at
+// EndVel, this sets the middle. Setting EndVel itself would double the change: a jump caught at the wall turned into a fall
+simulated final function SetFallVelocity(vector OldVel, vector EndVel)
+{
+	local vector MidVel;
+
+	MidVel = (OldVel + EndVel) * 0.5;
+	if (MidVel.Z < OldVel.Z || OldVel.Z >= 0)
+		Velocity = MidVel;
+	else
+		Velocity = EndVel;
+}
+
 simulated function StartWallRun(vector OldVelocity)
 {
 	local vector H;
@@ -4988,8 +5002,9 @@ simulated function StartWallRun(vector OldVelocity)
 	H = OldVelocity;
 	H.Z = 0;
 	H -= (H dot WallRunNormal) * WallRunNormal;
-	Velocity = H - WallRunNormal * WallRunStick;
-	Velocity.Z = FClamp(OldVelocity.Z, -40, WallRunMaxLift);
+	H.Z = FClamp(OldVelocity.Z, -40, WallRunMaxLift);
+	SetFallVelocity(OldVelocity, H);
+	Velocity -= WallRunNormal * WallRunStick;
 }
 
 simulated function bool StillOnWall()
@@ -5008,7 +5023,7 @@ simulated function bool StillOnWall()
 
 simulated function RunAlongWall(float DT, vector OldVelocity)
 {
-	local vector Along, MidVel;
+	local vector Along, EndVel;
 	local float EndZ, MinSpeed;
 
 	// Over when time or stamina run out, on crouch, with the keys let go or turned off the wall,
@@ -5031,12 +5046,12 @@ simulated function RunAlongWall(float DT, vector OldVelocity)
 		return;
 	}
 
-	// The engine moves a falling pawn at the velocity of the middle of the step, and takes twice what that
-	// changed as the change for the whole step, so this sets the middle of what the step should do
-	EndZ = FMax(OldVelocity.Z + PhysicsVolume.Gravity.Z * WallRunGravityScale * DT, -WallRunMaxSink);
-	MidVel = Along * (1.0 - WallRunDrag * DT * 0.5);
-	MidVel.Z = (OldVelocity.Z + EndZ) * 0.5;
-	Velocity = MidVel - WallRunNormal * WallRunStick;
+	// a third of gravity, down to the sink speed, and a little drag along the wall
+	EndZ = FMax(OldVelocity.Z + PhysicsVolume.Gravity.Z * WallRunGravityScale * DT, FMin(OldVelocity.Z, -WallRunMaxSink));
+	EndVel = Along * (1.0 - WallRunDrag * DT);
+	EndVel.Z = EndZ;
+	SetFallVelocity(OldVelocity, EndVel);
+	Velocity -= WallRunNormal * WallRunStick;
 }
 
 simulated function EndWallRun(bool bJumped)
