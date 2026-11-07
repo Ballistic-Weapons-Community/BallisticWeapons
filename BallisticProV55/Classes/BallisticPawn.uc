@@ -5268,6 +5268,28 @@ defaultproperties
 	BackpedalScale=1.000000
 	DecelFriction=4
 	DecelStopSpeed=100
+
+	SlideJumpLandKeep=0.900000
+	LandSlideFlatShare=0.300000
+	LandSlideFlatMin=350.000000
+	SlideSteerRate=70.000000
+	SlideSteerCost=0.120000
+	SlideBrakeFriction=1.000000
+	WallRunTime=1.200000
+	WallRunGravityScale=0.300000
+	WallRunMaxSink=220.000000
+	WallRunMaxLift=150.000000
+	WallRunDrag=0.150000
+	WallRunMinSpeedPct=0.900000
+	WallRunStaminaScale=1.250000
+	WallRunMinStamina=10.000000
+	WallRunReach=18.000000
+	WallRunStick=40.000000
+	WallJumpPushPct=0.800000
+	WallJumpZScale=0.900000
+	WallJumpGraceTime=0.200000
+	WallRunViewRoll=1456
+
 	RagdollLifeSpan=20.000000
 
 // the default value of this variable is used by C++ to work out move animation rates.
@@ -5294,27 +5316,6 @@ defaultproperties
 	BackSlidePowerScale=0.60
 	BackMaxSlideSpeedScale=0.75
 	BackSlideDotThreshold=-0.25
-
-	SlideJumpLandKeep=0.900000
-	LandSlideFlatShare=0.300000
-	LandSlideFlatMin=350.000000
-	SlideSteerRate=70.000000
-	SlideSteerCost=0.120000
-	SlideBrakeFriction=1.000000
-	WallRunTime=1.200000
-	WallRunGravityScale=0.300000
-	WallRunMaxSink=220.000000
-	WallRunMaxLift=150.000000
-	WallRunDrag=0.150000
-	WallRunMinSpeedPct=0.900000
-	WallRunStaminaScale=1.250000
-	WallRunMinStamina=10.000000
-	WallRunReach=18.000000
-	WallRunStick=40.000000
-	WallJumpPushPct=0.800000
-	WallJumpZScale=0.900000
-	WallJumpGraceTime=0.200000
-	WallRunViewRoll=1456
 	SlideAnims(0)="SlideF"
 	SlideAnims(1)="SlideL"
 	SlideAnims(2)="SlideR"
