@@ -483,7 +483,8 @@ defaultproperties
 
 	Begin Object Class=GUILabel Name=l_MovementLabel
 		Caption="Movement"
-		TextColor=(B=255,G=255,R=255)
+		TextAlign=TXTA_Center
+		TextColor=(B=0,G=180,R=255,A=255)
 		WinTop=0.050000
 		WinLeft=0.020000
 		WinWidth=0.460000
@@ -493,7 +494,8 @@ defaultproperties
 
 	Begin Object Class=GUILabel Name=l_SprintSlideLabel
 		Caption="Sprint & Slide"
-		TextColor=(B=255,G=255,R=255)
+		TextAlign=TXTA_Center
+		TextColor=(B=0,G=180,R=255,A=255)
 		WinTop=0.050000
 		WinLeft=0.520000
 		WinWidth=0.460000
