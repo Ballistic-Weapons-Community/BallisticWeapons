@@ -13,8 +13,8 @@ const COLOUR_EMPTY = 1;
 const COLOUR_COCKING = 2;
 const PREVIEW_GAP = 4;					// The Simple crosshair's gap at rest
 
-var automated moComboBox	co_Crosshairs, co_CrosshairAim, co_Colour, co_EmptyColour, co_CockingColour;
-var automated moCheckbox	ch_Crosshairdot, ch_Distance, ch_OneColour, ch_Warnings;
+var automated moComboBox	co_Crosshairs, co_Colour, co_EmptyColour, co_CockingColour;
+var automated moCheckbox	ch_FirstPersonAim, ch_Crosshairdot, ch_Distance, ch_OneColour, ch_Warnings;
 var automated moSlider		sl_GlobalScale, sl_CrossGrow, sl_Opacity, sl_Red, sl_Green, sl_Blue;
 var automated GUIImage		Img_BackShot, Box_Shot;
 var automated GUIButton		b_WeaponCrosshairs;
@@ -35,11 +35,6 @@ function InitializeConfigTab()
 	co_Crosshairs.AddItem("Graphical" ,,string(1));
 	co_Crosshairs.AddItem("UT2004" ,,string(2));
 	co_Crosshairs.ReadOnly(True);
-
-	co_CrosshairAim.AddItem("Off" ,,string(0));
-	co_CrosshairAim.AddItem("Third Person Only" ,,string(1));
-	co_CrosshairAim.AddItem("First and Third Person" ,,string(2));
-	co_CrosshairAim.ReadOnly(True);
 
 	AddPresets(co_Colour);
 	AddPresets(co_EmptyColour);
@@ -152,7 +147,7 @@ function LoadSettings()
 {
 	bSettingUp = true;
 	co_Crosshairs.SetIndex(class'BallisticWeapon'.default.CrosshairMode);
-	co_CrosshairAim.SetIndex(class'BC_CrosshairSettings'.default.CrosshairAim);
+	ch_FirstPersonAim.Checked(class'BC_CrosshairSettings'.default.CrosshairAim == 2);
 	ch_Crosshairdot.Checked(class'BallisticWeapon'.default.bDrawCrosshairDot);
 	ch_Distance.Checked(class'BC_CrosshairSettings'.default.bDistanceSize);
 	ch_OneColour.Checked(class'BC_CrosshairSettings'.default.bOneColour);
@@ -181,7 +176,11 @@ function SaveSettings()
 
 	ReadCustomColour();
 	Opacity = sl_Opacity.GetValue();
-	class'BC_CrosshairSettings'.default.CrosshairAim		= co_CrosshairAim.GetIndex();
+	// third person always follows the aim: the setting is only first person's (CHA_Always), kept as the old values
+	if (ch_FirstPersonAim.IsChecked())
+		class'BC_CrosshairSettings'.default.CrosshairAim	= 2;
+	else
+		class'BC_CrosshairSettings'.default.CrosshairAim	= 1;
 	class'BC_CrosshairSettings'.default.bDistanceSize		= ch_Distance.IsChecked();
 	class'BC_CrosshairSettings'.default.bOneColour			= ch_OneColour.IsChecked();
 	class'BC_CrosshairSettings'.default.bWarningColours		= ch_Warnings.IsChecked();
@@ -208,7 +207,7 @@ function DefaultSettings()
 {
 	bSettingUp = true;
 	co_Crosshairs.SetIndex(0);
-	co_CrosshairAim.SetIndex(1);
+	ch_FirstPersonAim.Checked(false);
 	ch_Crosshairdot.Checked(true);
 	ch_Distance.Checked(false);
 	ch_OneColour.Checked(false);
@@ -340,19 +339,19 @@ defaultproperties
 	End Object
 	co_Crosshairs=moComboBox'co_CrosshairCombo'
 
-	Begin Object Class=moComboBox Name=co_CrosshairAimCombo
+	Begin Object Class=moCheckBox Name=ch_FirstPersonAimCheck
 		ComponentJustification=TXTA_Left
-		CaptionWidth=0.550000
-		Caption="Crosshair Follows Aim"
-		OnCreateComponent=co_CrosshairAimCombo.InternalOnCreateComponent
+		CaptionWidth=0.900000
+		Caption="Crosshair Follows Aim In First Person"
+		OnCreateComponent=ch_FirstPersonAimCheck.InternalOnCreateComponent
 		IniOption="@Internal"
-		Hint="Whether the crosshair goes where a shot would land, following sway, recoil and the drop of a sprint. In third person the camera is off the line of fire, so Third Person Only shows what your shots would hit there. First and Third Person does the same in first person, if the server allows it."
+		Hint="The crosshair goes where a shot would land, following the gun's sway, recoil and the drop of a sprint, as it always does in third person (where the camera is beside your eyes). Off: it stays in the middle of the screen."
 		WinTop=0.085000
 		WinLeft=0.020000
 		WinWidth=0.470000
 		WinHeight=0.040000
 	End Object
-	co_CrosshairAim=moComboBox'co_CrosshairAimCombo'
+	ch_FirstPersonAim=moCheckBox'ch_FirstPersonAimCheck'
 
 	Begin Object Class=moCheckBox Name=ch_CrosshairdotCheck
 		ComponentJustification=TXTA_Left
