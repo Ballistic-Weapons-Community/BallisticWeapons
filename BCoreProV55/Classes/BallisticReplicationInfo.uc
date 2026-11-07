@@ -100,6 +100,11 @@ var bool					bFirstPersonCrosshairAim;	// Players may have the crosshair follow 
 // CROUCH SLIDING
 //=============================================================================
 var() config bool					bAllowCrouchSliding;		// Allows crouch sliding, pretty self explainatory 
+var bool					bSlideJump;		// Jumping out of a slide keeps its speed and full jump height. Landing with crouch held slides on, with no new push
+var bool					bLandIntoSlide;		// Landing with crouch held turns the fall into slide speed: along a downhill slope, and a little on flat ground after a long drop
+var bool					bSlideSteering;		// The movement keys bend a slide's path a little, and the back key brakes it
+var bool					bSlideToSprint;		// Letting go of crouch in a slide with the sprint key held goes straight into a sprint
+var bool					bWallRun;		// Jumping at a wall from a sprint runs along it for a moment on stamina. Jump again to kick off it
 
 //=============================================================================
 // HEALTH/ARMOR - NO REP
@@ -173,6 +178,11 @@ var struct MoveRep
 	var bool					bAllowDodging;				// Enables dodging.
 	var bool					bAllowDoubleJump;			// Enables double jump.
 	var() config bool			bAllowCrouchSliding;		// Allows crouch sliding, which is a sprinting mechanic that allows players to slide while crouching.
+	var bool					bSlideJump;
+	var bool					bLandIntoSlide;
+	var bool					bSlideSteering;
+	var bool					bSlideToSprint;
+	var bool					bWallRun;
 	var float					PlayerWalkSpeedFactor;
 	var float					PlayerCrouchSpeedFactor;
 	var float					PlayerAnimationGroundSpeed;
@@ -307,6 +317,11 @@ final function BindToReplication()
     MRep.bAllowDodging		            = bAllowDodging;
 	MRep.bAllowDoubleJump				= bAllowDoubleJump;
 	MRep.bAllowCrouchSliding			= bAllowCrouchSliding;
+	MRep.bSlideJump = bSlideJump;
+	MRep.bLandIntoSlide = bLandIntoSlide;
+	MRep.bSlideSteering = bSlideSteering;
+	MRep.bSlideToSprint = bSlideToSprint;
+	MRep.bWallRun = bWallRun;
     MRep.PlayerWalkSpeedFactor      	= PlayerWalkSpeedFactor;
 	MRep.PlayerCrouchSpeedFactor      	= PlayerCrouchSpeedFactor;
 	MRep.PlayerAnimationGroundSpeed		= PlayerAnimationGroundSpeed;
@@ -388,6 +403,11 @@ simulated final function BindFromReplication()
     bAllowDodging		            = MRep.bAllowDodging;
 	bAllowDoubleJump				= MRep.bAllowDoubleJump;
 	bAllowCrouchSliding				= MRep.bAllowCrouchSliding;
+	bSlideJump = MRep.bSlideJump;
+	bLandIntoSlide = MRep.bLandIntoSlide;
+	bSlideSteering = MRep.bSlideSteering;
+	bSlideToSprint = MRep.bSlideToSprint;
+	bWallRun = MRep.bWallRun;
     PlayerWalkSpeedFactor      		= MRep.PlayerWalkSpeedFactor;
 	PlayerCrouchSpeedFactor       	= MRep.PlayerCrouchSpeedFactor;
 	PlayerAnimationGroundSpeed		= MRep.PlayerAnimationGroundSpeed;
@@ -457,6 +477,11 @@ simulated final function BindDefaults()
     class.default.bAllowDodging		            = bAllowDodging;
 	class.default.bAllowDoubleJump				= bAllowDoubleJump;
 	class.default.bAllowCrouchSliding			= bAllowCrouchSliding;
+	class.default.bSlideJump = bSlideJump;
+	class.default.bLandIntoSlide = bLandIntoSlide;
+	class.default.bSlideSteering = bSlideSteering;
+	class.default.bSlideToSprint = bSlideToSprint;
+	class.default.bWallRun = bWallRun;
     class.default.PlayerWalkSpeedFactor      	= PlayerWalkSpeedFactor;
 	class.default.PlayerCrouchSpeedFactor       = PlayerCrouchSpeedFactor;
 	class.default.PlayerAnimationGroundSpeed	= PlayerAnimationGroundSpeed;

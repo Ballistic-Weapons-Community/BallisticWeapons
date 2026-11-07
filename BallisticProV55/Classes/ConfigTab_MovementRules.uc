@@ -19,6 +19,13 @@ var automated moNumericEdit     ne_StaminaChargeRate;		// Stamina Charge Rate
 var automated moFloatEdit       fe_InitSpeedFactor;			// Speed During Sprint
 var automated moFloatEdit       fe_JumpDrain;			    // Jump Drain Factor
 var automated moFloatEdit       fe_StaminaRechargeDelay;	// Stamina Recharge Delay
+var automated moCheckBox        cb_WallRun;					// Wall Running
+var automated moCheckBox        cb_SlideJump;				// Slide Jumps
+var automated moCheckBox        cb_LandIntoSlide;			// Land Into Slides
+var automated moCheckBox        cb_SlideSteering;			// Slide Steering
+var automated moCheckBox        cb_SlideToSprint;			// Sprint Out Of Slides
+var automated GUILabel          l_Movement;
+var automated GUILabel          l_SprintSlide;
 
 //==================================================================
 // Settings & Defaults
@@ -49,6 +56,11 @@ function LoadSettings()
     	fe_StaminaRechargeDelay.SetValue(game_style.default.StaminaRechargeDelay);
 		cb_FireEndsSprint.Checked(game_style.default.bFireEndsSprint);
 		cb_SightsEndSprint.Checked(game_style.default.bSightsEndSprint);
+		cb_WallRun.Checked(game_style.default.bWallRun);
+		cb_SlideJump.Checked(game_style.default.bSlideJump);
+		cb_LandIntoSlide.Checked(game_style.default.bLandIntoSlide);
+		cb_SlideSteering.Checked(game_style.default.bSlideSteering);
+		cb_SlideToSprint.Checked(game_style.default.bSlideToSprint);
 		UpdateRows();
 	}
 	else
@@ -71,23 +83,35 @@ function LoadSettings()
 		fe_StaminaRechargeDelay.SetValue(fixed_style.default.StaminaRechargeDelay);
 		cb_FireEndsSprint.Checked(fixed_style.default.bFireEndsSprint);
 		cb_SightsEndSprint.Checked(fixed_style.default.bSightsEndSprint);
+		cb_WallRun.Checked(fixed_style.default.bWallRun);
+		cb_SlideJump.Checked(fixed_style.default.bSlideJump);
+		cb_LandIntoSlide.Checked(fixed_style.default.bLandIntoSlide);
+		cb_SlideSteering.Checked(fixed_style.default.bSlideSteering);
+		cb_SlideToSprint.Checked(fixed_style.default.bSlideToSprint);
 		DisableStyleRows();
 	}
 }
 
-// Jumps and slides use stamina too, so only what a sprint alone uses goes with it
+// Jumps and slides use stamina too, so only what a sprint alone uses goes with it. The slide rules go with sliding
 function UpdateRows()
 {
-	local bool bSprint;
+	local bool bSprint, bSlide;
 
 	if (bRowsFixed)
 		return;
 
 	bSprint = cb_bUseSprint.IsChecked();
+	bSlide = cb_AllowCrouchSliding.IsChecked();
 	SetRowEnabled(cb_FireEndsSprint, bSprint);
 	SetRowEnabled(cb_SightsEndSprint, bSprint);
 	SetRowEnabled(ne_StaminaDrainRate, bSprint);
 	SetRowEnabled(fe_InitSpeedFactor, bSprint);
+	// a wall run starts from a sprint
+	SetRowEnabled(cb_WallRun, bSprint);
+	SetRowEnabled(cb_SlideJump, bSlide);
+	SetRowEnabled(cb_LandIntoSlide, bSlide);
+	SetRowEnabled(cb_SlideSteering, bSlide);
+	SetRowEnabled(cb_SlideToSprint, bSlide && bSprint);
 }
 
 function DefaultSettings()
@@ -125,6 +149,11 @@ function DefaultSettings()
     fe_StaminaRechargeDelay.SetValue(1.5);
 	cb_FireEndsSprint.Checked(false);
 	cb_SightsEndSprint.Checked(false);
+	cb_WallRun.Checked(false);
+	cb_SlideJump.Checked(false);
+	cb_LandIntoSlide.Checked(false);
+	cb_SlideSteering.Checked(false);
+	cb_SlideToSprint.Checked(false);
 	UpdateRows();
 }
 
@@ -156,6 +185,11 @@ function SaveSettings()
     	game_style.default.JumpDrain 		= fe_JumpDrain.GetValue();
 		game_style.default.bFireEndsSprint 		= cb_FireEndsSprint.IsChecked();
 		game_style.default.bSightsEndSprint 	= cb_SightsEndSprint.IsChecked();
+		game_style.default.bWallRun = cb_WallRun.IsChecked();
+		game_style.default.bSlideJump = cb_SlideJump.IsChecked();
+		game_style.default.bLandIntoSlide = cb_LandIntoSlide.IsChecked();
+		game_style.default.bSlideSteering = cb_SlideSteering.IsChecked();
+		game_style.default.bSlideToSprint = cb_SlideToSprint.IsChecked();
 
     	game_style.static.StaticSaveConfig();
 	}
@@ -171,8 +205,9 @@ defaultproperties
          Caption="Movement Speed"
          OnCreateComponent=ne_PlayerGroundSpeedC.InternalOnCreateComponent
          Hint="Player ground and air speed. 160 - 1000. 440 is UT2004 default."
-         WinTop=0.10000
-         WinLeft=0.250000
+         WinTop=0.100000
+         WinLeft=0.020000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      ne_PlayerGroundSpeed=moNumericEdit'ne_PlayerGroundSpeedC'
@@ -185,8 +220,9 @@ defaultproperties
          Caption="Acceleration Rate"
          OnCreateComponent=ne_PlayerAccelRateC.InternalOnCreateComponent
          Hint="Scales player acceleration. 1024 - 4096. UT2004 is 2048."
-         WinTop=0.15000
-         WinLeft=0.250000
+         WinTop=0.150000
+         WinLeft=0.020000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      ne_PlayerAccelRate=moNumericEdit'ne_PlayerAccelRateC'
@@ -196,8 +232,9 @@ defaultproperties
          Caption="Player Deceleration"
          OnCreateComponent=cb_bPlayerDecelerationC.InternalOnCreateComponent
          Hint="Players will decelerate gradually when movement stops."
-         WinTop=0.2000
-         WinLeft=0.250000
+         WinTop=0.200000
+         WinLeft=0.020000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      cb_bPlayerDeceleration=moCheckBox'cb_bPlayerDecelerationC'
@@ -211,7 +248,8 @@ defaultproperties
          OnCreateComponent=fe_PlayerStrafeScaleC.InternalOnCreateComponent
          Hint="Scale for strafe speed. 0.7 - 1."
          WinTop=0.250000
-         WinLeft=0.250000
+         WinLeft=0.020000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      fe_PlayerStrafeScale=moFloatEdit'fe_PlayerStrafeScaleC'
@@ -224,8 +262,9 @@ defaultproperties
          Caption="Backpedal Speed Multiplier"
          OnCreateComponent=fe_PlayerBackpedalScaleC.InternalOnCreateComponent
          Hint="Scale for backpedal speed. 0.5 - 1."
-         WinTop=0.30000
-         WinLeft=0.250000
+         WinTop=0.300000
+         WinLeft=0.020000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      fe_PlayerBackpedalScale=moFloatEdit'fe_PlayerBackpedalScaleC'
@@ -238,7 +277,8 @@ defaultproperties
          IniOption="@Internal"
          Hint="Enables dodging for all players."
          WinTop=0.350000
-         WinLeft=0.250000
+         WinLeft=0.020000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      ch_AllowDodging=moCheckBox'ch_AllowDodgingCheck'
@@ -250,8 +290,9 @@ defaultproperties
          OnCreateComponent=ch_AllowDoubleJumpCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Enables double jump."
-         WinTop=0.40000
-         WinLeft=0.250000
+         WinTop=0.400000
+         WinLeft=0.020000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      ch_AllowDoubleJump=moCheckBox'ch_AllowDoubleJumpCheck'
@@ -261,8 +302,10 @@ defaultproperties
         Caption="Enable Crouch Sliding"
         OnCreateComponent=cb_AllowCrouchSlidingC.InternalOnCreateComponent
         Hint="Enables crouch sliding."
-        WinTop=0.450000
-        WinLeft=0.250000
+        OnChange=ConfigTab_MovementRules.RowChanged
+        WinTop=0.500000
+        WinLeft=0.520000
+        WinWidth=0.460000
         WinHeight=0.040000
     End Object
     cb_AllowCrouchSliding=moCheckBox'cb_AllowCrouchSlidingC'
@@ -272,8 +315,9 @@ defaultproperties
          Caption="Enable Sprint"
          OnCreateComponent=cb_bUseSprintC.InternalOnCreateComponent
          Hint="Enables sprint."
-         WinTop=0.500000
-         WinLeft=0.250000
+         WinTop=0.100000
+         WinLeft=0.520000
+         WinWidth=0.460000
          WinHeight=0.040000
          OnChange=ConfigTab_MovementRules.RowChanged
      End Object
@@ -284,8 +328,9 @@ defaultproperties
          Caption="Fire Ends Sprint"
          OnCreateComponent=cb_FireEndsSprintC.InternalOnCreateComponent
          Hint="Pressing fire in a sprint ends the sprint, and the gun comes back quickly to shoot. Off: the gun fires from where the sprint holds it."
-         WinTop=0.550000
-         WinLeft=0.250000
+         WinTop=0.150000
+         WinLeft=0.520000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      cb_FireEndsSprint=moCheckBox'cb_FireEndsSprintC'
@@ -295,8 +340,9 @@ defaultproperties
          Caption="Sights End Sprint"
          OnCreateComponent=cb_SightsEndSprintC.InternalOnCreateComponent
          Hint="The sight key ends a sprint and the sights come up at once. Off: the sights do not come up until the sprint is over."
-         WinTop=0.600000
-         WinLeft=0.250000
+         WinTop=0.200000
+         WinLeft=0.520000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      cb_SightsEndSprint=moCheckBox'cb_SightsEndSprintC'
@@ -309,8 +355,9 @@ defaultproperties
          Caption="Stamina Drain % Per Second"
          OnCreateComponent=ne_StaminaDrainRateC.InternalOnCreateComponent
          Hint="Percentage of stamina to drain every second when sprinting."
-         WinTop=0.650000
-         WinLeft=0.250000
+         WinTop=0.250000
+         WinLeft=0.520000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      ne_StaminaDrainRate=moNumericEdit'ne_StaminaDrainRateC'
@@ -323,8 +370,9 @@ defaultproperties
          Caption="Stamina Regen % Per Second"
          OnCreateComponent=ne_StaminaChargeRateC.InternalOnCreateComponent
          Hint="Percentage of stamina to regenerate every second when not sprinting."
-         WinTop=0.700000
-         WinLeft=0.250000
+         WinTop=0.300000
+         WinLeft=0.520000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      ne_StaminaChargeRate=moNumericEdit'ne_StaminaChargeRateC'
@@ -337,8 +385,9 @@ defaultproperties
          Caption="Sprint Speed Multiplier"
          OnCreateComponent=fe_InitSpeedFactorC.InternalOnCreateComponent
          Hint="The speed multiplier during sprint."
-         WinTop=0.750000
-         WinLeft=0.250000
+         WinTop=0.350000
+         WinLeft=0.520000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      fe_InitSpeedFactor=moFloatEdit'fe_InitSpeedFactorC'
@@ -350,8 +399,9 @@ defaultproperties
          Caption="Jump/Slide Drain"
          OnCreateComponent=fe_JumpDrainC.InternalOnCreateComponent
          Hint="The amount of stamina we lose when we jump or slide."
-         WinTop=0.800000
-         WinLeft=0.250000
+         WinTop=0.400000
+         WinLeft=0.520000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      fe_JumpDrain=moFloatEdit'fe_JumpDrainC'
@@ -364,10 +414,90 @@ defaultproperties
          Caption="Stamina Recharge Delay"
          OnCreateComponent=fe_StaminaRechargeDelayC.InternalOnCreateComponent
          Hint="The delay before stamina starts to recharge."
-         WinTop=0.850000
-         WinLeft=0.250000
+         WinTop=0.450000
+         WinLeft=0.520000
+         WinWidth=0.460000
          WinHeight=0.040000
      End Object
      fe_StaminaRechargeDelay=moFloatEdit'fe_StaminaRechargeDelayC'
 
+	Begin Object Class=moCheckBox Name=cb_WallRunC
+		ComponentWidth=0.175000
+		Caption="Wall Running"
+		OnCreateComponent=cb_WallRunC.InternalOnCreateComponent
+		Hint="Jump at a wall from a sprint to run along it for a moment, using stamina. Jump again to kick off it."
+		WinTop=0.450000
+		WinLeft=0.020000
+		WinWidth=0.460000
+		WinHeight=0.040000
+	End Object
+	cb_WallRun=moCheckBox'cb_WallRunC'
+
+	Begin Object Class=moCheckBox Name=cb_SlideJumpC
+		ComponentWidth=0.175000
+		Caption="Slide Jumps"
+		OnCreateComponent=cb_SlideJumpC.InternalOnCreateComponent
+		Hint="Jumping out of a slide keeps its speed and goes full height. Land with crouch held and the slide goes on, with no new push."
+		WinTop=0.550000
+		WinLeft=0.520000
+		WinWidth=0.460000
+		WinHeight=0.040000
+	End Object
+	cb_SlideJump=moCheckBox'cb_SlideJumpC'
+
+	Begin Object Class=moCheckBox Name=cb_LandIntoSlideC
+		ComponentWidth=0.175000
+		Caption="Land Into Slides"
+		OnCreateComponent=cb_LandIntoSlideC.InternalOnCreateComponent
+		Hint="Landing with crouch held carries the fall into the slide: down a slope, or a little after a long drop."
+		WinTop=0.600000
+		WinLeft=0.520000
+		WinWidth=0.460000
+		WinHeight=0.040000
+	End Object
+	cb_LandIntoSlide=moCheckBox'cb_LandIntoSlideC'
+
+	Begin Object Class=moCheckBox Name=cb_SlideSteeringC
+		ComponentWidth=0.175000
+		Caption="Slide Steering"
+		OnCreateComponent=cb_SlideSteeringC.InternalOnCreateComponent
+		Hint="The movement keys bend a slide's path a little, for some of its speed. The back key held brakes it."
+		WinTop=0.650000
+		WinLeft=0.520000
+		WinWidth=0.460000
+		WinHeight=0.040000
+	End Object
+	cb_SlideSteering=moCheckBox'cb_SlideSteeringC'
+
+	Begin Object Class=moCheckBox Name=cb_SlideToSprintC
+		ComponentWidth=0.175000
+		Caption="Sprint Out Of Slides"
+		OnCreateComponent=cb_SlideToSprintC.InternalOnCreateComponent
+		Hint="Letting go of crouch in a slide with the sprint key held goes straight into a sprint."
+		WinTop=0.700000
+		WinLeft=0.520000
+		WinWidth=0.460000
+		WinHeight=0.040000
+	End Object
+	cb_SlideToSprint=moCheckBox'cb_SlideToSprintC'
+
+	Begin Object Class=GUILabel Name=l_MovementLabel
+		Caption="Movement"
+		TextColor=(B=255,G=255,R=255)
+		WinTop=0.050000
+		WinLeft=0.020000
+		WinWidth=0.460000
+		WinHeight=0.040000
+	End Object
+	l_Movement=GUILabel'l_MovementLabel'
+
+	Begin Object Class=GUILabel Name=l_SprintSlideLabel
+		Caption="Sprint & Slide"
+		TextColor=(B=255,G=255,R=255)
+		WinTop=0.050000
+		WinLeft=0.520000
+		WinWidth=0.460000
+		WinHeight=0.040000
+	End Object
+	l_SprintSlide=GUILabel'l_SprintSlideLabel'
 }
