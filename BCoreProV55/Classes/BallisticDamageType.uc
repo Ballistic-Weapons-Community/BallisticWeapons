@@ -65,11 +65,11 @@ var() bool	bUseMotionBlur;							// use motion blur effects for this DT
 //===================================================================================
 // FLASH
 //===================================================================================
-var globalconfig bool				bLessDisruptiveFlash; //Changes white blinding flashes to black
+var globalconfig bool				bLessDisruptiveFlash; // Dark Screen Flashes: the local player's screen flashes are black instead of coloured (BallisticPlayer.ClientFlash)
 var int								FlashThreshold;
 var vector 							FlashV;
 var float							FlashF;
-var vector 							AltFlashV;
+var vector 							AltFlashV;	// Not used any more: Dark Screen Flashes darkens FlashV itself, as long and as solid
 var float							AltFlashF;
 //===================================================================================
 // BLOCKING
@@ -411,13 +411,9 @@ static function class<Effects> GetPawnDamageEffect( vector HitLocation, float Da
 			DoBloodEffects(HitLocation, Damage, Momentum, Victim, bLowDetail);
 		if (Damage >= default.FlashThreshold)
 		{
+			// Runs on the server: the victim's own Dark Screen Flashes setting is applied on the victim's machine (BallisticPlayer.ClientFlash)
 			if (PlayerController(Victim.Controller) != None)
-			{
-				if (default.bLessDisruptiveFlash && default.AltFlashF != 0 /*&& default.AltFlashV != vect(0,0,0)*/)
-					PlayerController(Victim.Controller).ClientFlash(default.AltFlashF, default.AltFlashV);
-				else
-					PlayerController(Victim.Controller).ClientFlash(default.FlashF, default.FlashV);
-			}
+				PlayerController(Victim.Controller).ClientFlash(default.FlashF, default.FlashV);
 		}
 	}
 	return super.GetPawnDamageEffect(HitLocation, Damage, Momentum, Victim, bLowDetail);

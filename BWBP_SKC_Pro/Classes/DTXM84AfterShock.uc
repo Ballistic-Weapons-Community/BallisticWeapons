@@ -14,8 +14,6 @@ defaultproperties
      FlashThreshold=0
      FlashF=-1.250000
      FlashV=(X=1900.000000,Y=1900.000000,Z=2000.000000)
-     AltFlashF=-4.000000
-	 AltFlashV=(X=1.000000,Y=1.000000,Z=1200.000000)
      bDetonatesBombs=False
 	 bArmorStops=False
      DamageIdent="Grenade"
