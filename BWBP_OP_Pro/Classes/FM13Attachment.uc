@@ -200,6 +200,7 @@ defaultproperties
 	SingleAimedFireAnim="RifleAimed_FireCock"
 	ReloadAnimRate=1.000000
 	CockAnimRate=0.625000
+	RelativeLocation=(X=5.000000,Z=6.000000)
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FM13_TPm'
 	DrawScale=0.180000
 }
