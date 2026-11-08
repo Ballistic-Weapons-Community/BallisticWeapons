@@ -50,7 +50,7 @@ static function string GetString(
         KillerName = default.DMC $ default.SomeoneString $ default.Text;
     else
     {
-        if(RelatedPRI_2.Team == None)
+        if(RelatedPRI_1.Team == None)
             KillerName = default.DMC $ RelatedPRI_1.PlayerName $ default.Text;
         else if(RelatedPRI_1.Team.TeamIndex == 0)
             KillerName = default.Red $ RelatedPRI_1.PlayerName $ default.Text;
