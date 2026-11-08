@@ -12,6 +12,7 @@ class ConfigTab_VisualPrefs extends ConfigTabBase;
 var automated moCheckbox	ch_UseBrass, ch_ImpStay, ch_MSmoke, ch_MotionBlur;
 var automated moComboBox	co_WeaponDet, co_CamRate, co_EffectDet;
 var automated moFloatEdit	fl_BrassTime;
+var automated GUILabel		l_Detail, l_Effects, l_Heavy;	// section headings
 
 var			  int			OldWeaponDet;
 
@@ -91,15 +92,49 @@ function DefaultSettings()
 
 defaultproperties
 {
+	Begin Object Class=GUILabel Name=l_DetailLabel
+		Caption="Detail"
+		TextAlign=TXTA_Left
+		TextColor=(B=0,G=180,R=255,A=255)
+		TextFont="UT2MenuFont"
+		WinTop=0.080000
+		WinLeft=0.250000
+		WinWidth=0.500000
+		WinHeight=0.040000
+	End Object
+	l_Detail=GUILabel'BallisticProV55.ConfigTab_VisualPrefs.l_DetailLabel'
+	Begin Object Class=GUILabel Name=l_EffectsLabel
+		Caption="Effects"
+		TextAlign=TXTA_Left
+		TextColor=(B=0,G=180,R=255,A=255)
+		TextFont="UT2MenuFont"
+		WinTop=0.300000
+		WinLeft=0.250000
+		WinWidth=0.500000
+		WinHeight=0.040000
+	End Object
+	l_Effects=GUILabel'BallisticProV55.ConfigTab_VisualPrefs.l_EffectsLabel'
+	Begin Object Class=GUILabel Name=l_HeavyLabel
+		Caption="Heavy On Performance"
+		TextAlign=TXTA_Left
+		TextColor=(B=0,G=180,R=255,A=255)
+		TextFont="UT2MenuFont"
+		WinTop=0.470000
+		WinLeft=0.250000
+		WinWidth=0.500000
+		WinHeight=0.040000
+	End Object
+	l_Heavy=GUILabel'BallisticProV55.ConfigTab_VisualPrefs.l_HeavyLabel'
+
      Begin Object Class=moComboBox Name=co_WeaponDetCombo
          ComponentJustification=TXTA_Left
          CaptionWidth=0.550000
-         Caption="Weapon Detail"
+         Caption="Weapon Texture Detail"
          OnCreateComponent=co_WeaponDetCombo.InternalOnCreateComponent
          IniOption="@Internal"
          IniDefault="High"
          Hint="Choose the detail level for weapon textures. This should be set after changing the 'Character Detail' setting in the options menu as it will override this setting."
-         WinTop=0.10000
+         WinTop=0.130000
          WinLeft=0.250000
      End Object
      co_WeaponDet=moComboBox'co_WeaponDetCombo'
@@ -112,7 +147,7 @@ defaultproperties
          IniOption="@Internal"
          IniDefault="High"
          Hint="Choose the quality level for Ballistic effects. Remember, if the 'World Detail' setting is lower, it will affect the quality of BW effects."
-         WinTop=0.150000
+         WinTop=0.180000
          WinLeft=0.250000
      End Object
      co_EffectDet=moComboBox'co_EffectDetCombo'
@@ -120,11 +155,11 @@ defaultproperties
 	 Begin Object Class=moComboBox Name=co_CamRateCombo
          ComponentJustification=TXTA_Left
          CaptionWidth=0.550000
-         Caption="Camera Update Rate"
+         Caption="Gun Screen Update Rate"
          OnCreateComponent=co_CamRateCombo.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="How fast camera view screens like the M50's LCD should update."
-         WinTop=0.20000
+         WinTop=0.230000
          WinLeft=0.250000
      End Object
      co_CamRate=moComboBox'co_CamRateCombo'
@@ -136,7 +171,7 @@ defaultproperties
          OnCreateComponent=ch_UseBrassCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Allow weapons to spew out shell casings and similar effects."
-         WinTop=0.25000
+         WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
          OnChange=ConfigTab_VisualPrefs.RowChanged
@@ -148,11 +183,11 @@ defaultproperties
          MaxValue=100.000000
          ComponentJustification=TXTA_Left
          CaptionWidth=0.700000
-         Caption="Brass Life Scale [!]"
+         Caption="Brass Stay Time Scale"
          OnCreateComponent=fl_BrassTimeFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Scales the life time of ejected brass. 0 = Forever."
-         WinTop=0.30000
+         WinTop=0.520000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -165,7 +200,7 @@ defaultproperties
          OnCreateComponent=ch_MSmokeCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Enable muzzle smoke emitting when firing guns."
-         WinTop=0.35000
+         WinTop=0.400000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -174,11 +209,11 @@ defaultproperties
 	 Begin Object Class=moCheckBox Name=ch_ImpStayCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Permanent Impact Marks [!]"
+         Caption="Permanent Impact Marks"
          OnCreateComponent=ch_ImpStayCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Impact marks like bullet holes and explosion scorches stay forever. WARNING: This can kill performance on most machines!"
-         WinTop=0.40000
+         WinTop=0.570000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -187,11 +222,11 @@ defaultproperties
 	 Begin Object Class=moCheckBox Name=ch_MotionBlurCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Motion Blur [!]"
+         Caption="Motion Blur"
          OnCreateComponent=ch_MotionBlurCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Enable the use of motion blur effects. WARNING: This may have undesirable effects on some machines!"
-         WinTop=0.45000
+         WinTop=0.620000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

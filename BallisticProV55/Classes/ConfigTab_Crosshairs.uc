@@ -20,6 +20,12 @@ var automated GUIImage		Img_BackShot, Box_Shot;
 var automated GUIButton		b_WeaponCrosshairs;
 var automated GUILabel		l_Custom, l_StockNote;
 
+// General / Colours / Per Weapon: the last is the weapon crosshairs tab, which was a menu of its own
+var BC_TabRow				PageRow;
+var ConfigTab_WeaponCrosshairs	PerWeapon;
+var int						Page;
+var() localized string		PageCaptions[3];
+
 var() localized string		PresetNames[PRESET_COUNT];
 var() Color					PresetColours[PRESET_COUNT];	// The first is the default crosshair, the last two the default warnings' places
 var() localized string		CustomCaptions[3];
@@ -32,6 +38,9 @@ var float					PreviewTime;
 
 function InitializeConfigTab()
 {
+	local array<string> Captions;
+	local int i;
+
 	co_Crosshairs.AddItem("Simple" ,,string(0));
 	co_Crosshairs.AddItem("Graphical" ,,string(1));
 	co_Crosshairs.AddItem("UT2004" ,,string(2));
@@ -40,6 +49,29 @@ function InitializeConfigTab()
 	AddPresets(co_Colour);
 	AddPresets(co_EmptyColour);
 	AddPresets(co_CockingColour);
+
+
+	for (i = 0; i < 3; i++)
+		Captions[i] = PageCaptions[i];
+	PageRow = class'BC_TabRow'.static.Create(self, co_Crosshairs, 0.020000, 0.010000, 0.960000, 0.050000, Captions);
+	PageRow.OnSwitch = PageSwitched;
+
+	PerWeapon = ConfigTab_WeaponCrosshairs(AddComponent("BallisticProV55.ConfigTab_WeaponCrosshairs"));
+	PerWeapon.bBoundToParent = true;
+	PerWeapon.bScaleToParent = true;
+	PerWeapon.WinLeft = 0;
+	PerWeapon.WinTop = 0.07;
+	PerWeapon.WinWidth = 1;
+	PerWeapon.WinHeight = 0.93;
+	PerWeapon.SetVisibility(false);
+	b_WeaponCrosshairs.SetVisibility(false);
+
+	// back on the page last used
+	for (i = 0; i < 3; i++)
+		if (class'BC_MenuMemory'.static.GetLastTab(string(Class.Name)) ~= PageCaptions[i])
+			Page = i;
+	PageRow.Select(Page);
+	ShowPage(Page);
 }
 
 function AddPresets(moComboBox Box)
@@ -158,7 +190,32 @@ function bool FirstPersonAimAllowed()
 	return class'BallisticReplicationInfo'.static.StyleAllowsFirstPersonCrosshairAim(class'BallisticGameStyles'.static.GetLocalStyle().default.Index);
 }
 
+// RESET and DEFAULTS act on the page shown (the first load is this tab's own)
 function LoadSettings()
+{
+	if (Page == 2 && PerWeapon != None && PerWeapon.bInitialized)
+		PerWeapon.LoadSettings();
+	else
+		LoadOwnSettings();
+}
+
+function DefaultSettings()
+{
+	if (Page == 2 && PerWeapon != None && PerWeapon.bInitialized)
+		PerWeapon.DefaultSettings();
+	else
+		DefaultOwnSettings();
+}
+
+// OK saves both
+function SaveSettings()
+{
+	SaveOwnSettings();
+	if (PerWeapon != None)
+		PerWeapon.SaveSettings();
+}
+
+function LoadOwnSettings()
 {
 	bFirstPersonAimLocked = !FirstPersonAimAllowed();
 
@@ -179,7 +236,7 @@ function LoadSettings()
 	UpdateRows();
 }
 
-function SaveSettings()
+function SaveOwnSettings()
 {
 	local Color Col;
 	local byte Opacity;
@@ -225,7 +282,7 @@ function SaveSettings()
 		BallisticWeapon(PlayerOwner().Pawn.Weapon).HideStockCrosshair(co_Crosshairs.GetIndex() != 2);
 }
 
-function DefaultSettings()
+function DefaultOwnSettings()
 {
 	bSettingUp = true;
 	co_Crosshairs.SetIndex(0);
@@ -266,6 +323,65 @@ function PickColour(int i)
 	if (Preset < PRESET_COUNT - 1)
 		Colours[i] = PresetColours[Preset];
 	ShowCustomColour(i);
+}
+
+//==================================================================
+// Pages
+//==================================================================
+function PageSwitched(BC_TabRow Sender, int Index)
+{
+	Page = Index;
+	class'BC_MenuMemory'.static.SetLastTab(string(Class.Name), PageCaptions[Index]);
+	ShowPage(Index);
+}
+
+function ShowPage(int i)
+{
+	local bool bGeneral, bColours;
+
+	bGeneral = i == 0;
+	bColours = i == 1;
+
+	co_Crosshairs.SetVisibility(bGeneral);
+	ch_FirstPersonAim.SetVisibility(bGeneral);
+	ch_Crosshairdot.SetVisibility(bGeneral);
+	ch_Distance.SetVisibility(bGeneral);
+	sl_GlobalScale.SetVisibility(bGeneral);
+	sl_CrossGrow.SetVisibility(bGeneral);
+
+	co_Colour.SetVisibility(bColours);
+	sl_Opacity.SetVisibility(bColours);
+	ch_OneColour.SetVisibility(bColours);
+	ch_Warnings.SetVisibility(bColours);
+	co_EmptyColour.SetVisibility(bColours);
+	co_CockingColour.SetVisibility(bColours);
+	l_Custom.SetVisibility(bColours);
+	sl_Red.SetVisibility(bColours);
+	sl_Green.SetVisibility(bColours);
+	sl_Blue.SetVisibility(bColours);
+
+	// the preview on both
+	Box_Shot.SetVisibility(i < 2);
+	Img_BackShot.SetVisibility(i < 2);
+	if (i == 2)
+		l_StockNote.SetVisibility(false);
+	else
+		UpdateRows();
+
+	if (PerWeapon != None)
+	{
+		PerWeapon.SetVisibility(i == 2);
+		PerWeapon.ShowPanel(i == 2);
+	}
+}
+
+function ShowPanel(bool bShow)
+{
+	Super.ShowPanel(bShow);
+	if (bShow && PageRow != None)
+		ShowPage(Page);
+	else if (!bShow && PerWeapon != None && Page == 2)
+		PerWeapon.ShowPanel(false);
 }
 
 function bool InternalOnClick(GUIComponent Sender)
@@ -346,6 +462,10 @@ function DrawPreview(Canvas C)
 
 defaultproperties
 {
+	PageCaptions(0)="General"
+	PageCaptions(1)="Colours"
+	PageCaptions(2)="Per Weapon"
+
 	Begin Object Class=moComboBox Name=co_CrosshairCombo
 		ComponentJustification=TXTA_Left
 		CaptionWidth=0.550000
@@ -353,7 +473,7 @@ defaultproperties
 		OnCreateComponent=co_CrosshairCombo.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="Simple shows inaccuracy with its gap. Graphical uses each weapon's own crosshair, and grows with inaccuracy and recoil. UT2004 uses your Unreal Tournament 2004 crosshair."
-		WinTop=0.030000
+		WinTop=0.100000
 		WinLeft=0.020000
 		WinWidth=0.470000
 		WinHeight=0.040000
@@ -368,7 +488,7 @@ defaultproperties
 		OnCreateComponent=ch_FirstPersonAimCheck.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="The crosshair goes where a shot would land, following the gun's sway, recoil and the drop of a sprint, as it always does in third person (where the camera is beside your eyes). Off: it stays in the middle of the screen. Pro and Classic only: Realism and Tactical keep it in the middle."
-		WinTop=0.085000
+		WinTop=0.155000
 		WinLeft=0.020000
 		WinWidth=0.470000
 		WinHeight=0.040000
@@ -382,7 +502,7 @@ defaultproperties
 		OnCreateComponent=ch_CrosshairdotCheck.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="Add a dot to the center of the Simple crosshair."
-		WinTop=0.140000
+		WinTop=0.210000
 		WinLeft=0.020000
 		WinWidth=0.470000
 		WinHeight=0.040000
@@ -396,7 +516,7 @@ defaultproperties
 		OnCreateComponent=ch_DistanceCheck.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="The crosshair gets smaller the further away your shot would land, so it looks stuck to what you aim at. The Simple crosshair's gap still shows inaccuracy."
-		WinTop=0.195000
+		WinTop=0.265000
 		WinLeft=0.020000
 		WinWidth=0.470000
 		WinHeight=0.040000
@@ -408,7 +528,7 @@ defaultproperties
 		Caption="Global Size"
 		OnCreateComponent=sl_GlobalScaleSlider.InternalOnCreateComponent
 		Hint="The size of all crosshairs, including stock UT2004's."
-		WinTop=0.250000
+		WinTop=0.320000
 		WinLeft=0.020000
 		WinWidth=0.470000
 		WinHeight=0.040000
@@ -420,7 +540,7 @@ defaultproperties
 		Caption="Crosshair Expansion"
 		OnCreateComponent=sl_CrossGrowSlider.InternalOnCreateComponent
 		Hint="How much graphical crosshairs grow to show inaccuracy and recoil."
-		WinTop=0.305000
+		WinTop=0.375000
 		WinLeft=0.020000
 		WinWidth=0.470000
 		WinHeight=0.040000
@@ -442,7 +562,7 @@ defaultproperties
 	Begin Object Class=GUIImage Name=Box_ShotImg
 		Image=Texture'2K4Menus.NewControls.Display99'
 		ImageStyle=ISTY_Stretched
-		WinTop=0.020000
+		WinTop=0.090000
 		WinLeft=0.505000
 		WinWidth=0.480000
 		WinHeight=0.425000
@@ -453,7 +573,7 @@ defaultproperties
 	Begin Object Class=GUIImage Name=Img_BackShotImg
 		Image=MaterialSequence'BW_Core_WeaponTex.Misc.MenuSequence'
 		ImageStyle=ISTY_Scaled
-		WinTop=0.035000
+		WinTop=0.105000
 		WinLeft=0.520000
 		WinWidth=0.450000
 		WinHeight=0.395000
@@ -467,7 +587,7 @@ defaultproperties
 		TextAlign=TXTA_Center
 		TextColor=(B=255,G=255,R=255)
 		bMultiLine=True
-		WinTop=0.180000
+		WinTop=0.250000
 		WinLeft=0.540000
 		WinWidth=0.410000
 		WinHeight=0.100000
@@ -482,7 +602,7 @@ defaultproperties
 		OnCreateComponent=co_ColourCombo.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="The colour of the Simple crosshair, and of Graphical ones with Use One Colour For All Weapons."
-		WinTop=0.470000
+		WinTop=0.100000
 		WinLeft=0.020000
 		WinWidth=0.470000
 		WinHeight=0.040000
@@ -496,7 +616,7 @@ defaultproperties
 		Caption="Crosshair Opacity"
 		OnCreateComponent=sl_OpacitySlider.InternalOnCreateComponent
 		Hint="How solid the crosshair is, from invisible to fully solid. The Simple crosshair's dot stays stronger than its bars."
-		WinTop=0.525000
+		WinTop=0.155000
 		WinLeft=0.020000
 		WinWidth=0.470000
 		WinHeight=0.040000
@@ -510,7 +630,7 @@ defaultproperties
 		OnCreateComponent=ch_OneColourCheck.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="Graphical crosshairs take the colour and opacity above. Off: each weapon keeps its own."
-		WinTop=0.580000
+		WinTop=0.210000
 		WinLeft=0.020000
 		WinWidth=0.470000
 		WinHeight=0.040000
@@ -524,7 +644,7 @@ defaultproperties
 		OnCreateComponent=ch_WarningsCheck.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="The crosshair changes colour when the magazine is empty and when the gun needs cocking."
-		WinTop=0.635000
+		WinTop=0.265000
 		WinLeft=0.020000
 		WinWidth=0.470000
 		WinHeight=0.040000
@@ -539,7 +659,7 @@ defaultproperties
 		OnCreateComponent=co_EmptyColourCombo.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="The crosshair's colour when the magazine is empty."
-		WinTop=0.690000
+		WinTop=0.320000
 		WinLeft=0.020000
 		WinWidth=0.470000
 		WinHeight=0.040000
@@ -554,7 +674,7 @@ defaultproperties
 		OnCreateComponent=co_CockingColourCombo.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="The crosshair's colour when the gun needs cocking."
-		WinTop=0.745000
+		WinTop=0.375000
 		WinLeft=0.020000
 		WinWidth=0.470000
 		WinHeight=0.040000
@@ -565,7 +685,7 @@ defaultproperties
 	Begin Object Class=GUILabel Name=CustomLabel
 		TextAlign=TXTA_Center
 		TextColor=(B=0,G=180,R=255,A=255)
-		WinTop=0.470000
+		WinTop=0.530000
 		WinLeft=0.520000
 		WinWidth=0.450000
 		WinHeight=0.040000
@@ -579,7 +699,7 @@ defaultproperties
 		Caption="Red"
 		OnCreateComponent=sl_RedSlider.InternalOnCreateComponent
 		Hint="The red in this custom colour."
-		WinTop=0.525000
+		WinTop=0.585000
 		WinLeft=0.520000
 		WinWidth=0.450000
 		WinHeight=0.040000
@@ -593,7 +713,7 @@ defaultproperties
 		Caption="Green"
 		OnCreateComponent=sl_GreenSlider.InternalOnCreateComponent
 		Hint="The green in this custom colour."
-		WinTop=0.580000
+		WinTop=0.640000
 		WinLeft=0.520000
 		WinWidth=0.450000
 		WinHeight=0.040000
@@ -607,7 +727,7 @@ defaultproperties
 		Caption="Blue"
 		OnCreateComponent=sl_BlueSlider.InternalOnCreateComponent
 		Hint="The blue in this custom colour."
-		WinTop=0.635000
+		WinTop=0.695000
 		WinLeft=0.520000
 		WinWidth=0.450000
 		WinHeight=0.040000
