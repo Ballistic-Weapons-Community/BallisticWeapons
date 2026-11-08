@@ -27,6 +27,7 @@ var() localized string		CustomCaptions[3];
 var Color					Colours[3];		// The three colours being edited, without their opacity
 var int						CustomColour;	// Which of them the Custom sliders show
 var bool					bSettingUp;		// The boxes are being filled, not changed by the player
+var bool					bFirstPersonAimLocked;	// The game style doesn't allow the crosshair to follow the aim in first person
 var float					PreviewTime;
 
 function InitializeConfigTab()
@@ -132,6 +133,7 @@ function UpdateRows()
 	bBallistic = bSimple || bGraphical;
 
 	l_StockNote.SetVisibility(!bBallistic);
+	SetRowEnabled(ch_FirstPersonAim, !bFirstPersonAimLocked);
 	SetRowEnabled(ch_Crosshairdot, bSimple);
 	SetRowEnabled(sl_CrossGrow, bGraphical);
 	SetRowEnabled(ch_OneColour, bGraphical);
@@ -143,11 +145,27 @@ function UpdateRows()
 	SetRowEnabled(co_CockingColour, bBallistic && ch_Warnings.IsChecked());
 }
 
+// Following the aim in first person is for Pro and Classic only: the style of the game being played, or in the main menu
+// the style set up for games started here
+function bool FirstPersonAimAllowed()
+{
+	local BallisticReplicationInfo BRI;
+
+	if (PlayerOwner() != None)
+		foreach PlayerOwner().DynamicActors(class'BallisticReplicationInfo', BRI)
+			return class'BallisticReplicationInfo'.static.AllowsFirstPersonCrosshairAim();
+
+	return class'BallisticReplicationInfo'.static.StyleAllowsFirstPersonCrosshairAim(class'BallisticGameStyles'.static.GetLocalStyle().default.Index);
+}
+
 function LoadSettings()
 {
+	bFirstPersonAimLocked = !FirstPersonAimAllowed();
+
 	bSettingUp = true;
 	co_Crosshairs.SetIndex(class'BallisticWeapon'.default.CrosshairMode);
-	ch_FirstPersonAim.Checked(class'BC_CrosshairSettings'.default.CrosshairAim == 2);
+	// locked: shown off, as it is in this style, but the player's choice is kept for the styles that allow it
+	ch_FirstPersonAim.Checked(!bFirstPersonAimLocked && class'BC_CrosshairSettings'.default.CrosshairAim == 2);
 	ch_Crosshairdot.Checked(class'BallisticWeapon'.default.bDrawCrosshairDot);
 	ch_Distance.Checked(class'BC_CrosshairSettings'.default.bDistanceSize);
 	ch_OneColour.Checked(class'BC_CrosshairSettings'.default.bOneColour);
@@ -176,11 +194,15 @@ function SaveSettings()
 
 	ReadCustomColour();
 	Opacity = sl_Opacity.GetValue();
-	// third person always follows the aim: the setting is only first person's (CHA_Always), kept as the old values
-	if (ch_FirstPersonAim.IsChecked())
-		class'BC_CrosshairSettings'.default.CrosshairAim	= 2;
-	else
-		class'BC_CrosshairSettings'.default.CrosshairAim	= 1;
+	// third person always follows the aim: the setting is only first person's (CHA_Always), kept as the old values.
+	// Under a style that locks it the box says nothing about the player's choice, so that is left as it was
+	if (!bFirstPersonAimLocked)
+	{
+		if (ch_FirstPersonAim.IsChecked())
+			class'BC_CrosshairSettings'.default.CrosshairAim	= 2;
+		else
+			class'BC_CrosshairSettings'.default.CrosshairAim	= 1;
+	}
 	class'BC_CrosshairSettings'.default.bDistanceSize		= ch_Distance.IsChecked();
 	class'BC_CrosshairSettings'.default.bOneColour			= ch_OneColour.IsChecked();
 	class'BC_CrosshairSettings'.default.bWarningColours		= ch_Warnings.IsChecked();
@@ -345,7 +367,7 @@ defaultproperties
 		Caption="Crosshair Follows Aim In First Person"
 		OnCreateComponent=ch_FirstPersonAimCheck.InternalOnCreateComponent
 		IniOption="@Internal"
-		Hint="The crosshair goes where a shot would land, following the gun's sway, recoil and the drop of a sprint, as it always does in third person (where the camera is beside your eyes). Off: it stays in the middle of the screen."
+		Hint="The crosshair goes where a shot would land, following the gun's sway, recoil and the drop of a sprint, as it always does in third person (where the camera is beside your eyes). Off: it stays in the middle of the screen. Pro and Classic only: Realism and Tactical keep it in the middle."
 		WinTop=0.085000
 		WinLeft=0.020000
 		WinWidth=0.470000

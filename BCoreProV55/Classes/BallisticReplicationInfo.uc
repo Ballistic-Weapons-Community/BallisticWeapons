@@ -570,6 +570,19 @@ static final function bool IsArenaOrTactical()
     return IsArena() || IsTactical();
 }
 
+// Whether players may have the crosshair follow the gun's aim in first person (sway would show) under this style: Pro and
+// Classic only. Realism and Tactical keep first person crosshairs in the middle
+static final function bool StyleAllowsFirstPersonCrosshairAim(BC_GameStyle.EGameStyle Style)
+{
+    return Style == GS_Pro || Style == GS_Classic;
+}
+
+// The same for the game being played
+static final function bool AllowsFirstPersonCrosshairAim()
+{
+    return StyleAllowsFirstPersonCrosshairAim(default.GameStyle);
+}
+
 defaultproperties
 {
     RemoteRole=ROLE_SimulatedProxy
