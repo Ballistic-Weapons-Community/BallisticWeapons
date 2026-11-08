@@ -65,6 +65,5 @@ defaultproperties
 	ConflictWeaponSlots=10
 	ConflictEquipmentSlots=3
 	bFireEndsSprint=False
-	bFirstPersonCrosshairAim=False
 	bSightsEndSprint=False
 }
