@@ -242,9 +242,31 @@ event InitGame(string options, out string error)
 	 
 	 if (InventoryMut != "")
     	AddMutator(InventoryMut);
-		
+
 	 if (HUDFixMut != "")
     	AddMutator(HUDFixMut);
+
+	 PreloadWeaponList();
+}
+
+// The weapon preloader would take the pickup list of the inventory mutator: it gets this game's own list instead
+function PreloadWeaponList()
+{
+	local Mutator M;
+	local array<string> Names;
+	local int i;
+
+	for (M = BaseMutator; M != None; M = M.NextMutator)
+	{
+		if (Mut_BallisticPreLoad(M) != None)
+		{
+			for (i = 0; i < WeaponList.Length; i++)
+				if (WeaponList[i] != None)
+					Names[Names.Length] = string(WeaponList[i]);
+			Mut_BallisticPreLoad(M).SetGameWeapons(Names, "GunGame", true);
+			return;
+		}
+	}
 }
 
 function InitGameReplicationInfo()

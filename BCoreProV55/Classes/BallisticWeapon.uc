@@ -466,6 +466,7 @@ var() byte                      LayoutIndex;            // Index of layout param
 var() bool						bLayoutSet;				// Do we have our layout chosen already
 var() byte                      CamoIndex;            	// Index of camo sets to use for this weapon
 var() bool						bCamoSet;				// Do we have our camo chosen already
+var bool						bPlainCamo;				// Server: no random camo, the layout's plain one (game types that give no camos, GunGame). Set before GiveTo
 //-----------------------------------------------------------------------------
 // Move speed
 //-----------------------------------------------------------------------------
@@ -809,7 +810,8 @@ simulated function GenerateCamo(byte Index)
 	local array<WeaponCamo> Camos;
 	local array<WeaponCamo> CamoSublist;
 	local array<int> AllowedCamos;
-	
+	local int Plain;
+
 	Camos = ParamsClasses[GameStyleIndex].default.Camos;
 	AllowedCamos = ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
 	
@@ -832,6 +834,18 @@ simulated function GenerateCamo(byte Index)
 	//Build an allowed list of camos based on layout, then randomize
 	if (!bCamoSet)
 	{
+		//The plain camo is the first one the layout allows
+		if (bPlainCamo)
+		{
+			if (AllowedCamos.length > 0)
+				Plain = AllowedCamos[0];
+			if (Plain >= 0 && Plain < Camos.length && Camos[Plain] != None)
+				SetCamoIndex(Camos[Plain].Index);
+			else
+				SetCamoIndex(255);
+			return;
+		}
+
 		//Create a sublist of allowed camos
 		if (AllowedCamos.length == 0) //default, all are allowed
 		{
