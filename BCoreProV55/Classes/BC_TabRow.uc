@@ -3,11 +3,12 @@
 //
 // A row of tab buttons that pick one of several things without panels of
 // their own: the loadout slot being edited, the team whose weapons are shown.
-// The active one is drawn as an open tab. OnSwitch tells the owner.
+// Plain buttons in the tab style (a GUITabButton needs a GUITabControl and its
+// panel to draw); the active one is kept drawn as focused. OnSwitch tells the owner.
 //=============================================================================
 class BC_TabRow extends GUI;
 
-var array<GUITabButton>	Buttons;
+var array<GUIButton>		Buttons;
 var int					Active;
 var GUIComponent		Like;		// placed the way this component is (inside a tab: relative to the tab)
 
@@ -27,14 +28,17 @@ static function BC_TabRow Create(GUIMultiComponent Owner, GUIComponent PlaceLike
 function Init(GUIMultiComponent Owner, GUIComponent PlaceLike, float X, float Y, float W, float H, array<string> Captions)
 {
 	local int i;
-	local GUITabButton B;
+	local GUIButton B;
 	local float BW;
 
 	Like = PlaceLike;
 	BW = W / Captions.Length;
 	for (i = 0; i < Captions.Length; i++)
 	{
-		B = GUITabButton(Owner.AddComponent("XInterface.GUITabButton"));
+		B = GUIButton(Owner.AddComponent("XInterface.GUIButton"));
+		B.StyleName = "TabButton";
+		B.FontScale = FNS_Small;
+		B.Style = Owner.Controller.GetStyle(B.StyleName, B.FontScale);
 		B.Caption = Captions[i];
 		B.OnClick = Clicked;
 		if (Like != None)
@@ -49,6 +53,7 @@ function Init(GUIMultiComponent Owner, GUIComponent PlaceLike, float X, float Y,
 		B.RenderWeight = 0.6;
 		Buttons[i] = B;
 	}
+	Buttons[0].OnPreDraw = KeepActiveDrawn;
 	Select(0);
 }
 
@@ -72,7 +77,8 @@ function Select(int i, optional bool bNotify)
 		return;
 	Active = i;
 	for (j = 0; j < Buttons.Length; j++)
-		Buttons[j].bActive = (j == i);
+		if (j != i && Buttons[j].MenuState == MSAT_Focused)
+			Buttons[j].MenuState = MSAT_Blurry;
 	if (bNotify)
 		OnSwitch(self, i);
 }
@@ -88,6 +94,14 @@ function SetEnabled(bool bEnable)
 		else
 			Buttons[i].DisableMe();
 	}
+}
+
+// Drawn before the row each frame: the active button looks selected whatever the mouse did
+function bool KeepActiveDrawn(Canvas C)
+{
+	if (Active >= 0 && Active < Buttons.Length && Buttons[Active].MenuState != MSAT_Disabled)
+		Buttons[Active].MenuState = MSAT_Focused;
+	return false;
 }
 
 function bool Clicked(GUIComponent Sender)

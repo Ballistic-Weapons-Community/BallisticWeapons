@@ -225,13 +225,13 @@ function Refresh()
 
 	// the selected row stays selected when it is shown, without telling the list's owner
 	Sel = FindElem(SelElem, bSel);
-	if (!bLosesSel)
+	if (!bLosesSel && (Sel >= 0 || Want == ""))
 	{
 		ResetView(Sel);
 		return;
 	}
 
-	// else the first weapon found is selected, as a click would
+	// else (the selected weapon is hidden, or none was selected) the first weapon found is selected, as a click would
 	ResetView(-1);
 	for (i = 0; i < List.Elements.Length; i++)
 		if (!List.Elements[i].bSection)

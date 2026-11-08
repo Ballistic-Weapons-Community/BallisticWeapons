@@ -1,643 +1,292 @@
 //=============================================================================
-// BallisticConflictWeaponMenuPro.
+// BallisticConflictWeaponMenuPro
 //
-// A menu for choosing which weapons available to each team for conflict game.
-// Consists of 3 weapon lists and the appropriate buttons.
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2007 RuneStorm. All Rights Reserved.
+// The weapons each team can buy in Conflict, opened from the game's options:
+// the shared weapon chooser, a switch for the team shown and 'Both teams use
+// the same weapons'.
 //=============================================================================
 class BallisticConflictWeaponMenuPro extends UT2K4GUIPage;
 
-var Automated GUIImage		MyBack, Box_Unused, Box_UsedRed, Box_UsedBlue;
-var Automated GUIButton		BDone, BCancel, BAddBlue, BRemoveBlue, BAddAllBlue, BRemoveAllBlue, BAddRed, BRemoveRed, BAddAllRed, BRemoveAllRed;
-var automated GUIHeader		MyHeader;
-var automated GUIListBox		lb_UsedRedWeapons, lb_UsedBlueWeapons, lb_UnusedWeapons;
-var BC_ListSearch			Search;		// the search row over the weapon list
-var automated GUILabel		l_Red, l_Blue, l_Unused;
-var automated moComboBox	co_LoadOpt;
+var automated GUIImage				MyBack;
+var automated GUIHeader				MyHeader;
+var automated BC_WeaponListEditor	Editor;
+var automated GUILabel				l_Team;
+var automated moCheckBox			ch_SameTeams;
+var automated moComboBox			co_LoadOpt;
+var automated GUIButton				BDone, BCancel;
+var BC_TabRow						TeamRow;
 
-var() localized string Headings[4];
+var array<string>					RedNames, BlueNames;
+var int								ShownTeam;		// 0 red, 1 blue
+var bool							bLoading;
 
-function int WeaponRank(string PackageName, optional string ClassName, optional GUIListElem El)
-{
-//	local class<Weapon> W;
-
-	if (PackageName == "I")
-		return 50;
-	if (El.ExtraData == lb_UsedRedWeapons)
-		return 51;
-	if (PackageName == "BW")
-		return 0;
-	if (InStr(PackageName, "Ballistic") != -1 || InStr(PackageName, "BWBP") != -1)
-		return 1;
-	if (InStr(PackageName, "JunkWar") != -1 || InStr(PackageName, "JWBP") != -1)
-		return 2;
-	if (PackageName == "UT")
-		return 100;
-	if (PackageName ~= "XWeapons" || PackageName ~= "UTClassic")
-		return 101;
-	if (InStr(PackageName, "Onslaught") != -1)
-		return 101;
-	if (PackageName == "O")
-		return 200;
-	if (El.ExtraData == self)
-		return 10;
-	return 210;
-}
-
-// Used by SortList.
-function int MyCompareItem(GUIListElem ElemA, GUIListElem ElemB)
-{
-	local int i, AR, BR;
-
-	if (ElemA.bSection)
-		AR = WeaponRank(ElemA.ExtraStrData);
-	else
-	{
-		i = InStr(ElemA.ExtraStrData, ".");
-		if (i > 0)
-			AR = WeaponRank(left(ElemA.ExtraStrData, i), ElemA.ExtraStrData, ElemA);
-	}
-
-	if (ElemB.bSection)
-		BR = WeaponRank(ElemB.ExtraStrData);
-	else
-	{
-		i = InStr(ElemB.ExtraStrData, ".");
-		if (i > 0)
-			BR = WeaponRank(left(ElemB.ExtraStrData, i), ElemB.ExtraStrData, ElemB);
-	}
-
-	if (AR == BR)
-		return StrCmp(ElemA.Item, ElemB.Item);
-	else
-		return AR-BR;
-}
-
-function bool InternalOnDragDrop(GUIComponent Sender)
-{
-	local array<GUIListElem> NewItem;
-	local int i, j;
-	local GUIList L;
-
-	L = GUIList(Sender);
-	if (L != None && Sender.Controller.DropTarget == Sender)
-	{
-		if (Sender.Controller.DropSource == L)
-			return false;
-
-		if (Sender.Controller.DropSource != None && GUIList(Sender.Controller.DropSource) != None)
-		{
-			NewItem = GUIList(Sender.Controller.DropSource).GetPendingElements();
-			for (i=NewItem.Length;i>-1;i--)
-				if (NewItem[i].bSection)
-					NewItem.Remove(i, 1);
-				else
-				{
-					for (j=0;j<L.Elements.length;j++)
-						if (L.GetExtraAtIndex(j) ~= NewItem[i].ExtraStrData)
-						{
-							NewItem.Remove(i, 1);
-							break;
-						}
-				}
-
-			if ( !L.IsValidIndex(L.DropIndex) )
-				L.DropIndex = L.ItemCount;
-
-			for (i = NewItem.Length - 1; i >= 0; i--)
-				L.Insert(L.DropIndex, NewItem[i].Item, NewItem[i].ExtraData, NewItem[i].ExtraStrData);
-
-			L.SetIndex(L.DropIndex);
-			if (Search != None && L == lb_UnusedWeapons.List)
-				Search.Refresh();
-			return true;
-		}
-	}
-	return false;
-}
-
-function InternalOnEndDrag(GUIComponent Accepting, bool bAccepted)
-{
-	local GUIList L;
-	local array<GUIListElem> PendingElems;
-
-	L = lb_UnusedWeapons.List;
-
-	if (bAccepted && Accepting != None)
-	{
-		PendingElems = L.GetPendingElements();
-		L.bRepeatClick = False;
-	}
-
-	// Simulate repeat click if the operation was a failure to prevent InternalOnMouseRelease from clearing
-	// the SelectedItems array
-	// This way we don't lose the items we clicked on
-	if (Accepting == None)
-		L.bRepeatClick = True;
-
-	L.SetOutlineAlpha(255);
-	if ( L.bNotify )
-		L.CheckLinkedObjects(L);
-	if (Search != None)
-		Search.Refresh();
-}
+var() localized string				Headings[4];
+var() localized string				TeamCaptions[2], TeamListCaptions[2], BothListCaption;
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
 	local array<CacheManager.WeaponRecord> Recs;
-	local int i, j;
-	local array<string> ItemNameList;
+	local array<string> ItemNameList, Captions;
+	local array<byte> Kind;
 	local class<ConflictItem> CI;
+	local int i, k;
 
 	Super.InitComponent(MyController, MyOwner);
 
-	lb_UnusedWeapons.List.CompareItem = MyCompareItem;
-
-	lb_UnusedWeapons.List.Add(Headings[0],,"BW",true);
-	lb_UnusedWeapons.List.Add(Headings[1],,"I",true);
-	lb_UnusedWeapons.List.Add(Headings[2],,"UT",true);
-	lb_UnusedWeapons.List.Add(Headings[3],,"O",true);
-
+	// Ballistic weapons, the Conflict items, UT2004 weapons, the rest
 	class'CacheManager'.static.GetWeaponList(Recs);
 	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
-	for (i=0;i<Recs.Length;i++)
+	Kind.Length = Recs.Length;
+	for (i = 0; i < Recs.Length; i++)
 	{
-		if (!class'BC_WeaponInfoCache'.static.IsValid(Recs[i].ClassName))
-			continue;
-		
-		for (j=0;j<class'Mut_ConflictLoadout'.default.ConflictWeapons.length;j++)
-			if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].ClassName ~= Recs[i].ClassName)
-			{
-				if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].bRed)
-				{
-					if (Recs[i].ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
-						lb_UsedRedWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
-					else
-						lb_UsedRedWeapons.List.Add(Recs[i].FriendlyName, , Recs[i].ClassName);
-				}
-				if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].bBlue)
-				{
-					if (Recs[i].ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
-						lb_UsedBlueWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
-					else
-						lb_UsedBlueWeapons.List.Add(Recs[i].FriendlyName, , Recs[i].ClassName);
-				}
-				break;
-			}
-		if (Recs[i].ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
-			lb_UnusedWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
+		if (Recs[i].ClassName == "" || !class'BC_WeaponInfoCache'.static.IsValid(Recs[i].ClassName))
+			Kind[i] = 255;
+		else if (class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
+			Kind[i] = 0;
+		else if (Left(Recs[i].ClassName, 9) ~= "XWeapons." || Left(Recs[i].ClassName, 10) ~= "UTClassic." || Left(Recs[i].ClassName, 9) ~= "Onslaught")
+			Kind[i] = 2;
 		else
-			lb_UnusedWeapons.List.Add(Recs[i].FriendlyName, , Recs[i].ClassName);
+			Kind[i] = 3;
 	}
 	class'BC_WeaponInfoCache'.static.EndSession();
 
-	PlayerOwner().GetAllInt("ConflictItem", ItemNameList);
-	for(i=0;i<ItemNameList.length;i++)
+	Editor.ClearCatalogue();
+	for (k = 0; k < 4; k++)
 	{
-		CI = class<ConflictItem>(DynamicLoadObject(ItemNameList[i], class'Class'));
-		if (CI != None)
+		Editor.AddSection(Headings[k]);
+		if (k == 1)
 		{
-			for (j=0;j<class'Mut_ConflictLoadout'.default.ConflictWeapons.length;j++)
-				if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].ClassName ~= ItemNameList[i])
-				{
-					if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].bRed)
-						lb_UsedRedWeapons.List.Add(CI.default.ItemName, lb_UsedRedWeapons, ItemNameList[i]);
-					if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].bBlue)
-						lb_UsedBlueWeapons.List.Add(CI.default.ItemName, lb_UsedRedWeapons, ItemNameList[i]);
-					break;
-				}
-			lb_UnusedWeapons.List.Add(CI.default.ItemName, lb_UsedRedWeapons, ItemNameList[i]);
+			PlayerOwner().GetAllInt("ConflictItem", ItemNameList);
+			for (i = 0; i < ItemNameList.length; i++)
+			{
+				CI = class<ConflictItem>(DynamicLoadObject(ItemNameList[i], class'Class'));
+				if (CI != None)
+					Editor.AddWeapon(CI.default.ItemName, ItemNameList[i]);
+			}
 		}
+		else
+			for (i = 0; i < Recs.Length; i++)
+				if (Kind[i] == k)
+					Editor.AddWeapon(Recs[i].FriendlyName, Recs[i].ClassName);
 	}
+	Editor.OnChosenChanged = ChosenChanged;
 
-    lb_UnusedWeapons.List.bDropSource = True;
-    lb_UnusedWeapons.List.bDropTarget = True;
-    lb_UnusedWeapons.List.OnDragDrop = InternalOnDragDrop;
-	
-    lb_UnusedWeapons.List.OnBeginDrag = lb_UnusedWeapons.List.InternalOnBeginDrag;
-    lb_UnusedWeapons.List.OnEndDrag = InternalOnEndDrag;
+	Captions[0] = TeamCaptions[0];
+	Captions[1] = TeamCaptions[1];
+	TeamRow = class'BC_TabRow'.static.Create(self, Editor, 0.230000, 0.175000, 0.280000, 0.040000, Captions);
+	TeamRow.OnSwitch = TeamSwitched;
 
-	lb_UnusedWeapons.List.OnDblClick = InternalOnDblClick;
-
-    lb_UsedRedWeapons.List.bDropSource = True;
-    lb_UsedRedWeapons.List.bDropTarget = True;
-    lb_UsedRedWeapons.List.OnDragDrop = InternalOnDragDrop;
-
-    lb_UsedRedWeapons.List.OnBeginDrag = lb_UsedRedWeapons.List.InternalOnBeginDrag;
-    lb_UsedRedWeapons.List.OnEndDrag = lb_UsedRedWeapons.List.InternalOnEndDrag;
-	lb_UsedRedWeapons.List.OnDblClick = InternalOnDblClick;
-
-    lb_UsedBlueWeapons.List.bDropSource = True;
-    lb_UsedBlueWeapons.List.bDropTarget = True;
-    lb_UsedBlueWeapons.List.OnDragDrop = InternalOnDragDrop;
-
-    lb_UsedBlueWeapons.List.OnBeginDrag = lb_UsedBlueWeapons.List.InternalOnBeginDrag;
-    lb_UsedBlueWeapons.List.OnEndDrag = lb_UsedBlueWeapons.List.InternalOnEndDrag;
-	lb_UsedBlueWeapons.List.OnDblClick = InternalOnDblClick;
-	
-	for(i=0;i<class'Mut_ConflictLoadout'.default.LoadoutOptionText.Length;i++)
-		co_LoadOpt.AddItem(class'Mut_ConflictLoadout'.default.LoadoutOptionText[i] ,,string(i));
+	for (i = 0; i < class'Mut_ConflictLoadout'.default.LoadoutOptionText.Length; i++)
+		co_LoadOpt.AddItem(class'Mut_ConflictLoadout'.default.LoadoutOptionText[i],, string(i));
 	co_LoadOpt.ReadOnly(True);
 	co_LoadOpt.SetIndex(int(class'Mut_ConflictLoadout'.default.LoadoutOption));
 
-	Search = class'BC_ListSearch'.static.Create(self, lb_UnusedWeapons, lb_UnusedWeapons.List);
+	for (i = 0; i < class'Mut_ConflictLoadout'.default.ConflictWeapons.Length; i++)
+	{
+		if (class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bRed)
+			RedNames[RedNames.Length] = class'Mut_ConflictLoadout'.default.ConflictWeapons[i].ClassName;
+		if (class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bBlue)
+			BlueNames[BlueNames.Length] = class'Mut_ConflictLoadout'.default.ConflictWeapons[i].ClassName;
+	}
+	bLoading = true;
+	ch_SameTeams.Checked(class'ConfigTab_ConflictLoadout'.static.SameNames(RedNames, BlueNames));
+	bLoading = false;
+	ShowTeam();
+}
+
+function ShowTeam()
+{
+	if (ch_SameTeams.IsChecked())
+	{
+		Editor.ChosenCaption = BothListCaption;
+		Editor.SetChosen(RedNames);
+	}
+	else
+	{
+		Editor.ChosenCaption = TeamListCaptions[ShownTeam];
+		if (ShownTeam == 0)
+			Editor.SetChosen(RedNames);
+		else
+			Editor.SetChosen(BlueNames);
+	}
+	TeamRow.SetEnabled(!ch_SameTeams.IsChecked());
+}
+
+function ChosenChanged(BC_WeaponListEditor Sender)
+{
+	local array<string> Names;
+
+	Editor.GetChosen(Names);
+	if (ch_SameTeams.IsChecked())
+	{
+		RedNames = Names;
+		BlueNames = Names;
+	}
+	else if (ShownTeam == 0)
+		RedNames = Names;
+	else
+		BlueNames = Names;
+}
+
+function TeamSwitched(BC_TabRow Sender, int Index)
+{
+	ShownTeam = Index;
+	ShowTeam();
+}
+
+function InternalOnChange(GUIComponent Sender)
+{
+	if (Sender != ch_SameTeams || bLoading || TeamRow == None)
+		return;
+	if (ch_SameTeams.IsChecked())
+	{
+		if (ShownTeam == 0)
+			BlueNames = RedNames;
+		else
+			RedNames = BlueNames;
+	}
+	ShowTeam();
 }
 
 function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
 {
 	if (Key == 0x0D && State == 3)	// Enter
 		return InternalOnClick(BDone);
-
 	return false;
-}
-
-function InternalOnClose(optional Bool bCanceled)
-{
-	Super.OnClose(bCanceled);
 }
 
 function bool InternalOnClick(GUIComponent Sender)
 {
-	local int i, j, k;
+	local int i, k;
+	local string S;
 
-	if (Sender==BCancel) // CANCEL
-		Controller.CloseMenu();
-	else if (Sender==BAddAllBlue) // ADD ALL
+	if (Sender == BCancel)
+		Controller.CloseMenu(true);
+	else if (Sender == BDone)
 	{
-		lb_UsedBlueWeapons.List.Clear();
-		for (i=lb_UnusedWeapons.List.Elements.Length-1;i>-1;i--)
-			if (!lb_UnusedWeapons.List.Elements[i].bSection)
-				lb_UsedBlueWeapons.List.Add(lb_UnusedWeapons.List.GetItemAtIndex(i), , lb_UnusedWeapons.List.GetExtraAtIndex(i));
-	}
-	else if (Sender==BRemoveAllBlue) // REMOVE ALL
-	{
-		while(lb_UsedBlueWeapons.List.Elements.Length > 0)
-			lb_UsedBlueWeapons.List.Remove(0);
-	}
-	else if (Sender==BAddBlue) // ADD
-	{
-		if (!lb_UnusedWeapons.List.IsSection())
-		{
-			for (i=0;i<lb_UsedBlueWeapons.List.Elements.length;i++)
-				if (lb_UsedBlueWeapons.List.GetExtraAtIndex(i) == lb_UnusedWeapons.List.GetExtra())
-					break;
-			if (i>=lb_UsedBlueWeapons.List.Elements.length)
-				lb_UsedBlueWeapons.List.Add(lb_UnusedWeapons.List.Get(), , lb_UnusedWeapons.List.GetExtra());
-		}
-	}
-	else if (Sender==BRemoveBlue) // REMOVE
-	{
-		lb_UsedBlueWeapons.List.Remove(lb_UsedBlueWeapons.List.Index);
-	}
-	else if (Sender==BAddAllRed) // ADD ALL
-	{
-		lb_UsedRedWeapons.List.Clear();
-		for (i=lb_UnusedWeapons.List.Elements.Length-1;i>-1;i--)
-			if (!lb_UnusedWeapons.List.Elements[i].bSection)
-				lb_UsedRedWeapons.List.Add(lb_UnusedWeapons.List.GetItemAtIndex(i), , lb_UnusedWeapons.List.GetExtraAtIndex(i));
-	}
-	else if (Sender==BRemoveAllRed) // REMOVE ALL
-	{
-		while(lb_UsedRedWeapons.List.Elements.Length > 0)
-			lb_UsedRedWeapons.List.Remove(0);
-	}
-	else if (Sender==BAddRed) // ADD
-	{
-		if (!lb_UnusedWeapons.List.IsSection())
-		{
-			for (i=0;i<lb_UsedRedWeapons.List.Elements.length;i++)
-				if (lb_UsedRedWeapons.List.GetExtraAtIndex(i) == lb_UnusedWeapons.List.GetExtra())
-					break;
-			if (i>=lb_UsedRedWeapons.List.Elements.length)
-				lb_UsedRedWeapons.List.Add(lb_UnusedWeapons.List.Get(), , lb_UnusedWeapons.List.GetExtra());
-		}
-	}
-	else if (Sender==BRemoveRed) // REMOVE
-	{
-		lb_UsedRedWeapons.List.Remove(lb_UsedRedWeapons.List.Index);
-	}
-	else if (Sender==BDone) // DONE
-	{
-		// the save goes through every weapon of the list
-		if (Search != None)
-			Search.ShowAll();
 		class'Mut_ConflictLoadout'.default.LoadoutOption = co_LoadOpt.GetIndex();
 		class'Mut_ConflictLoadout'.default.ConflictWeapons.length = 0;
-
-		for (i=0;i<lb_UnusedWeapons.List.Elements.length;i++)
+		// every weapon and item, with the teams that have it
+		for (i = 0; i < Editor.Catalogue.Length; i++)
 		{
-			if (lb_UnusedWeapons.List.Elements[i].bSection)
+			if (Editor.Catalogue[i].bSection)
 				continue;
+			S = Editor.Catalogue[i].ClassName;
 			k = class'Mut_ConflictLoadout'.default.ConflictWeapons.length;
-			class'Mut_ConflictLoadout'.default.ConflictWeapons.length = k+1;
-			class'Mut_ConflictLoadout'.default.ConflictWeapons[k].ClassName = lb_UnusedWeapons.List.GetExtraAtIndex(i);
-			for (j=0;j<lb_UsedRedWeapons.List.Elements.length;j++)
-				if (lb_UsedRedWeapons.List.GetExtraAtIndex(j) ~= lb_UnusedWeapons.List.GetExtraAtIndex(i))
-				{
-					class'Mut_ConflictLoadout'.default.ConflictWeapons[k].bRed = true;
-					break;
-				}
-			for (j=0;j<lb_UsedBlueWeapons.List.Elements.length;j++)
-				if (lb_UsedBlueWeapons.List.GetExtraAtIndex(j) ~= lb_UnusedWeapons.List.GetExtraAtIndex(i))
-				{
-					class'Mut_ConflictLoadout'.default.ConflictWeapons[k].bBlue = true;
-					break;
-				}
+			class'Mut_ConflictLoadout'.default.ConflictWeapons.length = k + 1;
+			class'Mut_ConflictLoadout'.default.ConflictWeapons[k].ClassName = S;
+			class'Mut_ConflictLoadout'.default.ConflictWeapons[k].bRed = class'ConfigTab_ConflictLoadout'.static.HasName(RedNames, S);
+			class'Mut_ConflictLoadout'.default.ConflictWeapons[k].bBlue = class'ConfigTab_ConflictLoadout'.static.HasName(BlueNames, S);
 		}
 		class'Mut_ConflictLoadout'.static.StaticSaveConfig();
-		Controller.CloseMenu();
+		Controller.CloseMenu(false);
 	}
-
-	if (Search != None)
-		Search.Refresh();
 	return true;
-}
-
-function bool InternalOnDblClick(GUIComponent Sender)
-{
-	if (Sender==lb_UnusedWeapons.List)
-	{
-		InternalOnClick(BAddRed);
-		InternalOnClick(BAddBlue);
-	}
-	else if (Sender==lb_UsedRedWeapons.List)
-		InternalOnClick(BRemoveRed);
-	else if (Sender==lb_UsedBlueWeapons.List)
-		InternalOnClick(BRemoveBlue);
-	return true;
-}
-
-function InternalOnChange(GUIComponent Sender)
-{
 }
 
 defaultproperties
 {
-     Begin Object Class=GUIImage Name=BackImage
-         Image=Texture'2K4Menus.NewControls.Display95'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.100000
-         WinLeft=0.050000
-         WinWidth=0.900000
-         WinHeight=0.800000
-         RenderWeight=0.001000
-     End Object
-     MyBack=GUIImage'BallisticProV55.BallisticConflictWeaponMenuPro.BackImage'
+	Begin Object Class=GUIImage Name=BackImage
+		Image=Texture'2K4Menus.NewControls.Display95'
+		ImageStyle=ISTY_Stretched
+		WinTop=0.100000
+		WinLeft=0.050000
+		WinWidth=0.900000
+		WinHeight=0.800000
+		RenderWeight=0.001000
+	End Object
+	MyBack=GUIImage'BallisticProV55.BallisticConflictWeaponMenuPro.BackImage'
 
-     Begin Object Class=GUIImage Name=ImageBoxUnused
-         Image=Texture'2K4Menus.NewControls.Display99'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.150000
-         WinLeft=0.375000
-         WinWidth=0.250000
-         WinHeight=0.600000
-         RenderWeight=0.002000
-     End Object
-     Box_Unused=GUIImage'BallisticProV55.BallisticConflictWeaponMenuPro.ImageBoxUnused'
+	Begin Object Class=GUIHeader Name=DaBeegHeader
+		bUseTextHeight=True
+		Caption="Ballistic Conflict Team Weapons"
+		WinTop=0.100000
+		WinLeft=0.050000
+		WinWidth=0.900000
+		WinHeight=0.800000
+	End Object
+	MyHeader=GUIHeader'BallisticProV55.BallisticConflictWeaponMenuPro.DaBeegHeader'
 
-     Begin Object Class=GUIImage Name=ImageBoxUsedRed
-         Image=Texture'2K4Menus.NewControls.Display99'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.150000
-         WinLeft=0.675000
-         WinWidth=0.250000
-         WinHeight=0.600000
-         RenderWeight=0.002000
-     End Object
-     Box_UsedRed=GUIImage'BallisticProV55.BallisticConflictWeaponMenuPro.ImageBoxUsedRed'
+	Begin Object Class=GUILabel Name=TeamLabel
+		Caption="Weapons for:"
+		TextColor=(B=255,G=255,R=255)
+		WinTop=0.175000
+		WinLeft=0.080000
+		WinWidth=0.150000
+		WinHeight=0.040000
+	End Object
+	l_Team=GUILabel'BallisticProV55.BallisticConflictWeaponMenuPro.TeamLabel'
 
-     Begin Object Class=GUIImage Name=ImageBoxUsedBlue
-         Image=Texture'2K4Menus.NewControls.Display99'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.150000
-         WinLeft=0.075000
-         WinWidth=0.250000
-         WinHeight=0.600000
-         RenderWeight=0.002000
-     End Object
-     Box_UsedBlue=GUIImage'BallisticProV55.BallisticConflictWeaponMenuPro.ImageBoxUsedBlue'
+	Begin Object Class=moCheckBox Name=SameTeamsCheck
+		ComponentJustification=TXTA_Left
+		CaptionWidth=0.900000
+		Caption="Both teams use the same weapons"
+		OnCreateComponent=SameTeamsCheck.InternalOnCreateComponent
+		IniOption="@Internal"
+		Hint="One list for both teams. Untick to give the teams different weapons."
+		WinTop=0.178000
+		WinLeft=0.540000
+		WinWidth=0.380000
+		WinHeight=0.035000
+		OnChange=BallisticConflictWeaponMenuPro.InternalOnChange
+	End Object
+	ch_SameTeams=moCheckBox'BallisticProV55.BallisticConflictWeaponMenuPro.SameTeamsCheck'
 
-     Begin Object Class=GUIButton Name=DoneButton
-         Caption="DONE"
-         WinTop=0.825000
-         WinLeft=0.300000
-         WinWidth=0.100000
-         TabOrder=0
-         OnClick=BallisticConflictWeaponMenuPro.InternalOnClick
-         OnKeyEvent=DoneButton.InternalOnKeyEvent
-     End Object
-     bDone=GUIButton'BallisticProV55.BallisticConflictWeaponMenuPro.DoneButton'
+	Begin Object Class=BC_WeaponListEditor Name=WeaponEditor
+		WinTop=0.230000
+		WinLeft=0.080000
+		WinWidth=0.840000
+		WinHeight=0.560000
+		TabOrder=0
+	End Object
+	Editor=BC_WeaponListEditor'BallisticProV55.BallisticConflictWeaponMenuPro.WeaponEditor'
 
-     Begin Object Class=GUIButton Name=CancelButton
-         Caption="CANCEL"
-         WinTop=0.825000
-         WinLeft=0.600000
-         WinWidth=0.100000
-         TabOrder=1
-         OnClick=BallisticConflictWeaponMenuPro.InternalOnClick
-         OnKeyEvent=CancelButton.InternalOnKeyEvent
-     End Object
-     bCancel=GUIButton'BallisticProV55.BallisticConflictWeaponMenuPro.CancelButton'
+	Begin Object Class=moComboBox Name=LoadOptCombo
+		Caption="Loadout Option"
+		OnCreateComponent=LoadOptCombo.InternalOnCreateComponent
+		IniOption="@Internal"
+		IniDefault="High"
+		Hint="Choose the type of loadout."
+		WinTop=0.825000
+		WinLeft=0.080000
+		WinWidth=0.400000
+		WinHeight=0.040000
+		TabOrder=1
+	End Object
+	co_LoadOpt=moComboBox'BallisticProV55.BallisticConflictWeaponMenuPro.LoadOptCombo'
 
-     Begin Object Class=GUIButton Name=AddButtonBlue
-         Caption="< < <"
-         WinTop=0.750000
-         WinLeft=0.375000
-         WinWidth=0.100000
-         TabOrder=0
-         OnClick=BallisticConflictWeaponMenuPro.InternalOnClick
-         OnKeyEvent=AddButton.InternalOnKeyEvent
-     End Object
-     bAddBlue=GUIButton'BallisticProV55.BallisticConflictWeaponMenuPro.AddButtonBlue'
+	Begin Object Class=GUIButton Name=DoneButton
+		Caption="DONE"
+		WinTop=0.825000
+		WinLeft=0.660000
+		WinWidth=0.120000
+		TabOrder=2
+		OnClick=BallisticConflictWeaponMenuPro.InternalOnClick
+		OnKeyEvent=DoneButton.InternalOnKeyEvent
+	End Object
+	BDone=GUIButton'BallisticProV55.BallisticConflictWeaponMenuPro.DoneButton'
 
-     Begin Object Class=GUIButton Name=RemoveButtonBlue
-         Caption="> > >"
-         WinTop=0.750000
-         WinLeft=0.225000
-         WinWidth=0.100000
-         TabOrder=0
-         OnClick=BallisticConflictWeaponMenuPro.InternalOnClick
-         OnKeyEvent=RemoveButton.InternalOnKeyEvent
-     End Object
-     BRemoveBlue=GUIButton'BallisticProV55.BallisticConflictWeaponMenuPro.RemoveButtonBlue'
+	Begin Object Class=GUIButton Name=CancelButton
+		Caption="CANCEL"
+		WinTop=0.825000
+		WinLeft=0.800000
+		WinWidth=0.120000
+		TabOrder=3
+		OnClick=BallisticConflictWeaponMenuPro.InternalOnClick
+		OnKeyEvent=CancelButton.InternalOnKeyEvent
+	End Object
+	BCancel=GUIButton'BallisticProV55.BallisticConflictWeaponMenuPro.CancelButton'
 
-     Begin Object Class=GUIButton Name=AddAllButtonBlue
-         Caption="FILL"
-         WinTop=0.750000
-         WinLeft=0.075000
-         WinWidth=0.075000
-         TabOrder=0
-         OnClick=BallisticConflictWeaponMenuPro.InternalOnClick
-         OnKeyEvent=AddAllButton.InternalOnKeyEvent
-     End Object
-     BAddAllBlue=GUIButton'BallisticProV55.BallisticConflictWeaponMenuPro.AddAllButtonBlue'
-
-     Begin Object Class=GUIButton Name=RemoveAllButtonBlue
-         Caption="EMPTY"
-         WinTop=0.750000
-         WinLeft=0.150000
-         WinWidth=0.075000
-         TabOrder=0
-         OnClick=BallisticConflictWeaponMenuPro.InternalOnClick
-         OnKeyEvent=RemoveAllButton.InternalOnKeyEvent
-     End Object
-     BRemoveAllBlue=GUIButton'BallisticProV55.BallisticConflictWeaponMenuPro.RemoveAllButtonBlue'
-
-     Begin Object Class=GUIButton Name=AddButtonRed
-         Caption="> > >"
-         WinTop=0.750000
-         WinLeft=0.525000
-         WinWidth=0.100000
-         TabOrder=0
-         OnClick=BallisticConflictWeaponMenuPro.InternalOnClick
-         OnKeyEvent=AddButton.InternalOnKeyEvent
-     End Object
-     bAddRed=GUIButton'BallisticProV55.BallisticConflictWeaponMenuPro.AddButtonRed'
-
-     Begin Object Class=GUIButton Name=RemoveButtonRed
-         Caption="< < <"
-         WinTop=0.750000
-         WinLeft=0.675000
-         WinWidth=0.100000
-         TabOrder=0
-         OnClick=BallisticConflictWeaponMenuPro.InternalOnClick
-         OnKeyEvent=RemoveButton.InternalOnKeyEvent
-     End Object
-     BRemoveRed=GUIButton'BallisticProV55.BallisticConflictWeaponMenuPro.RemoveButtonRed'
-
-     Begin Object Class=GUIButton Name=AddAllButtonRed
-         Caption="FILL"
-         WinTop=0.750000
-         WinLeft=0.850000
-         WinWidth=0.075000
-         TabOrder=0
-         OnClick=BallisticConflictWeaponMenuPro.InternalOnClick
-         OnKeyEvent=AddAllButton.InternalOnKeyEvent
-     End Object
-     BAddAllRed=GUIButton'BallisticProV55.BallisticConflictWeaponMenuPro.AddAllButtonRed'
-
-     Begin Object Class=GUIButton Name=RemoveAllButtonRed
-         Caption="EMPTY"
-         WinTop=0.750000
-         WinLeft=0.775000
-         WinWidth=0.075000
-         TabOrder=0
-         OnClick=BallisticConflictWeaponMenuPro.InternalOnClick
-         OnKeyEvent=RemoveAllButton.InternalOnKeyEvent
-     End Object
-     BRemoveAllRed=GUIButton'BallisticProV55.BallisticConflictWeaponMenuPro.RemoveAllButtonRed'
-
-     Begin Object Class=GUIHeader Name=DaBeegHeader
-         bUseTextHeight=True
-         Caption="Ballistic Conflict Team Weapons"
-         FontScale=FNS_Medium
-         WinTop=0.100000
-         WinLeft=0.050000
-         WinWidth=0.900000
-         WinHeight=0.042969
-     End Object
-     MyHeader=GUIHeader'BallisticProV55.BallisticConflictWeaponMenuPro.DaBeegHeader'
-
-     Begin Object Class=GUIListBox Name=UsedRedWeaponList
-         bVisibleWhenEmpty=True
-         bSorted=True
-         OnCreateComponent=UsedWeaponList.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="List of the weapons for red team. Be careful to make sure there are always some available weapons when using evolution mode."
-         WinTop=0.190000
-         WinLeft=0.685000
-         WinWidth=0.230000
-         WinHeight=0.550000
-         RenderWeight=0.510000
-         TabOrder=1
-     End Object
-     lb_UsedRedWeapons=GUIListBox'BallisticProV55.BallisticConflictWeaponMenuPro.UsedRedWeaponList'
-
-     Begin Object Class=GUIListBox Name=UsedBlueWeaponList
-         bVisibleWhenEmpty=True
-         bSorted=True
-         OnCreateComponent=UsedWeaponList.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="List of the weapons for blue team. Be careful to make sure there are always some available weapons when using evolution mode."
-         WinTop=0.190000
-         WinLeft=0.085000
-         WinWidth=0.230000
-         WinHeight=0.550000
-         RenderWeight=0.510000
-         TabOrder=1
-     End Object
-     lb_UsedBlueWeapons=GUIListBox'BallisticProV55.BallisticConflictWeaponMenuPro.UsedBlueWeaponList'
-
-     Begin Object Class=GUIListBox Name=UnusedWeaponList
-         bVisibleWhenEmpty=True
-         bSorted=True
-         OnCreateComponent=UnusedWeaponList.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="List of weapons that you can give to the teams."
-         WinTop=0.190000
-         WinLeft=0.386000
-         WinWidth=0.230000
-         WinHeight=0.550000
-         RenderWeight=0.510000
-         TabOrder=1
-     End Object
-     lb_UnusedWeapons=GUIListBox'BallisticProV55.BallisticConflictWeaponMenuPro.UnusedWeaponList'
-
-     Begin Object Class=GUILabel Name=l_RedLabel
-         Caption="Red"
-         TextAlign=TXTA_Center
-         TextColor=(B=0,R=255)
-         FontScale=FNS_Small
-         WinTop=0.150000
-         WinLeft=0.700000
-         WinWidth=0.200000
-         WinHeight=0.040000
-     End Object
-     l_Red=GUILabel'BallisticProV55.BallisticConflictWeaponMenuPro.l_RedLabel'
-
-     Begin Object Class=GUILabel Name=l_BlueLabel
-         Caption="Blue"
-         TextAlign=TXTA_Center
-         TextColor=(B=255,G=255)
-         FontScale=FNS_Small
-         WinTop=0.150000
-         WinLeft=0.100000
-         WinWidth=0.200000
-         WinHeight=0.040000
-     End Object
-     l_Blue=GUILabel'BallisticProV55.BallisticConflictWeaponMenuPro.l_BlueLabel'
-
-     Begin Object Class=GUILabel Name=l_UnusedLabel
-         Caption="Potentials"
-         TextAlign=TXTA_Center
-         TextColor=(B=0,G=255,R=255)
-         FontScale=FNS_Small
-         WinTop=0.150000
-         WinLeft=0.400000
-         WinWidth=0.200000
-         WinHeight=0.040000
-     End Object
-     l_Unused=GUILabel'BallisticProV55.BallisticConflictWeaponMenuPro.l_UnusedLabel'
-
-     Begin Object Class=moComboBox Name=LoadOptCombo
-         OnCreateComponent=LoadOptCombo.InternalOnCreateComponent
-         IniOption="@Internal"
-         IniDefault="High"
-         Hint="Choose the type of loadout."
-         WinTop=0.825000
-         WinLeft=0.350000
-         WinWidth=0.200000
-     End Object
-     co_LoadOpt=moComboBox'BallisticProV55.BallisticConflictWeaponMenuPro.LoadOptCombo'
-
-     Headings(0)="Ballistic Weapons"
-     Headings(1)="Items"
-     Headings(2)="UT2004 Standard"
-     Headings(3)="Other"
-     bRenderWorld=True
-     bAllowedAsLast=True
-     OnClose=BallisticConflictWeaponMenuPro.InternalOnClose
-     OnKeyEvent=BallisticConflictWeaponMenuPro.InternalOnKeyEvent
+	Headings(0)="Ballistic Weapons"
+	Headings(1)="Items"
+	Headings(2)="UT2004 Standard"
+	Headings(3)="Other"
+	TeamCaptions(0)="Red team"
+	TeamCaptions(1)="Blue team"
+	TeamListCaptions(0)="Red team's weapons"
+	TeamListCaptions(1)="Blue team's weapons"
+	BothListCaption="Both teams' weapons"
+	bRenderWorld=True
+	bAllowedAsLast=True
+	OnKeyEvent=BallisticConflictWeaponMenuPro.InternalOnKeyEvent
 }

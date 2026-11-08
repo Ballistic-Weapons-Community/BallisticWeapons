@@ -1,31 +1,21 @@
 //=============================================================================
-// ConfigTab_Player.
+// ConfigTab_Arena
+//
+// The weapons of the Ballistic Arena mutator, in the shared weapon chooser,
+// with presets and the random options.
 //
 // by Paul "Grum" Haack.
 // Copyright(c) 2012 Crazy-Froggers.com. All Rights Reserved.
 //=============================================================================
 class ConfigTab_Arena extends ConfigTabBase;
 
-var Automated GUIImage		Box_Unused;			// Unselected Weapons Image
-var Automated GUIImage		Box_Used;			// Selected Weapons Image
-var Automated GUIButton		BAdd;				// Add Button
-var Automated GUIButton		BRemove;			// Remove Button
-var Automated GUIButton		BSave;				// Save Preset
-var Automated GUIButton		BDelete;			// Delete Preset
-var Automated GUIButton		BAddAll;			// Fill Button
-var Automated GUIButton		BRemoveAll;			// Empty Button
-
-var automated GUIListBox	lb_UsedWeapons;		// Selected Weapons List
-var automated GUIListBox	lb_UnusedWeapons;	// Unselected Weapons List
-var BC_ListSearch		Search;				// the search row over the spare weapons
-var automated moCheckbox	ch_Random;			// One Random Weapon
-var automated moCheckbox	ch_PerSpawn;		// Random Per Spawn
-var automated GUIComboBox	cb_Presets;			// Presets
-var automated GUILabel   	l_PresetLabel;		// Presets Lable
-
-//==================================================================
-// Ballistic Arena Menu & General Menu Code
-//==================================================================
+var automated BC_WeaponListEditor	Editor;			// spare and chosen weapons
+var Automated GUIButton				BSave;			// Save Preset
+var Automated GUIButton				BDelete;		// Delete Preset
+var automated moCheckbox			ch_Random;		// One Random Weapon
+var automated moCheckbox			ch_PerSpawn;	// Random Per Spawn
+var automated GUIComboBox			cb_Presets;		// Presets
+var automated GUILabel				l_PresetLabel;	// Presets Label
 
 struct ArenaPreset
 {
@@ -37,205 +27,30 @@ var bool							bIgnorePresetChange;	// The preset box is being changed by code
 
 var() localized string Headings[3];
 
-function int WeaponRank(string PackageName, optional string ClassName, optional GUIListElem El)
-{
-//	local class<Weapon> W;
-
-	if (PackageName == "BW")
-		return 0;
-	if (InStr(PackageName, "Ballistic") != -1 || InStr(PackageName, "BWBP") != -1 || InStr(PackageName, "RedGunPack") != -1)
-		return 1;
-	if (InStr(PackageName, "JunkWar") != -1 || InStr(PackageName, "JWBP") != -1)
-		return 2;
-	if (PackageName == "UT")
-		return 50;
-	if (PackageName ~= "XWeapons" || PackageName ~= "UTClassic")
-		return 51;
-	if (InStr(PackageName, "Onslaught") != -1)
-		return 51;
-	if (PackageName == "O")
-		return 100;
-	if (El.ExtraData == self)
-		return 10;
-	// Tap into the BW weapon cache system to identify BallisticWeapons without loading them
-//	if (ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(ClassName).bIsBW)
-//		return 10;
-	return 110;
-}
-
-// Used by SortList.
-function int MyCompareItem(GUIListElem ElemA, GUIListElem ElemB)
-{
-	local int i, AR, BR;
-
-	if (ElemA.bSection)
-		AR = WeaponRank(ElemA.ExtraStrData);
-	else
-	{
-		i = InStr(ElemA.ExtraStrData, ".");
-		if (i > 0)
-			AR = WeaponRank(left(ElemA.ExtraStrData, i), ElemA.ExtraStrData, ElemA);
-	}
-
-	if (ElemB.bSection)
-		BR = WeaponRank(ElemB.ExtraStrData);
-	else
-	{
-		i = InStr(ElemB.ExtraStrData, ".");
-		if (i > 0)
-			BR = WeaponRank(left(ElemB.ExtraStrData, i), ElemB.ExtraStrData, ElemB);
-	}
-
-	if (AR == BR)
-		return StrCmp(ElemA.Item, ElemB.Item);
-	else
-		return AR-BR;
-}
-
-function bool InternalOnDragDrop(GUIComponent Sender)
-{
-	local array<GUIListElem> NewItem;
-	local int i;
-	local GUIList L;
-
-	L = GUIList(Sender);
-	if (L != None && Sender.Controller.DropTarget == Sender)
-	{
-		if (Sender.Controller.DropSource == L)
-			return false;
-
-		if (Sender.Controller.DropSource != None && GUIList(Sender.Controller.DropSource) != None)
-		{
-			NewItem = GUIList(Sender.Controller.DropSource).GetPendingElements();
-			for (i=NewItem.Length;i>-1;i--)
-				if (NewItem[i].bSection)
-					NewItem.Remove(i, 1);
-
-			if ( !L.IsValidIndex(L.DropIndex) )
-				L.DropIndex = L.ItemCount;
-
-			for (i = NewItem.Length - 1; i >= 0; i--)
-				L.Insert(L.DropIndex, NewItem[i].Item, NewItem[i].ExtraData, NewItem[i].ExtraStrData);
-
-			L.SetIndex(L.DropIndex);
-			if (Search != None && L == lb_UnusedWeapons.List)
-				Search.Refresh();
-			return true;
-		}
-	}
-	return false;
-}
-
-function InternalOnEndDrag(GUIComponent Accepting, bool bAccepted)
-{
-	local int i;
-	local GUIList L;
-	local array<GUIListElem> PendingElems;
-
-	L = lb_UnusedWeapons.List;
-
-	if (bAccepted && Accepting != None)
-	{
-		PendingElems = L.GetPendingElements();
-		if ( Accepting != Self )
-		{
-			for ( i = 0; i < L.SelectedElements.Length; i++ )
-				if (!L.SelectedElements[i].bSection)
-					L.RemoveElement(L.SelectedElements[i]);
-		}
-
-		L.bRepeatClick = False;
-	}
-
-	// Simulate repeat click if the operation was a failure to prevent InternalOnMouseRelease from clearing
-	// the SelectedItems array
-	// This way we don't lose the items we clicked on
-	if (Accepting == None)
-		L.bRepeatClick = True;
-
-	L.SetOutlineAlpha(255);
-	if ( L.bNotify )
-		L.CheckLinkedObjects(L);
-	if (Search != None)
-		Search.Refresh();
-}
-
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
 	local int i;
 
 	Super.InitComponent(MyController, MyOwner);
 
-	for(i=0;i<Presets.length;i++)
-	    cb_Presets.AddItem(Presets[i].PresetName,,string(i));
+	for (i = 0; i < Presets.length; i++)
+		cb_Presets.AddItem(Presets[i].PresetName,, string(i));
 	cb_Presets.SetText("");
-
-	lb_UnusedWeapons.List.CompareItem = MyCompareItem;
 }
 
-// The lists are filled when the tab is first shown. Going through every weapon of the game is too much for opening the menu.
+// The weapons are listed when the tab is first shown: going through every weapon of the game is too much for opening the menu
 function InitializeConfigTab()
 {
-	local array<CacheManager.WeaponRecord> Recs;
-	local int i, j;
-
-	lb_UnusedWeapons.List.Add(Headings[0],,"BW",true);
-	lb_UnusedWeapons.List.Add(Headings[1],,"UT",true);
-	lb_UnusedWeapons.List.Add(Headings[2],,"O",true);
-
-	class'CacheManager'.static.GetWeaponList(Recs);
-	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
-	for (i=0;i<Recs.Length;i++)
-	{
-		if (!class'BC_WeaponInfoCache'.static.IsValid(Recs[i].ClassName))
-			continue;
-		
-		for (j=0;j<class'Mut_BallisticArena'.default.WeaponClassNames.length;j++)
-			if (class'Mut_BallisticArena'.default.WeaponClassNames[j] ~= Recs[i].ClassName)
-			{
-				if (Recs[i].ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
-					lb_UsedWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
-				else
-					lb_UsedWeapons.List.Add(Recs[i].FriendlyName, , Recs[i].ClassName);
-				break;
-			}
-		if (j >= class'Mut_BallisticArena'.default.WeaponClassNames.length)
-		{
-			if (Recs[i].ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
-				lb_UnusedWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
-			else
-				lb_UnusedWeapons.List.Add(Recs[i].FriendlyName, , Recs[i].ClassName);
-		}
-	}
-	class'BC_WeaponInfoCache'.static.EndSession();
-
-    lb_UnusedWeapons.List.bDropSource = True;
-    lb_UnusedWeapons.List.bDropTarget = True;
-    lb_UnusedWeapons.List.OnDragDrop = InternalOnDragDrop;
-//    lb_UnusedWeapons.List.OnDragDrop = lb_UnusedWeapons.List.InternalOnDragDrop;
-//    lb_UnusedWeapons.List.OnBeginDrag = InternalOnBeginDrag;
-    lb_UnusedWeapons.List.OnBeginDrag = lb_UnusedWeapons.List.InternalOnBeginDrag;
-    lb_UnusedWeapons.List.OnEndDrag = InternalOnEndDrag;
-//    lb_UnusedWeapons.List.OnEndDrag = lb_UnusedWeapons.List.InternalOnEndDrag;
-	lb_UnusedWeapons.List.OnDblClick = InternalOnDblClick;
-
-    lb_UsedWeapons.List.bDropSource = True;
-    lb_UsedWeapons.List.bDropTarget = True;
-    lb_UsedWeapons.List.OnDragDrop = InternalOnDragDrop;
-//    lb_UsedWeapons.List.OnDragDrop = lb_UsedWeapons.List.InternalOnDragDrop;
-    lb_UsedWeapons.List.OnBeginDrag = lb_UsedWeapons.List.InternalOnBeginDrag;
-    lb_UsedWeapons.List.OnEndDrag = lb_UsedWeapons.List.InternalOnEndDrag;
-	lb_UsedWeapons.List.OnDblClick = InternalOnDblClick;
-
-	Search = class'BC_ListSearch'.static.Create(self, lb_UnusedWeapons, lb_UnusedWeapons.List);
+	Editor.AddAllGameWeapons(Headings[0], Headings[1], Headings[2]);
 }
 
 function bool InternalOnClick(GUIComponent Sender)
 {
 	local int i, j;
 	local string S;
+	local array<string> Names;
 
-	if (Sender==BSave) // Save Preset
+	if (Sender == BSave) // Save Preset
 	{
 		S = cb_Presets.GetText();
 		if (S == "")
@@ -248,20 +63,19 @@ function bool InternalOnClick(GUIComponent Sender)
 			Presets.length = i + 1;
 			Presets[i].PresetName = S;
 			bIgnorePresetChange = true;
-			cb_Presets.AddItem(S,,string(i));
+			cb_Presets.AddItem(S,, string(i));
 			bIgnorePresetChange = false;
 		}
-		Presets[i].WeaponClassNames.length = lb_UsedWeapons.List.Elements.length;
-		for(j=0;j<lb_UsedWeapons.List.Elements.length;j++)
-			Presets[i].WeaponClassNames[j] = lb_UsedWeapons.List.GetExtraAtIndex(j);
+		Editor.GetChosen(Names);
+		Presets[i].WeaponClassNames = Names;
 		SaveConfig();
 	}
-	else if (Sender==BDelete) // Delete Preset
+	else if (Sender == BDelete) // Delete Preset
 	{
 		i = FindPreset(cb_Presets.GetText());
 		if (i >= 0)
 		{
-			Presets.Remove(i,1);
+			Presets.Remove(i, 1);
 			// Taking the item out selects its neighbour, which is not to be loaded
 			bIgnorePresetChange = true;
 			j = cb_Presets.FindIndex(cb_Presets.GetText());
@@ -272,48 +86,6 @@ function bool InternalOnClick(GUIComponent Sender)
 			SaveConfig();
 		}
 	}
-	else if (Sender==BAddAll) // ADD ALL
-	{
-		for (i=lb_UnusedWeapons.List.Elements.Length-1;i>-1;i--)
-			if (!lb_UnusedWeapons.List.Elements[i].bSection)
-			{
-				lb_UsedWeapons.List.Add(lb_UnusedWeapons.List.GetItemAtIndex(i), , lb_UnusedWeapons.List.GetExtraAtIndex(i));
-				lb_UnusedWeapons.List.Remove(i);
-			}
-	}
-	else if (Sender==BRemoveAll) // REMOVE ALL
-	{
-		while(lb_UsedWeapons.List.Elements.Length > 0)
-		{
-			lb_UnusedWeapons.List.Add(lb_UsedWeapons.List.GetItemAtIndex(0), , lb_UsedWeapons.List.GetExtraAtIndex(0));
-			lb_UsedWeapons.List.Remove(0);
-		}
-	}
-	else if (Sender==BAdd) // ADD
-	{
-		if (!lb_UnusedWeapons.List.IsSection())
-		{
-			lb_UsedWeapons.List.Add(lb_UnusedWeapons.List.Get(), , lb_UnusedWeapons.List.GetExtra());
-			lb_UnusedWeapons.List.Remove(lb_UnusedWeapons.List.Index);
-		}
-	}
-	else if (Sender==BRemove) // REMOVE
-	{
-
-		lb_UnusedWeapons.List.Add(lb_UsedWeapons.List.Get(), , lb_UsedWeapons.List.GetExtra());
-		lb_UsedWeapons.List.Remove(lb_UsedWeapons.List.Index);
-	}
-	if (Search != None)
-		Search.Refresh();
-	return true;
-}
-
-function bool InternalOnDblClick(GUIComponent Sender)
-{
-	if (Sender==lb_UnusedWeapons.List)
-		InternalOnClick(BAdd);
-	else if (Sender==lb_UsedWeapons.List)
-		InternalOnClick(BRemove);
 	return true;
 }
 
@@ -327,7 +99,7 @@ function InternalOnChange(GUIComponent Sender)
 		// by name: the numbers stored with the items go stale when a preset is deleted
 		i = FindPreset(cb_Presets.GetText());
 		if (i >= 0)
-			UseWeapons(Presets[i].WeaponClassNames);
+			Editor.SetChosen(Presets[i].WeaponClassNames);
 	}
 }
 
@@ -335,140 +107,63 @@ function int FindPreset(string PresetName)
 {
 	local int i;
 
-	for (i=0;i<Presets.length;i++)
+	for (i = 0; i < Presets.length; i++)
 		if (Presets[i].PresetName ~= PresetName)
 			return i;
 	return -1;
-}
-
-// Puts these weapons, and only these, in the list of weapons in use
-function UseWeapons(array<string> Names)
-{
-	local int i, j;
-	if (Search != None)
-		Search.ShowAll();
-
-	while(lb_UsedWeapons.List.Elements.Length > 0)
-	{
-		lb_UnusedWeapons.List.Add(lb_UsedWeapons.List.GetItemAtIndex(0), , lb_UsedWeapons.List.GetExtraAtIndex(0));
-		lb_UsedWeapons.List.Remove(0);
-	}
-	for (i=0;i<Names.Length;i++)
-	{
-		for (j=0;j<lb_UnusedWeapons.List.Elements.length;j++)
-		{
-			if (lb_UnusedWeapons.List.GetExtraAtIndex(j) ~= Names[i])
-			{
-				lb_UsedWeapons.List.Add(lb_UnusedWeapons.List.GetItemAtIndex(j),, lb_UnusedWeapons.List.GetExtraAtIndex(j));
-				lb_UnusedWeapons.List.Remove(j);
-				break;
-			}
-		}
-	}
-	if (Search != None)
-		Search.Refresh();
-}
-
-function ShowPanel(bool bShow)
-{
-    super.ShowPanel(bShow);
-    if (bInitialized)
-        return;
-    LoadSettings();
-    bInitialized = true;
 }
 
 //==================================================================
 // Settings & Defaults
 //==================================================================
 
+// Also RESET: back to the saved list
 function LoadSettings()
 {
-    ch_Random.Checked(class'Mut_BallisticArena'.default.bRandomPickOne);
+	ch_Random.Checked(class'Mut_BallisticArena'.default.bRandomPickOne);
 	ch_PerSpawn.Checked(class'Mut_BallisticArena'.default.bRandomPerSpawn);
-	// RESET: back to the saved list
-	if (bInitialized)
-		UseWeapons(class'Mut_BallisticArena'.default.WeaponClassNames);
+	Editor.SetChosen(class'Mut_BallisticArena'.default.WeaponClassNames);
 }
 
 function DefaultSettings()
 {
 	local array<string> Names;
 
-    ch_Random.Checked(true);
-    ch_PerSpawn.Checked(true);
+	ch_Random.Checked(true);
+	ch_PerSpawn.Checked(true);
 	Names[0] = "BallisticProV55.D49Revolver";
-	UseWeapons(Names);
+	Editor.SetChosen(Names);
 }
 
 function SaveSettings()
 {
-    local int i;
-	
-	if (!bInitialized)
-        return;
-		
-	if (lb_UsedWeapons.List.Elements.length < 1)
-			class'Mut_BallisticArena'.default.WeaponClassNames.length = 1;
-	else
-	{
-		class'Mut_BallisticArena'.default.WeaponClassNames.length = 0;
-		for (i=0;i<lb_UsedWeapons.List.Elements.length;i++)
-			class'Mut_BallisticArena'.default.WeaponClassNames[i] = lb_UsedWeapons.List.GetExtraAtIndex(i);
+	local array<string> Names;
 
-	}
+	if (!bInitialized)
+		return;
+
+	Editor.GetChosen(Names);
+	if (Names.Length < 1)
+		Names.Length = 1;
+	class'Mut_BallisticArena'.default.WeaponClassNames = Names;
 	class'Mut_BallisticArena'.default.bRandomPickOne = ch_Random.IsChecked();
 	class'Mut_BallisticArena'.default.bRandomPerSpawn = ch_PerSpawn.IsChecked();
 	class'Mut_BallisticArena'.static.StaticSaveConfig();
 	SaveConfig();
-	
 }
 
 defaultproperties
 {
-     Begin Object Class=GUIImage Name=ImageBoxUnused
-         Image=Texture'2K4Menus.NewControls.Display99'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.050000
-         WinLeft=0.075000
-         WinWidth=0.400000
-         WinHeight=0.675000
-         RenderWeight=0.002000
-     End Object
-     Box_Unused=GUIImage'BallisticProV55.ConfigTab_Arena.ImageBoxUnused'
+	Begin Object Class=BC_WeaponListEditor Name=WeaponEditor
+		ChosenCaption="In Play"
+		WinTop=0.030000
+		WinLeft=0.050000
+		WinWidth=0.900000
+		WinHeight=0.680000
+		TabOrder=0
+	End Object
+	Editor=BC_WeaponListEditor'BallisticProV55.ConfigTab_Arena.WeaponEditor'
 
-     Begin Object Class=GUIImage Name=ImageBoxUsed
-         Image=Texture'2K4Menus.NewControls.Display99'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.050000
-         WinLeft=0.525000
-         WinWidth=0.400000
-         WinHeight=0.675000
-         RenderWeight=0.002000
-     End Object
-     Box_Used=GUIImage'BallisticProV55.ConfigTab_Arena.ImageBoxUsed'
-
-     Begin Object Class=GUIButton Name=AddButton
-         Caption="ADD"
-         WinTop=0.375000
-         WinLeft=0.450000
-         WinWidth=0.100000
-         TabOrder=0
-         OnClick=ConfigTab_Arena.InternalOnClick
-         OnKeyEvent=AddButton.InternalOnKeyEvent
-     End Object
-     bAdd=GUIButton'BallisticProV55.ConfigTab_Arena.AddButton'
-
-     Begin Object Class=GUIButton Name=RemoveButton
-         Caption="REMOVE"
-         WinTop=0.425000
-         WinLeft=0.450000
-         WinWidth=0.100000
-         TabOrder=0
-         OnClick=ConfigTab_Arena.InternalOnClick
-         OnKeyEvent=RemoveButton.InternalOnKeyEvent
-     End Object
-     bRemove=GUIButton'BallisticProV55.ConfigTab_Arena.RemoveButton'
 
      Begin Object Class=GUIButton Name=SaveButton
          Caption="SAVE"
@@ -481,6 +176,7 @@ defaultproperties
      End Object
      bSave=GUIButton'BallisticProV55.ConfigTab_Arena.SaveButton'
 
+
      Begin Object Class=GUIButton Name=DeleteButton
          Caption="DELETE"
          WinTop=0.740000
@@ -492,57 +188,6 @@ defaultproperties
      End Object
      BDelete=GUIButton'BallisticProV55.ConfigTab_Arena.DeleteButton'
 
-     Begin Object Class=GUIButton Name=AddAllButton
-         Caption="FILL"
-         WinTop=0.250000
-         WinLeft=0.450000
-         WinWidth=0.100000
-         TabOrder=0
-         OnClick=ConfigTab_Arena.InternalOnClick
-         OnKeyEvent=AddAllButton.InternalOnKeyEvent
-     End Object
-     BAddAll=GUIButton'BallisticProV55.ConfigTab_Arena.AddAllButton'
-
-     Begin Object Class=GUIButton Name=RemoveAllButton
-         Caption="EMPTY"
-         WinTop=0.300000
-         WinLeft=0.450000
-         WinWidth=0.100000
-         TabOrder=0
-         OnClick=ConfigTab_Arena.InternalOnClick
-         OnKeyEvent=RemoveAllButton.InternalOnKeyEvent
-     End Object
-     BRemoveAll=GUIButton'BallisticProV55.ConfigTab_Arena.RemoveAllButton'
-
-     Begin Object Class=GUIListBox Name=UsedWeaponList
-         bVisibleWhenEmpty=True
-         bSorted=True
-         OnCreateComponent=UsedWeaponList.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Used Weapons. Drag, Double click or use Remove button to take them out the match."
-         WinTop=0.100000
-         WinLeft=0.550000
-         WinWidth=0.350000
-         WinHeight=0.600000
-         RenderWeight=0.510000
-         TabOrder=1
-     End Object
-     lb_UsedWeapons=GUIListBox'BallisticProV55.ConfigTab_Arena.UsedWeaponList'
-
-     Begin Object Class=GUIListBox Name=UnusedWeaponList
-         bVisibleWhenEmpty=True
-         bSorted=True
-         OnCreateComponent=UnusedWeaponList.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Spare Weapons. Drag, Double click or use Add button to put them in the match."
-         WinTop=0.100000
-         WinLeft=0.100000
-         WinWidth=0.350000
-         WinHeight=0.600000
-         RenderWeight=0.510000
-         TabOrder=1
-     End Object
-     lb_UnusedWeapons=GUIListBox'BallisticProV55.ConfigTab_Arena.UnusedWeaponList'
 
      Begin Object Class=moCheckBox Name=RandomCheck
          ComponentJustification=TXTA_Left
@@ -558,6 +203,7 @@ defaultproperties
      End Object
      ch_Random=moCheckBox'BallisticProV55.ConfigTab_Arena.RandomCheck'
 
+
      Begin Object Class=moCheckBox Name=PerSpawnCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
@@ -572,6 +218,7 @@ defaultproperties
      End Object
      ch_PerSpawn=moCheckBox'BallisticProV55.ConfigTab_Arena.PerSpawnCheck'
 
+
      Begin Object Class=GUIComboBox Name=PresetsComboBox
          Hint="Pick a preset list of weapons."
          WinTop=0.740000
@@ -583,6 +230,7 @@ defaultproperties
          OnKeyEvent=PresetsComboBox.InternalOnKeyEvent
      End Object
      cb_Presets=GUIComboBox'BallisticProV55.ConfigTab_Arena.PresetsComboBox'
+
 
      Begin Object Class=GUILabel Name=PresetLabel
          Caption="Presets"
@@ -596,7 +244,6 @@ defaultproperties
          WinHeight=0.030000
      End Object
      l_PresetLabel=GUILabel'BallisticProV55.ConfigTab_Arena.PresetLabel'
-
 	 Presets(0)=(PresetName="Sidearm Shootout",WeaponClassNames=("BallisticProV55.M806Pistol","BallisticProV55.A42SkrithPistol","BallisticProV55.AM67Pistol","BallisticProV55.BOGPPistol","BallisticProV55.D49Revolver","BallisticProV55.Fifty9MachinePistol","BallisticProV55.GRS9Pistol","BallisticProV55.leMatRevolver","BallisticProV55.MD24Pistol","BallisticProV55.MRT6Shotgun","BallisticProV55.RS8Pistol","BallisticProV55.XK2SubMachinegun","BallisticProV55.XMK5SubMachinegun","BallisticProV55.XRS10SubMachinegun","BWBP_SKC_Pro.AH104Pistol","BWBP_SKC_Pro.AH250Pistol","BWBP_SKC_Pro.FMPMachinePistol","BWBP_SKC_Pro.GRSXXPistol","BWBP_SKC_Pro.MRDRMachinePistol","BWBP_SKC_Pro.PS9mPistol","BWBP_SKC_Pro.RS04Pistol","BWBP_SKC_Pro.SX45Pistol","BWBP_SKC_Pro.T9CNMachinePistol","BWBP_SKC_Pro.TyphonPDW","BWBP_OP_Pro.PD97Bloodhound","BWBP_OP_Pro.FC01SmartGun","BWBP_APC_Pro.GASCPistol","BWBP_APC_Pro.HKMKSpecPistol","BWBP_APC_Pro.SRKSubMachinegun","BWBP_SWC_Pro.MDKSubMachinegun"))
      Presets(1)=(PresetName="Monster Weapons",WeaponClassNames=("BallisticProV55.G5Bazooka","BallisticProV55.HVCMk9LightningGun","BallisticProV55.M75Railgun","BallisticProV55.MACWeapon","BallisticProV55.MRocketLauncher","BallisticProV55.RX22AFlamer","BallisticProV55.XMV850Minigun","BWBP_SKC_Pro.BulldogAssaultCannon","BWBP_SKC_Pro.FG50MachineGun","BWBP_SKC_Pro.HMCBeamCannon","BWBP_SKC_Pro.HVPCMk5PlasmaCannon","BWBP_SKC_Pro.HVPCMk66PlasmaCannon","BWBP_SKC_Pro.LAWLauncher","BWBP_SKC_Pro.PugAssaultCannon","BWBP_SKC_Pro.PumaRepeater","BWBP_SKC_Pro.SMATLauncher","BWBP_SKC_Pro.Supercharger_AssaultWeapon","BWBP_SKC_Pro.TAC30Cannon","BWBP_OP_Pro.MX32Weapon","BWBP_OP_Pro.ProtonStreamer","BWBP_OP_Pro.Raygun","BWBP_OP_Pro.Z250Minigun","BWBP_APC_Pro.HydraBazooka","BWBP_APC_Pro.ThorLightningCannon","BWBP_APC_Pro.XMV500Minigun","BWBP_JCF_Pro.RGPXBazooka","BWBP_SWC_Pro.A800SkrithMinigun"))
      Presets(2)=(PresetName="Shotgun Arena",WeaponClassNames=("BallisticProV55.M290Shotgun","BallisticProV55.M763Shotgun","BallisticProV55.MRS138Shotgun","BallisticProV55.MRT6Shotgun","BallisticProV55.A500Reptile","BWBP_SKC_Pro.CoachGun","BWBP_SKC_Pro.MK781Shotgun","BWBP_SKC_Pro.SK410Shotgun","BWBP_SKC_Pro.SKASShotgun","BWBP_OP_Pro.FM13Shotgun","BWBP_OP_Pro.RCS715Shotgun","BWBP_APC_Pro.FM14Shotgun","BWBP_JCF_Pro.SPASShotgun"))

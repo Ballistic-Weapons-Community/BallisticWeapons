@@ -24,7 +24,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 
 	Super.InitComponent(MyController, MyOwner);
 
-	FillCatalogue();
+	Editor.AddAllGameWeapons(Headings[0], Headings[1], Headings[2]);
 	Editor.MaxChosen = class'GunGameConfig'.static.MaxWeapons();
 	Editor.OnChosenChanged = ChosenChanged;
 
@@ -34,40 +34,6 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 		ClassNames(class'GunGameConfig'.default.StockWeaponList, Names);
 	Editor.Chosen = Names;
 	Editor.SetOrdered(true, true);
-}
-
-// Every weapon of the game: Ballistic, then UT2004, then the rest
-function FillCatalogue()
-{
-	local array<CacheManager.WeaponRecord> Recs;
-	local array<byte> Kind;
-	local int i, k;
-
-	class'CacheManager'.static.GetWeaponList(Recs);
-	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
-
-	Kind.Length = Recs.Length;
-	for (i = 0; i < Recs.Length; i++)
-	{
-		if (!class'BC_WeaponInfoCache'.static.IsValid(Recs[i].ClassName))
-			Kind[i] = 255;
-		else if (class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
-			Kind[i] = 0;
-		else if (Left(Recs[i].ClassName, 9) ~= "XWeapons." || Left(Recs[i].ClassName, 10) ~= "UTClassic." || Left(Recs[i].ClassName, 9) ~= "Onslaught")
-			Kind[i] = 1;
-		else
-			Kind[i] = 2;
-	}
-	class'BC_WeaponInfoCache'.static.EndSession();
-
-	Editor.ClearCatalogue();
-	for (k = 0; k < 3; k++)
-	{
-		Editor.AddSection(Headings[k]);
-		for (i = 0; i < Recs.Length; i++)
-			if (Kind[i] == k)
-				Editor.AddWeapon(Recs[i].FriendlyName, Recs[i].ClassName);
-	}
 }
 
 function ClassNames(array< class<Weapon> > List, out array<string> Names)
