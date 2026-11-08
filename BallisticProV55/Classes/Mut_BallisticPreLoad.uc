@@ -186,16 +186,19 @@ function BuildWeaponList(out array<string> OutList)
 	}
 	else if (LoadoutMut != None)
 	{
-		// Evolution system
+		// Evolution system. The list holds every weapon the menu knows: only those put in a box (a group) can be chosen.
 		Source = "Loadout";
 		for (i = 0; i < LoadoutMut.Items.Length; i++)
-			AddUniqueString(OutList, LoadoutMut.Items[i].ItemName);
+			if (LoadoutMut.Items[i].Groups != 0)
+				AddUniqueString(OutList, LoadoutMut.Items[i].ItemName);
 	}
 	else if (ConflictMut != None)
 	{
+		// The list holds every weapon the menu knows: only those given to the red or the blue side can be chosen
 		Source = "Conflict";
 		for (i = 0; i < ConflictMut.ConflictWeapons.Length; i++)
-			AddUniqueString(OutList, ConflictMut.ConflictWeapons[i].ClassName);
+			if (ConflictMut.ConflictWeapons[i].bRed || ConflictMut.ConflictWeapons[i].bBlue)
+				AddUniqueString(OutList, ConflictMut.ConflictWeapons[i].ClassName);
 	}
 	else if (SwapMut != None)
 	{
@@ -223,7 +226,8 @@ function BuildWeaponList(out array<string> OutList)
 					AddUniqueString(OutList, string(MeleeMut.GetInventoryFor(MeleeMut.Replacements[i].NewItems[j])));
 	}
 
-	if (OutList.Length == 0)
+	// Only without an inventory mutator: one whose list has nothing chosen gives nothing to load
+	if (Source == "")
 	{
 		// Fall back to hardcoded config list
 		Source = "config";
