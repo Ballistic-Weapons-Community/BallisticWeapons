@@ -15,11 +15,7 @@ var() localized string		PlayerTabLabel,PlayerTabHint;
 var() localized string		MovementTabLabel,MovementTabHint;
 var() localized string		PickupsTabLabel,PickupsTabHint;
 
-var() localized string		ConflictTabLabel, ConflictTabHint;
-var() localized string		LoadoutTabLabel,LoadoutTabHint;
-var() localized string		LoadoutNewTabLabel,LoadoutNewTabHint;
-var() localized string		SwapTabLabel,SwapTabHint;
-var() localized string		ArenaTabLabel, ArenaTabHint;
+var() localized string		WeaponListsTabLabel, WeaponListsTabHint;
 
 function AddTabs()
 {
@@ -30,12 +26,8 @@ function AddTabs()
 	c_Tabs.AddTab(MovementTabLabel,"BallisticProV55.ConfigTab_MovementRules",,MovementTabHint);	
 	c_Tabs.AddTab(PickupsTabLabel,"BallisticProV55.ConfigTab_PickupRules",,PickupsTabHint);
 
-	//Inventory
-	c_Tabs.AddTab(ConflictTabLabel,"BallisticProV55.ConfigTab_ConflictLoadout",,ConflictTabHint);
-	c_Tabs.AddTab(LoadoutTabLabel,"BallisticProV55.ConfigTab_Outfitting",,LoadoutTabHint);
-	c_Tabs.AddTab(LoadoutNewTabLabel,"BallisticProV55.ConfigTab_Loadout",,LoadoutNewTabHint);
-	c_Tabs.AddTab(SwapTabLabel,"BallisticProV55.ConfigTab_Swappings",,SwapTabHint);
-	c_Tabs.AddTab(ArenaTabLabel,"BallisticProV55.ConfigTab_Arena",,ArenaTabHint);
+	// the inventory modes' weapon lists, in one tab
+	c_Tabs.AddTab(WeaponListsTabLabel,"BallisticProV55.ConfigTab_WeaponLists",,WeaponListsTabHint);
 }
 
 defaultproperties
@@ -54,15 +46,7 @@ defaultproperties
 	MovementTabLabel="Movement"
 	MovementTabHint="Movement rules and settings."
 
-	// inventory
-	ConflictTabLabel="Inventory"
-	ConflictTabHint="Change which weapons are used by the 'Ballistic Conflict' Mutator."
-	LoadoutTabLabel="Loadout"
-	LoadoutTabHint="Change how and which weapons are used by the 'Ballistic Loadout' mutator."
-	LoadoutNewTabLabel="Evolution Loadout"
-	LoadoutNewTabHint="Adjust the loadout and requirement settings for the 'Ballistic Evolution Loadout' mutator."
-	SwapTabLabel="Pickup Swaps"
-	SwapTabHint="Adjust how and which weapons are spawned by the 'Ballistic Weapons' mutator."
-	ArenaTabLabel="Arena"
-	ArenaTabHint="Change which weapons are used by the 'Ballistic Arena' Mutator."
+
+	WeaponListsTabLabel="Weapon Lists"
+	WeaponListsTabHint="The weapons of each inventory mode: Inventory, Loadout, Evolution, Pickup Swaps and Arena."
 }

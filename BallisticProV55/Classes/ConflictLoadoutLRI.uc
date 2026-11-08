@@ -250,6 +250,9 @@ final private simulated function ModifyMenu()
 	  // You can use the panel reference to do the modifications to the tab etc.
 	  // conflict tab is always first
       Panel = Menu.c_Main.InsertTab(0, MenuName, string( class'MidGameTab_Conflict' ),, MenuHelp);
+      // back on this tab if it was the last one used
+      if (Panel != None && class'BC_MenuMemory'.default.LastInGameTab ~= MenuName)
+      	Menu.c_Main.ActivateTabByName(MenuName, true);
 	  bMenuModified=True;
 	  Disable('Tick');
    }

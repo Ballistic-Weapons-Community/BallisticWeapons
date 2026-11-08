@@ -75,6 +75,11 @@ function InitializeConfigTab()
 	LoadList();
 	LoadBoxesFromMutator();
 	SetSameTeamsFromBoxes();
+
+	// back on the slot and team last edited
+	SelectedBox = Clamp(class'BC_MenuMemory'.default.LoadoutSlot, 0, NUM_BOXES - 1);
+	SelectedTeam = Clamp(class'BC_MenuMemory'.default.LoadoutTeam, 0, 2);
+	SlotRow.Select(SelectedBox);
 	ShowBox();
 }
 
@@ -348,12 +353,14 @@ function ChosenChanged(BC_WeaponListEditor Sender)
 function SlotSwitched(BC_TabRow Sender, int Index)
 {
 	SelectedBox = Index;
+	class'BC_MenuMemory'.static.SetLoadout(SelectedBox, SelectedTeam);
 	ShowBox();
 }
 
 function TeamSwitched(BC_TabRow Sender, int Index)
 {
 	SelectedTeam = Index;
+	class'BC_MenuMemory'.static.SetLoadout(SelectedBox, SelectedTeam);
 	ShowBox();
 }
 

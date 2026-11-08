@@ -92,6 +92,15 @@ function InitPanel()
 function ShowPanel(bool bShow)	
 {
 	super.ShowPanel(bShow);
+
+	// the in-game menu opens on this tab next time if it was the last one used
+	if (MyButton != None)
+	{
+		if (bShow)
+			class'BC_MenuMemory'.static.SetLastInGameTab(MyButton.Caption);
+		else if (class'BC_MenuMemory'.default.LastInGameTab ~= MyButton.Caption)
+			class'BC_MenuMemory'.static.SetLastInGameTab("");
+	}
 	
 	if (li_Weapons != None && li_Weapons.IsSection())
 	{

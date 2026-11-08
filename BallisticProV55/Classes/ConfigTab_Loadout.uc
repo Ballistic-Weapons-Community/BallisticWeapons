@@ -71,6 +71,10 @@ function InitializeConfigTab()
 
 	LoadList();
 	LoadBoxesFromMutator();
+
+	// back on the slot last edited
+	SelectedBox = Clamp(class'BC_MenuMemory'.default.EvolutionSlot, 0, 4);
+	SlotRow.Select(SelectedBox);
 	ShowBox();
 }
 
@@ -318,6 +322,7 @@ function ChosenChanged(BC_WeaponListEditor Sender)
 function SlotSwitched(BC_TabRow Sender, int Index)
 {
 	SelectedBox = Index;
+	class'BC_MenuMemory'.static.SetEvolutionSlot(SelectedBox);
 	ShowBox();
 }
 
