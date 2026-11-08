@@ -59,7 +59,7 @@ function SaveSettings()
 
 function DefaultSettings()
 {
-	co_ADSHandling.SetIndex(0);
+	co_ADSHandling.SetIndex(1);
 	co_ModeMemory.SetIndex(0);
 	fl_ZoomTimeMod.SetValue(1.5);
 	ch_WeaponUI.Checked(false); // gets you killed

@@ -131,7 +131,7 @@ defaultproperties
 
 	PlayerWalkSpeedFactor=0.9
 	PlayerCrouchSpeedFactor=0.45
-
+	bNoRandomCamo=True
 	bBrightPlayers=False
-	bKillstreaks=True
+	bKillstreaks=False
 }

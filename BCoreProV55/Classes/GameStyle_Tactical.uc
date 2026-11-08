@@ -68,4 +68,7 @@ defaultproperties
 	KillRewardHealthMax=0
 	ShieldKillReward=25
 	KillRewardShieldMax=50
+	bFireEndsSprint=False
+	bFirstPersonCrosshairAim=False
+	bSightsEndSprint=False
 }

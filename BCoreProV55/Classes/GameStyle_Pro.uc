@@ -59,7 +59,6 @@ defaultproperties
 	SprintSpeedFactor=1.4f
 	StaminaRechargeDelay=1.5
 	JumpDrain=5
-
     HealthKillReward=25
 	KillRewardHealthMax=100
 	ShieldKillReward=0

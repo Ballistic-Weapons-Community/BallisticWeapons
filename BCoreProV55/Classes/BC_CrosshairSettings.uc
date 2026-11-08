@@ -21,8 +21,10 @@ var config bool		bDistanceSize;		// Crosshairs are drawn smaller on what is far 
 defaultproperties
 {
 	CrosshairAim=1
-	CrosshairColor=(B=255,G=225,R=255,A=150)
+	CrossHairColor=(B=255,G=255,R=255,A=255)
+	bOneColour=False
 	bWarningColours=True
-	MagEmptyColor=(B=50,G=50,R=255,A=150)
-	CockingColor=(B=50,G=175,R=255,A=150)
+	MagEmptyColor=(B=50,G=50,R=255,A=255)
+	CockingColor=(B=50,G=175,R=255,A=255)
+	bDistanceSize=False
 }
