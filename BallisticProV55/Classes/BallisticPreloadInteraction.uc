@@ -54,13 +54,13 @@ simulated function Finish()
 	// The list is the weapons of the inventory mode and, after them, the killstreak rewards
 	if (NumLoaded > 0)
 	{
-		S = "BW Preload:" @ (MyRI.PreloadNum - NumFailed - NumSkipped) @ "of" @ MyRI.PreloadNum @ "weapons ready," @ (NumLoaded - NumFailed) @ "loaded now,"
-			@ (MyRI.PreloadNum - NumLoaded - NumSkipped) @ "were loaded already";
+		S = "BW Preload:" @ (MyRI.Info.Num - NumFailed - NumSkipped) @ "of" @ MyRI.Info.Num @ "weapons ready," @ (NumLoaded - NumFailed) @ "loaded now,"
+			@ (MyRI.Info.Num - NumLoaded - NumSkipped) @ "were loaded already";
 		if (NumFailed > 0)
 			S = S $ "," @ NumFailed @ "could not be loaded";
 		if (NumSkipped > 0)
 			S = S $ "," @ NumSkipped @ "never named by the server";
-		Log(S @ "(" $ (MyRI.PreloadNum - MyRI.RewardNum) @ "from the game's weapon list," @ MyRI.RewardNum @ "killstreak rewards)");
+		Log(S @ "(" $ (MyRI.Info.Num - MyRI.Info.RewardNum) @ "from the game's weapon list," @ MyRI.Info.RewardNum @ "killstreak rewards)");
 	}
 	if (NumModels > 0)
 	{
@@ -116,7 +116,7 @@ simulated function PrecacheWeapon(Canvas C, class<Weapon> WeaponClass)
 	if (BWClass != None && BWClass.default.ParamsClasses.Length > class'BallisticReplicationInfo'.default.GameStyle)
 		ParamsClass = BWClass.static.GetParams();
 
-	if (MyRI.bEnableTextureLoading)
+	if (MyRI.Info.bTextures)
 	{
 		for (j = 0; j < WeaponClass.default.Skins.Length; j++)
 			L.AddPrecacheMaterial(WeaponClass.default.Skins[j]);
@@ -144,14 +144,14 @@ simulated function PrecacheWeapon(Canvas C, class<Weapon> WeaponClass)
 		return;
 
 	// Camo skins
-	if (MyRI.bEnableCamoLoading)
+	if (MyRI.Info.bCamos)
 		for (j = 0; j < ParamsClass.default.Camos.Length; j++)
 			if (ParamsClass.default.Camos[j] != None)
 				for (k = 0; k < ParamsClass.default.Camos[j].WeaponMaterialSwaps.Length; k++)
 					PrecacheMaterialName(L, ParamsClass.default.Camos[j].WeaponMaterialSwaps[k].MaterialName);
 
 	// Gun augments and layout-specific attachment assets
-	if (MyRI.bEnableTextureLoading)
+	if (MyRI.Info.bTextures)
 		for (j = 0; j < ParamsClass.default.Layouts.Length; j++)
 		{
 			for (k = 0; k < ParamsClass.default.Layouts[j].GunAugments.Length; k++)
@@ -226,7 +226,7 @@ simulated function bool PreloadWeapon(Canvas C, string ClassName)
 	local class<Weapon> WeaponClass;
 
 	// The host of a game has the classes in memory already, and so has a client for the weapons it has met
-	if (!MyRI.bEnableTextureLoading && !MyRI.bEnableCamoLoading && FindObject(ClassName, class'Class') != None)
+	if (!MyRI.Info.bTextures && !MyRI.Info.bCamos && FindObject(ClassName, class'Class') != None)
 		return false;
 
 	WeaponClass = class<Weapon>(DynamicLoadObject(ClassName, class'Class', True));
@@ -235,7 +235,7 @@ simulated function bool PreloadWeapon(Canvas C, string ClassName)
 		NumFailed++;
 		Log("BW Preload: Could not load weapon class" @ ClassName);
 	}
-	if (WeaponClass != None && (MyRI.bEnableTextureLoading || MyRI.bEnableCamoLoading))
+	if (WeaponClass != None && (MyRI.Info.bTextures || MyRI.Info.bCamos))
 		PrecacheWeapon(C, WeaponClass);
 	NumLoaded++;
 	return true;
@@ -255,7 +255,7 @@ simulated function DrawProgress(Canvas C)
 	C.Style = 5;
 	C.SetDrawColor(255, 255, 0, 255);
 	C.SetPos(X, Y);
-	C.DrawTextClipped("Loading weapons" @ WeaponNumber $ "/" $ MyRI.PreloadNum);
+	C.DrawTextClipped("Loading weapons" @ WeaponNumber $ "/" $ MyRI.Info.Num);
 
 	Y += C.ClipY * 0.035;
 	C.SetDrawColor(64, 64, 64, 160);
@@ -263,7 +263,7 @@ simulated function DrawProgress(Canvas C)
 	C.DrawTile(Texture'Engine.WhiteSquareTexture', W, BarHeight, 0, 0, 1, 1);
 	C.SetDrawColor(255, 255, 0, 255);
 	C.SetPos(X, Y);
-	C.DrawTile(Texture'Engine.WhiteSquareTexture', W * WeaponNumber / MyRI.PreloadNum, BarHeight, 0, 0, 1, 1);
+	C.DrawTile(Texture'Engine.WhiteSquareTexture', W * WeaponNumber / MyRI.Info.Num, BarHeight, 0, 0, 1, 1);
 	C.Reset();
 }
 
@@ -290,18 +290,18 @@ simulated function PostRender(Canvas Canvas)
 	}
 
 	// Wait for replicated data to arrive before starting
-	if (MyRI.PreloadNum == 0)
+	if (MyRI.Info.Num == 0)
 		return;
 
 	if (!bModelsListed)
 	{
 		bModelsListed = true;
-		if (MyRI.bPreloadPlayerModels)
+		if (MyRI.Info.bModels)
 			ListPlayerModels();
 	}
 
 	// Done. A negative count is the server saying there is nothing to load
-	if (WeaponNumber >= MyRI.PreloadNum && ModelNumber >= Models.Length)
+	if (WeaponNumber >= MyRI.Info.Num && ModelNumber >= Models.Length)
 	{
 		Finish();
 		return;
@@ -334,7 +334,7 @@ simulated function PostRender(Canvas Canvas)
 		ModelNumber++;
 	}
 
-	while (Done < Limit && WeaponNumber < MyRI.PreloadNum)
+	while (Done < Limit && WeaponNumber < MyRI.Info.Num)
 	{
 		if (MyRI.CurrentName[WeaponNumber] == "")
 		{
@@ -364,7 +364,7 @@ simulated function PostRender(Canvas Canvas)
 	// Nothing is shown when the list is done at once, as it is for the host of a game
 	if (NumLoaded > 0)
 		ShownFrames++;
-	if (bDisplayDebugText && ShownFrames > 2 && WeaponNumber < MyRI.PreloadNum)
+	if (bDisplayDebugText && ShownFrames > 2 && WeaponNumber < MyRI.Info.Num)
 		DrawProgress(Canvas);
 }
 
