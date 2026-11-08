@@ -13,7 +13,6 @@ var float	LastShotTime;
 var byte	YawSpeed;
 var byte	PitchSpeed;
 
-var() class<BallisticInstantFire>	FireClass;
 
 
 var byte	NetBarrelSpeed;
@@ -144,77 +143,15 @@ simulated event PostNetReceive()
 		super.PostNetReceive();
 }
 
+// The A800 fires projectiles, which reach every client by themselves, so shots that came in one update need no traced
+// stand-ins (the XMV850 minigun's instant hit code that was here traced them with a FireClass that could never be set).
 simulated function MinigunEffects (int ShotCount)
 {
-	local int i;
-	local rotator RotSpeed, AimRef, AimDir, AimInterval;
-	local float DT;
-
-	RotSpeed.Yaw = -16384 + 129 * YawSpeed;
-	RotSpeed.Pitch = -16384 + 129 * PitchSpeed;
-
 	InstantFireEffects(FiringMode);
 	FlashMuzzleFlash (FiringMode);
 	FlashWeaponLight(FiringMode);
 	PlayPawnFiring(FiringMode);
 	EjectBrass(FiringMode);
-
-	if (ShotCount > 1)
-	{
-		if (level.TimeSeconds - LastShotTime < 0.2)
-			DT = level.TimeSeconds - LastShotTime;
-		else
-			DT = 0.1;
-		AimInterval = RotSpeed * DT;
-		if (Instigator!=None)
-			AimRef = rotator(mHitLocation - Instigator.Location + Instigator.EyePosition());
-		else
-			AimRef = rotator(mHitLocation - Location);
-		for (i=1;i<ShotCount;i++)
-		{
-			//Eject Brass
-			EjectBrass(FiringMode);
-
-			AimDir = AimRef - AimInterval * i;
-			AimDir.Yaw += FireClass.default.XInaccuracy * 2 * FRand() - FireClass.default.XInaccuracy;
-			AimDir.Pitch += FireClass.default.YInaccuracy * 2 * FRand() - FireClass.default.YInaccuracy;
-			MinigunShotEffects(AimDir, FiringMode);
-		}
-	}
-}
-
-simulated function MinigunShotEffects(rotator Aim, byte Mode)
-{
-	local Vector HitLoc, HitNorm, Start, End, X;
-	local actor T;
-	local Material HitMat;
-	local int HitSurf;
-
-	X = Vector(Aim);
-	if (Instigator!=None)
-		Start = Instigator.Location + Instigator.EyePosition();
-	else
-		Start = Location;
-	End = Start + X * Lerp(FRand(), FireClass.default.TraceRange.Min, FireClass.default.TraceRange.Max);
-	T = Trace(HitLoc, HitNorm, End, Start, false,,HitMat);
-	if (T == None)
-	{
-		DoWaterTrace(Mode, Start, End);
-		SpawnTracer(Mode, End);
-	}
-	else
-	{
-		DoWaterTrace(Mode, Start, HitLoc);
-		SpawnTracer(Mode, HitLoc);
-	}
-	if (T == None || (!T.bWorldGeometry && Mover(T) == None))
-		return;
-	if (HitMat == None)
-		HitSurf = int(T.SurfaceType);
-	else
-		HitSurf = int(HitMat.SurfaceType);
-	if (ImpactManager != None)
-		ImpactManager.static.StartSpawn(HitLoc, HitNorm, HitSurf, self);
 }
 
 function UpdateTurnVelocity(rotator TurnVelocity)
@@ -281,7 +218,6 @@ simulated function Vector GetEjectorLocation(optional out Rotator EjectorAngle)
 defaultproperties
 {
 	 WeaponClass=class'A800SkrithMinigun'
-     FireClass=Class'BWBP_SWC_Pro.A800MinigunPrimaryFire'
      MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_A42Projectile'
