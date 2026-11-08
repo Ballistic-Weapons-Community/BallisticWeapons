@@ -154,6 +154,13 @@ function Clear()
 // Filtering
 //=============================================================================
 
+// The list is about to be cleared and filled again: forget the rows kept aside
+function Reset()
+{
+	Hidden.Length = 0;
+	Orig.Length = 0;
+}
+
 // Every row back in the list, the search kept (the list can be read and changed as a whole)
 function ShowAll()
 {
