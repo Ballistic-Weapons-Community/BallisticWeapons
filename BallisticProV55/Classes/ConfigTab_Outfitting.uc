@@ -466,24 +466,28 @@ function SaveSettings()
 	SaveConfig();
 }
 
+// DEFAULTS: the lists the mod comes with (LoadoutStockLists: ResetConfig would empty these globalconfig lists)
 function DefaultSettings()
 {
-	local LoadoutBox Saved[NUM_BOXES_TOTAL];
-	local int i;
+	local int i, t, j, k;
 
-	// ResetConfig is the only way to see the lists the mutators came with, and it takes the saved ones out of the ini at once.
-	// Put the saved ones back afterwards: nothing is final before OK.
-	LoadBoxesFromMutator();
-	for (i=0;i<NUM_BOXES_TOTAL;i++)
-		Saved[i] = Boxes[i];
-
-	for (i=0;i<5;i++)
-	{
-		class'Mut_Outfitting'.static.ResetConfig("LoadoutGroup"$i);
-		class'Mut_TeamOutfitting'.static.ResetConfig("RedLoadoutGroup"$i);
-		class'Mut_TeamOutfitting'.static.ResetConfig("BlueLoadoutGroup"$i);
-	}
-	LoadBoxesFromMutator();
+	for (t = 0; t < 3; t++)
+		for (i = 0; i < STREAK_BOX; i++)
+		{
+			Boxes[i + t * NUM_BOXES].WeaponNames = class'LoadoutStockLists'.static.GetList(t, i);
+			// what isn't there (a weapon pack that is missing) is left out, as when loading
+			for (j = 0; j < Boxes[i + t * NUM_BOXES].WeaponNames.Length; j++)
+			{
+				for (k = 0; k < WeaponInfo.Length; k++)
+					if (Boxes[i + t * NUM_BOXES].WeaponNames[j] ~= WeaponInfo[k].ClassName)
+						break;
+				if (k >= WeaponInfo.Length)
+				{
+					Boxes[i + t * NUM_BOXES].WeaponNames.Remove(j, 1);
+					j--;
+				}
+			}
+		}
 	// The killstreak lists are kept per style; the class holds what they came with
 	for (i=0;i<3;i++)
 	{
@@ -493,24 +497,6 @@ function DefaultSettings()
 	SetSameTeamsFromBoxes();
 	ShowBox();
 	fl_ChangeInterval.SetValue(60);
-
-	class'Mut_Outfitting'.default.LoadoutGroup0 = Saved[0].WeaponNames;
-	class'Mut_Outfitting'.default.LoadoutGroup1 = Saved[1].WeaponNames;
-	class'Mut_Outfitting'.default.LoadoutGroup2 = Saved[2].WeaponNames;
-	class'Mut_Outfitting'.default.LoadoutGroup3 = Saved[3].WeaponNames;
-	class'Mut_Outfitting'.default.LoadoutGroup4 = Saved[4].WeaponNames;
-	class'Mut_TeamOutfitting'.default.RedLoadoutGroup0 = Saved[7].WeaponNames;
-	class'Mut_TeamOutfitting'.default.RedLoadoutGroup1 = Saved[8].WeaponNames;
-	class'Mut_TeamOutfitting'.default.RedLoadoutGroup2 = Saved[9].WeaponNames;
-	class'Mut_TeamOutfitting'.default.RedLoadoutGroup3 = Saved[10].WeaponNames;
-	class'Mut_TeamOutfitting'.default.RedLoadoutGroup4 = Saved[11].WeaponNames;
-	class'Mut_TeamOutfitting'.default.BlueLoadoutGroup0 = Saved[14].WeaponNames;
-	class'Mut_TeamOutfitting'.default.BlueLoadoutGroup1 = Saved[15].WeaponNames;
-	class'Mut_TeamOutfitting'.default.BlueLoadoutGroup2 = Saved[16].WeaponNames;
-	class'Mut_TeamOutfitting'.default.BlueLoadoutGroup3 = Saved[17].WeaponNames;
-	class'Mut_TeamOutfitting'.default.BlueLoadoutGroup4 = Saved[18].WeaponNames;
-	class'Mut_Outfitting'.static.StaticSaveConfig();
-	class'Mut_TeamOutfitting'.static.StaticSaveConfig();
 }
 
 defaultproperties
