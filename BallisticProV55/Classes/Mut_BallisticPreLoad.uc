@@ -48,6 +48,7 @@ function Tick(float DeltaTime)
 	if (PreloadList.Length == 0)
 	{
 		MyRI.PreloadNum = -1;
+		MyRI.SendInfo();
 		return;
 	}
 
@@ -62,6 +63,7 @@ function Tick(float DeltaTime)
 	for (i = 0; i < PreloadList.Length; i++)
 		MyRI.CurrentName[i] = PreloadList[i];
 	MyRI.PreloadNum = PreloadList.Length;
+	MyRI.SendInfo();
 }
 
 // A server loaded each weapon the first time somebody was handed it, in the middle of play, and every player felt
