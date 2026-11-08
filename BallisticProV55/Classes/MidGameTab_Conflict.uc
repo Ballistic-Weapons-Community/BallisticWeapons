@@ -66,6 +66,8 @@ var() byte							LoadoutIndex;//Which saved inventory are we on [5]
 
 var() array<int> 					LayoutIndexList;
 var() array<int> 					CamoIndexList;
+var array<string>					RowExtra;		// each row's extra string (FullInventoryList index), by its place in the whole list
+var BC_ListSearch					Search;			// the search row over the weapon list: hides rows, so the arrays above go by FullRow()
 var() bool 							bUpdatingWeapon; //dont change layout unless we click the box
 	
 var() Material 						BoxTex;
@@ -135,6 +137,9 @@ function Initialize()
     li_Weapons.OnDrawItem = OnDrawConflictItem;
 	li_Weapons.OnChange = InternalOnChange;
 	li_Weapons.OnDblClick = InternalOnDblClick;
+
+	if (Search == None)
+		Search = class'BC_ListSearch'.static.Create(self, lb_Weapons, li_Weapons);
 	
 	CLRI = ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(PlayerOwner().PlayerReplicationInfo));
 	
@@ -285,9 +290,12 @@ simulated function InitWeaponLists ()
 	l_Loading.Caption = "";
 	l_Loading.Hide();
 
+	if (Search != None)
+		Search.Reset();
 	li_Weapons.Clear();
 	LayoutIndexList.length = 0;
 	CamoIndexList.length = 0;
+	RowExtra.length = 0;
 	cb_WeapLayoutIndex.Clear();
 	cb_WeapCamoIndex.Clear();
 
@@ -333,6 +341,7 @@ simulated function InitWeaponLists ()
 				li_Weapons.Add("Misc",,"Mc",true);
 				LayoutIndexList.Insert(LayoutIndexList.Length, 1);
 				CamoIndexList.Insert(CamoIndexList.Length, 1);
+				RowExtra[RowExtra.Length] = li_Weapons.GetExtraAtIndex(li_Weapons.ItemCount - 1);
 			}
 			
 			CI = class<ConflictItem>(DynamicLoadObject(CLRI.FullInventoryList[i].ClassName, class'Class'));
@@ -342,6 +351,7 @@ simulated function InitWeaponLists ()
 				li_Weapons.Add(CI.default.ItemName, , string(i));
 				LayoutIndexList.Insert(LayoutIndexList.Length, 1);
 				CamoIndexList.Insert(CamoIndexList.Length, 1);
+				RowExtra[RowExtra.Length] = li_Weapons.GetExtraAtIndex(li_Weapons.ItemCount - 1);
 			}
 		}
 		
@@ -354,11 +364,13 @@ simulated function InitWeaponLists ()
                 li_Weapons.Add(class'BallisticWeaponClassInfo'.static.GetHeading(lastIndex),, "Weapon Category", true);
 				LayoutIndexList.Insert(LayoutIndexList.Length, 1);
 				CamoIndexList.Insert(CamoIndexList.Length, 1);
+				RowExtra[RowExtra.Length] = li_Weapons.GetExtraAtIndex(li_Weapons.ItemCount - 1);
             }
             
             li_Weapons.Add(CLRI.FullInventoryList[i].ItemName, , string(i));
 			LayoutIndexList.Insert(LayoutIndexList.Length, 1);
 			CamoIndexList.Insert(CamoIndexList.Length, 1);
+				RowExtra[RowExtra.Length] = li_Weapons.GetExtraAtIndex(li_Weapons.ItemCount - 1);
 			for (j=0; j < Inventory.length; j++)
 			{
 				//if (Inventory[j].ListIndex != 0)
@@ -369,6 +381,9 @@ simulated function InitWeaponLists ()
 			}
 		}
 	}
+
+	if (Search != None)
+		Search.Refresh();
 }
 
 function SaveSettings()
@@ -475,7 +490,7 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 	local array<int> AllowedCamos;
 	local byte oldCamoIndex; //oldLength
 	
-	oldCamoIndex = CamoIndexList[lb_Weapons.List.Index];
+	oldCamoIndex = CamoIndexList[FullRow()];
 	
 	//clear old layouts
 	cb_WeapCamoIndex.Clear();
@@ -512,7 +527,7 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 			}
 			cb_WeapCamoIndex.AddItem(BW.static.GetParams().default.Camos[i].CamoName,, String(BW.static.GetParams().default.Camos[i].Index));
 		}
-		//cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
+		//cb_WeapCamoIndex.setIndex(CamoIndexList[FullRow()]);
 		cb_WeapCamoIndex.setIndex(oldCamoIndex);
 	}
 	else
@@ -522,7 +537,7 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 			cb_WeapCamoIndex.AddItem(BW.static.GetParams().default.Camos[AllowedCamos[i]].CamoName,, String(BW.static.GetParams().default.Camos[AllowedCamos[i]].Index));
 			if (oldCamoIndex == BW.static.GetParams().default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
 				cb_WeapCamoIndex.setIndex(i);			
-			//if (CamoIndexList[lb_Weapons.List.Index] == BW.static.GetParams().default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
+			//if (CamoIndexList[FullRow()] == BW.static.GetParams().default.Camos[AllowedCamos[i]].Index) //these damn boxes changing sizes
 			//	cb_WeapCamoIndex.setIndex(i);
 		}
 	}
@@ -533,7 +548,7 @@ function bool LoadCIFromBW(class<BallisticWeapon> BW, int LayoutIndex)
 	if (cb_WeapCamoIndex.ItemCount() > 1 && !class'BallisticReplicationInfo'.default.bNoRandomCamo)
 	{
 		cb_WeapCamoIndex.AddItem("Random",, "255");
-		if (CamoIndexList[lb_Weapons.List.Index] == 255) //these damn boxes changing sizes
+		if (CamoIndexList[FullRow()] == 255) //these damn boxes changing sizes
 			cb_WeapCamoIndex.setIndex(cb_WeapCamoIndex.ItemCount()-1);
 	}
 	
@@ -709,7 +724,7 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	Inventory[i].CamoIndex = PassedCamoIndex;
 	Inventory[i].LayoutIndex = PassedLayoutIndex;
     Inventory[i].SectionIndex = SectionIndex;
-	Inventory[i].ListIndex = li_Weapons.Index;
+	Inventory[i].ListIndex = FullRow();
 	
 	A = WeaponClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
 
@@ -735,12 +750,41 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	return true;
 }
 
+
+// The selected row's place in the whole list (the search hides rows): LayoutIndexList, CamoIndexList and
+// Inventory[].ListIndex go by it
+function int FullRow()
+{
+	if (Search != None)
+		return Search.FullIndex(li_Weapons.Index);
+	return li_Weapons.Index;
+}
+
+// Where a row of the whole list is shown. A row the search hides is shown again: the search is cleared
+function int ShownRow(int Full)
+{
+	local int i;
+
+	if (Search == None)
+		return Full;
+	i = Search.ShownIndex(Full);
+	if (i < 0 && Full >= 0)
+	{
+		Search.Clear();
+		i = Search.ShownIndex(Full);
+	}
+	return i;
+}
+
 // called when camo or layout index changes. presumably we're setting this for a weapon we already have
 function UpdateExistingInventory(int weapon_list_index)
 {
 	local int i, clri_inv_offset;
 
-	clri_inv_offset = int(li_Weapons.GetExtraAtIndex(weapon_list_index));
+	// a place in the whole list: the row can be hidden by the search
+	if (weapon_list_index < 0 || weapon_list_index >= RowExtra.Length)
+		return;
+	clri_inv_offset = int(RowExtra[weapon_list_index]);
 
 	for (i = 0; i < Inventory.Length; ++i)
 	{
@@ -793,7 +837,7 @@ function bool InternalOnDblClick(GUIComponent Sender)
 		if (li_Weapons.Index < 0 || li_Weapons.IsSection() || (CLRI != None && !CLRI.CanUseWeaponAtIndex(int(li_Weapons.GetExtra()))))
 			return true;
 		bUserAdd = true;
-		if (AddInventory(string(li_Weapons.GetObject()), class<Actor>(li_Weapons.GetObject()), li_Weapons.Get(), LayoutIndexList[li_Weapons.Index], int(cb_WeapCamoIndex.getExtra())))
+		if (AddInventory(string(li_Weapons.GetObject()), class<Actor>(li_Weapons.GetObject()), li_Weapons.Get(), LayoutIndexList[FullRow()], int(cb_WeapCamoIndex.getExtra())))
 			bInventoryChanged = true;
 		bUserAdd = false;
 	}
@@ -859,7 +903,7 @@ function bool InternalOnClick(GUIComponent Sender)
 			{
 				LayoutIndexList[Inventory[i].ListIndex] = Inventory[i].LayoutIndex;
 				CamoIndexList[Inventory[i].ListIndex] = Inventory[i].CamoIndex;
-				li_Weapons.setIndex(Inventory[i].ListIndex); 
+				li_Weapons.setIndex(ShownRow(Inventory[i].ListIndex));
 			}
 		}
 		return true;
@@ -984,12 +1028,12 @@ function InternalOnChange(GUIComponent Sender)
 				bUpdatingWeapon=true;
 				BW = class<BallisticWeapon>(li_Weapons.GetObject());
 				Pic_Weapon.Image = BW.default.BigIconMaterial;
-				tb_Desc.SetContent(BW.static.GetShortManual(LayoutIndexList[lb_Weapons.List.Index]));
-				//log("Loading layout of gun at loc "$lb_Weapons.List.Index$" with "$LayoutIndexList[lb_Weapons.List.Index]); 
+				tb_Desc.SetContent(BW.static.GetShortManual(LayoutIndexList[FullRow()]));
+				//log("Loading layout of gun at loc "$lb_Weapons.List.Index$" with "$LayoutIndexList[FullRow()]); 
 				LoadLIFromBW(BW);
-				cb_WeapLayoutIndex.setIndex(LayoutIndexList[lb_Weapons.List.Index]);
-				LoadCIFromBW(BW, LayoutIndexList[lb_Weapons.List.Index]);
-				//cb_WeapCamoIndex.setIndex(CamoIndexList[lb_Weapons.List.Index]);
+				cb_WeapLayoutIndex.setIndex(LayoutIndexList[FullRow()]);
+				LoadCIFromBW(BW, LayoutIndexList[FullRow()]);
+				//cb_WeapCamoIndex.setIndex(CamoIndexList[FullRow()]);
 				cb_WeapLayoutIndex.SetVisibility(true);
 				cb_WeapCamoIndex.SetVisibility(true);
 				bUpdatingWeapon=false;
@@ -1019,19 +1063,19 @@ function InternalOnChange(GUIComponent Sender)
 					Pic_Weapon.Image = BW.default.BigIconMaterial;
 					tb_Desc.SetContent(BW.static.GetShortManual());
 					li_Weapons.SetObjectAtIndex(li_Weapons.Index, BW);
-					if (LayoutIndexList[li_Weapons.Index] == 0 && CamoIndexList[li_Weapons.Index] == 0) //check if initial load came with set layout
+					if (LayoutIndexList[FullRow()] == 0 && CamoIndexList[FullRow()] == 0) //check if initial load came with set layout
 					{
 						LoadLIFromBW(BW);
-						LayoutIndexList[li_Weapons.Index] = cb_WeapLayoutIndex.getIndex();
+						LayoutIndexList[FullRow()] = cb_WeapLayoutIndex.getIndex();
 						LoadCIFromBW(BW, cb_WeapLayoutIndex.getIndex());
 					}
 					else
 					{
 						LoadLIFromBW(BW);
-						cb_WeapLayoutIndex.setIndex(LayoutIndexList[li_Weapons.Index]);
-						LoadCIFromBW(BW, LayoutIndexList[li_Weapons.Index]);
+						cb_WeapLayoutIndex.setIndex(LayoutIndexList[FullRow()]);
+						LoadCIFromBW(BW, LayoutIndexList[FullRow()]);
 					}
-					CamoIndexList[li_Weapons.Index] = cb_WeapCamoIndex.getIndex();
+					CamoIndexList[FullRow()] = cb_WeapCamoIndex.getIndex();
 					cb_WeapLayoutIndex.SetVisibility(true);
 					cb_WeapCamoIndex.SetVisibility(true);
 					bUpdatingWeapon=false;
@@ -1043,26 +1087,26 @@ function InternalOnChange(GUIComponent Sender)
 	{
 		if (li_Weapons.GetObject() != None && class<BallisticWeapon>(li_Weapons.GetObject()) != None && !bUpdatingWeapon)
 		{
-			LayoutIndexList[li_Weapons.Index] = cb_WeapLayoutIndex.getIndex();
+			LayoutIndexList[FullRow()] = cb_WeapLayoutIndex.getIndex();
 			if (class<BallisticWeapon>(li_Weapons.GetObject()) != None)
 			{
 				BW = class<BallisticWeapon>(li_Weapons.GetObject());
-				LoadCIFromBW(BW, LayoutIndexList[li_Weapons.Index]);
+				LoadCIFromBW(BW, LayoutIndexList[FullRow()]);
 				tb_Desc.SetContent(BW.static.GetShortManual(cb_WeapLayoutIndex.getIndex()));
 			}
 			//log("Setting layout index of gun at loc "$li_Weapons.Index$" to "$cb_WeapLayoutIndex.getIndex()); 
 
-			UpdateExistingInventory(li_Weapons.Index);
+			UpdateExistingInventory(FullRow());
 		}
 	}	
 	else if (Sender == cb_WeapCamoIndex )
 	{
 		if (li_Weapons.GetObject() != None && class<BallisticWeapon>(li_Weapons.GetObject()) != None && !bUpdatingWeapon)
 		{
-			CamoIndexList[li_Weapons.Index] = int(cb_WeapCamoIndex.getExtra());
+			CamoIndexList[FullRow()] = int(cb_WeapCamoIndex.getExtra());
 			//log("Setting camo index of gun at loc "$li_Weapons.Index$" to "$cb_WeapCamoIndex.getExtra()); 
 
-			UpdateExistingInventory(li_Weapons.Index);
+			UpdateExistingInventory(FullRow());
 		}
 	}
 	//Grab the preset data, parse it, try and shove it in our inventory
@@ -1103,10 +1147,15 @@ function InternalOnChange(GUIComponent Sender)
 				AddInventory(string(CI), CI, CI.default.ItemName, 0, 0);
 			}
 		}
+		// rows by their place in the whole list
+		if (Search != None)
+			Search.ShowAll();
 		for (j=0; j < Inventory.length; j++)
 		{
 			Inventory[j].ListIndex=li_Weapons.FindIndex(Inventory[j].Title);
 		}
+		if (Search != None)
+			Search.Refresh();
 		// A preset has no initial weapon of its own
 		class'ConflictLoadoutConfig'.static.UpdateSavedInitialIndex(0);
 		bInventoryChanged = true;
