@@ -13,6 +13,7 @@ var Automated GUIImage		MyBack, Box_Unused, Box_UsedRed, Box_UsedBlue;
 var Automated GUIButton		BDone, BCancel, BAddBlue, BRemoveBlue, BAddAllBlue, BRemoveAllBlue, BAddRed, BRemoveRed, BAddAllRed, BRemoveAllRed;
 var automated GUIHeader		MyHeader;
 var automated GUIListBox		lb_UsedRedWeapons, lb_UsedBlueWeapons, lb_UnusedWeapons;
+var BC_ListSearch			Search;		// the search row over the weapon list
 var automated GUILabel		l_Red, l_Blue, l_Unused;
 var automated moComboBox	co_LoadOpt;
 
@@ -109,6 +110,8 @@ function bool InternalOnDragDrop(GUIComponent Sender)
 				L.Insert(L.DropIndex, NewItem[i].Item, NewItem[i].ExtraData, NewItem[i].ExtraStrData);
 
 			L.SetIndex(L.DropIndex);
+			if (Search != None && L == lb_UnusedWeapons.List)
+				Search.Refresh();
 			return true;
 		}
 	}
@@ -137,6 +140,8 @@ function InternalOnEndDrag(GUIComponent Accepting, bool bAccepted)
 	L.SetOutlineAlpha(255);
 	if ( L.bNotify )
 		L.CheckLinkedObjects(L);
+	if (Search != None)
+		Search.Refresh();
 }
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
@@ -236,6 +241,8 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 		co_LoadOpt.AddItem(class'Mut_ConflictLoadout'.default.LoadoutOptionText[i] ,,string(i));
 	co_LoadOpt.ReadOnly(True);
 	co_LoadOpt.SetIndex(int(class'Mut_ConflictLoadout'.default.LoadoutOption));
+
+	Search = class'BC_ListSearch'.static.Create(self, lb_UnusedWeapons, lb_UnusedWeapons.List);
 }
 
 function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
@@ -313,6 +320,9 @@ function bool InternalOnClick(GUIComponent Sender)
 	}
 	else if (Sender==BDone) // DONE
 	{
+		// the save goes through every weapon of the list
+		if (Search != None)
+			Search.ShowAll();
 		class'Mut_ConflictLoadout'.default.LoadoutOption = co_LoadOpt.GetIndex();
 		class'Mut_ConflictLoadout'.default.ConflictWeapons.length = 0;
 
@@ -340,6 +350,8 @@ function bool InternalOnClick(GUIComponent Sender)
 		Controller.CloseMenu();
 	}
 
+	if (Search != None)
+		Search.Refresh();
 	return true;
 }
 

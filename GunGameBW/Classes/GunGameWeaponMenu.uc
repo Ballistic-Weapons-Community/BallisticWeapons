@@ -18,6 +18,8 @@ var automated GUIButton		b_Add, b_Remove, b_Up, b_Down, b_Reset, b_Done, b_Cance
 var() localized string		Headings[3];
 var() localized string		LevelsCaption, TooFewText;
 
+var BC_ListSearch			Search;		// the search row over the spare list
+
 //=============================================================================
 // Spare list order: Ballistic weapons, then UT2004, then the rest (as the Arena menu)
 //=============================================================================
@@ -79,6 +81,8 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 		FillLists(class'GunGameConfig'.default.WeaponList);
 	else
 		FillLists(class'GunGameConfig'.default.StockWeaponList);
+
+	Search = class'BC_ListSearch'.static.Create(self, lb_Spare, lb_Spare.List);
 }
 
 // Puts every known weapon in the spare list except those in Order, which go in the level list in its order
@@ -89,6 +93,8 @@ function FillLists(array< class<Weapon> > Order)
 	local int i, j;
 	local bool bBW;
 
+	if (Search != None)
+		Search.ShowAll();
 	lb_Spare.List.Clear();
 	lb_Levels.List.Clear();
 
@@ -137,6 +143,9 @@ function FillLists(array< class<Weapon> > Order)
 
 	Renumber();
 	lb_Levels.List.SetIndex(0);
+
+	if (Search != None)
+		Search.Refresh();
 }
 
 //=============================================================================
@@ -211,6 +220,7 @@ function AddSelected()
 	lb_Levels.List.Insert(At, "0. " $ WeapName,, ClassName, true);
 	Renumber();
 	lb_Levels.List.SetIndex(At);
+	Search.Refresh();
 }
 
 function RemoveSelected()
@@ -233,6 +243,7 @@ function RemoveSelected()
 	lb_Levels.List.Remove(i);
 	Renumber();
 	lb_Levels.List.SetIndex(Min(i, lb_Levels.List.ItemCount - 1));
+	Search.Refresh();
 }
 
 function Move(int Dir)

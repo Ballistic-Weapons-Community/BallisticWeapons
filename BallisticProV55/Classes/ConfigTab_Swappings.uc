@@ -16,6 +16,7 @@ class ConfigTab_Swappings extends ConfigTabBase config(BallisticProV55);
 
 var automated GUIListBox			lb_OldWeapons;
 var automated BC_GUICheckListBox	lb_NewWeapons;
+var BC_ListSearch				Search;			// the search row over the new weapons
 var Automated GUIImage				Box_Old, Box_New;
 var Automated GUIButton				BAddAll, BRemoveAll, BSavePreset, BDeletePreset;
 var automated moComboBox			cb_Presets;
@@ -150,6 +151,8 @@ function InitializeConfigTab()
     lb_OldWeapons.List.OnChange = InternalOnChange;
 
     ch_Independent.MyCheckBox.OnClick = InternalOnClick;
+
+	Search = class'BC_ListSearch'.static.Create(self, lb_NewWeapons, lb_NewWeapons.CheckList);
 }
 
 function InternalOnChange(GUIComponent Sender)
@@ -303,6 +306,8 @@ function ChangeSwapListEntry(int Index, string Item, bool bAdd)
 function UpdateReplacementsList(int Index)
 {
 	local int i, j;
+	if (Search != None)
+		Search.ShowAll();
     // Safety check for Swaps array
     if (Swaps.Length == 0 || Index < 0 || Index >= Swaps.Length)
     {
@@ -316,6 +321,8 @@ function UpdateReplacementsList(int Index)
 				lb_NewWeapons.CheckList.SetChecked(i, true);
 	}
 	ch_Independent.Checked(Swaps[Index].R);
+	if (Search != None)
+		Search.Refresh();
 }
 
 //Load weapons from mutator.

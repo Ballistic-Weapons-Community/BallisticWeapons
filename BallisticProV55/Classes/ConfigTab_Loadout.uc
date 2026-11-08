@@ -25,6 +25,7 @@ var config bool						bUseAllWeapons;
 var automated GUIImage				Box_New, Box_WeapIcon, Pic_Weapon;
 var automated GUILabel				l_NewList, l_WeapTitle;
 var automated BC_GUICheckListBox	lb_NewWeapons;
+var BC_ListSearch				Search;			// the search row over the weapon list
 var automated GUIButton				BAddAll, BRemoveAll, BBox1, BBox2, BBox3, BBox4, BBox5;
 var automated moCheckbox			ch_AllWeaps;
 var automated moFloatEdit			fl_RequiredTime, fl_RequiredFrags, fl_RequiredEfficiency, fl_RequiredDmgRate, fl_RequiredSnprEff, fl_RequiredStgnEff, fl_RequiredHzrdEff;
@@ -69,6 +70,13 @@ function InitializeConfigTab()
 
 	LoadBoxesFromMutator();
 	LoadBox(0);
+
+	Search = class'BC_ListSearch'.static.Create(self, lb_NewWeapons, lb_NewWeapons.CheckList);
+	if (Search != None)
+	{
+		Search.OnBeforeSelect = StoreRequirements;
+		Search.OnAfterSelect = DisplayWeapon;
+	}
 }
 
 function LoadList()
@@ -311,6 +319,8 @@ function SaveBoxesToMutator ()
 function LoadBox (int BoxNum)
 {
 	local int i, j, WatchedSection;
+	if (Search != None)
+		Search.ShowAll();
 
 	SelectedBox = BoxNum;
 	WatchedSection = -1;
@@ -339,18 +349,8 @@ function LoadBox (int BoxNum)
 	if (WatchedSection > -1 && WatchedSection != lb_NewWeapons.CheckList.Elements.length-1)
 		lb_NewWeapons.CheckList.SetChecked(WatchedSection, true);
 
-	if (!lb_NewWeapons.List.IsSection() && bInitialized)
-	{
-		i = int(lb_NewWeapons.List.GetExtra());
-
-		WeaponInfo[i].ReqTime = fl_RequiredTime.GetValue();
-		WeaponInfo[i].ReqFrags = fl_RequiredFrags.GetValue();
-		WeaponInfo[i].ReqEff = fl_RequiredEfficiency.GetValue();
-		WeaponInfo[i].ReqDmgRate = fl_RequiredDmgRate.GetValue();
-		WeaponInfo[i].ReqSnprEff = fl_RequiredSnprEff.GetValue();
-		WeaponInfo[i].ReqStgnEff = fl_RequiredStgnEff.GetValue();
-		WeaponInfo[i].ReqHzrdEff = fl_RequiredHzrdEff.GetValue();
-	}
+	if (bInitialized)
+		StoreRequirements();
 
 	l_NewList.Caption = BoxNames[BoxNum];
 	if (!lb_NewWeapons.CheckList.IsValid())
@@ -365,13 +365,33 @@ function LoadBox (int BoxNum)
 	}
 	else if (!bInitialized)
 		DisplayWeapon();
+	if (Search != None)
+		Search.Refresh();
+}
+
+// The requirement boxes show the selected weapon's: they are stored before another weapon is selected
+function StoreRequirements()
+{
+	local int i;
+
+	if (!lb_NewWeapons.List.IsValid() || lb_NewWeapons.List.IsSection())
+		return;
+	i = int(lb_NewWeapons.List.GetExtra());
+
+	WeaponInfo[i].ReqTime = fl_RequiredTime.GetValue();
+	WeaponInfo[i].ReqFrags = fl_RequiredFrags.GetValue();
+	WeaponInfo[i].ReqEff = fl_RequiredEfficiency.GetValue();
+	WeaponInfo[i].ReqDmgRate = fl_RequiredDmgRate.GetValue();
+	WeaponInfo[i].ReqSnprEff = fl_RequiredSnprEff.GetValue();
+	WeaponInfo[i].ReqStgnEff = fl_RequiredStgnEff.GetValue();
+	WeaponInfo[i].ReqHzrdEff = fl_RequiredHzrdEff.GetValue();
 }
 
 function DisplayWeapon ()
 {
 	local int i;
 
-	if (lb_NewWeapons.List.IsSection())
+	if (!lb_NewWeapons.List.IsValid() || lb_NewWeapons.List.IsSection())
 		return;
 	l_WeapTitle.Caption = lb_NewWeapons.List.Get();
 
@@ -426,18 +446,7 @@ function bool InternalOnClick(GUIComponent Sender)
 
 	if (Sender == lb_NewWeapons.CheckList)	// Weapons list
 	{
-		if (!lb_NewWeapons.List.IsSection())
-		{
-			i = int(lb_NewWeapons.List.GetExtra());
-
-			WeaponInfo[i].ReqTime = fl_RequiredTime.GetValue();
-			WeaponInfo[i].ReqFrags = fl_RequiredFrags.GetValue();
-			WeaponInfo[i].ReqEff = fl_RequiredEfficiency.GetValue();
-			WeaponInfo[i].ReqDmgRate = fl_RequiredDmgRate.GetValue();
-			WeaponInfo[i].ReqSnprEff = fl_RequiredSnprEff.GetValue();
-			WeaponInfo[i].ReqStgnEff = fl_RequiredStgnEff.GetValue();
-			WeaponInfo[i].ReqHzrdEff = fl_RequiredHzrdEff.GetValue();
-		}
+		StoreRequirements();
 
 		lb_NewWeapons.CheckList.InternalOnClick(Sender);
 //		lb_NewWeapons.CheckList.ToggleChecked(lb_NewWeapons.CheckList.Index);
@@ -503,6 +512,8 @@ function bool InternalOnClick(GUIComponent Sender)
 	{
 		ch_AllWeaps.MyCheckBox.InternalOnClick(Sender);
 		bUseAllWeapons = ch_AllWeaps.IsChecked();
+		if (Search != None)	// hidden rows back first, or they come back after the new list
+			Search.ShowAll();
 		lb_NewWeapons.CheckList.Clear();
 		lb_NewWeapons.CheckList.Checks.Length = 0;
 		LoadList();

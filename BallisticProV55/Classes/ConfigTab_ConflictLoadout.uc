@@ -25,6 +25,7 @@ var Automated GUIButton		BRemoveAllRed;			//Empty Red
 var automated GUIListBox	lb_UsedRedWeapons;		//Red Team List
 var automated GUIListBox	lb_UsedBlueWeapons;		//Blue Team List
 var automated GUIListBox	lb_UnusedWeapons;		//Unused List
+var BC_ListSearch			Search;					// the search row over the weapon list
 var automated GUILabel		l_Red;					//Label Red
 var automated GUILabel		l_Blue;					//Label Blue
 var automated GUILabel		l_Unused;				//Label Unused
@@ -127,6 +128,8 @@ function bool InternalOnDragDrop(GUIComponent Sender)
 				L.Insert(L.DropIndex, NewItem[i].Item, NewItem[i].ExtraData, NewItem[i].ExtraStrData);
 
 			L.SetIndex(L.DropIndex);
+			if (Search != None && L == lb_UnusedWeapons.List)
+				Search.Refresh();
 			return true;
 		}
 	}
@@ -155,6 +158,8 @@ function InternalOnEndDrag(GUIComponent Accepting, bool bAccepted)
 	L.SetOutlineAlpha(255);
 	if ( L.bNotify )
 		L.CheckLinkedObjects(L);
+	if (Search != None)
+		Search.Refresh();
 }
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
@@ -279,6 +284,8 @@ function InitializeConfigTab()
 		co_LoadOpt.AddItem(class'Mut_ConflictLoadout'.default.LoadoutOptionText[i] ,,string(i));
 	co_LoadOpt.ReadOnly(True);
 	co_LoadOpt.SetIndex(int(ConfigList.LoadoutOption));
+
+	Search = class'BC_ListSearch'.static.Create(self, lb_UnusedWeapons, lb_UnusedWeapons.List);
 }
 
 function bool InternalOnDblClick(GUIComponent Sender)
@@ -353,6 +360,8 @@ function bool InternalOnClick(GUIComponent Sender)
 	{
 		lb_UsedRedWeapons.List.Remove(lb_UsedRedWeapons.List.Index);
 	}
+	if (Search != None)
+		Search.Refresh();
 	return true;
 }
 
@@ -365,6 +374,9 @@ function SaveSettings()
 	local int i, j, k;
 	local class<BC_GameStyle> game_style;
 	local WeaponList_ConflictLoadout ConfigList;
+	// the save goes through every weapon of the list
+	if (Search != None)
+		Search.ShowAll();
 
 	// A tab that was never shown has empty lists, and saving those would empty the weapon list
 	if (!bInitialized)
@@ -436,6 +448,8 @@ function DefaultSettings()
 function UseList(array<WeaponList_ConflictLoadout.Entry> Weapons, byte Option)
 {
 	local int i, j;
+	if (Search != None)
+		Search.ShowAll();
 
 	lb_UsedRedWeapons.List.Clear();
 	lb_UsedBlueWeapons.List.Clear();
@@ -457,6 +471,8 @@ function UseList(array<WeaponList_ConflictLoadout.Entry> Weapons, byte Option)
 		}
 	}
 	co_LoadOpt.SetIndex(Option);
+	if (Search != None)
+		Search.Refresh();
 }
 
 defaultproperties

@@ -29,6 +29,7 @@ var config bool							bUseAllWeapons;
 var automated GUIImage					Box_New, Box_WeapIcon, Pic_Weapon;
 var automated GUILabel					l_NewList, l_WeapTitle;
 var automated BC_GUICheckListMultiBox	lb_NewWeapons;
+var BC_ListSearch				Search;			// the search row over the weapon list
 var automated GUIButton					BAddAll, BRemoveAll, BBox1, BBox2, BBox3, BBox4, BBox5, BBox6, BBox7;
 var automated GUIScrollTextBox			lb_Desc;
 var automated moCheckbox				ch_AllWeaps;
@@ -66,6 +67,10 @@ function InitializeConfigTab()
 
 	LoadBoxesFromMutator();
 	LoadBox(0);
+
+	Search = class'BC_ListSearch'.static.Create(self, lb_NewWeapons, lb_NewWeapons.CheckList);
+	if (Search != None)
+		Search.OnAfterSelect = DisplayWeapon;
 }
 
 //===========================================================================
@@ -311,6 +316,8 @@ function LoadBox (int BoxNum)
 	local int i, j, k;
 	local int WatchedSection[3];
 	local BC_GUICheckListMulti.CheckStruct Empty;
+	if (Search != None)
+		Search.ShowAll();
 	
 	SelectedBox = BoxNum;
 	for (i=0;i<3;i++)
@@ -378,6 +385,8 @@ function LoadBox (int BoxNum)
 	}
 	else if (!bInitialized)
 		DisplayWeapon();
+	if (Search != None)
+		Search.Refresh();
 }
 
 //===========================================================================
@@ -388,7 +397,7 @@ function DisplayWeapon ()
 {
 	local int i;
 
-	if (lb_NewWeapons.List.IsSection())
+	if (!lb_NewWeapons.List.IsValid() || lb_NewWeapons.List.IsSection())
 		return;
 	l_WeapTitle.Caption = lb_NewWeapons.List.Get();
 
@@ -538,6 +547,8 @@ function bool InternalOnClick(GUIComponent Sender)
 	{
 		ch_AllWeaps.MyCheckBox.InternalOnClick(Sender);
 		bUseAllWeapons = ch_AllWeaps.IsChecked();
+		if (Search != None)	// hidden rows back first, or they come back after the new list
+			Search.ShowAll();
 		lb_NewWeapons.CheckList.Clear();
 		lb_NewWeapons.CheckList.CheckStore.Length = 0;
 		LoadList();

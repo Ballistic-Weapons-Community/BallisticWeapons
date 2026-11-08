@@ -17,6 +17,7 @@ var Automated GUIButton		BRemoveAll;			// Empty Button
 
 var automated GUIListBox	lb_UsedWeapons;		// Selected Weapons List
 var automated GUIListBox	lb_UnusedWeapons;	// Unselected Weapons List
+var BC_ListSearch		Search;				// the search row over the spare weapons
 var automated moCheckbox	ch_Random;			// One Random Weapon
 var automated moCheckbox	ch_PerSpawn;		// Random Per Spawn
 var automated GUIComboBox	cb_Presets;			// Presets
@@ -117,6 +118,8 @@ function bool InternalOnDragDrop(GUIComponent Sender)
 				L.Insert(L.DropIndex, NewItem[i].Item, NewItem[i].ExtraData, NewItem[i].ExtraStrData);
 
 			L.SetIndex(L.DropIndex);
+			if (Search != None && L == lb_UnusedWeapons.List)
+				Search.Refresh();
 			return true;
 		}
 	}
@@ -153,6 +156,8 @@ function InternalOnEndDrag(GUIComponent Accepting, bool bAccepted)
 	L.SetOutlineAlpha(255);
 	if ( L.bNotify )
 		L.CheckLinkedObjects(L);
+	if (Search != None)
+		Search.Refresh();
 }
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
@@ -221,6 +226,8 @@ function InitializeConfigTab()
     lb_UsedWeapons.List.OnBeginDrag = lb_UsedWeapons.List.InternalOnBeginDrag;
     lb_UsedWeapons.List.OnEndDrag = lb_UsedWeapons.List.InternalOnEndDrag;
 	lb_UsedWeapons.List.OnDblClick = InternalOnDblClick;
+
+	Search = class'BC_ListSearch'.static.Create(self, lb_UnusedWeapons, lb_UnusedWeapons.List);
 }
 
 function bool InternalOnClick(GUIComponent Sender)
@@ -296,6 +303,8 @@ function bool InternalOnClick(GUIComponent Sender)
 		lb_UnusedWeapons.List.Add(lb_UsedWeapons.List.Get(), , lb_UsedWeapons.List.GetExtra());
 		lb_UsedWeapons.List.Remove(lb_UsedWeapons.List.Index);
 	}
+	if (Search != None)
+		Search.Refresh();
 	return true;
 }
 
@@ -336,6 +345,8 @@ function int FindPreset(string PresetName)
 function UseWeapons(array<string> Names)
 {
 	local int i, j;
+	if (Search != None)
+		Search.ShowAll();
 
 	while(lb_UsedWeapons.List.Elements.Length > 0)
 	{
@@ -354,6 +365,8 @@ function UseWeapons(array<string> Names)
 			}
 		}
 	}
+	if (Search != None)
+		Search.Refresh();
 }
 
 function ShowPanel(bool bShow)

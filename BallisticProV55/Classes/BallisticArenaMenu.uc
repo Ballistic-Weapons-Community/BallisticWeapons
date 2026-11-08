@@ -18,6 +18,7 @@ var Automated GUIImage		MyBack, Box_Unused, Box_Used;
 var Automated GUIButton		BDone, BCancel, BAdd, BRemove, BSave, BDelete, BAddAll, BRemoveAll, BBWOps;
 var automated GUIHeader		MyHeader;
 var automated GUIListBox	lb_UsedWeapons, lb_UnusedWeapons;
+var BC_ListSearch			Search;		// the search row over the spare weapons
 var automated moCheckbox	ch_Random, ch_PerSpawn;
 var automated GUIComboBox	cb_Presets;
 var automated GUILabel   	l_PresetLabel;
@@ -112,6 +113,8 @@ function bool InternalOnDragDrop(GUIComponent Sender)
 				L.Insert(L.DropIndex, NewItem[i].Item, NewItem[i].ExtraData, NewItem[i].ExtraStrData);
 
 			L.SetIndex(L.DropIndex);
+			if (Search != None && L == lb_UnusedWeapons.List)
+				Search.Refresh();
 			return true;
 		}
 	}
@@ -148,6 +151,8 @@ function InternalOnEndDrag(GUIComponent Accepting, bool bAccepted)
 	L.SetOutlineAlpha(255);
 	if ( L.bNotify )
 		L.CheckLinkedObjects(L);
+	if (Search != None)
+		Search.Refresh();
 }
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
@@ -214,6 +219,8 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
     lb_UsedWeapons.List.OnBeginDrag = lb_UsedWeapons.List.InternalOnBeginDrag;
     lb_UsedWeapons.List.OnEndDrag = lb_UsedWeapons.List.InternalOnEndDrag;
 	lb_UsedWeapons.List.OnDblClick = InternalOnDblClick;
+
+	Search = class'BC_ListSearch'.static.Create(self, lb_UnusedWeapons, lb_UnusedWeapons.List);
 }
 
 function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
@@ -311,6 +318,8 @@ function bool InternalOnClick(GUIComponent Sender)
 	else if (Sender==BBWOps) // Options
 		Controller.OpenMenu("BallisticProV55.ConfigMenu_Inventory");
 
+	if (Search != None)
+		Search.Refresh();
 	return true;
 }
 
@@ -326,6 +335,8 @@ function bool InternalOnDblClick(GUIComponent Sender)
 function InternalOnChange(GUIComponent Sender)
 {
 	local int i, j;
+	if (Search != None)
+		Search.ShowAll();
 
 	if (Sender == cb_Presets && cb_Presets.GetExtra() != "")
 	{
@@ -347,6 +358,8 @@ function InternalOnChange(GUIComponent Sender)
 			}
 		}
 	}
+	if (Search != None)
+		Search.Refresh();
 }
 
 defaultproperties
