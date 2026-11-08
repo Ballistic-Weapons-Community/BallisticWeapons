@@ -25,27 +25,10 @@ var string				StyleName;
 //=============================================================================
 // CONFIG VARIABLES
 //=============================================================================	
-var() config float		SwayScale;			    	// Scales weapon sway
-var() config float		RecoilScale;			    // Scales weapon recoil pattern (results in tighter pattern and lower apparent recoil)
-var() config float 		RecoilShotScale;			// Scales weapon recoil per shot (results in slower progress along the pattern)
-var() config float 		ReloadScale;				// Scales reload speed
-var() config float		DamageScale;				// Scales anti-player damage
-var() config float		VehicleDamageScale;			// Scales anti-vehicle damage
-// The Weapons tab's advanced rules. A scale of 1 leaves a weapon as it is made
-var() config float		MagazineScale;			// Scales magazine capacity
-var() config float		AimSpeedScale;			// Scales how fast sights are raised and lowered
-var() config float		FireRateScale;			// Scales how fast guns fire
-var() config float		ShotgunSpreadScale;		// Scales the pellet spread of shotguns
-var() config float		HeadshotScale;			// Scales the damage bonus of a head hit. 0 = none
-var() config float		BlastRadiusScale;		// Scales the damage radius of explosives
-var() config float		PenetrationScale;		// Scales how much wall and how many players a shot goes through
-var() config bool		bWeaponsAffectMovement;	// A weapon slows or speeds up its holder and changes the height of jumps
-var() config bool		bAimingSlowsMovement;	// Aiming down sights slows its holder
-var() config bool		bLimbDamageReduction;	// A limb hit does less damage than a body hit
-var() config bool		bDamageFalloff;			// Bullets lose damage over distance
 
+// The weapon scales and the inventory capacity are declared in BC_GameStyle_Config (config) and
+// BC_GameStyle_Fixed (not config): a fixed style's values can't be changed in BallisticProV55.ini
 var() config int		InventoryModeIndex;			// Inventory mode used in this style - server only
-var() config int		MaxInventoryCapacity;		// Maximum carrying capacity
 var() config bool		bKillstreaks;				// Use killstreaks in this style - server only
 var() config bool		bNoRandomCamo;				// Disables camo and layout randomizer
 var() config bool		bBrightPlayers;		    	// Players have ambient glow to glow in the dark like the standard pawns.
@@ -69,24 +52,6 @@ static final function InitializeReplicationInfo(BallisticReplicationInfo rep)
 {
 	rep.GameStyle 				= default.Index;
 
-	rep.AccuracyScale			= default.SwayScale;
-	rep.DamageScale				= default.DamageScale;
-	rep.VehicleDamageScale		= default.VehicleDamageScale;
-	rep.RecoilScale				= default.RecoilScale;
-	rep.RecoilShotScale			= default.RecoilShotScale;
-	rep.ReloadScale				= default.ReloadScale;
-	rep.MagazineScale			= default.MagazineScale;
-	rep.AimSpeedScale			= default.AimSpeedScale;
-	rep.FireRateScale			= default.FireRateScale;
-	rep.ShotgunSpreadScale		= default.ShotgunSpreadScale;
-	rep.HeadshotScale			= default.HeadshotScale;
-	rep.BlastRadiusScale		= default.BlastRadiusScale;
-	rep.PenetrationScale		= default.PenetrationScale;
-	rep.bWeaponsAffectMovement	= default.bWeaponsAffectMovement;
-	rep.bAimingSlowsMovement	= default.bAimingSlowsMovement;
-	rep.bLimbDamageReduction	= default.bLimbDamageReduction;
-	rep.bDamageFalloff			= default.bDamageFalloff;
-	rep.MaxInventoryCapacity	= default.MaxInventoryCapacity;
 	rep.bKillstreaks			= default.bKillstreaks;
 	rep.bNoRandomCamo			= default.bNoRandomCamo;
 	rep.PlayerWalkSpeedFactor	= default.PlayerWalkSpeedFactor;
@@ -103,28 +68,9 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep);
 
 defaultproperties
 {
-	SwayScale=1.0f
-	RecoilScale=1.0f
-	RecoilShotScale=1.0f
-	ReloadScale=1.0f
-	DamageScale=1.0f
-	VehicleDamageScale=1.0f
-	MagazineScale=1.0f
-	AimSpeedScale=1.0f
-	FireRateScale=1.0f
-	ShotgunSpreadScale=1.0f
-	HeadshotScale=1.0f
-	BlastRadiusScale=1.0f
-	PenetrationScale=1.0f
-	bWeaponsAffectMovement=True
-	bAimingSlowsMovement=True
-	bLimbDamageReduction=True
-	bDamageFalloff=True
-
 	SightBobScale=1f
 
 	InventoryModeIndex=0
-	MaxInventoryCapacity=0
 
 	ConflictWeaponSlots=10
 	ConflictEquipmentSlots=2
