@@ -1,0 +1,47 @@
+# Compiles the BW packages with UCC on a self-hosted Windows runner that has UT2004 + Ballistic Weapons installed
+# (the asset packages can't go on GitHub's own machines). Setup: Tools/CompileCheck.md.
+# Off until the repository variable BW_COMPILE_RUNNER is set to true, so no check waits for a runner that isn't there.
+name: Compile check
+
+on:
+  pull_request:
+    branches: [dev, master]
+    paths: ['**.uc', '**.Uc', 'Tools/CompileCheck.ps1', '.github/workflows/compile-check.yml']
+  push:
+    branches: [dev]
+    paths: ['**.uc', '**.Uc', 'Tools/CompileCheck.ps1', '.github/workflows/compile-check.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: compile-check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    if: vars.BW_COMPILE_RUNNER == 'true'
+    runs-on: [self-hosted, windows, bw-compile]
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: UCC make
+        shell: powershell
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE_REF: ${{ github.base_ref }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          # Pull request: compare with the branch it goes into. Push: compare with what the branch was before.
+          $compare = ''
+          if ($env:EVENT -eq 'pull_request') { $compare = "origin/$env:BASE_REF" }
+          elseif ($env:EVENT -eq 'push' -and $env:BEFORE -and $env:BEFORE -notmatch '^0+$') { $compare = $env:BEFORE }
+          if (-not $env:BW_GAME_DIR) { Write-Output '::error::BW_GAME_DIR is not set on this runner (see Tools/CompileCheck.md).'; exit 2 }
+          $checkArgs = @('-GameDir', $env:BW_GAME_DIR)
+          if ($compare) { $checkArgs += @('-Compare', $compare) }
+          powershell -NoProfile -ExecutionPolicy Bypass -File .\Tools\CompileCheck.ps1 @checkArgs
+          exit $LASTEXITCODE

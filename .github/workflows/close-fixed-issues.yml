@@ -1,0 +1,29 @@
+# GitHub closes the issues a pull request fixes ("Fixes #12") only when it is merged into the default branch.
+# This does the same for pull requests merged into dev. Script: .github/scripts/close-fixed-issues.js
+name: Close fixed issues
+
+on:
+  # pull_request_target runs the workflow as it is on dev, never a pull request's own copy of it,
+  # and never checks out the pull request's code, so the write access to issues stays safe.
+  pull_request_target:
+    types: [closed]
+    branches: [dev]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+jobs:
+  close:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/scripts
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const run = require('./.github/scripts/close-fixed-issues.js');
+            await run({ github, context, core });
