@@ -130,9 +130,12 @@ final function Rotator GetBaseAim()
 }
 
 // Returns the interpolated base aim with its offset, chaos, etc and view aim removed in the form of a single rotator
+// The part of the aim bound to the view (ApplyAimToView) turns the player's Rotation in third person too, and the third
+// person camera looks along Rotation, so that part is left out there as well: with the sights up a shot goes where the
+// camera looks, as in first person, instead of drifting off it by the aim a second time
 final simulated function Rotator GetAimPivot(optional bool bIgnoreViewAim)
 {
-	if (bIgnoreViewAim || BW.InstigatorController == None || PlayerController(BW.InstigatorController) == None || PlayerController(BW.InstigatorController).bBehindView)
+	if (bIgnoreViewAim || BW.InstigatorController == None || PlayerController(BW.InstigatorController) == None)
 		return AimOffset + GetBaseAim() + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
 
 	return AimOffset + GetBaseAim() * (1-ViewBindFactor) + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
@@ -151,7 +154,7 @@ final simulated function float CalcConeInaccuracy()
 
 final simulated function Rotator CalcFutureAim(float ExtraTime, bool bIgnoreViewAim)
 {	
-    if (bIgnoreViewAim || BW.InstigatorController == None || PlayerController(BW.InstigatorController) == None || PlayerController(BW.InstigatorController).bBehindView)
+    if (bIgnoreViewAim || BW.InstigatorController == None || PlayerController(BW.InstigatorController) == None)
         return GetFutureAimOffset(ExtraTime) + GetFutureAim(ExtraTime) + GetAimOffsets();
     return GetFutureAimOffset(ExtraTime) + GetFutureAim(ExtraTime) * (1-ViewBindFactor) + GetAimOffsets();
 }
@@ -807,7 +810,18 @@ final simulated function float GetCrosshairChaos()
     else
         ShownChaos = NewChaos;
 
-    return FClamp(ShownChaos + ((1 - (360/Params.ChaosSpeedThreshold) * NewChaos) * FireChaos), 0, 1);
+    return FClamp(ShownChaos * GetSightsUnboundAim() + ((1 - (360/Params.ChaosSpeedThreshold) * NewChaos) * FireChaos), 0, 1);
+}
+
+// How much of the aim's wander still moves the shot away from where the player looks, from 1 at the hip down to
+// 1 - ADSViewBindFactor with the sights up (none by default: the view follows the aim, so the shot always lands in the
+// middle of the sights). Only what the sights add to the view binding counts, so the hip crosshair stays as it was
+final simulated function float GetSightsUnboundAim()
+{
+    if (Params == None || Params.ViewBindFactor >= 1 || ViewBindFactor <= Params.ViewBindFactor)
+        return 1;
+
+    return FClamp((1 - ViewBindFactor) / (1 - Params.ViewBindFactor), 0, 1);
 }
 
 final simulated function float CalcCrosshairOffset(Canvas C)
