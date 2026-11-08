@@ -871,6 +871,11 @@ simulated function GenerateCamo(byte Index)
 			//log("set index to -1, our sublist length is 0");
 			SetCamoIndex(255);
 		}
+		else if (AllowedCamos.length > 0)
+		{
+			//Randomizer disabled: the first camo this layout allows (spot 0 may belong to another layout's look)
+			SetCamoIndex(Camos[AllowedCamos[0]].Index);
+		}
 		else
 		{
 			//log("set index to 0, the randomizer is off");
