@@ -236,7 +236,7 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_FireExplode'
      Damage=5.000000
      BaseDamage=10.000000
-     RepulsionForceMag=250.000000
+	 RepulsionForceMag=0.000000
      LightType=LT_Flicker
      LightEffect=LE_QuadraticNonIncidence
      LightHue=25

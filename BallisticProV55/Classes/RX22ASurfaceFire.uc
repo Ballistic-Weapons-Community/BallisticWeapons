@@ -150,7 +150,7 @@ defaultproperties
      Damage=25.000000
      DamageType=Class'BallisticProV55.DTRX22AFireTrap'
      IgniteSound=Sound'BW_Core_WeaponSound.RX22A.RX22A-IgniteFire'
-     RepulsionForceMag=275.000000
+	 RepulsionForceMag=0.000000
      Fuel=20.000000
      MaxFuel=150.000000
      Extent=64

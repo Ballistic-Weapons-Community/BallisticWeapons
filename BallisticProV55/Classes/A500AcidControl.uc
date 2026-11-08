@@ -154,5 +154,5 @@ defaultproperties
 	bFullVolume=True
 	SoundVolume=255
 	SoundRadius=192.000000
-	RepulsionForceMag=250.000000
+	RepulsionForceMag=0.000000
 }

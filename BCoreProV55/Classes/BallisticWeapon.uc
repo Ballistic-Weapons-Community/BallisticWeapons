@@ -105,9 +105,9 @@ const CROSSHAIR_FAR_SIZE = 0.55;
 
 enum ECrosshairAim
 {
-	CHA_Off,			// The crosshair stays in the middle of the screen
-	CHA_ThirdPerson,	// It goes where a shot would land in third person, where the camera is off the line of fire
-	CHA_Always			// It goes there in first person as well, following sway, recoil and the sprint offset
+	CHA_Off,			// Read as CHA_ThirdPerson: third person always follows the aim (the menu no longer offers it)
+	CHA_ThirdPerson,	// The crosshair goes where a shot would land in third person, and stays in the middle in first person
+	CHA_Always			// It goes there in first person as well, following sway, recoil and the sprint offset (Pro and Classic only)
 };
 
 //=============================================================================
@@ -6375,20 +6375,22 @@ simulated final function vector GetCrosshairHit()
 	return CrosshairAimEnd;
 }
 
-// Where on the screen (X, Y) the crosshair goes, if it is to go where the shot lands (BC_CrosshairSettings: in third person
-// the camera is off the line of fire, in first person the gun moves off it). A server can keep it in the middle in first
-// person, where it would show what sway hides. The HUD's own crosshair uses it too (BallisticPawn)
+// Where on the screen (X, Y) the crosshair goes, if it is to go where the shot lands. Always in third person: the camera is
+// beside the eyes, so the middle of the screen is only right far off. In first person, where the gun moves off the
+// middle, if the player wants it (BC_CrosshairSettings, Crosshair Follows Aim In First Person) and the game style allows
+// it (Pro and Classic). The HUD's own crosshair uses it too (BallisticPawn)
 simulated final function bool GetCrosshairAim(Canvas C, out float X, out float Y)
 {
 	local PlayerController PC;
 	local vector P;
 
-	if (Instigator == None || class'BC_CrosshairSettings'.default.CrosshairAim == ECrosshairAim.CHA_Off)
+	if (Instigator == None)
 		return false;
 	PC = PlayerController(Instigator.Controller);
 	if (PC == None || PC.ViewTarget != Instigator)
 		return false;
-	if (!PC.bBehindView && (class'BC_CrosshairSettings'.default.CrosshairAim != ECrosshairAim.CHA_Always || !class'BallisticReplicationInfo'.default.bFirstPersonCrosshairAim))
+	if (!PC.bBehindView && (class'BC_CrosshairSettings'.default.CrosshairAim != ECrosshairAim.CHA_Always
+		|| !class'BallisticReplicationInfo'.static.AllowsFirstPersonCrosshairAim()))
 		return false;
 
 	P = C.WorldToScreen(GetCrosshairHit());

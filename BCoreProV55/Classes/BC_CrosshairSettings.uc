@@ -10,7 +10,7 @@
 class BC_CrosshairSettings extends Object
 	config(BallisticPreferences);
 
-var config byte		CrosshairAim;		// Where a crosshair goes: an ECrosshairAim of BallisticWeapon
+var config byte		CrosshairAim;		// An ECrosshairAim of BallisticWeapon: CHA_Always = follows the aim in first person too
 var config Color	CrosshairColor;		// The Simple crosshair's colour. Its alpha is the opacity of all of these
 var config bool		bOneColour;			// Graphical crosshairs use CrosshairColor as well, not their weapon's colours
 var config bool		bWarningColours;	// Crosshairs change colour for an empty magazine and a gun that needs cocking
@@ -21,10 +21,10 @@ var config bool		bDistanceSize;		// Crosshairs are drawn smaller on what is far 
 defaultproperties
 {
 	CrosshairAim=1
-	CrossHairColor=(B=255,G=255,R=255,A=255)
+	CrossHairColor=(B=255,G=255,R=255,A=175)
 	bOneColour=False
 	bWarningColours=True
-	MagEmptyColor=(B=50,G=50,R=255,A=255)
-	CockingColor=(B=50,G=175,R=255,A=255)
+	MagEmptyColor=(B=50,G=50,R=255,A=175)
+	CockingColor=(B=50,G=175,R=255,A=175)
 	bDistanceSize=False
 }

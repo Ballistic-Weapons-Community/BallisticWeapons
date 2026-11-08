@@ -19,7 +19,6 @@ var automated moFloatEdit	fl_VDamage;					//Damage Scale against Vehicles
 
 var automated moCheckbox	ch_WeaponJumpOffsetting;	//Disable Weapon Displacement when Running & Jumping
 var automated moCheckbox	ch_LongWeaponOffsetting;	//Disable Weapon Displacement when Near a Wall
-var automated moCheckbox	ch_FirstPersonCrosshairAim;	//Players may have the crosshair follow the gun's aim in first person
 var automated moCheckbox	ch_NoReloading;				//Disable Reloading
 var automated moNumericEdit int_MaxInventoryCapacity;	//Inventory Capacity
 
@@ -49,7 +48,6 @@ function LoadSettings()
 		ch_LongWeaponOffsetting.Checked(game_style.default.bLongWeaponOffsetting);
 		int_MaxInventoryCapacity.SetValue(game_style.default.MaxInventoryCapacity);
 		ch_NoReloading.Checked(game_style.default.bNoReloading);
-		ch_FirstPersonCrosshairAim.Checked(game_style.default.bFirstPersonCrosshairAim);
 	}
 	else
 	{
@@ -64,7 +62,6 @@ function LoadSettings()
 		ch_LongWeaponOffsetting.Checked(fixed_style.default.bLongWeaponOffsetting);
 		int_MaxInventoryCapacity.SetValue(fixed_style.default.MaxInventoryCapacity);
 		ch_NoReloading.Checked(fixed_style.default.bNoReloading);
-		ch_FirstPersonCrosshairAim.Checked(fixed_style.default.bFirstPersonCrosshairAim);
 
 		// a fixed style: nothing here is saved, the sub menu's rules neither. The itemizer is no rule of a style
 		DisableStyleRows();
@@ -100,7 +97,6 @@ function SaveSettings()
 		game_style.default.bWeaponJumpOffsetting			= ch_WeaponJumpOffsetting.IsChecked();
 		game_style.default.bLongWeaponOffsetting			= ch_LongWeaponOffsetting.IsChecked();
 		game_style.default.bNoReloading					= ch_NoReloading.IsChecked();
-		game_style.default.bFirstPersonCrosshairAim		= ch_FirstPersonCrosshairAim.IsChecked();
 		game_style.default.MaxInventoryCapacity 			= int_MaxInventoryCapacity.GetValue();	
 		game_style.static.StaticSaveConfig();
 	}
@@ -134,7 +130,6 @@ function DefaultSettings()
 		fl_VDamage.SetValue(1.0);
 		ch_WeaponJumpOffsetting.Checked(true);
 		ch_LongWeaponOffsetting.Checked(true);
-		ch_FirstPersonCrosshairAim.Checked(true);
 		ch_NoReloading.Checked(false);
 		int_MaxInventoryCapacity.SetValue(0);
 	}
@@ -289,18 +284,6 @@ defaultproperties
      End Object
      eb_ItemGroup=moEditBox'eb_ItemGroupEdit'
 
-	 Begin Object Class=moCheckBox Name=ch_FirstPersonCrosshairAimCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Crosshair Can Follow Aim In First Person"
-         OnCreateComponent=ch_FirstPersonCrosshairAimCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Lets players have the crosshair show where the gun really points in first person, which sway normally hides. Off: first person crosshairs stay in the middle of the screen. Third person crosshairs always can."
-         WinTop=0.650000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_FirstPersonCrosshairAim=moCheckBox'ch_FirstPersonCrosshairAimCheck'
 
      Begin Object Class=GUIButton Name=MoreSettingsButton
          Caption="Advanced Weapon Rules"
