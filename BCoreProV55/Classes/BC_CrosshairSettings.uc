@@ -10,7 +10,7 @@
 class BC_CrosshairSettings extends Object
 	config(BallisticProV55);
 
-var config byte		CrosshairAim;		// Where a crosshair goes: an ECrosshairAim of BallisticWeapon
+var config byte		CrosshairAim;		// An ECrosshairAim of BallisticWeapon: CHA_Always = follows the aim in first person too
 var config Color	CrosshairColor;		// The Simple crosshair's colour. Its alpha is the opacity of all of these
 var config bool		bOneColour;			// Graphical crosshairs use CrosshairColor as well, not their weapon's colours
 var config bool		bWarningColours;	// Crosshairs change colour for an empty magazine and a gun that needs cocking
