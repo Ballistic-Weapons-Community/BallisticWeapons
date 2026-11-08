@@ -290,6 +290,18 @@ function ClientSetWeapon(class<Weapon> W)
           User.ClientSetWeapon(W);
 }
 
+//Weapon switch for a player who has just spawned.
+//A remote player's client has neither the new pawn nor its weapons yet when this is sent, so Controller.ClientSetWeapon
+//would read a None Pawn there (Accessed None warning) and do nothing. The new weapon's own ClientWeaponSet brings it up
+//on that client once it arrives. Bots and a listen server's own player have their pawn already and still get the switch.
+function SpawnSetWeapon(class<Weapon> W)
+{
+     if ( PlayerController(User) != None && Viewport(PlayerController(User).Player) == None )
+          return;
+
+     ClientSetWeapon(W);
+}
+
 function DisposeOfWeapon(Weapon Trash, class<Weapon> W)
 {
      GunSwitchTime = Level.TimeSeconds;

@@ -600,7 +600,7 @@ function AddDefaultInventory( Pawn PlayerPawn )
           if ( W != None )
           {
                Registry[GunGamePRI(PlayerPawn.PlayerReplicationInfo).RegistryID].NewWeaponClass = W.Class;  //Set new WeaponClass, so that Registry always has the correct value stored
-               Registry[GunGamePRI(PlayerPawn.PlayerReplicationInfo).RegistryID].ClientSetWeapon(W.Class);
+               Registry[GunGamePRI(PlayerPawn.PlayerReplicationInfo).RegistryID].SpawnSetWeapon(W.Class);
           }
      }
 
