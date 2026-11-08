@@ -27,6 +27,8 @@ function bool CheckReplacement( Actor Other, out byte bSuperRelevant ) //Remove 
           if ( Weapon(Other) != None )  //Weapons are not allowed to be thrown out
           {
                Weapon(Other).bCanThrow = false;
+               if ( BallisticWeapon(Other) != None )  //No camos: each weapon wears its plain skin
+                    BallisticWeapon(Other).bPlainCamo = true;
           }
           if ( xWeaponBase(Other) != None )  //Remove all weapon pickups
           {

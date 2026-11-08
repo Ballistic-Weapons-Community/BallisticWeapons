@@ -14,6 +14,10 @@ var BallisticPreloadReplicationInfo MyRI;
 var int NumRewards;		// How many entries at the end of the list are killstreak rewards
 var string PlayerModelPackage;	// The player models of this package, BW's own characters, are loaded as the map starts
 
+var bool bGameWeapons;				// The game type gave its own weapon list (SetGameWeapons)
+var array<string> GameWeapons;
+var string GameWeaponSource;
+
 event PostBeginPlay()
 {
 	if (bEnablePreloading)
@@ -94,6 +98,23 @@ function LoadOnServer(array<string> List)
 	Log(S);
 }
 
+// A game type that hands out its own weapons, such as GunGame, gives its list here before this mutator's first tick.
+// Only those are loaded then: not the list of the inventory mutator it runs with, nor the killstreak rewards.
+// bNoCamos: its weapons never wear a camo, so the camo skins are not loaded either.
+function SetGameWeapons(array<string> List, string Source, optional bool bNoCamos)
+{
+	local int i;
+
+	bGameWeapons = true;
+	GameWeaponSource = Source;
+	GameWeapons.Length = 0;
+	for (i = 0; i < List.Length; i++)
+		AddUniqueString(GameWeapons, List[i]);
+
+	if (bNoCamos && MyRI != None)
+		MyRI.bEnableCamoLoading = false;
+}
+
 // Build weapon list dynamically from active BW mutators, falling back to config
 function BuildWeaponList(out array<string> OutList)
 {
@@ -109,6 +130,14 @@ function BuildWeaponList(out array<string> OutList)
 	local array<string> GroupWeapons;
 	local string Source;
 	local int i, j, t;
+
+	if (bGameWeapons)
+	{
+		OutList = GameWeapons;
+		NumRewards = 0;
+		Log("Mut_BallisticPreLoad: Built weapon list from"@GameWeaponSource@"("$OutList.Length@"weapons)");
+		return;
+	}
 
 	for (M = Level.Game.BaseMutator; M != None; M = M.NextMutator)
 	{
