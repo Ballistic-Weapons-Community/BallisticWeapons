@@ -100,6 +100,22 @@ simulated function DrawBox(Canvas C, float X, float Y, float W, float H)
 	C.DrawTile(Texture'Engine.WhiteTexture', W, H, 0, 0, 1, 1);
 }
 
+// Top of the chat and kill messages with every line the player allows in use,
+// plus the typing line under them, worked out as HUD.DisplayMessages places them
+simulated function float ChatTop(Canvas C, HUD MyHUD)
+{
+	local float Bottom, XL, YL;
+	local Font OldFont;
+
+	OldFont = C.Font;
+	C.Font = MyHUD.GetConsoleFont(C);
+	C.TextSize("A", XL, YL);
+	C.Font = OldFont;
+
+	Bottom = MyHUD.ConsoleMessagePosY * MyHUD.HudCanvasScale * C.SizeY + (1.0 - MyHUD.HudCanvasScale) * 0.5 * C.SizeY;
+	return Bottom - YL * (Min(MyHUD.ConsoleMessageCount, ArrayCount(MyHUD.TextMessages)) + 1) - 1;
+}
+
 simulated function Render(Canvas C)
 {
 	local HUD MyHUD;
@@ -122,12 +138,12 @@ simulated function Render(Canvas C)
 	OldColour = C.DrawColor;
 	C.Style = ERenderStyle.STY_Alpha;
 
-	// Where the old bar was, as wide as it was when full
+	// Where the old bar was, as wide as it was when full, but never over the chat
 	Scale = C.ClipX / 1600 * MyHUD.HudScale;
 	X = Round(5 * Scale);
-	Y = Round(C.ClipY - 330 * Scale);
 	W = Round(200 * Scale);
 	H = Round(30 * Scale);
+	Y = FMin(Round(C.ClipY - 330 * Scale), ChatTop(C, MyHUD) - Round(6 * Scale) - H);
 	Line = FMax(1, Round(1.5 * Scale));
 	Inset = Line + FMax(1, Round(2 * Scale));
 	Frac = FClamp(Control.Stamina / FMax(1, Control.MaxStamina), 0, 1);
