@@ -43,6 +43,7 @@ function Reset()
 function TryDamage (Pawn Victim, float Interval, class<DamageType> DamageType)
 {
 	local int Index;
+	local Vector XYVel;
 	local Pawn Thrower;
 
     if (Victim == None)
@@ -58,6 +59,13 @@ function TryDamage (Pawn Victim, float Interval, class<DamageType> DamageType)
 		if (Instigator != None)
 			Thrower = Instigator;
 		class'BallisticDamageType'.static.GenericHurt (Victim, Damage, Thrower, Victim.Location, vect(0,0,0), DamageType);
+		if (Victim.Controller != None && Victim.Controller.SameTeamAs(Instigator.Controller))
+		{
+			//bog down allies attempting to crawl through this fp7's fire
+			XYVel = -Victim.Velocity;
+			XYVel.Z = 0;
+			Victim.AddVelocity(XYVel + RepulsionForceMag * Normal(Victim.Location - Location) + vect(0,0,20));
+		}
 	}
 }
 
@@ -248,7 +256,7 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_FireExplode'
      Damage=30.000000
      BaseDamage=40.000000
-     RepulsionForceMag=250.000000
+     RepulsionForceMag=0.000000
      LightType=LT_Flicker
      LightEffect=LE_QuadraticNonIncidence
      LightHue=25
