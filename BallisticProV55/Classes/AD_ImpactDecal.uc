@@ -3,7 +3,7 @@
 //=============================================================================
 class AD_ImpactDecal extends BallisticDecal
 	placeable
-	config(BallisticProV55);
+	config(BallisticPreferences);
 
 var() Globalconfig bool		bPermanentImpacts;	// This decal will stay forever...
 

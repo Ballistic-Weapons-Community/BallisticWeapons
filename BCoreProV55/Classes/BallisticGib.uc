@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticGib extends Effects config(BallisticProV55);
+class BallisticGib extends Effects config(BallisticPreferences);
 
 // General Variables ----------------------------------------------------------
 var() int						Spin;				// Random spin applied after impact

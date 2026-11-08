@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class M58Grenade extends BallisticHandGrenade config(BallisticProV55);
+class M58Grenade extends BallisticHandGrenade config(BallisticPreferences);
 
 simulated function DoExplosion()
 {

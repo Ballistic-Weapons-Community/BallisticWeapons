@@ -7,7 +7,7 @@
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AD_BloodDecal extends BallisticDecal
-	config(BallisticProV55);
+	config(BallisticPreferences);
 
 var() Globalconfig float	StayScale;		// Scales the life time of blood decals. 0 = Forever...
 
