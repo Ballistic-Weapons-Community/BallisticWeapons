@@ -12,9 +12,23 @@ class ConfigTab_VisualPrefs extends ConfigTabBase;
 var automated moCheckbox	ch_UseBrass, ch_ImpStay, ch_MSmoke, ch_MotionBlur;
 var automated moComboBox	co_WeaponDet, co_CamRate, co_EffectDet;
 var automated moFloatEdit	fl_BrassTime;
-var automated GUILabel		l_Detail, l_Effects, l_Heavy;	// section headings
+var automated BWMenuSection	i_Detail, i_Effects, i_Heavy;	// titled boxes round the rows
 
 var			  int			OldWeaponDet;
+
+function InitComponent(GUIController MyController, GUIComponent MyOwner)
+{
+	Super.InitComponent(MyController, MyOwner);
+
+	SectionRow(i_Detail, co_WeaponDet);
+	SectionRow(i_Detail, co_EffectDet);
+	SectionRow(i_Detail, co_CamRate);
+	SectionRow(i_Effects, ch_UseBrass);
+	SectionRow(i_Effects, ch_MSmoke);
+	SectionRow(i_Heavy, fl_BrassTime);
+	SectionRow(i_Heavy, ch_ImpStay);
+	SectionRow(i_Heavy, ch_MotionBlur);
+}
 
 function LoadSettings()
 {
@@ -92,39 +106,33 @@ function DefaultSettings()
 
 defaultproperties
 {
-	Begin Object Class=GUILabel Name=l_DetailLabel
+	Begin Object Class=BWMenuSection Name=DetailSection
 		Caption="Detail"
-		TextAlign=TXTA_Left
-		TextColor=(B=0,G=180,R=255,A=255)
-		TextFont="UT2MenuFont"
-		WinTop=0.080000
-		WinLeft=0.250000
-		WinWidth=0.500000
-		WinHeight=0.040000
+		WinTop=0.030000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.304000
 	End Object
-	l_Detail=GUILabel'BallisticProV55.ConfigTab_VisualPrefs.l_DetailLabel'
-	Begin Object Class=GUILabel Name=l_EffectsLabel
+	i_Detail=BWMenuSection'BallisticProV55.ConfigTab_VisualPrefs.DetailSection'
+
+	Begin Object Class=BWMenuSection Name=EffectsSection
 		Caption="Effects"
-		TextAlign=TXTA_Left
-		TextColor=(B=0,G=180,R=255,A=255)
-		TextFont="UT2MenuFont"
-		WinTop=0.300000
-		WinLeft=0.250000
-		WinWidth=0.500000
-		WinHeight=0.040000
+		WinTop=0.030000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.241000
 	End Object
-	l_Effects=GUILabel'BallisticProV55.ConfigTab_VisualPrefs.l_EffectsLabel'
-	Begin Object Class=GUILabel Name=l_HeavyLabel
+	i_Effects=BWMenuSection'BallisticProV55.ConfigTab_VisualPrefs.EffectsSection'
+
+	Begin Object Class=BWMenuSection Name=HeavySection
 		Caption="Heavy On Performance"
-		TextAlign=TXTA_Left
-		TextColor=(B=0,G=180,R=255,A=255)
-		TextFont="UT2MenuFont"
-		WinTop=0.470000
-		WinLeft=0.250000
-		WinWidth=0.500000
-		WinHeight=0.040000
+		WinTop=0.300000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.304000
 	End Object
-	l_Heavy=GUILabel'BallisticProV55.ConfigTab_VisualPrefs.l_HeavyLabel'
+	i_Heavy=BWMenuSection'BallisticProV55.ConfigTab_VisualPrefs.HeavySection'
+
 
      Begin Object Class=moComboBox Name=co_WeaponDetCombo
          ComponentJustification=TXTA_Left

@@ -16,7 +16,23 @@ var automated GUITabControl	c_Tabs;
 
 var() localized string		HeaderCaption;
 var bool					bAddingTabs;	// the first tab added activates itself: not a tab the player chose
+var() bool					bThemed;		// takes the menu theme of BC_MenuMemory.MenuTheme
 var GUIPage					HiddenParent;	// the config menu this one was opened from, hidden while this is open
+
+// The dark menu theme, for a menu that takes it
+function bool DarkTheme()
+{
+	return bThemed && class'BWMenuTheme'.static.IsDark();
+}
+
+// Header, footer, tabs and background; each tab does its own controls when shown (some are made then)
+function ApplyTheme()
+{
+	if (!DarkTheme())
+		return;
+	class'BWMenuTheme'.static.DarkBackground(MyBack);
+	class'BWMenuTheme'.static.Apply(Controller, self);
+}
 
 // Opened from another config menu (Preferences from Configuration's Game tab): its background lets
 // that menu show through, so it is hidden until this one closes
@@ -56,6 +72,8 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	// back on the tab last used
 	if (LastTab != "")
 		c_Tabs.ActivateTabByName(LastTab, true);
+
+	ApplyTheme();
 }
 
 function AddTabs();

@@ -11,7 +11,25 @@ class ConfigTab_Blood extends ConfigTabBase;
 var automated moCheckbox	ch_BloodDrags, ch_BloodImpacts, ch_BloodPools, ch_BloodSplats, ch_BloodExplodes, ch_BloodFX, ch_Stmups, ch_Chunks, ch_ScreenFX, ch_GibbableCorpses;
 var automated moFloatEdit	fl_BloodTimeScale;
 var automated moSlider		sl_GibMulti;
-var automated GUILabel		l_Blood, l_Gore, l_Heavy;	// section headings
+var automated BWMenuSection	i_Blood, i_Gore, i_Heavy;	// titled boxes round the rows
+
+function InitComponent(GUIController MyController, GUIComponent MyOwner)
+{
+	Super.InitComponent(MyController, MyOwner);
+
+	SectionRow(i_Blood, ch_BloodFX);
+	SectionRow(i_Blood, ch_BloodDrags);
+	SectionRow(i_Blood, ch_BloodImpacts);
+	SectionRow(i_Blood, ch_BloodPools);
+	SectionRow(i_Blood, ch_BloodSplats);
+	SectionRow(i_Blood, ch_BloodExplodes);
+	SectionRow(i_Blood, ch_ScreenFX);
+	SectionRow(i_Gore, ch_Chunks);
+	SectionRow(i_Gore, ch_Stmups);
+	SectionRow(i_Gore, ch_GibbableCorpses);
+	SectionRow(i_Heavy, fl_BloodTimeScale);
+	SectionRow(i_Heavy, sl_GibMulti);
+}
 
 function LoadSettings()
 {
@@ -74,39 +92,33 @@ function DefaultSettings()
 
 defaultproperties
 {
-	Begin Object Class=GUILabel Name=l_BloodLabel
+	Begin Object Class=BWMenuSection Name=BloodSection
 		Caption="Blood"
-		TextAlign=TXTA_Left
-		TextColor=(B=0,G=180,R=255,A=255)
-		TextFont="UT2MenuFont"
-		WinTop=0.080000
-		WinLeft=0.250000
-		WinWidth=0.500000
-		WinHeight=0.040000
+		WinTop=0.030000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.556000
 	End Object
-	l_Blood=GUILabel'BallisticProV55.ConfigTab_Blood.l_BloodLabel'
-	Begin Object Class=GUILabel Name=l_GoreLabel
+	i_Blood=BWMenuSection'BallisticProV55.ConfigTab_Blood.BloodSection'
+
+	Begin Object Class=BWMenuSection Name=GoreSection
 		Caption="Gore"
-		TextAlign=TXTA_Left
-		TextColor=(B=0,G=180,R=255,A=255)
-		TextFont="UT2MenuFont"
-		WinTop=0.500000
-		WinLeft=0.250000
-		WinWidth=0.500000
-		WinHeight=0.040000
+		WinTop=0.030000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.304000
 	End Object
-	l_Gore=GUILabel'BallisticProV55.ConfigTab_Blood.l_GoreLabel'
-	Begin Object Class=GUILabel Name=l_HeavyLabel
+	i_Gore=BWMenuSection'BallisticProV55.ConfigTab_Blood.GoreSection'
+
+	Begin Object Class=BWMenuSection Name=HeavySection
 		Caption="Heavy On Performance"
-		TextAlign=TXTA_Left
-		TextColor=(B=0,G=180,R=255,A=255)
-		TextFont="UT2MenuFont"
-		WinTop=0.720000
-		WinLeft=0.250000
-		WinWidth=0.500000
-		WinHeight=0.040000
+		WinTop=0.360000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.241000
 	End Object
-	l_Heavy=GUILabel'BallisticProV55.ConfigTab_Blood.l_HeavyLabel'
+	i_Heavy=BWMenuSection'BallisticProV55.ConfigTab_Blood.HeavySection'
+
 
 	 Begin Object Class=moCheckBox Name=ch_BloodFXCheck
          ComponentJustification=TXTA_Left

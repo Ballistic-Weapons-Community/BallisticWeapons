@@ -61,6 +61,7 @@ defaultproperties
 {
      //WIP
 	 HeaderCaption="Ballistic Preferences"
+	 bThemed=True
 
      GameplayTabLabel="Gameplay"
      GameplayTabHint="Configure gameplay preferences."

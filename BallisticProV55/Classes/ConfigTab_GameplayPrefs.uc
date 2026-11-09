@@ -12,7 +12,20 @@ class ConfigTab_GameplayPrefs extends ConfigTabBase;
 var automated moComboBox		co_ADSHandling, co_ModeMemory;
 var automated moFloatEdit		fl_ZoomTimeMod;
 var automated moCheckbox		ch_WeaponUI, ch_KeyHints, ch_SimpleDeathMessages, ch_LessDisruptiveFlash;
-var automated GUILabel		l_Aiming, l_Weapons, l_Screen;	// section headings
+var automated BWMenuSection	i_Aiming, i_Weapons, i_Screen;	// titled boxes round the rows
+
+function InitComponent(GUIController MyController, GUIComponent MyOwner)
+{
+	Super.InitComponent(MyController, MyOwner);
+
+	SectionRow(i_Aiming, co_ADSHandling);
+	SectionRow(i_Aiming, fl_ZoomTimeMod);
+	SectionRow(i_Weapons, co_ModeMemory);
+	SectionRow(i_Weapons, ch_WeaponUI);
+	SectionRow(i_Weapons, ch_KeyHints);
+	SectionRow(i_Screen, ch_SimpleDeathMessages);
+	SectionRow(i_Screen, ch_LessDisruptiveFlash);
+}
 
 function LoadSettings()
 {
@@ -73,39 +86,33 @@ function DefaultSettings()
 
 defaultproperties
 {
-	Begin Object Class=GUILabel Name=l_AimingLabel
+	Begin Object Class=BWMenuSection Name=AimingSection
 		Caption="Aiming"
-		TextAlign=TXTA_Left
-		TextColor=(B=0,G=180,R=255,A=255)
-		TextFont="UT2MenuFont"
-		WinTop=0.080000
-		WinLeft=0.250000
-		WinWidth=0.500000
-		WinHeight=0.040000
+		WinTop=0.030000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.241000
 	End Object
-	l_Aiming=GUILabel'BallisticProV55.ConfigTab_GameplayPrefs.l_AimingLabel'
-	Begin Object Class=GUILabel Name=l_WeaponsLabel
+	i_Aiming=BWMenuSection'BallisticProV55.ConfigTab_GameplayPrefs.AimingSection'
+
+	Begin Object Class=BWMenuSection Name=WeaponsSection
 		Caption="Weapons"
-		TextAlign=TXTA_Left
-		TextColor=(B=0,G=180,R=255,A=255)
-		TextFont="UT2MenuFont"
-		WinTop=0.250000
-		WinLeft=0.250000
-		WinWidth=0.500000
-		WinHeight=0.040000
+		WinTop=0.030000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.241000
 	End Object
-	l_Weapons=GUILabel'BallisticProV55.ConfigTab_GameplayPrefs.l_WeaponsLabel'
-	Begin Object Class=GUILabel Name=l_ScreenLabel
+	i_Weapons=BWMenuSection'BallisticProV55.ConfigTab_GameplayPrefs.WeaponsSection'
+
+	Begin Object Class=BWMenuSection Name=ScreenSection
 		Caption="Messages And Screen"
-		TextAlign=TXTA_Left
-		TextColor=(B=0,G=180,R=255,A=255)
-		TextFont="UT2MenuFont"
-		WinTop=0.470000
-		WinLeft=0.250000
-		WinWidth=0.500000
-		WinHeight=0.040000
+		WinTop=0.300000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.241000
 	End Object
-	l_Screen=GUILabel'BallisticProV55.ConfigTab_GameplayPrefs.l_ScreenLabel'
+	i_Screen=BWMenuSection'BallisticProV55.ConfigTab_GameplayPrefs.ScreenSection'
+
 
      Begin Object Class=moComboBox Name=co_ADSHandlingCombo
         ComponentJustification=TXTA_Left

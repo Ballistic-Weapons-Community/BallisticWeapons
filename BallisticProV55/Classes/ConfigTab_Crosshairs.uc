@@ -19,6 +19,7 @@ var automated moSlider		sl_GlobalScale, sl_CrossGrow, sl_Opacity, sl_Red, sl_Gre
 var automated GUIImage		Img_BackShot, Box_Shot;
 var automated GUIButton		b_WeaponCrosshairs;
 var automated GUILabel		l_Custom, l_StockNote;
+var automated BWMenuSection	i_General, i_Colours, i_Custom;	// titled boxes round the rows of each page
 
 // General / Colours / Per Weapon: the last is the weapon crosshairs tab, which was a menu of its own
 var BC_TabRow				PageRow;
@@ -35,6 +36,27 @@ var int						CustomColour;	// Which of them the Custom sliders show
 var bool					bSettingUp;		// The boxes are being filled, not changed by the player
 var bool					bFirstPersonAimLocked;	// The game style doesn't allow the crosshair to follow the aim in first person
 var float					PreviewTime;
+
+function InitComponent(GUIController MyController, GUIComponent MyOwner)
+{
+	Super.InitComponent(MyController, MyOwner);
+
+	SectionRow(i_General, co_Crosshairs);
+	SectionRow(i_General, ch_FirstPersonAim);
+	SectionRow(i_General, ch_Crosshairdot);
+	SectionRow(i_General, ch_Distance);
+	SectionRow(i_General, sl_GlobalScale);
+	SectionRow(i_General, sl_CrossGrow);
+	SectionRow(i_Colours, co_Colour);
+	SectionRow(i_Colours, sl_Opacity);
+	SectionRow(i_Colours, ch_OneColour);
+	SectionRow(i_Colours, ch_Warnings);
+	SectionRow(i_Colours, co_EmptyColour);
+	SectionRow(i_Colours, co_CockingColour);
+	SectionRow(i_Custom, sl_Red);
+	SectionRow(i_Custom, sl_Green);
+	SectionRow(i_Custom, sl_Blue);
+}
 
 function InitializeConfigTab()
 {
@@ -139,11 +161,10 @@ function ShowCustomColour(int i)
 	CustomColour = i;
 	bCustom = ColourBox(i).GetIndex() == PRESET_COUNT - 1;
 
-	sl_Red.SetVisibility(bCustom);
-	sl_Green.SetVisibility(bCustom);
-	sl_Blue.SetVisibility(bCustom);
-	l_Custom.SetVisibility(bCustom);
-	l_Custom.Caption = CustomCaptions[i];
+	// the section shows or hides its sliders with it; on the Colours page only
+	i_Custom.SetVisibility(bCustom && Page == 1);
+	i_Custom.Caption = CustomCaptions[i];
+	l_Custom.SetVisibility(false);	// the section's title says it
 
 	if (bCustom)
 	{
@@ -342,29 +363,11 @@ function ShowPage(int i)
 	bGeneral = i == 0;
 	bColours = i == 1;
 
-	co_Crosshairs.SetVisibility(bGeneral);
-	ch_FirstPersonAim.SetVisibility(bGeneral);
-	ch_Crosshairdot.SetVisibility(bGeneral);
-	ch_Distance.SetVisibility(bGeneral);
-	sl_GlobalScale.SetVisibility(bGeneral);
-	sl_CrossGrow.SetVisibility(bGeneral);
-
-	co_Colour.SetVisibility(bColours);
-	sl_Opacity.SetVisibility(bColours);
-	ch_OneColour.SetVisibility(bColours);
-	ch_Warnings.SetVisibility(bColours);
-	co_EmptyColour.SetVisibility(bColours);
-	co_CockingColour.SetVisibility(bColours);
+	// a section shows or hides its rows with it
+	i_General.SetVisibility(bGeneral);
+	i_Colours.SetVisibility(bColours);
 	// the Custom sliders only with a colour box on Custom
-	if (bColours)
-		ShowCustomColour(CustomColour);
-	else
-	{
-		l_Custom.SetVisibility(false);
-		sl_Red.SetVisibility(false);
-		sl_Green.SetVisibility(false);
-		sl_Blue.SetVisibility(false);
-	}
+	ShowCustomColour(CustomColour);
 	// Per Weapon took its place; showing the tab shows every control on it again
 	b_WeaponCrosshairs.SetVisibility(false);
 
@@ -472,6 +475,33 @@ function DrawPreview(Canvas C)
 
 defaultproperties
 {
+	Begin Object Class=BWMenuSection Name=GeneralSection
+		Caption="Crosshair"
+		WinTop=0.090000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.493000
+	End Object
+	i_General=BWMenuSection'BallisticProV55.ConfigTab_Crosshairs.GeneralSection'
+
+	Begin Object Class=BWMenuSection Name=ColoursSection
+		Caption="Colours"
+		WinTop=0.090000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.493000
+	End Object
+	i_Colours=BWMenuSection'BallisticProV55.ConfigTab_Crosshairs.ColoursSection'
+
+	Begin Object Class=BWMenuSection Name=CustomSection
+		Caption="Custom Crosshair Colour"
+		WinTop=0.610000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.304000
+	End Object
+	i_Custom=BWMenuSection'BallisticProV55.ConfigTab_Crosshairs.CustomSection'
+
 	PageCaptions(0)="General"
 	PageCaptions(1)="Colours"
 	PageCaptions(2)="Per Weapon"
@@ -765,7 +795,7 @@ defaultproperties
 	PresetColours(7)=(B=50,G=50,R=255)
 	PresetColours(8)=(B=50,G=175,R=255)
 
-	CustomCaptions(0)="Custom crosshair colour"
-	CustomCaptions(1)="Custom empty magazine colour"
-	CustomCaptions(2)="Custom needs cocking colour"
+	CustomCaptions(0)="Custom Crosshair Colour"
+	CustomCaptions(1)="Custom Empty Magazine Colour"
+	CustomCaptions(2)="Custom Needs Cocking Colour"
 }
