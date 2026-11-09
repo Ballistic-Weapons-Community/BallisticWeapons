@@ -355,10 +355,18 @@ function ShowPage(int i)
 	ch_Warnings.SetVisibility(bColours);
 	co_EmptyColour.SetVisibility(bColours);
 	co_CockingColour.SetVisibility(bColours);
-	l_Custom.SetVisibility(bColours);
-	sl_Red.SetVisibility(bColours);
-	sl_Green.SetVisibility(bColours);
-	sl_Blue.SetVisibility(bColours);
+	// the Custom sliders only with a colour box on Custom
+	if (bColours)
+		ShowCustomColour(CustomColour);
+	else
+	{
+		l_Custom.SetVisibility(false);
+		sl_Red.SetVisibility(false);
+		sl_Green.SetVisibility(false);
+		sl_Blue.SetVisibility(false);
+	}
+	// Per Weapon took its place; showing the tab shows every control on it again
+	b_WeaponCrosshairs.SetVisibility(false);
 
 	// the preview on both
 	Box_Shot.SetVisibility(i < 2);

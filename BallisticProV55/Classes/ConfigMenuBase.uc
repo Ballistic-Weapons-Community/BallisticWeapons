@@ -16,6 +16,29 @@ var automated GUITabControl	c_Tabs;
 
 var() localized string		HeaderCaption;
 var bool					bAddingTabs;	// the first tab added activates itself: not a tab the player chose
+var GUIPage					HiddenParent;	// the config menu this one was opened from, hidden while this is open
+
+// Opened from another config menu (Preferences from Configuration's Game tab): its background lets
+// that menu show through, so it is hidden until this one closes
+event Opened(GUIComponent Sender)
+{
+	Super.Opened(Sender);
+	if (ConfigMenuBase(ParentPage) != None && ParentPage.bVisible)
+	{
+		HiddenParent = ParentPage;
+		HiddenParent.bVisible = false;	// the page only: its controls keep their own visibility
+	}
+}
+
+event Closed(GUIComponent Sender, bool bCancelled)
+{
+	if (HiddenParent != None)
+	{
+		HiddenParent.bVisible = true;
+		HiddenParent = None;
+	}
+	Super.Closed(Sender, bCancelled);
+}
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {

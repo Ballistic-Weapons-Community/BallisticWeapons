@@ -79,6 +79,17 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_Chosen.WinHeight = lb_Spare.WinHeight;
 }
 
+// Showing the tab this is on shows every control on it: UP and DOWN only for an ordered list
+event SetVisibility(bool bIsVisible)
+{
+	Super.SetVisibility(bIsVisible);
+	if (bIsVisible && !bOrdered)
+	{
+		b_Up.SetVisibility(false);
+		b_Down.SetVisibility(false);
+	}
+}
+
 function SetOrdered(bool bNewOrdered, optional bool bNewNumbered)
 {
 	bOrdered = bNewOrdered;
