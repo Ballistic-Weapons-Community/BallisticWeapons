@@ -4,7 +4,7 @@
 // The weapon chooser of the Ballistic settings menus: spare weapons on the
 // left (with a search row), the chosen ones on the right, buttons between.
 // ADD > / < REMOVE move the selected weapon, ALL > adds every weapon the
-// search shows, < NONE empties the chosen list; double click and drag move
+// search shows, < EMPTY empties the chosen list; double click and drag move
 // weapons too. In an ordered list (bOrdered) UP / DOWN move the selected
 // weapon and ADD puts a weapon after the selected one.
 //
@@ -573,23 +573,25 @@ defaultproperties
 
 	Begin Object Class=GUILabel Name=SpareLabel
 		Caption="Spare Weapons"
+		TextAlign=TXTA_Center
 		TextColor=(B=255,G=255,R=255)
 		bBoundToParent=True
 		bScaleToParent=True
 		WinTop=0.000000
-		WinLeft=0.010000
-		WinWidth=0.410000
+		WinLeft=0.000000
+		WinWidth=0.420000
 		WinHeight=0.060000
 	End Object
 	l_Spare=GUILabel'BCoreProV55.BC_WeaponListEditor.SpareLabel'
 
 	Begin Object Class=GUILabel Name=ChosenLabel
+		TextAlign=TXTA_Center
 		TextColor=(B=255,G=255,R=255)
 		bBoundToParent=True
 		bScaleToParent=True
 		WinTop=0.000000
-		WinLeft=0.590000
-		WinWidth=0.410000
+		WinLeft=0.580000
+		WinWidth=0.420000
 		WinHeight=0.060000
 	End Object
 	l_Chosen=GUILabel'BCoreProV55.BC_WeaponListEditor.ChosenLabel'
@@ -670,8 +672,8 @@ defaultproperties
 	b_All=GUIButton'BCoreProV55.BC_WeaponListEditor.AllButton'
 
 	Begin Object Class=GUIButton Name=NoneButton
-		Caption="< NONE"
-		Hint="Take every chosen weapon out."
+		Caption="< EMPTY"
+		Hint="Empty the chosen list: every weapon goes back to the spare list."
 		bBoundToParent=True
 		bScaleToParent=True
 		WinTop=0.470000

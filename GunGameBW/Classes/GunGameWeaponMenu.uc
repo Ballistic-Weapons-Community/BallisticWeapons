@@ -3,26 +3,39 @@
 //
 // The Weapon List button of GunGame's game options: the Ballistic weapon
 // chooser with spare weapons on the left and GunGame's level order on the
-// right. The first weapon is the standard weapon, the last one wins. Saves
-// GunGameConfig.WeaponList (GunGameBW.ini); a list the same as the stock one
-// is saved as no list, so the stock list keeps up with new versions.
+// right. The first weapon is the standard weapon, the last one wins.
+//
+// DONE writes the whole level order to GunGameConfig.WeaponList in
+// GunGameBW.ini, also when it is the stock list, so the file can be copied
+// to a server as it is. The menu and the game both read the list from there.
+//
+// A GUICustomPropertyPage: the game options' Edit button (UT2K4PlayInfoPanel.
+// CustomClicked) takes the page it opens as one.
 //=============================================================================
-class GunGameWeaponMenu extends UT2K4GUIPage;
+class GunGameWeaponMenu extends GUICustomPropertyPage;
 
-var automated GUIImage				MyBack;
-var automated GUIHeader				MyHeader;
 var automated BC_WeaponListEditor	Editor;
 var automated GUILabel				l_Status;
-var automated GUIButton				b_Reset, b_Done, b_Cancel;
+var automated GUIButton				b_Reset;
 
 var() localized string				Headings[3];
 var() localized string				TooFewText;
+var() localized string				DoneText, DoneHint, CancelHint;
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
 	local array<string> Names;
 
 	Super.InitComponent(MyController, MyOwner);
+
+	// the chooser has its own frames
+	sb_Main.SetVisibility(false);
+
+	b_OK.Caption = DoneText;
+	b_OK.SetHint(DoneHint);
+	b_Cancel.SetHint(CancelHint);
+	b_Reset.WinTop = b_OK.WinTop;
+	l_Status.WinTop = b_OK.WinTop;
 
 	Editor.AddAllGameWeapons(Headings[0], Headings[1], Headings[2]);
 	Editor.MaxChosen = class'GunGameConfig'.static.MaxWeapons();
@@ -51,18 +64,6 @@ function ChosenChanged(BC_WeaponListEditor Sender)
 	l_Status.Caption = "";
 }
 
-function bool SameAsStock(array< class<Weapon> > List)
-{
-	local int i;
-
-	if (List.Length != class'GunGameConfig'.default.StockWeaponList.Length)
-		return false;
-	for (i = 0; i < List.Length; i++)
-		if (List[i] != class'GunGameConfig'.default.StockWeaponList[i])
-			return false;
-	return true;
-}
-
 function bool Save()
 {
 	local array<string> Names;
@@ -84,17 +85,18 @@ function bool Save()
 		return false;
 	}
 
-	if (SameAsStock(List))
-	{
-		class'GunGameConfig'.default.WeaponList.Length = 0;
-		class'GunGameConfig'.static.StaticClearConfig("WeaponList");
-	}
-	else
-	{
-		class'GunGameConfig'.default.WeaponList = List;
-		class'GunGameConfig'.static.StaticSaveConfig();
-	}
+	class'GunGameConfig'.default.WeaponList = List;
+	class'GunGameConfig'.static.StaticSaveConfig();
 	return true;
+}
+
+// The value the game options keep for the Weapon List row: how many levels the saved list has
+function string GetDataString()
+{
+	local array< class<Weapon> > List;
+
+	class'GunGameConfig'.static.GetWeaponList(List);
+	return string(List.Length);
 }
 
 function bool InternalOnClick(GUIComponent Sender)
@@ -109,47 +111,35 @@ function bool InternalOnClick(GUIComponent Sender)
 	}
 	else if (Sender == b_Cancel)
 		Controller.CloseMenu(true);
-	else if (Sender == b_Done && Save())
+	else if (Sender == b_OK && Save())
 		Controller.CloseMenu(false);
+	return true;
+}
+
+// The X on the title bar closes without saving
+function bool XButtonClicked(GUIComponent Sender)
+{
+	Controller.CloseMenu(true);
 	return true;
 }
 
 function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
 {
 	if (Key == 0x0D && State == 3)	// Enter
-		return InternalOnClick(b_Done);
+		return InternalOnClick(b_OK);
 	return false;
 }
 
 defaultproperties
 {
-	Begin Object Class=GUIImage Name=BackImage
-		Image=Texture'2K4Menus.NewControls.Display95'
-		ImageStyle=ISTY_Stretched
-		WinTop=0.150000
-		WinLeft=0.050000
-		WinWidth=0.900000
-		WinHeight=0.750000
-		RenderWeight=0.001000
-	End Object
-	MyBack=GUIImage'GunGameBW.GunGameWeaponMenu.BackImage'
-
-	Begin Object Class=GUIHeader Name=DaBeegHeader
-		bUseTextHeight=True
-		Caption="GunGame Weapon List"
-		WinTop=0.150000
-		WinLeft=0.050000
-		WinWidth=0.900000
-		WinHeight=0.750000
-	End Object
-	MyHeader=GUIHeader'GunGameBW.GunGameWeaponMenu.DaBeegHeader'
-
 	Begin Object Class=BC_WeaponListEditor Name=WeaponEditor
 		ChosenCaption="Level Order"
-		WinTop=0.220000
-		WinLeft=0.080000
-		WinWidth=0.840000
-		WinHeight=0.560000
+		bBoundToParent=True
+		bScaleToParent=True
+		WinTop=0.080000
+		WinLeft=0.030000
+		WinWidth=0.940000
+		WinHeight=0.780000
 		TabOrder=0
 	End Object
 	Editor=BC_WeaponListEditor'GunGameBW.GunGameWeaponMenu.WeaponEditor'
@@ -157,9 +147,10 @@ defaultproperties
 	Begin Object Class=GUIButton Name=ResetButton
 		Caption="RESET TO DEFAULT"
 		Hint="Put back the list GunGame comes with."
-		WinTop=0.810000
-		WinLeft=0.080000
-		WinWidth=0.220000
+		bBoundToParent=True
+		WinTop=0.900000
+		WinLeft=0.030000
+		WinWidth=0.200000
 		TabOrder=1
 		OnClick=GunGameWeaponMenu.InternalOnClick
 		OnKeyEvent=ResetButton.InternalOnKeyEvent
@@ -169,40 +160,34 @@ defaultproperties
 	Begin Object Class=GUILabel Name=StatusLabel
 		TextAlign=TXTA_Center
 		TextColor=(B=80,G=80,R=255)
-		WinTop=0.810000
-		WinLeft=0.310000
-		WinWidth=0.340000
+		bBoundToParent=True
+		WinTop=0.900000
+		WinLeft=0.270000
+		WinWidth=0.270000
 		WinHeight=0.040000
 	End Object
 	l_Status=GUILabel'GunGameBW.GunGameWeaponMenu.StatusLabel'
-
-	Begin Object Class=GUIButton Name=DoneButton
-		Caption="DONE"
-		WinTop=0.810000
-		WinLeft=0.660000
-		WinWidth=0.120000
-		TabOrder=2
-		OnClick=GunGameWeaponMenu.InternalOnClick
-		OnKeyEvent=DoneButton.InternalOnKeyEvent
-	End Object
-	b_Done=GUIButton'GunGameBW.GunGameWeaponMenu.DoneButton'
-
-	Begin Object Class=GUIButton Name=CancelButton
-		Caption="CANCEL"
-		WinTop=0.810000
-		WinLeft=0.800000
-		WinWidth=0.120000
-		TabOrder=3
-		OnClick=GunGameWeaponMenu.InternalOnClick
-		OnKeyEvent=CancelButton.InternalOnKeyEvent
-	End Object
-	b_Cancel=GUIButton'GunGameBW.GunGameWeaponMenu.CancelButton'
 
 	Headings(0)="Ballistic Weapons"
 	Headings(1)="UT2004 Standard"
 	Headings(2)="Other"
 	TooFewText="GunGame needs at least 2 weapons"
-	bRenderWorld=True
+	DoneText="DONE"
+	DoneHint="Save the level order to GunGameBW.ini."
+	CancelHint="Close without saving."
+
+	WindowName="GunGame Weapon List"
+	bMoveAllowed=False
+	bResizeWidthAllowed=False
+	bResizeHeightAllowed=False
 	bAllowedAsLast=True
+	DefaultLeft=0.050000
+	DefaultTop=0.150000
+	DefaultWidth=0.900000
+	DefaultHeight=0.750000
+	WinLeft=0.050000
+	WinTop=0.150000
+	WinWidth=0.900000
+	WinHeight=0.750000
 	OnKeyEvent=GunGameWeaponMenu.InternalOnKeyEvent
 }
