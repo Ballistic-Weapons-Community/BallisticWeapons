@@ -20,7 +20,7 @@ var automated GUIButton				b_Reset;
 
 var() localized string				Headings[3];
 var() localized string				TooFewText;
-var() localized string				DoneText, DoneHint, CancelHint;
+var() localized string				DoneText, DoneHint, CancelText, CancelHint;
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
@@ -33,6 +33,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 
 	b_OK.Caption = DoneText;
 	b_OK.SetHint(DoneHint);
+	b_Cancel.Caption = CancelText;
 	b_Cancel.SetHint(CancelHint);
 	b_Reset.WinTop = b_OK.WinTop;
 	l_Status.WinTop = b_OK.WinTop;
@@ -174,6 +175,7 @@ defaultproperties
 	TooFewText="GunGame needs at least 2 weapons"
 	DoneText="DONE"
 	DoneHint="Save the level order to GunGameBW.ini."
+	CancelText="CANCEL"
 	CancelHint="Close without saving."
 
 	WindowName="GunGame Weapon List"
