@@ -136,7 +136,8 @@ function AddWeapon(string Name, string ClassName, optional Object Data)
 	Catalogue[i].Data = Data;
 }
 
-// Every weapon of the game, by name: Ballistic, then UT2004, then the rest
+// Every weapon of the game, by name: Ballistic, then UT2004, then the rest.
+// A section given no heading is left out.
 function AddAllGameWeapons(string BWHeading, string UTHeading, string OtherHeading)
 {
 	local array<CacheManager.WeaponRecord> Recs;
@@ -163,6 +164,8 @@ function AddAllGameWeapons(string BWHeading, string UTHeading, string OtherHeadi
 	ClearCatalogue();
 	for (k = 0; k < 3; k++)
 	{
+		if ((k == 0 && BWHeading == "") || (k == 1 && UTHeading == "") || (k == 2 && OtherHeading == ""))
+			continue;
 		if (k == 0)
 			AddSection(BWHeading);
 		else if (k == 1)

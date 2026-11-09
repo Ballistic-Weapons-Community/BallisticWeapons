@@ -18,7 +18,7 @@ var automated BC_WeaponListEditor	Editor;
 var automated GUILabel				l_Status;
 var automated GUIButton				b_Reset;
 
-var() localized string				Headings[3];
+var() localized string				Heading;
 var() localized string				TooFewText;
 var() localized string				DoneText, DoneHint, CancelText, CancelHint;
 
@@ -38,7 +38,8 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	b_Reset.WinTop = b_OK.WinTop;
 	l_Status.WinTop = b_OK.WinTop;
 
-	Editor.AddAllGameWeapons(Headings[0], Headings[1], Headings[2]);
+	// Ballistic weapons only: no UT2004 or other weapons on offer
+	Editor.AddAllGameWeapons(Heading, "", "");
 	Editor.MaxChosen = class'GunGameConfig'.static.MaxWeapons();
 	Editor.OnChosenChanged = ChosenChanged;
 
@@ -169,9 +170,7 @@ defaultproperties
 	End Object
 	l_Status=GUILabel'GunGameBW.GunGameWeaponMenu.StatusLabel'
 
-	Headings(0)="Ballistic Weapons"
-	Headings(1)="UT2004 Standard"
-	Headings(2)="Other"
+	Heading="Ballistic Weapons"
 	TooFewText="GunGame needs at least 2 weapons"
 	DoneText="DONE"
 	DoneHint="Save the level order to GunGameBW.ini."
