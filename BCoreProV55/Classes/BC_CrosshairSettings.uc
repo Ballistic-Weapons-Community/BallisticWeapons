@@ -8,7 +8,7 @@
 // later change.
 //=============================================================================
 class BC_CrosshairSettings extends Object
-	config(BallisticProV55);
+	config(BallisticPreferences);
 
 var config byte		CrosshairAim;		// An ECrosshairAim of BallisticWeapon: CHA_Always = follows the aim in first person too
 var config Color	CrosshairColor;		// The Simple crosshair's colour. Its alpha is the opacity of all of these

@@ -8,7 +8,7 @@
 // Modified by Azarael
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticOutfittingWeaponsTab extends UT2K4TabPanel config(BallisticProV55);
+class BallisticOutfittingWeaponsTab extends UT2K4TabPanel config(BallisticPreferences);
 
 // Use GUILoadOutItems to select weapons. This control has some text with an image that cycles when you click on it
 

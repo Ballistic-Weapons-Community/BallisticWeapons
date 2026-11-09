@@ -17,6 +17,8 @@ var config byte 				AmmoHandling;			//Rule how to handle the ammo issue: 0 = unl
 var config byte 				StdWeaponFeature;		//Defines how to handle standard weapon kills
 var config byte 				StdWeaponFactor;		//Defines the value of the effect a standard weapon kill will cause
 var config byte 				KillAmount;				//Defines how many kills are needed to level up
+var config byte					GameStyle;				//Ballistic game style: 0 = Pro, 1 = Classic, 2 = Realism, 3 = Tactical
+var globalconfig string			WeaponListVar;			//No setting: behind the Weapon List button of the game options
 
 var bool 						bNoAdrenaline;			//Remove Adrenaline-Pickups
 var bool 						bNoHealth;				//Remove Health-Pickups
@@ -61,6 +63,8 @@ static function FillPlayInfo(PlayInfo PlayInfo)
      PlayInfo.AddSetting("GunGame", "StdWeaponFeature", "Std. Weapon Feature", 0, 14, "Select", "0;DecreaseFactor;1;StealFactor;2;IncreaseFactor;3;Normal");
      PlayInfo.AddSetting("GunGame", "StdWeaponFactor", "Std. Weapon Factor", 0, 16, "Text", "2;1:10");
      PlayInfo.AddSetting("GunGame", "KillAmount", "Kill Amount", 0, 18, "Text", "1;1:10");
+     PlayInfo.AddSetting("GunGame", "GameStyle", "Game Style", 0, 19, "Select", class'GunGameConfig'.static.GameStyleOptions());
+     PlayInfo.AddSetting("GunGame", "WeaponListVar", "Weapon List", 0, 21, "Custom", ";;GunGameBW.GunGameWeaponMenu");
      PlayInfo.AddSetting("TeamGunGame", "Mode", "Mode", 0, 20, "Select", "0;Turn-Based;1;Tournament");
 }
 
@@ -79,6 +83,8 @@ static event string GetDescriptionText(string PropName)
           case "StdWeaponFeature":	return "This defines how to handle kills done with the 'standard-weapon'. 'DecreaseFactor' affects the victim, 'IncreaseFactor' affects the killer, 'StealFactor' takes from victim and adds to killer, 'Normal' makes std. weapon act as all others.";
           case "StdWeaponFactor":	return "The 'Victory Condition' value of killer/victim will be altered by this value.";
           case "KillAmount":		return "Defines how many kills are needed to get the next weapon.";
+          case "GameStyle":		return "The Ballistic game style the match is played in. Its rules are set in the style's Ballistic configuration menu.";
+          case "WeaponListVar":	return "Choose the weapons and the order they are given in.";
           case "Mode":			return "Turn-Based: All Teammates start nearby each other, everyone has one life per round. Eradicating the enemy's team initiates a new round. Tournament: Everyone can start at every playerstart, you restart when you died.";
      }
 
@@ -149,7 +155,6 @@ event InitGame(string options, out string error)
 {
      local string InOpt;
      local Mutator M;
-     local int i;
    //local Class<Weapon> W;
    //local array<string> WeaponClasses;
 
@@ -215,6 +220,10 @@ event InitGame(string options, out string error)
      if(InOpt != "")
           KillAmount = byte(InOpt);
 
+     InOpt = ParseOption(Options, "GameStyle");
+     if(InOpt != "")
+          GameStyle = byte(InOpt);
+
      InOpt = ParseOption(Options, "Mode");
      if(InOpt != "")
           Mode = byte(InOpt);
@@ -223,12 +232,8 @@ event InitGame(string options, out string error)
      Registry.Remove(0, Registry.Length);      //Remove old Registry (for singleplayer games)
      BestRotations.Remove(0, BestRotations.Length);
 
-	for ( i=0; i < class'GunGameConfig'.default.WeaponList.Length; i++ )
-	{
-		WeaponList.Insert(WeaponList.Length, 1);
-		WeaponList[i] = class'GunGameConfig'.default.WeaponList[i];
-		default.WeaponList[i] = WeaponList[i];
-	}
+	class'GunGameConfig'.static.GetWeaponList(WeaponList);
+	default.WeaponList = WeaponList;
 
      HighestLevel = WeaponList.Length;
 
@@ -273,6 +278,9 @@ event InitGame(string options, out string error)
           GunGameMut(BaseMutator).bNoDoubleDamage = bNoDoubleDamage;
      }
 	 
+	 // The Ballistic mutator reads the style when it spawns
+	 class'GunGameConfig'.static.ApplyGameStyle(GameStyle);
+
 	 if (InventoryMut != "")
     	AddMutator(InventoryMut);
 

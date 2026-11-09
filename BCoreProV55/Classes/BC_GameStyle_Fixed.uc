@@ -9,6 +9,29 @@ class BC_GameStyle_Fixed extends BC_GameStyle
     abstract;
 
 //=============================================================================
+// WEAPON RULES
+//=============================================================================
+var() float		SwayScale;			    	// Scales weapon sway
+var() float		RecoilScale;			    // Scales weapon recoil pattern (results in tighter pattern and lower apparent recoil)
+var() float 		RecoilShotScale;			// Scales weapon recoil per shot (results in slower progress along the pattern)
+var() float 		ReloadScale;				// Scales reload speed
+var() float		DamageScale;				// Scales anti-player damage
+var() float		VehicleDamageScale;			// Scales anti-vehicle damage
+// The Weapons tab's advanced rules. A scale of 1 leaves a weapon as it is made
+var() float		MagazineScale;			// Scales magazine capacity
+var() float		AimSpeedScale;			// Scales how fast sights are raised and lowered
+var() float		FireRateScale;			// Scales how fast guns fire
+var() float		ShotgunSpreadScale;		// Scales the pellet spread of shotguns
+var() float		HeadshotScale;			// Scales the damage bonus of a head hit. 0 = none
+var() float		BlastRadiusScale;		// Scales the damage radius of explosives
+var() float		PenetrationScale;		// Scales how much wall and how many players a shot goes through
+var() bool		bWeaponsAffectMovement;	// A weapon slows or speeds up its holder and changes the height of jumps
+var() bool		bAimingSlowsMovement;	// Aiming down sights slows its holder
+var() bool		bLimbDamageReduction;	// A limb hit does less damage than a body hit
+var() bool		bDamageFalloff;			// Bullets lose damage over distance
+var() int		MaxInventoryCapacity;		// Maximum carrying capacity
+
+//=============================================================================
 // WEAPONS
 //=============================================================================	
 var() bool		    bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
@@ -79,6 +102,26 @@ var() int			KillRewardShieldMax;  // Limiter, the additional armor points will n
 
 static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 {	
+	// Weapon rules
+	rep.AccuracyScale			= default.SwayScale;
+	rep.RecoilScale				= default.RecoilScale;
+	rep.RecoilShotScale			= default.RecoilShotScale;
+	rep.ReloadScale				= default.ReloadScale;
+	rep.DamageScale				= default.DamageScale;
+	rep.VehicleDamageScale		= default.VehicleDamageScale;
+	rep.MagazineScale			= default.MagazineScale;
+	rep.AimSpeedScale			= default.AimSpeedScale;
+	rep.FireRateScale			= default.FireRateScale;
+	rep.ShotgunSpreadScale		= default.ShotgunSpreadScale;
+	rep.HeadshotScale			= default.HeadshotScale;
+	rep.BlastRadiusScale		= default.BlastRadiusScale;
+	rep.PenetrationScale		= default.PenetrationScale;
+	rep.bWeaponsAffectMovement	= default.bWeaponsAffectMovement;
+	rep.bAimingSlowsMovement	= default.bAimingSlowsMovement;
+	rep.bLimbDamageReduction	= default.bLimbDamageReduction;
+	rep.bDamageFalloff			= default.bDamageFalloff;
+	rep.MaxInventoryCapacity	= default.MaxInventoryCapacity;
+
 	rep.bWeaponJumpOffsetting		= default.bWeaponJumpOffsetting;
 	rep.bLongWeaponOffsetting		= default.bLongWeaponOffsetting;
 	rep.bNoReloading				= default.bNoReloading;
@@ -131,6 +174,25 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 
 defaultproperties
 {
+	SwayScale=1.0f
+	RecoilScale=1.0f
+	RecoilShotScale=1.0f
+	ReloadScale=1.0f
+	DamageScale=1.0f
+	VehicleDamageScale=1.0f
+	MagazineScale=1.0f
+	AimSpeedScale=1.0f
+	FireRateScale=1.0f
+	ShotgunSpreadScale=1.0f
+	HeadshotScale=1.0f
+	BlastRadiusScale=1.0f
+	PenetrationScale=1.0f
+	bWeaponsAffectMovement=True
+	bAimingSlowsMovement=True
+	bLimbDamageReduction=True
+	bDamageFalloff=True
+	MaxInventoryCapacity=0
+
 	bWeaponJumpOffsetting=True
 	bLongWeaponOffsetting=False
 	bFireEndsSprint=True

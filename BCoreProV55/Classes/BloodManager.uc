@@ -34,7 +34,7 @@
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class BloodManager extends Effects
-	config(BallisticProV55);
+	config(BallisticPreferences);
 
 var   class<BallisticBloodSet>	BloodSet;		// The blood set to use for this victim (e.g. Alien, Human, Bot, etc)
 var() float						SplatRange;		// Victim must be within this range from a wall for a splat decal to appear

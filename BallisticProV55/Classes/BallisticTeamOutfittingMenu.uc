@@ -8,7 +8,7 @@
 // Modified by Azarael
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticTeamOutfittingMenu extends UT2K4GUIPage config(BallisticProV55);
+class BallisticTeamOutfittingMenu extends UT2K4GUIPage config(BallisticPreferences);
 
 // basic menu
 var Automated GUIImage          MyBack;

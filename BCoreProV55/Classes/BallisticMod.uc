@@ -8,7 +8,7 @@
 //=============================================================================
 class BallisticMod extends Info
 	exportstructs
-	config(BallisticProV55);
+	config(BallisticPreferences);
 
 enum ELLHDetailMode
 {

@@ -7,7 +7,7 @@
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class BallisticBrass extends Effects abstract
-	config(BallisticProV55);
+	config(BallisticPreferences);
 
 // General Variables ----------------------------------------------------------
 var() int						Spin;				// Random spin applied after impact

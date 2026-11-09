@@ -12,7 +12,7 @@
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class BWBloodControl extends Actor
-	config(BallisticProV55);
+	config(BallisticPreferences);
 
 var   xPawn				Corpse;				// The stiff itself. (or perhaps limp in this case)
 var   vector			LastDragLocation;	// Place where last drag was spawned

@@ -33,7 +33,7 @@
 //=============================================================================
 class BallisticWeapon extends Weapon
 	abstract
- 	config(BallisticProV55)
+ 	config(BallisticPreferences)
 	DependsOn(BUtil)
     DependsOn(WeaponParams)
 	HideDropDown
