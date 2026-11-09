@@ -52,7 +52,7 @@ function SectionRow(GUISectionBackground Section, GUIComponent Comp)
 		Option.WinHeight = 0.045;
 		if (moCheckBox(Option) != None)
 			Option.CaptionWidth = 0.9;
-		else if (moFloatEdit(Option) != None)
+		else if (moFloatEdit(Option) != None || moNumericEdit(Option) != None)
 			Option.CaptionWidth = 0.7;
 		else
 			Option.CaptionWidth = 0.56;

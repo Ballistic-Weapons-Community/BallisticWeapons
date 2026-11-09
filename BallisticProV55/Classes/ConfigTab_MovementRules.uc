@@ -24,12 +24,37 @@ var automated moCheckBox        cb_SlideJump;				// Slide Jumps
 var automated moCheckBox        cb_LandIntoSlide;			// Land Into Slides
 var automated moCheckBox        cb_SlideSteering;			// Slide Steering
 var automated moCheckBox        cb_SlideToSprint;			// Sprint Out Of Slides
-var automated GUILabel          l_Movement;
-var automated GUILabel          l_SprintSlide;
+var automated BWMenuSection	i_Movement, i_Slide, i_Sprint;	// titled boxes round the rows
 
 //==================================================================
 // Settings & Defaults
 //==================================================================
+
+function InitComponent(GUIController MyController, GUIComponent MyOwner)
+{
+	Super.InitComponent(MyController, MyOwner);
+
+	SectionRow(i_Movement, ne_PlayerGroundSpeed);
+	SectionRow(i_Movement, ne_PlayerAccelRate);
+	SectionRow(i_Movement, cb_bPlayerDeceleration);
+	SectionRow(i_Movement, fe_PlayerStrafeScale);
+	SectionRow(i_Movement, fe_PlayerBackpedalScale);
+	SectionRow(i_Movement, ch_AllowDodging);
+	SectionRow(i_Movement, ch_AllowDoubleJump);
+	SectionRow(i_Slide, cb_AllowCrouchSliding);
+	SectionRow(i_Slide, cb_SlideJump);
+	SectionRow(i_Slide, cb_LandIntoSlide);
+	SectionRow(i_Slide, cb_SlideSteering);
+	SectionRow(i_Slide, cb_SlideToSprint);
+	SectionRow(i_Sprint, cb_bUseSprint);
+	SectionRow(i_Sprint, cb_FireEndsSprint);
+	SectionRow(i_Sprint, cb_SightsEndSprint);
+	SectionRow(i_Sprint, ne_StaminaDrainRate);
+	SectionRow(i_Sprint, ne_StaminaChargeRate);
+	SectionRow(i_Sprint, fe_InitSpeedFactor);
+	SectionRow(i_Sprint, fe_JumpDrain);
+	SectionRow(i_Sprint, fe_StaminaRechargeDelay);
+}
 
 function LoadSettings()
 {
@@ -197,6 +222,33 @@ function SaveSettings()
 
 defaultproperties
 {	 
+	Begin Object Class=BWMenuSection Name=MovementSection
+		Caption="Movement"
+		WinTop=0.030000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.507000
+	End Object
+	i_Movement=BWMenuSection'BallisticProV55.ConfigTab_MovementRules.MovementSection'
+
+	Begin Object Class=BWMenuSection Name=SlideSection
+		Caption="Slide"
+		WinTop=0.560000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.395000
+	End Object
+	i_Slide=BWMenuSection'BallisticProV55.ConfigTab_MovementRules.SlideSection'
+
+	Begin Object Class=BWMenuSection Name=SprintSection
+		Caption="Sprint"
+		WinTop=0.030000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.563000
+	End Object
+	i_Sprint=BWMenuSection'BallisticProV55.ConfigTab_MovementRules.SprintSection'
+
      Begin Object Class=moNumericEdit Name=ne_PlayerGroundSpeedC
          MinValue=160
          MaxValue=1000
@@ -481,25 +533,5 @@ defaultproperties
 	End Object
 	cb_SlideToSprint=moCheckBox'cb_SlideToSprintC'
 
-	Begin Object Class=GUILabel Name=l_MovementLabel
-		Caption="Movement"
-		TextAlign=TXTA_Center
-		TextColor=(B=0,G=180,R=255,A=255)
-		WinTop=0.050000
-		WinLeft=0.020000
-		WinWidth=0.460000
-		WinHeight=0.040000
-	End Object
-	l_Movement=GUILabel'l_MovementLabel'
 
-	Begin Object Class=GUILabel Name=l_SprintSlideLabel
-		Caption="Sprint & Slide"
-		TextAlign=TXTA_Center
-		TextColor=(B=0,G=180,R=255,A=255)
-		WinTop=0.050000
-		WinLeft=0.520000
-		WinWidth=0.460000
-		WinHeight=0.040000
-	End Object
-	l_SprintSlide=GUILabel'l_SprintSlideLabel'
 }

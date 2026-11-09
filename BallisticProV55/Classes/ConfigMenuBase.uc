@@ -284,6 +284,7 @@ defaultproperties
      //WIP
 	 HeaderCaption="Ballistic Settings"
 
+     bThemed=True
      bRenderWorld=True
      bAllowedAsLast=True
      OnKeyEvent=ConfigMenuBase.InternalOnKeyEvent

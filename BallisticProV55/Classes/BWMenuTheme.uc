@@ -1,14 +1,15 @@
 //=============================================================================
 // BWMenuTheme
 //
-// The dark menu theme: BC_MenuMemory.MenuTheme 1 (0, the default, keeps the
-// game's blue menus). Menus that take it (ConfigMenuBase.bThemed) swap the
-// styles of their controls for the BWSTY_Dark ones and draw their sections
-// and background dark.
+// The dark menu theme: Menu Look "Dark" in Ballistic Preferences > Visual
+// (BC_MenuMemory.MenuTheme 1; 0, the default, keeps the game's blue menus).
+// The Ballistic config menus (ConfigMenuBase.bThemed) swap the styles of
+// their controls for the BWSTY_Dark ones and draw their sections, framed
+// boxes and background dark.
 //=============================================================================
 class BWMenuTheme extends Object;
 
-var Color PageColour;
+var Color PageColour, FrameColour;
 
 static function bool IsDark()
 {
@@ -82,6 +83,8 @@ static function ApplyTo(GUIController C, GUIComponent Comp)
 		GUISlider(Comp).BarStyle = Swap(C, GUISlider(Comp).BarStyle, Comp.FontScale);
 	if (BWMenuSection(Comp) != None)
 		BWMenuSection(Comp).SetDark(true);
+	else if (GUIImage(Comp) != None && IsFrame(GUIImage(Comp).Image))
+		DarkPanel(GUIImage(Comp), default.FrameColour);
 
 	Tabs = GUITabControl(Comp);
 	if (Tabs != None)
@@ -106,13 +109,31 @@ static function DarkBackground(GUIImage Back)
 {
 	if (Back == None)
 		return;
-	Back.Image = Texture'Engine.WhiteTexture';
-	Back.ImageColor = default.PageColour;
-	Back.ImageStyle = ISTY_Stretched;
-	Back.ImageRenderStyle = MSTY_Alpha;
+	DarkPanel(Back, default.PageColour);
+}
+
+// The blue framed boxes of the game's menus (round lists, pictures)
+static function bool IsFrame(Material M)
+{
+	local string Name;
+
+	if (M == None)
+		return false;
+	// a package name starting with a digit can't be written as an object literal in code
+	Name = string(M);
+	return Name ~= "2K4Menus.NewControls.Display99" || Name ~= "2K4Menus.NewControls.Display98";
+}
+
+static function DarkPanel(GUIImage Img, Color Colour)
+{
+	Img.Image = Texture'Engine.WhiteTexture';
+	Img.ImageColor = Colour;
+	Img.ImageStyle = ISTY_Stretched;
+	Img.ImageRenderStyle = MSTY_Alpha;
 }
 
 defaultproperties
 {
 	PageColour=(R=18,G=21,B=28,A=242)
+	FrameColour=(R=27,G=31,B=41,A=255)
 }
