@@ -59,7 +59,7 @@ function TryDamage (Pawn Victim, float Interval, class<DamageType> DamageType)
 		if (Instigator != None)
 			Thrower = Instigator;
 		class'BallisticDamageType'.static.GenericHurt (Victim, Damage, Thrower, Victim.Location, vect(0,0,0), DamageType);
-		if (Victim.Controller != None && Victim.Controller.SameTeamAs(Instigator.Controller))
+		if (Instigator != None && Victim.Controller != None && Victim.Controller.SameTeamAs(Instigator.Controller))
 		{
 			//bog down allies attempting to crawl through this fp7's fire
 			XYVel = -Victim.Velocity;

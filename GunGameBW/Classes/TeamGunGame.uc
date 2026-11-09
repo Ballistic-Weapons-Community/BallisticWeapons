@@ -1126,7 +1126,7 @@ function int ReduceDamage( int Damage, pawn injured, pawn instigatedBy, vector H
 {
      if ( instigatedBy != None && injured != None && injured != instigatedBy && class<WeaponDamageType>(DamageType) != None )
      {
-          if ( instigatedBy.PlayerReplicationInfo != None && instigatedBy.PlayerReplicationInfo.Team != injured.PlayerReplicationInfo.Team )
+          if ( instigatedBy.PlayerReplicationInfo != None && injured.PlayerReplicationInfo != None && instigatedBy.PlayerReplicationInfo.Team != injured.PlayerReplicationInfo.Team )
                Registry[GunGamePRI(instigatedBy.PlayerReplicationInfo).RegistryID].EnemyHit( injured.Controller, class<WeaponDamageType>(DamageType) );
      }
 
