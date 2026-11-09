@@ -8,32 +8,36 @@ class BallisticProShotgun extends BallisticShotgun
 	HideDropDown
 	CacheExempt;
 
-var float CrosshairSpreadAngle;
-var int	 MaxSpreadFactor;
-
-simulated function PostBeginPlay()
-{
-	Super.PostBeginPlay();
-	
-	// (the Wrenchgun is a shotgun whose primary fire throws things)
-	if (BallisticProShotgunFire(BFireMode[0]) != None)
-	{
-		CrosshairSpreadAngle = BallisticProShotgunFire(BFireMode[0]).GetCrosshairInaccAngle();
-		MaxSpreadFactor = BallisticProShotgunFire(BFireMode[0]).MaxSpreadFactor;
-	}
-}	
-
-//Draws simple crosshairs to accurately describe hipfire at any FOV and resolution.
+// Draws simple crosshairs round the pellet spread, at any FOV and resolution: the side bars as far out as the pellets go
+// across, the top and bottom bars as far as they go up and down.
+// The spread is read from the primary fire each frame, as BallisticProShotgunFire.GetXInaccuracy / GetYInaccuracy give it
+// to the shot: the weapon's params (game style) and the Shotgun Spread rule are only set on the fire after PostBeginPlay,
+// and with the sights up (shown in third person) the hip factor and the fire chaos are left out
 simulated function DrawSimpleCrosshairs(Canvas C)
 {
-	local float Offset;
+	local BallisticProShotgunFire ShotgunFire;
+	local float XSpread, YSpread, ScreenScale, AimOffset;
 
-	Offset = (C.ClipX / 2) * tan (CrosshairSpreadAngle * Lerp(AimComponent.GetFireChaos(), 1, MaxSpreadFactor) * 0.000095873799) / tan((Instigator.Controller.FovAngle/2) * 0.01745329252);
+	// (the Wrenchgun is a shotgun whose primary fire throws things: no spread shown)
+	ShotgunFire = BallisticProShotgunFire(BFireMode[0]);
+	if (ShotgunFire != None)
+	{
+		XSpread = ShotgunFire.XInaccuracy;
+		YSpread = ShotgunFire.YInaccuracy;
+
+		if (!bScopeView)
+		{
+			XSpread *= ShotgunFire.HipSpreadFactor * Lerp(AimComponent.GetFireChaos(), 1, ShotgunFire.MaxSpreadFactor);
+			YSpread *= ShotgunFire.HipSpreadFactor * Lerp(AimComponent.GetFireChaos(), 1, ShotgunFire.MaxSpreadFactor);
+		}
+	}
+
+	ScreenScale = (C.ClipX / 2) / tan((Instigator.Controller.FovAngle/2) * 0.01745329252);
 
 	if (!bScopeView)
-		Offset += AimComponent.CalcCrosshairOffset(C);
-	
-	DrawSimpleCrosshairBars(C, Offset, Offset);
+		AimOffset = AimComponent.CalcCrosshairOffset(C);
+
+	DrawSimpleCrosshairBars(C, ScreenScale * tan(XSpread * 0.000095873799) + AimOffset, ScreenScale * tan(YSpread * 0.000095873799) + AimOffset);
 }
 
 defaultproperties

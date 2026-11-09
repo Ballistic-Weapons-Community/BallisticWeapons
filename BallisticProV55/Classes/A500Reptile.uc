@@ -10,15 +10,6 @@
 //=============================================================================
 class A500Reptile extends BallisticWeapon;
 
-var float CrosshairSpreadAngle;
-
-simulated function PostBeginPlay()
-{
-	Super.PostBeginPlay();
-	
-	CrosshairSpreadAngle = A500PrimaryFire(BFireMode[0]).GetCrosshairInaccAngle();
-}	
-
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
@@ -37,15 +28,31 @@ simulated event PostNetBeginPlay()
 	}
 }
 
-//Draws simple crosshairs to accurately describe hipfire at any FOV and resolution.
+// Draws simple crosshairs round the acid's spread, at any FOV and resolution: the side bars as far out as the shots go
+// across, the top and bottom bars as far as they go up and down (A500PrimaryFire.GetFireSpread).
+// Read from the fire each frame: the weapon's params (game style) are set on the fire after PostBeginPlay, Classic and
+// Realism set the hip factor in PostNetBeginPlay, and with the sights up (shown in third person) the hip factor is left out
 simulated function DrawSimpleCrosshairs(Canvas C)
 {
-	local float Offset;
-	
-	Offset = C.ClipX / 2;
-	Offset *= tan (CrosshairSpreadAngle) / tan((Instigator.Controller.FovAngle/2) * 0.01745329252);
+	local A500PrimaryFire AcidFire;
+	local float XSpread, YSpread, ScreenScale;
 
-	DrawSimpleCrosshairBars(C, Offset, Offset);
+	AcidFire = A500PrimaryFire(BFireMode[0]);
+	if (AcidFire != None)
+	{
+		XSpread = AcidFire.XInaccuracy;
+		YSpread = AcidFire.YInaccuracy;
+
+		if (!bScopeView)
+		{
+			XSpread *= AcidFire.HipSpreadFactor;
+			YSpread *= AcidFire.HipSpreadFactor;
+		}
+	}
+
+	ScreenScale = (C.ClipX / 2) / tan((Instigator.Controller.FovAngle/2) * 0.01745329252);
+
+	DrawSimpleCrosshairBars(C, ScreenScale * tan(XSpread * 0.000095873799), ScreenScale * tan(YSpread * 0.000095873799));
 }
 
 exec simulated function CockGun(optional byte Type);
