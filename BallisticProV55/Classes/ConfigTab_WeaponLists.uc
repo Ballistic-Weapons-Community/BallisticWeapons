@@ -133,7 +133,7 @@ defaultproperties
 		WinTop=0.005000
 		WinLeft=0.020000
 		WinWidth=0.960000
-		WinHeight=0.045000
+		WinHeight=0.055024
 		RenderWeight=0.490000
 		bAcceptsInput=True
 		OnActivate=ListTabs.InternalOnActivate

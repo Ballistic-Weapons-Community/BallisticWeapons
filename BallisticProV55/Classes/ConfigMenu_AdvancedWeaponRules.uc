@@ -11,7 +11,7 @@ class ConfigMenu_AdvancedWeaponRules extends UT2K4GUIPage;
 
 var automated GUIImage		MyBlack, MyBack;
 var automated GUIHeader		MyHeader;
-var automated GUILabel		l_Note, l_Movement, l_Handling, l_Damage;
+var automated GUILabel		l_Movement, l_Handling, l_Damage;
 var automated GUIButton		bn_OK, bn_Defaults, bn_Cancel;
 var automated moCheckBox	ch_WeaponMove;		//Weapons Affect Movement
 var automated moCheckBox	ch_AimMove;			//Aiming Slows Movement
@@ -139,28 +139,16 @@ defaultproperties
          WinLeft=0.250000
          WinWidth=0.500000
          WinHeight=0.031250
+         FontScale=FNS_Medium
      End Object
      MyHeader=GUIHeader'BallisticProV55.ConfigMenu_AdvancedWeaponRules.DaBeegHeader'
-
-     Begin Object Class=GUILabel Name=NoteLabel
-         Caption="For every weapon and every player. A scale of 1.00 leaves a weapon as it is made."
-         TextAlign=TXTA_Center
-         StyleName="TextLabel"
-         FontScale=FNS_Small
-         bMultiLine=True
-         WinTop=0.127000
-         WinLeft=0.240000
-         WinWidth=0.520000
-         WinHeight=0.050000
-     End Object
-     l_Note=GUILabel'BallisticProV55.ConfigMenu_AdvancedWeaponRules.NoteLabel'
 
      Begin Object Class=GUILabel Name=MovementLabel
          Caption="Movement"
          TextAlign=TXTA_Left
          TextColor=(B=0,G=180,R=255,A=255)
          TextFont="UT2MenuFont"
-         WinTop=0.185000
+         WinTop=0.130000
          WinLeft=0.240000
          WinWidth=0.520000
          WinHeight=0.040000
@@ -174,7 +162,7 @@ defaultproperties
          OnCreateComponent=ch_WeaponMoveCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Off: players move and jump the same with every weapon. No weapon slows them down or speeds them up."
-         WinTop=0.227500
+         WinTop=0.172500
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
@@ -189,7 +177,7 @@ defaultproperties
          OnCreateComponent=ch_AimMoveCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Off: no slowdown while aiming down sights."
-         WinTop=0.270000
+         WinTop=0.215000
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
@@ -202,7 +190,7 @@ defaultproperties
          TextAlign=TXTA_Left
          TextColor=(B=0,G=180,R=255,A=255)
          TextFont="UT2MenuFont"
-         WinTop=0.326500
+         WinTop=0.278000
          WinLeft=0.240000
          WinWidth=0.520000
          WinHeight=0.040000
@@ -219,7 +207,7 @@ defaultproperties
          OnCreateComponent=fl_AimSpeedFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="How fast sights are raised and lowered, the same for every player. 2: twice as fast."
-         WinTop=0.369000
+         WinTop=0.320500
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
@@ -237,7 +225,7 @@ defaultproperties
          OnCreateComponent=fl_FireRateFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="How fast guns fire, pump and bolt actions included. 1.5: half as fast again."
-         WinTop=0.411500
+         WinTop=0.363000
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
@@ -255,7 +243,7 @@ defaultproperties
          OnCreateComponent=fl_MagazineFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="How many rounds a magazine holds. 1.5: a magazine of 30 holds 45, and a plasma or lightning gun 1.5 times its cells."
-         WinTop=0.454000
+         WinTop=0.405500
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
@@ -273,7 +261,7 @@ defaultproperties
          OnCreateComponent=fl_ShotgunSpreadFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="How far a shotgun's pellets spread. 0.5: half as wide."
-         WinTop=0.496500
+         WinTop=0.448000
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
@@ -286,7 +274,7 @@ defaultproperties
          TextAlign=TXTA_Left
          TextColor=(B=0,G=180,R=255,A=255)
          TextFont="UT2MenuFont"
-         WinTop=0.553000
+         WinTop=0.504500
          WinLeft=0.240000
          WinWidth=0.520000
          WinHeight=0.040000
@@ -303,7 +291,7 @@ defaultproperties
          OnCreateComponent=fl_HeadshotFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="The extra damage of a head hit. 0: a head hit does body damage. 2: twice the bonus."
-         WinTop=0.595500
+         WinTop=0.547000
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
@@ -318,7 +306,7 @@ defaultproperties
          OnCreateComponent=ch_LimbCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Off: a hit on an arm or a leg does the damage of a body hit."
-         WinTop=0.638000
+         WinTop=0.589500
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
@@ -333,7 +321,7 @@ defaultproperties
          OnCreateComponent=ch_FalloffCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Off: bullets do their full damage at any range."
-         WinTop=0.680500
+         WinTop=0.632000
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
@@ -351,7 +339,7 @@ defaultproperties
          OnCreateComponent=fl_BlastRadiusFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="The damage radius of rockets, grenades and other explosives. 0.5: half as far."
-         WinTop=0.723000
+         WinTop=0.674500
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
@@ -369,7 +357,7 @@ defaultproperties
          OnCreateComponent=fl_PenetrationFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="How much wall and how many players a bullet goes through. 0: it stops at the first wall or player."
-         WinTop=0.765500
+         WinTop=0.717000
          WinLeft=0.265000
          WinWidth=0.485000
          WinHeight=0.040000
@@ -380,7 +368,7 @@ defaultproperties
      Begin Object Class=GUIButton Name=OKButton
          Caption="OK"
          Hint="Save these settings."
-         WinTop=0.860000
+         WinTop=0.811500
          WinLeft=0.250000
          WinWidth=0.150000
          TabOrder=11
@@ -392,7 +380,7 @@ defaultproperties
      Begin Object Class=GUIButton Name=DefaultsButton
          Caption="DEFAULTS"
          Hint="Set everything on this page back to how the weapons are made."
-         WinTop=0.860000
+         WinTop=0.813500
          WinLeft=0.425000
          WinWidth=0.150000
          TabOrder=12
@@ -404,7 +392,7 @@ defaultproperties
      Begin Object Class=GUIButton Name=CancelButton
          Caption="CANCEL"
          Hint="Leave without saving."
-         WinTop=0.860000
+         WinTop=0.813500
          WinLeft=0.600000
          WinWidth=0.150000
          TabOrder=13

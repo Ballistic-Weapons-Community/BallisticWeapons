@@ -193,7 +193,7 @@ defaultproperties
          Caption="Preferences"
          Hint="Edit preferences."
          WinTop=0.450000
-		 WinHeight=0.1
+		 WinHeight=0.060000
          WinLeft=0.250000
          WinWidth=0.50000
          TabOrder=0

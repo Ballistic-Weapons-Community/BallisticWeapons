@@ -282,7 +282,7 @@ defaultproperties
 		WinTop=0.110000
 		WinLeft=0.050000
 		WinWidth=0.900000
-		WinHeight=0.680000
+		WinHeight=0.693563
 		TabOrder=0
 	End Object
 	Editor=BC_WeaponListEditor'BallisticProV55.ConfigTab_ConflictLoadout.WeaponEditor'
