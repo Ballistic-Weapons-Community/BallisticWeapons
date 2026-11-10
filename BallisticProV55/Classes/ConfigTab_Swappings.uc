@@ -1,27 +1,22 @@
 //=============================================================================
 // ConfigTab_Swappings.
 //
-// This page is used to configure the swapping lists for the Ballistic mutators
-// Includes:
-// A list of original weapons that can be replaced.
-// CheckList of new weapons which replace each old weapon.
-// Preset section to quickly load and save preset lists of replacements
-// Edit box for switching time
-// Checkbox for the random spawning of the replacements for each old weapon
+// The Pickups mode's replacements: for each original weapon (picked in the
+// 'Replaces' box) the Ballistic weapons that take its place, in the shared
+// weapon chooser. Presets save and load whole sets of replacements.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
 class ConfigTab_Swappings extends ConfigTabBase config(BallisticProV55);
 
-var automated GUIListBox			lb_OldWeapons;
-var automated BC_GUICheckListBox	lb_NewWeapons;
-var Automated GUIImage				Box_Old, Box_New;
-var Automated GUIButton				BAddAll, BRemoveAll, BSavePreset, BDeletePreset;
+var automated BC_WeaponListEditor	Editor;
+var automated GUILabel				l_Old;
+var automated GUIComboBox			co_Old;				// the original weapon whose replacements are shown
+var Automated GUIButton				BSavePreset, BDeletePreset;
 var automated moComboBox			cb_Presets;
 var automated moCheckbox			ch_Independent;
 var automated moNumericEdit			nu_SwitchTime;
-var automated GUILabel   			l_OldList, l_NewList;
 
 struct Swap					// Holds info about the replacments for an old item
 {
@@ -39,153 +34,120 @@ struct SwapPreset			// A single preset
 var() array<Swap>				DefaultSwaps;			// The default replacements for the old items (same as Mut_BallisticSwap's)
 var() config bool				bDefaultsWritten;		// The defaults have been written to the ini file. Don't do it again
 
-var array<string> TempItems; // Temporary array to store items for sorting
+var int							OldIndex;
+var bool						bLoading;
 
 var() localized string 		Headings[12];
+var() localized string		ChosenCaptionFormat;
 
 function InitializeConfigTab()
 {
-	local int i, j;
+	local int i, j, h;
 	local array<CacheManager.WeaponRecord> Recs;
-	local int Index[12];
-	local bool MiscLoaded;
-    local BC_WeaponInfoCache.WeaponInfo WI, TempItemName;
-    local array<String> PresetNames;
-    local array<BC_WeaponInfoCache.WeaponInfo> TempItemNameList;
+	local array<int> Heading;
+	local BC_WeaponInfoCache.WeaponInfo WI;
+	local array<String> PresetNames;
 
-	lb_NewWeapons.CheckList.Add(Headings[0],,"MELEE",true);
-	lb_NewWeapons.CheckList.Add(Headings[1],,"SIDEARM",true);
-	lb_NewWeapons.CheckList.Add(Headings[2],,"SPREAD",true);
-	lb_NewWeapons.CheckList.Add(Headings[3],,"SMG",true);
-	lb_NewWeapons.CheckList.Add(Headings[4],,"AR",true);
-	lb_NewWeapons.CheckList.Add(Headings[5],,"MG",true);
-	lb_NewWeapons.CheckList.Add(Headings[6],,"SNIPER",true);
-	lb_NewWeapons.CheckList.Add(Headings[7],,"HEAVY",true);
-	lb_NewWeapons.CheckList.Add(Headings[8],,"SPECIAL",true);
-	lb_NewWeapons.CheckList.Add(Headings[9],,"TRAPS",true);
+	// the original weapons
+	for (i = 0; i < class'Mut_BallisticSwap'.static.GetNumWeapons(); i++)
+		co_Old.AddItem(class'Mut_BallisticSwap'.static.GetOldWeaponClass(i).default.ItemName,, string(class'Mut_BallisticSwap'.static.GetOldWeaponClass(i)));
+	co_Old.ReadOnly(true);
+	co_Old.SetIndex(0);
 
-    // Fill old items list
-    for (i = 0; i < class'Mut_BallisticSwap'.static.GetNumWeapons(); i++)
-        lb_OldWeapons.List.Add(class'Mut_BallisticSwap'.static.GetOldWeaponClass(i).default.ItemName, , string(class'Mut_BallisticSwap'.static.GetOldWeaponClass(i)));
-    lb_OldWeapons.List.OnClick = InternalOnClick;
-
-	for (j=0;j<12;j++)
-		Index[j] = j+1;
-
+	// the Ballistic weapons that can replace them, by weapon kind, by name
 	class'CacheManager'.static.GetWeaponList(Recs);
-	// Fill replacement items list in a temporary list
-	for (i=0;i<Recs.Length;i++)
+	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
+	Heading.Length = Recs.Length;
+	for (i = 0; i < Recs.Length; i++)
 	{
+		Heading[i] = -1;
 		if (!class'BC_WeaponInfoCache'.static.IsValid(Recs[i].ClassName))
 			continue;
 		// Tap into the BW weapon cache system to identify BallisticWeapons without loading them
 		WI = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName, j);
-		if (j == -1)
+		if (j == -1 || WI.ClassName == "" || !WI.bIsBW)
 			continue;
-        TempItemNameList[i] = WI; // Store them all here
-    }
-    // Sort the list alphabetically by ItemName using bubble sort
-    for (i = 0; i < TempItemNameList.Length - 1; i++)
-    {
-        for (j = 0; j < TempItemNameList.Length - i - 1; j++)
-        {
-            if (StrCmp(TempItemNameList[j].ItemName, TempItemNameList[j + 1].ItemName) > 0)
-            {
-                // Swap items
-                TempItemName = TempItemNameList[j];
-                TempItemNameList[j] = TempItemNameList[j + 1];
-                TempItemNameList[j + 1] = TempItemName;
-            }
-        }
-    }
-        //Then add the item to the checklist
-    for (i = 0; i < TempItemNameList.Length; i++)
-    {
-		if (TempItemNameList[i].ClassName != "")
-		{
-			if (TempItemNameList[i].bIsBW)
-			{
-				if (TempItemNameList[i].InventoryGroup > 0 && TempItemNameList[i].InventoryGroup < 10)
-				{
-					lb_NewWeapons.CheckList.Insert(Index[TempItemNameList[i].InventoryGroup-1], TempItemNameList[i].ItemName,, TempItemNameList[i].ClassName);
-					for (j=TempItemNameList[i].InventoryGroup-1;j<12;j++)
-						Index[j]++;
-				}
-				else if (TempItemNameList[i].InventoryGroup == 0)
-				{
-					lb_NewWeapons.CheckList.Insert(Index[9], TempItemNameList[i].ItemName,, TempItemNameList[i].ClassName);
-
-					for (j=9;j<12;j++)
-						Index[j]++;
-				}
-				else
-				{
-					if (!MiscLoaded)
-					{
-						MiscLoaded=true;
-						lb_NewWeapons.CheckList.Add(Headings[10],,"MISC",true);
-					}
-					lb_NewWeapons.CheckList.Insert(Index[10], TempItemNameList[i].ItemName,, TempItemNameList[i].ClassName);
-					Index[10]++;
-					Index[11]++;
-				}
- 			}
-		}
+		if (WI.InventoryGroup > 0 && WI.InventoryGroup < 10)
+			Heading[i] = WI.InventoryGroup - 1;
+		else if (WI.InventoryGroup == 0)
+			Heading[i] = 9;
+		else
+			Heading[i] = 10;
 	}
 	class'BC_WeaponInfoCache'.static.EndSession();
 
-	if ((lb_NewWeapons.CheckList.Index == 0 && lb_NewWeapons.CheckList.IsSection()) || lb_NewWeapons.CheckList.Index >= lb_NewWeapons.CheckList.ItemCount)
-		lb_NewWeapons.CheckList.SetIndex(1);
+	Editor.ClearCatalogue();
+	for (h = 0; h < 11; h++)
+	{
+		Editor.AddSection(Headings[h]);
+		for (i = 0; i < Recs.Length; i++)
+			if (Heading[i] == h)
+				Editor.AddWeapon(Recs[i].FriendlyName, Recs[i].ClassName);
+	}
+	Editor.OnChosenChanged = ChosenChanged;
 
 	SaveConfig();
-	lb_NewWeapons.CheckList.OnClick = InternalOnClick;
 
-    PresetNames = GetPerObjectNames("BallisticProV55", "BallisticSwapPreset");
-    for (i = 0; i < PresetNames.Length; i++)
-        cb_Presets.AddItem(Repl(PresetNames[i], Chr(27), " "), new(None, PresetNames[i]) class'BallisticSwapPreset',);
-    cb_Presets.SetIndex(0);
-    cb_Presets.SetText("");
+	PresetNames = GetPerObjectNames("BallisticProV55", "BallisticSwapPreset");
+	for (i = 0; i < PresetNames.Length; i++)
+		cb_Presets.AddItem(Repl(PresetNames[i], Chr(27), " "), new(None, PresetNames[i]) class'BallisticSwapPreset',);
+	cb_Presets.SetIndex(0);
+	cb_Presets.SetText("");
+}
 
-    // Moving through the old weapons with the keyboard has to refresh the ticks as well
-    lb_OldWeapons.List.OnChange = InternalOnChange;
+//===========================================================================
+// The original weapon shown
+//===========================================================================
+function ShowSwap()
+{
+	local array<string> Names;
+	local int i;
 
-    ch_Independent.MyCheckBox.OnClick = InternalOnClick;
+	if (OldIndex < 0 || OldIndex >= Swaps.Length)
+		return;
+
+	// section headings that older versions saved into the lists are no weapons
+	for (i = 0; i < Swaps[OldIndex].NIs.Length; i++)
+		if (InStr(Swaps[OldIndex].NIs[i], ".") != -1)
+			Names[Names.Length] = Swaps[OldIndex].NIs[i];
+
+	bLoading = true;
+	Editor.ChosenCaption = Repl(ChosenCaptionFormat, "%s", co_Old.GetText());
+	Editor.SetChosen(Names);
+	ch_Independent.Checked(Swaps[OldIndex].R);
+	bLoading = false;
+}
+
+function ChosenChanged(BC_WeaponListEditor Sender)
+{
+	local array<string> Names;
+
+	if (bLoading || OldIndex < 0 || OldIndex >= Swaps.Length)
+		return;
+	Editor.GetChosen(Names);
+	Swaps[OldIndex].NIs = Names;
 }
 
 function InternalOnChange(GUIComponent Sender)
 {
+	if (bLoading)
+		return;
+
 	// A preset that holds nothing (one that is just being made) must not wipe the lists
 	if (Sender == cb_Presets && cb_Presets.GetObject() != None && BallisticSwapPreset(cb_Presets.GetObject()).Swaps.length > 0)
 	{
 		Swaps = BallisticSwapPreset(cb_Presets.GetObject()).Swaps;
 		// presets saved by older versions can be shorter than the list of old weapons
 		Swaps.length = class'Mut_BallisticSwap'.static.GetNumWeapons();
-		UpdateReplacementsList(lb_OldWeapons.List.Index);
+		ShowSwap();
 	}
-	else if (Sender == lb_OldWeapons.List)
-		UpdateReplacementsList(lb_OldWeapons.List.Index);
-}
-
-//===========================================================================
-// SectionCheck
-//
-// Called when a section header is checked.
-// Sets all checkboxes up until the next section, in the same column, to its own value.
-//===========================================================================
-function SectionCheck (bool bChecked, int Index)
-{
-	local int j;
-	for (j=Index+1;j<lb_NewWeapons.CheckList.Elements.length;j++)
+	else if (Sender == co_Old)
 	{
-		if (lb_NewWeapons.CheckList.Elements[j].bSection)
-			return;
-
-		lb_NewWeapons.CheckList.SetChecked(j, bChecked);
-
-        // Update the Swaps array to save the selection
-        ChangeSwapListEntry(lb_OldWeapons.List.Index, lb_NewWeapons.List.Elements[j].ExtraStrData, bChecked);
-
+		OldIndex = co_Old.GetIndex();
+		ShowSwap();
 	}
+	else if (Sender == ch_Independent && OldIndex >= 0 && OldIndex < Swaps.Length)
+		Swaps[OldIndex].R = ch_Independent.IsChecked();
 }
 
 function bool InternalOnClick(GUIComponent Sender)
@@ -194,46 +156,8 @@ function bool InternalOnClick(GUIComponent Sender)
 	local String s;
 	local array<Swap> SavedSwaps;
 
-	// Replacement weapons list
-	if (Sender == lb_NewWeapons.CheckList)
-	{
-		lb_NewWeapons.CheckList.InternalOnClick(Sender);
-
-		// Section headings are no weapons and must not end up in the swap list
-		if (!lb_NewWeapons.CheckList.Elements[lb_NewWeapons.CheckList.LastCheckChanged].bSection)
-			ChangeSwapListEntry(lb_OldWeapons.List.Index, lb_NewWeapons.List.GetExtraAtIndex(lb_NewWeapons.CheckList.LastCheckChanged), lb_NewWeapons.CheckList.Checks[lb_NewWeapons.CheckList.LastCheckChanged] > 0);
-		if (lb_NewWeapons.CheckList.LastClickWasCheck)
-		{
-			if (lb_NewWeapons.CheckList.Elements[lb_NewWeapons.CheckList.LastCheckChanged].bSection)
-				SectionCheck(lb_NewWeapons.CheckList.Checks[lb_NewWeapons.CheckList.LastCheckChanged] > 0, lb_NewWeapons.CheckList.LastCheckChanged);
-		}
-	}
-	// Old weapons list
-	else if (Sender == lb_OldWeapons.List)
-	{
-		lb_OldWeapons.List.InternalOnClick(Sender);
-		UpdateReplacementsList(lb_OldWeapons.List.Index);
-	}
-	// FILL
-	else if (Sender == BAddAll)
-	{
-		Swaps[lb_OldWeapons.List.Index].NIs.length = 0;
-		for (i=0;i<lb_NewWeapons.List.Elements.Length;i++)
-		{
-			if (!lb_NewWeapons.CheckList.Elements[i].bSection)
-				Swaps[lb_OldWeapons.List.Index].NIs[Swaps[lb_OldWeapons.List.Index].NIs.length] = lb_NewWeapons.List.GetExtraAtIndex(i);
-			lb_NewWeapons.CheckList.SetChecked(i, true);
-		}
-	}
-	// EMPTY
-	else if (Sender == BRemoveAll)
-	{
-		Swaps[lb_OldWeapons.List.Index].NIs.length = 0;
-		for (i=0;i<lb_NewWeapons.List.Elements.Length;i++)
-			lb_NewWeapons.CheckList.SetChecked(i, false);
-	}
 	// SAVE PRESET
-	else if (Sender == BSavePreset)			
+	if (Sender == BSavePreset)
 	{
 		s = cb_Presets.GetText();
 		if (s == "")
@@ -242,6 +166,7 @@ function bool InternalOnClick(GUIComponent Sender)
 		SavedSwaps = Swaps;
 		i = cb_Presets.FindIndex(s, True, False);
 
+		bLoading = true;
 		if (i != -1)
 			cb_Presets.SetIndex(i);
 		else
@@ -250,8 +175,9 @@ function bool InternalOnClick(GUIComponent Sender)
 			cb_Presets.AddItem(s,new(None, Repl(s, " ", Chr(27))) class'BallisticSwapPreset',);
 			cb_Presets.SetIndex(cb_Presets.ItemCount() - 1);
 		}
+		bLoading = false;
 		Swaps = SavedSwaps;
-		UpdateReplacementsList(lb_OldWeapons.List.Index);
+		ShowSwap();
 
 		if (cb_Presets.GetObject() != None)
 		{
@@ -260,7 +186,7 @@ function bool InternalOnClick(GUIComponent Sender)
 		}
 	}
 	// DELETE PRESET
-	else if (Sender == BDeletePreset)		
+	else if (Sender == BDeletePreset)
 	{
 		// GetObject is None when the box holds a name that is not a preset
 		if (cb_Presets.GetObject() != None)
@@ -270,87 +196,39 @@ function bool InternalOnClick(GUIComponent Sender)
 			cb_Presets.SetText("");
 		}
 	}
-	// Independent Spawning CheckBox
-	else if (Sender == ch_Independent.MyCheckBox)
-	{
-		ch_Independent.MyCheckBox.InternalOnClick(Sender);
-		Swaps[lb_OldWeapons.List.Index].R = ch_Independent.IsChecked();
-	}
 	return true;
 }
 
-function ChangeSwapListEntry(int Index, string Item, bool bAdd)
-{
-	local int i;
-
-	if (Index < 0 || Index >= Swaps.length)
-		return;
-	// Class names in the lists are not always written in the same case
-	for (i=0;i<Swaps[Index].NIs.length;i++)
-		if (Swaps[Index].NIs[i] ~= Item)	{
-			if (bAdd)
-				return;
-			else	{
-				Swaps[Index].NIs.Remove(i, 1);
-				return;	}
-		}
-	// Not in the list: only something that was ticked gets added
-	if (bAdd)
-		Swaps[Index].NIs[Swaps[Index].NIs.length] = Item;
-}
-
-//Uncheck and recheck any in list.
-function UpdateReplacementsList(int Index)
-{
-	local int i, j;
-    // Safety check for Swaps array
-    if (Swaps.Length == 0 || Index < 0 || Index >= Swaps.Length)
-    {
-        log("Error: Swaps array is empty or Index is out of bounds. Index: " $ Index $ ", Swaps.Length: " $ Swaps.Length);
-        return;
-    }
-	for (i=0;i<lb_NewWeapons.List.Elements.Length;i++)	{
-		lb_NewWeapons.CheckList.SetChecked(i, false);
-		for (j=0;j<Swaps[Index].NIs.length;j++)
-			if (Swaps[Index].NIs[j] ~= lb_NewWeapons.List.Elements[i].ExtraStrData)
-				lb_NewWeapons.CheckList.SetChecked(i, true);
-	}
-	ch_Independent.Checked(Swaps[Index].R);
-}
+//==================================================================
+// Settings & Defaults
+//==================================================================
 
 //Load weapons from mutator.
 function LoadSettings()
 {
-    local int i, j;
-    local byte bRandom;
-    local array<string> NewWeaps; // Array to hold new weapons for each old weapon
+	local int i, j;
+	local byte bRandom;
+	local array<string> NewWeaps; // Array to hold new weapons for each old weapon
 
-    log("Loading settings from mutator...");
-    cb_Presets.SetText("");
-    Swaps.Length = class'Mut_BallisticSwap'.static.GetNumWeapons(); // Resize Swaps array
+	cb_Presets.SetText("");
+	Swaps.Length = class'Mut_BallisticSwap'.static.GetNumWeapons(); // Resize Swaps array
 
-    // Process each weapon index
-    for (i = 0; i < Swaps.Length; i++)
-    {
-        //log("Processing weapon index: " $ i);
-        Swaps[i].R = false; // Default random spawning flag
+	for (i = 0; i < Swaps.Length; i++)
+	{
+		Swaps[i].R = false; // Default random spawning flag
 
-        NewWeaps = class'Mut_BallisticSwap'.static.GetNewWeapons(i, bRandom);
-        //log("NewWeaps Length for index " $ i $ ": " $ NewWeaps.Length);
+		NewWeaps = class'Mut_BallisticSwap'.static.GetNewWeapons(i, bRandom);
+		Swaps[i].NIs.Length = NewWeaps.Length;
+		for (j = 0; j < NewWeaps.Length; j++)
+			Swaps[i].NIs[j] = NewWeaps[j]; // Copy full package.classname to Swaps
 
-        Swaps[i].NIs.Length = NewWeaps.Length; // Resize Swaps[i].NIs to match NewWeaps length
+		Swaps[i].R = bRandom > 0; // Set random spawning flag
+	}
 
-        for (j = 0; j < NewWeaps.Length; j++)
-        {
-            Swaps[i].NIs[j] = NewWeaps[j]; // Copy full package.classname to Swaps
-        }
+	OldIndex = co_Old.GetIndex();
+	ShowSwap();
 
-        Swaps[i].R = bRandom > 0; // Set random spawning flag
-    }
-
-    UpdateReplacementsList(lb_OldWeapons.List.Index);
-
-    nu_SwitchTime.SetValue(class'Mut_BallisticSwap'.default.PickupChangeTime);
+	nu_SwitchTime.SetValue(class'Mut_BallisticSwap'.default.PickupChangeTime);
 }
 
 //Send settings to mutator.
@@ -396,111 +274,58 @@ function DefaultSettings()
 			Swaps[i].NIs[j] = DefaultSwaps[i].NIs[j];
 	}
 	Swaps.length = class'Mut_BallisticSwap'.static.GetNumWeapons();
-	UpdateReplacementsList(lb_OldWeapons.List.Index);
+	ShowSwap();
 
 	nu_SwitchTime.SetValue(60);
 }
 
-
 defaultproperties
 {
-     Begin Object Class=GUIListBox Name=lb_OldWeaponsList
-         bVisibleWhenEmpty=True
-         OnCreateComponent=lb_OldWeaponsList.InternalOnCreateComponent
+	Begin Object Class=GUILabel Name=l_OldLabel
+		Caption="Replaces:"
+		TextColor=(B=255,G=255,R=255)
+		WinTop=0.035000
+		WinLeft=0.050000
+		WinWidth=0.120000
+		WinHeight=0.045000
+	End Object
+	l_Old=GUILabel'BallisticProV55.ConfigTab_Swappings.l_OldLabel'
+
+	Begin Object Class=GUIComboBox Name=co_OldCB
+		Hint="The original weapon: the list on the right holds what replaces it."
+		WinTop=0.040000
+		WinLeft=0.170000
+		WinWidth=0.300000
+		WinHeight=0.040000
+		TabOrder=0
+		OnChange=ConfigTab_Swappings.InternalOnChange
+		OnKeyEvent=co_OldCB.InternalOnKeyEvent
+	End Object
+	co_Old=GUIComboBox'BallisticProV55.ConfigTab_Swappings.co_OldCB'
+
+	Begin Object Class=BC_WeaponListEditor Name=WeaponEditor
+		WinTop=0.100000
+		WinLeft=0.050000
+		WinWidth=0.900000
+		WinHeight=0.620000
+		TabOrder=1
+	End Object
+	Editor=BC_WeaponListEditor'BallisticProV55.ConfigTab_Swappings.WeaponEditor'
+
+     Begin Object Class=moCheckBox Name=ch_IndependentCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Independent Spawning"
+         OnCreateComponent=ch_IndependentCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="The original weapons. Select one to choose what replaces it"
-         WinTop=0.100000
-         WinLeft=0.100000
-         WinWidth=0.350000
-         WinHeight=0.600000
-         RenderWeight=0.520000
-         TabOrder=1
+         Hint="When several weapons replace one original, this prevents ammo and same-type weapon pickups from being forced to match each other."
+         WinTop=0.042000
+         WinLeft=0.520000
+         WinWidth=0.430000
+         WinHeight=0.040000
+         OnChange=ConfigTab_Swappings.InternalOnChange
      End Object
-     lb_OldWeapons=GUIListBox'BallisticProV55.ConfigTab_Swappings.lb_OldWeaponsList'
-
-     Begin Object Class=BC_GUICheckListBox Name=lb_NewWeaponsList
-         bVisibleWhenEmpty=True
-         OnCreateComponent=lb_NewWeaponsList.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Tick the weapons that you want to replace the orignal one selected on the left."
-         WinTop=0.100000
-         WinLeft=0.550000
-         WinWidth=0.350000
-         WinHeight=0.600000
-         RenderWeight=0.520000
-         TabOrder=1
-     End Object
-     lb_NewWeapons=BC_GUICheckListBox'BallisticProV55.ConfigTab_Swappings.lb_NewWeaponsList'
-
-     Begin Object Class=GUIImage Name=Box_OldImg
-         Image=Texture'2K4Menus.NewControls.Display99'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.050000
-         WinLeft=0.075000
-         WinWidth=0.400000
-         WinHeight=0.675000
-         RenderWeight=0.002000
-     End Object
-     Box_Old=GUIImage'BallisticProV55.ConfigTab_Swappings.Box_OldImg'
-
-     Begin Object Class=GUIImage Name=Box_NewImg
-         Image=Texture'2K4Menus.NewControls.Display99'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.050000
-         WinLeft=0.525000
-         WinWidth=0.400000
-         WinHeight=0.675000
-         RenderWeight=0.002000
-     End Object
-     Box_New=GUIImage'BallisticProV55.ConfigTab_Swappings.Box_NewImg'
-
-     Begin Object Class=GUIButton Name=AddAllButton
-         Caption="FILL"
-         Hint="Checks all to replace the original weapon currently selected"
-         WinTop=0.800000
-         WinLeft=0.550000
-         WinWidth=0.150000
-         TabOrder=0
-         OnClick=ConfigTab_Swappings.InternalOnClick
-         OnKeyEvent=AddAllButton.InternalOnKeyEvent
-     End Object
-     BAddAll=GUIButton'BallisticProV55.ConfigTab_Swappings.AddAllButton'
-
-     Begin Object Class=GUIButton Name=RemoveAllButton
-         Caption="EMPTY"
-         Hint="Unchecks all to replace the original weapon currently selected"
-         WinTop=0.800000
-         WinLeft=0.750000
-         WinWidth=0.150000
-         TabOrder=0
-         OnClick=ConfigTab_Swappings.InternalOnClick
-         OnKeyEvent=RemoveAllButton.InternalOnKeyEvent
-     End Object
-     BRemoveAll=GUIButton'BallisticProV55.ConfigTab_Swappings.RemoveAllButton'
-
-     Begin Object Class=GUIButton Name=BSavePresetButton
-         Caption="Save"
-         Hint="Saves the current configuration as a new preset Type the name of your new preset in the preset box."
-         WinTop=0.800000
-         WinLeft=0.100000
-         WinWidth=0.150000
-         TabOrder=0
-         OnClick=ConfigTab_Swappings.InternalOnClick
-         OnKeyEvent=BSavePresetButton.InternalOnKeyEvent
-     End Object
-     BSavePreset=GUIButton'BallisticProV55.ConfigTab_Swappings.BSavePresetButton'
-
-     Begin Object Class=GUIButton Name=BDeletePresetButton
-         Caption="Delete"
-         Hint="Deletes the currently selected preset."
-         WinTop=0.800000
-         WinLeft=0.300000
-         WinWidth=0.150000
-         TabOrder=0
-         OnClick=ConfigTab_Swappings.InternalOnClick
-         OnKeyEvent=BDeletePresetButton.InternalOnKeyEvent
-     End Object
-     BDeletePreset=GUIButton'BallisticProV55.ConfigTab_Swappings.BDeletePresetButton'
+     ch_Independent=moCheckBox'BallisticProV55.ConfigTab_Swappings.ch_IndependentCheck'
 
      Begin Object Class=moComboBox Name=co_PresetsCB
          ComponentJustification=TXTA_Left
@@ -510,25 +335,38 @@ defaultproperties
          IniOption="@Internal"
          Hint="Choose a preset replacements configuration, or type a new preset name here and click 'Save' to make the current configuration a new preset."
          WinTop=0.750000
-         WinLeft=0.100000
-         WinWidth=0.350000
+         WinLeft=0.050000
+         WinWidth=0.450000
          OnChange=ConfigTab_Swappings.InternalOnChange
+         WinHeight=0.040000
      End Object
      cb_Presets=moComboBox'BallisticProV55.ConfigTab_Swappings.co_PresetsCB'
 
-     Begin Object Class=moCheckBox Name=ch_IndependentCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Independent Spawning"
-         OnCreateComponent=ch_IndependentCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="When several weapons replace one original, this prevents ammo and same-type weapon pickups from being forced to match each other."
+     Begin Object Class=GUIButton Name=BSavePresetButton
+         Caption="Save"
+         Hint="Saves the current configuration as a new preset Type the name of your new preset in the preset box."
          WinTop=0.750000
-         WinLeft=0.550000
-         WinWidth=0.350000
+         WinLeft=0.520000
+         WinWidth=0.120000
+         TabOrder=0
+         OnClick=ConfigTab_Swappings.InternalOnClick
+         OnKeyEvent=BSavePresetButton.InternalOnKeyEvent
          WinHeight=0.040000
      End Object
-     ch_Independent=moCheckBox'BallisticProV55.ConfigTab_Swappings.ch_IndependentCheck'
+     BSavePreset=GUIButton'BallisticProV55.ConfigTab_Swappings.BSavePresetButton'
+
+     Begin Object Class=GUIButton Name=BDeletePresetButton
+         Caption="Delete"
+         Hint="Deletes the currently selected preset."
+         WinTop=0.750000
+         WinLeft=0.660000
+         WinWidth=0.120000
+         TabOrder=0
+         OnClick=ConfigTab_Swappings.InternalOnClick
+         OnKeyEvent=BDeletePresetButton.InternalOnKeyEvent
+         WinHeight=0.040000
+     End Object
+     BDeletePreset=GUIButton'BallisticProV55.ConfigTab_Swappings.BDeletePresetButton'
 
      Begin Object Class=moNumericEdit Name=nu_SwitchTimeEdit
          MinValue=5
@@ -540,62 +378,24 @@ defaultproperties
          OnCreateComponent=nu_SwitchTimeEdit.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Specify time interval(in seconds) between weapon pickup changes. Affects situations where multiple items are set to replace one original pickup."
-         WinTop=0.900000
-         WinLeft=0.250000
+         WinTop=0.830000
+         WinLeft=0.050000
          WinHeight=0.040000
+         WinWidth=0.450000
      End Object
      nu_SwitchTime=moNumericEdit'BallisticProV55.ConfigTab_Swappings.nu_SwitchTimeEdit'
 
-     Begin Object Class=GUILabel Name=l_OldListlabel
-         Caption="Original Weapons"
-         TextAlign=TXTA_Center
-         TextColor=(B=255,G=255,R=255)
-         WinTop=0.050000
-         WinLeft=0.075000
-         WinWidth=0.400000
-         WinHeight=0.050000
-     End Object
-     l_OldList=GUILabel'BallisticProV55.ConfigTab_Swappings.l_OldListlabel'
-
-     Begin Object Class=GUILabel Name=l_NewListlabel
-         Caption="Replace with..."
-         TextAlign=TXTA_Center
-         TextColor=(B=255,G=255,R=255)
-         WinTop=0.050000
-         WinLeft=0.525000
-         WinWidth=0.400000
-         WinHeight=0.050000
-     End Object
-     l_NewList=GUILabel'BallisticProV55.ConfigTab_Swappings.l_NewListlabel'
-
-     DefaultSwaps(0)=(NIs=("BallisticProV55.X3Knife","BallisticProV55.X4Knife","BallisticProV55.A909SkrithBlades","BallisticProV55.EKS43Katana"))
-     DefaultSwaps(1)=(NIs=("BallisticProV55.A42SkrithPistol","BallisticProV55.AM67Pistol","BallisticProV55.BOGPPistol","BallisticProV55.D49Revolver","BallisticProV55.M806Pistol","BallisticProV55.MD24Pistol","BallisticProV55.MRT6Shotgun","BallisticProV55.RS8Pistol","BallisticProV55.leMatRevolver"))
-     DefaultSwaps(2)=(NIs=("BallisticProV55.XK2SubMachinegun","BallisticProV55.Fifty9MachinePistol","BallisticProV55.XRS10SubMachinegun","BallisticProV55.XMK5SubMachinegun"))
-     DefaultSwaps(3)=(NIs=("BallisticProV55.M50AssaultRifle","BallisticProV55.SARAssaultRifle","BallisticProV55.M46AssaultRifle"))
-     DefaultSwaps(4)=(NIs=("BallisticProV55.A73SkrithRifle","BallisticProV55.E23PlasmaRifle"))
-     DefaultSwaps(5)=(NIs=("BallisticProV55.M353Machinegun","BallisticProV55.M925Machinegun","BallisticProV55.XMV850Minigun"))
-     DefaultSwaps(6)=(NIs=("BallisticProV55.M763Shotgun","BallisticProV55.M290Shotgun","BallisticProV55.MRS138Shotgun","BallisticProV55.A500Reptile"))
-     DefaultSwaps(7)=(NIs=("BallisticProV55.G5Bazooka","BallisticProV55.RX22AFlamer","BallisticProV55.MACWeapon","BallisticProV55.MRocketLauncher"))
-     DefaultSwaps(8)=(NIs=("BallisticProV55.M75Railgun"))
-     DefaultSwaps(9)=(NIs=("BallisticProV55.RSDarkStar","BallisticProV55.RSNovaStaff","BWBPAirstrikesPro.TargetDesignator"))
-     DefaultSwaps(10)=(NIs=("BallisticProV55.HVCMk9LightningGun"))
-     DefaultSwaps(11)=(NIs=("BallisticProV55.R78Rifle","BallisticProV55.R9RangerRifle","BallisticProV55.MarlinRifle","BallisticProV55.SRS900Rifle"))
-     DefaultSwaps(12)=(NIs=("BallisticProV55.G5Bazooka","BallisticProV55.MACWeapon"))
-     DefaultSwaps(13)=(NIs=("BallisticProV55.NRP57Grenade"))
-     DefaultSwaps(14)=(NIs=("BallisticProV55.BX5Mine"))
-     DefaultSwaps(15)=(NIs=("BallisticProV55.R78Rifle"))
-     DefaultSwaps(16)=(NIs=("BallisticProV55.HVCMk9LightningGun"))
-
-    Headings(0)="Melee"
-    Headings(1)="Sidearms"
-    Headings(2)="Sub Machineguns"
-    Headings(3)="Assault Rifles"
-    Headings(4)="Energy Weapons"
-    Headings(5)="Heavy Machineguns"
-    Headings(6)="Shotguns"
-    Headings(7)="Ordnance"
-    Headings(8)="Sniper Rifles"
-    Headings(9)="Grenades"
-    Headings(10)="Miscellaneous"
-    Headings(11)="Non-BW"
+	ChosenCaptionFormat="Replacing %s"
+	Headings(0)="Melee"
+	Headings(1)="Sidearms"
+	Headings(2)="Sub Machineguns"
+	Headings(3)="Assault Rifles"
+	Headings(4)="Energy Weapons"
+	Headings(5)="Heavy Machineguns"
+	Headings(6)="Shotguns"
+	Headings(7)="Ordnance"
+	Headings(8)="Sniper Rifles"
+	Headings(9)="Grenades"
+	Headings(10)="Miscellaneous"
+	Headings(11)="Non-BW"
 }

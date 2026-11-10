@@ -68,7 +68,7 @@ defaultproperties
 	Begin Object Class=moCheckBox Name=ch_ThirdPersonCheck
 		ComponentJustification=TXTA_Left
 		CaptionWidth=0.900000
-		Caption="Third person camera"
+		Caption="Third Person Camera"
 		OnCreateComponent=ch_ThirdPersonCheck.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="Play on foot in third person. The behind view key (Toggle BehindView in Controls, F4 unless changed) switches it in the game, and your choice is kept. Online, the server has to allow behind view."
@@ -84,7 +84,7 @@ defaultproperties
 		bIntSlider=True
 		ComponentJustification=TXTA_Left
 		CaptionWidth=0.450000
-		Caption="Camera distance"
+		Caption="Camera Distance"
 		OnCreateComponent=sl_DistanceSlider.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="How far behind your head the camera sits. A player is about 90 units tall."
@@ -100,7 +100,7 @@ defaultproperties
 		bIntSlider=True
 		ComponentJustification=TXTA_Left
 		CaptionWidth=0.450000
-		Caption="Camera height"
+		Caption="Camera Height"
 		OnCreateComponent=sl_HeightSlider.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="How far above your eyes the camera sits."
@@ -116,7 +116,7 @@ defaultproperties
 		bIntSlider=True
 		ComponentJustification=TXTA_Left
 		CaptionWidth=0.450000
-		Caption="Shoulder (left - right)"
+		Caption="Shoulder (Left - Right)"
 		OnCreateComponent=sl_SideSlider.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="How far to the side of your head the camera sits: to the right above 0, to the left below, straight behind at 0. The Swap Shoulder key moves it to the other side."
@@ -131,7 +131,7 @@ defaultproperties
 		MaxValue=1.000000
 		ComponentJustification=TXTA_Left
 		CaptionWidth=0.450000
-		Caption="Camera smoothing"
+		Caption="Camera Smoothing"
 		OnCreateComponent=sl_SmoothingSlider.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="How loosely the camera follows you over steps, jumps and turns of speed. At 0 it keeps exactly to you. Turning is never smoothed."
@@ -144,7 +144,7 @@ defaultproperties
 	Begin Object Class=moCheckBox Name=ch_SightsFirstPersonCheck
 		ComponentJustification=TXTA_Left
 		CaptionWidth=0.900000
-		Caption="First person while using sights"
+		Caption="First Person While Using Sights"
 		OnCreateComponent=ch_SightsFirstPersonCheck.InternalOnCreateComponent
 		IniOption="@Internal"
 		Hint="Switch to first person while the sights or the scope are up, and back when they come down."
@@ -155,7 +155,7 @@ defaultproperties
 	ch_SightsFirstPerson=moCheckBox'ch_SightsFirstPersonCheck'
 
 	Begin Object Class=GUILabel Name=PresetsLabel
-		Caption="Camera presets"
+		Caption="Camera Presets"
 		TextColor=(B=255,G=255,R=255)
 		WinTop=0.520000
 		WinLeft=0.250000

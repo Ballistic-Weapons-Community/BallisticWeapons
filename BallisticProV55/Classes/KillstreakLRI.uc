@@ -163,6 +163,9 @@ final private simulated function ModifyMenu()
 			index += 1; // insert after gear tab
 
 		Panel = Menu.c_Main.InsertTab(index, MenuName, string( GetMenuClass() ),, MenuHelp);
+		// back on this tab if it was the last one used
+		if (Panel != None && class'BC_MenuMemory'.default.LastInGameTab ~= MenuName)
+			Menu.c_Main.ActivateTabByName(MenuName, true);
 		bMenuModified=True;
 		Disable('Tick');
 	}

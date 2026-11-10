@@ -16,6 +16,7 @@ var automated moSlider		sl_Red1, sl_Green1, sl_Blue1, sl_Alpha1, sl_Size1, sl_Re
 var Automated GUIImage		Box_WeapList, Img_Cross1, Img_Cross2, Img_BackShot, Box_Shot, Box_Inner, Box_Outer;
 var automated GUILabel   	l_WeaponsList, l_Inner, l_Outer;
 var automated GUIListBox	lb_Weapons;
+var BC_ListSearch			Search;		// the search row over the weapon list
 var automated GUIComboBox	cb_CrossList1, cb_CrossList2;
 
 var() array<BallisticWeapon.NonDefCrosshairCfg>		Crosshairs;
@@ -58,6 +59,7 @@ function InitializeConfigTab()
 	}
 	LoadSettings();
 	bLoadInitialized = true;
+	Search = class'BC_ListSearch'.static.Create(self, lb_Weapons, lb_Weapons.List);
 }
 
 function AddCrosshairPack(class<BallisticCrosshairPack> CHClass)
@@ -75,16 +77,24 @@ function AddCrosshairPack(class<BallisticCrosshairPack> CHClass)
 function LoadSettings()
 {
 	local int i;
+	// every weapon of the list
+	if (Search != None)
+		Search.ShowAll();
 
 	for (i=0;i<lb_Weapons.List.Elements.Length;i++)
 		Crosshairs[i] = class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData).default.NDCrosshairCfg;
 	UpdateSettings();
 	bInitialized=true;
+	if (Search != None)
+		Search.Refresh();
 }
 // Save all settings
 function SaveSettings()
 {
 	local int i;
+	// every weapon of the list
+	if (Search != None)
+		Search.ShowAll();
 
 	if (!bLoadInitialized || !bInitialized)
 		return;
@@ -99,10 +109,15 @@ function SaveSettings()
 function DefaultSettings()
 {
 	local int i;
+	// every weapon of the list
+	if (Search != None)
+		Search.ShowAll();
 
 	for (i=0;i<lb_Weapons.List.Elements.Length;i++)
 		Crosshairs[i] = GetDefaultCrosshair(class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData));
 	UpdateSettings();
+	if (Search != None)
+		Search.Refresh();
 }
 
 // ResetConfig is the only way to see what a weapon came with, and it takes the saved crosshair out of the ini at once.
@@ -119,6 +134,14 @@ function BallisticWeapon.NonDefCrosshairCfg GetDefaultCrosshair(class<BallisticW
 	return Def;
 }
 
+// The selected weapon's place in the whole list, for the arrays kept beside it (the search hides rows)
+function int FullRow()
+{
+	if (Search != None)
+		return Search.FullIndex(lb_Weapons.List.Index);
+	return lb_Weapons.List.Index;
+}
+
 function InternalOnChange(GUIComponent Sender)
 {
 	local int CHIndex;
@@ -126,7 +149,9 @@ function InternalOnChange(GUIComponent Sender)
 	if (!bInitialized)
 		return;
 
-	CHIndex = lb_Weapons.List.Index;
+	CHIndex = FullRow();
+	if (CHIndex < 0)	// no weapon shown
+		return;
 
 	if (Sender == sl_Red1)				// Cross1 Red
 		Crosshairs[CHIndex].Color1.R = sl_Red1.GetValue();
@@ -167,7 +192,9 @@ function UpdateImages()
 {
 	local int CHIndex;
 
-	CHIndex = lb_Weapons.List.Index;
+	CHIndex = FullRow();
+	if (CHIndex < 0)	// no weapon shown
+		return;
 	Img_Cross1.Image 		= Crosshairs[CHIndex].Pic1;
 	Img_Cross1.ImageColor 	= Crosshairs[CHIndex].Color1;
 	Img_Cross2.Image 		= Crosshairs[CHIndex].Pic2;
@@ -178,7 +205,9 @@ function UpdateSettings()
 {
 	local int CHIndex;
 
-	CHIndex = lb_Weapons.List.Index;
+	CHIndex = FullRow();
+	if (CHIndex < 0)	// no weapon shown
+		return;
 
 	sl_Red1.SetValue(	Crosshairs[CHIndex].Color1.R);
 	sl_Green1.SetValue(	Crosshairs[CHIndex].Color1.G);
@@ -220,7 +249,9 @@ function bool InternalOnPreDraw(Canvas Canvas)
 	if (!bLoadInitialized || !bInitialized)
 		return false;
 
-	CHIndex = lb_Weapons.List.Index;
+	CHIndex = FullRow();
+	if (CHIndex < 0)	// no weapon shown
+		return false;
 
 	ScaleFactor = float(Controller.ResX)/1600  * class'HUD'.default.CrosshairScale;
 

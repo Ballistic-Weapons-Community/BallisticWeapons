@@ -1,33 +1,26 @@
 //=============================================================================
 // ConfigTab_Loadout. (Evolution)
 //
-// This tab is used to configure loadout boxes for Ballistic Loadout mutator
-// Includes:
-// * A list of weapons in selected box
-// * 5 loadout boxes
-// * Weapon Name title
-// * Weapon icon
-// * Weapon description
-// * List headings
-// * Multi ticks
-// * Other weapons tick
-// * Startup showing a weapon
+// The Evolution Loadout mutator's weapons: one list per loadout slot (Melee,
+// Sidearm, Primary, Secondary, Grenade) in the shared weapon chooser, picked
+// with slot tabs, and what a player must have done before each weapon can be
+// chosen, in the boxes under the lists for the weapon last picked.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class ConfigTab_Loadout extends ConfigTabBase 
+class ConfigTab_Loadout extends ConfigTabBase
 	DependsOn(Mut_Loadout)
 	config(BallisticProV55);
 
 var config bool						bUseAllWeapons;
 
-var automated GUIImage				Box_New, Box_WeapIcon, Pic_Weapon;
-var automated GUILabel				l_NewList, l_WeapTitle;
-var automated BC_GUICheckListBox	lb_NewWeapons;
-var automated GUIButton				BAddAll, BRemoveAll, BBox1, BBox2, BBox3, BBox4, BBox5;
+var automated GUIImage				Box_WeapIcon, Pic_Weapon;
+var automated GUILabel				l_WeapTitle;
+var automated BC_WeaponListEditor	Editor;
 var automated moCheckbox			ch_AllWeaps;
 var automated moFloatEdit			fl_RequiredTime, fl_RequiredFrags, fl_RequiredEfficiency, fl_RequiredDmgRate, fl_RequiredSnprEff, fl_RequiredStgnEff, fl_RequiredHzrdEff;
+var BC_TabRow						SlotRow;
 
 struct LoadOutBox
 {
@@ -36,8 +29,11 @@ struct LoadOutBox
 var LoadoutBox				Boxes[5];
 var localized string		BoxNames[5];
 var int						SelectedBox;
+var int						CurrentWeapon;		// WeaponInfo index of the weapon whose requirements the boxes show, -1 none
+var bool					bLoading;
 
 var() localized string 		Headings[12];
+var() localized string		ChosenCaptionFormat;
 
 struct LOWeapInfo
 {
@@ -59,58 +55,61 @@ var   array<LOWeapInfo> WeaponInfo;
 
 function InitializeConfigTab()
 {
-	lb_NewWeapons.CheckList.OnClick = InternalOnClick;
-	lb_NewWeapons.CheckList.OnRightClick = InternalOnRightClick;
-	ch_AllWeaps.MyCheckBox.OnClick = InternalOnClick;
+	local array<string> Captions;
+	local int i;
 
-	ch_AllWeaps.MyCheckBox.SetChecked(bUseAllWeapons);
+	CurrentWeapon = -1;
+	ch_AllWeaps.Checked(bUseAllWeapons);
+
+	for (i = 0; i < 5; i++)
+		Captions[i] = BoxNames[i];
+	SlotRow = class'BC_TabRow'.static.Create(self, Editor, 0.020000, 0.015000, 0.960000, 0.050000, Captions);
+	SlotRow.OnSwitch = SlotSwitched;
+
+	Editor.OnChosenChanged = ChosenChanged;
+	Editor.OnWeaponSelected = WeaponSelected;
 
 	LoadList();
-
 	LoadBoxesFromMutator();
-	LoadBox(0);
+
+	// back on the slot last edited
+	SelectedBox = Clamp(class'BC_MenuMemory'.default.EvolutionSlot, 0, 4);
+	SlotRow.Select(SelectedBox);
+	ShowBox();
 }
 
+//===========================================================================
+// LoadList
+//
+// The weapons that can go in a slot, by weapon kind, from the weapon cache
+// (no classes loaded), with their requirements. Ballistic weapons only,
+// unless Use All Weapons.
+//===========================================================================
 function LoadList()
 {
-	local int i, j;
-//	local class<Weapon> Weap;
+	local int i, j, h;
 	local array<CacheManager.WeaponRecord> Recs;
+	local array<int> Heading;
 	local string s;
-	local int Index[12];
-	local bool OtherLoaded, MiscLoaded;
 	local BC_WeaponInfoCache.WeaponInfo WI;
 
-	lb_NewWeapons.CheckList.Add(Headings[0],,"MELEE",true);
-	lb_NewWeapons.CheckList.Add(Headings[1],,"SIDEARM",true);
-	lb_NewWeapons.CheckList.Add(Headings[2],,"SPREAD",true);
-	lb_NewWeapons.CheckList.Add(Headings[3],,"SMG",true);
-	lb_NewWeapons.CheckList.Add(Headings[4],,"AR",true);
-	lb_NewWeapons.CheckList.Add(Headings[5],,"MG",true);
-	lb_NewWeapons.CheckList.Add(Headings[6],,"SNIPER",true);
-	lb_NewWeapons.CheckList.Add(Headings[7],,"HEAVY",true);
-	lb_NewWeapons.CheckList.Add(Headings[8],,"SPECIAL",true);
-	lb_NewWeapons.CheckList.Add(Headings[9],,"TRAPS",true);
-//	lb_NewWeapons.CheckList.Add(Headings[10],,"MISC",true);
-//	lb_NewWeapons.CheckList.Add(Headings[11],,"OTHER",true);
-	for (j=0;j<12;j++)
-		Index[j] = j+1;
-
 	WeaponInfo.length = 0;
+	CurrentWeapon = -1;
 
 	class'CacheManager'.static.GetWeaponList(Recs);
 	class'BC_WeaponInfoCache'.static.SortWeaponRecords(Recs);
+	Heading.Length = Recs.Length;
 	for (i=0;i<Recs.Length;i++)
 	{
+		Heading[i] = -1;
 		j = InStr(Recs[i].ClassName, ".");
-		
 		if (j != -1)
 		{
 			s = Left(Recs[i].ClassName, j);
-			
+
 			if (!class'BC_WeaponInfoCache'.static.IsValid(Recs[i].ClassName))
 				continue;
-				
+
 			if (!bUseAllWeapons)
 			{
 				if (InStr(s,"Ballistic")==-1 && InStr(s,"BWBP")==-1 && InStr(s,"JunkWar")==-1 && InStr(s,"JWBP")==-1)
@@ -120,7 +119,7 @@ function LoadList()
 
 		// Use the BW weapon cache system to get the info needed without loading the classes (huge optimization)
 		WI = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName, j);
-		if (j == -1)
+		if (j == -1 || WI.ClassName == "")
 			continue;
 
 		j = WeaponInfo.length;
@@ -134,53 +133,30 @@ function LoadList()
 			WeaponInfo[j].IconCoords.X2 = -1;
 			WeaponInfo[j].IconCoords.Y1 = -1;
 			WeaponInfo[j].IconCoords.Y2 = -1;
+			if (WI.InventoryGroup > 0 && WI.InventoryGroup < 10)
+				Heading[i] = WI.InventoryGroup - 1;
+			else
+				Heading[i] = 10;
 		}
 		else
 		{
 			WeaponInfo[j].Icon = WI.SmallIconMaterial;
 			WeaponInfo[j].IconCoords = WI.SmallIconCoords;
+			Heading[i] = 11;
 		}
 		WeaponInfo[j].bIsBW = WI.bIsBW;
 		LoadRequirements(j);
-
-		if (WI.ClassName != "")
-		{
-			if (WI.bIsBW)
-			{
-				if (WI.InventoryGroup > 0 && WI.InventoryGroup < 10)
-				{
-					lb_NewWeapons.CheckList.Insert(Index[WI.InventoryGroup-1], Recs[i].FriendlyName,, string(j));
-					for (j=WI.InventoryGroup-1;j<12;j++)
-						Index[j]++;
-				}
-				else
-				{
-					if (!MiscLoaded)
-					{
-						MiscLoaded=true;
-						lb_NewWeapons.CheckList.Add(Headings[10],,"MISC",true);
-					}
-					lb_NewWeapons.CheckList.Insert(Index[10], Recs[i].FriendlyName,, string(j));
-					Index[10]++;
-					Index[11]++;
-				}
- 			}
-			else
-			{
-				if (!OtherLoaded)
-				{
-					OtherLoaded=true;
-					lb_NewWeapons.CheckList.Add(Headings[11],,"OTHER",true);
-				}
-				lb_NewWeapons.CheckList.Insert(Index[11], Recs[i].FriendlyName,, string(j));
-				Index[11]++;
-			}
-		}
 	}
 	class'BC_WeaponInfoCache'.static.EndSession();
 
-	if ((lb_NewWeapons.CheckList.Index == 0 && lb_NewWeapons.CheckList.IsSection()) || lb_NewWeapons.CheckList.Index >= lb_NewWeapons.CheckList.ItemCount)
-		lb_NewWeapons.CheckList.SetIndex(1);
+	Editor.ClearCatalogue();
+	for (h = 0; h < 12; h++)
+	{
+		Editor.AddSection(Headings[h]);
+		for (i = 0; i < Recs.Length; i++)
+			if (Heading[i] == h)
+				Editor.AddWeapon(Recs[i].FriendlyName, Recs[i].ClassName);
+	}
 }
 
 // Requirements of one listed weapon as the mutator has them, or what the weapon came with if the mutator doesn't list it
@@ -261,6 +237,7 @@ function LoadBoxesFromMutator ()
 		}
 
 }
+
 function SaveBoxesToMutator ()
 {
 	local int i, j, k, l, Groups;
@@ -308,74 +285,109 @@ function SaveBoxesToMutator ()
 	class'Mut_Loadout'.static.StaticSaveConfig();
 }
 
-function LoadBox (int BoxNum)
+//===========================================================================
+// Slots
+//===========================================================================
+function ShowBox()
 {
-	local int i, j, WatchedSection;
+	local int i, j, n;
 
-	SelectedBox = BoxNum;
-	WatchedSection = -1;
-	for (i=0;i<lb_NewWeapons.CheckList.Elements.length;i++)
+	bLoading = true;
+	Editor.ChosenCaption = Repl(ChosenCaptionFormat, "%s", BoxNames[SelectedBox]);
+	Editor.SetChosen(Boxes[SelectedBox].WeaponNames);
+	bLoading = false;
+
+	// "Primary (32)"
+	for (i = 0; i < 5; i++)
 	{
-		lb_NewWeapons.CheckList.SetChecked(i, false);
-		if (lb_NewWeapons.CheckList.Elements[i].bSection)
-		{
-			if (WatchedSection > -1 && i - WatchedSection > 1)
-				lb_NewWeapons.CheckList.SetChecked(WatchedSection, true);
-			WatchedSection = i;
-			continue;
-		}
-		for (j=0;j<Boxes[BoxNum].WeaponNames.length;j++)
-		{
-			if (Boxes[BoxNum].WeaponNames[j] ~= WeaponInfo[int(lb_NewWeapons.CheckList.Elements[i].ExtraStrData)].ClassName)
-//			if (Boxes[BoxNum].WeaponNames[j] ~= lb_NewWeapons.CheckList.Elements[i].ExtraStrData)
-			{
-				lb_NewWeapons.CheckList.SetChecked(i, true);
-				break;
-			}
-		}
-		if (j >= Boxes[BoxNum].WeaponNames.length)
-			WatchedSection = -1;
+		n = 0;
+		for (j = 0; j < Boxes[i].WeaponNames.Length; j++)
+			if (Boxes[i].WeaponNames[j] != "")
+				n++;
+		SlotRow.SetCaption(i, BoxNames[i] @ "(" $ n $ ")");
 	}
-	if (WatchedSection > -1 && WatchedSection != lb_NewWeapons.CheckList.Elements.length-1)
-		lb_NewWeapons.CheckList.SetChecked(WatchedSection, true);
-
-	if (!lb_NewWeapons.List.IsSection() && bInitialized)
-	{
-		i = int(lb_NewWeapons.List.GetExtra());
-
-		WeaponInfo[i].ReqTime = fl_RequiredTime.GetValue();
-		WeaponInfo[i].ReqFrags = fl_RequiredFrags.GetValue();
-		WeaponInfo[i].ReqEff = fl_RequiredEfficiency.GetValue();
-		WeaponInfo[i].ReqDmgRate = fl_RequiredDmgRate.GetValue();
-		WeaponInfo[i].ReqSnprEff = fl_RequiredSnprEff.GetValue();
-		WeaponInfo[i].ReqStgnEff = fl_RequiredStgnEff.GetValue();
-		WeaponInfo[i].ReqHzrdEff = fl_RequiredHzrdEff.GetValue();
-	}
-
-	l_NewList.Caption = BoxNames[BoxNum];
-	if (!lb_NewWeapons.CheckList.IsValid())
-	{
-		for (i=0;i<lb_NewWeapons.CheckList.ItemCount;i++)
-			if (!lb_NewWeapons.CheckList.Elements[i].bSection)
-			{
-				lb_NewWeapons.CheckList.SetIndex(i);
-				break;
-			}
-		DisplayWeapon();
-	}
-	else if (!bInitialized)
-		DisplayWeapon();
 }
 
-function DisplayWeapon ()
+function ChosenChanged(BC_WeaponListEditor Sender)
+{
+	local array<string> Names;
+
+	if (bLoading)
+		return;
+	Editor.GetChosen(Names);
+	Boxes[SelectedBox].WeaponNames = Names;
+	SlotRow.SetCaption(SelectedBox, BoxNames[SelectedBox] @ "(" $ Names.Length $ ")");
+}
+
+function SlotSwitched(BC_TabRow Sender, int Index)
+{
+	SelectedBox = Index;
+	class'BC_MenuMemory'.static.SetEvolutionSlot(SelectedBox);
+	ShowBox();
+}
+
+function InternalOnChange(GUIComponent Sender)
+{
+	if (Sender == ch_AllWeaps && !bLoading && SlotRow != None)
+	{
+		StoreRequirements();
+		bUseAllWeapons = ch_AllWeaps.IsChecked();
+		LoadList();
+		ShowBox();
+		DisplayWeapon();
+	}
+}
+
+//===========================================================================
+// Requirements of the weapon last picked
+//===========================================================================
+function int FindWeaponInfo(string ClassName)
 {
 	local int i;
 
-	if (lb_NewWeapons.List.IsSection())
-		return;
-	l_WeapTitle.Caption = lb_NewWeapons.List.Get();
+	for (i = 0; i < WeaponInfo.Length; i++)
+		if (WeaponInfo[i].ClassName ~= ClassName)
+			return i;
+	return -1;
+}
 
-	i = int(lb_NewWeapons.List.GetExtra());
+// The boxes belong to the weapon shown: they are stored before another one is shown
+function StoreRequirements()
+{
+	local int i;
+
+	i = CurrentWeapon;
+	if (i < 0 || i >= WeaponInfo.Length)
+		return;
+
+	WeaponInfo[i].ReqTime = fl_RequiredTime.GetValue();
+	WeaponInfo[i].ReqFrags = fl_RequiredFrags.GetValue();
+	WeaponInfo[i].ReqEff = fl_RequiredEfficiency.GetValue();
+	WeaponInfo[i].ReqDmgRate = fl_RequiredDmgRate.GetValue();
+	WeaponInfo[i].ReqSnprEff = fl_RequiredSnprEff.GetValue();
+	WeaponInfo[i].ReqStgnEff = fl_RequiredStgnEff.GetValue();
+	WeaponInfo[i].ReqHzrdEff = fl_RequiredHzrdEff.GetValue();
+}
+
+function WeaponSelected(BC_WeaponListEditor Sender, string ClassName)
+{
+	StoreRequirements();
+	CurrentWeapon = FindWeaponInfo(ClassName);
+	DisplayWeapon();
+}
+
+function DisplayWeapon()
+{
+	local int i;
+
+	i = CurrentWeapon;
+	if (i < 0 || i >= WeaponInfo.Length)
+	{
+		l_WeapTitle.Caption = "";
+		Pic_Weapon.Image = None;
+		return;
+	}
+	l_WeapTitle.Caption = Editor.NameOf(WeaponInfo[i].ClassName);
 	Pic_Weapon.Image = WeaponInfo[i].Icon;
 	Pic_Weapon.X1 	 = WeaponInfo[i].IconCoords.X1;
 	Pic_Weapon.X2	 = WeaponInfo[i].IconCoords.X2;
@@ -391,149 +403,9 @@ function DisplayWeapon ()
 	fl_RequiredHzrdEff.SetValue(WeaponInfo[i].ReqHzrdEff);
 }
 
-function SectionCheck (bool bChecked, int Index)
-{
-	local int i, j;
-	for (j=Index+1;j<lb_NewWeapons.CheckList.Elements.length;j++)
-	{
-		if (lb_NewWeapons.CheckList.Elements[j].bSection)
-			return;
-
-		lb_NewWeapons.CheckList.SetChecked(j, bChecked);
-		if (bChecked)
-		{
-			for (i=0;i<Boxes[SelectedBox].WeaponNames.length;i++)
-				if (Boxes[SelectedBox].WeaponNames[i] ~= WeaponInfo[int(lb_NewWeapons.CheckList.Elements[j].ExtraStrData)].ClassName)
-					break;
-			if (i >= Boxes[SelectedBox].WeaponNames.length)
-				Boxes[SelectedBox].WeaponNames[Boxes[SelectedBox].WeaponNames.length] = WeaponInfo[int(lb_NewWeapons.CheckList.Elements[j].ExtraStrData)].ClassName;
-		}
-		else
-		{
-			for (i=0;i<Boxes[SelectedBox].WeaponNames.length;i++)
-				if (Boxes[SelectedBox].WeaponNames[i] ~= WeaponInfo[int(lb_NewWeapons.CheckList.Elements[j].ExtraStrData)].ClassName)
-				{
-					Boxes[SelectedBox].WeaponNames.Remove(i, 1);
-					i--;
-				}
-		}
-	}
-}
-
-function bool InternalOnClick(GUIComponent Sender)
-{
-	local int i, j;
-
-	if (Sender == lb_NewWeapons.CheckList)	// Weapons list
-	{
-		if (!lb_NewWeapons.List.IsSection())
-		{
-			i = int(lb_NewWeapons.List.GetExtra());
-
-			WeaponInfo[i].ReqTime = fl_RequiredTime.GetValue();
-			WeaponInfo[i].ReqFrags = fl_RequiredFrags.GetValue();
-			WeaponInfo[i].ReqEff = fl_RequiredEfficiency.GetValue();
-			WeaponInfo[i].ReqDmgRate = fl_RequiredDmgRate.GetValue();
-			WeaponInfo[i].ReqSnprEff = fl_RequiredSnprEff.GetValue();
-			WeaponInfo[i].ReqStgnEff = fl_RequiredStgnEff.GetValue();
-			WeaponInfo[i].ReqHzrdEff = fl_RequiredHzrdEff.GetValue();
-		}
-
-		lb_NewWeapons.CheckList.InternalOnClick(Sender);
-//		lb_NewWeapons.CheckList.ToggleChecked(lb_NewWeapons.CheckList.Index);
-
-//		if (lb_NewWeapons.CheckList.IsSection())
-//			SectionCheck(lb_NewWeapons.CheckList.Checks[lb_NewWeapons.CheckList.LastCheckChanged] > 0);
-		if (lb_NewWeapons.CheckList.LastClickWasCheck)
-		{
-			if (lb_NewWeapons.CheckList.Elements[lb_NewWeapons.CheckList.LastCheckChanged].bSection)
-				SectionCheck(lb_NewWeapons.CheckList.Checks[lb_NewWeapons.CheckList.LastCheckChanged] > 0, lb_NewWeapons.CheckList.LastCheckChanged);
-			else
-			{
-				if (lb_NewWeapons.CheckList.Checks[lb_NewWeapons.CheckList.LastCheckChanged] > 0)
-				{
-					for (i=0;i<Boxes[SelectedBox].WeaponNames.length;i++)
-						if (Boxes[SelectedBox].WeaponNames[i] ~= WeaponInfo[int(lb_NewWeapons.List.GetExtraAtIndex(lb_NewWeapons.CheckList.LastCheckChanged))].ClassName)
-							break;
-					if (i >= Boxes[SelectedBox].WeaponNames.length)
-						Boxes[SelectedBox].WeaponNames[Boxes[SelectedBox].WeaponNames.length] = WeaponInfo[int(lb_NewWeapons.List.GetExtraAtIndex(lb_NewWeapons.CheckList.LastCheckChanged))].ClassName;
-				}
-				else
-				{
-					for (i=0;i<Boxes[SelectedBox].WeaponNames.length;i++)
-						if (Boxes[SelectedBox].WeaponNames[i] ~= WeaponInfo[int(lb_NewWeapons.List.GetExtraAtIndex(lb_NewWeapons.CheckList.LastCheckChanged))].ClassName)
-						{
-							Boxes[SelectedBox].WeaponNames.Remove(i, 1);
-							i--;
-						}
-				}
-			}
-		}
-		else
-			DisplayWeapon();
-	}
-	else if (Sender == BAddAll)				// FILL
-	{
-		Boxes[SelectedBox].WeaponNames.length = 0;
-		for (j=0;j<lb_NewWeapons.CheckList.Elements.length;j++)
-		{
-			lb_NewWeapons.CheckList.SetChecked(j, true);
-			if (!lb_NewWeapons.CheckList.Elements[j].bSection)
-
-				Boxes[SelectedBox].WeaponNames[Boxes[SelectedBox].WeaponNames.length] = WeaponInfo[int(lb_NewWeapons.CheckList.Elements[j].ExtraStrData)].ClassName;
-		}
-	}
-	else if (Sender == BRemoveAll)			// EMPTY
-	{
-		Boxes[SelectedBox].WeaponNames.length = 0;
-		for (j=0;j<lb_NewWeapons.CheckList.Elements.length;j++)
-			lb_NewWeapons.CheckList.SetChecked(j, false);
-	}
-	else if (Sender == BBox1)
-		LoadBox(0);
-	else if (Sender == BBox2)
-		LoadBox(1);
-	else if (Sender == BBox3)
-		LoadBox(2);
-	else if (Sender == BBox4)
-		LoadBox(3);
-	else if (Sender == BBox5)
-		LoadBox(4);
-	else if (Sender == ch_AllWeaps.MyCheckBox)	// All weapons checkbox
-	{
-		ch_AllWeaps.MyCheckBox.InternalOnClick(Sender);
-		bUseAllWeapons = ch_AllWeaps.IsChecked();
-		lb_NewWeapons.CheckList.Clear();
-		lb_NewWeapons.CheckList.Checks.Length = 0;
-		LoadList();
-		LoadBox(SelectedBox);
-	}
-	return true;
-}
-
-function bool InternalOnRightClick(GUIComponent Sender)
-{
-	local int i;
-	if (Sender == lb_NewWeapons.CheckList)	// Weapons list
-	{
-		if (!lb_NewWeapons.List.IsSection())
-		{
-			i = int(lb_NewWeapons.List.GetExtra());
-
-			WeaponInfo[i].ReqTime = fl_RequiredTime.GetValue();
-			WeaponInfo[i].ReqFrags = fl_RequiredFrags.GetValue();
-			WeaponInfo[i].ReqEff = fl_RequiredEfficiency.GetValue();
-			WeaponInfo[i].ReqDmgRate = fl_RequiredDmgRate.GetValue();
-			WeaponInfo[i].ReqSnprEff = fl_RequiredSnprEff.GetValue();
-			WeaponInfo[i].ReqStgnEff = fl_RequiredStgnEff.GetValue();
-			WeaponInfo[i].ReqHzrdEff = fl_RequiredHzrdEff.GetValue();
-		}
-		lb_NewWeapons.CheckList.InternalOnClick(Sender);
-		if (!lb_NewWeapons.CheckList.IsSection())
-			DisplayWeapon();
-	}
-	return true;
-}
+//==================================================================
+// Settings & Defaults
+//==================================================================
 
 function LoadSettings()
 {
@@ -545,36 +417,18 @@ function LoadSettings()
 function ShowLoaded()
 {
 	local int i;
-	local bool bWasInitialized;
 
 	for (i=0;i<WeaponInfo.length;i++)
 		LoadRequirements(i);
-	// LoadBox would write the numbers on screen into the weapon that is selected
-	bWasInitialized = bInitialized;
-	bInitialized=false;
-	LoadBox(SelectedBox);
-	bInitialized=bWasInitialized;
-	if (bInitialized)
-		DisplayWeapon();
+	ShowBox();
+	DisplayWeapon();
 }
 
 function SaveSettings()
 {
-	local int i;
 	if (!bInitialized)
 		return;
-	if (!lb_NewWeapons.List.IsSection())
-	{
-		i = int(lb_NewWeapons.List.GetExtra());
-
-		WeaponInfo[i].ReqTime = fl_RequiredTime.GetValue();
-		WeaponInfo[i].ReqFrags = fl_RequiredFrags.GetValue();
-		WeaponInfo[i].ReqEff = fl_RequiredEfficiency.GetValue();
-		WeaponInfo[i].ReqDmgRate = fl_RequiredDmgRate.GetValue();
-		WeaponInfo[i].ReqSnprEff = fl_RequiredSnprEff.GetValue();
-		WeaponInfo[i].ReqStgnEff = fl_RequiredStgnEff.GetValue();
-		WeaponInfo[i].ReqHzrdEff = fl_RequiredHzrdEff.GetValue();
-	}
+	StoreRequirements();
 	SaveBoxesToMutator();
 	SaveConfig();
 }
@@ -597,156 +451,45 @@ function DefaultSettings()
 
 defaultproperties
 {
-     Begin Object Class=GUIImage Name=Box_NewImg
-         Image=Texture'2K4Menus.NewControls.Display99'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.050000
-         WinLeft=0.525000
-         WinWidth=0.450000
-         WinHeight=0.800000
-         RenderWeight=0.002000
-     End Object
-     Box_New=GUIImage'BallisticProV55.ConfigTab_Loadout.Box_NewImg'
+	Begin Object Class=BC_WeaponListEditor Name=WeaponEditor
+		WinTop=0.085000
+		WinLeft=0.020000
+		WinWidth=0.960000
+		WinHeight=0.540000
+		TabOrder=0
+	End Object
+	Editor=BC_WeaponListEditor'BallisticProV55.ConfigTab_Loadout.WeaponEditor'
 
-     Begin Object Class=GUIImage Name=Box_WeapIconImg
-         Image=Texture'2K4Menus.NewControls.Display99'
-         ImageStyle=ISTY_Stretched
-         WinTop=0.050000
-         WinLeft=0.025000
-         WinWidth=0.450000
-         WinHeight=0.800000
-         RenderWeight=0.002000
-     End Object
-     Box_WeapIcon=GUIImage'BallisticProV55.ConfigTab_Loadout.Box_WeapIconImg'
+	Begin Object Class=GUIImage Name=Box_WeapIconImg
+		Image=Texture'2K4Menus.NewControls.Display99'
+		ImageStyle=ISTY_Stretched
+		WinTop=0.645000
+		WinLeft=0.020000
+		WinWidth=0.300000
+		WinHeight=0.300000
+		RenderWeight=0.002000
+	End Object
+	Box_WeapIcon=GUIImage'BallisticProV55.ConfigTab_Loadout.Box_WeapIconImg'
 
-     Begin Object Class=GUIImage Name=Pic_WeaponImg
-         ImageStyle=ISTY_Scaled
-         WinTop=0.090000
-         WinLeft=0.040000
-         WinWidth=0.420000
-         WinHeight=0.279000
-         RenderWeight=0.004000
-     End Object
-     Pic_Weapon=GUIImage'BallisticProV55.ConfigTab_Loadout.Pic_WeaponImg'
+	Begin Object Class=GUIImage Name=Pic_WeaponImg
+		ImageStyle=ISTY_Justified
+		WinTop=0.660000
+		WinLeft=0.030000
+		WinWidth=0.280000
+		WinHeight=0.210000
+		RenderWeight=0.003000
+	End Object
+	Pic_Weapon=GUIImage'BallisticProV55.ConfigTab_Loadout.Pic_WeaponImg'
 
-     Begin Object Class=GUILabel Name=l_NewListlabel
-         Caption="Weapons"
-         TextAlign=TXTA_Center
-         TextColor=(B=255,G=255,R=255)
-         WinTop=0.050000
-         WinLeft=0.525000
-         WinWidth=0.450000
-         WinHeight=0.050000
-     End Object
-     l_NewList=GUILabel'BallisticProV55.ConfigTab_Loadout.l_NewListlabel'
-
-     Begin Object Class=GUILabel Name=l_WeapTitlelabel
-         TextAlign=TXTA_Center
-         TextColor=(B=255,G=255,R=255)
-         WinTop=0.050000
-         WinLeft=0.035000
-         WinWidth=0.430000
-         WinHeight=0.050000
-     End Object
-     l_WeapTitle=GUILabel'BallisticProV55.ConfigTab_Loadout.l_WeapTitlelabel'
-
-     Begin Object Class=BC_GUICheckListBox Name=lb_NewWeaponsList
-         bVisibleWhenEmpty=True
-         OnCreateComponent=lb_NewWeaponsList.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Tick the weapons that you want in the chosen loadout box."
-         WinTop=0.100000
-         WinLeft=0.550000
-         WinWidth=0.400000
-         WinHeight=0.740000
-         RenderWeight=0.520000
-         TabOrder=1
-     End Object
-     lb_NewWeapons=BC_GUICheckListBox'BallisticProV55.ConfigTab_Loadout.lb_NewWeaponsList'
-
-     Begin Object Class=GUIButton Name=AddAllButton
-         Caption="ALL"
-         Hint="Checks all to replace the original weapon currently selected"
-         WinTop=0.850000
-         WinLeft=0.580000
-         WinWidth=0.150000
-         TabOrder=0
-         OnClick=ConfigTab_Loadout.InternalOnClick
-         OnKeyEvent=AddAllButton.InternalOnKeyEvent
-     End Object
-     BAddAll=GUIButton'BallisticProV55.ConfigTab_Loadout.AddAllButton'
-
-     Begin Object Class=GUIButton Name=RemoveAllButton
-         Caption="NONE"
-         Hint="Unchecks all to replace the original weapon currently selected"
-         WinTop=0.850000
-         WinLeft=0.780000
-         WinWidth=0.150000
-         TabOrder=0
-         OnClick=ConfigTab_Loadout.InternalOnClick
-         OnKeyEvent=RemoveAllButton.InternalOnKeyEvent
-     End Object
-     BRemoveAll=GUIButton'BallisticProV55.ConfigTab_Loadout.RemoveAllButton'
-
-     Begin Object Class=GUIButton Name=BBox1Button
-         Caption="Melee"
-         Hint="View the list of weapons in the 'Melee' box"
-         WinTop=0.950000
-         WinLeft=0.025000
-         WinWidth=0.150000
-         TabOrder=0
-         OnClick=ConfigTab_Loadout.InternalOnClick
-         OnKeyEvent=BBox1Button.InternalOnKeyEvent
-     End Object
-     BBox1=GUIButton'BallisticProV55.ConfigTab_Loadout.BBox1Button'
-
-     Begin Object Class=GUIButton Name=BBox2Button
-         Caption="Sidearm"
-         Hint="View the list of weapons in the 'Sidearm' box"
-         WinTop=0.950000
-         WinLeft=0.225000
-         WinWidth=0.150000
-         TabOrder=0
-         OnClick=ConfigTab_Loadout.InternalOnClick
-         OnKeyEvent=BBox2Button.InternalOnKeyEvent
-     End Object
-     BBox2=GUIButton'BallisticProV55.ConfigTab_Loadout.BBox2Button'
-
-     Begin Object Class=GUIButton Name=BBox3Button
-         Caption="Primary"
-         Hint="View the list of weapons in the 'Primary' box"
-         WinTop=0.950000
-         WinLeft=0.425000
-         WinWidth=0.150000
-         TabOrder=0
-         OnClick=ConfigTab_Loadout.InternalOnClick
-         OnKeyEvent=BBox3Button.InternalOnKeyEvent
-     End Object
-     BBox3=GUIButton'BallisticProV55.ConfigTab_Loadout.BBox3Button'
-
-     Begin Object Class=GUIButton Name=BBox4Button
-         Caption="Secondary"
-         Hint="View the list of weapons in the 'Secondary' box"
-         WinTop=0.950000
-         WinLeft=0.625000
-         WinWidth=0.150000
-         TabOrder=0
-         OnClick=ConfigTab_Loadout.InternalOnClick
-         OnKeyEvent=BBox4Button.InternalOnKeyEvent
-     End Object
-     BBox4=GUIButton'BallisticProV55.ConfigTab_Loadout.BBox4Button'
-
-     Begin Object Class=GUIButton Name=BBox5Button
-         Caption="Grenade"
-         Hint="View the list of weapons in the 'Grenade' box"
-         WinTop=0.950000
-         WinLeft=0.825000
-         WinWidth=0.150000
-         TabOrder=0
-         OnClick=ConfigTab_Loadout.InternalOnClick
-         OnKeyEvent=BBox5Button.InternalOnKeyEvent
-     End Object
-     BBox5=GUIButton'BallisticProV55.ConfigTab_Loadout.BBox5Button'
+	Begin Object Class=GUILabel Name=l_WeapTitlelabel
+		TextAlign=TXTA_Center
+		TextColor=(B=255,G=255,R=255)
+		WinTop=0.885000
+		WinLeft=0.020000
+		WinWidth=0.300000
+		WinHeight=0.045000
+	End Object
+	l_WeapTitle=GUILabel'BallisticProV55.ConfigTab_Loadout.l_WeapTitlelabel'
 
      Begin Object Class=moCheckBox Name=ch_AllWeapsCheck
          ComponentJustification=TXTA_Left
@@ -755,10 +498,11 @@ defaultproperties
          OnCreateComponent=ch_AllWeapsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Enable non BW weapons in the list."
-         WinTop=0.850000
-         WinLeft=0.025000
-         WinWidth=0.450000
+         WinTop=0.885000
+         WinLeft=0.340000
+         WinWidth=0.300000
          WinHeight=0.040000
+         OnChange=ConfigTab_Loadout.InternalOnChange
      End Object
      ch_AllWeaps=moCheckBox'BallisticProV55.ConfigTab_Loadout.ch_AllWeapsCheck'
 
@@ -771,9 +515,9 @@ defaultproperties
          OnCreateComponent=RequirementTimeEdit.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="How much match time must have passed for this weapon to be available (simply delays availability)"
-         WinTop=0.350000
-         WinLeft=0.040000
-         WinWidth=0.420000
+         WinTop=0.655000
+         WinLeft=0.340000
+         WinWidth=0.300000
          WinHeight=0.040000
      End Object
      fl_RequiredTime=moFloatEdit'BallisticProV55.ConfigTab_Loadout.RequirementTimeEdit'
@@ -786,9 +530,9 @@ defaultproperties
          OnCreateComponent=RequirementFragsEdit.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Mimimum frags required to choose this weapon (benefit by killing lots)"
-         WinTop=0.400000
-         WinLeft=0.040000
-         WinWidth=0.420000
+         WinTop=0.705000
+         WinLeft=0.340000
+         WinWidth=0.300000
          WinHeight=0.040000
      End Object
      fl_RequiredFrags=moFloatEdit'BallisticProV55.ConfigTab_Loadout.RequirementFragsEdit'
@@ -801,9 +545,9 @@ defaultproperties
          OnCreateComponent=RequirementEffEdit.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Frags divided by Deaths efficiency required to access this weapon (benefit by not wasting lives)"
-         WinTop=0.450000
-         WinLeft=0.040000
-         WinWidth=0.420000
+         WinTop=0.755000
+         WinLeft=0.340000
+         WinWidth=0.300000
          WinHeight=0.040000
      End Object
      fl_RequiredEfficiency=moFloatEdit'BallisticProV55.ConfigTab_Loadout.RequirementEffEdit'
@@ -816,9 +560,9 @@ defaultproperties
          OnCreateComponent=RequirementDmgRtEdit.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Damage Inflicted divided by Kills. How much the player has contibuted to kills (benfit by targeting strong players)"
-         WinTop=0.500000
-         WinLeft=0.040000
-         WinWidth=0.420000
+         WinTop=0.805000
+         WinLeft=0.340000
+         WinWidth=0.300000
          WinHeight=0.040000
      End Object
      fl_RequiredDmgRate=moFloatEdit'BallisticProV55.ConfigTab_Loadout.RequirementDmgRtEdit'
@@ -831,9 +575,9 @@ defaultproperties
          OnCreateComponent=RequirementDmgRtEdit.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Headshot kills divided by deaths. How efficient the player is at headshots (benfit by getting headshots and avoiding death)"
-         WinTop=0.550000
-         WinLeft=0.040000
-         WinWidth=0.420000
+         WinTop=0.655000
+         WinLeft=0.670000
+         WinWidth=0.310000
          WinHeight=0.040000
      End Object
      fl_RequiredSnprEff=moFloatEdit'BallisticProV55.ConfigTab_Loadout.fl_RequiredSnprEffEdit'
@@ -846,9 +590,9 @@ defaultproperties
          OnCreateComponent=RequirementDmgRtEdit.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Gun kills divided by range and deaths. How efficient the player is at close combat with guns (benefit by using guns close up and avoiding death)"
-         WinTop=0.600000
-         WinLeft=0.040000
-         WinWidth=0.420000
+         WinTop=0.705000
+         WinLeft=0.670000
+         WinWidth=0.310000
          WinHeight=0.040000
      End Object
      fl_RequiredStgnEff=moFloatEdit'BallisticProV55.ConfigTab_Loadout.fl_RequiredStgnEffEdit'
@@ -861,28 +605,29 @@ defaultproperties
          OnCreateComponent=RequirementDmgRtEdit.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Kills minus deaths with traps and hazardous weapons divided by deaths. (benfit by killing with hazardous weapons and avoiding death)"
-         WinTop=0.650000
-         WinLeft=0.040000
-         WinWidth=0.420000
+         WinTop=0.755000
+         WinLeft=0.670000
+         WinWidth=0.310000
          WinHeight=0.040000
      End Object
      fl_RequiredHzrdEff=moFloatEdit'BallisticProV55.ConfigTab_Loadout.fl_RequiredHzrdEffEdit'
 
-     BoxNames(0)="Melee"
-     BoxNames(1)="Sidearm"
-     BoxNames(2)="Primary"
-     BoxNames(3)="Secondary"
-     BoxNames(4)="Grenade"
-     Headings(0)="Melee"
-     Headings(1)="Sidearms"
-     Headings(2)="Sub Machineguns"
-     Headings(3)="Assault Rifles"
-     Headings(4)="Energy Weapons"
-     Headings(5)="Heavy Machineguns"
-     Headings(6)="Shotguns"
-     Headings(7)="Ordnance"
-     Headings(8)="Sniper Rifles"
-     Headings(9)="Grenades"
-     Headings(10)="Miscellaneous"
-     Headings(11)="Non-BW"
+	BoxNames(0)="Melee"
+	BoxNames(1)="Sidearm"
+	BoxNames(2)="Primary"
+	BoxNames(3)="Secondary"
+	BoxNames(4)="Grenade"
+	ChosenCaptionFormat="In %s"
+	Headings(0)="Melee"
+	Headings(1)="Sidearms"
+	Headings(2)="Sub Machineguns"
+	Headings(3)="Assault Rifles"
+	Headings(4)="Energy Weapons"
+	Headings(5)="Heavy Machineguns"
+	Headings(6)="Shotguns"
+	Headings(7)="Ordnance"
+	Headings(8)="Sniper Rifles"
+	Headings(9)="Grenades"
+	Headings(10)="Miscellaneous"
+	Headings(11)="Non-BW"
 }

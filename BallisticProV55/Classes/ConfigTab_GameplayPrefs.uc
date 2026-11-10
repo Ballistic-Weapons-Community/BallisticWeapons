@@ -12,6 +12,7 @@ class ConfigTab_GameplayPrefs extends ConfigTabBase;
 var automated moComboBox		co_ADSHandling, co_ModeMemory;
 var automated moFloatEdit		fl_ZoomTimeMod;
 var automated moCheckbox		ch_WeaponUI, ch_SimpleDeathMessages, ch_LessDisruptiveFlash;
+var automated GUILabel		l_Aiming, l_Weapons, l_Screen;	// section headings
 
 function LoadSettings()
 {
@@ -69,6 +70,40 @@ function DefaultSettings()
 
 defaultproperties
 {
+	Begin Object Class=GUILabel Name=l_AimingLabel
+		Caption="Aiming"
+		TextAlign=TXTA_Left
+		TextColor=(B=0,G=180,R=255,A=255)
+		TextFont="UT2MenuFont"
+		WinTop=0.080000
+		WinLeft=0.250000
+		WinWidth=0.500000
+		WinHeight=0.040000
+	End Object
+	l_Aiming=GUILabel'BallisticProV55.ConfigTab_GameplayPrefs.l_AimingLabel'
+	Begin Object Class=GUILabel Name=l_WeaponsLabel
+		Caption="Weapons"
+		TextAlign=TXTA_Left
+		TextColor=(B=0,G=180,R=255,A=255)
+		TextFont="UT2MenuFont"
+		WinTop=0.250000
+		WinLeft=0.250000
+		WinWidth=0.500000
+		WinHeight=0.040000
+	End Object
+	l_Weapons=GUILabel'BallisticProV55.ConfigTab_GameplayPrefs.l_WeaponsLabel'
+	Begin Object Class=GUILabel Name=l_ScreenLabel
+		Caption="Messages And Screen"
+		TextAlign=TXTA_Left
+		TextColor=(B=0,G=180,R=255,A=255)
+		TextFont="UT2MenuFont"
+		WinTop=0.420000
+		WinLeft=0.250000
+		WinWidth=0.500000
+		WinHeight=0.040000
+	End Object
+	l_Screen=GUILabel'BallisticProV55.ConfigTab_GameplayPrefs.l_ScreenLabel'
+
      Begin Object Class=moComboBox Name=co_ADSHandlingCombo
         ComponentJustification=TXTA_Left
         CaptionWidth=0.550000
@@ -76,7 +111,7 @@ defaultproperties
         OnCreateComponent=co_ADSHandlingCombo.InternalOnCreateComponent
         IniOption="@Internal"
         Hint="How the ADS key should function.||Default: Hold to raise the weapon into scope. Weapon stays in scope until key is pressed again.||Hold: Hold key to ADS. Release to lower.||Toggle: Press key to ADS. Press again to lower."
-        WinTop=0.10
+        WinTop=0.130000
         WinLeft=0.250000
      End Object
      co_ADSHandling=moComboBox'co_ADSHandlingCombo'
@@ -84,12 +119,12 @@ defaultproperties
 	 Begin Object Class=moComboBox Name=co_ModeCombo
          ComponentJustification=TXTA_Left
          CaptionWidth=0.550000
-         Caption="Weapon Mode Memory"
+         Caption="Fire Mode When Drawn"
          OnCreateComponent=co_ModeCombo.InternalOnCreateComponent
          IniOption="@Internal"
          IniDefault="High"
          Hint="Controls how Ballistic handles the initial weapon mode when a weapon is spawned. ||None - the set default mode is always used.||Last - the last used mode is used. ||Saved - uses the mode saved by the SetDefaultMode command.||Reset it with ClearDefaultMode and get its name with GetDefaultMode."
-         WinTop=0.15
+         WinTop=0.300000
          WinLeft=0.250000
      End Object
      co_ModeMemory=moComboBox'co_ModeCombo'
@@ -99,11 +134,11 @@ defaultproperties
          MaxValue=5.000000
          ComponentJustification=TXTA_Left
          CaptionWidth=0.700000
-         Caption="Zoom Time Mod"
+         Caption="Scope Zoom Speed"
          OnCreateComponent=fl_ZoomTimeModFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Multiplier for the rate of change of zoom levels. 1 to 4."
-         WinTop=0.20
+         WinTop=0.180000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -112,11 +147,11 @@ defaultproperties
 	 Begin Object Class=moCheckBox Name=ch_WeaponUICheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Weapon Selection UI"
+         Caption="Weapon Selection Menu"
          OnCreateComponent=ch_WeaponUICheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Enable the selection UI when changing weapons."
-         WinTop=0.25
+         WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -129,7 +164,7 @@ defaultproperties
          OnCreateComponent=ch_SimpleDeathMessagesCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Renders death messages as Killer [Weapon] Killed"
-         WinTop=0.30
+         WinTop=0.470000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -142,7 +177,7 @@ defaultproperties
          OnCreateComponent=ch_LessDisruptiveFlashCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Screen flashes from weapons (flashbangs, gas, darts, tazers, lasers, fire) are black instead of white or coloured. They last as long and cover as much of the screen. The red flash when you are hurt stays red."
-         WinTop=0.35
+         WinTop=0.520000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

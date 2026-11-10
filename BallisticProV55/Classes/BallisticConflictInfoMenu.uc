@@ -13,6 +13,7 @@ var Automated GUIButton		BDone;
 var automated GUIHeader 	MyHeader;
 var automated GUILabel		l_StatTime, l_StatFrags, l_StatEfficiency, l_StatDamageRate, l_StatSniperEff, l_StatShotgunEff, l_StatHazardEff, l_StatHeading, l_StatTimeMy, l_StatFragsMy, l_StatEfficiencyMy, l_StatDamageRateMy, l_StatSniperEffMy, l_StatShotgunEffMy, l_StatHazardEffMy, l_StatHeadingMy;
 var automated GUIListBox	lb_Weapons;
+var BC_ListSearch			Search;		// the search row over the weapon list
 
 var() localized string StatTimeCaption;
 var() localized string StatFragsCaption;
@@ -37,6 +38,7 @@ var array<s_WeaponInfo> WeaponInfo;
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
 	Super.InitComponent(MyController, MyOwner);
+	Search = class'BC_ListSearch'.static.Create(self, lb_Weapons, lb_Weapons.List);
 }
 
 function LoadWeapons(MidGameTab_Conflict Source)
@@ -58,6 +60,8 @@ function LoadWeapons(MidGameTab_Conflict Source)
 		}
 	}
 	lb_Weapons.List.OnChange = InternalOnChange;
+	if (Search != None)
+		Search.Refresh();
 
 	l_StatTimeMy.Caption =		StatTimeCaption		$ ConflictMenu.CLRI.MySkillInfo.ElapsedTime;
 	l_StatFragsMy.Caption =		StatFragsCaption	$ int(PlayerOwner().PlayerReplicationInfo.Score);

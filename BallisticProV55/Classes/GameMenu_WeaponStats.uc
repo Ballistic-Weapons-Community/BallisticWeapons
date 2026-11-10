@@ -18,6 +18,7 @@ var Automated GUISectionBackground  GenBack, PriBack, AltBack;
 var Automated GUIButton			    BDone;
 var automated GUIHeader 		    MyHeader;
 var automated GUIListBox			lb_Weapons;
+var BC_ListSearch			Search;		// the search row over the weapon list
 var automated GUILabel			    l_WeaponCaption, 
 											lb_DShot, lb_DPS, lb_TTK, lb_RPM, lb_Recoil, lb_RPS,
 											lb_DShotAlt, lb_DPSAlt, lb_TTKAlt, lb_RPMAlt, lb_RecoilAlt, lb_RPSAlt,
@@ -171,6 +172,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	cb_Display.bReadOnly = True;
 
 	LoadList();
+	Search = class'BC_ListSearch'.static.Create(self, lb_Weapons, lb_Weapons.List);
 	bInitialized = true;
 	cb_Display.SetIndex(1);
 	SwitchDisplay(cb_Display.GetIndex());

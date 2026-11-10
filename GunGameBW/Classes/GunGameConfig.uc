@@ -9,7 +9,7 @@ class GunGameConfig extends Object
 	DependsOn(BC_GameStyle)
 	config(GunGameBW);
 
-var config array< class<Weapon> > 	WeaponList;			// The host's own level order, made in the Weapon List menu (GunGameBW.ini). Empty: the stock list
+var config array< class<Weapon> > 	WeaponList;			// The level order (GunGameBW.ini), written in full by the Weapon List menu; can be copied to a server or edited by hand. Empty: the stock list
 var array< class<Weapon> >			StockWeaponList;	// The level order GunGame comes with. The first weapon is the standard weapon
 
 const MIN_WEAPONS = 2;

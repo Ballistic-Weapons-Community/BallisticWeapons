@@ -11,6 +11,7 @@ class ConfigTab_Blood extends ConfigTabBase;
 var automated moCheckbox	ch_BloodDrags, ch_BloodImpacts, ch_BloodPools, ch_BloodSplats, ch_BloodExplodes, ch_BloodFX, ch_Stmups, ch_Chunks, ch_ScreenFX, ch_GibbableCorpses;
 var automated moFloatEdit	fl_BloodTimeScale;
 var automated moSlider		sl_GibMulti;
+var automated GUILabel		l_Blood, l_Gore, l_Heavy;	// section headings
 
 function LoadSettings()
 {
@@ -73,6 +74,40 @@ function DefaultSettings()
 
 defaultproperties
 {
+	Begin Object Class=GUILabel Name=l_BloodLabel
+		Caption="Blood"
+		TextAlign=TXTA_Left
+		TextColor=(B=0,G=180,R=255,A=255)
+		TextFont="UT2MenuFont"
+		WinTop=0.080000
+		WinLeft=0.250000
+		WinWidth=0.500000
+		WinHeight=0.040000
+	End Object
+	l_Blood=GUILabel'BallisticProV55.ConfigTab_Blood.l_BloodLabel'
+	Begin Object Class=GUILabel Name=l_GoreLabel
+		Caption="Gore"
+		TextAlign=TXTA_Left
+		TextColor=(B=0,G=180,R=255,A=255)
+		TextFont="UT2MenuFont"
+		WinTop=0.500000
+		WinLeft=0.250000
+		WinWidth=0.500000
+		WinHeight=0.040000
+	End Object
+	l_Gore=GUILabel'BallisticProV55.ConfigTab_Blood.l_GoreLabel'
+	Begin Object Class=GUILabel Name=l_HeavyLabel
+		Caption="Heavy On Performance"
+		TextAlign=TXTA_Left
+		TextColor=(B=0,G=180,R=255,A=255)
+		TextFont="UT2MenuFont"
+		WinTop=0.720000
+		WinLeft=0.250000
+		WinWidth=0.500000
+		WinHeight=0.040000
+	End Object
+	l_Heavy=GUILabel'BallisticProV55.ConfigTab_Blood.l_HeavyLabel'
+
 	 Begin Object Class=moCheckBox Name=ch_BloodFXCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
@@ -80,7 +115,7 @@ defaultproperties
          OnCreateComponent=ch_BloodFXCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles blood effects when damaging players."
-         WinTop=0.10000
+         WinTop=0.130000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -93,7 +128,7 @@ defaultproperties
          OnCreateComponent=ch_BloodDragsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles dead bodies leaving blood trails when they slide across surfaces."
-         WinTop=0.150000
+         WinTop=0.180000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -106,7 +141,7 @@ defaultproperties
          OnCreateComponent=ch_BloodImpactsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles blood marks caused by bodies impacting with surfaces at high speed."
-         WinTop=0.20000
+         WinTop=0.230000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -119,7 +154,7 @@ defaultproperties
          OnCreateComponent=ch_BloodPoolsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles dead bodies leaving pools when they are stationary."
-         WinTop=0.250000
+         WinTop=0.280000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -132,7 +167,7 @@ defaultproperties
          OnCreateComponent=ch_BloodSplatsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles blood spatter marks appearing on surfaces when players are damaged."
-         WinTop=0.30000
+         WinTop=0.330000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -145,7 +180,7 @@ defaultproperties
          OnCreateComponent=ch_BloodExplodesCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles horrendous blood effects when players are blown up."
-         WinTop=0.350000
+         WinTop=0.380000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -158,7 +193,7 @@ defaultproperties
          OnCreateComponent=ch_ChunksCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles gibs for dismemberment."
-         WinTop=0.40000
+         WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -171,7 +206,7 @@ defaultproperties
          OnCreateComponent=ch_StmupsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles spawning of stumps on severed limbs."
-         WinTop=0.450000
+         WinTop=0.600000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -184,7 +219,7 @@ defaultproperties
          OnCreateComponent=ch_ScreenFXCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles blood splashes and effects applied to the screen."
-         WinTop=0.50000
+         WinTop=0.430000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -195,11 +230,11 @@ defaultproperties
          MaxValue=100.000000
          ComponentJustification=TXTA_Left
          CaptionWidth=0.700000
-         Caption="Blood Stay Scale [!]"
+         Caption="Blood Stay Time Scale"
          OnCreateComponent=fl_BloodTimeScaleFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Scales the life time of blood effects. 0 = Forever."
-         WinTop=0.550000
+         WinTop=0.770000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -212,7 +247,7 @@ defaultproperties
          OnCreateComponent=ch_GibbableCorpsesCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles whether corpses can be gibbed."
-         WinTop=0.65000
+         WinTop=0.650000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -221,10 +256,10 @@ defaultproperties
      Begin Object Class=moSlider Name=sl_GibMultiSlider
          MaxValue=20.000000
          bIntSlider=True
-         Caption="Gib Multiplier [!]"
+         Caption="Gib Amount"
          OnCreateComponent=sl_GibMultiSlider.InternalOnCreateComponent
          Hint="Multiplies number of gibs spawned. 1 = Normal, 0 = None. WARNING: Higher than 1 may kill performance!"
-         WinTop=0.60000
+         WinTop=0.820000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
