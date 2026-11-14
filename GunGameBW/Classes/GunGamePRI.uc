@@ -81,10 +81,22 @@ function DelayedAdjustLevel( int value )
 
 function AdjustLevel( int value )
 {
+     local int WasLevel;
+
      if ( GunLevel < HighestLevel && !bInDelayedProcess )  //Do not overwrite the old gunlevel during delayed process
           OldGunLevel = GunLevel;
 
+     WasLevel = GunLevel;
      GunLevel = Clamp(Gunlevel+value, 1, HighestLevel); //GunLevel must always stay between 1 and HighestLevel
+
+     //Up to the last weapon of the list: tell everyone
+     if ( GunLevel == HighestLevel - 1 && WasLevel < GunLevel && GunLevel > 1 )
+     {
+          if ( GunGame(Level.Game) != None )
+               GunGame(Level.Game).AnnounceLastLevel(Self);
+          else if ( TeamGunGame(Level.Game) != None )
+               TeamGunGame(Level.Game).AnnounceLastLevel(Self);
+     }
      NetUpdateTime = Level.TimeSeconds - 1;
      ValidKills = 0;
 }
