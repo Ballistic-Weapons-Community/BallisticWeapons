@@ -12,10 +12,17 @@ class SRKSubMachinegun extends BallisticWeapon;
 var() bool		bFirstDraw;
 var() name		GrenadeLoadAnim;	//Anim for grenade reload
 var() bool		bLoaded;
+var   bool		bGrenadeTaken;		// server: the load playing has taken its grenade from the ammo
 
-var() name		GrenBone;			
+var() name		GrenBone;
 var() Sound		GrenSlideSound;		//Sounds for grenade reloading
 var() Sound		ClipInSoundEmpty;	//
+
+replication
+{
+	reliable if (Role < ROLE_Authority)
+		ServerGrenadeReady;
+}
 
 static function class<Pickup> RecommendAmmoPickup(int Mode)
 {
@@ -146,22 +153,58 @@ simulated function LoadGrenade()
 	if (Ammo[1].AmmoAmount < 1 || bLoaded)
 		return;
 	if (ReloadState == RS_None)
+	{
+		bGrenadeTaken = false;
 		PlayAnim(GrenadeLoadAnim, ReloadAnimRate+0.25, , 0);
+	}
+}
+
+// The owner's machine plays the grenade load and launches as soon as its own load is done. The server plays the same
+// load a trip later, so a launch straight after it was refused there (a ghost grenade on the owner's screen), and the
+// server's grenade went at the next press with no flash or sound for the owner. The owner says that its grenade is
+// loaded before the shot is asked for, and a load still running here is finished at once
+simulated function bool StartFire(int Mode)
+{
+	if (!Super.StartFire(Mode))
+		return false;
+	if (Role < ROLE_Authority && bLoaded)
+		ServerGrenadeReady();
+	return true;
+}
+
+function ServerGrenadeReady()
+{
+	local name Seq;
+	local float Frame, Rate;
+
+	if (bLoaded)
+		return;
+	GetAnimParams(0, Seq, Frame, Rate);
+	if (Seq != GrenadeLoadAnim)
+		return;
+	if (!bGrenadeTaken)
+		Notify_GrenLoaded();
+	Notify_GrenReady();
+	// the rest of the load would load it again
+	PlayAnim(IdleAnim, 1.0, 0.0);
 }
 
 // Notifys for greande loading sounds
 simulated function Notify_GrenVisible()	{	SetBoneScale (5, 1.0, GrenBone); ReloadState = RS_PreClipOut;}
 simulated function Notify_GrenSlide()	{	PlaySound(GrenSlideSound, SLOT_Misc, 2.2, ,64);	}
-simulated function Notify_GrenLoaded()	
+simulated function Notify_GrenLoaded()
 {
     	local Inventory Inv;
 
-	SRKSmgAttachment(ThirdPersonActor).bGrenadier=true;	
+	SRKSmgAttachment(ThirdPersonActor).bGrenadier=true;
 	SRKSmgAttachment(ThirdPersonActor).IAOverride(True);
 
 	// Server only: the count is replicated, and a client that also took one off counted the grenade twice
 	if (Role == ROLE_Authority)
+	{
 		Ammo[1].UseAmmo (1, True);
+		bGrenadeTaken = true;
+	}
 	if (Ammo[1].AmmoAmount == 0)
 	{
 		for ( Inv=Instigator.Inventory; Inv!=None; Inv=Inv.Inventory )

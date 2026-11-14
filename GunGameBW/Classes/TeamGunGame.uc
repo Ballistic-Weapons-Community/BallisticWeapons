@@ -36,6 +36,7 @@ var GunGamePRI 					timerKillerPRI;			//moving variables to Timer to execute wea
 var Controller 					timerKiller;
 
 var Sound 						LvlUpSound;				//sounds to play upon killing & reaching the final weapon
+var float 						LastLevelAnnounced[2];	//When each team was last told to everyone as on the last weapon
 
 //TeamGunGame-related
 var config byte 				Mode;					//Define how the game works: 0->Teams spawn nearby, everyone has one life each round; 1->Like TeamDeathmatch
@@ -1594,6 +1595,28 @@ function SetEquipmentWholeTeam(bool TeamAdjust, GunGamePRI KillerPRI, GunGamePRI
 			}	
 		}
 	}
+}
+
+//A team got to the last weapon of the list: tell everyone once (GunGamePRI.AdjustLevel, for each of its players)
+function AnnounceLastLevel(GunGamePRI PRI)
+{
+     local int T;
+
+     if ( PRI == None || PRI.GunLevel >= WeaponList.Length )
+          return;
+     if ( PRI.Team == None )
+     {
+          BroadcastLocalizedMessage( class'GGLastLevelMessage', 0, PRI, None, WeaponList[PRI.GunLevel] );
+          return;
+     }
+     T = PRI.Team.TeamIndex;
+     if ( T >= 0 && T < 2 )
+     {
+          if ( LastLevelAnnounced[T] == Level.TimeSeconds )
+               return;
+          LastLevelAnnounced[T] = Level.TimeSeconds;
+     }
+     BroadcastLocalizedMessage( class'GGLastLevelMessage', 1, PRI, None, WeaponList[PRI.GunLevel] );
 }
 
 //Give Killer a new weapons and initialize deletion of old weapon

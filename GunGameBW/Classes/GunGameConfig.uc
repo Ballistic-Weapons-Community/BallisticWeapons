@@ -9,22 +9,40 @@ class GunGameConfig extends Object
 	DependsOn(BC_GameStyle)
 	config(GunGameBW);
 
-var config array< class<Weapon> > 	WeaponList;			// The level order (GunGameBW.ini), written in full by the Weapon List menu; can be copied to a server or edited by hand. Empty: the stock list
+var config array<string>			WeaponList;			// The level order (GunGameBW.ini) as class names, written in full by the Weapon List menu; can be copied to a server or edited by hand. Empty: the stock list
 var array< class<Weapon> >			StockWeaponList;	// The level order GunGame comes with. The first weapon is the standard weapon
 
 const MIN_WEAPONS = 2;
 const MAX_WEAPONS = 255;	// GunGameGRI.HighestLevel is a byte
 
+// A list entry as written by the menu (Pkg.Class) or by the engine for a class (Class'Pkg.Class')
+static function class<Weapon> LoadWeaponClass(string Name)
+{
+	if (Left(Name, 6) ~= "Class'" && Right(Name, 1) == "'")
+		Name = Mid(Name, 6, Len(Name) - 7);
+	if (Name == "")
+		return None;
+	return class<Weapon>(DynamicLoadObject(Name, class'Class', true));
+}
+
 // The level order a game plays: the host's own list when it has enough weapons that load, else the stock list
 static function GetWeaponList(out array< class<Weapon> > List)
 {
 	local int i;
+	local class<Weapon> W;
 
 	List.Length = 0;
 
-	for (i = 0; i < default.WeaponList.Length; i++)
-		if (default.WeaponList[i] != None && List.Length < MAX_WEAPONS)
-			List[List.Length] = default.WeaponList[i];
+	// Kept as names and loaded here: as a config list of classes, a weapon whose package was not already in memory came in
+	// as None, so a fresh server left out every level that was not a stock GunGame weapon (hand grenades, knives...)
+	for (i = 0; i < default.WeaponList.Length && List.Length < MAX_WEAPONS; i++)
+	{
+		W = LoadWeaponClass(default.WeaponList[i]);
+		if (W != None)
+			List[List.Length] = W;
+		else if (default.WeaponList[i] != "")
+			Log("GunGameConfig: weapon "$default.WeaponList[i]$" does not load, left out of the list");
+	}
 
 	if (List.Length >= MIN_WEAPONS)
 		return;

@@ -1222,6 +1222,9 @@ function DriverDied()
 {
 	SaveTurretWeaponInfo();
 	super.DriverDied();
+	// as KDriverLeave does: a gun's loop (the XMV-850's barrel spin) is the turret's sound, and the gun was taken
+	// away with its gunner while it played, so it went on playing at the abandoned turret
+	AmbientSound = None;
 }
 
 // The turret cannot be hurt (TakeDamage passes nothing on), but code that kills the pawn a player controls kills it all

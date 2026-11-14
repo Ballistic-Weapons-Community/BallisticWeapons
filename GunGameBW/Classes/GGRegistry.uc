@@ -98,6 +98,16 @@ function Timer()
                          NoAmmoSwitch = None;
                     }
 
+                    //A level weapon that removes itself when it is used up (hand grenades) was gone from the inventory, so there was
+                    //nothing to give ammo to and the player was left without it for the rest of the level: give it again and switch
+                    //back to it at the next call. Not in a turret or vehicle, which has its own inventory
+                    if ( NewWeaponClass != None && xPawn(User.Pawn) != None && User.Pawn.FindInventoryType(NewWeaponClass) == None )
+                    {
+                         User.Pawn.CreateInventory( string(NewWeaponClass) );
+                         if ( User.Pawn.FindInventoryType(NewWeaponClass) != None )
+                              NoAmmoSwitch = NewWeaponClass;
+                    }
+
                     if ( !bUpdateAmmo )
                     {
                          for (Inv=User.Pawn.Inventory; Inv!= None; Inv=Inv.Inventory)
@@ -128,6 +138,19 @@ function Timer()
                               ClientSetWeapon(NoAmmoSwitch);
 
                          NoAmmoSwitch = None;
+                    }
+
+                    //A level weapon that removed itself when it was used up (hand grenades) is out of ammo too
+                    if ( NewWeaponClass != None && NewWeaponClass != StandardWeapon && PlayerPRI.GunLevel != 1 && xPawn(User.Pawn) != None
+                         && User.Pawn.FindInventoryType(NewWeaponClass) == None && NoProjectiles(NewWeaponClass) )
+                    {
+                         PlayerPRI.AdjustLevel( -1 );
+
+                         if ( GG != None )
+                              GG.SetEquipment(PlayerPRI, User.Pawn);
+                         else
+                              TGG.SetEquipment(PlayerPRI, User.Pawn);
+                         return;
                     }
 
                     for (Inv=User.Pawn.Inventory; Inv!= None; Inv=Inv.Inventory)

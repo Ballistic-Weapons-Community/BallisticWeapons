@@ -966,6 +966,14 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
      NotifyKilled(Killer,Killed,KilledPawn);
 }
 
+//A player got to the last weapon of the list: tell everyone (GunGamePRI.AdjustLevel)
+function AnnounceLastLevel(GunGamePRI PRI)
+{
+     if ( PRI == None || PRI.GunLevel >= WeaponList.Length )
+          return;
+     BroadcastLocalizedMessage( class'GGLastLevelMessage', 0, PRI, None, WeaponList[PRI.GunLevel] );
+}
+
 //Give Killer a new weapons and initialize deletion of old weapon
 function SetEquipment(GunGamePRI KillerPRI, Pawn KillerPawn)
 {

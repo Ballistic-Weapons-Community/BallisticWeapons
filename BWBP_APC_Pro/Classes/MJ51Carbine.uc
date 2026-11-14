@@ -12,6 +12,11 @@ class MJ51Carbine extends BallisticWeapon;
 var() name		GrenadeLoadAnim;	//Anim for grenade reload
 var()   bool		bLoaded;
 
+replication
+{
+	reliable if (Role < ROLE_Authority)
+		ServerGrenadeReady;
+}
 
 var() name		GrenBone;			
 var() name		GrenBoneBase;
@@ -187,6 +192,36 @@ simulated function LoadGrenade()
 		ReloadState = RS_GearSwitch;
 		PlayAnim(GrenadeLoadAnim, ReloadAnimRate+0.1, , 0);
 	}
+}
+
+// The owner's machine plays the grenade load and launches as soon as its own load is done. The server plays the same
+// load a trip later, so a launch straight after it was refused there (a ghost grenade on the owner's screen), and the
+// server's grenade went at the next press with no flash or sound for the owner. The owner says that its grenade is
+// loaded before the shot is asked for, and a load still running here is finished at once
+simulated function bool StartFire(int Mode)
+{
+	if (!Super.StartFire(Mode))
+		return false;
+	if (Role < ROLE_Authority && bLoaded && ReloadState == RS_None)
+		ServerGrenadeReady();
+	return true;
+}
+
+function ServerGrenadeReady()
+{
+	local name Seq;
+	local float Frame, Rate;
+
+	if (bLoaded && ReloadState == RS_None)
+		return;
+	GetAnimParams(0, Seq, Frame, Rate);
+	if (Seq != GrenadeLoadAnim)
+		return;
+	if (!bLoaded)
+		Notify_GrenLoaded();
+	Notify_GrenReady();
+	// the rest of the load would load it again
+	PlayAnim(IdleAnim, 1.0, 0.0);
 }
 
 // Animation notify for when the clip is stuck in
