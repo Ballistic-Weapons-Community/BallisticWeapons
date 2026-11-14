@@ -43,8 +43,9 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	Editor.MaxChosen = class'GunGameConfig'.static.MaxWeapons();
 	Editor.OnChosenChanged = ChosenChanged;
 
+	// the saved list as written, so a weapon not loaded yet is not lost from it
 	if (class'GunGameConfig'.default.WeaponList.Length > 0)
-		ClassNames(class'GunGameConfig'.default.WeaponList, Names);
+		SavedNames(Names);
 	else
 		ClassNames(class'GunGameConfig'.default.StockWeaponList, Names);
 	Editor.Chosen = Names;
@@ -61,6 +62,20 @@ function ClassNames(array< class<Weapon> > List, out array<string> Names)
 			Names[Names.Length] = string(List[i]);
 }
 
+function SavedNames(out array<string> Names)
+{
+	local int i;
+	local class<Weapon> W;
+
+	Names.Length = 0;
+	for (i = 0; i < class'GunGameConfig'.default.WeaponList.Length; i++)
+	{
+		W = class'GunGameConfig'.static.LoadWeaponClass(class'GunGameConfig'.default.WeaponList[i]);
+		if (W != None)
+			Names[Names.Length] = string(W);
+	}
+}
+
 function ChosenChanged(BC_WeaponListEditor Sender)
 {
 	l_Status.Caption = "";
@@ -68,8 +83,7 @@ function ChosenChanged(BC_WeaponListEditor Sender)
 
 function bool Save()
 {
-	local array<string> Names;
-	local array< class<Weapon> > List;
+	local array<string> Names, List;
 	local class<Weapon> W;
 	local int i;
 
@@ -78,7 +92,7 @@ function bool Save()
 	{
 		W = class<Weapon>(DynamicLoadObject(Names[i], class'Class', true));
 		if (W != None)
-			List[List.Length] = W;
+			List[List.Length] = string(W);
 	}
 
 	if (List.Length < class'GunGameConfig'.static.MinWeapons())
