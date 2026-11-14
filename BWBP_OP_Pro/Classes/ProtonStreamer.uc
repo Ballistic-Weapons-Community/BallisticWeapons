@@ -299,6 +299,21 @@ function Notify_SwitchPress()
 	}
 }
 
+// The proton charge is a meter: the stream fills it by hitting, the alt fire and the shield spend it, and the stream
+// will not fire while it is full (ProtonStreamPrimaryFire.StreamAllowFire). Resupplies that fill ammo to the top
+// (GunGame's unlimited ammo, Team Outfitting, allammo) left the primary dead until an alt fire emptied it, so they top
+// it up to the ammo's InitialAmount instead
+simulated function MaxOutAmmo()
+{
+	if (Ammo[0] != None && Ammo[0].AmmoAmount < Ammo[0].InitialAmount)
+		Ammo[0].AmmoAmount = Ammo[0].InitialAmount;
+}
+
+simulated function SuperMaxOutAmmo()
+{
+	MaxOutAmmo();
+}
+
 simulated function bool PutDown()
 {
 	if (Super.PutDown())
