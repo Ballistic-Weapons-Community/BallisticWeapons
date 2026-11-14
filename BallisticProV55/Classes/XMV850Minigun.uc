@@ -154,13 +154,31 @@ simulated function bool PutDown()
 	return false;
 }
 
+// the barrel loop is played as the holder's sound: a turret whose gun went while it spun kept playing it
+simulated function Destroyed()
+{
+	if (Instigator != None && Instigator.AmbientSound == BarrelSpinSound)
+		Instigator.AmbientSound = None;
+	Super.Destroyed();
+}
+
 simulated event Tick (float DT)
 {
 	local float OldBarrelTurn;
 
 	super.Tick(DT);
 
-	if (FireMode[0].IsFiring() && !bServerReloading)
+	// a gunner killed at the turret never lets go of fire on his own machine: there the barrel went on spinning, with
+	// its loop playing at full volume, until the gun was gone
+	if (Vehicle(Instigator) != None && !Vehicle(Instigator).bDriving)
+	{
+		if (BarrelSpeed > 0)
+		{
+			BarrelSpeed = 0;
+			Instigator.AmbientSound = None;
+		}
+	}
+	else if (FireMode[0].IsFiring() && !bServerReloading)
 	{
 		BarrelSpeed = BarrelSpeed + FClamp(DesiredSpeed - BarrelSpeed, -0.35*DT, GetRampUpSpeed() *DT);
 		BarrelTurn += BarrelSpeed * 655360 * DT;
