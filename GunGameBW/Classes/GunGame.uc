@@ -1023,6 +1023,48 @@ function SetEquipment(GunGamePRI KillerPRI, Pawn KillerPawn)
      }
 }
 
+// Ballistic's own kill rewards (the game style's kill reward, the Regeneration mutator's kill
+// bonus) are game rules too, and they heal past GunGame's limits. Cure Award is GunGame's
+// only kill reward, so whatever health or shield the game rules give the killer is taken back.
+function RulesScoreKill(Controller Killer, Controller Other)
+{
+     local Pawn P;
+     local xPawn XP;
+     local int OldHealth;
+     local float OldShield, OldSmallShield;
+
+     if ( GameRulesModifiers == None )
+          return;
+
+     if ( Killer != None )
+     {
+          P = Killer.Pawn;
+          if ( Vehicle(P) != None )
+               P = Vehicle(P).Driver;
+     }
+
+     if ( P != None )
+     {
+          XP = xPawn(P);
+          OldHealth = P.Health;
+          OldShield = P.ShieldStrength;
+          if ( XP != None )
+               OldSmallShield = XP.SmallShieldStrength;
+     }
+
+     GameRulesModifiers.ScoreKill(Killer, Other);
+
+     if ( P != None && !P.bDeleteMe && P.Health > 0 )
+     {
+          if ( P.Health > OldHealth )
+               P.Health = OldHealth;
+          if ( P.ShieldStrength > OldShield )
+               P.ShieldStrength = OldShield;
+          if ( XP != None && XP.SmallShieldStrength > OldSmallShield )
+               XP.SmallShieldStrength = OldSmallShield;
+     }
+}
+
 //Accessed nones appeared here, so I had to role back the original code to fix that....
 function ScoreKill(Controller Killer, Controller Other)
 {
@@ -1072,7 +1114,7 @@ function ScoreKill(Controller Killer, Controller Other)
      }
 
      if ( GameRulesModifiers != None )
-          GameRulesModifiers.ScoreKill(Killer, Other);
+          RulesScoreKill(Killer, Other);
 
      if ( Killer != None )
           CheckScore(Killer.PlayerReplicationInfo);
