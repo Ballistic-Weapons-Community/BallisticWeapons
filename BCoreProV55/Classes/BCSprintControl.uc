@@ -684,7 +684,10 @@ function AddSlow(float myFactor, float myDuration)
 		{
 			ActiveSlows[i].Duration -= TimerCounter;
 			if (ActiveSlows[i].Duration < 0.1)
+			{
 				ActiveSlows.Remove(i, 1);
+				i--;
+			}
 			else
 			{	
 				if (ActiveSlows[i].Duration < LowestDuration)
@@ -731,7 +734,10 @@ function SetSlow(float myFactor, float myDuration)
 		{
 			ActiveSlows[i].Duration -= TimerCounter;
 			if (ActiveSlows[i].Duration < 0.1)
+			{
 				ActiveSlows.Remove(i, 1);
+				i--;
+			}
 			else
 			{	
 				if (ActiveSlows[i].Duration < LowestDuration)
@@ -789,6 +795,8 @@ function Timer()
 		SlowFactor  =1.0f;
 		LowestDuration = 0.0f;
 	}
+	else
+		SlowFactor = LowestFactor;
 
 	if (bRemovedSlow)
 		UpdateSpeed();
