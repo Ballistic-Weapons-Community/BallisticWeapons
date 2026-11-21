@@ -42,9 +42,10 @@ simulated function TurretLaunchBeacon()
 	Spawn(class'MACBeacon_Heavy', Weapon, , StartTrace, Aim);
 }
 
-simulated function ModeDoFire ()
+// in the shot itself: ModeDoFire is called on every tick fire is held, also when it does not fire
+function DoFireEffect()
 {
-    Super.ModeDoFire();
+    Super.DoFireEffect();
 	if(Instigator != None  && class'Mut_Ballistic'.static.GetBPRI(Instigator.PlayerReplicationInfo) != None)
 		class'Mut_Ballistic'.static.GetBPRI(Instigator.PlayerReplicationInfo).AddFireStat(load, BW.InventoryGroup);
 }
