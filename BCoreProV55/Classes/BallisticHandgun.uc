@@ -1111,9 +1111,21 @@ simulated function StopScopeView(optional bool bNoAnim)
 }
 */
 
+// Server side check of a handgun the client wants to dual wield with this one: the client's choice can't be trusted
+function bool CanDualWith(BallisticHandgun Other)
+{
+	if (Other == None || Other == self || Other.Owner != Owner)
+		return false;
+	if (bDualBlocked || Other.bDualBlocked)
+		return false;
+	if (Other.Class != Class && (!bDualMixing || !Other.bDualMixing))
+		return false;
+	return true;
+}
+
 function ServerSwap(BallisticHandgun Other)
 {
-	if (Other == None)
+	if (Other == None || Other != OtherGun)
 		return;
 	DetachFromPawn(Instigator);
     Other.PendingHandgun = self;
@@ -1125,7 +1137,7 @@ function ServerSwap(BallisticHandgun Other)
 }
 function SetDualGun(BallisticHandgun NewSlave)
 {
-	if (NewSlave == None)
+	if (!CanDualWith(NewSlave))
 		return;
 	if (OtherGun != None)
 		OtherGun.DetachFromPawn(Instigator);
@@ -1244,6 +1256,8 @@ simulated function DoQuickDraw()
 
 function ServerDoQuickDraw(BallisticHandgun Other)
 {
+	if (!CanDualWith(Other))
+		Other = None;
     PendingHandgun = Other;
 }
 
