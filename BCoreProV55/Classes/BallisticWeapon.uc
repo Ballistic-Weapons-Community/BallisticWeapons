@@ -2565,9 +2565,13 @@ simulated function ChangeZoom (float Value)
 			NewZoomLevel = (90 - SoughtFOV) / 88;
 	}
 	if (NewZoomLevel > OldZoomLevel)
+	{
 		if (ZoomInSound.Sound != None)	class'BUtil'.static.PlayFullSound(self, ZoomInSound);
+	}
 	else if (NewZoomLevel < OldZoomLevel)
+	{
 		if (ZoomOutSound.Sound != None)	class'BUtil'.static.PlayFullSound(self, ZoomOutSound);
+	}
 	
 	PC.bZooming = true;
 	
