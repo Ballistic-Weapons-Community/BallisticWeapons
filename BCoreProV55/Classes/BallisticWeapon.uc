@@ -3387,8 +3387,21 @@ function UpdateSpeed()
 
 function ServerMeleeHold()
 {
+	local name Anim;
+	local float Frame, Rate;
+
 	if (MeleeFireMode == None || !HasAnim(MeleeFireMode.FireAnim))
 		return;
+	if (Instigator == None || Instigator.Weapon != self)
+		return;
+	// The client holds again once its own strike has ended: refuse a hold while this strike has barely started,
+	// or a modified client could strike as fast as it sends hold and release
+	if (MeleeState == MS_Strike)
+	{
+		GetAnimParams(0, Anim, Frame, Rate);
+		if (Anim == MeleeFireMode.FireAnim && Frame < 0.5)
+			return;
+	}
 	//PlayerController(InstigatorController).ClientMessage("ServerMeleeHold");
 	MeleeState = MS_Held;
 	ReloadState = RS_None;
@@ -3432,6 +3445,9 @@ simulated function MeleeReleaseImpl()
 
 final function ServerMeleeRelease()
 {
+	// A strike only follows a hold the server accepted
+	if (MeleeFireMode == None || MeleeState != MS_Held)
+		return;
 	//PlayerController(InstigatorController).ClientMessage("ServerMeleeRelease");
 	MeleeState = MS_Strike;
 	if (Instigator.IsLocallyControlled())
