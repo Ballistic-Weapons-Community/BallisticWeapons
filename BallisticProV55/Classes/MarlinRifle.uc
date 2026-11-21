@@ -92,6 +92,15 @@ exec simulated function SwitchWeaponMode (optional byte ModeNum)
 	super.SwitchWeaponMode(ModeNum);
 }
 
+// Gauss: only a full charge gives the accelerated shot, whatever a client asks for
+function ServerSwitchWeaponMode (byte NewMode)
+{
+	if (bHasGauss && NewMode != 0 && GaussLevel < MaxGaussLevel)
+		return;
+
+	super.ServerSwitchWeaponMode(NewMode);
+}
+
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	super.BringUp(PrevWeapon);
