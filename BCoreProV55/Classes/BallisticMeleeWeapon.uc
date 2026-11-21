@@ -120,6 +120,10 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 {
 	local class<BallisticDamageType> BDT;
 			
+	// BallisticWeapon.AdjustPlayerDamage is not called from here, so its berserk damage reduction is applied here
+	if (bBerserk && (InstigatedBy == None || InstigatedBy.Controller == None || !InstigatedBy.Controller.SameTeamAs(InstigatorController)))
+		Damage *= 0.75;
+
     if (InstigatedBy == None || InstigatedBy.Controller == None)
         return;
         

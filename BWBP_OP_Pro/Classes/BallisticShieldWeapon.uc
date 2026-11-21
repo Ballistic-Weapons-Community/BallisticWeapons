@@ -73,9 +73,6 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	
 	if (InstigatedBy != None && InstigatedBy.Controller != None && InstigatedBy.Controller.SameTeamAs(InstigatorController))
 		return;
-	
-	if (bBerserk)
-		Damage *= 0.75;
 
 	BDT = class<BallisticDamageType>(DamageType);
 	
