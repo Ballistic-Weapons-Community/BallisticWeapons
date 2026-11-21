@@ -97,18 +97,19 @@ function NotifyPutOut(vector DouseLoc, float DouseRad)
 {
 	local int i;
 	
-	for (i=0; i < Fires.Length; i++)
+	// Backwards: on a dedicated server Destroy takes the fire out of the list there and then (LostChild)
+	for (i=Fires.Length-1; i >= 0; i--)
 	{
 		if (Fires[i] == None)
 			continue; //required for updating GroundFireLocs
 			
 		if (VSize(Fires[i].Location - DouseLoc) <= DouseRad)
 		{
+			//Notify client that it must destroy fires
+			GroundFireSpots[Fires[i].SpotIndex] = vect(0,0,0);
 			if (Level.NetMode == NM_DedicatedServer)
 				Fires[i].Destroy();
 			else Fires[i].Kill();
-			//Notify client that it must destroy fires
-			GroundFireSpots[i] = vect(0,0,0);
 		}
 	}
 }
@@ -173,6 +174,7 @@ simulated function Initialize()
 				GF.InstigatorController = Instigator.Controller;
 
 			GF.FireControl = self;
+			GF.SpotIndex = i;
 
 			// Tell client where to spawn them
 			GroundFireSpots[i] = HitLoc;
@@ -199,7 +201,10 @@ simulated function PostNetReceive()
 			{
 				F = Spawn(class'FP7GroundFire',self,,GroundFireSpots[i], rot(0,0,0));
 				if (F != None)
+				{
 					F.Velocity = GroundFireSpots[i] - Location;
+					F.SpotIndex = i;
+				}
 			}
 		}
 		bClientFiresSpawned=True;
@@ -209,7 +214,7 @@ simulated function PostNetReceive()
 	{
 		for(i=0; i < Fires.Length; i++)
 		{
-			if (Fires[i] != None && GroundFireSpots[i] == vect(0,0,0))
+			if (Fires[i] != None && GroundFireSpots[Fires[i].SpotIndex] == vect(0,0,0))
 				Fires[i].Kill();
 		}
 	}
