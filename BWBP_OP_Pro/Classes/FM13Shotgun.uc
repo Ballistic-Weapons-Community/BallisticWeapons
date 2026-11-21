@@ -166,6 +166,10 @@ simulated function CommonLoadShell()
 
 function ServerLoadShell()
 {
+	// FirePressed checks this on the client only: a modified client could load shells it doesn't have.
+	// Its timing checks stay client side, a lagging server would refuse an honest client
+	if (!HasNonMagAmmo(1))
+		return;
 	CommonLoadShell();
 }
 
