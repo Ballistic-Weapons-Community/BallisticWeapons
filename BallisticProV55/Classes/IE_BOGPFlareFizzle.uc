@@ -30,23 +30,23 @@ simulated function SetupColor(int TeamNum)
 
 	Emitters[1].ColorMultiplierRange.X.Min=0.3;
 	Emitters[1].ColorMultiplierRange.X.Max=0.4;
-	Emitters[1].ColorMultiplierRange.Y.Max=0.3;
+	Emitters[1].ColorMultiplierRange.Y.Min=0.3;
 	Emitters[1].ColorMultiplierRange.Y.Max=0.4;
-	Emitters[1].ColorMultiplierRange.Z.Max=1.0;
+	Emitters[1].ColorMultiplierRange.Z.Min=1.0;
 	Emitters[1].ColorMultiplierRange.Z.Max=1.0;
 
 	Emitters[2].ColorMultiplierRange.X.Min=0.4;
 	Emitters[2].ColorMultiplierRange.X.Max=0.5;
-	Emitters[2].ColorMultiplierRange.Y.Max=0.4;
+	Emitters[2].ColorMultiplierRange.Y.Min=0.4;
 	Emitters[2].ColorMultiplierRange.Y.Max=0.5;
-	Emitters[2].ColorMultiplierRange.Z.Max=1.0;
+	Emitters[2].ColorMultiplierRange.Z.Min=1.0;
 	Emitters[2].ColorMultiplierRange.Z.Max=1.0;
 
 	Emitters[5].ColorMultiplierRange.X.Min=0.3;
 	Emitters[5].ColorMultiplierRange.X.Max=0.4;
-	Emitters[5].ColorMultiplierRange.Y.Max=0.4;
+	Emitters[5].ColorMultiplierRange.Y.Min=0.4;
 	Emitters[5].ColorMultiplierRange.Y.Max=0.6;
-	Emitters[5].ColorMultiplierRange.Z.Max=1.0;
+	Emitters[5].ColorMultiplierRange.Z.Min=1.0;
 	Emitters[5].ColorMultiplierRange.Z.Max=1.0;
 }
 
