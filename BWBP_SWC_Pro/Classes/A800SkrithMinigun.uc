@@ -83,8 +83,11 @@ function ServerStartReload (optional byte i)
 	super.ServerStartReload(i);
 }
 
+// Comes from the client and spreads the extra traces of a tick: no more than two turns a second
 function SetServerTurnVelocity (int NewTVYaw, int NewTVPitch)
 {
+	NewTVYaw = Clamp(NewTVYaw, -131072, 131072);
+	NewTVPitch = Clamp(NewTVPitch, -131072, 131072);
 	A800MinigunPrimaryFire(FireMode[0]).TurnVelocity.Yaw = NewTVYaw;
 	A800MinigunPrimaryFire(FireMode[0]).TurnVelocity.Pitch = NewTVPitch;
 	A800MinigunSecondaryFire(FireMode[1]).TurnVelocity.Yaw = NewTVYaw;

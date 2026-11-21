@@ -381,8 +381,11 @@ simulated function bool IsReloadingGrenade()
 	return false;
 }
 
+// Comes from the client and spreads the extra traces of a tick: no more than two turns a second
 function SetServerTurnVelocity (int NewTVYaw, int NewTVPitch)
 {
+	NewTVYaw = Clamp(NewTVYaw, -131072, 131072);
+	NewTVPitch = Clamp(NewTVPitch, -131072, 131072);
 	Z250PrimaryFire(FireMode[0]).TurnVelocity.Yaw = NewTVYaw;
 	Z250PrimaryFire(FireMode[0]).TurnVelocity.Pitch = NewTVPitch;
 }
