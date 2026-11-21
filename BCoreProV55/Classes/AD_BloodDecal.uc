@@ -13,6 +13,9 @@ var() Globalconfig float	StayScale;		// Scales the life time of blood decals. 0 
 
 event PostBeginPlay()
 {
+	// InitDecal runs this again for a decal started later: scale its life only then
+	if (bWaitForInit)
+		return;
 	if (StayScale >= 0)
 		StayTime *= StayScale;
     Super.PostBeginPlay();
