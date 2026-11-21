@@ -229,6 +229,7 @@ simulated function SpawnTracer(byte IsDoubleFire, Vector V)
 	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
 		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && AmmoType == SHOT_AMMO) || (WaterTracerMode == MU_Primary && AmmoType != SLUG_AMMO)))
 	{
+		Tracer = None;
 		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
 			Tracer = Spawn(WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
 		if (Tracer != None)

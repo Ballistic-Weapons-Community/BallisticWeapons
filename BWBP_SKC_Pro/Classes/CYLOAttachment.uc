@@ -227,6 +227,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh 
     && ModeInfos[Mode].WaterTracerClass != None && ModeInfos[Mode].bWaterTracer)
 	{
+		Tracer = None;
 		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
 			Tracer = Spawn(ModeInfos[Mode].WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
 		if (Tracer != None)
