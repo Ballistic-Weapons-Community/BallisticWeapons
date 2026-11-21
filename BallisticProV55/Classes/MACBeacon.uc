@@ -27,6 +27,9 @@ simulated function PostBeginPlay()
 		if (StartDelay == 0)
 			SetInitialSpeed(true);
 	}
+
+	// the ring shows the blast of a shell that has flown as far as a beacon does
+	SetLongRangeBlast();
 }
 
 simulated function InitEffects ()
