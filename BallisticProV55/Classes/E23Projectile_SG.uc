@@ -16,7 +16,7 @@ replication
 		NetY, NetP;
 }
 
-event PostBeginPlay()
+simulated event PostBeginPlay()
 {
 	if (level.NetMode != NM_Client && level.NetMode != NM_StandAlone)
 	{
