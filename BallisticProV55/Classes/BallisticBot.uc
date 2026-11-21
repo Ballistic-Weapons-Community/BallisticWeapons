@@ -1,5 +1,7 @@
 class BallisticBot extends xBot;
 
+var bool bSprintJumpy; // Jumpiness was raised for a sprint and is taken back when the state ends
+
 function MaySlideToMoveTarget()
 {
     local vector Dir, NewDir;
@@ -69,7 +71,11 @@ state Roaming
     function EndState()
     {
         super.EndState();
-        Jumpiness -= 0.3;
+        if (bSprintJumpy)
+        {
+            Jumpiness -= 0.3;
+            bSprintJumpy = false;
+        }
         if(BallisticPawn(Pawn) != None && BallisticPawn(Pawn).Sprinter != none)
             BallisticPawn(Pawn).Sprinter.StopSprint();
     }
@@ -92,7 +98,11 @@ Begin:
     {
         BallisticPawn(Pawn).Sprinter.StartSprint();
         //log("BallisticBot: Sprinting to MoveTarget");
-        Jumpiness += 0.3;
+        if (!bSprintJumpy)
+        {
+            Jumpiness += 0.3;
+            bSprintJumpy = true;
+        }
     }
 DoneRoaming:
 	WaitForLanding();
@@ -120,7 +130,11 @@ state Fallback
     function EndState()
     {
         super.EndState();
-        Jumpiness -= 0.3;
+        if (bSprintJumpy)
+        {
+            Jumpiness -= 0.3;
+            bSprintJumpy = false;
+        }
         if(BallisticPawn(Pawn) != None && BallisticPawn(Pawn).Sprinter != none)
             BallisticPawn(Pawn).Sprinter.StopSprint();
     }
@@ -135,7 +149,11 @@ Moving:
     {
         BallisticPawn(Pawn).Sprinter.StartSprint();
         //log("BallisticBot: Sprinting to MoveTarget");
-        Jumpiness += 0.3;
+        if (!bSprintJumpy)
+        {
+            Jumpiness += 0.3;
+            bSprintJumpy = true;
+        }
     }
 	WhatToDoNext(14);
 	if ( bSoaking )
