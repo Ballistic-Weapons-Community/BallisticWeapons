@@ -263,7 +263,7 @@ state BlowingUp extends ShotDown
 		InitialState = 'BlowingUp';
 		if (Level.NetMode != NM_DedicatedServer)
 		{
-			Spawn(class'Mk77Projectile',,, Location - 100 * Normal(Velocity), Rot(0,16384,0));
+			Spawn(class'RedeemerExplosion',,, Location - 100 * Normal(Velocity), Rot(0,16384,0));
 			Spawn(class'IonCore',,, Location, Rotation);
 		}
 		MakeNoise(1.0);
