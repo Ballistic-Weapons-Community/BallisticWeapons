@@ -194,6 +194,10 @@ function TryUse(Pawn User)
 	local Weapon newWeapon;
 	local int AmmoAmount;
 
+	// Already set off (stepped on or shot): it is about to blow
+	if (bDetonated || bTearOff)
+		return;
+
 	Ammo = Ammunition(User.FindInventoryType(class'Ammo_BX5Mines'));
 	if(Ammo == None)
     {
