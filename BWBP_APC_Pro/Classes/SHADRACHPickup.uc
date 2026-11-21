@@ -1,7 +1,7 @@
 //=============================================================================
 // ChaffPickup.
 //=============================================================================
-class SHADRACHPickup extends BallisticWeaponPickup
+class SHADRACHPickup extends BallisticAmmoPickup
 	placeable;
 
 static function StaticPrecache(LevelInfo L)
@@ -37,17 +37,14 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
-     bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MOAC.MOACPickup'
-     PickupDrawScale=0.180000
-     bWeaponStay=False
-     InventoryType=Class'BWBP_APC_Pro.SRKSubMachinegun'
+     AmmoAmount=1
+     InventoryType=Class'BWBP_APC_Pro.Ammo_SHADRACH'
      RespawnTime=20.000000
-     PickupMessage="You picked up the MOA-C chaff grenade."
+     PickupMessage="You picked up a SHADRACH chaff grenade."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.GrenadePickup'
      StaticMesh=StaticMesh'BWBP_SKC_Static.MOAC.MOACPickup'
      bOrientOnSlope=True
      Physics=PHYS_None
-     DrawScale=2.000000
+     DrawScale=0.180000
      CollisionHeight=5.600000
 }

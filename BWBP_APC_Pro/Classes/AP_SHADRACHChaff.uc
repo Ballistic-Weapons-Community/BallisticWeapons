@@ -47,9 +47,9 @@ simulated function Destroyed()
 defaultproperties
 {
      AltAmmoClass=Class'BWBP_APC_Pro.SHADRACHPickup'
-     AmmoAmount=108
-     InventoryType=Class'BWBP_APC_Pro.Ammo_45APC'
-     PickupMessage="You got two 108 round 10mm HV magazines"
+     AmmoAmount=72
+     InventoryType=Class'BWBP_APC_Pro.Ammo_SRK'
+     PickupMessage="You picked up .45 HV SRK-205 magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWBP_APC_Static.SPXSmg.SPXSmg_Mag'
      DrawScale=0.100000
