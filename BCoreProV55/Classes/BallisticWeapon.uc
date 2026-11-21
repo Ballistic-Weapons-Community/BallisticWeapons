@@ -1963,7 +1963,7 @@ simulated function FirePressed(float F)
 			SkipReload();
 	}
 	//mod
-	else if (ReloadState == RS_None && bNeedCock && !bPreventReload && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime)
+	else if (ReloadState == RS_None && NeedsCocking() && !bPreventReload && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime)
 	{
 		CommonCockGun();
 		if (Level.NetMode == NM_Client)
@@ -3284,7 +3284,17 @@ simulated final function PlayPawnCockingInReload()
 // the player's own machine, so its cocking notify never tells the pawn
 simulated function bool CocksInBringUp()
 {
-	return bNeedCock && MagAmmo > 0 && HasAnim(CockSelectAnim);
+	return NeedsCocking() && MagAmmo > 0 && HasAnim(CockSelectAnim);
+}
+
+// With reloading off the magazine is endless and never reloaded, so a gun never needs cocking: no cock on bring up,
+// none after a bolt or pump shot, none for an empty pickup. Many fire classes set bNeedCock, so the flag is dropped
+// where the generic code asks for it (fire press, bring up, bots, AllowFire) instead of where it is set
+simulated final function bool NeedsCocking()
+{
+	if (bNoMag)
+		bNeedCock = false;
+	return bNeedCock;
 }
 //---------------------------------------------------------------------------
 // END WEAPON COCKING
@@ -4404,7 +4414,7 @@ function bool CanAttack(Actor Other)
 		return false;
 	}
 	
-	if (!bNonCocking && bNeedCock && !bNeedReload && MagAmmo > 0)
+	if (!bNonCocking && NeedsCocking() && !bNeedReload && MagAmmo > 0)
 	{
 		if (AIController(Instigator.Controller) != None)
 			CommonCockGun();
@@ -5233,7 +5243,7 @@ simulated event Timer()
         ClientState = WS_ReadyToFire;
 		if (class'BallisticWeapon'.default.CrosshairMode != CHM_Unreal && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 			HideStockCrosshair(true);
-		if (bNeedCock)
+		if (NeedsCocking())
 		{
 			if (BringUpTime == CockingBringUpTime)
 				bNeedCock = False;
@@ -5263,7 +5273,7 @@ simulated event Timer()
 					FireMode[Mode].DestroyEffects();
 		}
     }
-	else if (Clientstate == WS_None && bNeedCock)
+	else if (Clientstate == WS_None && NeedsCocking())
 	{
 		if (BringUpTime == CockingBringUpTime)
 			bNeedCock = False;
