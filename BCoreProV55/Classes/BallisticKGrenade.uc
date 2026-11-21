@@ -36,7 +36,7 @@ singular function BaseChange()
 simulated event ProcessTouch(actor Other, vector HitLocation)
 {
 	local float BoneDist;
-	local Vector VNorm;
+	local Vector VNorm, HitNorm;
 
 	if (Other == Instigator && (!bCanHitOwner || !bHasImpacted))
 		return;
@@ -60,7 +60,8 @@ simulated event ProcessTouch(actor Other, vector HitLocation)
 		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
 //		Other.TakeDamage(ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
 		SetPhysics(PHYS_None);
-	    VNorm = (Velocity dot (HitLocation - Other.Location)) * (HitLocation - Other.Location);
+	    HitNorm = Normal(HitLocation - Other.Location);
+	    VNorm = (Velocity dot HitNorm) * HitNorm;
 		Velocity = -VNorm * DampenFactor + (Velocity - VNorm) * DampenFactorParallel;
 		SetPhysics(PHYS_Karma);
 		KAddImpulse(Velocity*20, Location);
