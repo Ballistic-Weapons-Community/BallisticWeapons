@@ -48,16 +48,23 @@ simulated function Tick(float DT)
 	}
 }
 
-function Landed(vector HitNormal)
+simulated function Landed(vector HitNormal)
 {
 	HitWall(HitNormal, none);
 }
 
-function HitWall (vector HitNormal, actor Wall)
+// Simulated so that clients, which get their own copy of every pool, lay the splat under it too
+simulated function HitWall (vector HitNormal, actor Wall)
 {
 	local Projector P;
 	
 	SetPhysics(PHYS_None);
+	if (level.NetMode != NM_DedicatedServer)
+	{
+		P = Spawn(Class'AD_A500BlastSplat', Self,, Location, Rotator(-HitNormal));
+		if (BallisticDecal(P) != None && BallisticDecal(P).bWaitForInit)
+			BallisticDecal(P).InitDecal();
+	}
 	if (level.NetMode == NM_Client)
 		return;
 	bCollideWorld=false;
@@ -74,9 +81,6 @@ function HitWall (vector HitNormal, actor Wall)
 			Fear.TeamNum = Instigator.PlayerReplicationInfo.Team.TeamIndex;
 	}
     Fear.StartleBots();
-	P = Spawn(Class'AD_A500BlastSplat', Self,, Location, Rotator(-HitNormal));
-	if (BallisticDecal(P) != None && BallisticDecal(P).bWaitForInit)
-		BallisticDecal(P).InitDecal();
 }
 
 function PostBeginPlay()
