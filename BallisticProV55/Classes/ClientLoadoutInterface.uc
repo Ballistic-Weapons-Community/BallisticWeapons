@@ -258,7 +258,6 @@ defaultproperties
      ChangeInterval=60.000000
      bHidden=True
      bOnlyRelevantToOwner=True
-     bAlwaysRelevant=True
      bReplicateMovement=False
      bSkipActorPropertyReplication=True
      RemoteRole=ROLE_SimulatedProxy
