@@ -40,6 +40,10 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
 	local int Surf;
+
+	// The server's copy says where it went off (tear off, see BallisticProjectile.Explode)
+	if (!bNetTemporary && Role != ROLE_Authority)
+		return;
 	if (bExploded)
 		return;
 	if (ShakeRadius > 0 || MotionBlurRadius > 0)
@@ -57,7 +61,15 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	bExploded=true;
 
 	if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer)
+	{
+		Velocity = vect(0,0,0);
+		SetCollision(false,false,false);
+		TearOffHitNormal = HitNormal;
+		bTearOff = true;
+		// It skips its actor properties after the first send: without this the clients never hear of the tear off
+		bSkipActorPropertyReplication = false;
 		GotoState('NetTrapped');
+	}
 	else
 		Destroy();
 }
