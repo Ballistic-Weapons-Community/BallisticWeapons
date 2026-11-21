@@ -144,6 +144,10 @@ simulated function WeaponTick(float DT)
 	
 	Super.WeaponTick(DT);
 	
+	// no strike round and no recharge running (a Designator dropped during its cooldown): start the recharge
+	if (Role == ROLE_Authority && Ammo[0] != None && Ammo[0].AmmoAmount < 1 && FireMode[1] != None && FireMode[1].TimerInterval == 0)
+		ResupplyStart();
+	
 	if (bScopeView && Level.TimeSeconds > NextRangeFindTime)
 	{
 		Start = Instigator.Location + Instigator.EyePosition();
