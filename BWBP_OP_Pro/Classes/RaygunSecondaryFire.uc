@@ -96,10 +96,11 @@ function TryPlague(Actor Other)
 	if (AllowPlague(Other))
 	{
 		foreach Other.BasedActors(class'RaygunPlagueEffect', RPE)
-		{
+			break;
+
+		if (RPE != None)
 			RPE.ExtendDuration(4);
-		}
-		if (RPE == None)
+		else
 		{
 			RPE = Spawn(class'RaygunPlagueEffect',Other,,Other.Location);// + vect(0,0,-30));
 			RPE.Initialize(Other);
