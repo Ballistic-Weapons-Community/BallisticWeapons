@@ -388,10 +388,17 @@ simulated event Destroyed()
 
 function ServerSwitchSilencer(bool bNewValue)
 {
+	if (!bHasSuppressor)
+		return;
+	// The owner's own machine has already switched; a remote owner's repeat would stack the silencer figures
+	if (!Instigator.IsLocallyControlled() && bNewValue == bSilenced)
+		return;
+
 	if (!Instigator.IsLocallyControlled())
 		MG36PrimaryFire(FireMode[0]).SwitchSilencerMode(bNewValue);
 
-	MG36Attachment(ThirdPersonActor).bSilenced=bNewValue;	
+	if (MG36Attachment(ThirdPersonActor) != None)
+		MG36Attachment(ThirdPersonActor).bSilenced=bNewValue;	
 	PlaySuppressorAttachment(bNewValue);
 	bSilenced = bNewValue;
 	BFireMode[0].bAISilent = bSilenced;
@@ -399,6 +406,8 @@ function ServerSwitchSilencer(bool bNewValue)
 
 exec simulated function SwitchSilencer() 
 {
+	if (!bHasSuppressor)
+		return;
 	if (ReloadState != RS_None)
 		return;
 	if (Clientstate != WS_ReadyToFire)
