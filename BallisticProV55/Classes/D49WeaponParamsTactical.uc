@@ -192,8 +192,8 @@ defaultproperties
         MagAmmo=6
         InventorySize=3
 		bDualBlocked=True
-        RecoilParams(0)=RecoilParams'TacticalRecoilParams'
-        AimParams(0)=AimParams'TacticalAimParams'
+        RecoilParams(0)=RecoilParams'TacticalRecoilParams_Scope'
+        AimParams(0)=AimParams'TacticalAimParams_Scope'
         FireParams(0)=FireParams'TacticalFireParams'
         AltFireParams(0)=FireParams'TacticalAltFireParams'
     End Object 
