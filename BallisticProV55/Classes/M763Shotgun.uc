@@ -259,6 +259,9 @@ simulated function CommonLoadShell()
 
 function ServerLoadShell()
 {
+	// The client checks this before it asks, but the server must not load a shell it has no ammo for
+	if (bAltLoaded || !HasNonMagAmmo(1))
+		return;
 	CommonLoadShell();
 }
 
