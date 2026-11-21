@@ -277,7 +277,7 @@ simulated event DrawHAMRScope (Canvas C)
 	ScaleFactor = C.SizeX/1024.0;
 	VP = Instigator.GetViewRotation().Pitch;
 	if (VP > 32768)
-		VP -= 65546;
+		VP -= 65536;
 	RefPoint = 1280 - VP * 0.0625;
 	YS = (float(C.SizeY)/C.SizeX)*512;
 
@@ -317,7 +317,7 @@ simulated event DrawHAMRScope (Canvas C)
 
 			VP = Beacons[i].Aim.Pitch;
 			if (VP > 32768)
-				VP -= 65546;
+				VP -= 65536;
 			VP *= 0.0054931640625;
 			s = VP $ "�";
 			C.TextSize(s, XL, YL);
