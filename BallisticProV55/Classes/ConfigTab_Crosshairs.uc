@@ -193,7 +193,7 @@ function bool FirstPersonAimAllowed()
 // RESET and DEFAULTS act on the page shown (the first load is this tab's own)
 function LoadSettings()
 {
-	if (Page == 2 && PerWeapon != None && PerWeapon.bInitialized)
+	if (bInitialized && Page == 2 && PerWeapon != None && PerWeapon.bInitialized)
 		PerWeapon.LoadSettings();
 	else
 		LoadOwnSettings();
