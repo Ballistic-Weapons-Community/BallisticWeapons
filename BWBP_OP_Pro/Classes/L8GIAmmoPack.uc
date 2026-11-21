@@ -52,6 +52,8 @@ state GiveAmmoSelf
 				else
 					Inv=Inv.Inventory;
 			}
+			else
+				Inv=Inv.Inventory;
 		}
 		Count = 0;
 		//log("4");
