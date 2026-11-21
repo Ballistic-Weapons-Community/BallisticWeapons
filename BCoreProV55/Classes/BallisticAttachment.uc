@@ -1100,7 +1100,11 @@ function UpdateBlockHit();
 // Tell client to do wall penetrate effects and call local ones for listenserver or standalone games
 function UpdateWallPenetrate(byte Mode, vector HitLocation, vector HitNormal, int HitSurf, optional bool bExit)
 {
-	WallPenetrates = Max(WallPenetrates+1, 1);
+	// 1 to 255: 0 tells the client there was none
+	if (WallPenetrates == 255)
+		WallPenetrates = 1;
+	else
+		WallPenetrates++;
 	WallPenetrateEffect(Mode, HitLocation, HitNormal, HitSurf, bExit);
 }
 // Spawn some wall penetration effects...
