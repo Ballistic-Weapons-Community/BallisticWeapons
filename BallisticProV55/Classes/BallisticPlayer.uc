@@ -752,7 +752,10 @@ exec function GetWeaponOrSubclass(class<Weapon> NewWeaponClass )
 		Pawn.PendingWeapon = None;
 		return;
 	}
-	Pawn.Weapon.PutDown();
+	if (Pawn.Weapon != None)
+		Pawn.Weapon.PutDown();
+	else
+		Pawn.ChangedWeapon();
 	return;
 }
 
