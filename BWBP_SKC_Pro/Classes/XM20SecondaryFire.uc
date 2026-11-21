@@ -29,27 +29,6 @@ var() sound		ChargeSound;
 var() sound		PowerFireSound;
 var() sound		RegularFireSound;
 
-function StartBerserk()
-{
-	super.StopBerserk();
-	if (XM20Carbine(BW).bOvercharged)
-		FireRate=default.OverChargedFireRate*0.75;
-}
-
-function StopBerserk()
-{
-	super.StopBerserk();
-	if (XM20Carbine(BW).bOvercharged)
-		FireRate=default.OverChargedFireRate;
-}
-
-function StartSuperBerserk()
-{
-	super.StartSuperBerserk();
-	if (XM20Carbine(BW).bOvercharged)
-		FireRate = default.OverChargedFireRate/Level.GRI.WeaponBerserk;
-}
-
 simulated state Shield
 {
 	simulated function bool AllowFire()
@@ -310,8 +289,7 @@ simulated function SwitchLaserMode (byte NewMode)
 		XM20Carbine(BW).bOvercharged=false;
 		XM20Carbine(BW).ChargeRate=XM20Carbine(BW).default.ChargeRate;
     }
-	if (Weapon.bBerserk)
-		FireRate *= 0.75;
+	// The mode switch has just applied the mode's params, and StartBerserk with them
 	if ( Level.GRI.WeaponBerserk > 1.0 )
 	    FireRate /= Level.GRI.WeaponBerserk;
 }

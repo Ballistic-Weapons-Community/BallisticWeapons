@@ -327,10 +327,8 @@ simulated function ServerSwitchWeaponMode (byte NewMode)
 	PlaySound(ModeCycleSound,,4.7,,32);
 		
 	super.ServerSwitchWeaponMode(NewMode);
-	
-	if (!Instigator.IsLocallyControlled())
-		XM20SecondaryFire(FireMode[1]).SwitchLaserMode(CurrentWeaponMode);
 
+	// Runs SwitchLaserMode here on the server, for remote owners too (it is not replicated)
 	ClientSwitchLaserMode (CurrentWeaponMode);
 }
 
