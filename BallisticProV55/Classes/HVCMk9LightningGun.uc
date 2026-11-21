@@ -322,7 +322,7 @@ simulated event WeaponTick(float DT)
 	else if (bWaterBurn)
 	{
 		bWaterBurn = false;
-		if (TimerRate == 0.2)
+		if (TimerRate == 0.4)
 			SetTimer(0.0, false);
 
 	}
