@@ -3489,6 +3489,8 @@ final function ApplyBlockFatigue(float value)
 
 simulated final function ClientApplyBlockFatigue(float value)
 {
+	if (Level.NetMode != NM_Client)
+		return;
 	MeleeFatigue = FMin(1, MeleeFatigue + value);
 }
 
