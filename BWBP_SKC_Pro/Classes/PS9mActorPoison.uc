@@ -73,7 +73,7 @@ defaultproperties
 {
      DamageType=Class'BWBP_SKC_Pro.DT_PS9mTranqPsn'
      Damage=5
-     BurnTime=2.500000
+     BurnTime=3.000000
      AutoDestroy=True
      bNoDelete=False
      bFullVolume=True
