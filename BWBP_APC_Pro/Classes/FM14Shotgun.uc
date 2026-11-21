@@ -214,6 +214,8 @@ simulated function CommonLoadShell()
 
 function ServerLoadShell()
 {
+	if (ReloadState != RS_None || bAltLoaded || !HasNonMagAmmo(1))
+		return;
 	CommonLoadShell();
 }
 
