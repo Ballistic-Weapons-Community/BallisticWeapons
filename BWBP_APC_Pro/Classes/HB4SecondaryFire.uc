@@ -132,6 +132,7 @@ function DoFireEffect()
 			DF *= EnemyDF;
 			if (PlayerController(C) != None)
 			{
+				VM = None;
 				for (i=0;i<C.Attached.length;i++)
 					if (HB4ViewMesser(C.Attached[i]) != None)
 					{

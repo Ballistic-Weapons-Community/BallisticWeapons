@@ -213,6 +213,7 @@ simulated state FlashbangLight
 				DF *= EnemyDF;
 				if (PlayerController(C) != None)
 				{
+					VM = None;
 					for (i=0;i<C.Attached.length;i++)
 						if (GRS9ViewMesser(C.Attached[i]) != None)
 						{

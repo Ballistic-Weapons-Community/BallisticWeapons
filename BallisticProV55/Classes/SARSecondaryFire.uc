@@ -265,6 +265,7 @@ simulated state Flash
 				DF *= EnemyDF;
 				if (PlayerController(C) != None)
 				{
+					VM = None;
 					for (i=0;i<C.Attached.length;i++)
 						if (AM67ViewMesser(C.Attached[i]) != None)
 						{
