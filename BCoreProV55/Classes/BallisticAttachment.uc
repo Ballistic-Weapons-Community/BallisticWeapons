@@ -331,7 +331,10 @@ simulated event PostNetReceive()
 		return;
 	if (DirectImpactCount != OldDirectImpactCount)
 	{
-		DoDirectHit(0, DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
+		if (DirectImpact.Mode < 2)
+			DoDirectHit(DirectImpact.Mode, DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
+		else
+			DoDirectHit(0, DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
 		OldDirectImpactCount = DirectImpactCount;
 	}
 	if (FireCount != OldFireCount)
