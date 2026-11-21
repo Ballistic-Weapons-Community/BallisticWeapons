@@ -379,7 +379,9 @@ function ShowPage(int i)
 	if (PerWeapon != None)
 	{
 		PerWeapon.SetVisibility(i == 2);
-		PerWeapon.ShowPanel(i == 2);
+		// its first showing loads every BW weapon class: only when it is opened
+		if (i == 2 || PerWeapon.bInitialized)
+			PerWeapon.ShowPanel(i == 2);
 	}
 }
 

@@ -101,6 +101,9 @@ function SaveSettings()
 
 	for (i=0;i<lb_Weapons.List.Elements.Length;i++)
 	{
+		// only the ones changed: saving each weapon's config is slow
+		if (class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData).default.NDCrosshairCfg == Crosshairs[i])
+			continue;
 		class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData).default.NDCrosshairCfg = Crosshairs[i];
 		class<BallisticWeapon>(lb_Weapons.List.Elements[i].ExtraData).static.StaticSaveConfig();
 	}
