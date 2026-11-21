@@ -161,6 +161,8 @@ simulated event Destroyed()
 function SetTarget(Actor T, bool bEvil)
 {
 	bIsEvil = bEvil;
+	// It can circle a place it never reaches. Set on the server only: a client's ball goes with the server's
+	LifeSpan = 20;
 	if (T != None)
 	{
 		SetTimer(0.1, true);
@@ -193,9 +195,10 @@ simulated function Tick(float DT)
 
 		Velocity = Normal(Velocity + V * 0.35) * Speed;
 
-		NextSeekerTime += 0.1;
+		NextSeekerTime = Level.TimeSeconds + 0.1;
 
-		if (Normal(Velocity) Dot Normal (V) > 0.6 && VSize(V) < Speed * 0.1)
+		// close to where the target was last seen: fly on straight
+		if (Normal(Velocity) Dot Normal (V) > 0.6 && VSize(LastLoc - Location) < Speed * 0.1)
 			bSeeking = false;
 	}
 	else
