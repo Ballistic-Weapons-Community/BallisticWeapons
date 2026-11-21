@@ -3867,7 +3867,8 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 
 	CheckBurstMode();
 
-	if (ModeHandling == MR_Last && Instigator.IsLocallyControlled())
+	// a bot's switch (local on a server) is not the player's choice
+	if (ModeHandling == MR_Last && Instigator.IsLocallyControlled() && Instigator.IsHumanControlled())
     {
         default.LastWeaponMode = CurrentWeaponMode;
     }
