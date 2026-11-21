@@ -140,7 +140,7 @@ defaultproperties
 		MaxHoldTime=0.0
 		AimedFireAnim="Fire"
 		FireAnimRate=0.8
-		FireEffectParams(0)=ShotgunEffectParams'ArenaPrimarySlugEffectParams'
+		FireEffectParams(0)=ShotgunEffectParams'ArenaPrimaryEffectParams_12SawnSlug'
 	End Object
 	
 	//=================================================================
