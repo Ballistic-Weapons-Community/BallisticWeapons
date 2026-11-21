@@ -301,6 +301,7 @@ simulated function SortList(byte group_index)
 	local int i, j;
 	local BC_WeaponInfoCache.WeaponInfo WI;
 	local array<BC_WeaponInfoCache.WeaponInfo> SortedWIs;
+	local array<string> Unsorted;
 	local int wiGroup, existingGroup;
 
 	//log("we sortin");
@@ -351,14 +352,20 @@ simulated function SortList(byte group_index)
             }
 
 		}
-        //else 
+		// Not in the cache (not a BW weapon, or it did not load): kept, after the sorted ones
+		else if (GetGroupItem(group_index, i) != "")
+			Unsorted[Unsorted.Length] = GetGroupItem(group_index, i);
+        //else
         //    Log("ClientOutfittingInterface: Failed to load "$ GetGroupItem(group_index, i) $" from cache");
 	}
-	
+
 	for (i = 0; i < SortedWIs.Length; ++i)
     {
 		SetGroupItem(SortedWIs[i].ClassName, group_index, i);
     }
+	// (written over the rest, so the list has no stale copies at its end)
+	for (i = 0; i < Unsorted.Length; ++i)
+		SetGroupItem(Unsorted[i], group_index, SortedWIs.Length + i);
 }
 
 function Initialize(Mut_Outfitting MO, PlayerController P)
