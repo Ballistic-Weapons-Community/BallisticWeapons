@@ -328,18 +328,32 @@ simulated function ClientGetStreakChoices()
 
 function ServerUpdateStreakChoices(string Streak1, string Streak2, byte Layout1, byte Layout2, byte Camo1, byte Camo2)
 {
-	local int i;
-	
+	local int i, j;
+	local array<string> Allowed;
+
 	Killstreaks[0] = Streak1;
 	Killstreaks[1] = Streak2;
 	Layouts[0] = Layout1;
 	Layouts[1] = Layout2;
 	Camos[0] = Camo1;
 	Camos[1] = Camo2;
-		
+
 	for (i=0; i < MAX_GROUPS; i++)
 	{
-		LastStreaks[i] = class<Weapon>(DynamicLoadObject(Killstreaks[i], Class'Class', True));
+		// the names come from the client: only load one that is in the server's list for the group
+		LastStreaks[i] = None;
+		if (Mut != None)
+		{
+			Allowed = Mut.GetGroup(i);
+			for (j=0; j < Allowed.Length; j++)
+			{
+				if (Allowed[j] ~= Killstreaks[i])
+				{
+					LastStreaks[i] = class<Weapon>(DynamicLoadObject(Killstreaks[i], Class'Class', True));
+					break;
+				}
+			}
+		}
 
 		if (BallisticPlayer(myController) != None)
 			BallisticPlayer(myController).LastStreaks[i] = LastStreaks[i];
