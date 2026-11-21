@@ -33,10 +33,16 @@ static function bool AutoInitBag (Sandbag S)
 //Maintain the bag maximum
 function TrimBags()
 {
+	local Sandbag S;
+
+	// Off the list before it goes. Its Destroyed takes it off the list too (RemoveBag), and removing index 0 after
+	// that dropped the next bag from the list while it stayed in the world
 	while (Bags.Length > MaxBags)
 	{
-		Bags[0].Destroy();
+		S = Bags[0];
 		Bags.Remove(0, 1);
+		if (S != None)
+			S.Destroy();
 	}
 }
 function AddBag(Sandbag S)
