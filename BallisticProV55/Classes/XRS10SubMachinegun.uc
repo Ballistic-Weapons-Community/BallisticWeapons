@@ -48,6 +48,14 @@ simulated function PlayIdle()
 		AimComponent.Recalculate();
 }
 
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
 simulated function ApplyLaserAim()
 {
 	AimComponent.AimAdjustTime *= 0.75;
