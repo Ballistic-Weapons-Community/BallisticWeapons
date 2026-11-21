@@ -153,9 +153,9 @@ simulated function float ChargeBar()
 
 simulated function OnLaserSwitched()
 {
-	if (bLaserOn)
-		ApplyLaserAim();
-	else
+	// Start from the params every time (OnAimParamsChanged applies the laser): this is called more than once per switch.
+	// Before the params are set there is nothing to do, setting them applies the laser
+	if (AimComponent.Params != None)
 		AimComponent.Recalculate();
 }
 
