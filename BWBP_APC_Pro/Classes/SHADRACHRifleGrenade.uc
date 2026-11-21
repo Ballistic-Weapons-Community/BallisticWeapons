@@ -32,7 +32,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
 {
 	local actor Victims;
-	local float damageScale, dist;
+	local float damageScale, dist, VictimRadius;
 	local vector dir;
     local bool can_see;
 
@@ -50,6 +50,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 		if( Victims.bCanBeDamaged && (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim && Victims != HurtWall)
 		{
             can_see = FastTrace(Victims.Location, Location);
+            VictimRadius = DamageRadius;
 
 			if (!can_see)
             {
@@ -59,7 +60,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
             // UNDerwater EXplosion damage
             else if (PhysicsVolume.bWaterVolume && Victims.PhysicsVolume == PhysicsVolume)
-                DamageRadius *= 3;
+                VictimRadius = DamageRadius * 3;
 
             damageScale = 1f;
 
@@ -75,7 +76,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
             if (can_see)
             {
                 if (RadiusFallOffType != RFO_None)
-                    damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius) / DamageRadius);
+                    damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius) / VictimRadius);
                 if (RadiusFallOffType == RFO_Quadratic)
                     damageScale = Square(damageScale);
             }
