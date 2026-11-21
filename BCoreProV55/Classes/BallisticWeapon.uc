@@ -3467,9 +3467,15 @@ final function ApplyAttackFatigue()
 {
 	local float Penalty;
 	
-	if (BallisticMeleeFire(FireMode[1]) != None && (FireMode[1].IsFiring() || BallisticMeleeFire(FireMode[0]) == None))
+	// a gun's own melee strike (MeleeFireClass): neither fire mode is a melee one
+	if (MeleeFireMode != None && MeleeState > MS_Pending)
+		Penalty = MeleeFireMode.FatiguePerStrike * 2.5;
+	else if (BallisticMeleeFire(FireMode[1]) != None && (FireMode[1].IsFiring() || BallisticMeleeFire(FireMode[0]) == None))
 		Penalty = BallisticMeleeFire(BFireMode[1]).FatiguePerStrike * 2.5;
-	else Penalty = BallisticMeleeFire(BFireMode[0]).FatiguePerStrike * 2.5;
+	else if (BallisticMeleeFire(BFireMode[0]) != None)
+		Penalty = BallisticMeleeFire(BFireMode[0]).FatiguePerStrike * 2.5;
+	else if (MeleeFireMode != None)
+		Penalty = MeleeFireMode.FatiguePerStrike * 2.5;
 	
 	ApplyBlockFatigue(Penalty);
 }
