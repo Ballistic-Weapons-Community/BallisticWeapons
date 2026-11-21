@@ -342,6 +342,10 @@ simulated event PostNetReceive()
 
 function ServerSwitchLaser(bool bNewLaserOn)
 {
+	// the Combat Laser calls this on every shot, and the laser's aim change is not to be made again
+	if (bLaserOn == bNewLaserOn)
+		return;
+
 	bLaserOn = bNewLaserOn;
     
 	if (ThirdPersonActor!=None)
@@ -355,10 +359,9 @@ function ServerSwitchLaser(bool bNewLaserOn)
 		ClientSwitchLaser();
 }
 
+// The aim change is made by the callers (ServerSwitchLaser, PostNetReceive)
 simulated function ClientSwitchLaser()
 {
-	OnLaserSwitched();
-
 	if (bLaserOn)
 	{
 		SpawnLaserDot();
