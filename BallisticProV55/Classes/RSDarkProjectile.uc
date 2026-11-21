@@ -128,8 +128,8 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 		bWasAlive = true;
 	*/
 		
-	// burn and block healing
-	if (Pawn(Other) != None)
+	// burn and block healing, enemies only
+	if (Pawn(Other) != None && (Instigator == None || Pawn(Other).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
 	{
 		for (i=0;i<Other.Attached.length;i++)
 		{
