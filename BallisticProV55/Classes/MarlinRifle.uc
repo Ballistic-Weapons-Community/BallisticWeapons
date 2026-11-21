@@ -284,11 +284,6 @@ simulated event RenderOverlays( Canvas Canvas )
 		DrawLaserSight(Canvas);
 }
 
-exec simulated function WeaponSpecial(optional byte i)
-{
-	ServerSwitchLaser(!bLaserOn);
-}
-
 //================================================================
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
