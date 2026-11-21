@@ -119,7 +119,6 @@ simulated state DirectFire
 	{
 		local actor Victims;
 		local vector X;
-		local float f;
 
 		if (!bDoOverCharge)
 		{
@@ -139,7 +138,7 @@ simulated state DirectFire
 					SetTimer(0.15, false);
 				}
 				else
-					class'BallisticDamageType'.static.GenericHurt (Victims, 50, Instigator, Victims.Location - X * Victims.CollisionRadius, f * KickForce * X, class'DT_HVCOverheat');
+					class'BallisticDamageType'.static.GenericHurt (Victims, 50, Instigator, Victims.Location - X * Victims.CollisionRadius, KickForce * X, class'DT_HVCOverheat');
 			}
 	}
 
