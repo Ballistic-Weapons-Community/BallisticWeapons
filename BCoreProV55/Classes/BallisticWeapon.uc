@@ -4544,7 +4544,9 @@ function bool BotFire(bool bFinished, optional name FiringMode)
 	if (!bNoMag && (bNeedReload || MagAmmo < 1))
 		BotReload(true);
 	else
-		Super.BotFire(bFinished, FiringMode);
+		return Super.BotFire(bFinished, FiringMode);
+
+	return false;
 }
 
 simulated function bool StartFire(int Mode)
