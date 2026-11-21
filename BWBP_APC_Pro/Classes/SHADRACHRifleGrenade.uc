@@ -41,7 +41,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 	bHurtEntry = true;
 	
-	if (Pawn(Victim) != None && Pawn(Victim).Health > 0 && Vehicle(Victim) == None)
+	if (AllowPlague(Victim))
 		ApplyPlague(Victim, 1);
 	
 	foreach CollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
@@ -103,7 +103,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 				GetMomentumVector(damageScale * dir),
 				DamageType
 			);
-			if (Pawn(Victims) != None && Pawn(Victims).Health > 0 && Vehicle(Victims) == None)
+			if (AllowPlague(Victims))
 				ApplyPlague(Victims, damageScale);
 		 }
 	}
@@ -114,6 +114,7 @@ function bool AllowPlague(Actor Other)
 {
 	return 
 		Pawn(Other) != None 
+		&& Other != Instigator
 		&& Pawn(Other).Health > 0 
 		&& Vehicle(Other) == None 
 		&& (Pawn(Other).GetTeamNum() == 255 || Instigator == None || Pawn(Other).GetTeamNum() != Instigator.GetTeamNum())
