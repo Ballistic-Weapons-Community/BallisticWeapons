@@ -271,7 +271,7 @@ function SendStreaks()
 		//If the current weapon is already in the weapon list, update its Boxes entry to indicate it's in multiple slots
 		//This shouldn't really happen
 		if (IsInList(Weaps, Mut.Streak2s[i], j))
-			Boxes[j] += 2;
+			Boxes[j] = Boxes[j] | 2;
 		else
 		{
 			//Insert weapon at end

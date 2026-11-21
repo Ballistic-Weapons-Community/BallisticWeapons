@@ -265,7 +265,7 @@ function SendWeapons ()
         if (Mut.RedLoadoutGroup0[i] == "")
             continue;
         if (IsInList(Weaps, Mut.RedLoadoutGroup0[i], j))
-            Redboxes[j] += 1;
+            Redboxes[j] = Redboxes[j] | 1;
         else
         {
             Weaps[Weaps.length] = Mut.RedLoadoutGroup0[i];
@@ -279,7 +279,7 @@ function SendWeapons ()
         if (Mut.RedLoadoutGroup1[i] == "")
             continue;
         if (IsInList(Weaps, Mut.RedLoadoutGroup1[i], j))
-            Redboxes[j] += 2;
+            Redboxes[j] = Redboxes[j] | 2;
         else
         {
             Weaps[Weaps.length] = Mut.RedLoadoutGroup1[i];
@@ -292,7 +292,7 @@ function SendWeapons ()
         if (Mut.RedLoadoutGroup2[i] == "")
             continue;
         if (IsInList(Weaps, Mut.RedLoadoutGroup2[i], j))
-            Redboxes[j] += 4;
+            Redboxes[j] = Redboxes[j] | 4;
         else
         {
             Weaps[Weaps.length] = Mut.RedLoadoutGroup2[i];
@@ -305,7 +305,7 @@ function SendWeapons ()
         if (Mut.RedLoadoutGroup3[i] == "")
             continue;
         if (IsInList(Weaps, Mut.RedLoadoutGroup3[i], j))
-            Redboxes[j] += 8;
+            Redboxes[j] = Redboxes[j] | 8;
         else
         {
             Weaps[Weaps.length] = Mut.RedLoadoutGroup3[i];
@@ -318,7 +318,7 @@ function SendWeapons ()
         if (Mut.RedLoadoutGroup4[i] == "")
             continue;
         if (IsInList(Weaps, Mut.RedLoadoutGroup4[i], j))
-            Redboxes[j] += 16;
+            Redboxes[j] = Redboxes[j] | 16;
         else
         {
             Weaps[Weaps.length] = Mut.RedLoadoutGroup4[i];
@@ -333,7 +333,7 @@ function SendWeapons ()
         if (Mut.BlueLoadoutGroup0[i] == "")
             continue;
         if (IsInList(Weaps, Mut.BlueLoadoutGroup0[i], j))
-            Blueboxes[j] += 1;
+            Blueboxes[j] = Blueboxes[j] | 1;
         else
         {
             Weaps[Weaps.length] = Mut.BlueLoadoutGroup0[i];
@@ -347,7 +347,7 @@ function SendWeapons ()
         if (Mut.BlueLoadoutGroup1[i] == "")
             continue;
         if (IsInList(Weaps, Mut.BlueLoadoutGroup1[i], j))
-            Blueboxes[j] += 2;
+            Blueboxes[j] = Blueboxes[j] | 2;
         else
         {
             Weaps[Weaps.length] = Mut.BlueLoadoutGroup1[i];
@@ -360,7 +360,7 @@ function SendWeapons ()
         if (Mut.BlueLoadoutGroup2[i] == "")
             continue;
         if (IsInList(Weaps, Mut.BlueLoadoutGroup2[i], j))
-            Blueboxes[j] += 4;
+            Blueboxes[j] = Blueboxes[j] | 4;
         else
         {
             Weaps[Weaps.length] = Mut.BlueLoadoutGroup2[i];
@@ -373,7 +373,7 @@ function SendWeapons ()
         if (Mut.BlueLoadoutGroup3[i] == "")
             continue;
         if (IsInList(Weaps, Mut.BlueLoadoutGroup3[i], j))
-            Blueboxes[j] += 8;
+            Blueboxes[j] = Blueboxes[j] | 8;
         else
         {
             Weaps[Weaps.length] = Mut.BlueLoadoutGroup3[i];
@@ -386,7 +386,7 @@ function SendWeapons ()
         if (Mut.BlueLoadoutGroup4[i] == "")
             continue;
         if (IsInList(Weaps, Mut.BlueLoadoutGroup4[i], j))
-            Blueboxes[j] += 16;
+            Blueboxes[j] = Blueboxes[j] | 16;
         else
         {
             Weaps[Weaps.length] = Mut.BlueLoadoutGroup4[i];

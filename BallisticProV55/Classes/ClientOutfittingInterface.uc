@@ -191,7 +191,7 @@ function SendWeapons ()
 		
 		//If the current weapon is already in the weapon list, update its Boxes entry to indicate it's in multiple slots
 		if (IsInList(Weaps, Mut.LoadoutGroup1[i], j))
-			Boxes[j] += 2;
+			Boxes[j] = Boxes[j] | 2;
 		else
 		{
 			//Insert weapon at end
@@ -206,7 +206,7 @@ function SendWeapons ()
 			continue;
 		//Third bit
 		if (IsInList(Weaps, Mut.LoadoutGroup2[i], j))
-			Boxes[j] += 4;
+			Boxes[j] = Boxes[j] | 4;
 		else
 		{
 			Weaps[Weaps.length] = Mut.LoadoutGroup2[i];
@@ -219,7 +219,7 @@ function SendWeapons ()
 			continue;
 		//Fourth bit
 		if (IsInList(Weaps, Mut.LoadoutGroup3[i], j))
-			Boxes[j] += 8;
+			Boxes[j] = Boxes[j] | 8;
 		else
 		{
 			Weaps[Weaps.length] = Mut.LoadoutGroup3[i];
@@ -231,7 +231,7 @@ function SendWeapons ()
 		if (Mut.LoadoutGroup4[i] == "")
 			continue;
 		if (IsInList(Weaps, Mut.LoadoutGroup4[i], j))
-			Boxes[j] += 16;
+			Boxes[j] = Boxes[j] | 16;
 		else
 		{
 			Weaps[Weaps.length] = Mut.LoadoutGroup4[i];
