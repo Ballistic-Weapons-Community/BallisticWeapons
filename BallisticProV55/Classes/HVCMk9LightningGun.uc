@@ -217,6 +217,8 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         Super(Inventory).GiveTo(Other);
         bPossiblySwitch = true;
         W = self;
+		// as in BallisticWeapon.GiveTo: the player on this machine needs it here
+		bDeferInitialSwitch = bServerDeferInitialSwitch;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
 		{
 			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
