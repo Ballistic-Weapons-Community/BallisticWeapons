@@ -57,19 +57,30 @@ function ServeCustomers()
 
 simulated function Tick(float DT)
 {
-	local int i;
 	if (Clouds.length > 0 && Clouds[Clouds.length-1] != None && Clouds[Clouds.length-1].Density < 4.0)
 	{
 		Clouds[Clouds.length-1].Density = FMin(1.5, Clouds[Clouds.length-1].Density + DT);
 		Clouds[Clouds.length-1].Emitters[0].InitialParticlesPerSecond = Clouds[Clouds.length-1].Density * 0.7;
 	}
 	if (LifeSpan < 3 && !bNoMore)
-	{
-		bNoMore = true;
-		for(i=0;i<Clouds.length;i++)
-			if (Clouds[i] != None)
+		KillClouds();
+}
+
+// Kill() never removes a cloud on a dedicated server: its emitters are off there, and an emitter with all of them
+// off is not destroyed by it. Clouds there go the way of those left behind by a moving grenade (Terminate)
+simulated function KillClouds()
+{
+	local int i;
+
+	bNoMore = true;
+	for(i=0;i<Clouds.length;i++)
+		if (Clouds[i] != None)
+		{
+			if (Level.NetMode == NM_DedicatedServer)
+				Clouds[i].Terminate(0.1);
+			else
 				Clouds[i].Kill();
-	}
+		}
 }
 
 function Timer()
@@ -138,10 +149,8 @@ function ServerSpawnCloud ()
 
 simulated function Destroyed()
 {
-	local int i;
-	for(i=0;i<Clouds.length;i++)
-		if (Clouds[i] != None)
-			Clouds[i].Kill();
+	if (!bNoMore)
+		KillClouds();
 	super.Destroyed();
 }
 
