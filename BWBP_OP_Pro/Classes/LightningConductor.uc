@@ -111,6 +111,11 @@ function Initialize(Actor InitialTarget)
 	//Check for nearby pawns. If "valid", will add to list of pawns to affect
 	ForEach RadiusActors(class'Pawn', PVictim, ConductionRadius)
 	{		
+		// MaxConductors counts the first target: at 1 there is nobody to conduct to. The check after the insert
+		// below never matched 1, so a weak shot conducted to every pawn in range
+		if (ShockTargets.Length >= MaxConductors)
+			break;
+
 		//skip to next victim if instigator, in order to not damage the instigator
 		if (PVictim == Instigator)
 		{
