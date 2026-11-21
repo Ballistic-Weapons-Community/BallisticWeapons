@@ -37,8 +37,11 @@ simulated function PostBeginPlay()
 
 function ServerSetBlocked(bool NewValue)
 {
+	if (NewValue && !bCanBlock)
+		return;
 	bBlocked=NewValue;
-	BallisticAttachment(ThirdPersonActor).SetBlocked(NewValue);
+	if (BallisticAttachment(ThirdPersonActor) != None)
+		BallisticAttachment(ThirdPersonActor).SetBlocked(NewValue);
 }
 
 // Melee weapons have no magazine and no reload anims. Starting a reload (e.g. X8 after picking up more knives)
