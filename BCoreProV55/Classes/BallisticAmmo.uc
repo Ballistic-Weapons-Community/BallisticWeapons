@@ -57,6 +57,10 @@ function bool AddAmmo(int AmmoToAdd)
 	if (Pawn(Owner) != None && Pawn(Owner).DrivenVehicle != None && BallisticTurret(Pawn(Owner).DrivenVehicle) != None &&
 		!BallisticTurret(Pawn(Owner).DrivenVehicle).DriverGetAmmo(self, AmmoToAdd))
 		return true;
+	// Auto turrets are not BallisticTurrets (they extend ASTurret)
+	if (Pawn(Owner) != None && Pawn(Owner).DrivenVehicle != None && BallisticAutoTurret(Pawn(Owner).DrivenVehicle) != None &&
+		!BallisticAutoTurret(Pawn(Owner).DrivenVehicle).DriverGetAmmo(self, AmmoToAdd))
+		return true;
 
 	return super.AddAmmo(AmmoToAdd);
 }
