@@ -503,7 +503,7 @@ simulated function AddHeat(float Amount)
 			BallisticInstantFire(FireMode[0]).DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormHotHead';
 			BallisticInstantFire(FireMode[0]).DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOFirestormHot';
 		}
-		if (HeatLevel >= 6.0)
+		else if (HeatLevel >= 6.0)
 		{
 			PlaySound(MedHeatSound,,0.7,,32);
 			if (level.Netmode != NM_DedicatedServer )
