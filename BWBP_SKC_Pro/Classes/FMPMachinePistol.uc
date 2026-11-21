@@ -66,6 +66,9 @@ exec simulated function ToggleAmplifier(optional byte i)
 
 function ServerSwitchAmplifier(bool bNewValue)
 {
+	if (bNewValue && !bHasAmp)
+		return;
+
 	bAmped = bNewValue;
 
 	SwitchAmplifier(bAmped);
@@ -199,7 +202,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	if (AIController(Instigator.Controller) != None)
 	{
-		bAmped = (FRand() > 0.5);
+		bAmped = bHasAmp && FRand() > 0.5;
 		ServerSwitchAmplifier(bAmped);
 		SwitchAmplifier(bAmped);
 		if (bAmped)
