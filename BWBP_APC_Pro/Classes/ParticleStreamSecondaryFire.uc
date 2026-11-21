@@ -154,10 +154,7 @@ function DoFireEffect()
 		ParticleStreamAttachment(Weapon.ThirdPersonActor).SetLockedTarget(Target);
 
 		if (Pawn(Target) != None && Instigator.Controller.SameTeamAs(Pawn(Target).Controller))
-		{
 			bDidHeal=True;
-			return;
-		}
 
 		if (xPawn(Target) != None && Pawn(Target).Health > 0)
 		{
@@ -170,13 +167,15 @@ function DoFireEffect()
 		if (bDidHeal)
 		{
 			//class'BallisticDamageType'.static.GenericHurt (Target, 0, Instigator, Target.Location + (Normal(Target.Location - Instigator.Location))*-24, 10000 * FMax(0.1, 1-(VSize(ForceDir)/2000)) * Normal(ForceDir), class'DTProtonStreamer');
-			ParticleStreamer(BW).BoostTarget = Pawn(Other);
+			ParticleStreamer(BW).BoostTarget = Pawn(Target);
+			ParticleStreamer(BW).DrainTarget = None;
 			bShouldUseAltColor=true;
 		}
 		else
 		{
 			//class'BallisticDamageType'.static.GenericHurt (Target, Damage, Instigator, Target.Location + (Normal(Target.Location - Instigator.Location))*-24, 30000 * FMax(0.1, 1-(VSize(ForceDir)/2000)) * Normal(ForceDir), class'DTProtonStreamer');
-			ParticleStreamer(BW).DrainTarget = Pawn(Other);
+			ParticleStreamer(BW).DrainTarget = Pawn(Target);
+			ParticleStreamer(BW).BoostTarget = None;
 			bShouldUseAltColor=false;
 		}
 		/*if (bWasAlive && Pawn(Target).Health <= 0)
@@ -192,6 +191,8 @@ function DoFireEffect()
 			EndEffect = HitLocation;
 		ParticleStreamAttachment(Weapon.ThirdPersonActor).SetLockedTarget(None);
 		ParticleStreamAttachment(Weapon.ThirdPersonActor).SetUnlockedEnd(EndEffect);
+		ParticleStreamer(BW).DrainTarget = None;
+		ParticleStreamer(BW).BoostTarget = None;
 	}/*ParticleStreamAttachment(Weapon.ThirdPersonActor).EndStream();	*/
 }
 
