@@ -598,6 +598,8 @@ function ShakeView()
 	if (bPredictRecoil && BW != None && Weapon.Role < ROLE_Authority)
 	{
 		BW.PredictRecoil(GetShotRecoil());
+		// the fire chaos ApplyRecoil adds on the server, which does not replicate it
+		BW.AddFireChaos(FireChaos);
 		ApplyPushback();
 	}
 }
