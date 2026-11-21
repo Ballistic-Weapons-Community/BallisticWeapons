@@ -351,6 +351,13 @@ simulated function KillLaserDot()
 		LaserDot = None;
 	}
 }
+// Death or a drop destroys the gun without a PutDown
+simulated function Destroyed()
+{
+	if (LaserDot != None)
+		LaserDot.Destroy();
+	Super.Destroyed();
+}
 simulated function SpawnLaserDot(optional vector Loc)
 {
 	if (LaserDot == None)
