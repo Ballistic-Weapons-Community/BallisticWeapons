@@ -215,10 +215,11 @@ simulated function Notify_GrenadeLeaveHand()
 		ClipReleaseTime=-1.0;
 }
 
+// i is the new state the server chose: 1 primed, 0 not
 simulated function ClientStartReload(optional byte i)
 {
 //	class'BUtil'.static.PlayFullSound(self, ClipReleaseSound);
-	if (!bPrimed)
+	if (i == 1)
 	{
 		bPrimed=true;
 		if(!IsFiring())
@@ -241,6 +242,12 @@ function ServerStartReload (optional byte i)
 		return;
 	if (FireMode[0].NextFireTime > Level.TimeSeconds || FireMode[1].NextFireTime > Level.TimeSeconds)
 		return;
+	// The server keeps its own bPrimed (the melee hit reads it here); a remote owner's client is told the result
+	if (bPrimed)
+		i = 0;
+	else
+		i = 1;
+	bPrimed = (i == 1);
 	ClientStartReload(i);
 }
 // Weapon special releases clip
