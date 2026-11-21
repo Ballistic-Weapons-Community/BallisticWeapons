@@ -420,7 +420,7 @@ simulated function FirePressed(float F)
 		// Removed and replaced by EmptyFire()
 //		ServerStartReload();
 	}
-	else if (reloadState == RS_None && bNeedCock && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime)
+	else if (reloadState == RS_None && NeedsCocking() && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime)
 	{
 		CommonCockGun();
 		if (Level.NetMode == NM_Client)

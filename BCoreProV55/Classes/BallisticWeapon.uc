@@ -3738,7 +3738,7 @@ function ServerStartReload (optional byte i)
 		
 	if (MagAmmo >= GetMagCapacity() + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking)))
 	{
-		if (bNeedCock)
+		if (NeedsCocking())
 			ServerCockGun(0);
 		return;
 	}

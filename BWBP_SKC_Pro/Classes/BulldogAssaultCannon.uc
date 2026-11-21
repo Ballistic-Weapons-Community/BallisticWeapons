@@ -358,7 +358,7 @@ simulated function FirePressed(float F)
 	
 	if (F == 0)
 	{
-		if (ReloadState == RS_None && (bNeedCock || !bAltNeedCock) && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime)
+		if (ReloadState == RS_None && (NeedsCocking() || !bAltNeedCock) && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime)
 		{
 			CommonCockGun();
 			if (Level.NetMode == NM_Client)

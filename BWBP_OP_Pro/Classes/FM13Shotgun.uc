@@ -138,7 +138,7 @@ simulated function FirePressed(float F)
 	
 	if (F == 0)
 	{
-		if (reloadState == RS_None && (bNeedCock || bAltLoaded) && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime)
+		if (reloadState == RS_None && (NeedsCocking() || bAltLoaded) && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime)
 		{
 			bAltLoaded=false;
 			CommonCockGun();
