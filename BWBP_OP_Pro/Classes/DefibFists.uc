@@ -179,7 +179,6 @@ function ElectroPulseWave( float DamageAmount, float DamageRadius, class<DamageT
 			if(IsValidHealTarget(PulseTarget))
 			{
 				PrevHealth = PulseTarget.Health;			
-				DamageAmount = 0;
 				PulseTarget.GiveAttributedHealth(5, 100, Instigator);
 				PointsHealed += PulseTarget.Health - PrevHealth;						
 				continue;
@@ -228,7 +227,6 @@ function ElectroShockWave( float DamageAmount, float DamageRadius, class<DamageT
 			if(IsValidHealTarget(ShockTarget))
 			{
 				PrevHealth = ShockTarget.Health;
-				DamageAmount = 0;
 				ShockTarget.GiveAttributedHealth(15, 100, Instigator);
 				PointsHealed += ShockTarget.Health - PrevHealth;	
 				continue;
