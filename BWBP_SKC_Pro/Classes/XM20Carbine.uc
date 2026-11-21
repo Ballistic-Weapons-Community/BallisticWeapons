@@ -490,20 +490,25 @@ simulated function TakeHit(int Drain)
 	{
 		//DebugMessage("TakeHit: Shield cancel");
 		
-		bShieldUp=false;
-		ServerSwitchShield(false);
-		AdjustShieldProperties();
-		
-		bBroken=true;
-		AmbientSound = None;
-		Instigator.AmbientSound = BrokenSound;
-		Instigator.SoundVolume = default.SoundVolume;
-		Instigator.SoundPitch = default.SoundPitch;
-		Instigator.SoundRadius = default.SoundRadius;
-		Instigator.bFullVolume = true;
+		BreakShield();
 	}
 	
     SetBrightness(true);
+}
+
+simulated function BreakShield()
+{
+	bShieldUp=false;
+	ServerSwitchShield(false);
+	AdjustShieldProperties();
+
+	bBroken=true;
+	AmbientSound = None;
+	Instigator.AmbientSound = BrokenSound;
+	Instigator.SoundVolume = default.SoundVolume;
+	Instigator.SoundPitch = default.SoundPitch;
+	Instigator.SoundRadius = default.SoundRadius;
+	Instigator.bFullVolume = true;
 }
 
 //=====================================================
@@ -548,6 +553,10 @@ function DoReflectEffectA(int Drain, bool Pierce)
 		PlaySound(ShieldHitSound, SLOT_None);
 		
 	ClientTakeHit(Drain);
+
+	// ClientTakeHit reaches a remote owner before the drained ShieldPower does, so his TakeHit can't see the shield run out
+	if (ShieldPower <= 0 && bShieldUp && !Instigator.IsLocallyControlled())
+		BreakShield();
 }
 
 simulated function ClientTakeHit(int Drain)
