@@ -74,9 +74,13 @@ function InitBomb(bool bThrown, bool bLaserOn, float HoldTime)
 	ThrowTime = HoldTime;
 	
 	//Check for shit.
-	foreach TouchingActors(class'Actor', TA)
+	// Not TouchingActors: the start delay has turned my collision off, so nothing is touching me yet. Test the cylinders instead
+	// (placed bombs only: a thrown one is still in the thrower's hand here)
+	foreach RadiusActors(class'Actor', TA, 128)
 	{
-		if (xPickUpBase(TA) != None || Pickup(TA) != None)
+		if (bDeployed && (xPickUpBase(TA) != None || Pickup(TA) != None)
+			&& Abs(TA.Location.Z - Location.Z) <= TA.CollisionHeight + CollisionHeight
+			&& VSize((TA.Location - Location) * vect(1,1,0)) <= TA.CollisionRadius + CollisionRadius)
 		{
 			bAntiLameMode = True;
 			return;
