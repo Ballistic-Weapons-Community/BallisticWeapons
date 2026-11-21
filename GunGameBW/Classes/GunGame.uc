@@ -1119,7 +1119,7 @@ function CheckScore(PlayerReplicationInfo Scorer)
 
          case 1:  if ( Scorer != None )
                   {
-                       if ( Scorer.Score >= GoalScore )  //GoalScore
+                       if ( GoalScore > 0 && Scorer.Score >= GoalScore )  //GoalScore (0 = no limit)
                             EndGame(Scorer,"FragLimit");
                        else if ( bOverTime )
                        {
