@@ -50,8 +50,8 @@ defaultproperties
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
          FadeOutStartTime=0.280000
          MaxParticles=16
-         StartLocationOffset=(Y=8.000000,Z=-4.000000)
-         StartLocationRange=(Y=(Max=8.000000),Z=(Min=-4.000000))
+         StartLocationOffset=(Y=-8.000000,Z=-4.000000)
+         StartLocationRange=(Y=(Min=-8.000000),Z=(Min=-4.000000))
          SpinsPerSecondRange=(X=(Max=2.000000))
          StartSpinRange=(X=(Max=1.000000))
          SizeScale(0)=(RelativeSize=0.200000)
@@ -64,7 +64,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          MinSquaredVelocity=1000.000000
          LifetimeRange=(Min=0.750000,Max=0.750000)
-         StartVelocityRange=(X=(Min=-50.000000,Max=250.000000),Y=(Max=100.000000),Z=(Min=-50.000000,Max=200.000000))
+         StartVelocityRange=(X=(Min=-50.000000,Max=250.000000),Y=(Min=-100.000000),Z=(Min=-50.000000,Max=200.000000))
      End Object
      Emitters(0)=SpriteEmitter'BallisticProV55.BG_ShoulderExplodeLeftBot.SpriteEmitter24'
 
@@ -85,8 +85,8 @@ defaultproperties
          FadeOutStartTime=0.980000
          FadeInEndTime=0.280000
          MaxParticles=6
-         StartLocationOffset=(Y=8.000000,Z=-4.000000)
-         StartLocationRange=(Y=(Max=4.000000))
+         StartLocationOffset=(Y=-8.000000,Z=-4.000000)
+         StartLocationRange=(Y=(Min=-4.000000))
          SpinsPerSecondRange=(X=(Max=0.050000))
          StartSpinRange=(X=(Max=1.000000))
          SizeScale(0)=(RelativeSize=0.200000)
@@ -98,7 +98,7 @@ defaultproperties
          Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
-         StartVelocityRange=(X=(Min=-10.000000,Max=40.000000),Y=(Min=10.000000,Max=30.000000),Z=(Min=-20.000000,Max=60.000000))
+         StartVelocityRange=(X=(Min=-10.000000,Max=40.000000),Y=(Min=-30.000000,Max=-10.000000),Z=(Min=-20.000000,Max=60.000000))
          VelocityLossRange=(X=(Min=1.500000,Max=1.500000),Y=(Min=1.500000,Max=1.500000),Z=(Min=3.000000,Max=3.000000))
      End Object
      Emitters(1)=SpriteEmitter'BallisticProV55.BG_ShoulderExplodeLeftBot.SpriteEmitter25'
@@ -116,15 +116,15 @@ defaultproperties
          ColorMultiplierRange=(X=(Min=0.000000,Max=0.000000),Y=(Min=0.500000,Max=0.900000),Z=(Min=0.600000))
          MaxParticles=4
          DetailMode=DM_SuperHigh
-         StartLocationOffset=(Y=8.000000,Z=-4.000000)
-         StartLocationRange=(Y=(Max=4.000000))
+         StartLocationOffset=(Y=-8.000000,Z=-4.000000)
+         StartLocationRange=(Y=(Min=-4.000000))
          StartSizeRange=(X=(Min=2.000000,Max=5.000000))
          InitialParticlesPerSecond=400.000000
          DrawStyle=PTDS_AlphaBlend
          Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.700000,Max=0.700000)
-         StartVelocityRange=(X=(Min=-50.000000,Max=350.000000),Y=(Max=100.000000),Z=(Min=-50.000000,Max=150.000000))
+         StartVelocityRange=(X=(Min=-50.000000,Max=350.000000),Y=(Min=-100.000000),Z=(Min=-50.000000,Max=150.000000))
      End Object
      Emitters(2)=TrailEmitter'BallisticProV55.BG_ShoulderExplodeLeftBot.TrailEmitter6'
 
