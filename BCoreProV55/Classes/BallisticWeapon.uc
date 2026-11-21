@@ -6563,7 +6563,7 @@ exec simulated final function SetDefaultMode()
 
 exec simulated final function ClearDefaultMode()
 {
-	SavedWeaponMode = default.CurrentWeaponMode;
+	SavedWeaponMode = 255; // none saved
 	Instigator.ClientMessage("Cleared default mode for"@ItemName$".");
 	SaveConfig();
 }
