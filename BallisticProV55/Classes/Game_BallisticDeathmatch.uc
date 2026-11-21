@@ -67,6 +67,9 @@ static function byte BallisticAllowMutator( string MutatorClassName )
 		if (MutatorClassName ~= default.InventoryMuts[i])
 			return 1;
 
+	// The inventory mutators add the preloader themselves
+	if (InStr(MutatorClassName, "Mut_BallisticPreLoad") >= 0)
+		return 1;
 	if (InStr(MutatorClassName, "Mut_Ballistic") >= 0)
 		return 0;
 	if (InStr(MutatorClassName, "Mut_Outfitting") >= 0)
