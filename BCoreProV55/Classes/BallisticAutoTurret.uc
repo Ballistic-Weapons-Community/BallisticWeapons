@@ -142,7 +142,8 @@ replication
 {
 	reliable if (Role == ROLE_Authority && !bNetOwner && bNetDirty)
 		GunRotationYaw, GunRotationPitch;
-	reliable if (Role < ROLE_Authority)
+	// Sent again every 0.25 s while unchanged, so a lost one is made up for
+	unreliable if (Role < ROLE_Authority)
 		ServerTurretRotation;
 //	reliable if ( (bNetInitial || bNetDirty) && Role==ROLE_Authority )
 //		bActive;
