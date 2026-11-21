@@ -268,6 +268,15 @@ simulated function SetStockRotation()
 	}
 }
 
+simulated function AnimEnded (int Channel, name anim, float frame, float rate)
+{
+	// melee swing over: the laser follows the aim again
+	if (Channel == 0 && (MeleeFireMode == None || Anim != MeleeFireMode.PreFireAnim))
+		bStriking = false;
+
+	Super.AnimEnded(Channel, anim, frame, rate);
+}
+
 simulated function PlayIdle()
 {
 	if (bStockExtended && !bStockBoneOpen)
