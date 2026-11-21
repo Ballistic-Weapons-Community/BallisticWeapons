@@ -26,8 +26,10 @@ var BUtil.FullSound DrumInSound, DrumOutSound;
 
 replication
 {
+	reliable if (Role == ROLE_Authority)
+		AltAmmo;
 	reliable if (Role < ROLE_Authority)
-		AltAmmo, ServerSwitchSilencer;
+		ServerSwitchSilencer;
 }
 
 //==================================================================
