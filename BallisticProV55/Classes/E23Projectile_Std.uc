@@ -68,7 +68,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	HealObjective = DestroyableObjective(Other);
 	if ( HealObjective == None )
 		HealObjective = DestroyableObjective(Other.Owner);
-	if ( HealObjective != None && HealObjective.TeamLink(Instigator.GetTeamNum()) )
+	if ( HealObjective != None && Instigator != None && HealObjective.TeamLink(Instigator.GetTeamNum()) )
 	{
 		HealObjective.HealDamage(AdjustedDamage, InstigatorController, myDamageType);
 		return;
