@@ -368,7 +368,7 @@ simulated function ClientSwitchWeaponMode (byte NewMode)
 
 exec simulated function ShieldDeploy(optional byte i) //Was previously weapon special
 {
-	if (ClientState != WS_ReadyToFire || bBroken)
+	if (!bShieldEquipped || ClientState != WS_ReadyToFire || bBroken)
 		return;
 		
 	if (bShieldUp)
@@ -385,6 +385,10 @@ function ServerSwitchShield(bool bNewValue)
 
 	//DebugMessage("ServerSwitchShield:"@bNewValue);
 	
+	// Anyone holding an XM20 can call ShieldDeploy from the console: only the shield layout raises it, and not while broken
+	if (bNewValue && (!bShieldEquipped || bBroken || ShieldPower <= 0))
+		return;
+
 	bShieldUp = bNewValue;
 	
     Attachment = XM20Attachment(ThirdPersonActor);
