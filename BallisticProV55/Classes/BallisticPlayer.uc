@@ -1282,6 +1282,14 @@ exec function Mutate(string MutateString)
 // Sprint on this client right away instead of when the server's answer to the Mutate gets here
 function PredictSprint(bool bSprint)
 {
+    // SpectateSpeed is not replicated: a spectating client flies at the speed ServerSetSprint gives the server's copy
+    if (Level.NetMode == NM_Client)
+    {
+        if (bSprint)
+            SpectateSpeed = default.SpectateSpeed * FlySpeedMulti;
+        else
+            SpectateSpeed = default.SpectateSpeed;
+    }
     if (Level.NetMode == NM_Client && BallisticPawn(Pawn) != None && BallisticPawn(Pawn).Sprinter != None)
         BallisticPawn(Pawn).Sprinter.PredictSprint(bSprint);
 }
