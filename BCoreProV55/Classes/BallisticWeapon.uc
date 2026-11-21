@@ -4158,10 +4158,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	
 	if (BallisticWeapon(PrevWeapon) != None)
 		AimComponent.DisplaceEndTime = BallisticWeapon(PrevWeapon).AimComponent.DisplaceEndTime;
-	
-	// Dumber bots take longer to change weapons
-	if (AIController(InstigatorController) != None && AIController(InstigatorController).Skill <= 4)
-		BringUpTime = default.BringUpTime*(2-(AIController(InstigatorController).Skill/4));
 
 	// Change certain skins to show team colors
 	if (Instigator.PlayerReplicationInfo != None && Instigator.PlayerReplicationInfo.Team != None)
@@ -4203,7 +4199,13 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 	if (CocksInBringUp())
 		BringUpTime = CockingBringUpTime;
-	else BringUpTime = default.BringUpTime;
+	else
+	{
+		BringUpTime = default.BringUpTime;
+		// Dumber bots take longer to change weapons (not a cocking pullout: Timer tells one by its BringUpTime)
+		if (AIController(InstigatorController) != None && AIController(InstigatorController).Skill <= 4)
+			BringUpTime *= 2 - AIController(InstigatorController).Skill / 4;
+	}
 	
 	if (!IsInState('PendingClientWeaponSet'))
 		SetTimer(BringUpTime, false);
