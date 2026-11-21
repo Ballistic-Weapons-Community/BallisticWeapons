@@ -384,7 +384,8 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	{
 		V = Instigator.Location + Instigator.EyePosition() + V * 1400;
 		Tracer = Spawn(class'TraceEmitter_HVCRedMiss', self, , GetModeTipLocation(), Rotator(V - GetModeTipLocation()));
-		Tracer.Initialize(Dist, float(ChargePower));
+		if (Tracer != None)
+			Tracer.Initialize(Dist, float(ChargePower)/255);
 		return;
 	}
 	Dist = VSize(V - GetModeTipLocation());
