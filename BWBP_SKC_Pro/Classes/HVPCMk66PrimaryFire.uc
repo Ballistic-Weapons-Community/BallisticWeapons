@@ -55,7 +55,7 @@ function DoFireEffect()
 		class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(1, 1);
 
 	SendFireEffect(none, vect(0,0,0), StartTrace, 0);
-	if (level.Netmode == NM_DedicatedServer && !Instigator.IsLocallyControlled())
+	if (!Instigator.IsLocallyControlled())
 		HVPCMk66PlasmaCannon(BW).AddHeat(5.00);
 }
 
