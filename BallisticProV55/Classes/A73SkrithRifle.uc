@@ -49,11 +49,14 @@ simulated event WeaponTick(float DT)
 
 	if (HeatLevel >= 7)
 	{
-		if(Instigator.IsLocallyControlled() && HeatFX == None && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (HeatFX == None || HeatFX.bDeleteMe))
+		if(Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (HeatFX == None || HeatFX.bDeleteMe))
 			class'BUtil'.static.InitMuzzleFlash (HeatFX, class'A73HeatGlow', DrawScale, self, 'tip');
 	}
 	else if (HeatFX != None)
-		Emitter(HeatFX).kill();
+	{
+		class'BUtil'.static.KillEmitterEffect (HeatFX);
+		HeatFX = None;
+	}
 }
 
 simulated function float ChargeBar()
