@@ -446,8 +446,8 @@ function UpdateRocketAcceleration(float DT, float YawChange, float PitchChange)
 
 	if (Controller != None && AIController(Controller) == None)
 		Controller.SetRotation(CameraRotation + Rotation);
-	// GunRotation must be sent from here for listenservers
-	if (level.NetMode == NM_ListenServer)
+	// GunRotation must be sent from here for listenservers, and for bots on any server
+	if (Role == ROLE_Authority && Level.NetMode != NM_Standalone)
 		SendGunRotationToClients();
 	// Server needs to know the new gunrotation
 	// Only when it changed, and now and then anyway in case the server held part of a change back
