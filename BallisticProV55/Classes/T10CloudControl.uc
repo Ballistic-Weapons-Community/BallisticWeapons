@@ -76,7 +76,7 @@ simulated function Tick(float DT)
 		bNoMore = true;
 		for(i=0;i<Clouds.length;i++)
 			if (Clouds[i] != None)
-				Clouds[i].Kill();
+				Clouds[i].Dissipate();
 	}
 }
 
@@ -149,7 +149,7 @@ simulated function Destroyed()
 	local int i;
 	for(i=0;i<Clouds.length;i++)
 		if (Clouds[i] != None)
-			Clouds[i].Kill();
+			Clouds[i].Dissipate();
 	super.Destroyed();
 }
 
