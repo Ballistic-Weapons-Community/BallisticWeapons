@@ -128,6 +128,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 simulated event Destroyed()
 {
+	default.bLaserOn = false;
 	if (GaussGlow1 != None)
 		GaussGlow1.Destroy();
 		
