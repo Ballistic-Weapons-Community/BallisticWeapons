@@ -175,7 +175,7 @@ simulated event Tick (float DT)
 				}
 				else
 				{
-					HVCMk9PrimaryFire(FireMode[0]).OldLures[i].Zaps -= -DT;
+					HVCMk9PrimaryFire(FireMode[0]).OldLures[i].Zaps -= DT;
 					if (HVCMk9PrimaryFire(FireMode[0]).OldLures[i].Zaps <= 0)
 					{
 						HVCMk9PrimaryFire(FireMode[0]).OldLures.Remove(i, 1);
