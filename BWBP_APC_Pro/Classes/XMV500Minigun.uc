@@ -62,7 +62,7 @@ replication
 		SetServerTurnVelocity;
 
 	reliable if (Role == ROLE_Authority)
-		bLaserOn;
+		bLaserOn, ClientSaveLastWeaponMode;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -411,11 +411,12 @@ simulated function bool CheckWeaponMode (int Mode)
 	return super.CheckWeaponMode(Mode);
 }
 
-simulated function ServerSwitchWeaponMode (byte NewMode)
+function ServerSwitchWeaponMode (byte NewMode)
 {
       PlaySound(ModeCycleSound,,4.7,,32);
 
-	NewMode = CurrentWeaponMode + 1;
+	if (NewMode == 255)
+		NewMode = CurrentWeaponMode + 1;
 	while (NewMode != CurrentWeaponMode && (NewMode >= WeaponModes.length || WeaponModes[NewMode].bUnavailable) )
 	{
 		if (NewMode >= WeaponModes.length)
@@ -424,7 +425,21 @@ simulated function ServerSwitchWeaponMode (byte NewMode)
 			NewMode++;
 	}
 	if (!WeaponModes[NewMode].bUnavailable)
+	{
 		CurrentWeaponMode = NewMode;
+		// This skips CommonSwitchWeaponMode, which is where the owner normally remembers the last used mode
+		ClientSaveLastWeaponMode(CurrentWeaponMode);
+	}
+}
+
+simulated function ClientSaveLastWeaponMode(byte NewMode)
+{
+	// ServerSwitchWeaponMode doesn't go through ClientSwitchWeaponMode here, so this is also how a client gets the new mode
+	if (Level.NetMode == NM_Client)
+		CurrentWeaponMode = NewMode;
+
+	if (ModeHandling == MR_Last && Instigator != None && Instigator.IsLocallyControlled())
+		default.LastWeaponMode = NewMode;
 }
 
 
