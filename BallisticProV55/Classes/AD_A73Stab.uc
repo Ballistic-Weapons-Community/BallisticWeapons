@@ -9,7 +9,10 @@ simulated event PostBeginPlay()
 	local Rotator R;
 
 	R = Rotation;
-	R.Roll = 8192 - R.Yaw + Rotator(Owner.Location - Location).Yaw;
+	if (Owner != None)
+		R.Roll = 8192 - R.Yaw + Rotator(Owner.Location - Location).Yaw;
+	else
+		R.Roll = Rand(65536);
 	SetRotation (R);
 
 	Super.PostBeginPlay();
