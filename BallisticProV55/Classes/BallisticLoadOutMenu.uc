@@ -534,7 +534,7 @@ defaultproperties
          WinWidth=0.200000
          TabOrder=1
          OnClick=BallisticLoadOutMenu.InternalOnClick
-         OnKeyEvent=CancelButton.InternalOnKeyEvent
+         OnKeyEvent=BStatButton.InternalOnKeyEvent
      End Object
      bStats=GUIButton'BallisticProV55.BallisticLoadOutMenu.BStatButton'
 

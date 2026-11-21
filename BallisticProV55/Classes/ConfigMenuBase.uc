@@ -222,7 +222,7 @@ defaultproperties
          WinWidth=0.100000
          TabOrder=1
          OnClick=ConfigMenuBase.InternalOnClick
-         OnKeyEvent=CancelButton.InternalOnKeyEvent
+         OnKeyEvent=BResetButton.InternalOnKeyEvent
      End Object
      bReset=GUIButton'BallisticProV55.ConfigMenuBase.BResetButton'
 
@@ -234,7 +234,7 @@ defaultproperties
          WinWidth=0.100000
          TabOrder=1
          OnClick=ConfigMenuBase.InternalOnClick
-         OnKeyEvent=CancelButton.InternalOnKeyEvent
+         OnKeyEvent=BDefaultButton.InternalOnKeyEvent
      End Object
      bDefault=GUIButton'BallisticProV55.ConfigMenuBase.BDefaultButton'
 

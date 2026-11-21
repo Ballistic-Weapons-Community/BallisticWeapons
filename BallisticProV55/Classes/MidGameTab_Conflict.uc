@@ -1586,7 +1586,7 @@ defaultproperties
          WinWidth=0.180000
          TabOrder=1
          OnClick=MidGameTab_Conflict.InternalOnClick
-         OnKeyEvent=CancelButton.InternalOnKeyEvent
+         OnKeyEvent=BSaveButton.InternalOnKeyEvent
      End Object
      bSave=GUIButton'BallisticProV55.MidGameTab_Conflict.BSaveButton'
 	 
@@ -1597,7 +1597,7 @@ defaultproperties
          WinWidth=0.180000
          TabOrder=1
          OnClick=MidGameTab_Conflict.InternalOnClick
-         OnKeyEvent=CancelButton.InternalOnKeyEvent
+         OnKeyEvent=BClearButton.InternalOnKeyEvent
      End Object
      bClear=GUIButton'BallisticProV55.MidGameTab_Conflict.BClearButton'
 	 
@@ -1608,7 +1608,7 @@ defaultproperties
          WinWidth=0.180000
          TabOrder=1
          OnClick=MidGameTab_Conflict.InternalOnClick
-         OnKeyEvent=CancelButton.InternalOnKeyEvent
+         OnKeyEvent=BStatButton.InternalOnKeyEvent
      End Object
      bStats=GUIButton'BallisticProV55.MidGameTab_Conflict.BStatButton'
 
