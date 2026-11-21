@@ -28,9 +28,6 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 		bLaserOn;
-	// Called from the weapon special key on the client
-	reliable if (Role < ROLE_Authority)
-		ServerSwitchLaser;
 }
 
 simulated function OnWeaponParamsChanged()
@@ -429,8 +426,11 @@ simulated event PostNetReceive()
 	Super.PostNetReceive();
 }
 
+// Called from ServerWeaponSpecial, on the server
 function ServerSwitchLaser(bool bNewLaserOn)
 {
+	if (!bHasLaser || bLaserOn == bNewLaserOn)
+		return;
 	bLaserOn = bNewLaserOn;
 
 	if (ThirdPersonActor != None)
