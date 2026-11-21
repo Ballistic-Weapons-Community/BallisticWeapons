@@ -116,12 +116,12 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		if (GaussGlow1 != None)
 		{
 			AttachToBone(GaussGlow1, 'Gauss2');
-			GaussGlow1.bHidden=true;
+			GaussGlow1.bHidden = GaussLevel < MaxGaussLevel;
 		}
 		if (GaussGlow2 != None)
 		{
 			AttachToBone(GaussGlow2, 'Gauss3');
-			GaussGlow2.bHidden=true;
+			GaussGlow2.bHidden = GaussLevel < MaxGaussLevel;
 		}
 	}
 }
