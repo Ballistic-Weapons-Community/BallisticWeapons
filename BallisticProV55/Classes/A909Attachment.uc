@@ -12,13 +12,14 @@ var Actor LeftOne;
 
 simulated function PostNetBeginPlay()
 {
-	Super.PostNetBeginPlay();
-
-	if (Instigator != None)
+	// Before Super, whose ApplyCamo on a client copies the camo onto it
+	if (Instigator != None && Level.NetMode != NM_DedicatedServer)
 	{
 		LeftOne = Spawn(class'A909LeftBlades');
 		Instigator.AttachToBone(LeftOne,'lfarm');
 	}
+
+	Super.PostNetBeginPlay();
 }
 
 simulated function ApplyCamo()
