@@ -407,7 +407,7 @@ var() Name					EndShovelAnim;				// Anim to play after shovel loop ends
 var() Name					EndShovelEmptyAnim;			// Played if the weapon needs cocking at the end of the shovel loop
 var() int					ShovelIncrement;			// Amount of ammo to stick in gun each time
 var   bool					bPlayThirdPersonReload; 	// Play an anim on the Pawn for reloading.
-var	  float					FireAnimCutThreshold;   	// Cuts the fire anim if the SightingState is higher than this.
+var	  float					FireAnimCutThreshold;   	// Cuts the fire anim if the SightingPhase is higher than this.
 //-----------------------------------------------------------------------------
 // Crosshair Info
 //-----------------------------------------------------------------------------
@@ -1238,7 +1238,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		AnimBlendParams(1, 0);
 		AnimBlendParams(2, 0);
 		//Cut the basic fire anim if it's too long.
-		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
+		if (SightingPhase > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
 			FreezeAnimAt(0.0);
 		bPreventReload=False;
 	}

@@ -117,7 +117,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		AnimBlendParams(1, 0);
 		AnimBlendParams(2, 0);
 		//Cut the basic fire anim if it's too long.
-		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
+		if (SightingPhase > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
 			FreezeAnimAt(0.0);
 			
 		if (anim == BFireMode[0].AimedFireAnim || !BFireMode[1].IsFiring())
