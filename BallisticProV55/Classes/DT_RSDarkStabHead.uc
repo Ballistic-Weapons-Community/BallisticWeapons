@@ -8,18 +8,6 @@
 //=============================================================================
 class DT_RSDarkStabHead extends DT_BWBlade;
 
-static function class<Effects> GetPawnDamageEffect( vector HitLocation, float Damage, vector Momentum, Pawn Victim, bool bLowDetail )
-{
- 	if (xPawn(Victim) != None)
- 	{
-		if (default.PawnDamageSounds.Length > 0)
-			Victim.PlaySound(default.PawnDamageSounds[Rand(default.PawnDamageSounds.Length)],SLOT_None,default.TransientSoundVolume,false,default.TransientSoundRadius);
-		if (default.EffectChance > 0 && default.EffectChance > FRand())
-			DoBloodEffects(HitLocation, Damage, Momentum, Victim, bLowDetail);
-	}
-	return super.GetPawnDamageEffect(HitLocation, Damage, Momentum, Victim, bLowDetail);
-}
-
 defaultproperties
 {
      DeathStrings(0)="%k swung %kh Dark Star into %o's pointy nose."
