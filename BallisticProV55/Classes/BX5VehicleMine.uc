@@ -244,8 +244,6 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 	{
 		Victim = Stepper;
 
-		DamageType = VehicleDamageType;
-
 			dir = Stepper.Location - HitLocation;
 			dist = FMax(1,VSize(dir));
 			dir = dir/dist;
@@ -266,7 +264,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 				Instigator,
 				Stepper.Location - 0.5 * (Stepper.CollisionHeight + Stepper.CollisionRadius) * dir,
 				(damageScale * Momentum * dir),
-				DamageType
+				VehicleDamageType
 			);
 	}
 
