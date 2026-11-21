@@ -23,12 +23,17 @@ static function DoSeverEffects(Pawn Victim, name Bone, vector HitRay, float GibP
 	BS = GetBloodSet(Victim);
 	if (BS == None)
 		return;
-	FXClass = BS.static.GetDismemberEffectFor(Victim, Bone);
-	if (FXClass!=None)	{
-		GoreEffect = BW_HitGoreEmitter(Victim.Spawn(FXClass, Victim,, Victim.GetBoneCoords(Bone).Origin, Victim.Rotation));
-		if (GoreEffect!=None)
-			GoreEffect.InitHitForce(HitRay, GibPerterbation);	}
+	if (default.bUseBloodEffects)
+	{
+		FXClass = BS.static.GetDismemberEffectFor(Victim, Bone);
+		if (FXClass!=None)	{
+			GoreEffect = BW_HitGoreEmitter(Victim.Spawn(FXClass, Victim,, Victim.GetBoneCoords(Bone).Origin, Victim.Rotation));
+			if (GoreEffect!=None)
+				GoreEffect.InitHitForce(HitRay, GibPerterbation);	}
+	}
 
+	if (!default.bUseChunks || class'GameInfo'.static.UseLowGore())
+ 		return;
 	Gibs = BS.static.MakeGibsFor(Victim, Bone, HitRay, GibPerterbation, FMin(Damage / 40, 4), BS.static.GetGibInfoFor(Bone), true);
 }
 
@@ -47,9 +52,12 @@ static function DoSeverStump(Pawn Victim, name Bone, vector HitRay, float Damage
 	if (xPawn(Victim) != None)
 		xPawn(Victim).HideBone(Bone);
 	//Sound?
-	Stump = BS.static.GetStumpFor(Victim, Bone, true);
-	if (Stump != None && BallisticPawn(Victim) != None)
-		BallisticPawn(Victim).Stumps[BallisticPawn(Victim).Stumps.length] = Stump;
+	if (default.bUseStumps && !class'GameInfo'.static.UseLowGore())
+	{
+		Stump = BS.static.GetStumpFor(Victim, Bone, true);
+		if (Stump != None && BallisticPawn(Victim) != None)
+			BallisticPawn(Victim).Stumps[BallisticPawn(Victim).Stumps.length] = Stump;
+	}
 	Fire = Victim.Spawn(class'BG_StumpFire', Victim, , Victim.Location);
 	if (Bone == 'pelvis')
 		Bone = 'spine';

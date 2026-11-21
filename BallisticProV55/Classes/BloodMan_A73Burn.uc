@@ -57,9 +57,12 @@ static function DoSeverStump(Pawn Victim, name Bone, vector HitRay, float Damage
 	if (xPawn(Victim) != None)
 		xPawn(Victim).HideBone(Bone);
 	//Sound?
-	Stump = BS.static.GetStumpFor(Victim, Bone, true);
-	if (Stump != None && BallisticPawn(Victim) != None)
-		BallisticPawn(Victim).Stumps[BallisticPawn(Victim).Stumps.length] = Stump;
+	if (default.bUseStumps && !class'GameInfo'.static.UseLowGore())
+	{
+		Stump = BS.static.GetStumpFor(Victim, Bone, true);
+		if (Stump != None && BallisticPawn(Victim) != None)
+			BallisticPawn(Victim).Stumps[BallisticPawn(Victim).Stumps.length] = Stump;
+	}
 	Fire = Victim.Spawn(class'BG_A73StumpFire', Victim, , Victim.Location);
 	if (Bone == 'pelvis')
 		Bone = 'spine';

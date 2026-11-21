@@ -37,7 +37,8 @@ static function DoSeverStump(Pawn Victim, name Bone, vector HitRay, float Damage
 		}
 	}
 	// Spawn an effect in the direction of the HitRay
-	Victim.Spawn(BS.default.ExplodeEffect,Victim,,Victim.Location, Rotator(HitRay));
+	if (default.bUseBloodEffects)
+		Victim.Spawn(BS.default.ExplodeEffect,Victim,,Victim.Location, Rotator(HitRay));
 }
 
 defaultproperties
