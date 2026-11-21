@@ -4408,7 +4408,7 @@ function bool BotShouldReload ()
 {
 	if (AIController(Instigator.Controller) == None)
 		return false;
-	if ( (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime > AIReloadTime + AIReloadTime * (MagAmmo/GetMagCapacity())) &&
+	if ( (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime > AIReloadTime + AIReloadTime * (float(MagAmmo) / Max(1, GetMagCapacity()))) &&
 		 (Level.TimeSeconds - Instigator.LastPainTime > AIReloadTime) )
 		return true;
 	return false;
