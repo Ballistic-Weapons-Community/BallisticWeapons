@@ -349,6 +349,9 @@ function ScoreKill(Controller Killer, Controller Other)
 function Logout(Controller Exiting)
 {
 	super.Logout(Exiting);
+	// Not after the match (or a round) has ended, nor before it has started: that would start a round
+	if (bGameEnded || bWaitingToStartMatch || IsInState('MatchOver') || IsInState('RoundEnded'))
+		return;
 	CheckMaxLives(none);
 }
 
