@@ -776,43 +776,20 @@ function Bot SpawnBot(optional string botName)
 function bool ChangeTeam(Controller Other, int num, bool bNewTeam)
 {
 	local int TeamGunLevel;
-	local PlayerController P;
-	local Bot B;
 	local Controller C;
 
 	if (super.ChangeTeam(Other, num, bNewTeam))
 	{
-		if (PlayerController(Other) != None)
+		//take the level of the team the player is now on (TeamGame.ChangeTeam may have picked another team than num), 1 if he is alone there
+		if (GunGamePRI(Other.PlayerReplicationInfo) != None && Other.PlayerReplicationInfo.Team != None && GameReplicationInfo.bMatchHasBegun)
 		{
-			P = PlayerController(Other);
-		
-			if (GunGamePRI(P.PlayerReplicationInfo) != None && GameReplicationInfo.bMatchHasBegun)
+			TeamGunLevel = 1;
+			for (C = Level.ControllerList; C != None; C = C.NextController)
 			{
-				for (C = Level.ControllerList; C != None; C = C.NextController)
-				{
-					log("TeamGunGame::ChangeTeam : num = "$num$ "; C.GetTeamNum() = "$C.GetTeamNum()$"; ");
-					if (C.GetTeamNum() == num && C != Other)
-						TeamGunLevel = Max(TeamGunLevel, GunGamePRI(C.PlayerReplicationInfo).GunLevel);
-				}
-				if (TeamGunLevel != 1)
-					GunGamePRI(P.PlayerReplicationInfo).GunLevel = TeamGunLevel;
+				if (C != Other && GunGamePRI(C.PlayerReplicationInfo) != None && C.PlayerReplicationInfo.Team == Other.PlayerReplicationInfo.Team)
+					TeamGunLevel = Max(TeamGunLevel, GunGamePRI(C.PlayerReplicationInfo).GunLevel);
 			}
-		}
-		else if (Bot(Other) != None)
-		{
-			B = Bot(Other);
-			
-			if (GunGamePRI(B.PlayerReplicationInfo) != None && GameReplicationInfo.bMatchHasBegun)
-			{
-				for (C = Level.ControllerList; C != None; C = C.NextController)
-				{
-					log("TeamGunGame::ChangeTeam : num = "$num$ "; C.GetTeamNum() = "$C.GetTeamNum()$" ; ");
-					if (C.GetTeamNum() == num && C != Other)
-						TeamGunLevel = Max(TeamGunLevel, GunGamePRI(C.PlayerReplicationInfo).GunLevel);
-				}
-				if (TeamGunLevel != 1)
-					GunGamePRI(B.PlayerReplicationInfo).GunLevel = TeamGunLevel;
-			}
+			GunGamePRI(Other.PlayerReplicationInfo).GunLevel = TeamGunLevel;
 		}
 		
 		return true;
