@@ -244,11 +244,11 @@ simulated function Notify_ClipIn()
 	PlayOwnedSound(ClipInSound.Sound,ClipInSound.Slot,ClipInSound.Volume,ClipInSound.bNoOverride,ClipInSound.Radius,ClipInSound.Pitch,ClipInSound.bAtten);
 	if (level.NetMode != NM_Client)
 	{
-		AmmoNeeded = default.MagAmmo-MagAmmo;
+		AmmoNeeded = GetMagCapacity()-MagAmmo;
 		if (AmmoNeeded > Ammo[0].AmmoAmount)
 			MagAmmo+=Ammo[0].AmmoAmount;
 		else
-			MagAmmo = default.MagAmmo;
+			MagAmmo = GetMagCapacity();
 		Ammo[0].UseAmmo (AmmoNeeded, True);
 	}
 }
