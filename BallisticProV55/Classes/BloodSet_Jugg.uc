@@ -51,7 +51,7 @@ static function Actor GetStumpFor (actor Victim, name Bone, bool bCharred)
 		case 'rfarm'		:
 			if (bCharred)
 			{	if (default.AltCharStumpMesh != None)
-					NewStump.SetStaticMesh(default.AltStumpMesh);	}
+					NewStump.SetStaticMesh(default.AltCharStumpMesh);	}
 			else if (default.AltStumpMesh != None)
 				NewStump.SetStaticMesh(default.AltStumpMesh);
 			NewStump.SetDrawScale(0.6);
