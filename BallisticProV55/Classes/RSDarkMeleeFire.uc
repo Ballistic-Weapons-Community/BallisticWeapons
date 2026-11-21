@@ -297,7 +297,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 				if (BW.MagAmmo < BW.default.MagAmmo)
 					BW.MagAmmo = Min(BW.default.MagAmmo, BW.MagAmmo+Damage/4);
 				else
-					BW.AddAmmo(BW.MagAmmo+Damage/4, 0);
+					BW.AddAmmo(Damage/4, 0);
 			}
 		}
 		
