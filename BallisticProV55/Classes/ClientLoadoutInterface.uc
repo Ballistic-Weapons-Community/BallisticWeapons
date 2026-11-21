@@ -142,7 +142,7 @@ simulated function ClientOpenLoadoutMenu(LoadoutInfo LOI)
 	if (PC ==None || PC.Player == None)
 		return;
 	PC.ClientOpenMenu ("BallisticProV55.BallisticLoadOutMenu");
-	if (PC.Player.GUIController != None)
+	if (PC.Player.GUIController != None && BallisticLoadOutMenu(GUIController(PC.Player.GUIController).ActivePage) != None)
 		BallisticLoadOutMenu(GUIController(PC.Player.GUIController).ActivePage).COI = self;
 }
 event Tick(float DT)
