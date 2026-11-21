@@ -118,6 +118,10 @@ simulated function EndRampage()
 	if (RSNovaAttachment(ThirdPersonActor) != None)
 		RSNovaAttachment(ThirdPersonActor).bRampage = false;
 
+	// undo StartRampage's (or SwitchWeaponMode's) cut, or it stays and grows with every rampage
+	if (RSNovaPrimaryFire(BFireMode[0]) != None)
+		RSNovaPrimaryFire(BFireMode[0]).ModePowerDrain /= 0.4;
+
 	if (Instigator!=None && Role==Role_Authority && PlayerController(Instigator.Controller) != None)
 		PlayerController(Instigator.Controller).Restart();
 

@@ -239,6 +239,10 @@ simulated function EndRampage()
 	if (RSDarkAttachment(ThirdPersonActor) != None)
 		RSDarkAttachment(ThirdPersonActor).bRampage = false;
 
+	// undo StartRampage's (or SwitchWeaponMode's) cut, or it stays and grows with every rampage
+	if (RSDarkPrimaryFire(BFireMode[0]) != None)
+		RSDarkPrimaryFire(BFireMode[0]).ModePowerDrain /= 0.4;
+
 	if (Role == ROLE_Authority)
 	{
 		if (Instigator != None)
