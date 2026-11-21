@@ -163,7 +163,7 @@ simulated function Notify_M353FlapOpenedReload ()
 // Animation notify to make gun cock after reload
 simulated function Notify_CockAfterReload()
 {
-	if (bNeedCock && MagAmmo > 0)
+	if (NeedsCocking() && MagAmmo > 0)
 		CommonCockGun(2);
 	else
 		PlayAnim('ReloadFinishHold', ReloadAnimRate, 0.2);

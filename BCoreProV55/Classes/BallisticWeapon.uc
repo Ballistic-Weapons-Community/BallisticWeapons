@@ -1752,7 +1752,7 @@ simulated function Notify_ClipOut()
 // Animation notify for when cocking action starts. Used to time sounds
 simulated function Notify_CockStart()
 {
-	if (ReloadState == RS_None && !bNeedCock)	return;
+	if (ReloadState == RS_None && !NeedsCocking())	return;
 	PlayPawnCockingInReload();
 	ReloadState = RS_Cocking;
 	class'BUtil'.static.PlayFullSound(self, CockSound, true);
@@ -1761,7 +1761,7 @@ simulated function Notify_CockStart()
 // Animation notify for when cocking action starts for pullout fancy animations that use a different sound to Notify_CockStart. Used to time sounds
 simulated function Notify_CockPullout()
 {
-	if (ReloadState == RS_None && !bNeedCock)	return;
+	if (ReloadState == RS_None && !NeedsCocking())	return;
 	ReloadState = RS_Cocking;
 	class'BUtil'.static.PlayFullSound(self, CockSelectSound, true);
 }
@@ -1776,14 +1776,14 @@ simulated function Notify_BrassOut()
 simulated function Notify_CockAfterFire()
 {
 	bPreventReload=false;
-	if (bNeedCock && ReloadState == RS_None && MagAmmo > 0)
+	if (NeedsCocking() && ReloadState == RS_None && MagAmmo > 0)
 		CommonCockGun(1);
 }
 
 // Animation notify to make gun cock after reload
 simulated function Notify_CockAfterReload()
 {
-	if (bNeedCock && ReloadState == RS_None && MagAmmo > 0)
+	if (NeedsCocking() && ReloadState == RS_None && MagAmmo > 0)
 		CommonCockGun(2);
 }
 
