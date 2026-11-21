@@ -397,7 +397,7 @@ simulated function DrawWeaponUI(Canvas C)
             else
                 C.SetDrawColor(0, 0, 255);
             if (Weapon(WeaponGroups[i].Items[j]) != None && Weapon(WeaponGroups[i].Items[j]).ClientState != WS_Hidden)
-                C.DrawColor.G += 128;
+                C.DrawColor.G = Min(255, C.DrawColor.G+128);
             if (i == WGroup && j == WItem)
             {
                 C.DrawColor.R = Min(255, C.DrawColor.R+96);
