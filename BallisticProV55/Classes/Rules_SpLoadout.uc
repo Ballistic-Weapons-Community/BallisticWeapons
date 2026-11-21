@@ -40,7 +40,7 @@ Function ScoreKill(Controller Killer, Controller Killed)
 			ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(Killed.PlayerReplicationInfo)).HazardKills -= 0.2;
 			
 		// Suicide with shotgun, somehow...
-		if (BallisticWeapon(Killed.Pawn.Weapon) != None && BallisticWeapon(Killed.Pawn.Weapon).bWT_Shotgun && ClassIsChildOf(Killed.Pawn.Weapon.Class, class<WeaponDamageType>(LastDT).default.WeaponClass))
+		if (Killed.Pawn != None && BallisticWeapon(Killed.Pawn.Weapon) != None && BallisticWeapon(Killed.Pawn.Weapon).bWT_Shotgun && ClassIsChildOf(Killed.Pawn.Weapon.Class, class<WeaponDamageType>(LastDT).default.WeaponClass))
 			ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(Killed.PlayerReplicationInfo)).ShotgunKills -= 1;
 		else
 			ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(Killed.PlayerReplicationInfo)).ShotgunKills -= 0.2;
@@ -49,7 +49,7 @@ Function ScoreKill(Controller Killer, Controller Killed)
 	if (Killer != None && Killer.PlayerReplicationInfo!=None)
 	{
 		// Try figure out how far apart killer and killed are
-		if (Killed != None && Killer.Pawn != None && Killer.Pawn != None)
+		if (Killed != None && Killer.Pawn != None && Killed.Pawn != None)
 			Dist = VSize(Killer.Pawn.location - Killed.Pawn.location);
 		else if (Killed != None)
 			Dist = VSize(Killer.location - Killed.location);
@@ -63,7 +63,7 @@ Function ScoreKill(Controller Killer, Controller Killed)
 			ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(Killer.PlayerReplicationInfo)).SniperKills += (Dist-1000) / 8000;
 			
 		// Shotgun skill for killing close up with a bullet weapon or known BW shotgun
-		if (LastDT.default.bBulletHit || (Killer.pawn != None && Killer.Pawn.Weapon != None && BallisticWeapon(Killed.Pawn.Weapon) != None && BallisticWeapon(Killed.Pawn.Weapon).bWT_Shotgun))
+		if (LastDT.default.bBulletHit || (Killer.pawn != None && BallisticWeapon(Killer.Pawn.Weapon) != None && BallisticWeapon(Killer.Pawn.Weapon).bWT_Shotgun))
 		{
 			if (Dist <= 150)
 				ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(Killer.PlayerReplicationInfo)).ShotgunKills += 1;
