@@ -74,7 +74,7 @@ simulated function int GetTraceCount()
 		if (CurrentTracerMode == 1)
 			return 1;
 		else
-			return ShotgunEffectParams(WeaponClass.static.GetParams().default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceCount;
+			return ShotgunEffectParams(GetLayoutEffectParams()).TraceCount;
 	}
 
 	return 10;
