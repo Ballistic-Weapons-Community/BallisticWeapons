@@ -222,7 +222,7 @@ defaultproperties
      InventoryModes(4)="Melee"
      InventoryMuts(0)="BallisticProV55.Mut_BallisticDM"
      InventoryMuts(1)="BallisticProV55.Mut_OutfittingDM"
-     InventoryMuts(2)="BallisticProV55.Mut_SpatialLoadoutDM"
+     InventoryMuts(2)="BallisticProV55.Mut_ConflictLoadoutDM"
      InventoryMuts(3)="BallisticProV55.Mut_BallisticArenaDM"
      InventoryMuts(4)="BallisticProV55.Mut_BallisticMeleeDM"
      ModeDisplayText="Inventory Mode"
