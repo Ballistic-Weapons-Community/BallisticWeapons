@@ -49,7 +49,8 @@ simulated function HitWall (Vector HitNormal, Actor Wall)
 			bHardAttach = true;
 			SetBase(Wall);
 		}
-		SetTimer(FMax(0.2, LifeSpan-2.0), false);
+		if (LifeTimeScale != 0)
+			SetTimer(FMax(0.2, LifeSpan-2.0), false);
     }
 	else if (Speed > 100)
     {
