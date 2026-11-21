@@ -117,14 +117,24 @@ function LoadList()
 			if (!bUseAllWeapons)
 			{
 				if (InStr(s,"Ballistic")==-1 && InStr(s,"BWBP")==-1 && InStr(s,"JunkWar")==-1 && InStr(s,"JWBP")==-1)
+				{
+					// not listed, but kept in the lists that have it
+					AddOtherWeaponInfo(Recs[i]);
 					continue;
+				}
 			}
 		}
 
 		// Use the BW weapon cache system to get the info needed without loading the classes (huge optimization)
 		WI = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName, j);
+		// The cache only has Ballistic weapons: any other is listed under Non-BW with Use All Weapons, and kept either way
 		if (j == -1 || WI.ClassName == "")
+		{
+			AddOtherWeaponInfo(Recs[i]);
+			if (bUseAllWeapons)
+				Heading[i] = 11;
 			continue;
+		}
 
 		j = WeaponInfo.length;
 		WeaponInfo.length = j+1;
@@ -163,6 +173,17 @@ function LoadList()
 			if (Heading[i] == h)
 				Editor.AddWeapon(Recs[i].FriendlyName, Recs[i].ClassName);
 	}
+}
+
+// A weapon that is not a Ballistic one: its name and description, no picture
+function AddOtherWeaponInfo(CacheManager.WeaponRecord Rec)
+{
+	local int j;
+
+	j = WeaponInfo.length;
+	WeaponInfo.length = j+1;
+	WeaponInfo[j].Description = Rec.Description;
+	WeaponInfo[j].ClassName = Rec.ClassName;
 }
 
 //===========================================================================
