@@ -441,6 +441,17 @@ simulated function vector ConvertFOVs (vector InVec, float InFOV, float OutFOV, 
 exec simulated function WeaponSpecial(optional byte i)
 {
 	if (bLockedOn)
+	{
+		BreakLock();
+		if (Role < ROLE_Authority)
+			ServerWeaponSpecial(i);
+	}
+}
+
+// The lock is the server's: let it go there too, or the rockets keep seeking
+function ServerWeaponSpecial(optional byte i)
+{
+	if (bLockedOn)
 		BreakLock();
 }
 
