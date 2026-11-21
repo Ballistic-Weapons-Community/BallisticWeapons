@@ -314,7 +314,12 @@ function Kill()
 
 	ShockTargets.Remove(0, ShockTargets.Length);
 	SetTimer(0.0, false);
-	Destroy();
+	// Not destroyed at once: a destroyed actor's channel closes without a last update, so clients never saw the
+	// last arc (or, for a chain of two, the conductor at all). Live on long enough for the replication
+	if (HitCounter == 0)
+		Destroy();
+	else
+		LifeSpan = 1.0;
 }
 
 defaultproperties
