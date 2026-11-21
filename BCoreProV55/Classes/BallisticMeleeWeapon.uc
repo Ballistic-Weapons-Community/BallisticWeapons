@@ -79,6 +79,21 @@ exec simulated function WeaponSpecialRelease(optional byte i)
 	IdleAnim = default.IdleAnim;
 }
 
+// A block held through a weapon switch was never let go: the release goes to the new weapon
+simulated function bool PutDown()
+{
+	if (!Super.PutDown())
+		return false;
+
+	if (bBlocked)
+	{
+		ServerSetBlocked(false);
+		bBlocked=false;
+		IdleAnim = default.IdleAnim;
+	}
+	return true;
+}
+
 final function bool CheckBlockArc(Vector HitLocation, Pawn InstigatedBy)
 {
     local float result;
