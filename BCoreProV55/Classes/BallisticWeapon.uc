@@ -5639,9 +5639,10 @@ simulated final function OnDisplaceEnd()
 		ScopeBackUp();
 }
 
+// The client always asks for 0.1; its number is not used, as it divides the turn chaos
 final function ServerReaim(float deltaTime)
 {
-	AimComponent.Reaim(deltaTime);
+	AimComponent.Reaim(0.1);
 	AimComponent.ForceReaim();
 }
 
@@ -5655,9 +5656,10 @@ simulated final function ZeroAim (float TimeMod)
 	ServerZeroAim(TimeMod);
 }
 
+// The client sends its SightingTime: never zero faster than that, or the aim would snap to the middle at once
 final function ServerZeroAim (float TimeMod)
 {
-	AimComponent.ZeroAim(TimeMod);
+	AimComponent.ZeroAim(FMax(TimeMod, SightingTime));
 }
 
 simulated final function Rotator GetAimPivot()
