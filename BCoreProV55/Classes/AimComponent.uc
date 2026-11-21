@@ -161,7 +161,7 @@ final simulated function Rotator CalcFutureAim(float ExtraTime, bool bIgnoreView
 
 private final simulated function Rotator GetAimOffsets()
 {
-	return AimOffset + LongGunPivot * LongGunFactor;
+	return LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
 }
 
 private final simulated function Rotator GetFutureAim(float ExtraTime)
@@ -171,7 +171,7 @@ private final simulated function Rotator GetFutureAim(float ExtraTime)
 
 private final simulated function Rotator GetFutureAimOffset(float ExtraTime)
 {
-	return class'BUtil'.static.RSmerp(FMax(0.0,(AimOffsetTime-(Level.TimeSeconds+ExtraTime))/AimAdjustTime), NewAimOffset,OldAimOffset);
+	return class'BUtil'.static.RSmerp(FMax(0.0,(AimOffsetTime-(Level.TimeSeconds+ExtraTime))/FMax(AimOffsetShiftTime, 0.001)), NewAimOffset,OldAimOffset);
 }
 
 //=============================================================
