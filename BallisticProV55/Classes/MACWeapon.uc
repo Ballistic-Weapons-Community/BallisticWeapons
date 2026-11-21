@@ -178,7 +178,7 @@ simulated function Notify_HAMRShellCycle()
 		bPendingShellLoad=true;
 }
 
-function PlayFiring()
+simulated function PlayFiring()
 {
 	local int i;
 	for (i=0;i<3;i++)
