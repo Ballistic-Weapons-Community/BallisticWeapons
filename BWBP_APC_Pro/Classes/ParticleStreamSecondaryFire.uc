@@ -108,7 +108,7 @@ if (!AllowFire())
 
 function DoFireEffect()
 {
-	local Actor Target, Victims, Other;
+	local Actor Target, Victims;
 	local float TargetAngle, DR; //BHD
 	local vector ForceDir, EndEffect;
 	
