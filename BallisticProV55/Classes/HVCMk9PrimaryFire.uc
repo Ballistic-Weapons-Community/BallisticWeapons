@@ -237,7 +237,7 @@ simulated state DirectFire
 			FireCount++;
 			
 			if(Level.NetMode == NM_Client)
-			HvCMk9LightningGun(BW).AddHeat(0.3);
+			HvCMk9LightningGun(BW).AddHeat(0.15);
 			
 			if (Level.NetMode != NM_Client && !bDoOverCharge && HVCMk9LightningGun(Weapon).HeatLevel > 10)
 			{
