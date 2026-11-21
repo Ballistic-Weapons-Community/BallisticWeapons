@@ -59,8 +59,6 @@ simulated event PostNetReceive()
 	//Do not use default to save postnetreceived shit
 	if (bLaserOn != bOldLaserOn)
 	{
-		OnLaserSwitched();
-
 		bOldLaserOn = bLaserOn;
         ClientSwitchLaser();
 	}
@@ -83,6 +81,10 @@ simulated function OnAimParamsChanged()
 
 function ServerSwitchSilencer(bool bNewValue)
 {
+	// The owner's own machine has already switched; a remote owner's repeat would stack the silencer figures
+	if (!Instigator.IsLocallyControlled() && bNewValue == bSilenced)
+		return;
+
 	if (!Instigator.IsLocallyControlled())
 		LK05PrimaryFire(FireMode[0]).SwitchSilencerMode(bNewValue);
 
@@ -272,15 +274,19 @@ simulated function ApplyLaserAim()
 
 function ServerSwitchLaser(bool bNewLaserOn)
 {
+	// ApplyLaserAim multiplies: only apply it on a change, and once per machine
+	if (bNewLaserOn == bLaserOn)
+		return;
+
 	bLaserOn = bNewLaserOn;
 	
 	if (ThirdPersonActor!=None)
 		LK05Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
-	OnLaserSwitched();
-
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
+	else
+		OnLaserSwitched();
 }
 
 simulated function ClientSwitchLaser()
