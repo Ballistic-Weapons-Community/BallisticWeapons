@@ -643,16 +643,16 @@ private final function Rotator CalculateRecoil(StateData state)
 	local float AdjustedRecoil;
 
 	// Randomness
-    if (Params.MinRandFactor > 0)
+    if (MinRandFactor > 0)
 	{
-		AdjustedRecoil = Params.MaxRecoil * Params.MinRandFactor + state.Recoil * (1 - Params.MinRandFactor);
-		R.Yaw = ((-AdjustedRecoil * Params.XRandFactor + AdjustedRecoil * Params.XRandFactor *2 * state.XRand) * 0.3);
-		R.Pitch = ((-AdjustedRecoil * Params.YRandFactor + AdjustedRecoil * Params.YRandFactor * 2 * state.YRand) * 0.3);
+		AdjustedRecoil = Params.MaxRecoil * MinRandFactor + state.Recoil * (1 - MinRandFactor);
+		R.Yaw = ((-AdjustedRecoil * XRandFactor + AdjustedRecoil * XRandFactor *2 * state.XRand) * 0.3);
+		R.Pitch = ((-AdjustedRecoil * YRandFactor + AdjustedRecoil * YRandFactor * 2 * state.YRand) * 0.3);
 	}
 	else
 	{
-		R.Yaw = ((-state.Recoil * Params.XRandFactor + state.Recoil * Params.XRandFactor * 2 * state.XRand) * 0.3);
-		R.Pitch = ((-state.Recoil * Params.YRandFactor + state.Recoil * Params.YRandFactor * 2 * state.YRand) * 0.3);
+		R.Yaw = ((-state.Recoil * XRandFactor + state.Recoil * XRandFactor * 2 * state.XRand) * 0.3);
+		R.Pitch = ((-state.Recoil * YRandFactor + state.Recoil * YRandFactor * 2 * state.YRand) * 0.3);
     }
         
 	// Pitching/Yawing
@@ -662,13 +662,13 @@ private final function Rotator CalculateRecoil(StateData state)
 	// If there is any escape factor, you will get a visual jump where the evaluation of the two curves differs.
 	if (BW.bScopeView && bUseAltSightCurve)
 	{
-		R.Yaw += Params.EvaluateXRecoilAlt(state.Recoil);
-		R.Pitch += Params.EvaluateYRecoilAlt(state.Recoil);
+		R.Yaw += Params.EvaluateXRecoilAlt(state.Recoil, YawFactor);
+		R.Pitch += Params.EvaluateYRecoilAlt(state.Recoil, PitchFactor);
 	}
 	else
 	{
-		R.Yaw += Params.EvaluateXRecoil(state.Recoil);
-		R.Pitch += Params.EvaluateYRecoil(state.Recoil);
+		R.Yaw += Params.EvaluateXRecoil(state.Recoil, YawFactor);
+		R.Pitch += Params.EvaluateYRecoil(state.Recoil, PitchFactor);
 	}
 
 	if (BW.Handedness() < 0) // held in left hand - reverse recoil curve
@@ -684,7 +684,7 @@ private final function Rotator CalculateRecoil(StateData state)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 final function bool BotShouldFire(float Dist)
 {
-    if (Current.Recoil * Params.YawFactor > 100 * (1+4000/Dist) || (Current.Recoil * Params.PitchFactor > 100 * (1+4000/Dist)))
+    if (Current.Recoil * YawFactor > 100 * (1+4000/Dist) || (Current.Recoil * PitchFactor > 100 * (1+4000/Dist)))
         return false;
 
     return true;

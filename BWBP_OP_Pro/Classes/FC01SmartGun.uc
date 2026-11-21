@@ -463,7 +463,7 @@ simulated function ApplySuppressorAim()
 	AimComponent.AimSpread.Max *= 1.25;
 }
 
-function ApplySuppressorRecoil()
+simulated function ApplySuppressorRecoil()
 {
 	RcComponent.XRandFactor *= 0.7f;
 	RcComponent.YRandFactor *= 0.7f;
