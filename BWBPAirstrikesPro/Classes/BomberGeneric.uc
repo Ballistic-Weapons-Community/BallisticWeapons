@@ -122,7 +122,8 @@ state Pending
 		Sleep((3 * Speed - VSize(BombTargetCenter-Location)) / Speed);
 		bHidden = False;
 		Velocity = vector(Rotation) * Speed;
-		SetTimer((VSize(BombTargetCenter - Location) - BombRange)/Speed, false);
+		// a bomber that starts within BombRange of the target bombs at once (a timer of 0 or less never runs)
+		SetTimer(FMax(0.01, (VSize(BombTargetCenter - Location) - BombRange)/Speed), false);
 		GoToState('');		
 }
 
