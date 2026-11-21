@@ -22,9 +22,9 @@ simulated event PostBeginPlay()
 //	SetRotation(Rotation + Rot(0,0,1) * Owner.Rotation.Yaw * Abs(Vector(Rotation).Z));
 
 	R = Rotation;
-	R.Roll = -R.Yaw + Rotator(Owner.Location - Location).Yaw;
 	if (Owner != None && Pawn(Owner) != None && Pawn(Owner).Weapon != None && Pawn(Owner).Weapon.GetFireMode(0) != None && X3PrimaryFire(Pawn(Owner).Weapon.GetFireMode(0)) != None)
 	{
+		R.Roll = -R.Yaw + Rotator(Owner.Location - Location).Yaw;
 		SliceAnim = X3PrimaryFire(Pawn(Owner).Weapon.GetFireMode(0)).SliceAnim;
 		if (SliceAnim == 0)
 			R.Roll -= 24768;
