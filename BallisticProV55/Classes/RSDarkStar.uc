@@ -689,8 +689,7 @@ function byte BestMode()
 		if (CurrentWeaponMode != 0)
 		{
 			lastModeChangeTime = level.TimeSeconds;
-			CurrentWeaponMode = 0;
-			RSDarkPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+			CommonSwitchWeaponMode(0);
 		}
 	}
 	else
@@ -698,8 +697,7 @@ function byte BestMode()
 		if (CurrentWeaponMode != 1)
 		{
 			lastModeChangeTime = level.TimeSeconds;
-			CurrentWeaponMode = 1;
-			RSDarkPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+			CommonSwitchWeaponMode(1);
 		}
 	}
 
