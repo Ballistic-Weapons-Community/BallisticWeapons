@@ -284,7 +284,6 @@ function ServerSwitchAmplifier(bool bNewValue)
 		WeaponModes[0].bUnavailable=true;
 		WeaponModes[1].bUnavailable=false;
 		WeaponModes[2].bUnavailable=false;
-		CurrentWeaponMode=1;
 		ServerSwitchWeaponMode(1);
 		AmpCharge=10;
 	}
@@ -293,7 +292,6 @@ function ServerSwitchAmplifier(bool bNewValue)
 		WeaponModes[0].bUnavailable=false;
 		WeaponModes[1].bUnavailable=true;
 		WeaponModes[2].bUnavailable=true;
-		CurrentWeaponMode=0;
 		ServerSwitchWeaponMode(0);
 		AmpCharge=0;
 	}
@@ -774,7 +772,9 @@ simulated function AddHeat(float Amount)
 		WeaponModes[0].bUnavailable=false;
 		WeaponModes[1].bUnavailable=true;
 		WeaponModes[2].bUnavailable=true;
-		CurrentWeaponMode=0;
+		// A full switch, not just CurrentWeaponMode=0, or the mode's recoil params are never swapped back
+		if (Role < ROLE_Authority)
+			CommonSwitchWeaponMode(0);
 		ServerSwitchWeaponMode(0);
 		if (Role == ROLE_Authority && ThirdPersonActor != None)
 			SRXAttachment(ThirdPersonActor).SetAmped(false);
