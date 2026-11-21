@@ -22,7 +22,8 @@ function int NetDamage( int OriginalDamage, int Damage, pawn injured, pawn insti
 {
 	local int i;
 	
-	if (Cannons.Length > 0)
+	// Damage with no instigator would match a cannon with no target
+	if (Cannons.Length > 0 && instigatedBy != None)
 	{
 		for (i=0;i<Cannons.Length;i++)
 		{
