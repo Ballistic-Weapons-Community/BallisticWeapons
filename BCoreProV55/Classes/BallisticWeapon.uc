@@ -1752,7 +1752,7 @@ simulated function Notify_ClipOut()
 // Animation notify for when cocking action starts. Used to time sounds
 simulated function Notify_CockStart()
 {
-	if (ReloadState == RS_None && !bNeedCock)	return;
+	if (ReloadState == RS_None && !NeedsCocking())	return;
 	PlayPawnCockingInReload();
 	ReloadState = RS_Cocking;
 	class'BUtil'.static.PlayFullSound(self, CockSound, true);
@@ -1761,7 +1761,7 @@ simulated function Notify_CockStart()
 // Animation notify for when cocking action starts for pullout fancy animations that use a different sound to Notify_CockStart. Used to time sounds
 simulated function Notify_CockPullout()
 {
-	if (ReloadState == RS_None && !bNeedCock)	return;
+	if (ReloadState == RS_None && !NeedsCocking())	return;
 	ReloadState = RS_Cocking;
 	class'BUtil'.static.PlayFullSound(self, CockSelectSound, true);
 }
@@ -1776,14 +1776,14 @@ simulated function Notify_BrassOut()
 simulated function Notify_CockAfterFire()
 {
 	bPreventReload=false;
-	if (bNeedCock && ReloadState == RS_None && MagAmmo > 0)
+	if (NeedsCocking() && ReloadState == RS_None && MagAmmo > 0)
 		CommonCockGun(1);
 }
 
 // Animation notify to make gun cock after reload
 simulated function Notify_CockAfterReload()
 {
-	if (bNeedCock && ReloadState == RS_None && MagAmmo > 0)
+	if (NeedsCocking() && ReloadState == RS_None && MagAmmo > 0)
 		CommonCockGun(2);
 }
 
@@ -1963,7 +1963,7 @@ simulated function FirePressed(float F)
 			SkipReload();
 	}
 	//mod
-	else if (ReloadState == RS_None && bNeedCock && !bPreventReload && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime)
+	else if (ReloadState == RS_None && NeedsCocking() && !bPreventReload && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime)
 	{
 		CommonCockGun();
 		if (Level.NetMode == NM_Client)
@@ -3288,7 +3288,17 @@ simulated final function PlayPawnCockingInReload()
 // the player's own machine, so its cocking notify never tells the pawn
 simulated function bool CocksInBringUp()
 {
-	return bNeedCock && MagAmmo > 0 && HasAnim(CockSelectAnim);
+	return NeedsCocking() && MagAmmo > 0 && HasAnim(CockSelectAnim);
+}
+
+// With reloading off the magazine is endless and never reloaded, so a gun never needs cocking: no cock on bring up,
+// none after a bolt or pump shot, none for an empty pickup. Many fire classes set bNeedCock, so the flag is dropped
+// where the generic code asks for it (fire press, bring up, bots, AllowFire) instead of where it is set
+simulated final function bool NeedsCocking()
+{
+	if (bNoMag)
+		bNeedCock = false;
+	return bNeedCock;
 }
 //---------------------------------------------------------------------------
 // END WEAPON COCKING
@@ -3756,7 +3766,7 @@ function ServerStartReload (optional byte i)
 		
 	if (MagAmmo >= GetMagCapacity() + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking)))
 	{
-		if (bNeedCock)
+		if (NeedsCocking())
 			ServerCockGun(0);
 		return;
 	}
@@ -4435,7 +4445,7 @@ function bool CanAttack(Actor Other)
 		return false;
 	}
 	
-	if (!bNonCocking && bNeedCock && !bNeedReload && MagAmmo > 0)
+	if (!bNonCocking && NeedsCocking() && !bNeedReload && MagAmmo > 0)
 	{
 		if (AIController(Instigator.Controller) != None)
 			CommonCockGun();
@@ -5266,7 +5276,7 @@ simulated event Timer()
         ClientState = WS_ReadyToFire;
 		if (class'BallisticWeapon'.default.CrosshairMode != CHM_Unreal && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
 			HideStockCrosshair(true);
-		if (bNeedCock)
+		if (NeedsCocking())
 		{
 			if (BringUpTime == CockingBringUpTime)
 				bNeedCock = False;
@@ -5296,7 +5306,7 @@ simulated event Timer()
 					FireMode[Mode].DestroyEffects();
 		}
     }
-	else if (Clientstate == WS_None && bNeedCock)
+	else if (Clientstate == WS_None && NeedsCocking())
 	{
 		if (BringUpTime == CockingBringUpTime)
 			bNeedCock = False;

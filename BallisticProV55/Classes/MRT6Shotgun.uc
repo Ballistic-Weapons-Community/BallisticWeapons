@@ -174,7 +174,7 @@ simulated function PlayCocking(optional byte Type)
 simulated function Notify_CockAfterFire()
 {
 	bPreventReload=false;
-	if ((!bRightLoaded || (bRightLoaded && bLeftLoaded)) && bNeedCock && MagAmmo > 0)
+	if ((!bRightLoaded || (bRightLoaded && bLeftLoaded)) && NeedsCocking() && MagAmmo > 0)
 		CommonCockGun();
 }
 */
@@ -183,7 +183,7 @@ simulated function Notify_CockAfterFire()
 	bPreventReload=false;
 //	if ((!bRightLoaded || (bRightLoaded && bLeftLoaded)) && bNeedCock && MagAmmo > 0 &&
 //		(OtherGun == None || !CanAlternate(0) || OtherGun.bNeedCock) )
-	if ((!bRightLoaded || (bRightLoaded && bLeftLoaded)) && bNeedCock && MagAmmo > 0 )
+	if ((!bRightLoaded || (bRightLoaded && bLeftLoaded)) && NeedsCocking() && MagAmmo > 0 )
 		CommonCockGun();
 }
 

@@ -922,7 +922,7 @@ simulated function bool AllowFire()
 	else if (BW.bNeedCock)
 		return false;		// Is gun cocked
 
-	if (BW.bNeedCock)		// Need this again outside the chain above 
+	if (BW.NeedsCocking())		// Need this again outside the chain above 
 		return false;
 
     return true;

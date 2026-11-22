@@ -21,7 +21,7 @@ simulated function PlayShovelEnd()
 simulated function Notify_CockAfterFire()
 {
 	bPreventReload=false;
-	if ((!bRightLoaded || (bRightLoaded && bLeftLoaded)) && bNeedCock && MagAmmo > 0)
+	if ((!bRightLoaded || (bRightLoaded && bLeftLoaded)) && NeedsCocking() && MagAmmo > 0)
 		CommonCockGun();
 }
 
