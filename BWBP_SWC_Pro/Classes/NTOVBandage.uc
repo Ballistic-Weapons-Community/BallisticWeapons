@@ -101,4 +101,6 @@ defaultproperties
 	 ParamsClasses(3)=Class'NTOVBandageWeaponParamsRealistic'
      //Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_NTOV'
      DrawScale=0.400000
+	AltFireHint="Heal self/ally"
+	SpecialHint=""
 }

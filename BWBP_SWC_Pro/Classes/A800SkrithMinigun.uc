@@ -406,4 +406,5 @@ defaultproperties
 	DrawScale=0.400000
 	SoundRadius=128.000000
 	bShowChargingBar=True
+	AltFireHint="Sticky bomb (hold)"
 }

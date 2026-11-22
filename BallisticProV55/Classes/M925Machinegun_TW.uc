@@ -298,4 +298,5 @@ defaultproperties
 	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925Small'
 	Skins(3)=Texture'BW_Core_WeaponTex.M925.M925HeatShield'
 	Skins(4)=Texture'BW_Core_WeaponTex.M925.M925AmmoBox'
+	AltFireHint="Undeploy"
 }

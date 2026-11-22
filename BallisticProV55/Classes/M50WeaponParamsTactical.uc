@@ -240,6 +240,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalParams_AdvSupp
 		//Layout core
 		LayoutName="A3 Suppressed"
+		SpecialHint="-"
 		LayoutTags="no_grenade, suppressed"
 		Weight=5
 		AllowedCamos(0)=4
@@ -268,6 +269,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalParams_AdvHolo
 		//Layout core
 		LayoutName="A3 Holo"
+		SpecialHint="Cycle laser/flashlight"
 		LayoutTags="no_grenade, lam"
 		Weight=5
 		AllowedCamos(0)=4

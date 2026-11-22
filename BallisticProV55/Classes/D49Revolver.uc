@@ -531,4 +531,6 @@ defaultproperties
 	SightAnimScale=0.5
 	bShouldDualInLoadout=False
 	bUseDualReload=False
+	AltFireHint="Both barrels"
+	SpecialHint="Laser sight on/off"
 }

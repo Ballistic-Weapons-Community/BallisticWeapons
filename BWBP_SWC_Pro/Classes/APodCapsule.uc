@@ -95,4 +95,6 @@ defaultproperties
 	 ParamsClasses(2)=Class'ApodCapsuleWeaponParamsRealistic'
 	 ParamsClasses(3)=Class'ApodCapsuleWeaponParamsRealistic'
      DrawScale=0.400000
+	AltFireHint="Adrenaline self/ally"
+	SpecialHint=""
 }

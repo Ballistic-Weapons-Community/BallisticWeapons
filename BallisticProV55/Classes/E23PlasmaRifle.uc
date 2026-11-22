@@ -509,4 +509,6 @@ defaultproperties
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.VPR.VPR-Shiny'
 	Skins(2)=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny'
+	AltFireHint="Laser beam"
+	SpecialHint="Night vision on/off"
 }

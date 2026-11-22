@@ -1036,4 +1036,6 @@ defaultproperties
 	bShowChargingBar=false
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FC01_FPm'
 	DrawScale=0.400000
+	AltFireHint="Scope"
+	SpecialHint="Suppressor on/off"
 }

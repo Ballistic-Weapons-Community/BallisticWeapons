@@ -221,4 +221,5 @@ defaultproperties
     Skins(1)=Texture'BWBP_SKC_Tex.SK410.SK410-Main'
     Skins(2)=Texture'BWBP_SKC_Tex.SK410.SK410-Misc'
     Skins(3)=Shader'BWBP_SKC_Tex.SK410.SK410-LightsOn'
+	AltFireHint="Explosive slug"
 }

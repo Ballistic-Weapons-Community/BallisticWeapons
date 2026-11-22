@@ -591,4 +591,6 @@ defaultproperties
 	Skins(3)=TexScaler'BWBP_OP_Tex.Raygun.RaygunNumbersScaler2'
 	SoundPitch=56
 	SoundRadius=32.000000
+	AltFireHint="Charged ray (hold)"
+	SpecialHint="Shield on/off"
 }

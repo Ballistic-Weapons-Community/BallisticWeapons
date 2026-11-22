@@ -312,4 +312,5 @@ defaultproperties
 	 ParamsClasses(3)=Class'PKMMachinegunWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_APC_Anim.PKMA_FPm'
      DrawScale=0.250000
+	AltFireHint="Launch knife (hold)"
 }

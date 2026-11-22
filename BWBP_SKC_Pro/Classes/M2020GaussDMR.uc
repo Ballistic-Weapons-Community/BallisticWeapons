@@ -637,4 +637,5 @@ defaultproperties
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_SKC_Tex.M2020.M2020-ShineAlt'
 	Skins(2)=Shader'BWBP_SKC_Tex.M2020.M2020-Shine'
+	SpecialHint="Magnet shield on/off"
 }

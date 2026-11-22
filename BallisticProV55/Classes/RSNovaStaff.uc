@@ -784,4 +784,6 @@ defaultproperties
 	DrawScale=0.300000
 	bFullVolume=True
 	SoundRadius=32.000000
+	AltFireHint="Charged melee (hold)"
+	SpecialHint="Rampage (full souls)"
 }

@@ -216,6 +216,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_RDS
 		//Layout core
 		LayoutName="RDS"
+		SpecialHint="-"
 		Weight=10
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="LightModule",Slot=4,Scale=0f)
@@ -268,6 +269,7 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Sensor"
+		SpecialHint="Sensor ping"
 		LayoutTags="sensor"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="LightModule",Slot=4,Scale=0f)

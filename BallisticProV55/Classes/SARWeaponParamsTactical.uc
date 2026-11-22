@@ -284,6 +284,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalParams_CombatLaser
 		//Layout core
 		LayoutName="Combat Laser"
+		AltFireHint="Combat laser (hold)"
 		LayoutTags="combat_laser"
 		Weight=10
 		// ADS handling
@@ -332,6 +333,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=TacticalParams_Supp
 		//Layout
 		LayoutName="Suppressor"
+		AltFireHint="Laser sight on/off"
 		LayoutTags="target_laser"
 		Weight=5
 		//Attachments

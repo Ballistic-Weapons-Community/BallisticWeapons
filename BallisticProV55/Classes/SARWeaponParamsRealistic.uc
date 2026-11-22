@@ -295,6 +295,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_CombatLaser
 		//Layout core
 		LayoutName="Combat Laser"
+		AltFireHint="Combat laser (hold)"
 		LayoutTags="combat_laser"
 		Weight=10
 		// ADS handling
@@ -321,6 +322,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_Scope
 		//Layout
 		LayoutName="3X Scope"
+		AltFireHint="Laser sight on/off"
+		SpecialHint="-"
 		LayoutTags="target_laser, lock_stock"
 		Weight=10
 		//Attachments
@@ -354,6 +357,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_Supp
 		//Layout
 		LayoutName="Suppressor"
+		AltFireHint="Laser sight on/off"
 		LayoutTags="target_laser"
 		Weight=5
 		//Attachments

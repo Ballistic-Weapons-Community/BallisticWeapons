@@ -235,6 +235,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams_FS
 		//Layout core
 		LayoutName="Firestorm"
+		AltFireHint="HE slug"
 		LayoutTags="exp,heat,slug"
 		Weight=20
 		AllowedCamos(0)=7

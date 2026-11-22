@@ -130,4 +130,5 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_APC_Anim.CryoCannon_FPm'
 	DrawScale=0.400000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	AltFireHint="Cryo grenade"
 }

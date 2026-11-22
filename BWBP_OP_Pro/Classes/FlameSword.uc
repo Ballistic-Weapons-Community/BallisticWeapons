@@ -346,4 +346,5 @@ defaultproperties
 	DrawScale=0.3
 	SoundRadius=32.000000
 	PlayerViewOffset=(X=5.000000,Y=2.500000,Z=-5.000000)
+	AltFireHint="Deploy barrier"
 }

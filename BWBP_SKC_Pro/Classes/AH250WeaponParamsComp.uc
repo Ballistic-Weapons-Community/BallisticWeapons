@@ -152,6 +152,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams_Scope
 		//Layout core
 		LayoutName=".44 Marksman"
+		SpecialHint="-"
 		Weight=10
 
 		//Function
@@ -186,6 +187,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams_RDS
 		//Layout core
 		LayoutName=".44 RDS"
+		SpecialHint="-"
 		Weight=10
 		
 		//Attachments
@@ -244,6 +246,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams_50
 		//Layout core
 		LayoutName=".50"
+		SpecialHint="-"
 		Weight=10
 		
 		//Attachments

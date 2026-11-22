@@ -504,4 +504,5 @@ defaultproperties
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_OP_Tex.XBow.XBow_SH1'
+	SpecialHint="Cycle scope vision"
 }

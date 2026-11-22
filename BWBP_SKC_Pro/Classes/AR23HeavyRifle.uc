@@ -357,4 +357,5 @@ defaultproperties
 	 Skins(2)=Shader'BWBP_SKC_Tex.AR23.AR23-MiscShine'
 	 Skins(3)=Shader'BWBP_SKC_Tex.AR23.AR23-HoloShine'
 	 Skins(4)=Texture'BWBP_SKC_Tex.AR23.Muzzle_2D_View'
+	AltFireHint="Load/fire canister"
 }

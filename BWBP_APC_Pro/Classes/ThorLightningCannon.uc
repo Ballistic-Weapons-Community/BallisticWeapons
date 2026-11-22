@@ -246,4 +246,5 @@ defaultproperties
 	 ParamsClasses(2)=Class'ThorLCWeaponParams'
 	 ParamsClasses(3)=Class'ThorLCWeaponParams'
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	AltFireHint="Drain beam (hold)"
 }

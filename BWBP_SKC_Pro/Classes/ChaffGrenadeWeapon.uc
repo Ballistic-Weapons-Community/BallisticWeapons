@@ -373,4 +373,5 @@ defaultproperties
      ItemName="MOA-C Chaff Grenade"
      Mesh=SkeletalMesh'BWBP_SKC_Anim.MOAC_FPm'
      DrawScale=0.300000
+	AltFireHint="Melee smack (hold)"
 }

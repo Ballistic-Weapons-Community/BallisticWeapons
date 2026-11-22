@@ -527,4 +527,5 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.AH104_FPm'
 	DrawScale=0.300000
+	AltFireHint="Flamethrower"
 }

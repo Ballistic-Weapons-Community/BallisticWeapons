@@ -498,4 +498,5 @@ defaultproperties
 	bUseDualReload=False
 	bShowChargingBar=True
 	bWT_Bullet=True
+	AltFireHint="Blinding flash (hold)"
 }

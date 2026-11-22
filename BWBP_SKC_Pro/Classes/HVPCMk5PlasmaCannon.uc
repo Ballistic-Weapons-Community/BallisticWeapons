@@ -736,4 +736,5 @@ defaultproperties
 	bFullVolume=True
 	SoundVolume=64
 	SoundRadius=128.000000
+	AltFireHint="Rapid plasma (overheats)"
 }

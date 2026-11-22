@@ -325,4 +325,5 @@ defaultproperties
 	Skins(1)=Texture'BWBP_SKC_Tex.MGL.MGL-Main'
 	Skins(2)=Texture'BWBP_SKC_Tex.MGL.MGL-ScreenBase'
 	Skins(3)=Shader'BWBP_SKC_Tex.MGL.MGL-HolosightGlowBasic'
+	AltFireHint="Remote grenade"
 }

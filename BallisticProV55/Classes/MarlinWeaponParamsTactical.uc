@@ -203,6 +203,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams
 		//Layout core
 		LayoutName="Iron Sights"
+		SpecialHint="-"
 		Weight=30
 		AllowedCamos(0)=0
 		AllowedCamos(1)=1
@@ -230,6 +231,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_Gauss
 		//Layout core
 		LayoutName="Gauss Mod"
+		SpecialHint="-"
 		LayoutTags="gauss"
 		Weight=5
 		AllowedCamos(0)=0

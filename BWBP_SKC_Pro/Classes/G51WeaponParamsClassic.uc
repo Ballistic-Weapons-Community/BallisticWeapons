@@ -254,6 +254,7 @@ defaultproperties
 		//Layout core
 		Weight=3
 		LayoutName="Adv Holo + Sensor"
+		AltFireHint="Load/fire sensor grenade"
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
@@ -283,6 +284,7 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Iron Sights + HE"
+		AltFireHint="Load/fire HE grenade"
 		
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
@@ -343,6 +345,7 @@ defaultproperties
 		//Layout core
 		Weight=5
 		LayoutName="IR Scope"
+		SpecialHint="Thermal scope on/off"
 		LayoutTags="IR"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)

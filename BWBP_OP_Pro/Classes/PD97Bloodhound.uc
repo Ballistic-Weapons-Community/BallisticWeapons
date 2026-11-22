@@ -633,4 +633,6 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.PD97_FPm'
 	DrawScale=0.300000
+	AltFireHint="Tazer (hold)"
+	SpecialHint="Break lock"
 }

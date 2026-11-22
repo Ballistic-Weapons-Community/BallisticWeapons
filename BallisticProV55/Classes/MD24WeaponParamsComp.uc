@@ -249,6 +249,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams_TacKnife
 		//Layout core
 		LayoutName="9mm Tac Knife"
+		AltFireHint="Stab"
 		LayoutTags="tacknife"
 		Weight=10
 		//Attachments

@@ -160,6 +160,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		//Layout core
 		LayoutName="Shotgun"
+		SpecialHint="-"
 		LayoutTags="shotgun"
 		Weight=30
 		//Visual
@@ -183,6 +184,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams_Rocket
 		//Layout core
 		LayoutName="Missile"
+		AltFireHint="Place tracker"
 		Weight=15
 		//Visual
 		WeaponName="PD97 Missile Revolver"
@@ -206,6 +208,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams_Dart
 		//Layout core
 		LayoutName="Plague Dart"
+		SpecialHint="-"
 		Weight=10
 		//Visual
 		WeaponName="PD97 Dart Revolver"

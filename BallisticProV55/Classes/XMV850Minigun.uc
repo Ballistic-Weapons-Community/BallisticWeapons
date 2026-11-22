@@ -458,4 +458,5 @@ defaultproperties
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.XMV850.XMV850_Main'
 	Skins(2)=Shader'BW_Core_WeaponTex.XMV850.XMV850_Barrels_SD'
+	AltFireHint="Deploy minigun"
 }

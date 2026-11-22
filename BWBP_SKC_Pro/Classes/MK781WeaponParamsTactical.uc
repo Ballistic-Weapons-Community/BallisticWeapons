@@ -304,6 +304,7 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="Suppressed"
+		SpecialHint="Suppressor on/off"
 		LayoutTags="start_suppressed"
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
@@ -331,6 +332,7 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Supp + 3X Scope Sabot"
+		SpecialHint="Suppressor on/off"
 		LayoutTags="no_alt, slug"
 		//Attachments
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_3XScope',BoneName="tip",Scale=0.15,AugmentOffset=(x=-28,y=0,z=-0.3),AugmentRot=(Pitch=0,Roll=16384,Yaw=32678))

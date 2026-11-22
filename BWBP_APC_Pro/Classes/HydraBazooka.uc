@@ -608,4 +608,6 @@ defaultproperties
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BWBP_APC_Anim.CruRL_FPm'
 	DrawScale=0.300000
+	AltFireHint="Rocket volley (hold)"
+	SpecialHint="Guidance laser on/off"
 }

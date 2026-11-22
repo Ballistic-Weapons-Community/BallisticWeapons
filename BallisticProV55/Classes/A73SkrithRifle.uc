@@ -374,4 +374,5 @@ defaultproperties
 	Skins(4)=Shader'BW_Core_WeaponTex.A73.A73BladeShader'
 	SoundPitch=56
 	SoundRadius=32.000000
+	AltFireHint="Power shot"
 }

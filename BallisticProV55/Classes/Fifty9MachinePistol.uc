@@ -665,4 +665,6 @@ defaultproperties
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Fifty9_FPm'
 	DrawScale=0.300000
+	AltFireHint="Blade slash"
+	SpecialHint="Extend/fold stock"
 }

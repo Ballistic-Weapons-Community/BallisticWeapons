@@ -160,6 +160,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_RDS
 		//Layout core
 		LayoutName="RDS"
+		SpecialHint="-"
 		LayoutTags="no_muzzle"
 		Weight=5
 		//Attachments

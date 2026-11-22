@@ -495,4 +495,5 @@ defaultproperties
      DrawScale=1.000000
      SoundPitch=32
      SoundRadius=32.000000
+	AltFireHint="Laser beam (hold)"
 }

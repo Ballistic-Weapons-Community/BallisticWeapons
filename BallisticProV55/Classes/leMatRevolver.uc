@@ -683,4 +683,6 @@ defaultproperties
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Wilson_FPm'
 	DrawScale=0.300000
 	SightAnimScale=0.65
+	AltFireHint="Shotgun shell"
+	SpecialHint="Laser sight on/off"
 }

@@ -748,4 +748,6 @@ defaultproperties
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.Glock.Glock_Shiny'
 
+	AltFireHint="Combat laser (hold)"
+	SpecialHint="Single laser shot"
 }

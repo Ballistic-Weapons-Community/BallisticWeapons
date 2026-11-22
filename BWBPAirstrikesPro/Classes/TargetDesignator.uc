@@ -424,4 +424,5 @@ defaultproperties
     DrawScale=0.600000
     AmbientGlow=64
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	AltFireHint="Scope"
 }

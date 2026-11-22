@@ -333,4 +333,5 @@ defaultproperties
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.BOGP.BOGP_Main'
 	Skins(2)=Shader'BW_Core_WeaponTex.BOGP.BOGP_ScopeShine'
+	AltFireHint="Switch grenade / flare"
 }

@@ -303,4 +303,5 @@ defaultproperties
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M353Turret_FPm'
 	DrawScale=0.600000
 	CollisionHeight=26.000000
+	AltFireHint="Undeploy"
 }

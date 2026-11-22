@@ -280,6 +280,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Flash
 		//Layout core
 		LayoutName="Flash Bulb"
+		AltFireHint="Blinding flash (hold)"
+		SpecialHint="-"
 		LayoutTags="no_combat_laser,flash"
 		Weight=10
 		//ADS
@@ -311,6 +313,7 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Automatic"
+		SpecialHint="-"
 		LayoutTags="no_combat_laser"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Laser",Slot=4,Scale=0f)
@@ -345,6 +348,8 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="RDS + Laser"
+		AltFireHint="Laser sight on/off"
+		SpecialHint="-"
 		LayoutTags="no_combat_laser,target_laser"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Laser",Slot=4,Scale=0.1f)
@@ -379,6 +384,8 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Tazer"
+		AltFireHint="Tazer stab"
+		SpecialHint="-"
 		LayoutTags="no_combat_laser,target_laser,tacknife"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="LAM",Slot=4,Scale=0)

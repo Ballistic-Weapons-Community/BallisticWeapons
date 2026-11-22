@@ -174,4 +174,6 @@ defaultproperties
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.HAMRTurret_FPm'
 	DrawScale=0.250000
 	PrePivot=(Z=8.000000)
+	AltFireHint="Undeploy"
+	SpecialHint="Trajectory beacon"
 }

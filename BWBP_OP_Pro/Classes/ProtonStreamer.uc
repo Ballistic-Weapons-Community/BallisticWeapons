@@ -421,4 +421,7 @@ defaultproperties
 	DrawScale=0.300000
 	SoundPitch=56
 	SoundRadius=32.000000
+	AltFireHint="Heal ally (hold)"
+	SpecialHint="Shield on/off"
+	AltStateHints(0)=(State=PowerAmp,Hint="Boost ally damage (hold)")
 }

@@ -399,4 +399,6 @@ defaultproperties
 	 Skins(2)=Shader'BWBP_SKC_Tex.PlasAxe.PlasEdge_Shield_S1'
 	 Skins(3)=Texture'BW_Core_WeaponTex.Misc.Glass'
 	 Skins(4)=Texture'BW_Core_WeaponTex.Misc.Invisible'
+	AltFireHint="Heavy strike (hold)"
+	SpecialHint="Magnet shield on/off"
 }

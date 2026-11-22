@@ -120,6 +120,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Suppressor
 		//Layout core
 		LayoutName="Suppressed"
+		SpecialHint="Suppressor on/off"
 		LayoutTags="silencer"
 		Weight=10
 		//Attachments

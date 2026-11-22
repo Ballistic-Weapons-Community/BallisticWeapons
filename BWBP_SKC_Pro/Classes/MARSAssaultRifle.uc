@@ -1059,4 +1059,6 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.F2000_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	AltFireHint="Smoke grenade"
+	SpecialHint="Cycle scope vision"
 }

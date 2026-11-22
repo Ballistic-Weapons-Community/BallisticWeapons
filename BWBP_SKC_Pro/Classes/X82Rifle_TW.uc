@@ -239,4 +239,6 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.X83Turret_FPm'
 	DrawScale=0.650000
 	CollisionHeight=24.000000
+	AltFireHint="Undeploy"
+	SpecialHint="Infrared scope on/off"
 }

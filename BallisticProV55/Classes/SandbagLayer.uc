@@ -278,4 +278,5 @@ defaultproperties
 	DrawScale=0.600000
 	SoundVolume=150
 	TransientSoundRadius=256.000000
+	AltFireHint="Place sandbags"
 }

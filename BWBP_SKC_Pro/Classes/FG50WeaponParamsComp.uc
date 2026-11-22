@@ -216,6 +216,7 @@ defaultproperties
 		//Layout core
 		Weight=20
 		LayoutName="Bipod"
+		AltFireHint="Deploy turret"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Holosight",Slot=51,Scale=0f)

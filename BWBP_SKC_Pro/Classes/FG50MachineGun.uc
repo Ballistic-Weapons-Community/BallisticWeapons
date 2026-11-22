@@ -711,4 +711,5 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FG50_FPm'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	AltFireHint="Rapid fire (overheats)"
 }

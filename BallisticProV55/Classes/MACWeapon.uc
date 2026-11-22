@@ -527,4 +527,6 @@ defaultproperties
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Main'
 	Skins(2)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Glass'
+	AltFireHint="Deploy HAMR"
+	SpecialHint="Trajectory beacon"
 }

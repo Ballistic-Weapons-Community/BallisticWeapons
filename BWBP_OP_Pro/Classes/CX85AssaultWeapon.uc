@@ -689,4 +689,6 @@ defaultproperties
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.CX85_FPm'
 	DrawScale=0.300000
+	AltFireHint="Tracker dart"
+	SpecialHint="Detonate darts"
 }

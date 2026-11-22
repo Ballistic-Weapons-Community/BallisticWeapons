@@ -246,4 +246,6 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.MG36Turret_FPm'
 	DrawScale=0.50000
 	CollisionHeight=24.000000
+	AltFireHint="Undeploy"
+	SpecialHint="Cycle scope vision"
 }

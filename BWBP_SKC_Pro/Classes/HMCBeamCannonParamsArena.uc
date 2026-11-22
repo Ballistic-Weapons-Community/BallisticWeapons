@@ -188,6 +188,7 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Cryon Gravitron"
+		AltFireHint="Tractor/repulsor (hold)"
 		LayoutTags="grav"
 		LayoutDescription="Slowing Blast with tractor/repulsor beam"
 		AllowedCamos(0)=1

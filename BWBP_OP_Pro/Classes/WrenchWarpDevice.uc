@@ -791,4 +791,6 @@ defaultproperties
      ItemName="NFUD Combat Wrench"
      Mesh=SkeletalMesh'BWBP_OP_Anim.Techwrench_FPm'
      DrawScale=0.300000
+	AltFireHint="Energy barrier"
+	SpecialHint="Remove deployable"
 }

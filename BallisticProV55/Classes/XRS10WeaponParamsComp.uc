@@ -82,6 +82,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		SpecialHint="-"
 		bDualBlocked=True
 		//SightOffset=(X=-15.000000,Z=9.500000)
 		DisplaceDurationMult=0.5

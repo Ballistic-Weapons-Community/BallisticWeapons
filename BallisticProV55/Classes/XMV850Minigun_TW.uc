@@ -179,4 +179,5 @@ defaultproperties
 	ItemName="XMV-850 Minigun Turret"
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMV850Turret_FPm'
 	DrawScale=0.350000
+	AltFireHint="Undeploy"
 }

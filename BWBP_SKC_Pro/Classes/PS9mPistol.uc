@@ -400,4 +400,6 @@ defaultproperties
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BWBP_SKC_Tex.Stealth.Stealth-Main'
+	AltFireHint="Medical dart"
+	SpecialHint="Self-heal dart"
 }

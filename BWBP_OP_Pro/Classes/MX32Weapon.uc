@@ -591,4 +591,6 @@ defaultproperties
      Mesh=SkeletalMesh'BWBP_OP_Anim.MX32_FPm'
      DrawScale=0.300000
 	 SightAnimScale=0.5
+	AltFireHint="Rocket barrage"
+	SpecialHint="Guidance laser on/off"
 }

@@ -101,4 +101,5 @@ defaultproperties
      ItemName="T10 Toxic Grenade"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.T10_FPm'
      DrawScale=0.300000
+	AltFireHint="Roll grenade"
 }

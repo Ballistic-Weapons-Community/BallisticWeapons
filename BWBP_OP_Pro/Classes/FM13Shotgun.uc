@@ -337,4 +337,5 @@ defaultproperties
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.FM13_FPm'
 	DrawScale=0.500000
+	AltFireHint="Load/fire gas shell"
 }

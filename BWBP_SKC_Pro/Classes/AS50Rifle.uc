@@ -670,4 +670,6 @@ defaultproperties
 	Skins(3)=Texture'BWBP_SKC_Tex.FSG50.FSG-Stock'
 	Skins(4)=Texture'BWBP_SKC_Tex.FSG50.FSG-Scope'
 	Skins(5)=Texture'BWBP_SKC_Tex.FG50.FG50-Screen'
+	AltFireHint="Incendiary shot"
+	SpecialHint="Thermal scope on/off"
 }

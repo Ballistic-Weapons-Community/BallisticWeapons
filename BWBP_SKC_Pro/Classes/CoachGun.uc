@@ -867,4 +867,5 @@ defaultproperties
      Skins(1)=Shader'BWBP_SKC_Tex.CoachGun.Coach-MainShine'
      Skins(2)=Texture'BWBP_SKC_Tex.CoachGun.DBL-SawnBits'
      Skins(3)=Texture'BWBP_SKC_Tex.CoachGun.Coach-Misc'
+	AltFireHint="Single barrel"
 }

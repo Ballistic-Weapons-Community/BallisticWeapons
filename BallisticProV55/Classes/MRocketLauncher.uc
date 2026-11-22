@@ -558,4 +558,5 @@ defaultproperties
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.MRL_FPm'
 	DrawScale=0.300000
+	AltFireHint="Rapid rocket swarm"
 }

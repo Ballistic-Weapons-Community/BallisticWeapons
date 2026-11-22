@@ -181,4 +181,5 @@ defaultproperties
 	PlayerViewOffset=(Y=0.000000)
 	ItemName="XMB-500 Smart Minigun Turret"
 	DrawScale=0.350000
+	AltFireHint="Undeploy"
 }

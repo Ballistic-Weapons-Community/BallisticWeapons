@@ -29,4 +29,5 @@ defaultproperties
      PickupClass=Class'BallisticProV55.Melee_M763Pickup'
      AttachmentClass=Class'BallisticProV55.Melee_M763Attachment'
      ItemName="Unfireable M763 Shotgun"
+	AltFireHint=""
 }

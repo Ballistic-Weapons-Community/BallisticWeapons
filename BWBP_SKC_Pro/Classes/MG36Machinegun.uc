@@ -745,4 +745,6 @@ defaultproperties
 	ParamsClasses(3)=Class'MG36WeaponParamsTactical'
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.MG36_FPm'
 	DrawScale=0.3
+	AltFireHint="Deploy turret"
+	SpecialHint="Cycle scope vision"
 }

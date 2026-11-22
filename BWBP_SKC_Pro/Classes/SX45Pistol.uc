@@ -598,4 +598,6 @@ defaultproperties
     Skins(5)=Texture'BWBP_SKC_Tex.SX45.SX45-Laser'
     Skins(6)=Shader'BW_Core_WeaponTex.Amp.Amp-FinalCyan'
 	Skins(7)=Shader'BW_Core_WeaponTex.Amp.Amp-GlowCyanShader'
+	AltFireHint="Amplifier on/off"
+	SpecialHint="Flashlight on/off"
 }

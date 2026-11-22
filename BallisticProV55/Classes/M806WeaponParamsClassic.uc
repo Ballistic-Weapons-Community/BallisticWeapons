@@ -185,6 +185,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Scope
 		//Layout core
 		LayoutName="4X Scope"
+		SpecialHint="-"
 		LayoutTags="scope"
 		Weight=5
 		WeaponPrice=800
@@ -220,6 +221,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Shotgun
 		// Layout core
 		LayoutName="Shotgun"
+		SpecialHint="-"
 		LayoutTags="shotgun"
 		Weight=5
 		WeaponPrice=1200

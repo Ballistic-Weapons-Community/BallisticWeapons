@@ -271,4 +271,5 @@ defaultproperties
      ItemName="RSH-1034 Riot Shield"
      Mesh=SkeletalMesh'BWBP_OP_Anim.BallisticShield_FPm'
      DrawScale=1.250000
+	AltFireHint="Shield bash (hold)"
 }

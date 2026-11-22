@@ -267,4 +267,5 @@ defaultproperties
      ItemName="Civilian Riot Shield"
      Mesh=SkeletalMesh'BWBP_OP_Anim.CivShield_FPm'
      DrawScale=1.250000
+	AltFireHint="Shield bash (hold)"
 }

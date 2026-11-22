@@ -174,4 +174,5 @@ defaultproperties
     DrawScale=0.3
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	SightAnimScale=0.5
+	AltFireHint="Single barrel"
 }

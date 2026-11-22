@@ -280,6 +280,8 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="Holo + Ice"
+		AltFireHint="Ice grenade"
+		SpecialHint="-"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.MARS3_FPm'
 		PickupMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3PickupHi'

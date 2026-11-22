@@ -359,4 +359,5 @@ defaultproperties
 	 ParamsClasses(3)=Class'GASCPistolWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_APC_Anim.GASC_FPm'
      DrawScale=1.000000
+	SpecialHint="Laser sight on/off"
 }

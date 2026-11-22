@@ -127,6 +127,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_Proto
 		//Layout core
 		LayoutName="X75 Prototype"
+		SpecialHint="-"
 		LayoutTags="irons"
 		Weight=5
 		//Visual

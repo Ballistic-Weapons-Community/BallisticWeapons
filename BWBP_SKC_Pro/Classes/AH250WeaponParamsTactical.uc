@@ -172,6 +172,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_Scope
 		//Layout core
 		LayoutName=".44 Marksman"
+		SpecialHint="-"
 		Weight=10
 		bDualBlocked=True
 
@@ -204,6 +205,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_RDS
 		//Layout core
 		LayoutName=".44 RDS"
+		SpecialHint="-"
 		Weight=10
 		bDualBlocked=True
 		
@@ -263,6 +265,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_50
 		//Layout core
 		LayoutName=".50"
+		SpecialHint="-"
 		Weight=10
 		bDualBlocked=True
 		

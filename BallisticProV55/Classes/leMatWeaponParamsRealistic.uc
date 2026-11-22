@@ -215,6 +215,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Slug
 		LayoutName="20ga Slug"
+		AltFireHint="Shotgun slug"
 		LayoutTags="slug"
 		Weight=10
 		
@@ -238,6 +239,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Decoy
 		LayoutName="Noisemaker"
+		AltFireHint="Decoy shell"
 		LayoutTags="decoy"
 		Weight=5
 		

@@ -260,4 +260,5 @@ defaultproperties
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.T9CNRC_FPm'
 	DrawScale=0.300000
+	AltFireHint="Scope"
 }

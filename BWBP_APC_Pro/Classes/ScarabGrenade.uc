@@ -107,4 +107,5 @@ defaultproperties
      ItemName="NRX-82 'Scarab' Cluster Grenade"
      Mesh=SkeletalMesh'BWBP_APC_Anim.CruGren_FPm'
      DrawScale=0.400000
+	AltFireHint="Roll grenade"
 }
