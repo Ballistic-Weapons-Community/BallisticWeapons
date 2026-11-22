@@ -45,7 +45,7 @@ var   bool							bHuntersLoaded;
 // This returns a bloodset for the given victim
 static function class<BallisticBloodSet> GetBloodSetFor (Pawn Victim)
 {
-	local int i, BestWeight;
+	local int i, j, BestWeight;
 	local class<BallisticBloodSet>	BS, BestBS;
 
 	if (Victim == None || Victim.PlayerReplicationInfo == None)
@@ -71,9 +71,10 @@ static function class<BallisticBloodSet> GetBloodSetFor (Pawn Victim)
 		Bs = PickBloodSet(Victim, BestWeight);
 	}
 	// Add our finding to the matches list for future reference
-	class'BloodSetHunter'.default.Matches.length = i+1;
-	class'BloodSetHunter'.default.Matches[i].CharacterName = Victim.PlayerReplicationInfo.CharacterName;
-	class'BloodSetHunter'.default.Matches[i].BloodSet = BS;
+	j = class'BloodSetHunter'.default.Matches.length;
+	class'BloodSetHunter'.default.Matches.length = j+1;
+	class'BloodSetHunter'.default.Matches[j].CharacterName = Victim.PlayerReplicationInfo.CharacterName;
+	class'BloodSetHunter'.default.Matches[j].BloodSet = BS;
 
 	return BS;
 }
