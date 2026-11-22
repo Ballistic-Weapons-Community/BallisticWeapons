@@ -139,11 +139,11 @@ simulated function Render(Canvas C)
 	C.Style = ERenderStyle.STY_Alpha;
 
 	// Where the old bar was, but never over the chat. It goes with the screen height, as the
-	// width would make it huge on ultrawide screens: 192 x 22 at 1080 high, whatever the width
+	// width would make it huge on ultrawide screens: 240 x 36 at 1080 high, whatever the width
 	Scale = C.ClipY / 900 * MyHUD.HudScale;
 	X = Round(5 * Scale);
-	W = Round(160 * Scale);
-	H = Round(18 * Scale);
+	W = Round(200 * Scale);
+	H = Round(30 * Scale);
 	Y = FMin(Round(C.ClipY - 330 * Scale), ChatTop(C, MyHUD) - Round(6 * Scale) - H);
 	Line = FMax(1, Round(1.5 * Scale));
 	Inset = Line + FMax(1, Round(2 * Scale));
