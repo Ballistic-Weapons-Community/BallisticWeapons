@@ -36,7 +36,7 @@ var int 				InvKillScore;		// Used for Invasion streaks
 replication
 {
 	reliable if (Role < ROLE_Authority)
-		ServerUpdateStreakChoices, ServerGetStreakList;
+		ServerUpdateStreakChoices, ServerGetStreakList, ServerSetAutoClaim;
 	reliable if (Role == ROLE_Authority)
 		ClientGetStreakChoices, ClientProcessWeapon, ClientProcessWeaponEnd, LastStreaks;
 	reliable if (Role == ROLE_Authority && bNetInitial)
@@ -309,14 +309,15 @@ simulated function ClientProcessWeaponEnd()
 
 simulated function UpdateStreakChoices()
 {
+	ServerSetAutoClaim(class'KillstreakConfig'.default.bAutoClaim);
 	ServerUpdateStreakChoices(
 		class'KillstreakConfig'.default.Killstreaks[0], 
 		class'KillstreakConfig'.default.Killstreaks[1],
 		class'KillstreakConfig'.default.Layouts[0],
 		class'KillstreakConfig'.default.Layouts[1],
 		class'KillstreakConfig'.default.Camos[0],
-		class'KillstreakConfig'.default.Camos[1],
-		class'KillstreakConfig'.default.bAutoClaim
+		class'KillstreakConfig'.default.Camos[1]
+		
 	);
 }
 
@@ -327,11 +328,9 @@ simulated function ClientGetStreakChoices()
 	UpdateStreakChoices();
 }
 
-function ServerUpdateStreakChoices(string Streak1, string Streak2, byte Layout1, byte Layout2, byte Camo1, byte Camo2, bool bAuto)
+function ServerUpdateStreakChoices(string Streak1, string Streak2, byte Layout1, byte Layout2, byte Camo1, byte Camo2)
 {
 	local int i;
-
-	bAutoClaim = bAuto;
 	
 	Killstreaks[0] = Streak1;
 	Killstreaks[1] = Streak2;
@@ -347,8 +346,12 @@ function ServerUpdateStreakChoices(string Streak1, string Streak2, byte Layout1,
 		if (BallisticPlayer(myController) != None)
 			BallisticPlayer(myController).LastStreaks[i] = LastStreaks[i];
 	}
+}
 
-	// Turned on with rewards waiting: they are given now
+// The player's Give Me Rewards At Once (KillstreakConfig.bAutoClaim). Turned on with rewards waiting: they are given now
+function ServerSetAutoClaim(bool bAuto)
+{
+	bAutoClaim = bAuto;
 	if (bAutoClaim && RewardLevel > 0 && Mut != None && PlayerController(myController) != None)
 		Mut.AutoClaim(PlayerController(myController));
 }

@@ -3863,14 +3863,14 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 
 	CheckBurstMode();
 
-	// A mode that changes what alt fire does shows the key hints again, with the new alt fire
-	if (Instigator.IsLocallyControlled() && bShowKeyHints && GetAltFireHint() != KeyHintAlt)
-		StartKeyHints();
-
 	if (ModeHandling == MR_Last && Instigator.IsLocallyControlled())
     {
         default.LastWeaponMode = CurrentWeaponMode;
     }
+
+	// A mode that changes what alt fire does shows the key hints again, with the new alt fire
+	if (Instigator.IsLocallyControlled() && bShowKeyHints && GetAltFireHint() != KeyHintAlt)
+		StartKeyHints();
 }
 
 simulated function ClientSwitchWeaponMode (byte NewMode)
