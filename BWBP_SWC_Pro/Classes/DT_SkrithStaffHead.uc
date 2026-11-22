@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(1)="%k made a jack-o-lantern with %o's skull and a plasma bolt."
      DeathStrings(2)="%o got a bolt to the bonce by %k's Shillelagh."
      DeathStrings(3)="%k bopped %o's skull with a plasma bolt."
-     BloodManagerName="BWBP_SWC_Pro.BloodMan_A73B"
+     BloodManagerName="BWBP_SKC_Pro.BloodMan_A73B"
      bIgniteFires=True
      DamageDescription=",Flame,Plasma,"
      WeaponClass=Class'BWBP_SWC_Pro.SkrithStaff'

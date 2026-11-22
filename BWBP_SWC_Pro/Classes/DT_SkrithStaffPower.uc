@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%k made %o a skeleton with a meat dress."
      DeathStrings(2)="%o's corpse made a nice lantern for %k to see in the dark."
      DeathStrings(3)="%k roasted %o with a plasma bomb."
-     BloodManagerName="BWBP_SWC_Pro.BloodMan_A73B"
+     BloodManagerName="BWBP_SKC_Pro.BloodMan_A73B"
      bIgniteFires=True
      DamageDescription=",Flame,Hazard,NonSniper,Plasma,"
      WeaponClass=Class'BWBP_SWC_Pro.SkrithStaff'

@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%k lit up %o in the dark, all without being seen."
      DeathStrings(2)="%o became a corpse candle thanks to %k."
      DeathStrings(3)="%k fired up %o with plasma bolts."
-     BloodManagerName="BWBP_SWC_Pro.BloodMan_A73B"
+     BloodManagerName="BWBP_SKC_Pro.BloodMan_A73B"
      bIgniteFires=True
      DamageDescription=",Flame,Plasma,"
      bOnlySeverLimbs=True
