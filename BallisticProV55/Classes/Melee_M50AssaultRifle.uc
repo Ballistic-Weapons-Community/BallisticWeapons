@@ -29,6 +29,12 @@ simulated event AnimEnd (int Channel)
 }
 simulated function LoadGrenade();
 
+// Both fire modes here only press Weapon Special (M50CamFire): alt fire does what the layout's special does
+simulated function string GetAltFireHint()
+{
+	return GetSpecialHint();
+}
+
 function float GetAIRating()
 {
 	return 0.0;
@@ -42,4 +48,5 @@ defaultproperties
      Priority=11
      PickupClass=Class'BallisticProV55.Melee_M50Pickup'
      ItemName="Unfireable M50 Assault Rifle"
+	SpecialHint="Place/view camera"
 }

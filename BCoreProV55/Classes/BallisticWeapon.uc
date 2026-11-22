@@ -447,6 +447,18 @@ var() bool		bWT_Heal;							// Has the ability to heal in some fashion.
 var() bool		bWT_Spam;							// Is unusually powerful relative to other weapons in the hands of bad players who refuse to use the Aimed key.
 													// Loadout will refuse to give spammers this weapon.
 var() localized array<String>	ManualLines;		// String array containing usage information.
+var() localized string			AltFireHint;		// What alt fire does on this gun, in a few words, for the key hints. Empty: no line
+var() localized string			SpecialHint;		// What Weapon Special does on this gun, in a few words. Empty: it does nothing
+struct AltStateHint									// Key hints: alt fire in this state does something else
+{
+	var() name		State;									// state of FireMode[1], e.g. one a fire mode switches it to
+	var() string	Hint;
+};
+var() array<AltStateHint>		AltStateHints;		// Checked before the layout's and the gun's AltFireHint
+var() globalconfig bool			bShowKeyHints;		// The player's choice: show what the keys do for a gun for a few seconds when it is drawn
+var float						KeyHintStart;		// Level.TimeSeconds when the key hints started showing; 0 when they are not
+var string						KeyHintLines[3];
+var string						KeyHintAlt;			// The alt fire text the hints were made with	// The lines, with the player's keys in them, made when the gun is drawn
 var	Object.Color	HeaderColor, TextColor;
 //=============================================================================
 // END GENERAL WEAPON VARIABLES
@@ -3851,6 +3863,10 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 
 	CheckBurstMode();
 
+	// A mode that changes what alt fire does shows the key hints again, with the new alt fire
+	if (Instigator.IsLocallyControlled() && bShowKeyHints && GetAltFireHint() != KeyHintAlt)
+		StartKeyHints();
+
 	if (ModeHandling == MR_Last && Instigator.IsLocallyControlled())
     {
         default.LastWeaponMode = CurrentWeaponMode;
@@ -4165,6 +4181,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
         if (Instigator.IsLocallyControlled())
         {
+			StartKeyHints();
 			if (CocksInBringUp())
 				PlayAnim(CockSelectAnim, CockSelectAnimRate, 0.0);
             else if (HasAnim(SelectAnim))
@@ -6133,6 +6150,8 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	ApplyStockCrosshair();
 	DrawCrosshairs(C);
 	
+	DrawKeyHints(C);
+
 	if (bSkipDrawWeaponInfo)
 		return;
 
@@ -6171,6 +6190,169 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 		C.CurY = C.ClipY - 130 * ScaleFactor * class'HUD'.default.HudScale - YL2 - YL;
 		C.DrawText(WeaponModes[CurrentWeaponMode].ModeName, false);
 	}
+}
+
+//===========================================================================
+// KEY HINTS
+//
+// For a few seconds after a gun is drawn, the HUD says what alt fire, Weapon Special and Switch Fire Mode do on it, with
+// the player's own keys: "[F] Special: Laser sight". Only keys that do something on this gun get a line.
+//---------------------------------------------------------------------------
+const KEY_HINT_TIME = 4.0;		// seconds the hints are shown in full
+const KEY_HINT_FADE = 1.0;		// then the seconds they take to fade out
+
+simulated final function StartKeyHints()
+{
+	local int i, n;
+	local string Modes, Hint;
+
+	KeyHintStart = 0;
+	if (!bShowKeyHints || PlayerController(Instigator.Controller) == None)
+		return;
+
+	for (i = 0; i < ArrayCount(KeyHintLines); i++)
+		KeyHintLines[i] = "";
+
+	Hint = GetAltFireHint();
+	KeyHintAlt = Hint;
+	if (Hint != "")
+		KeyHintLines[n++] = KeyHintKey("AltFire", "Alt Fire") @ "Alt:" @ Hint;
+	Hint = GetSpecialHint();
+	if (Hint != "")
+		KeyHintLines[n++] = KeyHintKey("WeaponSpecial|OnRelease WeaponSpecialRelease", "Weapon Special") @ "Special:" @ Hint;
+
+	// The fire modes the gun can switch between, when there are two or more
+	for (i = 0; i < WeaponModes.Length; i++)
+	{
+		if (WeaponModes[i].bUnavailable || WeaponModes[i].ModeName == "")
+			continue;
+		if (Modes != "")
+			Modes $= " / ";
+		Modes $= WeaponModes[i].ModeName;
+	}
+	if (InStr(Modes, " / ") != -1)
+		KeyHintLines[n++] = KeyHintKey("SwitchWeaponMode|OnRelease WeaponModeRelease", "Switch Fire Mode") @ "Mode:" @ Modes;
+
+	if (n > 0)
+		KeyHintStart = Level.TimeSeconds;
+}
+
+// What alt fire does on this gun as it is now. A layout or game style can make alt fire raise the scope or sights
+// (BallisticScopeFire, or a fire mode in its Scope state): that is found here, not written per gun
+simulated function string GetAltFireHint()
+{
+	local name AltState;
+	local int i;
+
+	if (FireMode[1] != None && (BallisticScopeFire(FireMode[1]) != None || FireMode[1].IsInState('Scope')))
+	{
+		if (ZoomType == ZT_Irons)
+			return "Aim down sights";
+		return "Scope";
+	}
+	if (FireMode[1] != None)
+	{
+		AltState = FireMode[1].GetStateName();
+		for (i = 0; i < AltStateHints.Length; i++)
+			if (AltStateHints[i].State == AltState)
+				return AltStateHints[i].Hint;
+	}
+	return LayoutHint(AltFireHint, true);
+}
+
+simulated function string GetSpecialHint()
+{
+	return LayoutHint(SpecialHint, false);
+}
+
+// The gun's hint, or the one its layout in this game style has in its place ("-" there: none)
+simulated final function string LayoutHint(string GunHint, bool bAltFire)
+{
+	local WeaponParams Layout;
+	local string Hint;
+
+	if (GameStyleIndex < ParamsClasses.Length && ParamsClasses[GameStyleIndex] != None
+		&& LayoutIndex < ParamsClasses[GameStyleIndex].default.Layouts.Length)
+		Layout = ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex];
+
+	if (Layout != None)
+	{
+		if (bAltFire)
+			Hint = Layout.AltFireHint;
+		else
+			Hint = Layout.SpecialHint;
+	}
+	if (Hint == "-")
+		return "";
+	if (Hint != "")
+		return Hint;
+	return GunHint;
+}
+
+// "[F]" for the key the player has bound to Command (a binding as the Ballistic key binding page writes it), or
+// "[Weapon Special]" when nothing is bound to it
+simulated final function string KeyHintKey(string Command, string Unbound)
+{
+	local PlayerController PC;
+	local string Key;
+	local int i;
+
+	PC = PlayerController(Instigator.Controller);
+	Key = class'GameInfo'.static.GetKeyBindName(Command, PC);
+	// GetKeyBindName picks among mouse buttons, letters, numbers, arrows and the like only: a key such as Mouse4 or F1
+	// comes back as the command. Then the first key bound to it, by its own name
+	if (Key == "" || Key == Command)
+	{
+		Key = PC.ConsoleCommand("BINDINGTOKEY" @ "\"" $ Command $ "\"");
+		i = InStr(Key, ",");
+		if (i != -1)
+			Key = Left(Key, i);
+	}
+	if (Key == "")
+		Key = Unbound;
+	return "[" $ Key $ "]";
+}
+
+simulated final function DrawKeyHints(Canvas C)
+{
+	local float Age, Fade, ScaleFactor, XL, YL, YLAmmo, Y;
+	local int i;
+
+	if (KeyHintStart == 0)
+		return;
+
+	Age = Level.TimeSeconds - KeyHintStart;
+	if (Age < 0 || Age > KEY_HINT_TIME + KEY_HINT_FADE || Instigator == None || Instigator.Weapon != self)
+	{
+		KeyHintStart = 0;
+		return;
+	}
+	Fade = FClamp((KEY_HINT_TIME + KEY_HINT_FADE - Age) / KEY_HINT_FADE, 0, 1);
+
+	ScaleFactor = C.ClipX / 1600;
+	// The spare ammo's line height, in its font (NewDrawWeaponInfo)
+	C.Font = GetFontSizeIndex(C, -2 + int(2 * class'HUD'.default.HudScale));
+	C.TextSize("0", XL, YLAmmo);
+	// The fire mode name's font
+	C.Font = GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
+	C.TextSize("0", XL, YL);
+	C.DrawColor = class'HUD'.default.WhiteColor;
+	C.DrawColor.A = byte(230 * Fade);
+	C.Style = ERenderStyle.STY_Alpha;
+
+	// Right aligned, the last line just above where the fire mode name goes (above the spare ammo)
+	Y = C.ClipY - 130 * ScaleFactor * class'HUD'.default.HudScale - YLAmmo - YL - 4 * ScaleFactor;
+	for (i = ArrayCount(KeyHintLines) - 1; i >= 0; i--)
+	{
+		if (KeyHintLines[i] == "")
+			continue;
+		C.TextSize(KeyHintLines[i], XL, YL);
+		Y -= YL;
+		C.CurX = C.ClipX - 15 * ScaleFactor * class'HUD'.default.HudScale - XL;
+		C.CurY = Y;
+		C.DrawText(KeyHintLines[i], false);
+	}
+	C.DrawColor = class'HUD'.default.WhiteColor;
 }
 
 // What a crosshair has to warn of, if the player wants warnings: an empty magazine, then a gun that needs cocking
@@ -7162,6 +7344,7 @@ defaultproperties
      LongGunOffset=(X=5.000000,Y=10.000000,Z=-11.000000)
 	 
 	 ScopeHandling=SH_Hold
+	 bShowKeyHints=True
      SelectAnim="Pullout"
      PutDownAnim="putaway"
      SelectAnimRate=1.000000

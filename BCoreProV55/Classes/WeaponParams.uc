@@ -60,6 +60,8 @@ var() int					Weight;					// How likely it is for this layout to be chosen, high
 var() String				LayoutName;				// The layout name in menus
 var() String				LayoutDescription;		// Short description to show in UI.
 var() String				LayoutTags;				// Internal tag used to change gun functionality eg gauss, explosive, suppressed
+var() String				AltFireHint;			// Key hints: what alt fire does on this layout, when not what the gun's AltFireHint says. "-": nothing to say
+var() String				SpecialHint;			// Key hints: what Weapon Special does on this layout, when not the gun's SpecialHint. "-": it does nothing here
 //-----------------------------------------------------------------------------
 // Movement speed
 //-----------------------------------------------------------------------------

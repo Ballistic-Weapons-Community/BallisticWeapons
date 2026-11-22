@@ -11,7 +11,7 @@ class ConfigTab_GameplayPrefs extends ConfigTabBase;
 
 var automated moComboBox		co_ADSHandling, co_ModeMemory;
 var automated moFloatEdit		fl_ZoomTimeMod;
-var automated moCheckbox		ch_WeaponUI, ch_SimpleDeathMessages, ch_LessDisruptiveFlash;
+var automated moCheckbox		ch_WeaponUI, ch_KeyHints, ch_SimpleDeathMessages, ch_LessDisruptiveFlash;
 var automated GUILabel		l_Aiming, l_Weapons, l_Screen;	// section headings
 
 function LoadSettings()
@@ -37,6 +37,7 @@ function LoadSettings()
 	fl_ZoomTimeMod.SetValue(class'BallisticPlayer'.default.ZoomTimeMod);
 
 	ch_WeaponUI.Checked(class'BallisticPlayer'.default.bUseWeaponUI);
+	ch_KeyHints.Checked(class'BallisticWeapon'.default.bShowKeyHints);
 	ch_SimpleDeathMessages.Checked(class'BallisticDamageType'.default.bSimpleDeathMessages);
 	ch_LessDisruptiveFlash.Checked(class'BallisticDamageType'.default.bLessDisruptiveFlash);
 }
@@ -50,6 +51,7 @@ function SaveSettings()
 	class'BallisticWeapon'.default.ModeHandling			= ModeSaveType(co_ModeMemory.GetIndex());
 	class'BallisticPlayer'.default.ZoomTimeMod			= fl_ZoomTimeMod.GetValue();
 	class'BallisticPlayer'.default.bUseWeaponUI 			= ch_WeaponUI.IsChecked();
+	class'BallisticWeapon'.default.bShowKeyHints			= ch_KeyHints.IsChecked();
 	class'BallisticDamageType'.default.bSimpleDeathMessages	= ch_SimpleDeathMessages.IsChecked();
 	class'BallisticDamageType'.default.bLessDisruptiveFlash	= ch_LessDisruptiveFlash.IsChecked();
 
@@ -64,6 +66,7 @@ function DefaultSettings()
 	co_ModeMemory.SetIndex(0);
 	fl_ZoomTimeMod.SetValue(1.5);
 	ch_WeaponUI.Checked(false); // gets you killed
+	ch_KeyHints.Checked(true);
 	ch_SimpleDeathMessages.Checked(false); // compromise
 	ch_LessDisruptiveFlash.Checked(false);
 }
@@ -97,7 +100,7 @@ defaultproperties
 		TextAlign=TXTA_Left
 		TextColor=(B=0,G=180,R=255,A=255)
 		TextFont="UT2MenuFont"
-		WinTop=0.420000
+		WinTop=0.470000
 		WinLeft=0.250000
 		WinWidth=0.500000
 		WinHeight=0.040000
@@ -157,6 +160,19 @@ defaultproperties
      End Object
      ch_WeaponUI=moCheckBox'ch_WeaponUICheck'
 
+	 Begin Object Class=moCheckBox Name=ch_KeyHintsCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Show What The Keys Do When A Gun Is Drawn"
+         OnCreateComponent=ch_KeyHintsCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="For a few seconds after you draw a gun, the HUD says what alt fire, Weapon Special and Switch Fire Mode do on it, with your keys."
+         WinTop=0.400000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_KeyHints=moCheckBox'ch_KeyHintsCheck'
+
 	 Begin Object Class=moCheckBox Name=ch_SimpleDeathMessagesCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
@@ -164,7 +180,7 @@ defaultproperties
          OnCreateComponent=ch_SimpleDeathMessagesCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Renders death messages as Killer [Weapon] Killed"
-         WinTop=0.470000
+         WinTop=0.520000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -177,7 +193,7 @@ defaultproperties
          OnCreateComponent=ch_LessDisruptiveFlashCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Screen flashes from weapons (flashbangs, gas, darts, tazers, lasers, fire) are black instead of white or coloured. They last as long and cover as much of the screen. The red flash when you are hurt stays red."
-         WinTop=0.520000
+         WinTop=0.570000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

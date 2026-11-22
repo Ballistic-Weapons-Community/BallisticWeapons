@@ -538,6 +538,7 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {
+	 SpecialHint="Cook grenade"
 	bCookable=True
 	ClipReleaseAnim="ClipOut"
 	FuseDelay=3.000000
