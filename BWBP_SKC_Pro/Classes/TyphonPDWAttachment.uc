@@ -56,23 +56,6 @@ function InitFor(Inventory I)
     PumaShieldEffect3rd.SetBase(I.Instigator);
 }
 
-simulated event ThirdPersonEffects()
-{
-    	if ( Level.NetMode != NM_DedicatedServer && Instigator != None)
-	{
-		//Spawn impacts, streaks, etc
-		InstantFireEffects(FiringMode);
-		//Flash muzzle flash
-		FlashMuzzleFlash (FiringMode);
-		//Weapon light
-		FlashWeaponLight(FiringMode);
-		//Play pawn anims
-		PlayPawnFiring(FiringMode);
-    	}
-
-    	Super.ThirdPersonEffects();
-}
-
 function SetBrightness(int b, bool hit)
 {
     if (PumaShieldEffect3rd != None)
