@@ -75,7 +75,8 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 		return;
 	}
 
-	class'BallisticDamageType'.static.GenericHurt (Target, FMin(Damage + SuccessiveHits, 16), Instigator, HitLocation, MomentumDir, DamageType);
+	// successive hits ramp the damage up to 16, but never cut a hit that does more on its own (head, Tactical)
+	class'BallisticDamageType'.static.GenericHurt (Target, Max(Damage, Min(Damage + SuccessiveHits, 16)), Instigator, HitLocation, MomentumDir, DamageType);
 }
 
 function DoTrace (Vector InitialStart, Rotator Dir)
