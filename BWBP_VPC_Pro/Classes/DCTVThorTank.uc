@@ -160,7 +160,12 @@ simulated function Tick(float DeltaTime)
 			}
 	}
 	else
+	{
 		UpdateWheelHeight(Spd, DeltaTime, true, bThorCrushing);
+		// Start the engine loop here too, clients pick idle or moving from it
+		if (AmbientSound == None && StartIdleTime != 0 && level.TimeSeconds >= StartIdleTime)
+			AmbientSound = IdleSound;
+	}
 
     Super(ONSTreadCraft).Tick( DeltaTime );
 }
