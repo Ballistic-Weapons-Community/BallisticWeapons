@@ -228,10 +228,12 @@ defaultproperties
 	GunLength=0.000000
     bUseSights=True
 	bUseSpecialAim=True
-	ParamsClasses(0)=Class'FG50TW_WeaponParamsComp'
-	ParamsClasses(1)=Class'FG50TW_WeaponParamsComp'
+	// The rifle deploys in Realism only (AS50Rifle.PreBeginPlay), so every style has the turret's own params. The FG50
+	// turret params it had for the others ask for HEAmmo and Mount states the AS50 fire classes don't have
+	ParamsClasses(0)=Class'AS50TW_WeaponParamsRealistic'
+	ParamsClasses(1)=Class'AS50TW_WeaponParamsRealistic'
 	ParamsClasses(2)=Class'AS50TW_WeaponParamsRealistic'
-    ParamsClasses(3)=Class'FG50TW_WeaponParamsTactical'
+    ParamsClasses(3)=Class'AS50TW_WeaponParamsRealistic'
 	SelectAnim="Deploy"
     BringUpTime=1.000000
 	bCanThrow=False

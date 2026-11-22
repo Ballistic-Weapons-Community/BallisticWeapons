@@ -88,7 +88,7 @@ defaultproperties
 	End Object
 		
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
-		TargetState=Laser"
+		TargetState="Laser"
 		FireInterval=0.700000
 		AmmoPerFire=0
 		BurstFireRateFactor=1.00
