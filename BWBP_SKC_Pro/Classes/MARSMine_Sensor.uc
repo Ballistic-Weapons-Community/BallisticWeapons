@@ -171,8 +171,16 @@ function Ping(vector HitLocation)
 {
 	local Actor A;
 	
-	if (Role < ROLE_Authority || Instigator == None || Instigator.Controller == None)
+	if (Role < ROLE_Authority)
 		return;
+
+	// With its owner dead or gone it pings nobody, but still goes on to explode at the end
+	if (Instigator == None || Instigator.Controller == None)
+	{
+		PulseNum++;
+		SetTimer(2.0, false);
+		return;
+	}
 	
 	foreach CollidingActors( class 'Actor', A, SensorRadius, Location )
 	{

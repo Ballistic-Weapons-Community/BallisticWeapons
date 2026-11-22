@@ -136,6 +136,10 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 			Proj.SetBase(StuckActor);
 	}
 
+	// The mine takes the Boltcaster's uncharged params, not those of whatever gun its owner holds by now
+	AY90Mine(Proj).LayoutIndex = LayoutIndex;
+	AY90Mine(Proj).Override(0);
+
 	Destroy();
 }
 

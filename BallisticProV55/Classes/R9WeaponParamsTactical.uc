@@ -79,6 +79,7 @@ defaultproperties
 		BotRefireRate=0.7
 		WarnTargetPct=0.4
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Fire',Volume=0.800000)
+		Heat=45
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalHeatFireParams

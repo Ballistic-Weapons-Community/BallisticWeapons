@@ -16,51 +16,51 @@ simulated function SetupColor(int TeamNum)
 
 	Emitters[0].ColorMultiplierRange.X.Min=0.5;
 	Emitters[0].ColorMultiplierRange.X.Max=0.5;
+	Emitters[0].ColorMultiplierRange.Y.Min=0.5;
 	Emitters[0].ColorMultiplierRange.Y.Max=0.5;
-	Emitters[0].ColorMultiplierRange.Y.Max=0.5;
-	Emitters[0].ColorMultiplierRange.Z.Max=1.0;
+	Emitters[0].ColorMultiplierRange.Z.Min=1.0;
 	Emitters[0].ColorMultiplierRange.Z.Max=1.0;
 
 	Emitters[1].ColorMultiplierRange.X.Min=0.75;
 	Emitters[1].ColorMultiplierRange.X.Max=0.75;
+	Emitters[1].ColorMultiplierRange.Y.Min=0.75;
 	Emitters[1].ColorMultiplierRange.Y.Max=0.75;
-	Emitters[1].ColorMultiplierRange.Y.Max=0.75;
-	Emitters[1].ColorMultiplierRange.Z.Max=1.0;
+	Emitters[1].ColorMultiplierRange.Z.Min=1.0;
 	Emitters[1].ColorMultiplierRange.Z.Max=1.0;
 
 	Emitters[2].ColorMultiplierRange.X.Min=0.65;
 	Emitters[2].ColorMultiplierRange.X.Max=0.65;
+	Emitters[2].ColorMultiplierRange.Y.Min=0.65;
 	Emitters[2].ColorMultiplierRange.Y.Max=0.65;
-	Emitters[2].ColorMultiplierRange.Y.Max=0.65;
-	Emitters[2].ColorMultiplierRange.Z.Max=1.0;
+	Emitters[2].ColorMultiplierRange.Z.Min=1.0;
 	Emitters[2].ColorMultiplierRange.Z.Max=1.0;
 
 	Emitters[3].ColorMultiplierRange.X.Min=0.65;
 	Emitters[3].ColorMultiplierRange.X.Max=0.65;
+	Emitters[3].ColorMultiplierRange.Y.Min=0.65;
 	Emitters[3].ColorMultiplierRange.Y.Max=0.65;
-	Emitters[3].ColorMultiplierRange.Y.Max=0.65;
-	Emitters[3].ColorMultiplierRange.Z.Max=1.0;
+	Emitters[3].ColorMultiplierRange.Z.Min=1.0;
 	Emitters[3].ColorMultiplierRange.Z.Max=1.0;
 
 	Emitters[4].ColorMultiplierRange.X.Min=0.35;
 	Emitters[4].ColorMultiplierRange.X.Max=0.35;
+	Emitters[4].ColorMultiplierRange.Y.Min=0.35;
 	Emitters[4].ColorMultiplierRange.Y.Max=0.35;
-	Emitters[4].ColorMultiplierRange.Y.Max=0.35;
-	Emitters[4].ColorMultiplierRange.Z.Max=1.0;
+	Emitters[4].ColorMultiplierRange.Z.Min=1.0;
 	Emitters[4].ColorMultiplierRange.Z.Max=1.0;
 
 	Emitters[5].ColorMultiplierRange.X.Min=0.5;
 	Emitters[5].ColorMultiplierRange.X.Max=0.5;
+	Emitters[5].ColorMultiplierRange.Y.Min=0.5;
 	Emitters[5].ColorMultiplierRange.Y.Max=0.5;
-	Emitters[5].ColorMultiplierRange.Y.Max=0.5;
-	Emitters[5].ColorMultiplierRange.Z.Max=1.0;
+	Emitters[5].ColorMultiplierRange.Z.Min=1.0;
 	Emitters[5].ColorMultiplierRange.Z.Max=1.0;
 
 	Emitters[6].ColorMultiplierRange.X.Min=0.55;
 	Emitters[6].ColorMultiplierRange.X.Max=0.55;
+	Emitters[6].ColorMultiplierRange.Y.Min=0.55;
 	Emitters[6].ColorMultiplierRange.Y.Max=0.55;
-	Emitters[6].ColorMultiplierRange.Y.Max=0.55;
-	Emitters[6].ColorMultiplierRange.Z.Max=1.0;
+	Emitters[6].ColorMultiplierRange.Z.Min=1.0;
 	Emitters[6].ColorMultiplierRange.Z.Max=1.0;
 }
 

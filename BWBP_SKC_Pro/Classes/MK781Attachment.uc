@@ -74,7 +74,7 @@ simulated function int GetTraceCount()
 		if (CurrentTracerMode == 1)
 			return 1;
 		else
-			return ShotgunEffectParams(WeaponClass.static.GetParams().default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceCount;
+			return ShotgunEffectParams(GetLayoutEffectParams()).TraceCount;
 	}
 
 	return 10;
@@ -263,6 +263,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
 		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && Mode != 0) || (WaterTracerMode == MU_Primary && Mode == 0)))
 	{
+		Tracer = None;
 		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
 			Tracer = Spawn(WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
 		if (Tracer != None)

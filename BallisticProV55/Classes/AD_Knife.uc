@@ -10,9 +10,9 @@ simulated event PostBeginPlay()
 	local Rotator R;
 
 	R = Rotation;
-	R.Roll = -8192 - R.Yaw + Rotator(Owner.Location - Location).Yaw;
 	if (Owner != None && Pawn(Owner) != None && Pawn(Owner).Weapon != None && Pawn(Owner).Weapon.GetFireMode(0) != None && X3PrimaryFire(Pawn(Owner).Weapon.GetFireMode(0)) != None)
 	{
+		R.Roll = -8192 - R.Yaw + Rotator(Owner.Location - Location).Yaw;
 		SliceAnim = X3PrimaryFire(Pawn(Owner).Weapon.GetFireMode(0)).SliceAnim;
 		if (SliceAnim == 0)
 			R.Roll -= 24768;

@@ -22,7 +22,7 @@ function int NetDamage( int OriginalDamage, int Damage, pawn injured, pawn insti
 {
 	local int i;
 	
-	if (Cannons.Length > 0)
+	if (instigatedBy != None && Cannons.Length > 0)
 	{
 		for (i=0;i<Cannons.Length;i++)
 		{

@@ -343,24 +343,15 @@ function byte BestMode()
 	if (MagAmmo > 8 && Result < 0.35)
 	{
 		if (CurrentWeaponMode != 1)
-		{
-			CurrentWeaponMode = 1;
-			E23PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
-		}
+			CommonSwitchWeaponMode(1);
 	}
 	else if (MagAmmo > 5 && Result > 0.6)
 	{
 		if (CurrentWeaponMode != 2)
-		{
-			CurrentWeaponMode = 2;
-			E23PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
-		}
+			CommonSwitchWeaponMode(2);
 	}
 	else if (CurrentWeaponMode != 0)
-	{
-		CurrentWeaponMode = 0;
-		E23PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
-	}
+		CommonSwitchWeaponMode(0);
 	
 	lastModeChangeTime = level.TimeSeconds;
 

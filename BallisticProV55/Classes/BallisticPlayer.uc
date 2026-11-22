@@ -397,7 +397,7 @@ simulated function DrawWeaponUI(Canvas C)
             else
                 C.SetDrawColor(0, 0, 255);
             if (Weapon(WeaponGroups[i].Items[j]) != None && Weapon(WeaponGroups[i].Items[j]).ClientState != WS_Hidden)
-                C.DrawColor.G += 128;
+                C.DrawColor.G = Min(255, C.DrawColor.G+128);
             if (i == WGroup && j == WItem)
             {
                 C.DrawColor.R = Min(255, C.DrawColor.R+96);
@@ -752,7 +752,10 @@ exec function GetWeaponOrSubclass(class<Weapon> NewWeaponClass )
 		Pawn.PendingWeapon = None;
 		return;
 	}
-	Pawn.Weapon.PutDown();
+	if (Pawn.Weapon != None)
+		Pawn.Weapon.PutDown();
+	else
+		Pawn.ChangedWeapon();
 	return;
 }
 
@@ -1279,6 +1282,14 @@ exec function Mutate(string MutateString)
 // Sprint on this client right away instead of when the server's answer to the Mutate gets here
 function PredictSprint(bool bSprint)
 {
+    // SpectateSpeed is not replicated: a spectating client flies at the speed ServerSetSprint gives the server's copy
+    if (Level.NetMode == NM_Client)
+    {
+        if (bSprint)
+            SpectateSpeed = default.SpectateSpeed * FlySpeedMulti;
+        else
+            SpectateSpeed = default.SpectateSpeed;
+    }
     if (Level.NetMode == NM_Client && BallisticPawn(Pawn) != None && BallisticPawn(Pawn).Sprinter != None)
         BallisticPawn(Pawn).Sprinter.PredictSprint(bSprint);
 }

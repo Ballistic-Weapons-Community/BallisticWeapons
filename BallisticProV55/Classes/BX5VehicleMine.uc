@@ -194,6 +194,10 @@ function TryUse(Pawn User)
 	local Weapon newWeapon;
 	local int AmmoAmount;
 
+	// Already set off (stepped on or shot): it is about to blow
+	if (bDetonated || bTearOff)
+		return;
+
 	Ammo = Ammunition(User.FindInventoryType(class'Ammo_BX5Mines'));
 	if(Ammo == None)
     {
@@ -240,8 +244,6 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 	{
 		Victim = Stepper;
 
-		DamageType = VehicleDamageType;
-
 			dir = Stepper.Location - HitLocation;
 			dist = FMax(1,VSize(dir));
 			dir = dir/dist;
@@ -262,7 +264,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 				Instigator,
 				Stepper.Location - 0.5 * (Stepper.CollisionHeight + Stepper.CollisionRadius) * dir,
 				(damageScale * Momentum * dir),
-				DamageType
+				VehicleDamageType
 			);
 	}
 

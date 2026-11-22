@@ -44,6 +44,7 @@ simulated function Timer()
 		SetPhysics(default.Physics);
 		bDynamicLight=default.bDynamicLight;
 		bHidden=default.bHidden;
+		SetInitialSpeed(true);
 		InitProjectile();
 	}
 	else
@@ -75,7 +76,8 @@ simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 
 	class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType);
 
-	if (xPawn(Other) != None && Level.Game.ReduceDamage(Damage, xPawn(Other), Instigator, HitLocation, Dummy, MyDamageType) > 0)
+	// The flame itself does no damage: ask whether this player may be hurt at all
+	if (xPawn(Other) != None && Level.Game.ReduceDamage(10, xPawn(Other), Instigator, HitLocation, Dummy, MyDamageType) > 0)
 		FireControl.FireSinge(Pawn(Other), Instigator);
 }
 

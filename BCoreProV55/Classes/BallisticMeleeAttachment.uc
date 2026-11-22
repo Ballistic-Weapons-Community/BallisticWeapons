@@ -10,6 +10,7 @@
 class BallisticMeleeAttachment extends BallisticAttachment;
 
 var   bool					BlockNotify;		//Bool used to inform attachment of hand explode
+var   bool					OldBlockNotify;		//Used to check if BlockNotify changed
 var	name					MeleeOffhandStrikeAnim, MeleeAltStrikeAnim;
 
 replication
@@ -55,9 +56,9 @@ function SetBlocked(bool bNewAimed)
 // Check if being notified of hand explosion
 simulated event PostNetReceive()
 {
-	if (BlockNotify != default.BlockNotify)
+	if (BlockNotify != OldBlockNotify)
 	{
-		default.BlockNotify = BlockNotify;
+		OldBlockNotify = BlockNotify;
 		BlockHitEffects();
 	}
 	super.PostNetReceive();

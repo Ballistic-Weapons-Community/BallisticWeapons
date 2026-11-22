@@ -472,7 +472,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 
     if ( CheckReflect(HitLocation, HitNormal, 0) )
     {
-		AddHeat(Damage*2.5, false);
+		AddHeat(Damage*2.5, true);
 
 		Damage /= 2;
 		Momentum /= 2;

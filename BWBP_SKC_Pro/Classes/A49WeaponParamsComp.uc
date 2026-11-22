@@ -99,6 +99,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-ShockWave',Volume=2.000000)
      	WarnTargetPct=0.100000
 		BotRefireRate=0.900000
+		Heat=9
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaAltFireParams
@@ -118,6 +119,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-ShockWave',Volume=2.000000)
      	WarnTargetPct=0.100000
 		BotRefireRate=0.900000
+		Heat=9
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaAltFireParams_Red

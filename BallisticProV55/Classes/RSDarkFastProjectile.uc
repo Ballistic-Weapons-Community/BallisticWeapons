@@ -62,9 +62,21 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	bExploded=true;
 
 	if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer)
-		GotoState('NetTrapped');
+		TearOffAndTrap(HitNormal);
 	else
 		Destroy();
+}
+
+// As BallisticProjectile.Explode does: clients hear of the hit through bTearOff, and only if property replication
+// is back on. Without it their bolts flew on and no one saw the impact the server had
+function TearOffAndTrap(vector HitNormal)
+{
+	Velocity = vect(0,0,0);
+	SetCollision(false,false,false);
+	TearOffHitNormal = HitNormal;
+	bTearOff = true;
+	bSkipActorPropertyReplication = false;
+	GotoState('NetTrapped');
 }
 
 simulated function DoDamage(Actor Other, vector HitLocation)
@@ -153,7 +165,7 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 		BlowUp(Location + ExploWallOut * HitNormal);
 
 		if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer)
-			GotoState('NetTrapped');
+			TearOffAndTrap(HitNormal);
 		else
 			Destroy();
 	}

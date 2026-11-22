@@ -78,18 +78,20 @@ simulated state FireShot
 	// Get aim then run several individual traces using different spread for each one
 	function DoFireEffect()
 	{
-		local Vector Start, Dir, End, HitLocation, HitNormal;
+		local Vector TraceStart, Start, Dir, End, HitLocation, HitNormal;
 		local Rotator R, Aim;
 		local actor Other;
 		local float Dist, NodeDist, DR;
 		local int i;
 
 		// the to-hit trace always starts right in front of the eye
-		Start = Instigator.Location + Instigator.EyePosition();
-		Aim = GetFireAim(Start);
+		TraceStart = Instigator.Location + Instigator.EyePosition();
+		Aim = GetFireAim(TraceStart);
 
 		Dir = Vector(Aim);
-		End = Start + (Dir*MaxRange());
+		End = TraceStart + (Dir*MaxRange());
+		// Start only finds the end point: it is moved past every pawn in the way
+		Start = TraceStart;
 		Weapon.bTraceWater=true;
 		for (i=0;i<20;i++)
 		{
@@ -111,12 +113,12 @@ simulated state FireShot
 		for (i=0;i<TraceCount;i++)
 		{
 			R = Rotator(GetFireSpread() >> Aim);
-			DoTrace(Start, R);
+			DoTrace(TraceStart, R);
 			
 			if (Other != None && (Other.bWorldGeometry || Mover(Other) != none))
-				GetFireControl().FireShotRotated(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, Other, R);
+				GetFireControl().FireShotRotated(TraceStart, HitLocation, Dist, Other != None, HitNormal, Instigator, Other, R);
 			else
-				GetFireControl().FireShotRotated(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, None, R);
+				GetFireControl().FireShotRotated(TraceStart, HitLocation, Dist, Other != None, HitNormal, Instigator, None, R);
 		}
 
 		if (Level.NetMode == NM_DedicatedServer && BW != None)
@@ -124,18 +126,18 @@ simulated state FireShot
 
 		ApplyHits();
 		
-		Dist = VSize(HitLocation-Start);
+		Dist = VSize(HitLocation-TraceStart);
 		for (i=0;i<GetFireControl().GasNodes.Length;i++)
 		{
 			if (GetFireControl().GasNodes[i] == None || (RX22AGasCloud(GetFireControl().GasNodes[i]) == None && RX22AGasPatch(GetFireControl().GasNodes[i]) == None && RX22AGasSoak(GetFireControl().GasNodes[i]) == None))
 				continue;
-			NodeDist = VSize(GetFireControl().GasNodes[i].Location-Start);
+			NodeDist = VSize(GetFireControl().GasNodes[i].Location-TraceStart);
 			if (NodeDist > Dist)
 				continue;
-			DR = Dir Dot Normal(GetFireControl().GasNodes[i].Location-Start);
+			DR = Dir Dot Normal(GetFireControl().GasNodes[i].Location-TraceStart);
 			if (DR < 0.75)
 				continue;
-			NodeDist = VSize(GetFireControl().GasNodes[i].Location - (Start + Dir * (DR * NodeDist)));
+			NodeDist = VSize(GetFireControl().GasNodes[i].Location - (TraceStart + Dir * (DR * NodeDist)));
 			if (NodeDist < 128)
 				GetFireControl().GasNodes[i].TakeDamage(5, Instigator, GetFireControl().GasNodes[i].Location, vect(0,0,0), class'DT_CYLOFirestormShotgun');
 		}

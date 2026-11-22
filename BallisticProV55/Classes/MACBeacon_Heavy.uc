@@ -10,7 +10,7 @@ class MACBeacon_Heavy extends MACBeacon;
 
 simulated function PostBeginPlay()
 {
-	super(BallisticProjectile).PostBeginPlay();
+	super.PostBeginPlay();
 }
 
 simulated function InitEffects ()

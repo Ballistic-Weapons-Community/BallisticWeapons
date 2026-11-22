@@ -385,6 +385,24 @@ defaultproperties
      End Object
      nu_SwitchTime=moNumericEdit'BallisticProV55.ConfigTab_Swappings.nu_SwitchTimeEdit'
 
+     DefaultSwaps(0)=(NIs=("BallisticProV55.X3Knife","BallisticProV55.X4Knife","BallisticProV55.A909SkrithBlades","BallisticProV55.EKS43Katana"))
+     DefaultSwaps(1)=(NIs=("BallisticProV55.A42SkrithPistol","BallisticProV55.AM67Pistol","BallisticProV55.BOGPPistol","BallisticProV55.D49Revolver","BallisticProV55.M806Pistol","BallisticProV55.MD24Pistol","BallisticProV55.MRT6Shotgun","BallisticProV55.RS8Pistol","BallisticProV55.leMatRevolver"))
+     DefaultSwaps(2)=(NIs=("BallisticProV55.XK2SubMachinegun","BallisticProV55.Fifty9MachinePistol","BallisticProV55.XRS10SubMachinegun","BallisticProV55.XMK5SubMachinegun"))
+     DefaultSwaps(3)=(NIs=("BallisticProV55.M50AssaultRifle","BallisticProV55.SARAssaultRifle","BallisticProV55.M46AssaultRifle"))
+     DefaultSwaps(4)=(NIs=("BallisticProV55.A73SkrithRifle","BallisticProV55.E23PlasmaRifle"))
+     DefaultSwaps(5)=(NIs=("BallisticProV55.M353Machinegun","BallisticProV55.M925Machinegun","BallisticProV55.XMV850Minigun"))
+     DefaultSwaps(6)=(NIs=("BallisticProV55.M763Shotgun","BallisticProV55.M290Shotgun","BallisticProV55.MRS138Shotgun","BallisticProV55.A500Reptile"))
+     DefaultSwaps(7)=(NIs=("BallisticProV55.G5Bazooka","BallisticProV55.RX22AFlamer","BallisticProV55.MACWeapon","BallisticProV55.MRocketLauncher"))
+     DefaultSwaps(8)=(NIs=("BallisticProV55.M75Railgun"))
+     DefaultSwaps(9)=(NIs=("BallisticProV55.RSDarkStar","BallisticProV55.RSNovaStaff","BWBPAirstrikesPro.TargetDesignator"))
+     DefaultSwaps(10)=(NIs=("BallisticProV55.HVCMk9LightningGun"))
+     DefaultSwaps(11)=(NIs=("BallisticProV55.R78Rifle","BallisticProV55.R9RangerRifle","BallisticProV55.MarlinRifle","BallisticProV55.SRS900Rifle"))
+     DefaultSwaps(12)=(NIs=("BallisticProV55.G5Bazooka","BallisticProV55.MACWeapon"))
+     DefaultSwaps(13)=(NIs=("BallisticProV55.NRP57Grenade"))
+     DefaultSwaps(14)=(NIs=("BallisticProV55.BX5Mine"))
+     DefaultSwaps(15)=(NIs=("BallisticProV55.R78Rifle"))
+     DefaultSwaps(16)=(NIs=("BallisticProV55.HVCMk9LightningGun"))
+
 	ChosenCaptionFormat="Replacing %s"
 	Headings(0)="Melee"
 	Headings(1)="Sidearms"

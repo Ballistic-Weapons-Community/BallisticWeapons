@@ -29,8 +29,11 @@ replication
 		SetServerTurnVelocity;
 }
 
+// Comes from the client and spreads the extra traces of a tick: no more than two turns a second
 function SetServerTurnVelocity (int NewTVYaw, int NewTVPitch)
 {
+	NewTVYaw = Clamp(NewTVYaw, -131072, 131072);
+	NewTVPitch = Clamp(NewTVPitch, -131072, 131072);
 	TridentPrimaryFire(FireMode[0]).TurnVelocity.Yaw = NewTVYaw;
 	TridentPrimaryFire(FireMode[0]).TurnVelocity.Pitch = NewTVPitch;
 	

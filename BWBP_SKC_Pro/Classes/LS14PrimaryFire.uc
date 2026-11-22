@@ -42,7 +42,7 @@ function PlayFiring()
 function DoFireEffect()
 {
 	Super.DoFireEffect();
-	if (Level.NetMode == NM_DedicatedServer && BW != None && !Instigator.IsLocallyControlled())
+	if (BW != None && !Instigator.IsLocallyControlled())
 		LS14Carbine(BW).AddHeat(SelfHeatPerShot, 0, SelfHeatDeclineDelay);
 }
 

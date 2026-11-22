@@ -327,10 +327,8 @@ simulated function ServerSwitchWeaponMode (byte NewMode)
 	PlaySound(ModeCycleSound,,4.7,,32);
 		
 	super.ServerSwitchWeaponMode(NewMode);
-	
-	if (!Instigator.IsLocallyControlled())
-		XM20SecondaryFire(FireMode[1]).SwitchLaserMode(CurrentWeaponMode);
 
+	// Runs SwitchLaserMode here on the server, for remote owners too (it is not replicated)
 	ClientSwitchLaserMode (CurrentWeaponMode);
 }
 
@@ -370,7 +368,7 @@ simulated function ClientSwitchWeaponMode (byte NewMode)
 
 exec simulated function ShieldDeploy(optional byte i) //Was previously weapon special
 {
-	if (ClientState != WS_ReadyToFire || bBroken)
+	if (!bShieldEquipped || ClientState != WS_ReadyToFire || bBroken)
 		return;
 		
 	if (bShieldUp)
@@ -387,6 +385,10 @@ function ServerSwitchShield(bool bNewValue)
 
 	//DebugMessage("ServerSwitchShield:"@bNewValue);
 	
+	// Anyone holding an XM20 can call ShieldDeploy from the console: only the shield layout raises it, and not while broken
+	if (bNewValue && (!bShieldEquipped || bBroken || ShieldPower <= 0))
+		return;
+
 	bShieldUp = bNewValue;
 	
     Attachment = XM20Attachment(ThirdPersonActor);
@@ -492,20 +494,25 @@ simulated function TakeHit(int Drain)
 	{
 		//DebugMessage("TakeHit: Shield cancel");
 		
-		bShieldUp=false;
-		ServerSwitchShield(false);
-		AdjustShieldProperties();
-		
-		bBroken=true;
-		AmbientSound = None;
-		Instigator.AmbientSound = BrokenSound;
-		Instigator.SoundVolume = default.SoundVolume;
-		Instigator.SoundPitch = default.SoundPitch;
-		Instigator.SoundRadius = default.SoundRadius;
-		Instigator.bFullVolume = true;
+		BreakShield();
 	}
 	
     SetBrightness(true);
+}
+
+simulated function BreakShield()
+{
+	bShieldUp=false;
+	ServerSwitchShield(false);
+	AdjustShieldProperties();
+
+	bBroken=true;
+	AmbientSound = None;
+	Instigator.AmbientSound = BrokenSound;
+	Instigator.SoundVolume = default.SoundVolume;
+	Instigator.SoundPitch = default.SoundPitch;
+	Instigator.SoundRadius = default.SoundRadius;
+	Instigator.bFullVolume = true;
 }
 
 //=====================================================
@@ -550,6 +557,10 @@ function DoReflectEffectA(int Drain, bool Pierce)
 		PlaySound(ShieldHitSound, SLOT_None);
 		
 	ClientTakeHit(Drain);
+
+	// ClientTakeHit reaches a remote owner before the drained ShieldPower does, so his TakeHit can't see the shield run out
+	if (ShieldPower <= 0 && bShieldUp && !Instigator.IsLocallyControlled())
+		BreakShield();
 }
 
 simulated function ClientTakeHit(int Drain)

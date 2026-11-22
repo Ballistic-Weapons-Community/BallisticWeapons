@@ -50,5 +50,4 @@ defaultproperties
 	 AccelSpeed=0.000000
      Speed=250.000000
      MaxSpeed=12000.000000
-     bCollideActors=False
 }

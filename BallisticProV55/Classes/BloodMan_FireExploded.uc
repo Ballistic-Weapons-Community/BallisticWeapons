@@ -59,12 +59,17 @@ static function DoSeverEffects(Pawn Victim, name Bone, vector HitRay, float GibP
 	BS = GetBloodSet(Victim);
 	if (BS == None)
 		return;
-	FXClass = BS.static.GetDismemberEffectFor(Victim, Bone);
-	if (FXClass!=None)	{
-		GoreEffect = BW_HitGoreEmitter(Victim.Spawn(FXClass, Victim,, Victim.GetBoneCoords(Bone).Origin, Victim.Rotation));
-		if (GoreEffect!=None)
-			GoreEffect.InitHitForce(HitRay, GibPerterbation);	}
+	if (default.bUseBloodEffects)
+	{
+		FXClass = BS.static.GetDismemberEffectFor(Victim, Bone);
+		if (FXClass!=None)	{
+			GoreEffect = BW_HitGoreEmitter(Victim.Spawn(FXClass, Victim,, Victim.GetBoneCoords(Bone).Origin, Victim.Rotation));
+			if (GoreEffect!=None)
+				GoreEffect.InitHitForce(HitRay, GibPerterbation);	}
+	}
 
+	if (!default.bUseChunks || class'GameInfo'.static.UseLowGore())
+ 		return;
 	Gibs = BS.static.MakeGibsFor(Victim, Bone, HitRay, GibPerterbation, FMin(Damage / 40, 4), BS.static.GetGibInfoFor(Bone), true);
 }
 
@@ -94,7 +99,8 @@ static function DoSeverStump(Pawn Victim, name Bone, vector HitRay, float Damage
 			Victim.Spawn(GetWallSplat(BS),,,TraceHit, Rot(-16384,0,0));
 	}
 	// Spawn an effect in the direction of the HitRay
-	Victim.Spawn(GetBloodEffect(BS),Victim,,Victim.Location, Rotator(HitRay));
+	if (default.bUseBloodEffects)
+		Victim.Spawn(GetBloodEffect(BS),Victim,,Victim.Location, Rotator(HitRay));
 }
 
 defaultproperties

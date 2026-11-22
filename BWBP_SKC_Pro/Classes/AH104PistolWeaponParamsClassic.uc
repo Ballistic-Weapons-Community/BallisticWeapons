@@ -46,6 +46,8 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameLoopStart',Volume=1.600000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
+		Speed=3000
+		MaxSpeed=3000
 		Recoil=0.01
 		Chaos=0.05
 		Damage=14.000000

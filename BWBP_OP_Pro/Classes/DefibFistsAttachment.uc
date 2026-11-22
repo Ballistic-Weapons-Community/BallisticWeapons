@@ -24,14 +24,17 @@ replication
 
 simulated function DoWave(bool bIsShock)
 {
-	if (Level.NetMode == NM_DedicatedServer)
+	// toggle for the clients (a listen server's too), and play it here unless this is a dedicated server
+	if (Role == ROLE_Authority)
 	{
 		if (bIsShock)
 			bShock = !bShock;
 		else bPulse = !bPulse;
 	}
 	
-	else if (bIsShock)
+	if (Level.NetMode == NM_DedicatedServer)
+		return;
+	if (bIsShock)
 		DoShockWave();
 	else DoPulseWave();
 }

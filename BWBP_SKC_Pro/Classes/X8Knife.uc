@@ -217,7 +217,9 @@ function float GetAIRating()
 		
 	if (B.Enemy == None)
 		return 0; // almost certainly useless against non-humans
-		
+
+	Rating = AIRating;
+
 	Dir = B.Enemy.Location - Instigator.Location;
 	Dist = VSize(Dir);
 	

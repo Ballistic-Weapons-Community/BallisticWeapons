@@ -39,7 +39,11 @@ simulated function InstantFireEffects(byte Mode)
 		return;
 	if (Instigator == none)
 		return;
-	SpawnTracer(Mode, mHitLocation);
+	// gauss shots always get the gauss beam (chance 2), within the base's detail checks
+	if (bGauss && ModeInfos[Mode].bTracer)
+		SpawnTracerOfClass(GaussTracerClass, Mode, mHitLocation, 2);
+	else
+		SpawnTracer(Mode, mHitLocation);
 	FlyByEffects(Mode, mHitLocation);
 	// Client, trace for hitnormal, hitmaterial and hitactor
 	if (Level.NetMode == NM_Client)
@@ -81,68 +85,6 @@ simulated function InstantFireEffects(byte Mode)
 			GaussImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 		else 
 			ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
-	}
-}
-
-// Spawn a tracer and water tracer
-simulated function SpawnTracer(byte Mode, Vector V)
-{
-	local BCTraceEmitter Tracer;
-	local Vector TipLoc, WLoc, WNorm;
-	local float Dist;
-	local bool bThisShot;
-	
-	//log("When firing: bGauss = "$ bGauss);
-
-	if (class'BallisticMod'.default.EffectsDetailMode == 0)
-		return;
-
-	// no tracers if suppressed
-	if (Mode == 1)
-		return;
-
-	TipLoc = GetModeTipLocation();
-	Dist = VSize(V - TipLoc);
-
-	// Count shots to determine if it's time to spawn a tracer
-	if (TracerMix == 0)
-		bThisShot=true;
-	else
-	{
-		TracerCounter++;
-		if (TracerMix < 0)
-		{
-			if (TracerCounter >= -TracerMix)	{
-				TracerCounter = 0;
-				bThisShot=false;			}
-			else
-				bThisShot=true;
-		}
-		else if (TracerCounter >= TracerMix)	{
-			TracerCounter = 0;
-			bThisShot=true;					}
-	}
-	// Spawn a tracer
-	if (TracerClass != None && bThisShot && (TracerChance >= 1 || FRand() < TracerChance))
-	{
-		if (Dist > 200)
-		{
-			if (bGauss)
-				Tracer = Spawn(GaussTracerClass, self, , TipLoc, Rotator(V - TipLoc));
-			else 
-				Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
-		}
-		if (Tracer != None)
-			Tracer.Initialize(Dist,0.2);
-	}
-	// Spawn under water bullet effect
-	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
-		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && Mode != 0) || (WaterTracerMode == MU_Primary && Mode == 0)))
-	{
-		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
-			Tracer = Spawn(WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
-		if (Tracer != None)
-			Tracer.Initialize(VSize(WLoc - TipLoc));
 	}
 }
 

@@ -87,74 +87,13 @@ function DoFireEffect()
 }
 
 
-// Do the trace to find out where bullet really goes
-function DoTrace (Vector InitialStart, Rotator Dir)
+// The base DoTrace does the hits and penetration. The shot's hit effect is sent by DoFireEffect, with the zap
+simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
 {
-	local Vector					End, X, HitLocation, HitNormal, Start, LastHitLoc;
-	local Material					HitMaterial;
-	local float						Dist;
-	local Actor						Other, LastOther;
-	local bool						bHitWall;
-
-	// Work out the range
-	Dist = TraceRange.Min + FRand() * (TraceRange.Max - TraceRange.Min);
-
-	Start = InitialStart;
-	X = Normal(Vector(Dir));
-	End = Start + X * Dist;
-	LastHitLoc = End;
-	Weapon.bTraceWater=true;
-
-	while (Dist > 0)		// Loop traces in case we need to go through stuff
-	{
-		// Do the trace
-		Other = Trace (HitLocation, HitNormal, End, Start, true, , HitMaterial);
-		Weapon.bTraceWater=false;
-		Dist -= VSize(HitLocation - Start);
-		if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry))
-			break;
-		if (Other != None)
-		{
-			// Water
-			if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume) )
-			{
-				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other);
-				break;
-			}
-			LastHitLoc = HitLocation;
-			// Got something interesting
-			if (!Other.bWorldGeometry && Other != LastOther)
-			{
-				OnTraceHit(Other, HitLocation, InitialStart, X, 0, 0, 0);
-
-				if (Vehicle(Other) != None)
-					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other);
-				else if (Mover(Other) == None)
-				{
-					bHitWall = true;
-					if (HitMaterial != None)
-						SendFireEffect(Other, HitLocation, HitNormal, HitMaterial.SurfaceType);
-					else SendFireEffect(Other, HitLocation, HitNormal, 0);
-					break;
-				}
-			}
-			// Still in the same guy
-			if (Other == Instigator || Other == LastOther)
-			{
-				Start = HitLocation + (X * FMax(32, Other.CollisionRadius * 2));
-				End = Start + X * Dist;
-				Weapon.bTraceWater=true;
-				continue;
-			}
-			break;
-		}
-		else
-		{
-			LastHitLoc = End;
-			break;
-		}
-	}
+	return true;
 }
+
+function NoHitEffect (Vector Dir, optional vector Start, optional vector HitLocation, optional vector WaterHitLoc);
 
 function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {

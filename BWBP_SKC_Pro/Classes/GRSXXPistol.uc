@@ -547,6 +547,10 @@ exec simulated function ToggleAmplifier(optional byte i)
 
 function ServerSwitchAmplifier(bool bNewValue)
 {
+	// only layouts with a removable amp may mount or unmount it
+	if (!bRemovableAmp)
+		return;
+
 	bAmped = bNewValue;
 	
 	SwitchAmplifier(bAmped);

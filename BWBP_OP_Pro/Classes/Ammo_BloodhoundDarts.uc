@@ -4,7 +4,7 @@ var Ammo_BloodhoundTazer Tazers;
 
 function bool HandlePickupQuery( pickup Item )
 {
-	if ( Item.IsA('AP_leMat') )// Item.class == class'AP_leMat' )
+	if ( Item.IsA('AP_BloodhoundDrum') )
 	{
 		if (Tazers==None)
 		{

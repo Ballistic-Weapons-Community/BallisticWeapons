@@ -331,7 +331,10 @@ simulated event PostNetReceive()
 		return;
 	if (DirectImpactCount != OldDirectImpactCount)
 	{
-		DoDirectHit(0, DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
+		if (DirectImpact.Mode < 2)
+			DoDirectHit(DirectImpact.Mode, DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
+		else
+			DoDirectHit(0, DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
 		OldDirectImpactCount = DirectImpactCount;
 	}
 	if (FireCount != OldFireCount)
@@ -817,6 +820,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh 
     && ModeInfos[Mode].WaterTracerClass != None && ModeInfos[Mode].bWaterTracer)
 	{
+		Tracer = None;
 		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
 			Tracer = Spawn(ModeInfos[Mode].WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
 		if (Tracer != None)
@@ -1096,7 +1100,11 @@ function UpdateBlockHit();
 // Tell client to do wall penetrate effects and call local ones for listenserver or standalone games
 function UpdateWallPenetrate(byte Mode, vector HitLocation, vector HitNormal, int HitSurf, optional bool bExit)
 {
-	WallPenetrates = Max(WallPenetrates+1, 1);
+	// 1 to 255: 0 tells the client there was none
+	if (WallPenetrates == 255)
+		WallPenetrates = 1;
+	else
+		WallPenetrates++;
 	WallPenetrateEffect(Mode, HitLocation, HitNormal, HitSurf, bExit);
 }
 // Spawn some wall penetration effects...

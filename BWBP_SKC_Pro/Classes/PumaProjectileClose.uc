@@ -8,6 +8,17 @@
 //=============================================================================
 class PUMAProjectileClose extends BallisticGrenade;
 
+// The fire mode only swaps its own params to the shield ones, so the projectile has to ask for them itself
+simulated function InitParams()
+{
+	if (!bApplyParams || WeaponClass == None || WeaponClass.static.GetParams() == None)
+	{
+		Super.InitParams();
+		return;
+	}
+	WeaponClass.static.GetParams().static.OverrideProjectileParams(self, 3);
+}
+
 defaultproperties
 {
     WeaponClass=Class'BWBP_SKC_Pro.PumaRepeater'

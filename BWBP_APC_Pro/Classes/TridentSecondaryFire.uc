@@ -17,6 +17,7 @@ var Actor	MuzzleFlashB, MuzzleFlashC;
 var TridentMachinegun TridentWeapon;
 
 var float	NextTVUpdateTime;
+var int		ShotCount;		// Shots fired together when the fire rate outruns the frame rate. TraceCount is the pellets of each shot
 
 // Even if we hit nothing, this is already taken care of in DoFireEffects()...
 function NoHitEffect (Vector Dir, optional vector Start, optional vector HitLocation, optional vector WaterHitLoc)
@@ -138,22 +139,22 @@ event ModeTick(float DT)
 	if (TridentWeapon.BarrelSpeed <= 0)
 	{
 		FireRate = 1.0;
-		TraceCount = 1;
+		ShotCount = 1;
 	}
 	else
 	{
 		DesiredFireRate = (FMin(1.0 / (12*TridentWeapon.BarrelSpeed), 1));	//change 12 here to adjust factor of barrel speed. lower values = lower firerate. don't change this in primaryfire
 		if (BW.CurrentWeaponMode == 0)
-			TraceCount = 1;
+			ShotCount = 1;
 		else
-			TraceCount = Ceil((DT*1.5) / DesiredFireRate);
-		FireRate = DesiredFireRate * TraceCount;
+			ShotCount = Ceil((DT*1.5) / DesiredFireRate);
+		FireRate = DesiredFireRate * ShotCount;
 	}
 	NextFireTime += FireRate - OldFireRate;
 
 	if (MuzzleBTime != 0)
 	{
-		MuzzleBTime += FireRate / TraceCount - OldFireRate / TraceCount;
+		MuzzleBTime += FireRate / ShotCount - OldFireRate / ShotCount;
 		if (level.TimeSeconds >= MuzzleBTime)
 		{
 			MuzzleBTime = 0;
@@ -166,7 +167,7 @@ event ModeTick(float DT)
 	}
 	if (MuzzleCTime != 0)
 	{
-		MuzzleCTime += FireRate / TraceCount - OldFireRate / TraceCount;
+		MuzzleCTime += FireRate / ShotCount - OldFireRate / ShotCount;
 		if (level.TimeSeconds >= MuzzleCTime)
 		{
 			MuzzleCTime = 0;
@@ -193,29 +194,31 @@ function DoFireEffect()
 {
     local Vector StartTrace;
     local Rotator R, Aim, ExtraAim, AimInterval;
-	local int i;
+	local int i, j;
 	local float Interval, ExtraTime;
 
 	if (!bAISilent && Instigator != None)
 		Instigator.MakeNoise(1.0);
 
-	if (TraceCount > 1)
+	if (ShotCount > 1)
 	{
-		Interval = FireRate / TraceCount;
+		Interval = FireRate / ShotCount;
 		AimInterval = TurnVelocity * Interval;
 	}
 	
 	if (Level.NetMode == NM_DedicatedServer)
 		BW.RewindCollisions();
 
-	for (i=0;i<TraceCount && ConsumedLoad < BW.MagAmmo ;i++)
+	for (i=0;i<ShotCount && ConsumedLoad < BW.MagAmmo ;i++)
 	{
 		ConsumedLoad += Load;
 		Aim = GetNewFireAim(StartTrace, ExtraTime);
 		Aim += ExtraAim;
-		R = Rotator(GetFireSpread() >> Aim);
-		
-		DoTrace(StartTrace, R);
+		for (j=0;j<TraceCount;j++)
+		{
+			R = Rotator(GetFireSpread() >> Aim);
+			DoTrace(StartTrace, R);
+		}
 		
 		if (i == 1)
 			MuzzleBTime = Level.TimeSeconds + ExtraTime;
@@ -303,6 +306,7 @@ defaultproperties
 	 MaxSpreadFactor=2.000000
 	 DecayRange=(Min=768,Max=1536)
      TraceCount=6
+     ShotCount=1
      TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=4000.000000,Max=6000.000000)

@@ -92,7 +92,8 @@ event ModeTick(float DT)
 		RocketsToFire = WaitTime * RocketMultiplier; //A:13 C:60
 		if (RocketsToFire > 0)
 		{
-			WaitTime = 0;
+			// keep the part of a rocket left over, or the rate depends on the tick rate
+			WaitTime -= RocketsToFire / float(RocketMultiplier);
 			FireRockets(RocketsToFire);
 		}
 	}

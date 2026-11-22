@@ -51,6 +51,9 @@ simulated function OnWeaponParamsChanged()
 		bHasKnife=true;
 		MeleeFireMode.Damage = 70;
 	}
+	// The melee fire object comes from the pool: put back what a Tazer layout before may have set
+	else if (MeleeFireMode != None)
+		MeleeFireMode.Damage = MeleeFireClass.default.Damage;
 	if (InStr(WeaponParams.LayoutTags, "flash") != -1)
 	{
 		bHasFlash=true;

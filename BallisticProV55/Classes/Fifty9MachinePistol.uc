@@ -28,9 +28,6 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 		bLaserOn;
-	// Called from the weapon special key on the client
-	reliable if (Role < ROLE_Authority)
-		ServerSwitchLaser;
 }
 
 simulated function OnWeaponParamsChanged()
@@ -299,16 +296,22 @@ simulated function SwitchStock(bool bNewValue)
 	AdjustStockProperties();
 }
 
+// The stock's aim and recoil go on top of the params each time they are recalculated (OnAimParamsChanged,
+// OnRecoilParamsChanged), so they are neither lost nor applied twice
 simulated function AdjustStockProperties()
 {
-	if (bStockOpen)
-		ApplyStockAim();
-	else
+	ApplyStockAim();
+	// the first set up comes before the params: SetRecoilParams and SetAimParams recalculate right after
+	if (RcComponent.Params != None)
+		RcComponent.Recalculate();
+	if (AimComponent.Params != None)
 		AimComponent.Recalculate();
 }
 
-simulated function ApplyStockAim()
+simulated function OnAimParamsChanged()
 {
+	Super.OnAimParamsChanged();
+
 	if (bStockOpen)
 	{
 		AimComponent.CrouchMultiplier 	*= 0.7f;
@@ -316,12 +319,29 @@ simulated function ApplyStockAim()
 		AimComponent.AimSpread.Max 		*= 1.2;
 		AimComponent.AimSpread.Min 		*= 1.2;
 		AimComponent.ChaosDeclineTime	*= 1.2;
+	}
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function OnRecoilParamsChanged()
+{
+	Super.OnRecoilParamsChanged();
+
+	if (bStockOpen)
+	{
 		RcComponent.PitchFactor			*= 0.8;
 		RcComponent.YawFactor			*= 0.8;
 		RcComponent.XRandFactor			*= 0.8;
 		RcComponent.YRandFactor			*= 0.8;
 		RcComponent.CrouchMultiplier 	*= 0.8;
-		
+	}
+}
+
+simulated function ApplyStockAim()
+{
+	if (bStockOpen)
+	{
 		SightingTime = default.SightingTime * 1.5;
 		SightBobScale = 0.15f * class'BallisticGameStyles'.static.GetReplicatedStyle().default.SightBobScale;
 	}
@@ -378,11 +398,10 @@ simulated function Notify_Fifty9Melee()
 
 //Laser ========
 
+// the laser's aim is applied in OnAimParamsChanged
 simulated function OnLaserSwitched()
 {
-	if (bLaserOn)
-		ApplyLaserAim();
-	else
+	if (AimComponent.Params != None)
 		AimComponent.Recalculate();
 }
 
@@ -407,8 +426,11 @@ simulated event PostNetReceive()
 	Super.PostNetReceive();
 }
 
+// Called from ServerWeaponSpecial, on the server
 function ServerSwitchLaser(bool bNewLaserOn)
 {
+	if (!bHasLaser || bLaserOn == bNewLaserOn)
+		return;
 	bLaserOn = bNewLaserOn;
 
 	if (ThirdPersonActor != None)

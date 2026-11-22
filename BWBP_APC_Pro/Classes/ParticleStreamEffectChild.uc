@@ -22,7 +22,11 @@ replication
         Links, LinkColor, LinkedPawn, bLockedOn, bHitSomething;
 
     unreliable if ( (Role == ROLE_Authority) && (!bNetOwner || bDemoRecording || bRepClientDemo)  )
-        StartEffect, EndEffect;
+        StartEffect;
+
+    // the shooter's client works out no end point of its own
+    unreliable if (Role == ROLE_Authority)
+        EndEffect;
 }
 
 simulated function Destroyed()

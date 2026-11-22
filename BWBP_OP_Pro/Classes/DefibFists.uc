@@ -73,8 +73,8 @@ simulated event Tick (float DT)
 			class'BUtil'.static.InitMuzzleFlash (LSparks, class'DefibFistsTazerEffect', DrawScale, self, 'LElectrode');
 			RSparks = None;
 			class'BUtil'.static.InitMuzzleFlash (RSparks, class'DefibFistsTazerEffect', DrawScale, self, 'RElectrode');	
-			bDischarged = False;			
 		}
+		bDischarged = False;
 	}
 	
 	else if (MagAmmo < 10 && !bDischarged)
@@ -179,7 +179,6 @@ function ElectroPulseWave( float DamageAmount, float DamageRadius, class<DamageT
 			if(IsValidHealTarget(PulseTarget))
 			{
 				PrevHealth = PulseTarget.Health;			
-				DamageAmount = 0;
 				PulseTarget.GiveAttributedHealth(5, 100, Instigator);
 				PointsHealed += PulseTarget.Health - PrevHealth;						
 				continue;
@@ -228,7 +227,6 @@ function ElectroShockWave( float DamageAmount, float DamageRadius, class<DamageT
 			if(IsValidHealTarget(ShockTarget))
 			{
 				PrevHealth = ShockTarget.Health;
-				DamageAmount = 0;
 				ShockTarget.GiveAttributedHealth(15, 100, Instigator);
 				PointsHealed += ShockTarget.Health - PrevHealth;	
 				continue;

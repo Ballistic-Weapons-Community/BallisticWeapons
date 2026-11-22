@@ -81,6 +81,8 @@ function ScrewUpBot()
 	}
 
 	bIsActive = true;
+	// a reused stoopidizer must outlive its new end time: Destroyed fixes the bot
+	LifeSpan = EndTime - level.TimeSeconds + 1;
 }
 
 event Tick(float DT)

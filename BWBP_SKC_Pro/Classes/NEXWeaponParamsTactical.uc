@@ -82,6 +82,8 @@ defaultproperties
         InventorySize=5
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
+        FireParams(0)=FireParams'TacticalPrimaryFireParams'
+        AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'TacticalParams'
 }

@@ -192,6 +192,20 @@ function bool GetItemInfo(int Group, int Index, out string ItemCap, out Material
 	return true;
 }
 
+// Class name of entry Index of a streak's weapon box. Entries that failed to load are left out of the box,
+// so its index is not always the index in the KLRI group
+function string GetStreakItemClass(int GroupIndex, int Index)
+{
+	local GUILoadOutItem Item;
+
+	if (GroupIndex == 0)
+		Item = Item_Streak1;
+	else
+		Item = Item_Streak2;
+	if (Index < 0 || Index >= Item.Items.Length)
+		return "";
+	return Item.Items[Index].Text;
+}
 
 //give this function a gun, grab an array of layouts from cache, add each value to the combobox
 function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
@@ -202,7 +216,7 @@ function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
 	//clear old layouts
 	LayoutComboBox.Clear();
 	
-	BW = class<BallisticWeapon>(DynamicLoadObject(KLRI.GetGroupItem(GroupIndex, Index), class'Class'));
+	BW = class<BallisticWeapon>(DynamicLoadObject(GetStreakItemClass(GroupIndex, Index), class'Class'));
 	if (BW == None)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');
@@ -252,7 +266,7 @@ function bool LoadCamos(int GroupIndex, int LayoutIndex, int Index, GUIComboBox 
 	CamoComboBox.Clear();
 	
 	
-	BW = class<BallisticWeapon>(DynamicLoadObject(KLRI.GetGroupItem(GroupIndex, Index), class'Class'));
+	BW = class<BallisticWeapon>(DynamicLoadObject(GetStreakItemClass(GroupIndex, Index), class'Class'));
 	if (BW == None)
 	{
 		log("Error loading item for outfitting: "$BW, 'Warning');

@@ -11,6 +11,7 @@ class DTX4KnifeTox extends DT_BWBlade;
 
 static function IncrementKills(Controller Killer)
 {
+    Super.IncrementKills(Killer);
     Killer.AwardAdrenaline(10);
 }
 

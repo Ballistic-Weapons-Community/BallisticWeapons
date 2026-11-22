@@ -414,6 +414,33 @@ simulated function WeaponTick(float DT)
 	if (Instigator != None && Instigator.IsLocallyControlled() && bLaserOn)
 		GetFlechetteTarget(); //Continually check for targets
 
+	// The third person laser's end. DrawLaserSight only sets it on the owner's screen in first person, and only
+	// the server's value goes to other players: on a dedicated server they saw the laser go to the map origin
+	if (Role == ROLE_Authority && bLaserOn && ThirdPersonActor != None && Instigator != None)
+		UpdateLaserEndLoc();
+}
+
+function UpdateLaserEndLoc()
+{
+	local Vector Start, End, HitLocation, HitNormal, AimDir;
+
+	// a locally controlled player's WeaponTick has just looked for a target
+	if (!Instigator.IsLocallyControlled())
+		GetFlechetteTarget();
+
+	if (bLaserTarget)
+	{
+		CX85Attachment(ThirdPersonActor).LaserEndLoc = TargetLocation;
+		return;
+	}
+
+	// the gun's aim without the fire's AdjustAim, which picks targets for bots
+	Start = Instigator.Location + Instigator.EyePosition();
+	AimDir = Vector(GetFireRot()) >> GetPlayerAim();
+	End = Start + Normal(AimDir) * 10000;
+	if (FireMode[0].Trace(HitLocation, HitNormal, End, Start, true) == None)
+		HitLocation = End;
+	CX85Attachment(ThirdPersonActor).LaserEndLoc = HitLocation;
 }
 
 function ServerSwitchLaser(bool bNewLaserOn)

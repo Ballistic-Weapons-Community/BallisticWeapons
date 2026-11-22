@@ -29,7 +29,7 @@ var   Supercharger_ChargeControl	ChargeControl;
 replication
 {
 	reliable if (ROLE==ROLE_Authority)
-		ClientSetHeat, ChargeControl;
+		ClientSetHeat;
 }
 
 

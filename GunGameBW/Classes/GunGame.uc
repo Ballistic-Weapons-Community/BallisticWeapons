@@ -140,15 +140,15 @@ event InitGame(string options, out string error)
 
      InOpt = ParseOption(Options, "StartHealth");
      if(InOpt != "")
-          StartHealth = byte(InOpt);
+          StartHealth = int(InOpt);
 
      InOpt = ParseOption(Options, "StartShield");
      if(InOpt != "")
-          StartShield = byte(InOpt);
+          StartShield = int(InOpt);
 		  
 	 InOpt = ParseOption(Options, "MaxHealth");
      if(InOpt != "")
-          MaxHealth = byte(InOpt);
+          MaxHealth = int(InOpt);
 
      InOpt = ParseOption(Options, "bAdrenalineOn");
      if(InOpt != "")
@@ -1169,7 +1169,7 @@ function CheckScore(PlayerReplicationInfo Scorer)
 
          case 1:  if ( Scorer != None )
                   {
-                       if ( Scorer.Score >= GoalScore )  //GoalScore
+                       if ( GoalScore > 0 && Scorer.Score >= GoalScore )  //GoalScore (0 = no limit)
                             EndGame(Scorer,"FragLimit");
                        else if ( bOverTime )
                        {

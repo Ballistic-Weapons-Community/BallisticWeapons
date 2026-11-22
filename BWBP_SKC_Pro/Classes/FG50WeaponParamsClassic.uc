@@ -244,8 +244,8 @@ defaultproperties
 		WeaponName="FG-50 .50 Heavy Machinegun"
 		ViewOffset=(X=5,Y=5,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicControlledAimParams'
-		AimParams(1)=AimParams'ClassicAimParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		AimParams(1)=AimParams'ClassicControlledAimParams'
 		FireParams(0)=FireParams'ClassicPriControlledFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
@@ -277,8 +277,8 @@ defaultproperties
 		InitialWeaponMode=0
 		ViewOffset=(X=5,Y=5,Z=-3)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicControlledAimParams'
-		AimParams(1)=AimParams'ClassicAimParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		AimParams(1)=AimParams'ClassicControlledAimParams'
 		FireParams(0)=FireParams'ClassicPriControlledFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Mount'

@@ -35,12 +35,11 @@ function bool HookFire(Vector Start, Vector Dir, float Dist, out Vector HitLoc)
 		DR = Dir Dot Normal(GetFireControl().GasNodes[i].Location-Start);
 		if (DR < 0.75)
 			continue;
-		HL = Start + Dir * NodeDist;
-		NodeDist = VSize(GetFireControl().GasNodes[i].Location - (Start + Dir * (DR * NodeDist)));
+		// a fire too far off the aim line is not fed and does not move the spray's end either
 //		if (Dir Dot Normal(GetFireControl().GasNodes[i].Location-Start) < 0.75 + (NodeDist/MaxRange())*0.2)
-		if (NodeDist > 96)
+		if (VSize(GetFireControl().GasNodes[i].Location - (Start + Dir * (DR * NodeDist))) > 96)
 			continue;
-		HitLoc = Start + Dir * NodeDist;
+		HL = Start + Dir * NodeDist;
 		GetFireControl().GasNodes[i].AddFuel(1);
 		bFoundFire = true;
 	}

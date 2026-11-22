@@ -26,10 +26,19 @@ replication
 		XInaccuracy, YInaccuracy;
 }
 
+// The primary fire's effect params of the layout the weapon has (WeaponClass must be set)
+simulated final function FireEffectParams GetLayoutEffectParams()
+{
+	local class<BallisticWeaponParams> ParamsClass;
+
+	ParamsClass = WeaponClass.static.GetParams();
+	return ParamsClass.default.Layouts[Clamp(LayoutIndex, 0, ParamsClass.default.Layouts.Length - 1)].FireParams[0].FireEffectParams[0];
+}
+
 simulated function int GetTraceCount()
 {
 	if (WeaponClass != None)
-		return ShotgunEffectParams(WeaponClass.static.GetParams().default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceCount;
+		return ShotgunEffectParams(GetLayoutEffectParams()).TraceCount;
 
 	return 10;
 }
@@ -37,7 +46,7 @@ simulated function int GetTraceCount()
 simulated final function int GetTraceRange()
 {
 	if (WeaponClass != None)
-		return InstantEffectParams(WeaponClass.static.GetParams().default.Layouts[0].FireParams[0].FireEffectParams[0]).TraceRange.Max;
+		return InstantEffectParams(GetLayoutEffectParams()).TraceRange.Max;
 
 	return 3000;
 }
@@ -45,7 +54,7 @@ simulated final function int GetTraceRange()
 simulated final function FireEffectParams.FireSpreadMode GetSpreadMode()
 {
 	if (WeaponClass != None)
-		return WeaponClass.static.GetParams().default.Layouts[0].FireParams[0].FireEffectParams[0].SpreadMode;
+		return GetLayoutEffectParams().SpreadMode;
 
 	return FSM_Circle;
 }

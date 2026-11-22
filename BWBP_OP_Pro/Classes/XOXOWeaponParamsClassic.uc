@@ -52,6 +52,7 @@ defaultproperties
 		Recoil=1024.000000
 		Chaos=0.750000
 		WarnTargetPct=0.200000	
+		SplashDamage=True
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicBombPrimaryFireParams
@@ -59,6 +60,7 @@ defaultproperties
 		AmmoPerFire=10
 		FireAnim="Fire"
 		FireEndAnim=	
+		TargetState="Bomb"
 	FireEffectParams(0)=ProjectileEffectParams'ClassicBombPrimaryEffectParams'
 	End Object
 	
@@ -71,10 +73,11 @@ defaultproperties
 		LimbMult=0.8f
 		//DamageType=Class'BWBP_OP_Pro.DTXOXOShockwave'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
-		FireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Fire',Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Shockwave',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=0.000000
 		Chaos=0.060000
 		WarnTargetPct=0.200000	
+		RecommendSplashDamage=True
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicLustPrimaryFireParams
@@ -82,6 +85,7 @@ defaultproperties
 		AmmoPerFire=10
 		FireAnim="LustWave"
 		FireEndAnim=	
+		TargetState="Shockwave"
 	FireEffectParams(0)=ProjectileEffectParams'ClassicLustPrimaryEffectParams'
 	End Object
 	
@@ -103,6 +107,8 @@ defaultproperties
 		Recoil=1024.000000
 		Chaos=1.000000
 		WarnTargetPct=0.200000	
+		SplashDamage=True
+		RecommendSplashDamage=True
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicNukePrimaryFireParams
@@ -110,6 +116,7 @@ defaultproperties
 		AmmoPerFire=1
 		FireAnim="Fire"
 		FireEndAnim=	
+		TargetState="Sexplosion"
 	FireEffectParams(0)=ProjectileEffectParams'ClassicNukePrimaryEffectParams'
 	End Object
 	

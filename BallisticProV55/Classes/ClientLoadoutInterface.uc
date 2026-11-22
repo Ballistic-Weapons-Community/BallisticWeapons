@@ -22,6 +22,7 @@ var array<string>	Group4;
 var() array<Mut_Loadout.LOItem>	Items;
 
 var bool			bWeaponsReady;
+var bool			bLoadoutRequested;	// Server: a respawn or an allowed change wants a loadout, ServerSetLoadout takes it once
 //var float			MyDamageRate;
 var int				ElapsedTime;
 var float			LastTimeUT;
@@ -141,7 +142,7 @@ simulated function ClientOpenLoadoutMenu(LoadoutInfo LOI)
 	if (PC ==None || PC.Player == None)
 		return;
 	PC.ClientOpenMenu ("BallisticProV55.BallisticLoadOutMenu");
-	if (PC.Player.GUIController != None)
+	if (PC.Player.GUIController != None && BallisticLoadOutMenu(GUIController(PC.Player.GUIController).ActivePage) != None)
 		BallisticLoadOutMenu(GUIController(PC.Player.GUIController).ActivePage).COI = self;
 }
 event Tick(float DT)
@@ -191,6 +192,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 		 (Invasion(level.Game)!=None && !Invasion(level.Game).bWaveInProgress) ||
 		 (CTFGame(level.Game)!=None && PC.GetTeamNum()<2 && VSize(CTFTeamAI(CTFGame(level.Game).Teams[PC.GetTeamNum()].AI).FriendlyFlag.HomeBase.Location - PC.Pawn.Location) < 384) )
 	{
+		bLoadoutRequested = true;
 		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4);
 		LastLoadoutTime = level.TimeSeconds;
 	}
@@ -199,10 +201,17 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 			if ( (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByRed && PC.GetTeamNum() == 0) || (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByBlue && PC.GetTeamNum() == 1) )
 				if (VSize(ONSOnslaughtGame(level.Game).PowerCores[i].Location - PC.Pawn.Location) < 384)
 				{
+					bLoadoutRequested = true;
 					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4);
 					LastLoadoutTime = level.TimeSeconds;
 					return;
 				}
+}
+// Called from the mutator at respawn of player: asks the client for its loadout
+function StartLoadout()
+{
+	bLoadoutRequested = true;
+	ClientStartLoadout();
 }
 // Called from server. Tells client to send back loadout info
 simulated function ClientStartLoadout()
@@ -215,6 +224,11 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 {
 	local string Stuff[5];
 	local int i;
+
+	// Only as an answer to StartLoadout or from ServerLoadoutChanged, never straight from a client
+	if (!bLoadoutRequested)
+		return;
+	bLoadoutRequested = false;
 
 	Stuff[0] = Stuff0;
 	Stuff[1] = Stuff1;
@@ -244,7 +258,6 @@ defaultproperties
      ChangeInterval=60.000000
      bHidden=True
      bOnlyRelevantToOwner=True
-     bAlwaysRelevant=True
      bReplicateMovement=False
      bSkipActorPropertyReplication=True
      RemoteRole=ROLE_SimulatedProxy

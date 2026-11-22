@@ -78,6 +78,7 @@ defaultproperties
 		TargetState="Flash"
 		FireInterval=4.000000
 		AmmoPerFire=0
+		MaxHoldTime=0.500000
 		BurstFireRateFactor=1.00
 		FireAnim="Idle"
 		FireEndAnim=

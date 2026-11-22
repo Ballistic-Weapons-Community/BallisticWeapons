@@ -11,6 +11,25 @@ class MACBeacon extends MACShell;
 simulated function PostBeginPlay()
 {
 	super(BallisticProjectile).PostBeginPlay();
+
+	// A network client spawns its own beacon, which is never replicated. BallisticProjectile left out its server half
+	// there, so the beacon had no speed and its rotation was set to the empty NetInitialRotation: do that half here
+	if (Level.NetMode == NM_Client && Role == ROLE_Authority)
+	{
+		if (Instigator != None && BallisticWeapon(Instigator.Weapon) != None)
+		{
+			if (!bOverrideMode)
+				CurrentWeaponMode = BallisticWeapon(Instigator.Weapon).CurrentWeaponMode;
+			LayoutIndex = BallisticWeapon(Instigator.Weapon).LayoutIndex;
+		}
+		UpdateNetRotation();
+		InitParams();
+		if (StartDelay == 0)
+			SetInitialSpeed(true);
+	}
+
+	// the ring shows the blast of a shell that has flown as far as a beacon does
+	SetLongRangeBlast();
 }
 
 simulated function InitEffects ()

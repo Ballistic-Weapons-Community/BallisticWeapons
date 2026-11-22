@@ -83,8 +83,8 @@ function SetFlechetteDestination()
 	if (Master != None && Master.StuckDarts.Length != 0)
 	{
 		LastLoc = Master.GetFlechetteTarget();
-		if (LastLoc != vect(0,0,0))
-			bSeeking = true;
+		// no target (it died, went out of range or out of view) gives no location: go straight on, not to the map origin
+		bSeeking = LastLoc != vect(0,0,0);
 	}
 }
 

@@ -11,6 +11,7 @@ class BallisticGrenadeAttachment extends BallisticAttachment;
 var() class<BCImpactManager>ExplodeManager;			//Impact manager to spawn on final hit
 var   bool					HandExplodeNotify;		//Bool used to inform attachment of hand explode
 var   bool					HandSmokeNotify;		//Bool used to inform attachment of hand smoke
+var   bool					OldHandExplodeNotify, OldHandSmokeNotify;	//Used to check if the notifies changed
 var() Class<Emitter>		GrenadeSmokeClass;		//Type of effect for when clip is released
 var   Emitter				GrenadeSmoke;			//The smoke effect
 
@@ -33,14 +34,14 @@ simulated event ThirdPersonEffects()
 // Check if being notified of hand explosion
 simulated event PostNetReceive()
 {
-	if (HandExplodeNotify != default.HandExplodeNotify)
+	if (HandExplodeNotify != OldHandExplodeNotify)
 	{
-		default.HandExplodeNotify = HandExplodeNotify;
+		OldHandExplodeNotify = HandExplodeNotify;
 		HandExplodeEffects();
 	}
-	if (HandSmokeNotify != default.HandSmokeNotify)
+	if (HandSmokeNotify != OldHandSmokeNotify)
 	{
-		default.HandSmokeNotify = HandSmokeNotify;
+		OldHandSmokeNotify = HandSmokeNotify;
 		HandSmokeEffects();
 	}
 	Super.PostNetReceive();

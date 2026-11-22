@@ -390,7 +390,7 @@ function ServerStartReload (optional byte i)
 	if (FireMode[0].NextFireTime > Level.TimeSeconds || FireMode[1].NextFireTime > Level.TimeSeconds)
 		return;
 	ClipReleaseTime = Level.TimeSeconds+0.2;
-	SetTimer(3.2, false);
+	SetTimer(FuseDelay + 0.2, false);
 	ClientStartReload(i);
 	BallisticGrenadeAttachment(ThirdPersonActor).HandSmoke();
 }

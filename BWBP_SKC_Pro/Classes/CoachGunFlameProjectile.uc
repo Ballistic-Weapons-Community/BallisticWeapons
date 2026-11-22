@@ -44,6 +44,7 @@ simulated function Timer()
 		SetPhysics(default.Physics);
 		bDynamicLight=default.bDynamicLight;
 		bHidden=default.bHidden;
+		SetInitialSpeed(true);
 		InitProjectile();
 	}
 	else

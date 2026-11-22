@@ -4,7 +4,7 @@ var Ammo_BloodhoundDarts Bullets;
 
 function bool HandlePickupQuery( pickup Item )
 {
-	if ( Item.IsA('AP_leMat') )// Item.class == class'AP_leMat' )
+	if ( Item.IsA('AP_BloodhoundDrum') )
 	{
 		if (Bullets==None)
 		{

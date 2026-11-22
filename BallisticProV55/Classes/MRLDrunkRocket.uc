@@ -40,10 +40,7 @@ simulated event PostBeginPlay()
 	{
 		bCrazy = true;
 
-		AccelSpeed = 500 + Rand(1000);
-		Speed += Rand(500);
 //		Speed = 500 + Rand(500);
-		MaxSpeed = 1000 + Rand(2000);
 
 //		SetPhysics(PHYS_Falling);
 
@@ -71,13 +68,29 @@ simulated event PostBeginPlay()
 			bSideWinder = true;
 			ScrewRadius += Rand(ScrewRadius*3);
 		}
-		AccelSpeed += Rand(1000);
-		Speed += Rand(500);
-		MaxSpeed += Rand(1000);
 	}
 	SetTimer(1.0 + FRand()*2.0, false);
 
 	super.PostBeginPlay();
+}
+
+// The random speeds go on top of what InitParams sets from the params, before SetInitialSpeed uses them
+simulated function InitParams()
+{
+	super.InitParams();
+
+	if (bCrazy)
+	{
+		AccelSpeed = 500 + Rand(1000);
+		Speed += Rand(500);
+		MaxSpeed = 1000 + Rand(2000);
+	}
+	else
+	{
+		AccelSpeed += Rand(1000);
+		Speed += Rand(500);
+		MaxSpeed += Rand(1000);
+	}
 }
 simulated event PostNetBeginPlay()
 {

@@ -115,7 +115,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 
 	else Victim = GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT);
 	
-	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && xPawn(Victim) != None && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+	if (BallisticPawn(Instigator) != None && RSDarkStar(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && xPawn(Victim) != None && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
 		BallisticPawn(Instigator).GiveAttributedHealth(Dmg * 0.2, Instigator.SuperHealthMax, Instigator);
 
 	/*
@@ -128,8 +128,8 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 		bWasAlive = true;
 	*/
 		
-	// burn and block healing
-	if (Pawn(Other) != None)
+	// burn and block healing, enemies only
+	if (Pawn(Other) != None && (Instigator == None || Pawn(Other).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
 	{
 		for (i=0;i<Other.Attached.length;i++)
 		{

@@ -92,6 +92,15 @@ exec simulated function SwitchWeaponMode (optional byte ModeNum)
 	super.SwitchWeaponMode(ModeNum);
 }
 
+// Gauss: only a full charge gives the accelerated shot, whatever a client asks for
+function ServerSwitchWeaponMode (byte NewMode)
+{
+	if (bHasGauss && NewMode != 0 && GaussLevel < MaxGaussLevel)
+		return;
+
+	super.ServerSwitchWeaponMode(NewMode);
+}
+
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	super.BringUp(PrevWeapon);
@@ -107,18 +116,19 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		if (GaussGlow1 != None)
 		{
 			AttachToBone(GaussGlow1, 'Gauss2');
-			GaussGlow1.bHidden=true;
+			GaussGlow1.bHidden = GaussLevel < MaxGaussLevel;
 		}
 		if (GaussGlow2 != None)
 		{
 			AttachToBone(GaussGlow2, 'Gauss3');
-			GaussGlow2.bHidden=true;
+			GaussGlow2.bHidden = GaussLevel < MaxGaussLevel;
 		}
 	}
 }
 
 simulated event Destroyed()
 {
+	default.bLaserOn = false;
 	if (GaussGlow1 != None)
 		GaussGlow1.Destroy();
 		
@@ -153,9 +163,9 @@ simulated function float ChargeBar()
 
 simulated function OnLaserSwitched()
 {
-	if (bLaserOn)
-		ApplyLaserAim();
-	else
+	// Start from the params every time (OnAimParamsChanged applies the laser): this is called more than once per switch.
+	// Before the params are set there is nothing to do, setting them applies the laser
+	if (AimComponent.Params != None)
 		AimComponent.Recalculate();
 }
 
@@ -274,11 +284,6 @@ simulated event RenderOverlays( Canvas Canvas )
 		DrawLaserSight(Canvas);
 }
 
-exec simulated function WeaponSpecial(optional byte i)
-{
-	ServerSwitchLaser(!bLaserOn);
-}
-
 //================================================================
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
@@ -337,7 +342,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	{
 		AnimBlendParams(1, 0);
 		//Cut the basic fire anim if it's too long.
-		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
+		if (SightingPhase > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
 			FreezeAnimAt(0.0);
 		bPreventReload=False;
 		// SightFire leaves the lever alone and has no notify to work it afterwards, as Fire has

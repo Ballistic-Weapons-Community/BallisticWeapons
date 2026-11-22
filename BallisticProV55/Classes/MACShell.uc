@@ -35,8 +35,14 @@ simulated function Timer()
 		Super.Timer();
 		return;
 	}
-	
-	DamageRadius=400;
+
+	SetLongRangeBlast();
+}
+
+// A shell that has flown a while has a bigger blast (the beacon's ring shows this one too)
+simulated function SetLongRangeBlast()
+{
+	DamageRadius = 400 * class'BallisticReplicationInfo'.default.BlastRadiusScale;
     WallPenetrationForce=256;
 }
 

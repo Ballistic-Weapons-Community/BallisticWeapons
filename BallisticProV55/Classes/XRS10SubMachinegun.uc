@@ -42,10 +42,18 @@ simulated function PlayIdle()
 
 	simulated function OnLaserSwitched()
 {
+	// Start from the params every time (OnAimParamsChanged applies the laser): this runs more than once per switch
+	// on some machines (PostNetReceive and ClientSwitchLaser), and ApplyLaserAim multiplies
+	if (AimComponent.Params != None)
+		AimComponent.Recalculate();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
 	if (bLaserOn)
 		ApplyLaserAim();
-	else
-		AimComponent.Recalculate();
 }
 
 simulated function ApplyLaserAim()

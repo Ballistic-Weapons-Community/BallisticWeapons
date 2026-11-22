@@ -555,7 +555,7 @@ defaultproperties
      ParamsClasses(0)=Class'AY90WeaponParamsArena'
      ParamsClasses(1)=Class'AY90WeaponParamsClassic'
 	 ParamsClasses(2)=Class'AY90WeaponParamsRealistic'
-	 ParamsClasses(3)=Class'AY90WeaponParamsClassic'
+	 ParamsClasses(3)=Class'AY90WeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_SKC_Pro.AY90PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.AY90SecondaryFire'
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc3',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=93,R=0,A=112),Color2=(B=0,G=212,R=226,A=255),StartSize1=110,StartSize2=55)

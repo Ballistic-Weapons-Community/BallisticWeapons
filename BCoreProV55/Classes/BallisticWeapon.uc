@@ -407,7 +407,7 @@ var() Name					EndShovelAnim;				// Anim to play after shovel loop ends
 var() Name					EndShovelEmptyAnim;			// Played if the weapon needs cocking at the end of the shovel loop
 var() int					ShovelIncrement;			// Amount of ammo to stick in gun each time
 var   bool					bPlayThirdPersonReload; 	// Play an anim on the Pawn for reloading.
-var	  float					FireAnimCutThreshold;   	// Cuts the fire anim if the SightingState is higher than this.
+var	  float					FireAnimCutThreshold;   	// Cuts the fire anim if the SightingPhase is higher than this.
 //-----------------------------------------------------------------------------
 // Crosshair Info
 //-----------------------------------------------------------------------------
@@ -1238,7 +1238,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		AnimBlendParams(1, 0);
 		AnimBlendParams(2, 0);
 		//Cut the basic fire anim if it's too long.
-		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
+		if (SightingPhase > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
 			FreezeAnimAt(0.0);
 		bPreventReload=False;
 	}
@@ -2565,9 +2565,13 @@ simulated function ChangeZoom (float Value)
 			NewZoomLevel = (90 - SoughtFOV) / 88;
 	}
 	if (NewZoomLevel > OldZoomLevel)
+	{
 		if (ZoomInSound.Sound != None)	class'BUtil'.static.PlayFullSound(self, ZoomInSound);
+	}
 	else if (NewZoomLevel < OldZoomLevel)
+	{
 		if (ZoomOutSound.Sound != None)	class'BUtil'.static.PlayFullSound(self, ZoomOutSound);
+	}
 	
 	PC.bZooming = true;
 	
@@ -3387,8 +3391,21 @@ function UpdateSpeed()
 
 function ServerMeleeHold()
 {
+	local name Anim;
+	local float Frame, Rate;
+
 	if (MeleeFireMode == None || !HasAnim(MeleeFireMode.FireAnim))
 		return;
+	if (Instigator == None || Instigator.Weapon != self)
+		return;
+	// The client holds again once its own strike has ended: refuse a hold while this strike has barely started,
+	// or a modified client could strike as fast as it sends hold and release
+	if (MeleeState == MS_Strike)
+	{
+		GetAnimParams(0, Anim, Frame, Rate);
+		if (Anim == MeleeFireMode.FireAnim && Frame < 0.5)
+			return;
+	}
 	//PlayerController(InstigatorController).ClientMessage("ServerMeleeHold");
 	MeleeState = MS_Held;
 	ReloadState = RS_None;
@@ -3432,6 +3449,9 @@ simulated function MeleeReleaseImpl()
 
 final function ServerMeleeRelease()
 {
+	// A strike only follows a hold the server accepted
+	if (MeleeFireMode == None || MeleeState != MS_Held)
+		return;
 	//PlayerController(InstigatorController).ClientMessage("ServerMeleeRelease");
 	MeleeState = MS_Strike;
 	if (Instigator.IsLocallyControlled())
@@ -3447,9 +3467,15 @@ final function ApplyAttackFatigue()
 {
 	local float Penalty;
 	
-	if (BallisticMeleeFire(FireMode[1]) != None && (FireMode[1].IsFiring() || BallisticMeleeFire(FireMode[0]) == None))
+	// a gun's own melee strike (MeleeFireClass): neither fire mode is a melee one
+	if (MeleeFireMode != None && MeleeState > MS_Pending)
+		Penalty = MeleeFireMode.FatiguePerStrike * 2.5;
+	else if (BallisticMeleeFire(FireMode[1]) != None && (FireMode[1].IsFiring() || BallisticMeleeFire(FireMode[0]) == None))
 		Penalty = BallisticMeleeFire(BFireMode[1]).FatiguePerStrike * 2.5;
-	else Penalty = BallisticMeleeFire(BFireMode[0]).FatiguePerStrike * 2.5;
+	else if (BallisticMeleeFire(BFireMode[0]) != None)
+		Penalty = BallisticMeleeFire(BFireMode[0]).FatiguePerStrike * 2.5;
+	else if (MeleeFireMode != None)
+		Penalty = MeleeFireMode.FatiguePerStrike * 2.5;
 	
 	ApplyBlockFatigue(Penalty);
 }
@@ -3463,6 +3489,8 @@ final function ApplyBlockFatigue(float value)
 
 simulated final function ClientApplyBlockFatigue(float value)
 {
+	if (Level.NetMode != NM_Client)
+		return;
 	MeleeFatigue = FMin(1, MeleeFatigue + value);
 }
 
@@ -3851,7 +3879,8 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 
 	CheckBurstMode();
 
-	if (ModeHandling == MR_Last && Instigator.IsLocallyControlled())
+	// a bot's switch (local on a server) is not the player's choice
+	if (ModeHandling == MR_Last && Instigator.IsLocallyControlled() && Instigator.IsHumanControlled())
     {
         default.LastWeaponMode = CurrentWeaponMode;
     }
@@ -4129,10 +4158,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	
 	if (BallisticWeapon(PrevWeapon) != None)
 		AimComponent.DisplaceEndTime = BallisticWeapon(PrevWeapon).AimComponent.DisplaceEndTime;
-	
-	// Dumber bots take longer to change weapons
-	if (AIController(InstigatorController) != None && AIController(InstigatorController).Skill <= 4)
-		BringUpTime = default.BringUpTime*(2-(AIController(InstigatorController).Skill/4));
 
 	// Change certain skins to show team colors
 	if (Instigator.PlayerReplicationInfo != None && Instigator.PlayerReplicationInfo.Team != None)
@@ -4174,7 +4199,13 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 	if (CocksInBringUp())
 		BringUpTime = CockingBringUpTime;
-	else BringUpTime = default.BringUpTime;
+	else
+	{
+		BringUpTime = default.BringUpTime;
+		// Dumber bots take longer to change weapons (not a cocking pullout: Timer tells one by its BringUpTime)
+		if (AIController(InstigatorController) != None && AIController(InstigatorController).Skill <= 4)
+			BringUpTime *= 2 - AIController(InstigatorController).Skill / 4;
+	}
 	
 	if (!IsInState('PendingClientWeaponSet'))
 		SetTimer(BringUpTime, false);
@@ -4377,7 +4408,7 @@ function bool BotShouldReload ()
 {
 	if (AIController(Instigator.Controller) == None)
 		return false;
-	if ( (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime > AIReloadTime + AIReloadTime * (MagAmmo/GetMagCapacity())) &&
+	if ( (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime > AIReloadTime + AIReloadTime * (float(MagAmmo) / Max(1, GetMagCapacity()))) &&
 		 (Level.TimeSeconds - Instigator.LastPainTime > AIReloadTime) )
 		return true;
 	return false;
@@ -4528,7 +4559,9 @@ function bool BotFire(bool bFinished, optional name FiringMode)
 	if (!bNoMag && (bNeedReload || MagAmmo < 1))
 		BotReload(true);
 	else
-		Super.BotFire(bFinished, FiringMode);
+		return Super.BotFire(bFinished, FiringMode);
+
+	return false;
 }
 
 simulated function bool StartFire(int Mode)
@@ -5621,9 +5654,10 @@ simulated final function OnDisplaceEnd()
 		ScopeBackUp();
 }
 
+// The client always asks for 0.1; its number is not used, as it divides the turn chaos
 final function ServerReaim(float deltaTime)
 {
-	AimComponent.Reaim(deltaTime);
+	AimComponent.Reaim(0.1);
 	AimComponent.ForceReaim();
 }
 
@@ -5637,9 +5671,10 @@ simulated final function ZeroAim (float TimeMod)
 	ServerZeroAim(TimeMod);
 }
 
+// The client sends its SightingTime: never zero faster than that, or the aim would snap to the middle at once
 final function ServerZeroAim (float TimeMod)
 {
-	AimComponent.ZeroAim(TimeMod);
+	AimComponent.ZeroAim(FMax(TimeMod, SightingTime));
 }
 
 simulated final function Rotator GetAimPivot()
@@ -6528,7 +6563,7 @@ exec simulated final function SetDefaultMode()
 
 exec simulated final function ClearDefaultMode()
 {
-	SavedWeaponMode = default.CurrentWeaponMode;
+	SavedWeaponMode = 255; // none saved
 	Instigator.ClientMessage("Cleared default mode for"@ItemName$".");
 	SaveConfig();
 }

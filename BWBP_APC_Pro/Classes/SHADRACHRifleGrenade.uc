@@ -32,7 +32,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
 {
 	local actor Victims;
-	local float damageScale, dist;
+	local float damageScale, dist, VictimRadius;
 	local vector dir;
     local bool can_see;
 
@@ -41,7 +41,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 	bHurtEntry = true;
 	
-	if (Pawn(Victim) != None && Pawn(Victim).Health > 0 && Vehicle(Victim) == None)
+	if (AllowPlague(Victim))
 		ApplyPlague(Victim, 1);
 	
 	foreach CollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
@@ -50,6 +50,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 		if( Victims.bCanBeDamaged && (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim && Victims != HurtWall)
 		{
             can_see = FastTrace(Victims.Location, Location);
+            VictimRadius = DamageRadius;
 
 			if (!can_see)
             {
@@ -59,7 +60,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
             // UNDerwater EXplosion damage
             else if (PhysicsVolume.bWaterVolume && Victims.PhysicsVolume == PhysicsVolume)
-                DamageRadius *= 3;
+                VictimRadius = DamageRadius * 3;
 
             damageScale = 1f;
 
@@ -75,7 +76,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
             if (can_see)
             {
                 if (RadiusFallOffType != RFO_None)
-                    damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius) / DamageRadius);
+                    damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius) / VictimRadius);
                 if (RadiusFallOffType == RFO_Quadratic)
                     damageScale = Square(damageScale);
             }
@@ -102,7 +103,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 				GetMomentumVector(damageScale * dir),
 				DamageType
 			);
-			if (Pawn(Victims) != None && Pawn(Victims).Health > 0 && Vehicle(Victims) == None)
+			if (AllowPlague(Victims))
 				ApplyPlague(Victims, damageScale);
 		 }
 	}
@@ -113,6 +114,7 @@ function bool AllowPlague(Actor Other)
 {
 	return 
 		Pawn(Other) != None 
+		&& Other != Instigator
 		&& Pawn(Other).Health > 0 
 		&& Vehicle(Other) == None 
 		&& (Pawn(Other).GetTeamNum() == 255 || Instigator == None || Pawn(Other).GetTeamNum() != Instigator.GetTeamNum())

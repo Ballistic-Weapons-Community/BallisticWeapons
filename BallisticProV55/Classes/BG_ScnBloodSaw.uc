@@ -45,7 +45,7 @@ event PostBeginPlay()
 	if (F <= 0.333)
 		Emitters[0].Texture=Texture'BallisticBloodPro.Decals.Cut1';
 	else if (F <= 0.666)
-		Emitters[0].Texture=Texture'BallisticBloodPro.Decals.Cut1';
+		Emitters[0].Texture=Texture'BallisticBloodPro.Decals.Cut2';
 	else
 		Emitters[0].Texture=Texture'BallisticBloodPro.Decals.Cut3';
 }

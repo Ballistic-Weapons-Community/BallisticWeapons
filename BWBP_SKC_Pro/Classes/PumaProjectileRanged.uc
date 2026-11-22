@@ -14,6 +14,13 @@ var() int		FireModeNum;		// Da fire mode that spawned dis grenade
 var() bool 		bNoFXOnExplode; //Do FX in Destroyed and not in Explode
 var   bool		bProgramInitialized; //New detonation distance sent
 
+replication
+{
+	// Set by the fire mode right after spawning, so it goes out with the first update
+	reliable if (bNetInitial && Role == ROLE_Authority)
+		NewDetonateDelay;
+}
+
 
 simulated event Timer()
 {

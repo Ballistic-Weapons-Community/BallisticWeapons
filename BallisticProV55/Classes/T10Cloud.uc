@@ -51,8 +51,17 @@ simulated function Terminate(float Delay)
 
 simulated function Timer()
 {
+	Dissipate();
+}
+
+// Kill() never removes a cloud whose emitters are all disabled (dedicated server), so destroy it ourselves there
+simulated function Dissipate()
+{
 	if (level.netMode == NM_DedicatedServer)
-		GotoState('DSDying');
+	{
+		if (!IsInState('DSDying'))
+			GotoState('DSDying');
+	}
 	else
 		Kill();
 }
@@ -76,7 +85,7 @@ simulated function Destroyed()
 simulated function PhysicsVolumeChange( PhysicsVolume NewVolume )
 {
 	if ( NewVolume.bWaterVolume )
-		Kill();
+		Dissipate();
 }
 
 defaultproperties

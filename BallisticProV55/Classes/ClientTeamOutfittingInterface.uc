@@ -26,6 +26,7 @@ var array<string>	BlueGroup3;
 var array<string>	BlueGroup4;
 
 var bool			bWeaponsReady;
+var bool			bLoadoutRequested;	// Server: a respawn or an allowed change wants a loadout, ServerSetLoadout takes it once
 
 var string	LastLoadout[5];
 var int		LastLayout[5], LastCamo[5];
@@ -264,7 +265,7 @@ function SendWeapons ()
         if (Mut.RedLoadoutGroup0[i] == "")
             continue;
         if (IsInList(Weaps, Mut.RedLoadoutGroup0[i], j))
-            Redboxes[j] += 1;
+            Redboxes[j] = Redboxes[j] | 1;
         else
         {
             Weaps[Weaps.length] = Mut.RedLoadoutGroup0[i];
@@ -278,7 +279,7 @@ function SendWeapons ()
         if (Mut.RedLoadoutGroup1[i] == "")
             continue;
         if (IsInList(Weaps, Mut.RedLoadoutGroup1[i], j))
-            Redboxes[j] += 2;
+            Redboxes[j] = Redboxes[j] | 2;
         else
         {
             Weaps[Weaps.length] = Mut.RedLoadoutGroup1[i];
@@ -291,7 +292,7 @@ function SendWeapons ()
         if (Mut.RedLoadoutGroup2[i] == "")
             continue;
         if (IsInList(Weaps, Mut.RedLoadoutGroup2[i], j))
-            Redboxes[j] += 4;
+            Redboxes[j] = Redboxes[j] | 4;
         else
         {
             Weaps[Weaps.length] = Mut.RedLoadoutGroup2[i];
@@ -304,7 +305,7 @@ function SendWeapons ()
         if (Mut.RedLoadoutGroup3[i] == "")
             continue;
         if (IsInList(Weaps, Mut.RedLoadoutGroup3[i], j))
-            Redboxes[j] += 8;
+            Redboxes[j] = Redboxes[j] | 8;
         else
         {
             Weaps[Weaps.length] = Mut.RedLoadoutGroup3[i];
@@ -317,7 +318,7 @@ function SendWeapons ()
         if (Mut.RedLoadoutGroup4[i] == "")
             continue;
         if (IsInList(Weaps, Mut.RedLoadoutGroup4[i], j))
-            Redboxes[j] += 16;
+            Redboxes[j] = Redboxes[j] | 16;
         else
         {
             Weaps[Weaps.length] = Mut.RedLoadoutGroup4[i];
@@ -332,7 +333,7 @@ function SendWeapons ()
         if (Mut.BlueLoadoutGroup0[i] == "")
             continue;
         if (IsInList(Weaps, Mut.BlueLoadoutGroup0[i], j))
-            Blueboxes[j] += 1;
+            Blueboxes[j] = Blueboxes[j] | 1;
         else
         {
             Weaps[Weaps.length] = Mut.BlueLoadoutGroup0[i];
@@ -346,7 +347,7 @@ function SendWeapons ()
         if (Mut.BlueLoadoutGroup1[i] == "")
             continue;
         if (IsInList(Weaps, Mut.BlueLoadoutGroup1[i], j))
-            Blueboxes[j] += 2;
+            Blueboxes[j] = Blueboxes[j] | 2;
         else
         {
             Weaps[Weaps.length] = Mut.BlueLoadoutGroup1[i];
@@ -359,7 +360,7 @@ function SendWeapons ()
         if (Mut.BlueLoadoutGroup2[i] == "")
             continue;
         if (IsInList(Weaps, Mut.BlueLoadoutGroup2[i], j))
-            Blueboxes[j] += 4;
+            Blueboxes[j] = Blueboxes[j] | 4;
         else
         {
             Weaps[Weaps.length] = Mut.BlueLoadoutGroup2[i];
@@ -372,7 +373,7 @@ function SendWeapons ()
         if (Mut.BlueLoadoutGroup3[i] == "")
             continue;
         if (IsInList(Weaps, Mut.BlueLoadoutGroup3[i], j))
-            Blueboxes[j] += 8;
+            Blueboxes[j] = Blueboxes[j] | 8;
         else
         {
             Weaps[Weaps.length] = Mut.BlueLoadoutGroup3[i];
@@ -385,7 +386,7 @@ function SendWeapons ()
         if (Mut.BlueLoadoutGroup4[i] == "")
             continue;
         if (IsInList(Weaps, Mut.BlueLoadoutGroup4[i], j))
-            Blueboxes[j] += 16;
+            Blueboxes[j] = Blueboxes[j] | 16;
         else
         {
             Weaps[Weaps.length] = Mut.BlueLoadoutGroup4[i];
@@ -471,6 +472,7 @@ simulated function SortList(byte group_index, byte team)
 	local int i, j;
 	local BC_WeaponInfoCache.WeaponInfo WI;
 	local array<BC_WeaponInfoCache.WeaponInfo> SortedWIs;
+	local array<string> Unsorted;
 	local int wiGroup, existingGroup;
 
 	for (i=0; i < GetGroupForTeam(group_index, team).Length; i++)
@@ -519,14 +521,20 @@ simulated function SortList(byte group_index, byte team)
             }
 
 		}
-        //else 
+		// Not in the cache (not a BW weapon, or it did not load): kept, after the sorted ones
+		else if (GetGroupItemForTeam(group_index, team, i) != "")
+			Unsorted[Unsorted.Length] = GetGroupItemForTeam(group_index, team, i);
+        //else
         //    Log("ClientTeamOutfittingInterface: Failed to load "$ GetGroupItemForTeam(group_index, team, i) $" from cache");
 	}
-	
+
 	for (i = 0; i < SortedWIs.Length; ++i)
     {
 		SetGroupItemForTeam(SortedWIs[i].ClassName, group_index, team, i);
     }
+	// (written over the rest, so the list has no stale copies at its end)
+	for (i = 0; i < Unsorted.Length; ++i)
+		SetGroupItemForTeam(Unsorted[i], group_index, team, SortedWIs.Length + i);
 }
 
 function Initialize(Mut_TeamOutfitting MO, PlayerController P)
@@ -609,6 +617,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 		 (Invasion(level.Game)!=None && !Invasion(level.Game).bWaveInProgress) ||
 		 (CTFGame(level.Game)!=None && PC.GetTeamNum()<2 && VSize(CTFTeamAI(CTFGame(level.Game).Teams[PC.GetTeamNum()].AI).FriendlyFlag.HomeBase.Location - PC.Pawn.Location) < 384) )
 	{
+		bLoadoutRequested = true;
 		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4, L0, L1, L2, L3, L4, C0, C1, C2, C3, C4);
 		LastLoadoutTime = level.TimeSeconds;
 	}
@@ -618,10 +627,18 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 			if ( (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByRed && PC.GetTeamNum() == 0) || (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByBlue && PC.GetTeamNum() == 1) )
 				if (VSize(ONSOnslaughtGame(level.Game).PowerCores[i].Location - PC.Pawn.Location) < 384)
 				{
+					bLoadoutRequested = true;
 					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4, L0, L1, L2, L3, L4, C0, C1, C2, C3, C4);
 					LastLoadoutTime = level.TimeSeconds;
 					return;
 				}
+}
+
+// Called from the mutator at respawn of player: asks the client for its loadout
+function StartLoadout()
+{
+	bLoadoutRequested = true;
+	ClientStartLoadout();
 }
 
 // Called from server. Tells client to send back loadout info.
@@ -675,6 +692,11 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 	local int i;
 	local Pawn P;
 	local Inventory Inv;
+
+	// Only as an answer to StartLoadout or from ServerLoadoutChanged, never straight from a client
+	if (!bLoadoutRequested)
+		return;
+	bLoadoutRequested = false;
 
 	Stuff[0] = Stuff0;
 	Stuff[1] = Stuff1;
@@ -741,7 +763,6 @@ defaultproperties
      ChangeInterval=60.000000
      bHidden=True
      bOnlyRelevantToOwner=True
-     bAlwaysRelevant=True
      bReplicateMovement=False
      bSkipActorPropertyReplication=True
      RemoteRole=ROLE_SimulatedProxy

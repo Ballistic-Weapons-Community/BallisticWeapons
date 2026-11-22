@@ -175,7 +175,7 @@ simulated event Tick (float DT)
 				}
 				else
 				{
-					HVCMk9PrimaryFire(FireMode[0]).OldLures[i].Zaps -= -DT;
+					HVCMk9PrimaryFire(FireMode[0]).OldLures[i].Zaps -= DT;
 					if (HVCMk9PrimaryFire(FireMode[0]).OldLures[i].Zaps <= 0)
 					{
 						HVCMk9PrimaryFire(FireMode[0]).OldLures.Remove(i, 1);
@@ -217,6 +217,8 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         Super(Inventory).GiveTo(Other);
         bPossiblySwitch = true;
         W = self;
+		// as in BallisticWeapon.GiveTo: the player on this machine needs it here
+		bDeferInitialSwitch = bServerDeferInitialSwitch;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
 		{
 			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
@@ -320,7 +322,7 @@ simulated event WeaponTick(float DT)
 	else if (bWaterBurn)
 	{
 		bWaterBurn = false;
-		if (TimerRate == 0.2)
+		if (TimerRate == 0.4)
 			SetTimer(0.0, false);
 
 	}

@@ -8,7 +8,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=800.000000Max=4000.000000)
+		TraceRange=(Min=800.000000,Max=4000.000000)
 		WaterTraceRange=800.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=33.0
@@ -43,7 +43,7 @@ defaultproperties
 	
 	//Burst
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryBurstEffectParams
-		TraceRange=(Min=800.000000Max=4000.000000)
+		TraceRange=(Min=800.000000,Max=4000.000000)
 		WaterTraceRange=800.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=33.0
@@ -119,6 +119,7 @@ defaultproperties
 		TargetState="Flash"
 		FireInterval=4.000000
 		AmmoPerFire=0
+		MaxHoldTime=0.500000
 		BurstFireRateFactor=1.00
 		FireAnim="Idle"
 		FireEndAnim=

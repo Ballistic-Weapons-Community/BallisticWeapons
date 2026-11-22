@@ -44,7 +44,7 @@ defaultproperties
 	
 	//5.7mm
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_57mm
-		TraceRange=(Min=4000.000000Max=4000.000000)
+		TraceRange=(Min=4000.000000,Max=4000.000000)
 		WaterTraceRange=750.0
 		DecayRange=(Min=750.0,Max=3750.0)
 		RangeAtten=0.1
@@ -79,7 +79,7 @@ defaultproperties
 	
 	//5.7mm Supp
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams_57mmSupp
-		TraceRange=(Min=4000.000000Max=4000.000000)
+		TraceRange=(Min=4000.000000,Max=4000.000000)
 		WaterTraceRange=750.0
 		DecayRange=(Min=750.0,Max=3750.0)
 		RangeAtten=0.1

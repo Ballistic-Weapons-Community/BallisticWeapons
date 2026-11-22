@@ -129,7 +129,7 @@ defaultproperties
      FireAnim="FireSG"
      FireEndAnim=
      FireRate=0.700000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_CYLOSG'
+     AmmoClass=Class'BWBP_JCF_Pro.Ammo_HKMKSG'
      AmmoPerFire=0
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

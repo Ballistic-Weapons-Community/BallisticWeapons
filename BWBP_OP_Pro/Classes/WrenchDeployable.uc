@@ -72,7 +72,7 @@ auto state Working
 	{
 		if (Health < 1)
 			return;
-		if (Instigator != None && instigatedBy.Controller != None && Instigator.Controller != None && Instigator.Controller != OwningController && instigatedBy.Controller.SameTeamAs(Instigator.Controller))
+		if (instigatedBy != None && instigatedBy.Controller != None && OwningController != None && instigatedBy.Controller != OwningController && instigatedBy.Controller.SameTeamAs(OwningController))
 			return;
 		PlaySound(DamagedSounds[Rand(4)], SLOT_Pain);
 		Damage *= DamageType.default.VehicleDamageScaling;

@@ -29,6 +29,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	local array<string> ItemNameList, Captions;
 	local array<byte> Kind;
 	local class<ConflictItem> CI;
+	local WeaponList_ConflictLoadout ConfigList;
 	local int i, k;
 
 	Super.InitComponent(MyController, MyOwner);
@@ -79,14 +80,17 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	for (i = 0; i < class'Mut_ConflictLoadout'.default.LoadoutOptionText.Length; i++)
 		co_LoadOpt.AddItem(class'Mut_ConflictLoadout'.default.LoadoutOptionText[i],, string(i));
 	co_LoadOpt.ReadOnly(True);
-	co_LoadOpt.SetIndex(int(class'Mut_ConflictLoadout'.default.LoadoutOption));
 
-	for (i = 0; i < class'Mut_ConflictLoadout'.default.ConflictWeapons.Length; i++)
+	// the list Mut_ConflictLoadout plays with: the one of the style in use
+	ConfigList = new(None, class'BallisticGameStyles'.static.GetLocalStyle().default.StyleName) class'WeaponList_ConflictLoadout';
+	co_LoadOpt.SetIndex(int(ConfigList.LoadoutOption));
+
+	for (i = 0; i < ConfigList.ConflictWeapons.Length; i++)
 	{
-		if (class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bRed)
-			RedNames[RedNames.Length] = class'Mut_ConflictLoadout'.default.ConflictWeapons[i].ClassName;
-		if (class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bBlue)
-			BlueNames[BlueNames.Length] = class'Mut_ConflictLoadout'.default.ConflictWeapons[i].ClassName;
+		if (ConfigList.ConflictWeapons[i].bRed)
+			RedNames[RedNames.Length] = ConfigList.ConflictWeapons[i].ClassName;
+		if (ConfigList.ConflictWeapons[i].bBlue)
+			BlueNames[BlueNames.Length] = ConfigList.ConflictWeapons[i].ClassName;
 	}
 	bLoading = true;
 	ch_SameTeams.Checked(class'ConfigTab_ConflictLoadout'.static.SameNames(RedNames, BlueNames));
@@ -159,26 +163,28 @@ function bool InternalOnClick(GUIComponent Sender)
 {
 	local int i, k;
 	local string S;
+	local WeaponList_ConflictLoadout ConfigList;
 
 	if (Sender == BCancel)
 		Controller.CloseMenu(true);
 	else if (Sender == BDone)
 	{
-		class'Mut_ConflictLoadout'.default.LoadoutOption = co_LoadOpt.GetIndex();
-		class'Mut_ConflictLoadout'.default.ConflictWeapons.length = 0;
+		ConfigList = new(None, class'BallisticGameStyles'.static.GetLocalStyle().default.StyleName) class'WeaponList_ConflictLoadout';
+		ConfigList.LoadoutOption = co_LoadOpt.GetIndex();
+		ConfigList.ConflictWeapons.length = 0;
 		// every weapon and item, with the teams that have it
 		for (i = 0; i < Editor.Catalogue.Length; i++)
 		{
 			if (Editor.Catalogue[i].bSection)
 				continue;
 			S = Editor.Catalogue[i].ClassName;
-			k = class'Mut_ConflictLoadout'.default.ConflictWeapons.length;
-			class'Mut_ConflictLoadout'.default.ConflictWeapons.length = k + 1;
-			class'Mut_ConflictLoadout'.default.ConflictWeapons[k].ClassName = S;
-			class'Mut_ConflictLoadout'.default.ConflictWeapons[k].bRed = class'ConfigTab_ConflictLoadout'.static.HasName(RedNames, S);
-			class'Mut_ConflictLoadout'.default.ConflictWeapons[k].bBlue = class'ConfigTab_ConflictLoadout'.static.HasName(BlueNames, S);
+			k = ConfigList.ConflictWeapons.length;
+			ConfigList.ConflictWeapons.length = k + 1;
+			ConfigList.ConflictWeapons[k].ClassName = S;
+			ConfigList.ConflictWeapons[k].bRed = class'ConfigTab_ConflictLoadout'.static.HasName(RedNames, S);
+			ConfigList.ConflictWeapons[k].bBlue = class'ConfigTab_ConflictLoadout'.static.HasName(BlueNames, S);
 		}
-		class'Mut_ConflictLoadout'.static.StaticSaveConfig();
+		ConfigList.SaveConfig();
 		Controller.CloseMenu(false);
 	}
 	return true;

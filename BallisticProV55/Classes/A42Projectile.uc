@@ -114,7 +114,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	HealObjective = DestroyableObjective(Other);
 	if ( HealObjective == None )
 		HealObjective = DestroyableObjective(Other.Owner);
-	if ( HealObjective != None && HealObjective.TeamLink(Instigator.GetTeamNum()) )
+	if ( HealObjective != None && Instigator != None && HealObjective.TeamLink(Instigator.GetTeamNum()) )
 	{
 		HealObjective.HealDamage(AdjustedDamage, InstigatorController, myDamageType);
 		return;
@@ -134,7 +134,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 	if (bExploded)
 		return;
-	if ( HitActor != None && (Vehicle(HitActor)!=None || DestroyableObjective(HitActor)!=None || DestroyableObjective(HitActor.Owner)!=None) && HitActor.TeamLink(Instigator.GetTeamNum()) )
+	if ( HitActor != None && (Vehicle(HitActor)!=None || DestroyableObjective(HitActor)!=None || DestroyableObjective(HitActor.Owner)!=None) && Instigator != None && HitActor.TeamLink(Instigator.GetTeamNum()) )
 	{
 	}
 	else if (ImpactManager != None && level.NetMode != NM_DedicatedServer)

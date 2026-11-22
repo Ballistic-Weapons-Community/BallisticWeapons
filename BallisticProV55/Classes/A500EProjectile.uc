@@ -140,6 +140,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
+     WeaponClass=Class'BallisticProV55.A500Reptile'
      ImpactManager=Class'BallisticProV55.IM_A500EProjectile'
      FixedImpactSurf=1
      bRandomStartRotation=False

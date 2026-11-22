@@ -101,6 +101,10 @@ var() name		PivotBone;				// Bone for pivot piece that yaws
 var   rotator	WeaponPivot;			// Extra rotation of gun, usually sent from the weapon
 var   rotator	GoalRotation;			// Rotation player wants. Gun and camera try to get there, but the limits set if, how and when they do
 var   rotator	GunRotation;			// The gun aim relative to the base rotation
+var   rotator	SentGunRotation;		// GunRotation last sent to the server by the owning client
+var   float		LastGunRotationTime;	// When the owning client last sent (client) / received (server) a gun rotation
+var   float		GunYawAllowance;		// Server: how far the client's gun may still yaw in the next update
+var   float		GunPitchAllowance;		// Server: how far the client's gun may still pitch in the next update
 var   rotator	CameraRotation;			// Rotation of camera
 var   rotator	CameraDirection;		// The direction in which the camera is located
 // Driver related props
@@ -138,7 +142,8 @@ replication
 {
 	reliable if (Role == ROLE_Authority && !bNetOwner && bNetDirty)
 		GunRotationYaw, GunRotationPitch;
-	reliable if (Role < ROLE_Authority)
+	// Sent again every 0.25 s while unchanged, so a lost one is made up for
+	unreliable if (Role < ROLE_Authority)
 		ServerTurretRotation;
 //	reliable if ( (bNetInitial || bNetDirty) && Role==ROLE_Authority )
 //		bActive;
@@ -441,14 +446,17 @@ function UpdateRocketAcceleration(float DT, float YawChange, float PitchChange)
 
 	if (Controller != None && AIController(Controller) == None)
 		Controller.SetRotation(CameraRotation + Rotation);
-	// GunRotation must be sent from here for listenservers
-	if (level.NetMode == NM_ListenServer)
+	// GunRotation must be sent from here for listenservers, and for bots on any server
+	if (Role == ROLE_Authority && Level.NetMode != NM_Standalone)
 		SendGunRotationToClients();
 	// Server needs to know the new gunrotation
-	else if (Role < ROLE_Authority && IsLocallyControlled())
+	// Only when it changed, and now and then anyway in case the server held part of a change back
+	else if (Role < ROLE_Authority && IsLocallyControlled() && (GunRotation != SentGunRotation || Level.TimeSeconds > LastGunRotationTime + 0.25))
 	{
 		//log("UpdateRocketAcceleration, GunRotation:"@GunRotation);
 		//log("Base rotation:"@Rotation);
+		SentGunRotation = GunRotation;
+		LastGunRotationTime = Level.TimeSeconds;
 		ServerTurretRotation(GunRotation.Pitch, GunRotation.Yaw);
 	}
 }
@@ -464,7 +472,22 @@ function SendGunRotationToClients()
 // Receive gun rotation from owning client server
 function ServerTurretRotation(int GunPitch, int GunYaw)
 {
+	local float DT;
+
 	//log("Server Turret Rotation");
+	// Keep the client's rotation inside the gun's limits and turn speeds (a short burst is allowed for lag)
+	DT = Level.TimeSeconds - LastGunRotationTime;
+	LastGunRotationTime = Level.TimeSeconds;
+	GunYawAllowance = FMin(GunYawAllowance + DT * GunYawSpeed, GunYawSpeed * 0.5);
+	GunPitchAllowance = FMin(GunPitchAllowance + DT * GunPitchSpeed, GunPitchSpeed * 0.5);
+
+	GunPitch = Clamp(GunPitch, GunPitchBounds.Min, GunPitchBounds.Max);
+	GunYaw = Clamp(GunYaw, GunYawBounds.Min, GunYawBounds.Max);
+	GunPitch = GunRotation.Pitch + Clamp(GunPitch - GunRotation.Pitch, -int(GunPitchAllowance), int(GunPitchAllowance));
+	GunYaw = GunRotation.Yaw + Clamp(GunYaw - GunRotation.Yaw, -int(GunYawAllowance), int(GunYawAllowance));
+	GunPitchAllowance -= Abs(GunPitch - GunRotation.Pitch);
+	GunYawAllowance -= Abs(GunYaw - GunRotation.Yaw);
+
 	GunRotation.Pitch = GunPitch;
 	GunRotation.Yaw = GunYaw;
 	//log("NewGunRot:"@GunRotation);

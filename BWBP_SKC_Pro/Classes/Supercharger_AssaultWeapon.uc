@@ -42,7 +42,7 @@ var bool		bLatchedOn;
 replication
 {
 	reliable if (Role==ROLE_Authority)
-		ChargeControl, ClientOverCharge, ClientSetHeat, bLatchedOn, ClientScreenStart;
+		ClientOverCharge, ClientSetHeat, bLatchedOn, ClientScreenStart;
 }
 
 
@@ -167,7 +167,8 @@ simulated function AddHeat(float Amount)
 	{
 		Heatlevel = 12;
 		class'BallisticDamageType'.static.GenericHurt (Instigator, 20+Rand(40), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DT_SuperchargeOverheat');
-		if (Instigator != None)
+		// ChargeControl is the server's alone
+		if (Instigator != None && ChargeControl != None)
 			ChargeControl.FireSinge(Instigator, Instigator, 1, 5);
 	}
 }

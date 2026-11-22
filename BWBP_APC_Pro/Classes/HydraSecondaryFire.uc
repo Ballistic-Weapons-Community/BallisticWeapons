@@ -34,10 +34,18 @@ simulated function PlayStartHold()
 	BW.SafeLoopAnim(ChargeAnim, 1.0, TweenTime, ,"IDLE");
 }
 
+// Rockets the salvo can have: the magazine, or the inventory when reloading is off
+simulated function int RocketsLeft()
+{
+	if (BW.bNoMag)
+		return BW.AmmoAmount(0);
+	return BW.MagAmmo;
+}
+
 simulated function int CalculateAmmoUse()
 {	
-	if (HydraBazooka(BW).MultiRockets >= BW.MagAmmo)
-		return BW.MagAmmo;
+	if (HydraBazooka(BW).MultiRockets >= RocketsLeft())
+		return RocketsLeft();
 
 	return Max(1, int(HydraBazooka(BW).MultiRockets));
 }
@@ -46,7 +54,7 @@ simulated function ModeTick(float DeltaTime)
 {	
 	if (bIsFiring)
 	{
-		if (level.TimeSeconds >= NextBeepTime && BeepCount <= Min(BW.MagAmmo, class'HydraBazooka'.default.MaxMultiRockets))
+		if (level.TimeSeconds >= NextBeepTime && BeepCount <= Min(RocketsLeft(), class'HydraBazooka'.default.MaxMultiRockets))
 		{
 			if (BeepCount > 0)
 				Weapon.PlaySound(RocketCountSound,,0.7,,32);
@@ -56,9 +64,9 @@ simulated function ModeTick(float DeltaTime)
 		}
 	
 		//Scale charge
-		HydraBazooka(BW).MultiRockets = FMin(Min(BW.MagAmmo, class'HydraBazooka'.default.MaxMultiRockets), HydraBazooka(BW).MultiRockets + ChargeGainPerSecond * DeltaTime);
+		HydraBazooka(BW).MultiRockets = FMin(Min(RocketsLeft(), class'HydraBazooka'.default.MaxMultiRockets), HydraBazooka(BW).MultiRockets + ChargeGainPerSecond * DeltaTime);
 		
-		if (HydraBazooka(BW).MultiRockets >= Min(BW.MagAmmo, class'HydraBazooka'.default.MaxMultiRockets))
+		if (HydraBazooka(BW).MultiRockets >= Min(RocketsLeft(), class'HydraBazooka'.default.MaxMultiRockets))
 			ChargeOvertime += DeltaTime;
 		
 		if (ChargeOvertime >= MaxChargeOvertime)

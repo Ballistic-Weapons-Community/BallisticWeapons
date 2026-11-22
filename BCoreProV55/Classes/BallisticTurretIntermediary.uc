@@ -69,7 +69,12 @@ simulated function Timer()
 					{
 						BW.MagAmmo = MagAmmo;
 						BW.SetAmmoTo(TurretAmmoAmount, 0);
-						BW.CurrentWeaponMode = WeaponMode;
+						// as BallisticTurret.InitUndeployedWeapon: the mode's params are applied and the client is told
+						if (WeaponMode < BW.WeaponModes.length && !BW.WeaponModes[WeaponMode].bUnavailable)
+						{
+							BW.CurrentWeaponMode = WeaponMode;
+							BW.ServerSwitchWeaponMode(WeaponMode);
+						}
 						BW.SetTurretData(WeaponData);
 					}
 				}

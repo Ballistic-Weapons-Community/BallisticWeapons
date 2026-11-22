@@ -68,7 +68,13 @@ simulated function Tick(float DT)
 		bNoMore = true;
 		for(i=0;i<Clouds.length;i++)
 			if (Clouds[i] != None)
-				Clouds[i].Kill();
+			{
+				// A dedicated server's clouds have their emitters disabled, so Kill would never destroy them
+				if (Level.NetMode == NM_DedicatedServer)
+					Clouds[i].GotoState('DSDying');
+				else
+					Clouds[i].Kill();
+			}
 	}
 }
 

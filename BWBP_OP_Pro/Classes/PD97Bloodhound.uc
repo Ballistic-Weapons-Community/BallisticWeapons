@@ -179,7 +179,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		AnimBlendParams(1, 0);
 		AnimBlendParams(2, 0);
 		//Cut the basic fire anim if it's too long.
-		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
+		if (SightingPhase > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
 			FreezeAnimAt(0.0);
 		CycleDrum();
 		bPreventReload=False;
@@ -409,11 +409,7 @@ simulated function WeaponTick (float DT)
 		TazerEffect.SetLocation(BallisticAttachment(ThirdPersonActor).GetModeTipLocation());
 	}
 	
-	if (LockedTarget != None && LockedTarget.Health > 0)
-	{
-		ServerSetRocketTarget(LockedTarget.Location);
-	}
-	else if (bLockedOn)
+	if (bLockedOn && (LockedTarget == None || LockedTarget.Health <= 0))
 	{
 		BreakLock();
 	}
@@ -443,6 +439,17 @@ simulated function vector ConvertFOVs (vector InVec, float InFOV, float OutFOV, 
 //===========================================================================
 
 exec simulated function WeaponSpecial(optional byte i)
+{
+	if (bLockedOn)
+	{
+		BreakLock();
+		if (Role < ROLE_Authority)
+			ServerWeaponSpecial(i);
+	}
+}
+
+// The lock is the server's: let it go there too, or the rockets keep seeking
+function ServerWeaponSpecial(optional byte i)
 {
 	if (bLockedOn)
 		BreakLock();

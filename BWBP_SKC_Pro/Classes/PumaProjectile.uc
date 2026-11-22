@@ -12,6 +12,7 @@
 //=============================================================================
 class PUMAProjectile extends BallisticGrenade;
 var bool bPrimed;
+var bool bProximityFused;	// an enemy came close: the 0.01 s fuse timer is running
 
 simulated function PostBeginPlay()
 {
@@ -53,14 +54,20 @@ simulated event Tick( float DT )
 	if (bAlignToVelocity && ( RandomSpin == 0 || (bNoInitialSpin && !bHasImpacted) ))
 		SetRotation(Rotator(Velocity));
 
+	// SetTimer restarts the count, so setting it again every frame kept it from going off above 100 fps
+	if (!bPrimed || bProximityFused)
+		return;
+
 	foreach VisibleCollidingActors( class 'Actor', Target, DamageRadius-70, Location )
 	{
 
-		if (Target.bCanBeDamaged && Target != self && bPrimed)
+		if (Target.bCanBeDamaged && Target != self)
 		{
 //			bPrimed = false; //Only explode once
 //			Explode(Location, vect(0,0,1));
+			bProximityFused = true;
 			SetTimer(0.01, false);
+			break;
 		}
 
 	}

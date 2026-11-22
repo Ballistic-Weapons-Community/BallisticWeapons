@@ -122,7 +122,8 @@ state Pending
 		Sleep((3 * Speed - VSize(BombTargetCenter-Location)) / Speed);
 		bHidden = False;
 		Velocity = vector(Rotation) * Speed;
-		SetTimer((VSize(BombTargetCenter - Location) - BombRange)/Speed, false);
+		// a bomber that starts within BombRange of the target bombs at once (a timer of 0 or less never runs)
+		SetTimer(FMax(0.01, (VSize(BombTargetCenter - Location) - BombRange)/Speed), false);
 		GoToState('');		
 }
 
@@ -262,7 +263,7 @@ state BlowingUp extends ShotDown
 		InitialState = 'BlowingUp';
 		if (Level.NetMode != NM_DedicatedServer)
 		{
-			Spawn(class'Mk77Projectile',,, Location - 100 * Normal(Velocity), Rot(0,16384,0));
+			Spawn(class'RedeemerExplosion',,, Location - 100 * Normal(Velocity), Rot(0,16384,0));
 			Spawn(class'IonCore',,, Location, Rotation);
 		}
 		MakeNoise(1.0);

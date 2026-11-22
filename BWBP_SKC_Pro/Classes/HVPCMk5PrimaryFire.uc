@@ -50,7 +50,7 @@ simulated state SingleShot
 	function DoFireEffect()
 	{
 		Super.DoFireEffect();
-		if (level.Netmode == NM_DedicatedServer && !Instigator.IsLocallyControlled() && !HVPCMk5PlasmaCannon(BW).bMilSpec)
+		if (!Instigator.IsLocallyControlled() && !HVPCMk5PlasmaCannon(BW).bMilSpec)
 			HVPCMk5PlasmaCannon(BW).AddHeat(HeatPerShot);
 	}
 }
@@ -86,7 +86,7 @@ simulated state SpreadShot
 
 		SendFireEffect(none, vect(0,0,0), StartTrace, 0);
 		Super(BallisticFire).DoFireEffect();
-		if (level.Netmode == NM_DedicatedServer && !Instigator.IsLocallyControlled() && !HVPCMk5PlasmaCannon(BW).bMilSpec)
+		if (!Instigator.IsLocallyControlled() && !HVPCMk5PlasmaCannon(BW).bMilSpec)
 			HVPCMk5PlasmaCannon(BW).AddHeat(HeatPerShot);
 	}
 

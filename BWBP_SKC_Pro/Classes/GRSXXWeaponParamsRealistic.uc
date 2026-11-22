@@ -8,7 +8,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=800.000000Max=4000.000000)
+		TraceRange=(Min=800.000000,Max=4000.000000)
 		WaterTraceRange=800.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=33.0
@@ -43,7 +43,7 @@ defaultproperties
 	
 	//Burst
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryBurstEffectParams
-		TraceRange=(Min=800.000000Max=4000.000000)
+		TraceRange=(Min=800.000000,Max=4000.000000)
 		WaterTraceRange=800.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=33.0
@@ -78,7 +78,7 @@ defaultproperties
 	
 	//Amp
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryAmpEffectParams
-		TraceRange=(Min=12000.000000Max=14000.000000) //9mm Gauss Accel
+		TraceRange=(Min=12000.000000,Max=14000.000000) //9mm Gauss Accel
 		WaterTraceRange=800.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=55.0

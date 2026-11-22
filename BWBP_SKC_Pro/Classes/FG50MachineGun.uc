@@ -246,6 +246,20 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		FG50Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 }
 
+// The melee's PlayPreFire sets bStriking: the laser goes back to the aim point once the melee anims are over
+simulated event AnimEnd (int Channel)
+{
+    local name Anim;
+    local float Frame, Rate;
+
+    GetAnimParams(0, Anim, Frame, Rate);
+
+	if (Anim != 'MeleePrep')
+		bStriking = false;
+
+	Super.AnimEnd(Channel);
+}
+
 simulated function PlayReload()
 {
     if (MagAmmo < 1)

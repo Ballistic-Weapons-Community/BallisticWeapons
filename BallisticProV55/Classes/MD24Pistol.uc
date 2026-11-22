@@ -12,6 +12,7 @@
 class MD24Pistol extends BallisticHandgun;
 
 var   bool			bLaserOn;
+var   bool			bOldLaserOn;		// client: bLaserOn as last seen by PostNetReceive, kept per gun (dual MD24s can differ)
 var   bool			bStriking;
 var() bool			bHasKnife;
 var   LaserActor	Laser;
@@ -103,9 +104,9 @@ simulated function PlayIdle()
 
 simulated function OnLaserSwitched()
 {
-	if (bLaserOn)
-		ApplyLaserAim();
-	else
+	// Start from the params every time (OnAimParamsChanged applies the laser): this runs more than once per switch
+	// on some machines (PostNetReceive and ClientSwitchLaser), and ApplyLaserAim multiplies
+	if (AimComponent.Params != None)
 		AimComponent.Recalculate();
 }
 
@@ -127,11 +128,11 @@ simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
-	if (bLaserOn != default.bLaserOn)
+	if (bLaserOn != bOldLaserOn)
 	{
 		OnLaserSwitched();
 
-		default.bLaserOn = bLaserOn;
+		bOldLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
 	Super.PostNetReceive();
@@ -233,7 +234,6 @@ simulated function bool PutDown()
 
 simulated function Destroyed ()
 {
-	default.bLaserOn = false;
 	if (Laser != None)
 		Laser.Destroy();
 	if (LaserDot != None)

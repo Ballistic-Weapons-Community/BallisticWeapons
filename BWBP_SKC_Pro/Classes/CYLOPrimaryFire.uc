@@ -80,17 +80,9 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 simulated event ModeDoFire()
 {
+	// Each machine picks its own interval: the server's sets the real rate of fire
 	if (bVariableFirerate)
-	{
-		if (level.Netmode == NM_Standalone)
-		{
-			FireRate = ScaledFireInterval() + (FRand() * 0.15);
-		}
-		else
-		{
-			CYLOUAW(BW).SetFireRate(ScaledFireInterval() + (FRand() * 0.15));
-		}
-	}
+		FireRate = ScaledFireInterval() + (FRand() * 0.15);
 	Super.ModeDoFire();
 }
 

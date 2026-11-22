@@ -58,27 +58,6 @@ simulated event KImpact(actor other, vector pos, vector impactVel, vector impact
 		PATrail.Destroy();
 }
 
-simulated function Explode(vector HitLocation, vector HitNormal)
-{
-	if (ShakeRadius > 0)
-		ShakeView(HitLocation);
-	BlowUp(HitLocation);
-    	if (ImpactManager != None)
-	{
-		if (Instigator == None)
-			ImpactManager.static.StartSpawn(HitLocation, HitNormal, 0, Level.GetLocalPlayerController()/*.Pawn*/);
-		else
-			ImpactManager.static.StartSpawn(HitLocation, HitNormal, 0, Instigator);
-	}
-	if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer)
-	{
-		bTearOff = true;
-		GotoState('NetTrapped');
-	}
-	else
-		Destroy();
-}
-
 // Useful if you want to spare a directly hit enemy from the radius damage
 function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
 {

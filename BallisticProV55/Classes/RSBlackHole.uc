@@ -128,6 +128,7 @@ simulated event Timer()
 
 			if (Dist < 80 + Touching[i].CollisionRadius)
 			{
+				bWasAlive = false;
 				if (xPawn(Touching[i])!=None && Pawn(Touching[i]).Health > 0)
 					bWasAlive = true;
 				else if (Vehicle(Touching[i]) != None && Vehicle(Touching[i]).Driver != None && Vehicle(Touching[i]).Driver.Health > 0)
@@ -150,6 +151,7 @@ simulated event Timer()
 		else if (RSDarkSoul(Touching[i])!=None || RSNovaSoul(Touching[i])!=None)
 		{
 //			RSDarkSoul(Touching[i]).BlackHoleSuck(self);
+			Dist = VSize(Touching[i].Location - Location);
 			Touching[i].Velocity += Normal(Location - Touching[i].Location) * (40000 / Touching[i].Mass) * (1-Dist/500);
 			class'BallisticDamageType'.static.GenericHurt (Touching[i], 100*(Charge/20), Instigator, Location, vect(0,0,10000), class'DT_RSBlackHoleSuck');
 		}

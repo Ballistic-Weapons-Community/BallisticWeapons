@@ -46,12 +46,16 @@ simulated function Timer()
 	if ( Level.NetMode != NM_DedicatedServer )
 		spawn(class'JSOWShellSplit', self, , Location, Rotation);
 
-    for (i=0; i<3; i++)
-    {
-        SmallShell = spawn(class'JSOWProjectile', self, , Location, Rotation);
-		if ( SmallShell != None )
-			SmallShell.Velocity = Velocity + (VRand() * 250.0);
-    }
+	// the bomblets come from the server; a client's own would land somewhere else
+	if ( Role == ROLE_Authority )
+	{
+	    for (i=0; i<3; i++)
+	    {
+	        SmallShell = spawn(class'JSOWProjectile', self, , Location, Rotation);
+			if ( SmallShell != None )
+				SmallShell.Velocity = Velocity + (VRand() * 250.0);
+	    }
+	}
     Destroy();
 }
 

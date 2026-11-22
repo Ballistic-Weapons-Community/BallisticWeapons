@@ -19,6 +19,7 @@ var() class<DamageType>	DamageType;		// Damage type for touching damage
 var   AvoidMarker		Fear;			// Da phear spauwt...
 var Controller			InstigatorController;
 var FP7FireControl		FireControl;
+var int					SpotIndex;		// Index of this fire in FireControl.GroundFireSpots
 
 function Reset()
 {

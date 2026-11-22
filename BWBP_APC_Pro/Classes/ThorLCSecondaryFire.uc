@@ -109,7 +109,7 @@ if (!AllowFire())
 
 function DoFireEffect()
 {
-	local Actor Target, Victims, Other;
+	local Actor Target, Victims;
 	local float TargetAngle, DR; //BHD
 	local vector ForceDir, EndEffect;
 	
@@ -156,10 +156,7 @@ function DoFireEffect()
 		ThorLCAttachment(Weapon.ThirdPersonActor).SetLockedTarget(Target);
 
 		if (Pawn(Target) != None && Instigator.Controller.SameTeamAs(Pawn(Target).Controller))
-		{
 			bDidHeal=True;
-			return;
-		}
 
 		if (xPawn(Target) != None && Pawn(Target).Health > 0)
 		{
@@ -171,17 +168,21 @@ function DoFireEffect()
 		ForceDir = (Instigator.Location + vector(Instigator.GetViewRotation()) * 700) - Target.Location;
 		if (bDidHeal)
 		{
-			ThorLightningCannon(BW).BoostTarget = Pawn(Other);
+			ThorLightningCannon(BW).BoostTarget = Pawn(Target);
+			ThorLightningCannon(BW).DrainTarget = None;
 			bShouldUseAltColor=true;
 		}
 		else
 		{
-			ThorLightningCannon(BW).DrainTarget = Pawn(Other);
+			ThorLightningCannon(BW).DrainTarget = Pawn(Target);
+			ThorLightningCannon(BW).BoostTarget = None;
 			bShouldUseAltColor=false;
 		}
 	}
 	else 
 	{
+		ThorLightningCannon(BW).DrainTarget = None;
+		ThorLightningCannon(BW).BoostTarget = None;
 		EndEffect = Instigator.Location + Normal(Vector(Instigator.GetViewRotation())) * LightningGun.MaxStreamRange;
 		Trace(HitLocation,HitNormal,EndEffect,Instigator.Location,true);
 		if (VSize(Instigator.Location - EndEffect) < LightningGun.MaxStreamRange)

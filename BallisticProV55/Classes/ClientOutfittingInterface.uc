@@ -31,6 +31,7 @@ var array<string>		Group4;
 var array<string> 		KillstreakRewards[2];
 
 var bool				bWeaponsReady, bPendingLoadoutSave;
+var bool				bLoadoutRequested;	// Server: a respawn or an allowed change wants a loadout, ServerSetLoadout takes it once
 
 var String 				LastLoadout[NUM_GROUPS];
 var int					LastLayout[NUM_GROUPS], LastCamo[NUM_GROUPS];
@@ -190,7 +191,7 @@ function SendWeapons ()
 		
 		//If the current weapon is already in the weapon list, update its Boxes entry to indicate it's in multiple slots
 		if (IsInList(Weaps, Mut.LoadoutGroup1[i], j))
-			Boxes[j] += 2;
+			Boxes[j] = Boxes[j] | 2;
 		else
 		{
 			//Insert weapon at end
@@ -205,7 +206,7 @@ function SendWeapons ()
 			continue;
 		//Third bit
 		if (IsInList(Weaps, Mut.LoadoutGroup2[i], j))
-			Boxes[j] += 4;
+			Boxes[j] = Boxes[j] | 4;
 		else
 		{
 			Weaps[Weaps.length] = Mut.LoadoutGroup2[i];
@@ -218,7 +219,7 @@ function SendWeapons ()
 			continue;
 		//Fourth bit
 		if (IsInList(Weaps, Mut.LoadoutGroup3[i], j))
-			Boxes[j] += 8;
+			Boxes[j] = Boxes[j] | 8;
 		else
 		{
 			Weaps[Weaps.length] = Mut.LoadoutGroup3[i];
@@ -230,7 +231,7 @@ function SendWeapons ()
 		if (Mut.LoadoutGroup4[i] == "")
 			continue;
 		if (IsInList(Weaps, Mut.LoadoutGroup4[i], j))
-			Boxes[j] += 16;
+			Boxes[j] = Boxes[j] | 16;
 		else
 		{
 			Weaps[Weaps.length] = Mut.LoadoutGroup4[i];
@@ -300,6 +301,7 @@ simulated function SortList(byte group_index)
 	local int i, j;
 	local BC_WeaponInfoCache.WeaponInfo WI;
 	local array<BC_WeaponInfoCache.WeaponInfo> SortedWIs;
+	local array<string> Unsorted;
 	local int wiGroup, existingGroup;
 
 	//log("we sortin");
@@ -350,14 +352,20 @@ simulated function SortList(byte group_index)
             }
 
 		}
-        //else 
+		// Not in the cache (not a BW weapon, or it did not load): kept, after the sorted ones
+		else if (GetGroupItem(group_index, i) != "")
+			Unsorted[Unsorted.Length] = GetGroupItem(group_index, i);
+        //else
         //    Log("ClientOutfittingInterface: Failed to load "$ GetGroupItem(group_index, i) $" from cache");
 	}
-	
+
 	for (i = 0; i < SortedWIs.Length; ++i)
     {
 		SetGroupItem(SortedWIs[i].ClassName, group_index, i);
     }
+	// (written over the rest, so the list has no stale copies at its end)
+	for (i = 0; i < Unsorted.Length; ++i)
+		SetGroupItem(Unsorted[i], group_index, SortedWIs.Length + i);
 }
 
 function Initialize(Mut_Outfitting MO, PlayerController P)
@@ -450,6 +458,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 		 (Invasion(level.Game)!=None && !Invasion(level.Game).bWaveInProgress) ||
 		 (CTFGame(level.Game)!=None && PC.GetTeamNum()<2 && VSize(CTFTeamAI(CTFGame(level.Game).Teams[PC.GetTeamNum()].AI).FriendlyFlag.HomeBase.Location - PC.Pawn.Location) < 384) )
 	{
+		bLoadoutRequested = true;
 		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4, L0, L1, L2, L3, L4, C0, C1, C2, C3, C4);
 		LastLoadoutTime = level.TimeSeconds;
 	}
@@ -459,10 +468,18 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 			if ( (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByRed && PC.GetTeamNum() == 0) || (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByBlue && PC.GetTeamNum() == 1) )
 				if (VSize(ONSOnslaughtGame(level.Game).PowerCores[i].Location - PC.Pawn.Location) < 384)
 				{
+					bLoadoutRequested = true;
 					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4, L0, L1, L2, L3, L4, C0, C1, C2, C3, C4);
 					LastLoadoutTime = level.TimeSeconds;
 					return;
 				}
+}
+
+// Called from the mutator at respawn of player: asks the client for its loadout
+function StartLoadout()
+{
+	bLoadoutRequested = true;
+	ClientStartLoadout();
 }
 
 // Called from server. Tells client to send back loadout info.
@@ -522,6 +539,11 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 	local int Camo[5];
 	local Pawn P;
 	local Inventory Inv;
+
+	// Only as an answer to StartLoadout or from ServerLoadoutChanged, never straight from a client
+	if (!bLoadoutRequested)
+		return;
+	bLoadoutRequested = false;
 
 	Stuff[0] = Stuff0;
 	Stuff[1] = Stuff1;
@@ -621,7 +643,6 @@ defaultproperties
      ChangeInterval=60.000000
      bHidden=True
      bOnlyRelevantToOwner=True
-     bAlwaysRelevant=True
      bReplicateMovement=False
      bSkipActorPropertyReplication=True
      RemoteRole=ROLE_SimulatedProxy

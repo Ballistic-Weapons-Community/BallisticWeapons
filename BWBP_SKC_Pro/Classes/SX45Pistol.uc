@@ -104,6 +104,9 @@ exec simulated function ToggleAmplifier(optional byte i)
 
 function ServerSwitchAmplifier(bool bNewValue)
 {
+	if (bNewValue && !bHasAmp)
+		return;
+
 	bAmped = bNewValue;
 	
 	SwitchAmplifier(bAmped);

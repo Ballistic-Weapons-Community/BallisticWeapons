@@ -239,6 +239,10 @@ simulated function EndRampage()
 	if (RSDarkAttachment(ThirdPersonActor) != None)
 		RSDarkAttachment(ThirdPersonActor).bRampage = false;
 
+	// undo StartRampage's (or SwitchWeaponMode's) cut, or it stays and grows with every rampage
+	if (RSDarkPrimaryFire(BFireMode[0]) != None)
+		RSDarkPrimaryFire(BFireMode[0]).ModePowerDrain /= 0.4;
+
 	if (Role == ROLE_Authority)
 	{
 		if (Instigator != None)
@@ -685,8 +689,7 @@ function byte BestMode()
 		if (CurrentWeaponMode != 0)
 		{
 			lastModeChangeTime = level.TimeSeconds;
-			CurrentWeaponMode = 0;
-			RSDarkPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+			CommonSwitchWeaponMode(0);
 		}
 	}
 	else
@@ -694,8 +697,7 @@ function byte BestMode()
 		if (CurrentWeaponMode != 1)
 		{
 			lastModeChangeTime = level.TimeSeconds;
-			CurrentWeaponMode = 1;
-			RSDarkPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+			CommonSwitchWeaponMode(1);
 		}
 	}
 

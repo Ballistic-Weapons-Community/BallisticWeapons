@@ -80,7 +80,7 @@ function float MaxRange()	{	return 800;	}
 
 function DoFireEffect()
 {
-	local Vector Start, Dir, End, HitLocation, HitNormal;
+	local Vector TraceStart, Start, Dir, End, HitLocation, HitNormal;
 	local Rotator Aim;
 	local actor Other;
 	local float Dist;
@@ -88,18 +88,19 @@ function DoFireEffect()
 	local AH104FlameProjectile Prj;
 
 	// the to-hit trace always starts right in front of the eye
-	Start = Instigator.Location + Instigator.EyePosition();
-	Aim = GetFireAim(Start);
+	TraceStart = Instigator.Location + Instigator.EyePosition();
+	Aim = GetFireAim(TraceStart);
 	Aim = Rotator(GetFireSpread() >> Aim);
 
 	Dir = Vector(Aim);
-	End = Start + (Dir*MaxRange());
+	End = TraceStart + (Dir*MaxRange());
 
 	Weapon.bTraceWater=true;
+	Start = TraceStart;
 	for (i=0;i<20;i++)
 	{
 		Other = Trace(HitLocation, HitNormal, End, Start, true);
-		if (Other == None || Other.bWorldGeometry || Mover(Other) != none || FluidSurfaceInfo(Other) != None || (PhysicsVolume(Other) != None && PhysicsVolume(Other).bWaterVolume))
+		if (Other == None || Other.bWorldGeometry || Mover(Other) != none || Vehicle(Other) != None || FluidSurfaceInfo(Other) != None || (PhysicsVolume(Other) != None && PhysicsVolume(Other).bWaterVolume))
 			break;
 		Start = HitLocation + Dir * FMax(32, (Other.CollisionRadius*2 + 4));
 	}
@@ -110,9 +111,10 @@ function DoFireEffect()
 	if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume) )
 		Other = None;
 
-	Dist = VSize(HitLocation-Start);
+	Dist = VSize(HitLocation-TraceStart);
 
-	Prj = Spawn (class'AH104FlameProjectile',Instigator,, Start, Rotator(HitLocation-Start));
+	// from the eye: started past the players the trace went through, it could never touch them
+	Prj = Spawn (class'AH104FlameProjectile',Instigator,, TraceStart, Rotator(HitLocation-TraceStart));
 	
 	if (Prj != None)
 	{

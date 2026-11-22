@@ -71,32 +71,6 @@ function FlashMuzzleFlash()
 		EjectBrass();
 }
 
-function StartBerserk()
-{
-	switch(BW.CurrentWeaponMode)
-	{
-		case 0: FireRate = default.FireRate * 0.75; break;
-		case 1: FireRate = 1.0 * 0.75; break;
-		default: FireRate = 0.2 * 0.75;
-	}
-    FireAnimRate = default.FireAnimRate/0.75;
-    FireRecoil = default.FireRecoil * 0.75;
-    FireChaos = default.FireChaos * 0.75;
-}
-
-function StopBerserk()
-{
-	switch(BW.CurrentWeaponMode)
-	{
-		case 0: FireRate = default.FireRate; break;
-		case 1: FireRate = 1.0; break;
-		default: FireRate = 0.2;
-	}
-    FireAnimRate = default.FireAnimRate;
-    FireRecoil = default.FireRecoil;
-    FireChaos = default.FireChaos;
-}
-
 // A gun not in the hands has no attachment
 simulated function SetAttachmentTracer(byte Mode)
 {

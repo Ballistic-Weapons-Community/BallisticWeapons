@@ -115,7 +115,7 @@ Function ScoreKill(Controller Killer, Controller Killed)
 		else
 			HazardKills[Killed.PlayerReplicationInfo.PlayerID] -= 0.2;
 		// Suicide with shotgun, somehow...
-		if (BallisticWeapon(Killed.Pawn.Weapon) != None && BallisticWeapon(Killed.Pawn.Weapon).bWT_Shotgun && ClassIsChildOf(Killed.Pawn.Weapon.Class, class<WeaponDamageType>(LastDT).default.WeaponClass))
+		if (Killed.Pawn != None && BallisticWeapon(Killed.Pawn.Weapon) != None && BallisticWeapon(Killed.Pawn.Weapon).bWT_Shotgun && ClassIsChildOf(Killed.Pawn.Weapon.Class, class<WeaponDamageType>(LastDT).default.WeaponClass))
 			ShotgunKills[Killed.PlayerReplicationInfo.PlayerID] -= 1;
 		else
 			ShotgunKills[Killed.PlayerReplicationInfo.PlayerID] -= 0.2;
@@ -131,7 +131,7 @@ Function ScoreKill(Controller Killer, Controller Killed)
 			ShotgunKills.length  = Killer.PlayerReplicationInfo.PlayerID + 1;
 
 		// Try figure out how far apart killer and killed are
-		if (Killed != None && Killer.Pawn != None && Killer.Pawn != None)
+		if (Killed != None && Killer.Pawn != None && Killed.Pawn != None)
 			Dist = VSize(Killer.Pawn.location - Killed.Pawn.location);
 		else if (Killed != None)
 			Dist = VSize(Killer.location - Killed.location);
@@ -144,7 +144,7 @@ Function ScoreKill(Controller Killer, Controller Killed)
 		if (Dist > 1000 && (LastDT.default.bLocationalHit || LastDT.default.bInstantHit) && (BDT==None || !BDT.static.IsDamage(",NonSniper,")))
 			SniperKills[Killer.PlayerReplicationInfo.PlayerID] += (Dist-1000) / 8000;
 		// Shotgun skill for killing close up with a bullet weapon or known BW shotgun
-		if (LastDT.default.bBulletHit || (Killer.pawn != None && Killer.Pawn.Weapon != None && BallisticWeapon(Killed.Pawn.Weapon) != None && BallisticWeapon(Killed.Pawn.Weapon).bWT_Shotgun))
+		if (LastDT.default.bBulletHit || (Killer.pawn != None && BallisticWeapon(Killer.Pawn.Weapon) != None && BallisticWeapon(Killer.Pawn.Weapon).bWT_Shotgun))
 		{
 			if (Dist <= 150)
 				ShotgunKills[Killer.PlayerReplicationInfo.PlayerID] += 1;

@@ -257,7 +257,7 @@ defaultproperties
      GunLength=0.000000
 	 bAimDisabled=True
 	 ParamsClasses(0)=Class'MAG78WeaponParamsComp'
-	 ParamsClasses(1)=Class'MAG78WeaponParamsComp'
+	 ParamsClasses(1)=Class'MAG78WeaponParamsClassic'
 	 ParamsClasses(2)=Class'MAG78WeaponParamsRealistic'
 	 ParamsClasses(3)=Class'MAG78WeaponParamsTactical'
      FireModeClass(0)=Class'MAG78PrimaryFire'

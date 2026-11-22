@@ -107,7 +107,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 			ImpactManager.static.StartSpawn(HitLocation, HitNormal, 0, Instigator);
 	}
 
-	if (bTearOnExplode && !bNetTemporary && Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer)
+	if (bTearOnExplode && !bNetTemporary && (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer))
 	{
 		Velocity = vect(0,0,0);
 		SetCollision(false,false,false);

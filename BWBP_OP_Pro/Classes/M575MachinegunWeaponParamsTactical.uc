@@ -77,7 +77,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2.5.5
+		MaxMoveMultiplier=2.5
 	End Object
 
 	Begin Object Class=RecoilParams Name=TacticalRecoilParams_Scope
@@ -93,7 +93,7 @@ defaultproperties
 		DeclineTime=0.75
 		CrouchMultiplier=0.85
 		HipMultiplier=1.25
-		MaxMoveMultiplier=2.5.5
+		MaxMoveMultiplier=2.5
 	End Object
 
 
@@ -126,7 +126,10 @@ defaultproperties
 		RecoilParams(1)=RecoilParams'TacticalRecoilParams_Scope'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'
-		AltFireParams(0)=FireParams'TacticalSecondaryFireParams'
+		FireParams(1)=FireParams'TacticalPrimaryFireParams'
+		FireParams(2)=FireParams'TacticalPrimaryFireParams'
+		FireParams(3)=FireParams'TacticalPrimaryFireParams'
+		FireParams(4)=FireParams'TacticalSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'TacticalParams'
 	

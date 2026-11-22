@@ -60,24 +60,24 @@ var() float             CrouchMultiplier;         	// Recoil from stationary cro
 var() bool              bViewDecline;               // Weapon will move back down through its recoil path when recoil is declining
 var() bool				bUseAltSightCurve;			// Weapon will use a different recoil curve when in sights
 
-final function float EvaluateXRecoil(float Recoil)
+final function float EvaluateXRecoil(float Recoil, float Factor)
 {
-    return MaxRecoil * InterpCurveEval(XCurve, Recoil / MaxRecoil) * YawFactor;
+    return MaxRecoil * InterpCurveEval(XCurve, Recoil / MaxRecoil) * Factor;
 }
     
-final function float EvaluateYRecoil(float Recoil)
+final function float EvaluateYRecoil(float Recoil, float Factor)
 {
-    return MaxRecoil * InterpCurveEval(YCurve, Recoil / MaxRecoil) * PitchFactor;
+    return MaxRecoil * InterpCurveEval(YCurve, Recoil / MaxRecoil) * Factor;
 }
 
-final function float EvaluateXRecoilAlt(float Recoil)
+final function float EvaluateXRecoilAlt(float Recoil, float Factor)
 {
-    return MaxRecoil * InterpCurveEval(XCurveAlt, Recoil / MaxRecoil) * YawFactor;
+    return MaxRecoil * InterpCurveEval(XCurveAlt, Recoil / MaxRecoil) * Factor;
 }
     
-final function float EvaluateYRecoilAlt(float Recoil)
+final function float EvaluateYRecoilAlt(float Recoil, float Factor)
 {
-    return MaxRecoil * InterpCurveEval(YCurveAlt, Recoil / MaxRecoil) * PitchFactor;
+    return MaxRecoil * InterpCurveEval(YCurveAlt, Recoil / MaxRecoil) * Factor;
 }
 
 defaultproperties

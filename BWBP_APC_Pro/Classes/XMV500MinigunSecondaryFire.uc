@@ -20,6 +20,30 @@ simulated function bool AllowFire()
 	return super.AllowFire();
 }
 
+// M353SecondaryFire only knows BallisticTurret. In the auto turret it played the hand gun's deploy instead
+// and the turret could never be picked up again. The turret gun has no undeploy anim to wait for
+function PlayFiring()
+{
+	if (BallisticAutoTurret(Instigator) != None)
+		BW.Notify_Undeploy();
+	else
+		super.PlayFiring();
+}
+
+function ServerPlayFiring()
+{
+	if (BallisticAutoTurret(Instigator) != None)
+		BW.Notify_Undeploy();
+	else
+		super.ServerPlayFiring();
+}
+
+function DoFireEffect()
+{
+	if (BallisticAutoTurret(Instigator) == None)
+		super.DoFireEffect();
+}
+
 defaultproperties
 {
     AmmoClass=Class'BWBP_APC_Pro.Ammo_MinigunInc'

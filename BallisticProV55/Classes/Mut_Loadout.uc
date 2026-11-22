@@ -180,7 +180,7 @@ function ModifyPlayer(Pawn Other)
 	else if (Other.Controller != None && PlayerController(Other.Controller) != None)
 		for (i=0;i<COIPond.length;i++)
 			if (COIPond[i].PC == Other.Controller)
-			{	COIPond[i].ClientStartLoadout();	return;	}
+			{	COIPond[i].StartLoadout();	return;	}
 }
 // Use the console command "Mutate Loadout" to open the loadout menu
 function Mutate(string MutateString, PlayerController Sender)

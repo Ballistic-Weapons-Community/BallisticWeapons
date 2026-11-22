@@ -185,6 +185,8 @@ function GiveAmmo( actor Other )
 			else
 				Inv=Inv.Inventory;
 		}
+		else
+			Inv=Inv.Inventory;
 	}
 	Count = 0;
 	// Now give all weapons some ammo

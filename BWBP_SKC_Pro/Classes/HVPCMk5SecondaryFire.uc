@@ -29,7 +29,7 @@ function PlayFiring()
 function DoFireEffect()
 {
 	Super.DoFireEffect();
-	if (level.Netmode == NM_DedicatedServer && !Instigator.IsLocallyControlled() && !HVPCMk5PlasmaCannon(BW).bMilSpec)
+	if (!Instigator.IsLocallyControlled() && !HVPCMk5PlasmaCannon(BW).bMilSpec)
 		HVPCMk5PlasmaCannon(Weapon).AddHeat(HeatPerShot);
 }
 

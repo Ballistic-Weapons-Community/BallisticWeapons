@@ -28,6 +28,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Fire',Volume=0.800000)
 		Recoil=128.000000
 		Chaos=-1.0
+		Heat=45
 		BotRefireRate=0.150000
 		WarnTargetPct=0.050000
 	End Object

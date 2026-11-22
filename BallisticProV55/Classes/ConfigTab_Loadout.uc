@@ -135,6 +135,8 @@ function LoadList()
 			WeaponInfo[j].IconCoords.Y2 = -1;
 			if (WI.InventoryGroup > 0 && WI.InventoryGroup < 10)
 				Heading[i] = WI.InventoryGroup - 1;
+			else if (WI.InventoryGroup == 0)
+				Heading[i] = 9;
 			else
 				Heading[i] = 10;
 		}

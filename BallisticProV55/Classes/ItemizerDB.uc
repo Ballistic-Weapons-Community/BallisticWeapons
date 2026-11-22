@@ -40,7 +40,7 @@ function RemoveAllFor(string Mapname)
 {
 	local int i;
 
-	for (i=0;i<Items.length;i++)
+	for (i=Items.length-1;i>=0;i--)
 		if (Items[i].MapName ~= MapName)
 			Items.remove(i,1);
 	SaveConfig();
@@ -84,7 +84,7 @@ function ReplaceItems(Array<ItemEntry> IEs, string MapName)
 {
 	local int i;
 
-	for (i=0;i<Items.length;i++)
+	for (i=Items.length-1;i>=0;i--)
 		if (Items[i].MapName ~= MapName)
 			Items.Remove(i, 1);
 

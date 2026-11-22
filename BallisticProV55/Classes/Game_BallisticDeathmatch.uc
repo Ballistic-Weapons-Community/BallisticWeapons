@@ -67,6 +67,9 @@ static function byte BallisticAllowMutator( string MutatorClassName )
 		if (MutatorClassName ~= default.InventoryMuts[i])
 			return 1;
 
+	// The inventory mutators add the preloader themselves
+	if (InStr(MutatorClassName, "Mut_BallisticPreLoad") >= 0)
+		return 1;
 	if (InStr(MutatorClassName, "Mut_Ballistic") >= 0)
 		return 0;
 	if (InStr(MutatorClassName, "Mut_Outfitting") >= 0)
@@ -219,7 +222,7 @@ defaultproperties
      InventoryModes(4)="Melee"
      InventoryMuts(0)="BallisticProV55.Mut_BallisticDM"
      InventoryMuts(1)="BallisticProV55.Mut_OutfittingDM"
-     InventoryMuts(2)="BallisticProV55.Mut_SpatialLoadoutDM"
+     InventoryMuts(2)="BallisticProV55.Mut_ConflictLoadoutDM"
      InventoryMuts(3)="BallisticProV55.Mut_BallisticArenaDM"
      InventoryMuts(4)="BallisticProV55.Mut_BallisticMeleeDM"
      ModeDisplayText="Inventory Mode"

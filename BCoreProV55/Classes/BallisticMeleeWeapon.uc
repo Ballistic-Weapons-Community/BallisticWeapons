@@ -37,8 +37,11 @@ simulated function PostBeginPlay()
 
 function ServerSetBlocked(bool NewValue)
 {
+	if (NewValue && !bCanBlock)
+		return;
 	bBlocked=NewValue;
-	BallisticAttachment(ThirdPersonActor).SetBlocked(NewValue);
+	if (BallisticAttachment(ThirdPersonActor) != None)
+		BallisticAttachment(ThirdPersonActor).SetBlocked(NewValue);
 }
 
 // Melee weapons have no magazine and no reload anims. Starting a reload (e.g. X8 after picking up more knives)
@@ -79,6 +82,21 @@ exec simulated function WeaponSpecialRelease(optional byte i)
 	IdleAnim = default.IdleAnim;
 }
 
+// A block held through a weapon switch was never let go: the release goes to the new weapon
+simulated function bool PutDown()
+{
+	if (!Super.PutDown())
+		return false;
+
+	if (bBlocked)
+	{
+		ServerSetBlocked(false);
+		bBlocked=false;
+		IdleAnim = default.IdleAnim;
+	}
+	return true;
+}
+
 final function bool CheckBlockArc(Vector HitLocation, Pawn InstigatedBy)
 {
     local float result;
@@ -102,6 +120,10 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 {
 	local class<BallisticDamageType> BDT;
 			
+	// BallisticWeapon.AdjustPlayerDamage is not called from here, so its berserk damage reduction is applied here
+	if (bBerserk && (InstigatedBy == None || InstigatedBy.Controller == None || !InstigatedBy.Controller.SameTeamAs(InstigatorController)))
+		Damage *= 0.75;
+
     if (InstigatedBy == None || InstigatedBy.Controller == None)
         return;
         
@@ -222,7 +244,9 @@ function float GetAIRating()
 		
 	if (B.Enemy == None)
 		return 0; // almost certainly useless against non-humans
-		
+
+	Rating = AIRating;
+
 	Dir = B.Enemy.Location - Instigator.Location;
 	Dist = VSize(Dir);
 	
