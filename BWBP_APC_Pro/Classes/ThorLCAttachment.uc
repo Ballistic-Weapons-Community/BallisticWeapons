@@ -75,7 +75,10 @@ simulated function Hide(bool NewbHidden)
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	if (Instigator.GetTeamNum() == 1)
+	// Copied from the Particle Streamer, which spawns its backpack here. The Thor has none, so Pack stays empty
+	if (Pack == None)
+		return;
+	if (Instigator != None && Instigator.GetTeamNum() == 1)
 		Pack.Skins[0]=Shader'BWBP_OP_Tex.Proton_pack_SH_1';
 	if (Instigator != None)
 		Instigator.AttachToBone(Pack,'Spine');
