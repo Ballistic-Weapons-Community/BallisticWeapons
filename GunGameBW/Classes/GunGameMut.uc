@@ -111,9 +111,6 @@ function bool CheckReplacement( Actor Other, out byte bSuperRelevant ) //Remove 
 		  {
 			   Other.bHidden = true;
 			   
-			   if (xPickupBase(Other).myMarker != None)
-					xPickupBase(Other).myMarker.bBlocked = True;
-					
 			   if (xPickupBase(Other).myEmitter != None)
 					xPickupBase(Other).myEmitter.Destroy();
 		  }

@@ -680,7 +680,6 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	// No ammo pickups
 	else if (Ammo(Other) != None && IP_AmmoPack(Other) == None)
 	{
-		Pickup(Other).myMarker.bBlocked = True;
 		return false;
 	}
 	// Lockers replaced with ammo packs
@@ -688,7 +687,6 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	{
 		if (!SpawnNewItem(-1, Other, class'IP_AmmoPack'))
 		{
-			WeaponLocker(Other).myMarker.bBlocked = True;
 			Other.GotoState('Disabled');
 			return false;
 		}
@@ -702,8 +700,6 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	else if (xPickupBase(Other) != None)
 	{
 		Other.bHidden=true;
-		if (xPickupBase(Other).myMarker != None)
-			xPickupBase(Other).myMarker.bBlocked = True;
 		if (xPickupBase(Other).myEmitter != None)
 			xPickupBase(Other).myEmitter.Destroy();
 	}
