@@ -314,7 +314,7 @@ static final function byte		NormToByte (vector V)
 			B = B | 64;
 		else if (V.Z >= 0.5)
 			B = B | 192;		}
-	else if (V.Z < 0.4)
+	else if (V.Z <= -0.5)
 		B = B | 128;
 
 	return B;
