@@ -105,7 +105,9 @@ state RepulsorBeamMode
 		
 			if (HookStopFactor != 0 && HookPullForce != 0 && Pawn(Victim) != None && Pawn(Victim).bProjTarget && Pawn(Victim).DrivenVehicle == None && (Pawn(Victim).Controller == None || !Pawn(Victim).Controller.SameTeamAs(Instigator.Controller)))
 			{
-				ForceDir = Normal(TraceStart-Other.Location);
+				// Away from the shooter, as in BallisticInstantFire: a positive HookPullForce (the Tractor beam's) pulls the
+				// victim in, a negative one (the Repulsor's) pushes. It pointed at the shooter, which swapped the two
+				ForceDir = Normal(Other.Location-TraceStart);
 				if(Victim.Physics == PHYS_Falling)
 				{
 					ForceDir *= 0.3;
@@ -124,14 +126,14 @@ state RepulsorBeamMode
 		HMCBeamCannon(Weapon).ServerSwitchLaser(true);
 		if (!bLaserFiring)
 		{
-			if (HookPullForce < 0)
+			if (HookPullForce > 0)
 				Weapon.PlayOwnedSound(TractorStartSound,BallisticFireSound.Slot,2.0,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 			else
 				Weapon.PlayOwnedSound(RepulsorStartSound,BallisticFireSound.Slot,2.0,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 		}
 		bLaserFiring=true;
 		
-		if ( HookPullForce < 0)
+		if ( HookPullForce > 0)
 			Instigator.AmbientSound = FireSoundLoopPull;
 		else
 			Instigator.AmbientSound = FireSoundLoopPush;
