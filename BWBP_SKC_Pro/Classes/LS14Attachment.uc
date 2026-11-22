@@ -22,7 +22,7 @@ var float	BarrelSpeed;
 replication
 {
 	reliable if (bNetDirty && Role==Role_Authority)
-		LasPower, bDouble;
+		LasPower, bDouble, CurrentTracerMode;
 	unreliable if (Role == ROLE_Authority)
 		NetBarrelSpeed;
 }
