@@ -244,13 +244,6 @@ function ServerStartReload (optional byte i)
 	ClientStartReload(i);
 }
 // Weapon special releases clip
-//simulated function DoWeaponSpecial(optional byte i)
-exec simulated function WeaponSpecial(optional byte i)
-{
-	if (ClientState == WS_ReadyToFire)
-		ServerStartReload();
-}
-
 // Charging bar shows throw strength
 simulated function float ChargeBar()
 {
