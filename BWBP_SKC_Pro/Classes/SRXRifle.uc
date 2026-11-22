@@ -196,8 +196,6 @@ exec simulated function WeaponSpecial(optional byte i)
 	if (ReloadState != RS_None || (SightingState != SS_None && !bHasIR))
 		return;
 		
-	TemporaryScopeDown(0.5);
-	
 	if (bHasIR && bScopeView)
 	{
 		bThermal = !bThermal;
@@ -215,6 +213,8 @@ exec simulated function WeaponSpecial(optional byte i)
 		AdjustThermalView(bThermal);
 		return;
 	}
+	
+	TemporaryScopeDown(0.5);
 	
 	if (bAmped)	//take off amp
 	{
