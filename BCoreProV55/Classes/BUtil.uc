@@ -76,7 +76,7 @@ static final operator(34) IntRange *= (out IntRange A, float B)
 static final operator(34) IntRange /= (out IntRange A, float B)
 {
 	A.Min /= B;
-	A.Min /= B;
+	A.Max /= B;
 	return A;
 }
 
