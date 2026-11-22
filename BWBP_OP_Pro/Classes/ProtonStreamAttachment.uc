@@ -42,7 +42,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 		}
 		else if (ModeColor != 0 && BoostMuzzleFlashClass != None)
 		{
-			if (AltMuzzleFlash == None)
+			if (BoostMuzzleFlash == None)
 				class'BUtil'.static.InitMuzzleFlash (BoostMuzzleFlash, BoostMuzzleFlashClass, DrawScale*FlashScale, self, AltFlashBone);
 			BoostMuzzleFlash.Trigger(self, Instigator);
 			if (bRandomFlashRoll)	SetBoneRotation(AltFlashBone, R, 0, 1.f);
@@ -148,6 +148,7 @@ simulated function Destroyed()
 		StreamEffect.Kill();
 	if (Pack != None)
 		Pack.Destroy();
+	class'BUtil'.static.KillEmitterEffect (BoostMuzzleFlash);
 	Super.Destroyed();
 }
 
