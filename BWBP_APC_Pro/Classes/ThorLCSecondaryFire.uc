@@ -109,7 +109,7 @@ if (!AllowFire())
 
 function DoFireEffect()
 {
-	local Actor Target, Victims;
+	local Actor Target, Victims, Other;
 	local float TargetAngle, DR; //BHD
 	local vector ForceDir, EndEffect;
 	
@@ -150,9 +150,6 @@ function DoFireEffect()
 			
 		}
 	}
-
-	// Drained is the enemy the stream is on now: none when it is off every target or on an ally
-	ThorLightningCannon(BW).DrainTarget = None;
 	if (Target != None)
 	{
 		LockedTarget = Target;
@@ -174,12 +171,12 @@ function DoFireEffect()
 		ForceDir = (Instigator.Location + vector(Instigator.GetViewRotation()) * 700) - Target.Location;
 		if (bDidHeal)
 		{
-			ThorLightningCannon(BW).BoostTarget = Pawn(Target);
+			ThorLightningCannon(BW).BoostTarget = Pawn(Other);
 			bShouldUseAltColor=true;
 		}
 		else
 		{
-			ThorLightningCannon(BW).DrainTarget = Pawn(Target);
+			ThorLightningCannon(BW).DrainTarget = Pawn(Other);
 			bShouldUseAltColor=false;
 		}
 	}

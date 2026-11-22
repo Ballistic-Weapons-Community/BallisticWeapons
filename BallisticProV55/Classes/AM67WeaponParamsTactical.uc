@@ -53,7 +53,6 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=TacticalSecondaryFireParams_Flash
-		TargetState="Flash"
         MaxHoldTime=0.5
         FireAnim="Idle"
         FireEndAnim=
