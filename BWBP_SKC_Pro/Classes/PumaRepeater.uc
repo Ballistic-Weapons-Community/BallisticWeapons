@@ -100,7 +100,7 @@ simulated event PostNetReceive()
 	if (bShieldUp != bOldShieldUp)
 	{
 		bOldShieldUp = bShieldUp;
-		AdjustShieldProperties(bShieldUp);
+		AdjustShieldProperties();
 	}
 	Super.PostNetReceive();
 }
