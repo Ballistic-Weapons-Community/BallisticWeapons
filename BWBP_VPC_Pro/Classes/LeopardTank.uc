@@ -40,6 +40,14 @@ var(Sights)   		config float			MaxZoom; // Max ammount that you can zoom into.
 var(Sights)			Material				SightTex; // Texture for the sight.
 var					byte					ToggleCount; // Used to tell the smokers how many times you have alt fired.
 
+replication
+{
+	reliable if (bNetDirty && Role == ROLE_Authority)
+		ToggleCount;
+	reliable if (Role < ROLE_Authority)
+		ServerToggleSmokers;
+}
+
 /*
 // Enumerator: Its a way of giving fancy names to a number. Looks nicer than using an int or byte.
 enum EDustLevel
@@ -67,15 +75,28 @@ simulated function SpawnDust()
 // The turret is not there yet when the tank has only just reached a client
 simulated function LeopardTurret GetTurret()
 {
+	local int i;
+
 	if (Weapons.Length > 0)
 		return LeopardTurret(Weapons[0]);
+	// Only the driver's machine gets the weapons list, other clients find the turret on the tank
+	for (i=0; i<Attached.Length; i++)
+		if (LeopardTurret(Attached[i]) != None)
+			return LeopardTurret(Attached[i]);
 	return None;
 }
 
 simulated function TurretSmokers(bool bOn)
 {
-	if (GetTurret() != None)
-		GetTurret().ToggleSmokers(bOn);
+	local LeopardTurret Turret;
+
+	Turret = GetTurret();
+	if (Turret == None)
+		return;
+	// The turret may have reached this client after the team did
+	if (bOn && Turret.LongSmoke[0] == None && Level.NetMode != NM_DedicatedServer)
+		Turret.SpawnSmokers(Team);
+	Turret.ToggleSmokers(bOn);
 }
 
 // Activates the function that spawns the smoke and gives it the team number of the driver.
@@ -456,8 +477,15 @@ function AltFire(optional float F)
 		PC.ToggleZoomWithMax(MaxZoom);
 	}
 	if (PC.bBehindView)
-		ToggleCount ++; // Everytime you alt fire this adds a 1 to the 'ToggleCount' variable.
+		ServerToggleSmokers();
 
+}
+// Counts the alt fire on the server, which sends 'ToggleCount' to everybody.
+function ServerToggleSmokers()
+{
+	ToggleCount ++; // Everytime you alt fire this adds a 1 to the 'ToggleCount' variable.
+	if (ToggleCount == 2)
+		ToggleCount = 0;
 }
 // Stops zooming if you stop alt firing.
 function ClientVehicleCeaseFire(bool bWasAltFire)
