@@ -536,14 +536,12 @@ simulated function Destroyed ()
 }
 
 //place a shield if you're trenched up
-exec simulated function WeaponSpecial(optional byte i)
+// The key goes to the server (BallisticWeapon.WeaponSpecial), which spawns the barrier. It was called on the client
+// and AltDeployable had no barrier class, so it was switched off
+function ServerWeaponSpecial(optional byte i)
 {
-	return; //ill fix this later
-	
 	if (bHasShield)
-	{
 		Notify_BarrierDeploy();
-	}
 }
 
 //===========================================================================
@@ -799,6 +797,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_Tex.CoachGun.BigIcon_Coach'
      BigIconCoords=(Y1=35,Y2=225)
+	 AltDeployable=(dClass=Class'BWBP_SKC_Pro.CoachGunEnergyBarrier',WarpInTime=0.500000,CoolDownDelay=2.000000)
 	 ShieldFailSound=Sound'BWBP_OP_Sounds.Wrench.EnergyStationError'
      bShovelLoad=False
      bWT_Shotgun=True
@@ -867,4 +866,5 @@ defaultproperties
      Skins(1)=Shader'BWBP_SKC_Tex.CoachGun.Coach-MainShine'
      Skins(2)=Texture'BWBP_SKC_Tex.CoachGun.DBL-SawnBits'
      Skins(3)=Texture'BWBP_SKC_Tex.CoachGun.Coach-Misc'
+	AltFireHint="Single barrel"
 }

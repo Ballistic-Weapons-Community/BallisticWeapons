@@ -192,4 +192,5 @@ defaultproperties
 	DrawScale=0.3
 	SoundPitch=56
 	SoundRadius=32.000000
+	AltFireHint="Charged acid (hold)"
 }

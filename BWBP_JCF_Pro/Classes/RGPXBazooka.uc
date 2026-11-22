@@ -350,4 +350,6 @@ defaultproperties
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BWBP_JCF_Anims.RGPX_FPm'
 	DrawScale=0.600000
+	AltFireHint="Flak shot"
+	SpecialHint="Laser sight on/off"
 }

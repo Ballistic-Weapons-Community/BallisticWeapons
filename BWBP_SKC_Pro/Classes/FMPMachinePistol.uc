@@ -418,4 +418,5 @@ defaultproperties
 	Skins(2)=Shader'BWBP_SKC_Tex.MP40.MP40-MagShine'
 	Skins(3)=Shader'BW_Core_WeaponTex.Amp.Amp-FinalRed'
 	Skins(4)=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
+	AltFireHint="Amplifier on/off"
 }

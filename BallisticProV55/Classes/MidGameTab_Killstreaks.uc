@@ -22,6 +22,7 @@ var automated GUIComboBox	 	cb_Streak1_CI, cb_Streak2_CI;
 var automated GUIImage 			MyBack, Box_Streak1, Box_Streak2, Streak1Back, Streak2Back;
 var automated GUIHeader 		MyHeader;
 var automated GUILabel			l_Receiving;
+var automated moCheckBox		ch_AutoClaim;
 
 var bool 						bWeaponsLoaded;
 
@@ -47,6 +48,7 @@ function Initialize()
 		return;
 
 	Item_Streak1.OnItemChange = OnLoadoutItemChange;
+	ch_AutoClaim.Checked(class'KillstreakConfig'.default.bAutoClaim);
 	Item_Streak2.OnItemChange = OnLoadoutItemChange;
 
 	Item_Streak1.SetItem(class'KillstreakConfig'.default.Killstreaks[0]);
@@ -366,6 +368,16 @@ function OnLoadoutItemChange(GUIComponent Sender)
 
 function InternalOnChange(GUIComponent Sender)
 {
+	// Saved and sent at once, before the weapon lists are in: it does not depend on them
+	if (Sender == ch_AutoClaim)
+	{
+		class'KillstreakConfig'.default.bAutoClaim = ch_AutoClaim.IsChecked();
+		class'KillstreakConfig'.static.StaticSaveConfig();
+		if (KLRI != None)
+			KLRI.UpdateStreakChoices();
+		return;
+	}
+
 	if (KLRI == None || !KLRI.bWeaponsReady)
 		return;
 		
@@ -580,6 +592,22 @@ defaultproperties
          WinHeight=0.040000
      End Object
      l_Receiving=GUILabel'BallisticProV55.MidGameTab_Killstreaks.l_Receivinglabel'
+
+     Begin Object Class=moCheckBox Name=ch_AutoClaimCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Give Me Rewards At Once"
+         OnCreateComponent=ch_AutoClaimCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="On: a reward gun is yours the moment you earn it (or when you next spawn). Off: rewards wait until you press Claim Killstreak Reward, and a reward you have not claimed is kept when you die."
+         WinTop=0.600000
+         WinLeft=0.250000
+         WinWidth=0.500000
+         WinHeight=0.040000
+         TabOrder=1
+         OnChange=MidGameTab_Killstreaks.InternalOnChange
+     End Object
+     ch_AutoClaim=moCheckBox'BallisticProV55.MidGameTab_Killstreaks.ch_AutoClaimCheck'
 
      DefaultStreaks(0)="BallisticProV55.MRocketLauncher"
      DefaultStreaks(1)="BallisticProV55.RX22AFlamer"

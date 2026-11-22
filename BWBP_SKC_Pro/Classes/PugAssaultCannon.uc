@@ -639,4 +639,5 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.Pug_FPm'
 	DrawScale=0.300000
+	AltFireHint="Load/fire tear gas"
 }

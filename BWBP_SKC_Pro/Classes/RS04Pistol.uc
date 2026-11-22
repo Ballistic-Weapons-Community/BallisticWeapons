@@ -590,4 +590,9 @@ defaultproperties
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_SKC_Tex.RS04.RS04-MainShine'
+	AltFireHint="Stab"
+	SpecialHint="Flashlight on/off"
+	AltStateHints(0)=(State=FlashbangLight,Hint="Blinding flash (hold)")
+	AltStateHints(1)=(State=Light,Hint="Flashlight on/off")
+	AltStateHints(2)=(State=Projectile,Hint="Load/fire sensor dart")
 }

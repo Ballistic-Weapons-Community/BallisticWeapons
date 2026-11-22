@@ -207,6 +207,7 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Burst"
+		SpecialHint="Laser sight on/off"
 		LayoutTags="laser,lock,open"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.Fifty9Tac_FPm'
@@ -238,6 +239,7 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Suppressed"
+		SpecialHint="-"
 		LayoutTags="lock"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.Fifty9Tac_FPm'

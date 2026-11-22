@@ -242,6 +242,7 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Sensor"
+		SpecialHint="Sensor ping"
 		LayoutTags="sensor"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="LightModule",Slot=4,Scale=0f)

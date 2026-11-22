@@ -357,4 +357,6 @@ defaultproperties
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.BX5.BX5Skin'
+	AltFireHint="Spring mode on/off"
+	SpecialHint="Spring mode on/off"
 }

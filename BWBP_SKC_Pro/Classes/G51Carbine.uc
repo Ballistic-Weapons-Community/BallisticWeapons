@@ -729,4 +729,5 @@ defaultproperties
      ParamsClasses(2)=Class'G51WeaponParamsRealistic'
 	 ParamsClasses(3)=Class'G51WeaponParamsTactical'
      DrawScale=0.300000
+	AltFireHint="Load/fire chaff grenade"
 }

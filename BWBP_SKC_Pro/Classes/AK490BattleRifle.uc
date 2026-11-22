@@ -383,4 +383,5 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.AK490_FPm'
 	DrawScale=0.30000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	AltFireHint="Launch knife (hold)"
 }

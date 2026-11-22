@@ -219,6 +219,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_AdvStealth
 		//Layout core
 		LayoutName="A3 Suppressed"
+		SpecialHint="-"
 		LayoutTags="no_grenade, suppressed"
 		Weight=5
 		AllowedCamos(0)=4
@@ -250,6 +251,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_AdvHolo
 		//Layout core
 		LayoutName="A3 Holo"
+		SpecialHint="Cycle laser/flashlight"
 		LayoutTags="no_grenade, lam"
 		Weight=5
 		AllowedCamos(0)=4
@@ -282,6 +284,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_AdvScope
 		//Layout core
 		LayoutName="A3 4X Scope"
+		SpecialHint="-"
 		LayoutTags="no_grenade"
 		Weight=5
 		AllowedCamos(0)=4

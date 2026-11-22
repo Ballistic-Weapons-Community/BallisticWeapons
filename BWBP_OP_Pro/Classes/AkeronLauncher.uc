@@ -200,4 +200,5 @@ defaultproperties
      LightRadius=12.000000
      Mesh=SkeletalMesh'BWBP_OP_Anim.Akeron_FPm'
      DrawScale=0.300000
+	AltFireHint="Guided rocket"
 }

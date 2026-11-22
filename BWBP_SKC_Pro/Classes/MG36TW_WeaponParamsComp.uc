@@ -153,6 +153,7 @@ defaultproperties
 		//Layout
 		Weight=10
 		LayoutName="Assault Rifle"
+		SpecialHint="Suppressor on/off"
 		LayoutTags="ar"
 		//Visual
 		WeaponBoneScales(0)=(BoneName="MagSmall",Slot=30,Scale=1f)

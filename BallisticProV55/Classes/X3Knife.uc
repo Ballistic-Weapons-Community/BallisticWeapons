@@ -191,4 +191,6 @@ defaultproperties
      ItemName="X3 Knife"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.X3_FPm'
      DrawScale=0.300000
+	AltFireHint="Charged slash (hold)"
+	SpecialHint="Throw knife (hold)"
 }

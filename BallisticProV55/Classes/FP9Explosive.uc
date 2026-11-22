@@ -730,4 +730,6 @@ defaultproperties
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Texture'BW_Core_WeaponTex.FP9A5.FP9Bomb'
+	AltFireHint="Detonate bomb"
+	SpecialHint="Laser tripwire on/off"
 }

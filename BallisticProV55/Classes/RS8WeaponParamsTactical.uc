@@ -196,6 +196,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_TacKnife
 		//Layout core
 		LayoutName="10mm Tac Knife"
+		AltFireHint="Stab"
+		SpecialHint="Laser sight on/off"
 		LayoutTags="tacknife"
 		Weight=10
 		AllowedCamos(0)=0
@@ -228,6 +230,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_Heavy
 		//Layout core
 		LayoutName="HV Ammo + RDS"
+		SpecialHint="-"
 		LayoutTags="comp"
 		Weight=10
 		//Attachments

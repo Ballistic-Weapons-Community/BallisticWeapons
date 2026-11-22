@@ -356,4 +356,5 @@ defaultproperties
      DrawScale=0.260000
 	 ParamsClasses(0)=Class'TAC30CannonWeaponParamsArena'
 	 ParamsClasses(1)=Class'TAC30WeaponParamsClassic'
+	AltFireHint="Laser sight on/off"
 }

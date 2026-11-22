@@ -251,4 +251,6 @@ defaultproperties
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.CX61_FPm'
 	DrawScale=0.300000
+	AltFireHint="Flamethrower"
+	AltStateHints(0)=(State=HealGas,Hint="Healing gas")
 }

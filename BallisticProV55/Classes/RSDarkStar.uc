@@ -827,4 +827,6 @@ defaultproperties
      Skins(3)=Texture'BW_Core_WeaponTex.DarkStar.DarkStarChain'
      bFullVolume=True
      SoundRadius=32.000000
+	AltFireHint="Chainsaw (hold)"
+	SpecialHint="Rampage (full souls)"
 }

@@ -226,4 +226,6 @@ defaultproperties
 	 Skins(13)=Texture'BW_Core_WeaponTex.M75.M75Clip'
 	 Skins(14)=FinalBlend'BW_Core_WeaponTex.G5.G5RocketFinal'
 	 Skins(15)=Shader'BW_Core_WeaponTex.XK2.XK2_Main-Shiney'
+	AltFireHint="Resupply self"
+	SpecialHint=""
 }

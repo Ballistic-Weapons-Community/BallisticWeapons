@@ -891,4 +891,6 @@ defaultproperties
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.G5Bazooka_FPm'
 	DrawScale=0.300000
+	AltFireHint="Guidance laser on/off"
+	SpecialHint="Rocket camera"
 }

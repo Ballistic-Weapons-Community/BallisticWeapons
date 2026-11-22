@@ -330,4 +330,5 @@ defaultproperties
 	 ParamsClasses(3)=Class'ZX98WeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_APC_Anim.ZX98_FPm'
      DrawScale=0.200000
+	AltFireHint="Gauss shot"
 }

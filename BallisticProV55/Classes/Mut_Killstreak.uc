@@ -168,7 +168,41 @@ function byte GetStreakLevel(PlayerController C)
 
 function FlagStreak(PlayerController C, byte Level)
 {
-	GetKLRI(C.PlayerReplicationInfo).RewardLevel = GetKLRI(C.PlayerReplicationInfo).RewardLevel | Level;
+	local KillstreakLRI KLRI;
+
+	KLRI = GetKLRI(C.PlayerReplicationInfo);
+	KLRI.RewardLevel = KLRI.RewardLevel | Level;
+
+	if (KLRI.bAutoClaim)
+		AutoClaim(C);
+}
+
+// A player who chose to get rewards at once (KillstreakConfig.bAutoClaim) gets every waiting reward now. Dead, or
+// with no pawn, the rewards wait for the next spawn (ModifyPlayer)
+function AutoClaim(PlayerController C)
+{
+	local KillstreakLRI KLRI;
+	local Pawn P;
+	local byte OldLevel;
+
+	KLRI = GetKLRI(C.PlayerReplicationInfo);
+	if (KLRI == None)
+		return;
+
+	P = C.Pawn;
+	if (Vehicle(P) != None)
+		P = Vehicle(P).Driver;
+	if (P == None || P.Health <= 0)
+		return;
+
+	// One level per grant, the higher first. A grant that fails (no such weapon) leaves the level waiting
+	while (KLRI.RewardLevel > 0)
+	{
+		OldLevel = KLRI.RewardLevel;
+		GrantKillstreakReward(P, KLRI);
+		if (KLRI.RewardLevel == OldLevel)
+			break;
+	}
 }
 
 function ResetActiveStreaks(PlayerController C)
@@ -264,6 +298,10 @@ function ModifyPlayer( pawn Other )
 			}
 		}
 	}
+
+	// Rewards earned while dead or not yet given wait for this spawn
+	if (KLRI.bAutoClaim && KLRI.RewardLevel > 0 && PlayerController(Pawn.Controller) != None)
+		AutoClaim(PlayerController(Pawn.Controller));
 }
 
 // Use the console command "Mutate Loadout" to open the loadout menu

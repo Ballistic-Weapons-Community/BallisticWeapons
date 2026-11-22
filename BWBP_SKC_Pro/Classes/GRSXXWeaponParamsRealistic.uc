@@ -221,6 +221,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		//Layout core
 		LayoutName="Hyper Amp"
+		AltFireHint="Amplifier on/off"
+		SpecialHint="-"
 		LayoutTags="no_starting_amp,no_combat_laser"
 		Weight=30
 		//ADS

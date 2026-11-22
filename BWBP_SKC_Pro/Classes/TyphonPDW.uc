@@ -799,4 +799,5 @@ defaultproperties
      Skins(4)=Texture'BWBP_SKC_Tex.Typhon.Typhon-Misc'
      Skins(5)=Shader'BWBP_SKC_Tex.Typhon.Typhon-HolosightGlow'
      Skins(6)=Texture'BWBP_SKC_Tex.PUMA.PUMA-ScreenBasic'
+	AltFireHint="Energy shield on/off"
 }

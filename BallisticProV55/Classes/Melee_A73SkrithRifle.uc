@@ -23,4 +23,5 @@ defaultproperties
      PickupClass=Class'BallisticProV55.Melee_A73Pickup'
      AttachmentClass=Class'BallisticProV55.Melee_A73Attachment'
      ItemName="Unfireable A73 Skrith Rifle"
+	AltFireHint=""
 }

@@ -402,4 +402,6 @@ defaultproperties
 	DrawScale=0.300000
 	bFullVolume=True
 	SoundRadius=32.000000
+	AltFireHint="Stream (hold)"
+	SpecialHint="Love mode (meter full)"
 }

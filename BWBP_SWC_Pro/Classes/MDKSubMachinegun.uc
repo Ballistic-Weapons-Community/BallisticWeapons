@@ -426,4 +426,6 @@ defaultproperties
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BWBP_SWC_Anims.MDK_FPm'
 	DrawScale=0.400000
+	AltFireHint="Scope on/off"
+	SpecialHint="Suppressor on/off"
 }

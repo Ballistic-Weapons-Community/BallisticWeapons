@@ -899,4 +899,6 @@ defaultproperties
      Skins(2)=Shader'BWBP_SKC_Tex.PUMA.PUMA-BackShine'
      Skins(3)=Texture'BWBP_SKC_Tex.Typhon.Typhon-Misc'
      Skins(4)=Texture'BWBP_SKC_Tex.PUMA.PUMA-ScreenBasic'
+	AltFireHint="Holo shield on/off"
+	SpecialHint="Set burst range"
 }

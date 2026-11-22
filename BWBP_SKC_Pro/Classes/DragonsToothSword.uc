@@ -234,4 +234,5 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.DTS_FPm'
 	DrawScale=1.250000
 	SoundRadius=32.000000
+	AltFireHint="Double swipe"
 }

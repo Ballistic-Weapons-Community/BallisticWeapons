@@ -304,6 +304,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_FS
 		//Layout core
 		LayoutName="Firestorm V"
+		AltFireHint="Incendiary blast"
 		LayoutTags="inc,heat,charge"
 		Weight=20
 		AllowedCamos(0)=7

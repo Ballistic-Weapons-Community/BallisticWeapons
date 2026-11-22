@@ -517,4 +517,5 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_APC_Anim.Wendigo_FPm'
 	DrawScale=0.400000
+	AltFireHint="EMP torpedo"
 }

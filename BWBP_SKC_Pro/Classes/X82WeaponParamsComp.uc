@@ -142,6 +142,7 @@ defaultproperties
 		//Layout core
 		Weight=1
 		LayoutName="Irons"
+		SpecialHint="-"
 		LayoutTags="irons"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)

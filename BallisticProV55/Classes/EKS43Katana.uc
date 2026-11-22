@@ -97,4 +97,5 @@ defaultproperties
      ItemName="EKS-43 Katana"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.EKS43_FPm'
      DrawScale=0.3
+	AltFireHint="Charged slash (hold)"
 }

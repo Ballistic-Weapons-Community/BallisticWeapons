@@ -79,6 +79,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		//Layout core
 		LayoutName="Single"
+		AltFireHint="Lunge stab (hold)"
 		LayoutTags="single"
 		Weight=5
 		//Visual

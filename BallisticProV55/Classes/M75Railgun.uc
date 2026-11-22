@@ -456,4 +456,6 @@ defaultproperties
 	LightRadius=8.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M75_FPm'
 	DrawScale=0.3
+	AltFireHint="Charged slug (hold)"
+	SpecialHint="Thermal scope on/off"
 }

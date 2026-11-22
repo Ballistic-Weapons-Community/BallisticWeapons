@@ -500,6 +500,7 @@ defaultproperties
 		//Layout core
 		LayoutName="Trench Custom"
 		LayoutTags="shield"
+		SpecialHint="Deploy barrier"
 		Weight=10
 		AllowedCamos(0)=5
 		//Attachments

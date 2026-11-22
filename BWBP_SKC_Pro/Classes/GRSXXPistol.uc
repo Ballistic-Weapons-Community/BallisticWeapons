@@ -807,4 +807,6 @@ defaultproperties
 	DrawScale=0.300000
 	bFullVolume=True
 	SoundRadius=128.000000
+	AltFireHint="Laser beam (hold)"
+	SpecialHint="Big laser shot"
 }

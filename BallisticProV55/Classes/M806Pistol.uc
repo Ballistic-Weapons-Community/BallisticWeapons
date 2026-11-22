@@ -659,4 +659,7 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M806_FPm'
 	DrawScale=0.300000
+	AltFireHint="Laser sight on/off"
+	SpecialHint="Laser sight on/off"
+	AltStateHints(0)=(State=Shotgun,Hint="Shotgun blast")
 }

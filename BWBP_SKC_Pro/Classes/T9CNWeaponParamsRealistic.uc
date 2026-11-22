@@ -283,6 +283,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_Robocop
 		//Layout core
 		LayoutName="Gauss Mod"
+		AltFireHint="Gauss shot"
 		LayoutTags="gauss"
 		Weight=10
 		//Attachments

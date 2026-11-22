@@ -98,10 +98,12 @@ state SpawnIn
 	
 	function SpawnDeployable()
 	{
-		local CoachDeployable W;
+		local Actor A;
 
-		W = CoachDeployable(Spawn(myDeployable, Instigator, , GroundPoint, Rotation));
-		W.Health = Health;
+		// The Coach Gun's barrier is a BallisticShield, not a CoachDeployable: only a deployable takes the health
+		A = Spawn(myDeployable, Instigator, , GroundPoint, Rotation);
+		if (CoachDeployable(A) != None)
+			CoachDeployable(A).Health = Health;
 	}
 	
 	Begin:

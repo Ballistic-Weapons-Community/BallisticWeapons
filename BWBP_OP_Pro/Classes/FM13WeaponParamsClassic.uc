@@ -185,6 +185,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		//Layout core
 		LayoutName="8 Gauge Shot"
+		AltFireHint="Load/fire flak shell"
 		LayoutTags="8Gauge"
 		Weight=30
 		//Model

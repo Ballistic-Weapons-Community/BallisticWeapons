@@ -423,4 +423,5 @@ defaultproperties
 	Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed'
 	Skins(4)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Front'
 	Skins(5)=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen'
+	SpecialHint="Laser sight on/off"
 }

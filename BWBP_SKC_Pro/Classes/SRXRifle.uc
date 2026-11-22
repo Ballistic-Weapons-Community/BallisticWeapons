@@ -954,4 +954,6 @@ defaultproperties
 	Skins(13)=Texture'BWBP_SKC_Tex.SRX.SRX-Supp'
 	Skins(14)=Shader'BW_Core_WeaponTex.AMP.Amp-FinalRed'
 	Skins(15)=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
+	AltFireHint="Amplifier on/off"
+	SpecialHint="Suppressor on/off"
 }

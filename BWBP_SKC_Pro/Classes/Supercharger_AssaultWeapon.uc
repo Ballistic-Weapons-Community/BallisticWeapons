@@ -686,4 +686,5 @@ defaultproperties
     Skins(1)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
     Skins(2)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
     Skins(3)=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-Main'
+	AltFireHint="Melee saw (hold)"
 }

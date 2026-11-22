@@ -81,4 +81,5 @@ defaultproperties
      ItemName="FP7 Grenade"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FP7_FPm'
      DrawScale=0.300000
+	AltFireHint="Roll grenade"
 }

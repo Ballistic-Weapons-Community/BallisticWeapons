@@ -169,6 +169,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=ArenaParams_RDS
 		//Layout core
 		LayoutName="RDS + Lasersight"
+		AltFireHint="Laser sight on/off"
 		Weight=2
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=1f)
@@ -193,6 +194,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=ArenaParams_CombatLaser
 		//Layout core
 		LayoutName="Combat Laser"
+		AltFireHint="Combat laser (hold)"
 		LayoutTags="combat_laser"
 		Weight=2
 		//Attachments

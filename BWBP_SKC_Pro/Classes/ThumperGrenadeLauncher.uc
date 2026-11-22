@@ -136,4 +136,5 @@ defaultproperties
 	DrawScale=0.600000
 	SoundPitch=56
 	SoundRadius=32.000000
+	AltFireHint="Smoke grenade"
 }

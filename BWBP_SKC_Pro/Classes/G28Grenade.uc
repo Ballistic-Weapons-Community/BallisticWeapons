@@ -145,4 +145,5 @@ defaultproperties
      ItemName="FMD G28 Medicinal Aerosol"
      Mesh=SkeletalMesh'BWBP_SKC_Anim.G28_FPm'
      DrawScale=0.300000
+	AltFireHint="Roll grenade"
 }

@@ -463,4 +463,6 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.MD24_FPm'
 	DrawScale=0.3
+	AltFireHint="Scope"
+	SpecialHint="Laser sight on/off"
 }

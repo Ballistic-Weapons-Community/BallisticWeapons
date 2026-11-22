@@ -319,6 +319,8 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Tracker"
+		AltFireHint="Sensor grenade"
+		SpecialHint="Targeting on/off"
 		LayoutTags="tracker"
 		
 		//Attachments
@@ -347,6 +349,8 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="CQC Bomber"
+		AltFireHint="HE grenade"
+		SpecialHint="Suppressor on/off"
 		LayoutTags="suppressor"
 		
 		//Attachments
@@ -381,6 +385,8 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="CQC Shockwave"
+		AltFireHint="Shockwave grenade"
+		SpecialHint="Suppressor on/off"
 		LayoutTags="suppressor"
 		
 		//Attachments

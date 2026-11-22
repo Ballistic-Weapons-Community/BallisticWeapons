@@ -542,4 +542,6 @@ defaultproperties
     Skins(1)=Shader'BW_Core_WeaponTex.XK2.XK2_Main-Shiney'
     Skins(2)=Shader'BW_Core_WeaponTex.AMP.Amp-FinalCyan'
     Skins(3)=Shader'BW_Core_WeaponTex.AMP.Amp-GlowCyanShader'
+	AltFireHint="Amplifier on/off"
+	SpecialHint="Suppressor on/off"
 }

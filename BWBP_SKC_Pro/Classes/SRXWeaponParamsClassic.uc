@@ -282,6 +282,7 @@ defaultproperties
 		//Layout core
 		Weight=5
 		LayoutName="IRNV Scope"
+		SpecialHint="Suppressor / thermal"
 		LayoutTags="optic, IR"
 		//Attachments
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)

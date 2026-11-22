@@ -216,6 +216,7 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="Suppressed"
+		SpecialHint="Suppressor on/off"
 		LayoutTags="start_suppressed"
 		//Attachments
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)

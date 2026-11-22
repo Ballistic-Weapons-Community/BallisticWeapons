@@ -521,4 +521,5 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_OP_Anim.R9A1_FPm'
 	DrawScale=0.300000
 	SightAnimScale=0.25
+	AltFireHint="Scope"
 }

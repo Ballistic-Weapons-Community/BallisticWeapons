@@ -233,6 +233,8 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="Tracker"
+		AltFireHint="Sensor grenade"
+		SpecialHint="Targeting on/off"
 		LayoutTags="tracker"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.F2000_FPm'
@@ -261,6 +263,8 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="CQC Icestorm"
+		AltFireHint="Ice grenade"
+		SpecialHint="-"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.MARS3_FPm'
 		PickupMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS3PickupHi'

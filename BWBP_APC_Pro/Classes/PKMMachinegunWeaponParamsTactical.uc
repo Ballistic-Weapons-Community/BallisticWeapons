@@ -111,6 +111,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=TacticalParams
+		AltFireHint="Launch rocket (hold)"
 		PlayerSpeedFactor=0.92
 		InventorySize=7
 		SightMoveSpeedFactor=0.35

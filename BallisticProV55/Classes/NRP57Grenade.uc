@@ -99,4 +99,5 @@ defaultproperties
      ItemName="NRP-57 'Pineapple'"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.NRP57_FPm'
      DrawScale=0.300000
+	AltFireHint="Roll grenade"
 }

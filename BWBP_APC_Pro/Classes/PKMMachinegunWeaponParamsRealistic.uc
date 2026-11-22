@@ -114,6 +114,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		AltFireHint="Launch rocket (hold)"
 		PlayerSpeedFactor=0.850000
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000

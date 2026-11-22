@@ -251,13 +251,6 @@ function ServerStartReload (optional byte i)
 	ClientStartReload(i);
 }
 // Weapon special releases clip
-//simulated function DoWeaponSpecial(optional byte i)
-exec simulated function WeaponSpecial(optional byte i)
-{
-	if (ClientState == WS_ReadyToFire)
-		ServerStartReload();
-}
-
 // Charging bar shows throw strength
 simulated function float ChargeBar()
 {
@@ -380,4 +373,5 @@ defaultproperties
      ItemName="MOA-C Chaff Grenade"
      Mesh=SkeletalMesh'BWBP_SKC_Anim.MOAC_FPm'
      DrawScale=0.300000
+	AltFireHint="Melee smack (hold)"
 }

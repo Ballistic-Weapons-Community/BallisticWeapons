@@ -583,4 +583,5 @@ defaultproperties
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Marlin_FPm'
 	DrawScale=0.3
+	SpecialHint="Laser sight on/off"
 }

@@ -684,4 +684,5 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_OP_Anim.Z250_FPm'
 	DrawScale=0.300000
 	SoundRadius=128.000000
+	AltFireHint="Fuel grenade"
 }

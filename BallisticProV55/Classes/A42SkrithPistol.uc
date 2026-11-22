@@ -362,4 +362,5 @@ defaultproperties
 	SoundRadius=32.000000
 	
 
+	AltFireHint="Charged beam (hold)"
 }

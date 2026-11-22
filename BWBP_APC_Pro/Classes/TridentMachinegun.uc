@@ -365,4 +365,5 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BWBP_APC_Anim.CruMG_FPm'
 	DrawScale=0.350000
+	AltFireHint="Rapid HE shells"
 }

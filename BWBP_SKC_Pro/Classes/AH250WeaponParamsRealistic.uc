@@ -153,6 +153,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_Scope
 		//Layout core
 		LayoutName=".44 Marksman"
+		SpecialHint="-"
 		Weight=10
 		
 		//Attachments
@@ -184,6 +185,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_RDS
 		//Layout core
 		LayoutName=".44 RDS"
+		SpecialHint="-"
 		Weight=30
 		
 		//Attachments
@@ -242,6 +244,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_50
 		//Layout core
 		LayoutName=".50"
+		SpecialHint="-"
 		Weight=30
 		
 		//Attachments

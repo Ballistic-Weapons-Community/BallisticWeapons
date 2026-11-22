@@ -242,6 +242,8 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="Sensor Suite"
+		AltFireHint="Sensor grenade"
+		SpecialHint="Targeting on/off"
 		LayoutTags="tracker"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.F2000_FPm'
@@ -270,6 +272,8 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="CQC Holosight"
+		AltFireHint="HE grenade"
+		SpecialHint="Suppressor on/off"
 		LayoutTags="suppressor"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.MARS3_FPm'

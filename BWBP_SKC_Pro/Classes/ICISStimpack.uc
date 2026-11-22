@@ -253,4 +253,5 @@ defaultproperties
 	 Skins(1)=Texture'BWBP_SKC_Tex.Stim.Stim-Main'
 	 Skins(2)=Texture'ONSstructureTextures.CoreGroup.Invisible'
 	 Skins(3)=Shader'XEffectMat.goop.GoopShader'
+	AltFireHint="Stab/heal ally (hold)"
 }

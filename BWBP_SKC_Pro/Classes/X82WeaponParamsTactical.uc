@@ -147,6 +147,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_Irons
 		//Layout core
 		LayoutName="Irons"
+		SpecialHint="-"
 		LayoutTags="irons"
 		Weight=1
 		//Attachments

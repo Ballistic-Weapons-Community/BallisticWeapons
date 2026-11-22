@@ -121,4 +121,5 @@ defaultproperties
 	SoundRadius=32.000000
 	
 
+	AltFireHint="Throw lance"
 }

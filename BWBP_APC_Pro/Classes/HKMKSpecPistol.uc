@@ -515,4 +515,6 @@ defaultproperties
 	LightRadius=3.000000
 	//Mesh=SkeletalMesh'BWBP_JCF_Anims.HKMKSpec_FPm'
 	DrawScale=0.300000
+	AltFireHint="Shotgun blast"
+	SpecialHint="Suppressor on/off"
 }

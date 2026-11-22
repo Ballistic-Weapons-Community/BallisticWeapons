@@ -41,7 +41,7 @@ simulated function PostBeginPlay()
 	{
 		for (G = Level.Game.GameRulesModifiers; G != None && G.class != class'ParticleGameRules'; G = G.NextGameRules);
 		
-		if (G.class != class'ParticleGameRules')
+		if (G == None)
 		{
 			G = spawn(class'ParticleGameRules');
 			Level.Game.AddGameModifier(G);
@@ -367,4 +367,6 @@ defaultproperties
 	 ParamsClasses(2)=Class'ParticleStreamerWeaponParams'
 	 ParamsClasses(3)=Class'ParticleStreamerWeaponParams'
      SoundRadius=32.000000
+	AltFireHint="Drain stream (hold)"
+	SpecialHint="Recharge mode on/off"
 }

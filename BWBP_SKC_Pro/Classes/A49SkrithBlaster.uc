@@ -481,4 +481,5 @@ defaultproperties
 	SoundPitch=56
 	SoundRadius=32.000000
 	bShowChargingBar=True
+	AltFireHint="Shockwave blast"
 }

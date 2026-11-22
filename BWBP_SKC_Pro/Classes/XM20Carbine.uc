@@ -996,4 +996,6 @@ defaultproperties
 	Skins(2)=Texture'BWBP_SKC_Tex.XM20.XM20-Main'
 	Skins(3)=Texture'BWBP_SKC_Tex.XM20.XM20-Misc'
 	Skins(4)=Texture'ONSstructureTextures.CoreGroup.Invisible' //The outermost one
+	AltFireHint="Laser beam (hold)"
+	AltStateHints(0)=(State=Shield,Hint="Shield on/off")
 }

@@ -374,4 +374,5 @@ defaultproperties
 	Skins(2)=Texture'BW_Core_WeaponTex.RX22A.RX22AShield'
 	bFullVolume=True
 	SoundRadius=128.000000
+	AltFireHint="Fuel spray (unlit)"
 }

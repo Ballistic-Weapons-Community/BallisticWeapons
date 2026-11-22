@@ -509,4 +509,6 @@ defaultproperties
 	Skins(1)=Shader'BW_Core_WeaponTex.MRS138.MRS138Shiney'
 	Skins(2)=Texture'BW_Core_WeaponTex.MRS138.MRS138HeatShield'
 	Skins(3)=Texture'BW_Core_WeaponTex.MRS138.MRS138Shell'
+	AltFireHint="Tazer (hold)"
+	SpecialHint="Flashlight on/off"
 }

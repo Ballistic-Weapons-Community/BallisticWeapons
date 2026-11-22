@@ -593,4 +593,5 @@ defaultproperties
      SoundVolume=255
      SoundRadius=256.000000
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	AltFireHint="Plasma wave (hold)"
 }

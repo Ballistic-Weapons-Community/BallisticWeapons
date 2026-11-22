@@ -1074,4 +1074,6 @@ defaultproperties
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BWBP_SKC_Tex.M1014.M1014-Shine'
 	Skins(2)=Shader'BWBP_SKC_Tex.M1014.M1014-MiscShine'
+	AltFireHint="Load/fire electro shell"
+	SpecialHint="Cycle laser/flashlight"
 }

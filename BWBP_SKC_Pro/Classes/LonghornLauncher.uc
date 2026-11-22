@@ -461,4 +461,5 @@ defaultproperties
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.Longhorn_FPm'
 	DrawScale=0.300000
+	AltFireHint="Cluster spread"
 }

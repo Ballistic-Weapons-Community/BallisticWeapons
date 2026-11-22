@@ -227,4 +227,5 @@ defaultproperties
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FLASH_FPm'
 	DrawScale=0.300000
+	AltFireHint="Fire all rockets"
 }

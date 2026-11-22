@@ -401,4 +401,5 @@ defaultproperties
      ParamsClasses(2)=Class'SRKSmgWeaponParamsRealistic'
      ParamsClasses(3)=Class'SRKSmgWeaponParamsTactical'
      DrawScale=0.300000
+	AltFireHint="Load/fire plague grenade"
 }

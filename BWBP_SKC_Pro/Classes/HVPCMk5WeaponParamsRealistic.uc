@@ -217,6 +217,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Military
 		LayoutName="E55 Plasma Cannon"
+		AltFireHint="Rapid plasma"
 		LayoutTags="milspec"
 		AllowedCamos(0)=3
 		Weight=10

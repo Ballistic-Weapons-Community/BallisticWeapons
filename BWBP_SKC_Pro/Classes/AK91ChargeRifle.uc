@@ -476,4 +476,5 @@ defaultproperties
      DrawScale=0.30000
      SoundPitch=56
      SoundRadius=32.000000
+	AltFireHint="Shockwave (vents heat)"
 }

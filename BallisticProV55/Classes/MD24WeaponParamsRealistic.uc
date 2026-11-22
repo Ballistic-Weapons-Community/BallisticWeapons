@@ -345,6 +345,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams_TacKnife
 		//Layout core
 		LayoutName=".40 Tac Knife"
+		AltFireHint="Stab"
 		LayoutTags="tacknife"
 		Weight=10
 		//Attachments

@@ -133,6 +133,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		AltFireHint="Deploy turret"
 		PlayerSpeedFactor=0.825000
 		InventorySize=9
 		SightMoveSpeedFactor=0.500000

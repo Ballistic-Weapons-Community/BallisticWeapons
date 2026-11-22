@@ -289,4 +289,5 @@ defaultproperties
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      Skins(1)=Shader'BWBP_OP_Tex.Longsword.ChainsawLongswordShiny'
 	 Skins(2)=Texture'BW_Core_WeaponTex.DarkStar.DarkStarChain'
+	AltFireHint="Saw blade (hold)"
 }

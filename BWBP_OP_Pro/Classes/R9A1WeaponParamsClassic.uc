@@ -138,6 +138,7 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="Iron Sights"
+		AltFireHint="Aim down sights"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.R9_FPm'
 		SightOffset=(X=-5.000000,Y=0.000000,Z=2.000000)
@@ -166,6 +167,7 @@ defaultproperties
 		//Layout core
 		Weight=30
 		LayoutName="Holosight"
+		AltFireHint="Aim down sights"
 		//Attachments
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.R9_FPm'
 		SightOffset=(X=-5.000000,Y=-0.020000,Z=3.100000)

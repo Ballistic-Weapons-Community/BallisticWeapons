@@ -706,4 +706,5 @@ defaultproperties
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.Bulldog_FPm'
 	//DrawScale=0.200000
 	DrawScale=0.300000
+	AltFireHint="Load/fire FRAG-12"
 }

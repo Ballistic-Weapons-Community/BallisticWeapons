@@ -274,6 +274,7 @@ defaultproperties
 		//Layout core
 		Weight=3
 		LayoutName="Adv Holo + Sensor"
+		AltFireHint="Load/fire sensor grenade"
 		WeaponPrice=1200
 		
 		//Attachments
@@ -305,6 +306,7 @@ defaultproperties
 		//Layout core
 		Weight=10
 		LayoutName="Iron Sights + HE"
+		AltFireHint="Load/fire HE grenade"
 		WeaponPrice=1200
 		
 		//Attachments
@@ -373,6 +375,7 @@ defaultproperties
 		//Layout core
 		Weight=5
 		LayoutName="IR Scope"
+		SpecialHint="Thermal scope on/off"
 		LayoutTags="IR"
 		WeaponPrice=1200
 			

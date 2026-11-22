@@ -704,4 +704,5 @@ defaultproperties
      //Mesh=SkeletalMesh'BWBP_SKC_Anim.XMB500_FPm'
      DrawScale=0.600000
      SoundRadius=128.000000
+	AltFireHint="Deploy turret"
 }

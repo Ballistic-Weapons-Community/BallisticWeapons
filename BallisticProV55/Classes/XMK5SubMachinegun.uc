@@ -334,4 +334,5 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMK5_FPm'
 	DrawScale=0.30000
+	AltFireHint="Stun dart"
 }

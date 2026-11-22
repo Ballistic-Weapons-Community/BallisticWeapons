@@ -603,4 +603,6 @@ defaultproperties
 	 Skins(3)=Shader'BWBP_OP_Tex.M575.M575_body_SH1'
 	 Skins(4)=Shader'BW_Core_WeaponTex.AMP.Amp-FinalCyan'
 	 Skins(5)=Shader'BW_Core_WeaponTex.AMP.Amp-GlowCyanShader'
+	AltFireHint="Ice amplifier on/off"
+	SpecialHint="Hybrid scope on/off"
 }

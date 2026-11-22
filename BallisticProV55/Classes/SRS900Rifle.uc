@@ -692,4 +692,5 @@ defaultproperties
 	Skins(3)=Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo'
 	Skins(4)=FinalBlend'BW_Core_WeaponTex.SRS.SRS-HSight-FB'
 	Skins(5)=Shader'BW_Core_WeaponTex.SRS.SRS-HSight-S'
+	SpecialHint="Suppressor on/off"
 }

@@ -284,8 +284,20 @@ function float SuggestDefenseStyle()
 	return -1;
 }
 
+// Weapon Special blocks, on melee weapons that can
+simulated function string GetSpecialHint()
+{
+	local string Hint;
+
+	Hint = Super.GetSpecialHint();
+	if (!bCanBlock && Hint == class'BallisticMeleeWeapon'.default.SpecialHint)
+		return "";
+	return Hint;
+}
+
 defaultproperties
 {
+	 SpecialHint="Block (hold)"
 	bCanBlock=True
 	BlockUpAnim="PrepBlock"
 	BlockDownAnim="EndBlock"

@@ -250,4 +250,5 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M353_FPm'
 	DrawScale=0.3
+	AltFireHint="Deploy machinegun"
 }

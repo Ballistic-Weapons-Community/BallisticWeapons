@@ -688,4 +688,6 @@ defaultproperties
 	DrawScale=0.300000
 	SoundPitch=56
 	SoundRadius=32.000000
+	AltFireHint="Blinding flash (hold)"
+	SpecialHint="Extend/fold stock"
 }

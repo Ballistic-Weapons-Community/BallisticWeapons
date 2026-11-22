@@ -79,4 +79,5 @@ defaultproperties
      ItemName="A909 Skrith Blades"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.A909_FPm'
      DrawScale=0.30
+	AltFireHint="Charged slash (hold)"
 }

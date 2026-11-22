@@ -30,7 +30,7 @@ simulated function PostBeginPlay()
 	{
 		for (G = Level.Game.GameRulesModifiers; G != None && G.class != class'ThorLCGameRules'; G = G.NextGameRules);
 		
-		if (G.class != class'ThorLCGameRules')
+		if (G == None)
 		{
 			G = spawn(class'ThorLCGameRules');
 			Level.Game.AddGameModifier(G);
@@ -246,4 +246,5 @@ defaultproperties
 	 ParamsClasses(2)=Class'ThorLCWeaponParams'
 	 ParamsClasses(3)=Class'ThorLCWeaponParams'
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	AltFireHint="Drain beam (hold)"
 }

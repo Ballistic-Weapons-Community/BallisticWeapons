@@ -522,4 +522,6 @@ defaultproperties
      //Skins(2)=Texture'BWBP_APC_Tex.Wrenchgun.WrenchShells'
      //Skins(3)=Texture'BWBP_APC_Tex.Wrenchgun.WrenchShells'
      Skins(4)=Shader'BWBP_OP_Tex.Wrench.WrenchShader'
+	AltFireHint="Throw wrenches"
+	SpecialHint="Deploy barrier"
 }

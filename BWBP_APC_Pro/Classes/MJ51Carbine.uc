@@ -434,4 +434,5 @@ defaultproperties
      ParamsClasses(2)=Class'MJ51WeaponParamsRealistic'
 	 ParamsClasses(3)=Class'MJ51WeaponParamsTactical'
      DrawScale=0.300000
+	AltFireHint="Load/fire HE grenade"
 }

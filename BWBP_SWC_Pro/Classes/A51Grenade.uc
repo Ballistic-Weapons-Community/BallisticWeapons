@@ -92,4 +92,5 @@ defaultproperties
      ItemName="AD-51 Reptile Corrosive Grenade"
      //Mesh=SkeletalMesh'BWBP_SWC_Anims.FPm_SkrithGrenade'
      DrawScale=0.400000
+	AltFireHint="Roll grenade"
 }

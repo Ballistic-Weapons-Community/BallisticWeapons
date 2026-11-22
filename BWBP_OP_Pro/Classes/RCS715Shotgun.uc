@@ -715,4 +715,5 @@ defaultproperties
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_OP_Anim.RCS715_FPm'
 	DrawScale=0.300000
+	AltFireHint="Load/fire incendiary"
 }

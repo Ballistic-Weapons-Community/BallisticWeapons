@@ -455,4 +455,6 @@ defaultproperties
 	LightRadius=4.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.M46A1_FPm'
 	DrawScale=0.300000
+	AltFireHint="Sticky proximity mine"
+	SpecialHint="Detonate mines"
 }

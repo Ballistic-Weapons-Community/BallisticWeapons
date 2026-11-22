@@ -223,6 +223,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_Scope
 		//Layout core
 		LayoutName="Scoped"
+		SpecialHint="-"
 		LayoutTags="scope"
 		Weight=10
 		WeaponPrice=1000
@@ -256,6 +257,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_Shotgun
 		// Layout core
 		LayoutName="Shotgun"
+		SpecialHint="-"
 		LayoutTags="shotgun"
 		Weight=5
 		WeaponPrice=1200

@@ -262,6 +262,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_TacKnife
 		//Layout core
 		LayoutName="Classic Knife"
+		AltFireHint="Stab"
+		SpecialHint="Laser sight on/off"
 		LayoutTags="tacknife"
 		Weight=10
 		AllowedCamos(0)=0
@@ -300,6 +302,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Heavy
 		//Layout core
 		LayoutName="RDS H-Frame"
+		SpecialHint="-"
 		LayoutTags="comp"
 		Weight=10
 		//Attachments

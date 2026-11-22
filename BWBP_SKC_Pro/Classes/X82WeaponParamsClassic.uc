@@ -150,6 +150,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Irons
 		//Layout core
 		LayoutName="Irons"
+		SpecialHint="-"
 		LayoutTags="irons"
 		Weight=1
 		//Attachments

@@ -314,4 +314,5 @@ defaultproperties
 	ItemName="X8 Ballistic Knife"
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.X8Knife_FPm'
 	DrawScale=0.300000
+	AltFireHint="Throw knife (hold)"
 }

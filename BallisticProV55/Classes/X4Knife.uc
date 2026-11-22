@@ -96,4 +96,5 @@ defaultproperties
      ItemName="X4 Knife"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.X4_FPm'
      DrawScale=0.300000
+	AltFireHint="Charged slash (hold)"
 }

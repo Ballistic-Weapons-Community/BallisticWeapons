@@ -809,4 +809,6 @@ defaultproperties
 	RadarPosX=0.900000
 	RadarPosY=0.250000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	AltFireHint="Cryo grenade"
+	SpecialHint="Radar on/off"
 }

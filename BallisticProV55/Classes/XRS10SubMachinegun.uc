@@ -482,4 +482,6 @@ defaultproperties
 	Skins(1)=Shader'BW_Core_WeaponTex.XRS10.XRS10Shiney'
 	Skins(2)=Shader'BW_Core_WeaponTex.XRS10.XRS10LaserShiney'
 	Skins(3)=Shader'BW_Core_WeaponTex.XRS10.XRS10SilencerShiney'
+	AltFireHint="Laser sight on/off"
+	SpecialHint="Suppressor on/off"
 }

@@ -291,6 +291,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=TacticalParams_Robocop
 		//Layout core
 		LayoutName="Gauss Mod"
+		AltFireHint="Gauss shot"
 		LayoutTags="gauss"
 		Weight=10
 		WeaponPrice=1200

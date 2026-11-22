@@ -1045,4 +1045,6 @@ defaultproperties
 	Skins(3)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
 	Skins(4)=Texture'BW_Core_WeaponTex.M50.M50Laser'
 	Skins(5)=Texture'BW_Core_WeaponTex.M50.M50Gren'
+	AltFireHint="Grenade launcher"
+	SpecialHint="Place/view camera"
 }

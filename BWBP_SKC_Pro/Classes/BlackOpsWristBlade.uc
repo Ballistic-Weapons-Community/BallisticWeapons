@@ -161,4 +161,5 @@ defaultproperties
 	 ParamsClasses(3)=Class'BlackOpsWristBladeWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.BOB_FPm'
      DrawScale=1.250000
+	AltFireHint="Double slash (hold)"
 }
