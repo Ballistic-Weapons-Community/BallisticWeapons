@@ -13,14 +13,16 @@ function FireModeStats GetStats()
 
     FS = Super(FireEffectParams).GetStats();
 	
-	FS.DamageInt = default.Damage;
+	FS.DamageInt = Damage;
+	FS.HeadMult = HeadMult;
+	FS.LimbMult = LimbMult;
 
 	if (ChargeDamageBonusFactor > 1f)
 		FS.Damage = String(FS.DamageInt)@"-"@String(int(FS.DamageInt * ChargeDamageBonusFactor));
 	else
         FS.Damage = String(FS.DamageInt);
 
-	FS.RangeOpt = "Max range: "@(default.TraceRange.Max / 52.5)@"metres";
+	FS.RangeOpt = "Max range: "@(TraceRange.Max / 52.5)@"metres";
 	
 	return FS;
 }
