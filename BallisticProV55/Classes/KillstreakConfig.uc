@@ -4,6 +4,7 @@ class KillstreakConfig extends Object
 var() globalconfig string		Killstreaks[2];
 var()	globalconfig byte		Layouts[2];
 var()	globalconfig byte		Camos[2];
+var()	globalconfig bool		bAutoClaim;		// a reward gun is given the moment it is earned, or at the next spawn
 
 static function UpdateStreaks(string ks1, string ks2)
 {
@@ -25,4 +26,5 @@ defaultproperties
 	Layouts(1)=0
 	Camos(0)=0
 	Camos(1)=0
+	bAutoClaim=True
 }

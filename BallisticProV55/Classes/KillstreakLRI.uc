@@ -29,6 +29,7 @@ var localized string 	MenuName, MenuHelp; // Stuff for the menu
 var private editconst bool	bMenuModified, bMenuAdd;
 
 var byte 				RewardLevel; 		// streaks in reserve
+var bool				bAutoClaim;			// the player's choice: rewards given as soon as they are earned, not on the claim key
 var byte 				ActiveStreak; 		// active streaks - not replicated
 var int 				InvKillScore;		// Used for Invasion streaks
 
@@ -314,8 +315,8 @@ simulated function UpdateStreakChoices()
 		class'KillstreakConfig'.default.Layouts[0],
 		class'KillstreakConfig'.default.Layouts[1],
 		class'KillstreakConfig'.default.Camos[0],
-		class'KillstreakConfig'.default.Camos[1]
-		
+		class'KillstreakConfig'.default.Camos[1],
+		class'KillstreakConfig'.default.bAutoClaim
 	);
 }
 
@@ -326,9 +327,11 @@ simulated function ClientGetStreakChoices()
 	UpdateStreakChoices();
 }
 
-function ServerUpdateStreakChoices(string Streak1, string Streak2, byte Layout1, byte Layout2, byte Camo1, byte Camo2)
+function ServerUpdateStreakChoices(string Streak1, string Streak2, byte Layout1, byte Layout2, byte Camo1, byte Camo2, bool bAuto)
 {
 	local int i;
+
+	bAutoClaim = bAuto;
 	
 	Killstreaks[0] = Streak1;
 	Killstreaks[1] = Streak2;
@@ -344,6 +347,10 @@ function ServerUpdateStreakChoices(string Streak1, string Streak2, byte Layout1,
 		if (BallisticPlayer(myController) != None)
 			BallisticPlayer(myController).LastStreaks[i] = LastStreaks[i];
 	}
+
+	// Turned on with rewards waiting: they are given now
+	if (bAutoClaim && RewardLevel > 0 && Mut != None && PlayerController(myController) != None)
+		Mut.AutoClaim(PlayerController(myController));
 }
 
 defaultproperties
