@@ -552,7 +552,7 @@ defaultproperties
 	MagAmmo=500
 	FireModeClass(0)=Class'BWBP_SKC_Pro.HMCPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.HMCSecondaryFire'
-	MeleeFireClass=Class'BWBP_SKC_Pro.FG50MeleeFire'
+	MeleeFireClass=Class'BWBP_SKC_Pro.HMCMeleeFire'
 	ParamsClasses(0)=Class'HMCBeamCannonParamsArena'
 	ParamsClasses(1)=Class'HMCBeamCannonParamsClassic'
 	ParamsClasses(2)=Class'HMCBeamCannonParamsRealistic'
