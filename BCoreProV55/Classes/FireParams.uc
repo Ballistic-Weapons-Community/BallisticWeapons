@@ -79,10 +79,10 @@ final function FireEffectParams.FireModeStats GetStats()
 	
 	FS = FireEffectParams[0].GetStats();
 
-    FS.DPS = (FS.DamageInt / FireInterval) * DEFAULT_TIME_DILATION;
+    FS.DPS = DEFAULT_TIME_DILATION * FS.DamageInt / FireInterval;
 
     if (FS.DamageInt > 0)
-	    FS.TTK = FireInterval * (Ceil(175/FS.DamageInt) - 1) / DEFAULT_TIME_DILATION;
+	    FS.TTK = FireInterval * (Ceil(175.0/FS.DamageInt) - 1) / DEFAULT_TIME_DILATION;
     else
         FS.TTK = 0;
 
@@ -91,7 +91,7 @@ final function FireEffectParams.FireModeStats GetStats()
 	else 
         FS.RPM = String((1 / FireInterval) * DEFAULT_TIME_DILATION) @ FS.ShotTypeString $ "/second";
 
-    FS.RPS = (FS.RPShot / FireInterval) * DEFAULT_TIME_DILATION;
+    FS.RPS = DEFAULT_TIME_DILATION * FS.RPShot / FireInterval;
 	FS.FCPS = (FS.FCPShot / FireInterval) * DEFAULT_TIME_DILATION;
 	
 	return FS;
