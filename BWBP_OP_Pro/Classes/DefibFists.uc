@@ -73,8 +73,8 @@ simulated event Tick (float DT)
 			class'BUtil'.static.InitMuzzleFlash (LSparks, class'DefibFistsTazerEffect', DrawScale, self, 'LElectrode');
 			RSparks = None;
 			class'BUtil'.static.InitMuzzleFlash (RSparks, class'DefibFistsTazerEffect', DrawScale, self, 'RElectrode');	
-			bDischarged = False;			
 		}
+		bDischarged = False;
 	}
 	
 	else if (MagAmmo < 10 && !bDischarged)
