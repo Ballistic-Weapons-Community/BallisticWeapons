@@ -108,7 +108,7 @@ if (!AllowFire())
 
 function DoFireEffect()
 {
-	local Actor Target, Victims, Other;
+	local Actor Target, Victims;
 	local float TargetAngle, DR; //BHD
 	local vector ForceDir, EndEffect;
 	
@@ -148,6 +148,9 @@ function DoFireEffect()
 			
 		}
 	}
+
+	// Drained is the enemy the stream is on now: none when it is off every target or on an ally
+	ParticleStreamer(BW).DrainTarget = None;
 	if (Target != None)
 	{
 		LockedTarget = Target;
@@ -170,13 +173,13 @@ function DoFireEffect()
 		if (bDidHeal)
 		{
 			//class'BallisticDamageType'.static.GenericHurt (Target, 0, Instigator, Target.Location + (Normal(Target.Location - Instigator.Location))*-24, 10000 * FMax(0.1, 1-(VSize(ForceDir)/2000)) * Normal(ForceDir), class'DTProtonStreamer');
-			ParticleStreamer(BW).BoostTarget = Pawn(Other);
+			ParticleStreamer(BW).BoostTarget = Pawn(Target);
 			bShouldUseAltColor=true;
 		}
 		else
 		{
 			//class'BallisticDamageType'.static.GenericHurt (Target, Damage, Instigator, Target.Location + (Normal(Target.Location - Instigator.Location))*-24, 30000 * FMax(0.1, 1-(VSize(ForceDir)/2000)) * Normal(ForceDir), class'DTProtonStreamer');
-			ParticleStreamer(BW).DrainTarget = Pawn(Other);
+			ParticleStreamer(BW).DrainTarget = Pawn(Target);
 			bShouldUseAltColor=false;
 		}
 		/*if (bWasAlive && Pawn(Target).Health <= 0)

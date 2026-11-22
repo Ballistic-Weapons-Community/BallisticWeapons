@@ -41,7 +41,7 @@ simulated function PostBeginPlay()
 	{
 		for (G = Level.Game.GameRulesModifiers; G != None && G.class != class'ParticleGameRules'; G = G.NextGameRules);
 		
-		if (G.class != class'ParticleGameRules')
+		if (G == None)
 		{
 			G = spawn(class'ParticleGameRules');
 			Level.Game.AddGameModifier(G);

@@ -30,7 +30,7 @@ simulated function PostBeginPlay()
 	{
 		for (G = Level.Game.GameRulesModifiers; G != None && G.class != class'ThorLCGameRules'; G = G.NextGameRules);
 		
-		if (G.class != class'ThorLCGameRules')
+		if (G == None)
 		{
 			G = spawn(class'ThorLCGameRules');
 			Level.Game.AddGameModifier(G);
