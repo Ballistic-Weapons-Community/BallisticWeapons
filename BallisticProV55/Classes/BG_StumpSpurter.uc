@@ -45,7 +45,7 @@ simulated event Timer()
 defaultproperties
 {
      bAutoAlignVelocity=True
-     DisableDGV(1)=1
+     DisableDGV(2)=1
      Begin Object Class=SpriteEmitter Name=SpriteEmitter21
          UseDirectionAs=PTDU_Up
          UseCollision=True
@@ -62,7 +62,7 @@ defaultproperties
          Acceleration=(Z=-100.000000)
          ExtentMultiplier=(X=0.500000,Y=0.500000,Z=0.500000)
          MaxCollisions=(Min=1.000000,Max=1.000000)
-         SpawnFromOtherEmitter=1
+         SpawnFromOtherEmitter=2
          SpawnAmount=1
          SpawnedVelocityScaleRange=(X=(Min=0.050000,Max=0.050000),Y=(Min=0.050000,Max=0.050000),Z=(Min=0.050000,Max=0.050000))
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
@@ -109,7 +109,6 @@ defaultproperties
          MinSquaredVelocity=10000.000000
          LifetimeRange=(Min=10.000000,Max=10.000000)
      End Object
-     Emitters(1)=SpriteEmitter'BallisticProV55.BG_StumpSpurter.SpriteEmitter22'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter23
          UseDirectionAs=PTDU_Up
@@ -126,7 +125,7 @@ defaultproperties
          Acceleration=(Z=-100.000000)
          ExtentMultiplier=(X=0.500000,Y=0.500000,Z=0.500000)
          MaxCollisions=(Min=1.000000,Max=1.000000)
-         SpawnFromOtherEmitter=1
+         SpawnFromOtherEmitter=2
          SpawnAmount=1
          SpawnedVelocityScaleRange=(X=(Min=0.100000,Max=0.100000),Y=(Min=0.100000,Max=0.100000),Z=(Min=0.100000,Max=0.100000))
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
@@ -146,7 +145,8 @@ defaultproperties
          LifetimeRange=(Min=0.800000,Max=1.200000)
          StartVelocityRange=(X=(Min=10.000000,Max=40.000000),Y=(Min=-15.000000,Max=15.000000),Z=(Min=5.000000,Max=30.000000))
      End Object
-     Emitters(2)=SpriteEmitter'BallisticProV55.BG_StumpSpurter.SpriteEmitter23'
+     Emitters(1)=SpriteEmitter'BallisticProV55.BG_StumpSpurter.SpriteEmitter23'
+     Emitters(2)=SpriteEmitter'BallisticProV55.BG_StumpSpurter.SpriteEmitter22'
 
      AutoDestroy=True
 }
