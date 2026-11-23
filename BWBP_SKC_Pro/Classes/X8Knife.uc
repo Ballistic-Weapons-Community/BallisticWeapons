@@ -218,10 +218,13 @@ function float GetAIRating()
 	if (B.Enemy == None)
 		return 0; // almost certainly useless against non-humans
 
-	Rating = AIRating;
-
 	Dir = B.Enemy.Location - Instigator.Location;
 	Dist = VSize(Dir);
+
+	// Up close the blade is as good as its AIRating. Further out it is only worth drawing to strike an enemy
+	// from behind (below): from AIRating at any range, bots drew knives over guns that rate low at range (PUMA)
+	if (FireMode[0] != None && Dist < FireMode[0].MaxRange() * 2)
+		Rating = AIRating;
 	
 	// favour melee when attacking the enemy's back
 	if (vector(B.Enemy.Rotation) dot Normal(Dir) < 0.0)
