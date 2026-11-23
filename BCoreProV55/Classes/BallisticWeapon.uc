@@ -3305,10 +3305,11 @@ simulated function bool CocksInBringUp()
 
 // With reloading off the magazine is endless and never reloaded, so a gun never needs cocking: no cock on bring up,
 // none after a bolt or pump shot, none for an empty pickup. Many fire classes set bNeedCock, so the flag is dropped
-// where the generic code asks for it (fire press, bring up, bots, AllowFire) instead of where it is set
+// where the generic code asks for it (fire press, bring up, bots, AllowFire) instead of where it is set.
+// Only the no reloading rule counts: a gun with no magazine of its own (BORT-85, loads a grenade after every shot) still cocks
 simulated final function bool NeedsCocking()
 {
-	if (bNoMag)
+	if (bNoMag && !default.bNoMag)
 		bNeedCock = false;
 	return bNeedCock;
 }
