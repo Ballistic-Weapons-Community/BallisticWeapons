@@ -69,6 +69,40 @@ static function ApplyGameStyle(byte Style)
 	}
 }
 
+// Health comes back in GunGame whatever the style: Pro has no health regeneration of its own and heals on kills
+// instead, a kill reward GunGame takes back (Cure Award is its only one). Called after the Ballistic mutator,
+// which may have added the regeneration mutator for the style already. Regenerates up to Cap, the game's Start
+// Health, as far as Cure Award heals. Its kill bonus (Rules_Regen) is taken back like the other kill rewards.
+static function StartHealthRegen(GameInfo Game, int Cap)
+{
+	local Mutator M;
+	local Mut_Regeneration Regen;
+
+	for (M = Game.BaseMutator; M != None && Regen == None; M = M.NextMutator)
+		Regen = Mut_Regeneration(M);
+
+	if (Regen == None)
+	{
+		Game.AddMutator("BallisticProV55.Mut_Regeneration", false);
+		for (M = Game.BaseMutator; M != None && Regen == None; M = M.NextMutator)
+			Regen = Mut_Regeneration(M);
+	}
+
+	if (Regen == None)
+	{
+		Log("GunGameConfig: could not add the health regeneration");
+		return;
+	}
+
+	// this mutator's own settings only: not the saved ones, not other game types
+	Regen.HealthCap = Cap;
+	if (!Regen.bUseRegen)
+	{
+		Regen.bUseRegen = true;
+		Regen.SetTimer(Regen.RegenRate, true);
+	}
+}
+
 static function int MinWeapons()
 {
 	return MIN_WEAPONS;

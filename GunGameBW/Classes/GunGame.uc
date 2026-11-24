@@ -254,6 +254,8 @@ event InitGame(string options, out string error)
 	 if (InventoryMut != "")
     	AddMutator(InventoryMut);
 
+	 class'GunGameConfig'.static.StartHealthRegen(self, Min(StartHealth, MaxHealth));
+
 	 if (HUDFixMut != "")
     	AddMutator(HUDFixMut);
 
