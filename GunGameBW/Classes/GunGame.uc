@@ -20,6 +20,7 @@ var config byte 				StdWeaponFactor;		//Defines the value of the effect a standa
 var config byte 				KillAmount;				//Defines how many kills are needed to level up
 var config byte					GameStyle;				//Ballistic game style: 0 = Pro, 1 = Classic, 2 = Realism, 3 = Tactical
 var globalconfig string			WeaponListVar;			//No setting: behind the Weapon List button of the game options
+var globalconfig string			GameStyleMenuVar;		//No setting: behind the Game Style Options button of the game options
 
 var bool 						bNoAdrenaline;       		   //Remove Adrenaline-Pickups
 var bool 						bNoHealth;          		   //Remove Health-Pickups
@@ -56,6 +57,7 @@ static function FillPlayInfo(PlayInfo PlayInfo)
      PlayInfo.AddSetting("GunGame", "StdWeaponFactor", "Std. Weapon Factor", 0, 16, "Text", "2;1:10");
      PlayInfo.AddSetting("GunGame", "KillAmount", "Kill Amount", 0, 18, "Text", "1;1:10");
      PlayInfo.AddSetting("GunGame", "GameStyle", "Game Style", 0, 19, "Select", class'GunGameConfig'.static.GameStyleOptions());
+     PlayInfo.AddSetting("GunGame", "GameStyleMenuVar", "Game Style Options", 0, 20, "Custom", ";;GunGameBW.GunGameStyleMenu");
      PlayInfo.AddSetting("GunGame", "WeaponListVar", "Weapon List", 0, 21, "Custom", ";;GunGameBW.GunGameWeaponMenu");
 }
 
@@ -74,6 +76,7 @@ static event string GetDescriptionText(string PropName)
           case "StdWeaponFactor":	return "The 'Victory Condition' value of killer/victim will be altered by this value.";
           case "KillAmount":		return "Defines how many kills are needed to get the next weapon.";
           case "GameStyle":		return "The Ballistic game style the match is played in. Its rules are set in the style's Ballistic configuration menu.";
+          case "GameStyleMenuVar":	return "Open the Ballistic configuration menu of the style chosen in Game Style.";
           case "WeaponListVar":	return "Choose the weapons and the order they are given in.";
 	}
 
