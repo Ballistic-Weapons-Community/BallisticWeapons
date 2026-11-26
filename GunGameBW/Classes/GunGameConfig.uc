@@ -51,6 +51,79 @@ static function ApplyGameStyle(byte Style)
 	}
 }
 
+// Health and shield are the game style's: players spawn with its Starting Health and Starting Shield, set by the
+// Ballistic mutator like in every Ballistic game. Cure Award and the health regeneration heal back up to that
+// Starting Health (never past the style's Max Health), Cure Award's leftover goes to shield up to the Starting
+// Shield. Read once the Ballistic mutator has spawned: it fills these from the style.
+static function int StyleHealthCap()
+{
+	return Min(class'BallisticReplicationInfo'.default.StartingHealth, class'BallisticReplicationInfo'.default.PlayerHealthMax);
+}
+
+static function int StyleShieldCap()
+{
+	return class'BallisticReplicationInfo'.default.StartingShield;
+}
+
+// GunGame's kill reward: Amount health up to the style's health cap, what is left over as shield up to its
+// shield cap. A killer in a vehicle gets it as its driver, as with Ballistic's own kill rewards
+static function GiveCureAward(Controller Killer, int Amount)
+{
+	local Pawn P;
+	local int Cap, Overflow;
+
+	if (Amount <= 0 || Killer == None)
+		return;
+
+	P = Killer.Pawn;
+	if (Vehicle(P) != None)
+		P = Vehicle(P).Driver;
+	if (P == None || P.bDeleteMe || P.Health <= 0)
+		return;
+
+	Cap = StyleHealthCap();
+	Overflow = Max(Amount - Max(Cap - P.Health, 0), 0);
+	P.GiveHealth(Amount, Cap);
+
+	Cap = StyleShieldCap();
+	if (Overflow > 0 && P.ShieldStrength < Cap)
+		P.AddShieldStrength(Min(Overflow, Cap - int(P.ShieldStrength)));
+}
+
+// Health comes back in GunGame whatever the style: Pro has no health regeneration of its own and heals on kills
+// instead, a kill reward GunGame takes back (Cure Award is its only one). Called after the Ballistic mutator,
+// which may have added the regeneration mutator for the style already. Regenerates up to the style's health cap,
+// as far as Cure Award heals. Its kill bonus (Rules_Regen) is taken back like the other kill rewards.
+static function StartHealthRegen(GameInfo Game)
+{
+	local Mutator M;
+	local Mut_Regeneration Regen;
+
+	for (M = Game.BaseMutator; M != None && Regen == None; M = M.NextMutator)
+		Regen = Mut_Regeneration(M);
+
+	if (Regen == None)
+	{
+		Game.AddMutator("BallisticProV55.Mut_Regeneration", false);
+		for (M = Game.BaseMutator; M != None && Regen == None; M = M.NextMutator)
+			Regen = Mut_Regeneration(M);
+	}
+
+	if (Regen == None)
+	{
+		Log("GunGameConfig: could not add the health regeneration");
+		return;
+	}
+
+	// this mutator's own settings only: not the saved ones, not other game types
+	Regen.HealthCap = StyleHealthCap();
+	if (!Regen.bUseRegen)
+	{
+		Regen.bUseRegen = true;
+		Regen.SetTimer(Regen.RegenRate, true);
+	}
+}
+
 static function int MinWeapons()
 {
 	return MIN_WEAPONS;
