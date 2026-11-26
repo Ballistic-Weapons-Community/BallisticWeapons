@@ -4905,7 +4905,17 @@ state PendingClientWeaponSet
         if ( Pawn(Owner) != None )
             ClientWeaponSet(bPendingSwitch);
         if ( IsInState('PendingClientWeaponSet') )
+		{
+			// Still waiting, but it was switched to and is being put down again (the engine marks a held weapon that never
+			// came up as ready to fire): finish the switch, or the player is stuck with it. It comes up the normal way
+			// once what it waits for arrives
+			if (ClientState == WS_PutDown && Instigator != None && Instigator.Weapon == self && Instigator.PendingWeapon != None)
+			{
+				ClientState = WS_Hidden;
+				Instigator.ChangedWeapon();
+			}
 			SetTimer(0.05, false);
+		}
 		if (bPendingBringupTimer)
 		{
 			SetTimer(BringUpTime, false);
