@@ -218,6 +218,8 @@ var     int                         NextShotView;                   // Server: w
 var()	editinline WeaponParams		WeaponParams;
 var		WeaponCamo					WeaponCamo;
 var		bool						bPendingBringupTimer;
+var		float						PendingSetStart;		// DIAGNOSTIC (MK781 GunGame report): when this weapon began waiting in PendingClientWeaponSet
+var		bool						bPendingSetLogged;		// DIAGNOSTIC: the long wait was logged
 var     int                         NetInventoryGroup;
 var     bool                        bDeferInitialSwitch, bServerDeferInitialSwitch;
 var     float                       NetHurryEnd;            // Server: until then this new weapon and its ammunition go ahead of other traffic (StartNetHurry)
@@ -4905,7 +4907,18 @@ state PendingClientWeaponSet
         if ( Pawn(Owner) != None )
             ClientWeaponSet(bPendingSwitch);
         if ( IsInState('PendingClientWeaponSet') )
+		{
+			// Still waiting, but it was switched to and is being put down again (the engine marks a held weapon that never
+			// came up as ready to fire): finish the switch, or the player is stuck with it. It comes up the normal way
+			// once what it waits for arrives
+			if (ClientState == WS_PutDown && Instigator != None && Instigator.Weapon == self && Instigator.PendingWeapon != None)
+			{
+				ClientState = WS_Hidden;
+				Instigator.ChangedWeapon();
+			}
+			LogLongPendingSet();
 			SetTimer(0.05, false);
+		}
 		if (bPendingBringupTimer)
 		{
 			SetTimer(BringUpTime, false);
@@ -4915,12 +4928,38 @@ state PendingClientWeaponSet
 
     simulated function BeginState()
     {
+		PendingSetStart = Level.TimeSeconds;
         SetTimer(0.05, false);
     }
 
     simulated function EndState()
     {
+		PendingSetStart = 0;
     }
+}
+
+// DIAGNOSTIC (MK781 GunGame report, take out once found): a weapon that waits in PendingClientWeaponSet for more than
+// 3 seconds says once what it still waits for
+simulated function LogLongPendingSet()
+{
+	local int m;
+	local string S;
+
+	if (bPendingSetLogged || PendingSetStart == 0 || Level.TimeSeconds - PendingSetStart < 3.0)
+		return;
+	bPendingSetLogged = true;
+
+	S = "BW PENDINGSET" @ Name @ "waiting" @ (Level.TimeSeconds - PendingSetStart) $ "s owner=" $ Owner @ "instigator=" $ Instigator
+		@ "held=" $ (Instigator != None && Instigator.Weapon == self) @ "cs=" $ int(ClientState)
+		@ "params=" $ WeaponParams @ "style=" $ GameStyleIndex @ "paramsclass=" $ ParamsClasses[GameStyleIndex] @ "layout=" $ LayoutIndex;
+	for (m = 0; m < NUM_FIRE_MODES; m++)
+	{
+		S = S @ "fm" $ m $ "=" $ FireMode[m];
+		if (FireMode[m] != None)
+			S = S @ "ammoclass" $ m $ "=" $ FireMode[m].AmmoClass;
+		S = S @ "ammo" $ m $ "=" $ Ammo[m];
+	}
+	Log(S);
 }
 
 function bool HandlePickupQuery( pickup Item )
