@@ -6,12 +6,9 @@
 class GunGame extends xDeathmatch
 	config(System);
 
-//Settings-related
-var config int 					StartHealth;
-var config int 					StartShield;
-var config int 					MaxHealth;
+//Settings-related (health and shield come from the game style)
 var bool 						bAdrenalineOn;			//Disables adrenaline -> no combos
-var config byte 				CureAward;				//Health for kills, heals player max. up to 'StartHealth'. Then Shield, max. up to 'StartShield'
+var config byte 				CureAward;				//Health for kills, up to the game style's Starting Health. Then Shield, up to the style's Starting Shield
 var config byte 				IterationAward;			//Award amount for cycling through WeaponList (only valid for GoalScore/Lives mode)
 var config byte 				VictoryCondition;		//0 = Reaching highest GunLevel ends the match; 1 = Reaching GoalScore ends the match; 2 = Last Man wins the match
 var config byte 				AmmoHandling;			//Rule how to handle the ammo issue: 0 = unlimited ammo, 1 = limited ammo, so if out of ammo --> downgrade GunLevel
@@ -45,9 +42,6 @@ static function FillPlayInfo(PlayInfo PlayInfo)
 {
      Super.FillPlayInfo(PlayInfo);
 
-     PlayInfo.AddSetting("GunGame", "StartHealth", "Start Health", 0, 0, "Text", "100;50:999");
-     PlayInfo.AddSetting("GunGame", "StartShield", "Start Shield", 0, 2, "Text", "50;0:150");
-	 PlayInfo.AddSetting("GunGame", "MaxHealth", "Max Health", 0, 4, "Text", "100;50:999");
      PlayInfo.AddSetting("GunGame", "CureAward", "Cure Award", 0, 6, "Text", "25;0:100");
      PlayInfo.AddSetting("GunGame", "IterationAward", "Iteration Award", 0, 8, "Text", "1;0:100");
      PlayInfo.AddSetting("GunGame", "VictoryCondition", "Victory Condition", 0, 10, "Select", "0;Gunlevel;1;Goalscore;2;Lives");
@@ -63,10 +57,7 @@ static event string GetDescriptionText(string PropName)
 {
      switch(PropName)
      {
-          case "StartHealth":		return "Health amount all players start with.";
-          case "StartShield":		return "Shield amount all players start with.";
-		  case "MaxHealth":			return "Maximum health amount all players have.";
-          case "CureAward":			return "Get Health/Shield for kills. Heals max. up to 'Start Health' amount. Then it gives Shield max. up to 'Start Shield'.";
+          case "CureAward":			return "Get Health/Shield for kills. Heals up to the game style's Starting Health, then gives Shield up to its Starting Shield. 0 gives nothing.";
           case "IterationAward":	return "Depending on 'VictoryCondition' one gets this extra amount to his/her lives or score value when he/her ran through the WeaponList. It does not influence the GunLevel.";
           case "VictoryCondition":	return "Defines which option leads to victory.";
           case "AmmoHandling":		return "Unlimited - unlimited ammo. Downgrading - weapons have some ammo, but if out of ammo downgrade GunLevel";
@@ -137,18 +128,6 @@ event InitGame(string options, out string error)
    //local array<string> WeaponClasses;
 
      Super.InitGame(Options, Error);
-
-     InOpt = ParseOption(Options, "StartHealth");
-     if(InOpt != "")
-          StartHealth = byte(InOpt);
-
-     InOpt = ParseOption(Options, "StartShield");
-     if(InOpt != "")
-          StartShield = byte(InOpt);
-		  
-	 InOpt = ParseOption(Options, "MaxHealth");
-     if(InOpt != "")
-          MaxHealth = byte(InOpt);
 
      InOpt = ParseOption(Options, "bAdrenalineOn");
      if(InOpt != "")
@@ -251,7 +230,7 @@ event InitGame(string options, out string error)
 	 if (InventoryMut != "")
     	AddMutator(InventoryMut);
 
-	 class'GunGameConfig'.static.StartHealthRegen(self, Min(StartHealth, MaxHealth));
+	 class'GunGameConfig'.static.StartHealthRegen(self);
 
 	 if (HUDFixMut != "")
     	AddMutator(HUDFixMut);
@@ -639,22 +618,6 @@ function AddDefaultInventory( Pawn PlayerPawn )
      SetPlayerDefaults(PlayerPawn);
 }
 
-//Assign user settings such as health and shield
-function SetPlayerDefaults(Pawn PlayerPawn)
-{
-     Super.SetPlayerDefaults(PlayerPawn);
-
-     if ( !PlayerPawn.Controller.bIsPlayer )
-          return;
-
-     PlayerPawn.Health = StartHealth;
-	 PlayerPawn.HealthMax = MaxHealth;
-	 PlayerPawn.SuperHealthMax = MaxHealth;
-	 
-     PlayerPawn.ShieldStrength = float(StartShield);
-     PlayerPawn.NetUpdateTime = Level.TimeSeconds - 1;
-}
-
 function Weapon FindCorrespondingWeapon(Pawn P, byte GunLevel)
 {
      local Inventory Inv;
@@ -685,22 +648,7 @@ function int ReduceDamage( int Damage, pawn injured, pawn instigatedBy, vector H
 //Used to give extra health/shield to Killer, seperated form Killed() to make code more clearly
 function NotifyKilled(Controller Killer, Controller Other, Pawn OtherPawn)
 {
-     local int Overflow; //used to calculate the Overflow (Pawn.Health + CureAward = StartHealth + Overflow) that will be given as Shield
-
-     if ( CureAward > 0 && Killer != None )
-     {
-          if ( Killer.Pawn != None )
-          {
-               if ( Killer.Pawn.Health > 0 )  //KillerPawn is not meant to be dead
-               {
-                    Overflow = Max( CureAward-(StartHealth-Killer.Pawn.Health), 0 );
-                    Killer.Pawn.GiveHealth(CureAward, StartHealth);
-
-                    if ( Overflow > 0 )
-                         Killer.Pawn.AddShieldStrength( Min(StartShield, Killer.Pawn.ShieldStrength + Overflow) - Killer.Pawn.ShieldStrength );  //Give Shield up to StartShield
-               }
-          }
-     }
+     class'GunGameConfig'.static.GiveCureAward(Killer, CureAward);
 
      Super.NotifyKilled(Killer, Other, OtherPawn);
 }
@@ -1390,9 +1338,6 @@ defaultproperties
 	 LvlUpSound=Sound'GameSounds.Fanfares.UT2K3Fanfare08'
 	 InventoryMut="BallisticProV55.Mut_BallisticDM"
 	 HUDFixMut="HUDFix.MutHUDFix"
-     StartHealth=100
-     StartShield=100
-	 MaxHealth=199
      bAdrenalineOn=True
      CureAward=25
      IterationAward=1
