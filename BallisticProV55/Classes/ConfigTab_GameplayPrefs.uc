@@ -170,7 +170,7 @@ defaultproperties
 	 Begin Object Class=moCheckBox Name=ch_KeyHintsCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Show What The Keys Do When A Gun Is Drawn"
+         Caption="Show A Gun's Keys When Drawn"
          OnCreateComponent=ch_KeyHintsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="For a few seconds after you draw a gun, the HUD says what alt fire, Weapon Special and Switch Fire Mode do on it, with your keys."
