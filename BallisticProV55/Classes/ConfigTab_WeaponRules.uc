@@ -25,10 +25,34 @@ var automated moNumericEdit int_MaxInventoryCapacity;	//Inventory Capacity
 var automated moEditBox   	eb_ItemGroup;				//The name of the Itemizer layout you want to use.
 var automated moCheckbox	ch_UseItemizer; 			//Enable Itemizer to spawn aditional pickups in maps.
 var automated GUIButton		bn_MoreSettings;			//Opens the sub menu with the advanced weapon rules
+var automated BWMenuSection	i_Handling, i_Damage, i_Inventory;	// titled boxes round the rows
 
 //==================================================================
 // Settings & Defaults
 //==================================================================
+
+function InitComponent(GUIController MyController, GUIComponent MyOwner)
+{
+	Super.InitComponent(MyController, MyOwner);
+
+	SectionRow(i_Handling, sl_Sway);
+	SectionRow(i_Handling, sl_Recoil);
+	SectionRow(i_Handling, sl_Reload);
+	SectionRow(i_Handling, ch_WeaponJumpOffsetting);
+	SectionRow(i_Handling, ch_LongWeaponOffsetting);
+	SectionRow(i_Handling, ch_NoReloading);
+	SectionRow(i_Damage, fl_Damage);
+	SectionRow(i_Damage, fl_VDamage);
+	SectionRow(i_Inventory, int_MaxInventoryCapacity);
+	SectionRow(i_Inventory, ch_UseItemizer);
+	SectionRow(i_Inventory, eb_ItemGroup);
+
+	// the rest of the weapon rules
+	bn_MoreSettings.WinLeft = 0.015;
+	bn_MoreSettings.WinTop = 0.56;
+	bn_MoreSettings.WinWidth = 0.475;
+	bn_MoreSettings.WinHeight = 0.06;
+}
 
 function LoadSettings()
 {
@@ -141,6 +165,33 @@ function DefaultSettings()
 
 defaultproperties
 {
+	Begin Object Class=BWMenuSection Name=HandlingSection
+		Caption="Handling"
+		WinTop=0.030000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.493000
+	End Object
+	i_Handling=BWMenuSection'BallisticProV55.ConfigTab_WeaponRules.HandlingSection'
+
+	Begin Object Class=BWMenuSection Name=DamageSection
+		Caption="Damage"
+		WinTop=0.030000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.241000
+	End Object
+	i_Damage=BWMenuSection'BallisticProV55.ConfigTab_WeaponRules.DamageSection'
+
+	Begin Object Class=BWMenuSection Name=InventorySection
+		Caption="Inventory"
+		WinTop=0.300000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.304000
+	End Object
+	i_Inventory=BWMenuSection'BallisticProV55.ConfigTab_WeaponRules.InventorySection'
+
 	 Begin Object Class=moSlider Name=sl_SwaySlider
          MaxValue=2.000000
          Caption="Sway Scale"
@@ -262,7 +313,7 @@ defaultproperties
 	 Begin Object Class=moCheckBox Name=UseItemizerCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Use itemizer"
+         Caption="Use Itemizer"
          OnCreateComponent=UseItemizerCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Use the Itemizer to spawn aditional pickups in maps."

@@ -24,13 +24,40 @@ function ShowPanel(bool bShow)
 {
     super.ShowPanel(bShow);
 
-    if (bInitialized)
-        return;
+    if (!bInitialized)
+	{
+		InitializeConfigTab();
+		LoadSettings();
+		bInitialized = true;
+	}
 
-	InitializeConfigTab();
-    LoadSettings();
+	if (bShow && ConfigMenuBase(PageOwner) != None && ConfigMenuBase(PageOwner).DarkTheme())
+		class'BWMenuTheme'.static.Apply(Controller, self);
+}
 
-    bInitialized = true;
+//==================================================================
+// Sections
+//==================================================================
+
+// A row of a section: caption on the left, its control lined up on the right with the other rows'
+function SectionRow(GUISectionBackground Section, GUIComponent Comp)
+{
+	local GUIMenuOption Option;
+
+	Option = GUIMenuOption(Comp);
+	if (Option != None)
+	{
+		Option.LabelJustification = TXTA_Left;
+		Option.ComponentJustification = TXTA_Right;
+		Option.WinHeight = 0.045;
+		if (moCheckBox(Option) != None)
+			Option.CaptionWidth = 0.9;
+		else if (moFloatEdit(Option) != None || moNumericEdit(Option) != None)
+			Option.CaptionWidth = 0.7;
+		else
+			Option.CaptionWidth = 0.56;
+	}
+	Section.ManageComponent(Comp);
 }
 
 function InitializeConfigTab()

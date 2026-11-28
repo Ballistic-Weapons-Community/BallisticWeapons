@@ -14,11 +14,30 @@ var automated moCheckbox	ch_PreCacheWeapons;			//Precache Weapons
 var automated moCheckbox	ch_KillStreaks;				//Killstreaks
 var automated moCheckbox	ch_NoRandomCamo;			//Disable Camo Randomizer
 var automated GUIButton		bn_ClientSettings;
+var automated BWMenuSection	i_Weapons, i_Players, i_Loading;	// titled boxes round the rows
 
 var() localized string		ArenaLOHint, SwapLOHint, LoadoutLOHint, InventoryLOHint, MeleeLOHint;
 //==================================================================
 // Settings & Defaults
 //==================================================================
+
+function InitComponent(GUIController MyController, GUIComponent MyOwner)
+{
+	Super.InitComponent(MyController, MyOwner);
+
+	SectionRow(i_Weapons, co_InventoryMode);
+	SectionRow(i_Weapons, ch_KillStreaks);
+	SectionRow(i_Weapons, ch_NoRandomCamo);
+	SectionRow(i_Players, ch_BrightPlayers);
+	SectionRow(i_Players, ch_ForceBWPawn);
+	SectionRow(i_Loading, ch_PreCacheWeapons);
+
+	// your own settings, under the rules
+	bn_ClientSettings.WinLeft = 0.015;
+	bn_ClientSettings.WinTop = 0.37;
+	bn_ClientSettings.WinWidth = 0.475;
+	bn_ClientSettings.WinHeight = 0.06;
+}
 
 function LoadSettings()
 {
@@ -110,6 +129,33 @@ function bool InternalOnClick(GUIComponent Sender)
 
 defaultproperties
 {	 
+	Begin Object Class=BWMenuSection Name=WeaponsSection
+		Caption="Weapons"
+		WinTop=0.030000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.304000
+	End Object
+	i_Weapons=BWMenuSection'BallisticProV55.ConfigTab_GameRules.WeaponsSection'
+
+	Begin Object Class=BWMenuSection Name=PlayersSection
+		Caption="Players"
+		WinTop=0.030000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.241000
+	End Object
+	i_Players=BWMenuSection'BallisticProV55.ConfigTab_GameRules.PlayersSection'
+
+	Begin Object Class=BWMenuSection Name=LoadingSection
+		Caption="Loading"
+		WinTop=0.300000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.178000
+	End Object
+	i_Loading=BWMenuSection'BallisticProV55.ConfigTab_GameRules.LoadingSection'
+
 	 Begin Object Class=moComboBox Name=co_InventoryModeCombo
          ComponentJustification=TXTA_Left
          CaptionWidth=0.550000

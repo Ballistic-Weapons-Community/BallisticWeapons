@@ -10,8 +10,30 @@ class ConfigTab_ThirdPerson extends ConfigTabBase;
 
 var automated moCheckbox	ch_ThirdPerson, ch_SightsFirstPerson;
 var automated moSlider		sl_Distance, sl_Height, sl_Side, sl_Smoothing;
-var automated GUILabel		l_Presets, l_Keys;
+var automated GUILabel		l_Keys;
 var automated GUIButton		b_Shoulder, b_High, b_Close;
+var automated BWMenuSection	i_Camera, i_Presets;	// titled boxes round the rows
+
+function InitComponent(GUIController MyController, GUIComponent MyOwner)
+{
+	Super.InitComponent(MyController, MyOwner);
+
+	SectionRow(i_Camera, ch_ThirdPerson);
+	SectionRow(i_Camera, sl_Distance);
+	SectionRow(i_Camera, sl_Height);
+	SectionRow(i_Camera, sl_Side);
+	SectionRow(i_Camera, sl_Smoothing);
+	SectionRow(i_Camera, ch_SightsFirstPerson);
+	SectionRow(i_Presets, b_Shoulder);
+	SectionRow(i_Presets, b_High);
+	SectionRow(i_Presets, b_Close);
+
+	// under the presets
+	l_Keys.WinLeft = 0.525;
+	l_Keys.WinTop = 0.37;
+	l_Keys.WinWidth = 0.445;
+	l_Keys.WinHeight = 0.2;
+}
 
 function LoadSettings()
 {
@@ -65,6 +87,24 @@ function bool InternalOnClick(GUIComponent Sender)
 
 defaultproperties
 {
+	Begin Object Class=BWMenuSection Name=CameraSection
+		Caption="Camera"
+		WinTop=0.030000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.493000
+	End Object
+	i_Camera=BWMenuSection'BallisticProV55.ConfigTab_ThirdPerson.CameraSection'
+
+	Begin Object Class=BWMenuSection Name=PresetsSection
+		Caption="Camera Presets"
+		WinTop=0.030000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.304000
+	End Object
+	i_Presets=BWMenuSection'BallisticProV55.ConfigTab_ThirdPerson.PresetsSection'
+
 	Begin Object Class=moCheckBox Name=ch_ThirdPersonCheck
 		ComponentJustification=TXTA_Left
 		CaptionWidth=0.900000
@@ -154,15 +194,6 @@ defaultproperties
 	End Object
 	ch_SightsFirstPerson=moCheckBox'ch_SightsFirstPersonCheck'
 
-	Begin Object Class=GUILabel Name=PresetsLabel
-		Caption="Camera Presets"
-		TextColor=(B=255,G=255,R=255)
-		WinTop=0.520000
-		WinLeft=0.250000
-		WinWidth=0.500000
-		WinHeight=0.040000
-	End Object
-	l_Presets=GUILabel'PresetsLabel'
 
 	Begin Object Class=GUIButton Name=ShoulderButton
 		Caption="Shoulder"

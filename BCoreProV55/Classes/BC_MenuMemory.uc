@@ -18,6 +18,7 @@ struct MenuTab
 var config array<MenuTab>	LastTabs;
 var config string			LastInGameTab;		// caption of the Ballistic in-game tab last shown, "" when another tab was
 var config int				LoadoutSlot, LoadoutTeam, EvolutionSlot;
+var config byte				MenuTheme;			// 0 the game's blue menus, 1 the dark theme (BallisticProV55.BWMenuTheme)
 
 static function string GetLastTab(string Menu)
 {

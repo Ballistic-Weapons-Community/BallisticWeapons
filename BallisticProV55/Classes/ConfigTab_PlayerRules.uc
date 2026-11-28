@@ -17,10 +17,28 @@ var automated moNumericEdit     ne_PlayerShieldMax;
 var automated moCheckbox		ch_ShieldRegen;				//Enables Shield Regen
 var automated moNumericEdit 	ne_ShieldKillReward;				//Armour Reward
 var automated moNumericEdit 	ne_KillRewardShieldMax;			//Armour Reward Cap
+var automated BWMenuSection	i_Health, i_Shields;	// titled boxes round the rows
 
 //==================================================================
 // Settings & Defaults
 //==================================================================
+
+function InitComponent(GUIController MyController, GUIComponent MyOwner)
+{
+	Super.InitComponent(MyController, MyOwner);
+
+	SectionRow(i_Health, ne_StartingHealth);
+	SectionRow(i_Health, ne_PlayerHealthMax);
+	SectionRow(i_Health, ne_PlayerSuperHealthMax);
+	SectionRow(i_Health, ch_HealthRegen);
+	SectionRow(i_Health, ne_HeathKillReward);
+	SectionRow(i_Health, ne_KillRewardHealthMax);
+	SectionRow(i_Shields, ne_StartingShield);
+	SectionRow(i_Shields, ne_PlayerShieldMax);
+	SectionRow(i_Shields, ch_ShieldRegen);
+	SectionRow(i_Shields, ne_ShieldKillReward);
+	SectionRow(i_Shields, ne_KillRewardShieldMax);
+}
 
 function LoadSettings()
 {
@@ -125,6 +143,24 @@ function SaveSettings()
 
 defaultproperties
 { 
+	Begin Object Class=BWMenuSection Name=HealthSection
+		Caption="Health"
+		WinTop=0.030000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.493000
+	End Object
+	i_Health=BWMenuSection'BallisticProV55.ConfigTab_PlayerRules.HealthSection'
+
+	Begin Object Class=BWMenuSection Name=ShieldsSection
+		Caption="Shields"
+		WinTop=0.030000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.430000
+	End Object
+	i_Shields=BWMenuSection'BallisticProV55.ConfigTab_PlayerRules.ShieldsSection'
+
 	 Begin Object Class=moNumericEdit Name=ne_StartingHealthEdit
          MinValue=1
          MaxValue=999

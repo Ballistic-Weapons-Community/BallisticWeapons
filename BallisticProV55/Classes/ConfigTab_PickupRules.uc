@@ -21,10 +21,32 @@ var automated moCheckBox    chk_bRemoveHealthPack;		//Toggle Health Pack
 var automated moCheckBox    chk_bRemoveSuperHealthPack;	//Toggle Super Health Pack
 var automated moCheckBox    chk_bRemoveAdrenaline;		//Toggle Adrenaline
 var automated moCheckBox    chk_AlternativePickups;		//Press USE to Pickup Weapons
+var automated BWMenuSection	i_Pickups, i_Remove;	// titled boxes round the rows
 
 //==================================================================
 // Settings & Defaults
 //==================================================================
+
+function InitComponent(GUIController MyController, GUIComponent MyOwner)
+{
+	Super.InitComponent(MyController, MyOwner);
+
+	SectionRow(i_Pickups, fl_NadePct);
+	SectionRow(i_Pickups, ch_BrightPickups);
+	SectionRow(i_Pickups, ch_PickupsChange);
+	SectionRow(i_Pickups, ch_SpawnUnique);
+	SectionRow(i_Pickups, ch_KillRogueWPs);
+	SectionRow(i_Pickups, ch_LeaveSuper);
+	SectionRow(i_Pickups, chk_AlternativePickups);
+	SectionRow(i_Remove, chk_bRemoveAmmoPacks);
+	SectionRow(i_Remove, chk_bRemoveUDamage);
+	SectionRow(i_Remove, chk_bRemoveShieldPack);
+	SectionRow(i_Remove, chk_bRemoveSuperShieldPack);
+	SectionRow(i_Remove, chk_bRemoveBandages);
+	SectionRow(i_Remove, chk_bRemoveHealthPack);
+	SectionRow(i_Remove, chk_bRemoveSuperHealthPack);
+	SectionRow(i_Remove, chk_bRemoveAdrenaline);
+}
 
 function LoadSettings()
 {
@@ -119,6 +141,24 @@ function SaveSettings()
 
 defaultproperties
 {
+	Begin Object Class=BWMenuSection Name=PickupsSection
+		Caption="Pickups"
+		WinTop=0.030000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.507000
+	End Object
+	i_Pickups=BWMenuSection'BallisticProV55.ConfigTab_PickupRules.PickupsSection'
+
+	Begin Object Class=BWMenuSection Name=RemoveSection
+		Caption="Remove From Maps"
+		WinTop=0.030000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.563000
+	End Object
+	i_Remove=BWMenuSection'BallisticProV55.ConfigTab_PickupRules.RemoveSection'
+
      Begin Object Class=moFloatEdit Name=fl_NadePctFloat
          MinValue=0.000000
          MaxValue=100.000000
@@ -202,7 +242,7 @@ defaultproperties
 	 Begin Object Class=moCheckBox Name=chk_bRemoveAmmoPacksC
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Remove ammo packs"
+         Caption="Ammo Packs"
          OnCreateComponent=chk_bRemoveAmmoPacksC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all ammo packs from the game."
@@ -215,7 +255,7 @@ defaultproperties
      Begin Object Class=moCheckBox Name=chk_bRemoveUDamageC
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Remove damage amplifiers"
+         Caption="Damage Amplifiers"
          OnCreateComponent=chk_bRemoveUDamageC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all damage amplifiers from the game."
@@ -228,7 +268,7 @@ defaultproperties
      Begin Object Class=moCheckBox Name=bRemoveShieldPackC
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Remove armors"
+         Caption="Armor"
          OnCreateComponent=bRemoveShieldPackC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all armors from the game except super armor."
@@ -241,7 +281,7 @@ defaultproperties
      Begin Object Class=moCheckBox Name=bRemoveSuperShieldPackC
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Remove super armors"
+         Caption="Super Armor"
          OnCreateComponent=bRemoveSuperShieldPackC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all super armors from the game."
@@ -254,7 +294,7 @@ defaultproperties
      Begin Object Class=moCheckBox Name=chk_bRemoveBandagesC
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Remove bandages"
+         Caption="Bandages"
          OnCreateComponent=chk_bRemoveBandagesC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all bandages from the game."
@@ -267,7 +307,7 @@ defaultproperties
      Begin Object Class=moCheckBox Name=chk_bRemoveHealthPackC
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Remove health packs"
+         Caption="Health Packs"
          OnCreateComponent=chk_bRemoveHealthPackC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all health packs from the game."
@@ -280,7 +320,7 @@ defaultproperties
      Begin Object Class=moCheckBox Name=chk_bRemoveSuperHealthPackC
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Remove super health packs"
+         Caption="Super Health Packs"
          OnCreateComponent=chk_bRemoveSuperHealthPackC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all super health packs from the game."
@@ -293,7 +333,7 @@ defaultproperties
      Begin Object Class=moCheckBox Name=chk_bRemoveAdrenalineC
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Remove adrenaline"
+         Caption="Adrenaline"
          OnCreateComponent=chk_bRemoveAdrenalineC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Removes all adrenaline from the game."

@@ -10,11 +10,27 @@
 class ConfigTab_VisualPrefs extends ConfigTabBase;
 
 var automated moCheckbox	ch_UseBrass, ch_ImpStay, ch_MSmoke, ch_MotionBlur;
-var automated moComboBox	co_WeaponDet, co_CamRate, co_EffectDet;
+var automated moComboBox	co_WeaponDet, co_CamRate, co_EffectDet, co_MenuLook;
 var automated moFloatEdit	fl_BrassTime;
-var automated GUILabel		l_Detail, l_Effects, l_Heavy;	// section headings
+var automated BWMenuSection	i_Detail, i_Effects, i_Heavy, i_Menus;	// titled boxes round the rows
+var() localized string		MenuLooks[2];
 
 var			  int			OldWeaponDet;
+
+function InitComponent(GUIController MyController, GUIComponent MyOwner)
+{
+	Super.InitComponent(MyController, MyOwner);
+
+	SectionRow(i_Detail, co_WeaponDet);
+	SectionRow(i_Detail, co_EffectDet);
+	SectionRow(i_Detail, co_CamRate);
+	SectionRow(i_Effects, ch_UseBrass);
+	SectionRow(i_Effects, ch_MSmoke);
+	SectionRow(i_Heavy, fl_BrassTime);
+	SectionRow(i_Heavy, ch_ImpStay);
+	SectionRow(i_Heavy, ch_MotionBlur);
+	SectionRow(i_Menus, co_MenuLook);
+}
 
 function LoadSettings()
 {
@@ -41,7 +57,12 @@ function LoadSettings()
 		for (i=0;i<9;i++)
 			co_WeaponDet.AddItem(class'UT2K4Tab_DetailSettings'.default.DetailLevels[i]);
 		co_WeaponDet.ReadOnly(True);
+
+		co_MenuLook.AddItem(MenuLooks[0]);
+		co_MenuLook.AddItem(MenuLooks[1]);
+		co_MenuLook.ReadOnly(True);
 	}
+	co_MenuLook.SetIndex(class'BC_MenuMemory'.default.MenuTheme);
 	co_CamRate.SetIndex(int(class'Mut_Ballistic'.default.CamUpdateRate));
 	co_EffectDet.SetIndex(class'BallisticMod'.default.EffectsDetailMode);
 	OldWeaponDet = co_WeaponDet.FindIndex(ConfigMenu_Preferences(BaseMenu).GetDisplayString(PlayerOwner().ConsoleCommand("get ini:Engine.Engine.ViewportManager TextureDetailWeaponSkin")));
@@ -54,6 +75,8 @@ function SaveSettings()
 		return;
 	class'Mut_Ballistic'.default.CamUpdateRate 			= string(co_CamRate.GetIndex());
 	class'BallisticMod'.default.EffectsDetailMode 		= ELLHDetailMode(co_EffectDet.GetIndex());
+	class'BC_MenuMemory'.default.MenuTheme				= co_MenuLook.GetIndex();
+	class'BC_MenuMemory'.static.StaticSaveConfig();
 	class'BallisticMod'.default.bEjectBrass 			= ch_useBrass.IsChecked();
 	class'AD_ImpactDecal'.default.bPermanentImpacts		= ch_ImpStay.IsChecked();
 	class'BallisticMod'.default.bMuzzleSmoke 			= ch_MSmoke.IsChecked();
@@ -81,6 +104,7 @@ function DefaultSettings()
 {
 	co_CamRate.SetIndex(1);
 	co_EffectDet.SetIndex(2);
+	co_MenuLook.SetIndex(0);
 	co_WeaponDet.SilentSetIndex(OldWeaponDet);
 	ch_UseBrass.Checked(true);
 	fl_BrassTime.SetValue(1.0);
@@ -92,39 +116,57 @@ function DefaultSettings()
 
 defaultproperties
 {
-	Begin Object Class=GUILabel Name=l_DetailLabel
+	Begin Object Class=BWMenuSection Name=MenusSection
+		Caption="Menus"
+		WinTop=0.360000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.178000
+	End Object
+	i_Menus=BWMenuSection'BallisticProV55.ConfigTab_VisualPrefs.MenusSection'
+
+	Begin Object Class=moComboBox Name=co_MenuLookCombo
+		ComponentJustification=TXTA_Left
+		CaptionWidth=0.550000
+		Caption="Menu Look"
+		OnCreateComponent=co_MenuLookCombo.InternalOnCreateComponent
+		IniOption="@Internal"
+		Hint="How the Ballistic menus look. Shown the next time a menu opens."
+		WinTop=0.400000
+		WinLeft=0.020000
+	End Object
+	co_MenuLook=moComboBox'co_MenuLookCombo'
+
+	MenuLooks(0)="UT2004 Blue"
+	MenuLooks(1)="Dark"
+
+	Begin Object Class=BWMenuSection Name=DetailSection
 		Caption="Detail"
-		TextAlign=TXTA_Left
-		TextColor=(B=0,G=180,R=255,A=255)
-		TextFont="UT2MenuFont"
-		WinTop=0.080000
-		WinLeft=0.250000
-		WinWidth=0.500000
-		WinHeight=0.040000
+		WinTop=0.030000
+		WinLeft=0.015000
+		WinWidth=0.475000
+		WinHeight=0.304000
 	End Object
-	l_Detail=GUILabel'BallisticProV55.ConfigTab_VisualPrefs.l_DetailLabel'
-	Begin Object Class=GUILabel Name=l_EffectsLabel
+	i_Detail=BWMenuSection'BallisticProV55.ConfigTab_VisualPrefs.DetailSection'
+
+	Begin Object Class=BWMenuSection Name=EffectsSection
 		Caption="Effects"
-		TextAlign=TXTA_Left
-		TextColor=(B=0,G=180,R=255,A=255)
-		TextFont="UT2MenuFont"
-		WinTop=0.300000
-		WinLeft=0.250000
-		WinWidth=0.500000
-		WinHeight=0.040000
+		WinTop=0.030000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.241000
 	End Object
-	l_Effects=GUILabel'BallisticProV55.ConfigTab_VisualPrefs.l_EffectsLabel'
-	Begin Object Class=GUILabel Name=l_HeavyLabel
+	i_Effects=BWMenuSection'BallisticProV55.ConfigTab_VisualPrefs.EffectsSection'
+
+	Begin Object Class=BWMenuSection Name=HeavySection
 		Caption="Heavy On Performance"
-		TextAlign=TXTA_Left
-		TextColor=(B=0,G=180,R=255,A=255)
-		TextFont="UT2MenuFont"
-		WinTop=0.470000
-		WinLeft=0.250000
-		WinWidth=0.500000
-		WinHeight=0.040000
+		WinTop=0.300000
+		WinLeft=0.510000
+		WinWidth=0.475000
+		WinHeight=0.304000
 	End Object
-	l_Heavy=GUILabel'BallisticProV55.ConfigTab_VisualPrefs.l_HeavyLabel'
+	i_Heavy=BWMenuSection'BallisticProV55.ConfigTab_VisualPrefs.HeavySection'
+
 
      Begin Object Class=moComboBox Name=co_WeaponDetCombo
          ComponentJustification=TXTA_Left
